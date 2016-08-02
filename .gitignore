@@ -2,7 +2,6 @@
 node_modules/
 npm-debug.log
 .DS_store
-public/
 *.log
 Thumbs.db
 .idea/
