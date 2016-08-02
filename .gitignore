@@ -6,6 +6,8 @@ npm-debug.log
 Thumbs.db
 .idea/
 
+public/js/
+
 .vscode/
 .settings/
 

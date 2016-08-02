@@ -7,7 +7,7 @@ module.exports = {
 	devtool: 'cheap-module-eval-source-map',
 
 	output: {
-		path: path.resolve('build/js'),
+		path: path.resolve('public/js'),
 		publicPath: '/public/js/',
 		filename: 'bundle.js'
 	},
