@@ -1,3 +1,5 @@
 module.exports = function(app) {
-	commonRoutes: require('./commonRoutes')(app)
+	return {
+		commonRoutes: require('./commonRoutes')(app)
+	};
 };
