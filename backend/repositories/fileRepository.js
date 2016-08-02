@@ -20,8 +20,6 @@ FileRepository.prototype.updateFile = function(fileId, fileUrl, ownerId, toWhoma
 	var model = this.model;
 	var query = { _id: id };
 	model.update(query, {url: fileUrl, owner: ownerId, createionDate: date, allowedTo:toWhomallowed }, {multi:false});
-	
-	var query = model.update({events:eventId}, {$pull: { events:  eventId }}, );
 	query.exec(callback);
 };
 
