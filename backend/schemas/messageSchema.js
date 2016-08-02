@@ -5,15 +5,15 @@ var User = require('./userSchema');
 var Project = require('./projectSchema');
 
 var messageSchema = new Schema({
-    title: string,
-    description: string,
+    title: String,
+    description: String,
     author: {type: Schema.Types.ObjectId, ref: 'User'},
     project: {type: Schema.Types.ObjectId, ref: 'Project'},
-    date: date,
+    date: Date,
     comments: [
         {
             author: {type: Schema.Types.ObjectId, ref: 'User'},
-            date: date,
+            date: Date,
             description: string,
             files: []
         }
