@@ -1,0 +1,23 @@
+*sublime*
+node_modules/
+npm-debug.log
+.DS_store
+public/
+*.log
+Thumbs.db
+.idea/
+
+.vscode/
+.settings/
+
+build/
+
+# Elastic Beanstalk Files
+
+.elasticbeanstalk/*
+
+!.elasticbeanstalk/*.cfg.yml
+
+!.elasticbeanstalk/*.global.yml
+
+*.zip
