@@ -27,8 +27,8 @@ app.use(express.static(staticPath));
 
 app.use(bodyParser.json());
 
-var apiRoutes = require('./routes/api/routes'),
-	viewRoutes = require('./routes/view/routes');
+var apiRoutes = require('./routes/api/routes')(app),
+	viewRoutes = require('./routes/view/routes')(app);
 
 if (app.get('env') === 'development') {
 	var webpackMiddleware = require("webpack-dev-middleware");
