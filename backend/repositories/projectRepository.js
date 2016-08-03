@@ -36,7 +36,7 @@ function getProject(projectId, callback){
 
 function updateProject(projectId, projectTitle, projectDescription, participantsArr, projectSDate, projectEDate, projectVersion, projectRepository, callback){
     var model = this.model;
-    var query = {_id: projectId}
+    var query = {_id: projectId};
     model.update(query, {
         title: projectTitle,
         description: projectDescription,
