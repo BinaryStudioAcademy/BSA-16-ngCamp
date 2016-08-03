@@ -4,58 +4,45 @@ var Project = require('../schemas/projectSchema');
 ProjectRepository.prototype = new Repository();
 
 ProjectRepository.prototype.createProject = createProject;
-ProjectRepository.prototype.getProject = getProject;
 ProjectRepository.prototype.updateProject = updateProject;
-ProjectRepository.prototype.deleteProject = deleteProject;
 
 function ProjectRepository() {
 	Repository.prototype.constructor.call(this);
 	this.model = Project;
 };
 
-function createProject(projectTitle, projectDescription, participantsArr, projectSDate, projectEDate, projectVersion, projectRepository, callback){
+function createProject(dataObj, callback){
     var model = this.model;
 
     var newProject = new model({
-        title: projectTitle,
-        description: projectDescription,
-        participants: participantsArr,
-        startDate: projectSDate,
-        endDate: projectEDate,
-        version: projectVersion,
-        repository: projectRepository
+        title: dataObj.projectTitle,
+        description: dataObj.projectDescription,
+        participants: dataObj.participantsArr,
+        startDate: dataObj.projectSDate,
+        endDate: dataObj.projectEDate,
+        version: dataObj.projectVersion,
+        repository: dataObj.projectRepository
     });
 	newProject.save(callback);
 };
 
-function getProject(projectId, callback){
-    var model = this.model;
-    var query = model.find({_id: projectId});
-	query.exec(callback);
-};
+//we have getById function inherited from generalRepository
 
-function updateProject(projectId, projectTitle, projectDescription, participantsArr, projectSDate, projectEDate, projectVersion, projectRepository, callback){
+function updateProject(dataObj, callback){
     var model = this.model;
-    var query = {_id: projectId};
+    var query = {_id: dataObj.projectId};
     model.update(query, {
-        title: projectTitle,
-        description: projectDescription,
-        participants: participantsArr,
-        startDate: projectSDate,
-        endDate: projectEDate,
-        version: projectVersion,
-        repository: projectRepository
+        title: dataObj.projectTitle,
+        description: dataObj.projectDescription,
+        participants: dataObj.participantsArr,
+        startDate: dataObj.projectSDate,
+        endDate: dataObj.projectEDate,
+        version: dataObj.projectVersion,
+        repository: dataObj.projectRepository
     },{multi:false});
     query.exec(callback);
 };
 
-function deleteProject(projectId, callback){
-    var model = this.model;
-    var query = model.remove({
-		_id: projectId
-	});
-	query.exec(callback);
-};
-
+//we have deleteById function inherited from generalRepository
 
 module.exports = new ProjectRepository();
