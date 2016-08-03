@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var FileScema = new Schema({
+var FileSchema = new Schema({
     url: String,
     owner: {
         type: Schema.Types.ObjectId,
