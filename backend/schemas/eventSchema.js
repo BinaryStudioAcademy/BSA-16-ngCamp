@@ -1,10 +1,5 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-
-var File = require("./FileSchema");
-var Project = require("./ProjectSchema");
-var User = require("./UserSchema");
-
 var EventSchema = new Schema({
     title: String,
     description: String,
