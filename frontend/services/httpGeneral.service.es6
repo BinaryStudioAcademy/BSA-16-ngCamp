@@ -13,25 +13,25 @@
 	function httpGeneral($http){
 		this.httpSend = function(object){
 			if (typeof object.url !== 'string' || object.url === undefined || object.url.length === 0){
-				console.log("HTTP REQUEST EROR: REQUEST ULR IS ABSENT");
+				throw "HTTP REQUEST EROR: REQUEST ULR IS ABSENT";
 				return;
 			}
-			if (typeof object.url !== 'string' || object.type === undefined || object.type.length === 0){
-				console.log("HTTP REQUEST EROR: REQUEST TYPE IS ABSENT");
+			if (typeof object.type !== 'string' || object.type === undefined || object.type.length === 0){
+				throw "HTTP REQUEST EROR: REQUEST TYPE IS ABSENT";
 				return;
 			}
 			switch (object.type.toLowerCase()){
 				case 'get':
-					$http.get(object.url).then(succesfullRequest,failedRequest);
+					return $http.get(object.url).then(succesfullRequest,failedRequest);
 					break;
 				case 'post':
-					$http.post(object.url,object.body).then(succesfullRequest,failedRequest);
+					return $http.post(object.url,object.body).then(succesfullRequest,failedRequest);
 					break;
 				case 'put':
-					$http.put(object.url,object.body).then(succesfullRequest,failedRequest);
+					return $http.put(object.url,object.body).then(succesfullRequest,failedRequest);
 					break;
 				case 'delete':
-					$http.delete(object.url).then(succesfullRequest,failedRequest);
+					return $http.delete(object.url).then(succesfullRequest,failedRequest);
 					break;
 				}
 			function succesfullRequest(res){
