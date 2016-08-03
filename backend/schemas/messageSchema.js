@@ -7,18 +7,27 @@ var Project = require('./projectSchema');
 var messageSchema = new Schema({
     title: String,
     description: String,
-    author: {type: Schema.Types.ObjectId, ref: 'User'},
-    project: {type: Schema.Types.ObjectId, ref: 'Project'},
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    project: {
+        type: Schema.Types.ObjectId,
+        ref: 'Project'
+    },
     date: Date,
     comments: [
         {
-            author: {type: Schema.Types.ObjectId, ref: 'User'},
+            author: {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            },
             date: Date,
-            description: string,
-            files: []
+            description: String,
+            files: [String]
         }
     ],
-    files: []
+    files: [String]
 });
 
 module.exports = mongoose.model('Message', messageSchema);
