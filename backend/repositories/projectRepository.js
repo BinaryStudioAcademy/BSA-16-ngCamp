@@ -1,5 +1,5 @@
 var Repository = require('./generalRepository');
-var Project = require('../schemas/projectRepository');
+var Project = require('../schemas/projectSchema');
 
 ProjectRepository.prototype = new Repository();
 
