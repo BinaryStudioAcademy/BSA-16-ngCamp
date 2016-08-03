@@ -1,4 +1,3 @@
-var connection = require('../db/dbConnect');
 var Repository = require('./generalRepository');
 var Event = require('../schemas/eventSchema');
 
