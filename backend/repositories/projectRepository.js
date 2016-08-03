@@ -13,20 +13,48 @@ function ProjectRepository() {
 	this.model = Project;
 };
 
-function createProject(){
+function createProject(projectTitle, projectDescription, participantsArr, projectSDate, projectEDate, projectVersion, projectRepository, callback){
+    var model = this.model;
 
+    var newProject = new model({
+        title: projectTitle,
+        description: projectDescription,
+        participants: participantsArr,
+        startDate: projectSDate,
+        endDate: projectEDate,
+        version: projectVersion,
+        repository: projectRepository
+    });
+	newProject.save(callback);
 };
 
-function getProject(){
-
+function getProject(projectId, callback){
+    var model = this.model;
+    var query = model.find({_id: projectId});
+	query.exec(callback);
 };
 
-function updateProject(){
-
+function updateProject(projectId, projectTitle, projectDescription, participantsArr, projectSDate, projectEDate, projectVersion, projectRepository, callback){
+    var model = this.model;
+    var query = {_id: projectId}
+    model.update(query, {
+        title: projectTitle,
+        description: projectDescription,
+        participants: participantsArr,
+        startDate: projectSDate,
+        endDate: projectEDate,
+        version: projectVersion,
+        repository: projectRepository
+    },{multi:false});
+    query.exec(callback);
 };
 
-function deleteProject(){
-
+function deleteProject(projectId, callback){
+    var model = this.model;
+    var query = model.remove({
+		_id: projectId
+	});
+	query.exec(callback);
 };
 
 
