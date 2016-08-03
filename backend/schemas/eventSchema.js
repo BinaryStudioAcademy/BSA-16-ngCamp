@@ -1,9 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-
-var Project = require("./projectSchema");
-
-var eventSchema = new Schema({
+var EventSchema = new Schema({
     title: String,
     description: String,
     project: {
@@ -13,8 +10,14 @@ var eventSchema = new Schema({
     isAllDay: Boolean,
     stardDate: Date,
     endDate: Date,
-    participants: [],
-    files: []
+    participants: [{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    files: [{
+        type: Schema.Types.ObjectId,
+        ref: "File"
+    }]
 
 });
 
