@@ -11,22 +11,11 @@ EventRepository.prototype = new Repository();
 
 EventRepository.prototype.addEvent = addEvent;
 EventRepository.prototype.updateEvent = updateEvent;
-
+//===================================================================
 function addEvent(event, callback) {
     var model = this.model;
 
-    var document = {
-        title: event.title,
-        description: event.description,
-        project: event.projectId,
-        isAllDay: event.isAllDay,
-        startDate: event.startDate,
-        endDate: event.endDate,
-        participants: event.partisipants,
-        files: event.files
-    };
-
-    var newEvent = new model(document);
+    var newEvent = new model(event);
 
     newEvent.save(callback);
 }
