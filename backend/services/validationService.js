@@ -4,6 +4,46 @@ function ValidationService() {
 
 ValidationService.prototype.validationBodyProperty = validationBodyProperty;
 ValidationService.prototype.addUserValidation = addUserValidation;
+ValidationService.prototype.MessageValidation = MessageValidation;
+ValidationService.prototype.ProjectValidation = ProjectValidation;
+
+function MessageValidation(body, callback){
+    if (!body.hasOwnProperty('isDraft')){
+        callback({
+            message: 'Message isDraft property not defined'
+        }, null);
+        return false;
+    }
+    if(!body.title || !body.description){
+        callback({
+            message: 'Message title or description not defined '
+        }, null);
+        return false;
+    }
+    if(!body.author){
+        callback({
+            message: 'Message author not defined '
+        }, null);
+        return false;
+    }
+    if(!body.project){
+        callback({
+            message: 'Message project not defined '
+        }, null);
+        return false;
+    }
+    else return true;
+}
+
+function ProjectValidation(body, callback){
+    if (!body.title && !body.description) {
+        callback({
+            message: 'Project name or description isn\'t defined'
+        }, null);
+        return false;
+    }
+    else return true;
+}
 
 function addUserValidation(body, callback) {
     if (!body.firstName && !body.lastName) {
@@ -44,7 +84,5 @@ function validationBodyProperty(body, propName, callback) {
     }
     return true;
 }
-
-
 
 module.exports = new ValidationService();
