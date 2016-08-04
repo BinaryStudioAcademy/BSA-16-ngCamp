@@ -36,7 +36,8 @@
 				}
 			function succesfullRequest(res){
 				console.log("Succesfull Request");
-				alert(object.successMessageToUser);
+				//alert(object.successMessageToUser);
+				return res.data;
 			}	
 			function failedRequest(error){
 				if (object.errorMessageToDev) {
