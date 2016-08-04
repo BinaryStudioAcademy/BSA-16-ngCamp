@@ -9,7 +9,16 @@
 	httpGeneral.$inject = [
 		'$http',
 	]
-
+	/*
+		object = {
+			type: request type,
+			url: request url,
+			body: data which will be send in request,
+			errorMessageToUser: message will be shown to user when error occured,
+			errorMessageToDev: console log for debug,
+			notFoundMessage:message that will be display when Not Found
+		}
+	*/
 	function httpGeneral($http){
 		this.httpSend = function(object){
 			if (typeof object.url !== 'string' || object.url === undefined || object.url.length === 0){
@@ -33,25 +42,25 @@
 				case 'delete':
 					return $http.delete(object.url).then(succesfullRequest,failedRequest);
 					break;
-				}
+			}
 			function succesfullRequest(res){
-				console.log("Succesfull Request");
+				//console.log("Succesfull Request");
 				//alert(object.successMessageToUser);
 				return res.data;
 			}	
 			function failedRequest(error){
 				if (object.errorMessageToDev) {
-        			if (error.data && typeof error.data && error.data.message)
-            			console.log(object.errorMessageToDev + ' ' + error.data.message);
-        			else 
-        				console.log(object.errorMessageToDev + ' ' + error.data);
+        			if (error.data && typeof error.data && error.data.message){
+        				console.log(object.errorMessageToDev + ' ' + error.data.message);
+        			}
+        			else console.log(object.errorMessageToDev + ' ' + error.data);
     			}
 				if (object.errorMessageToUser){
 					if (error.status === 404 && (typeof error.data==="string" && error.data.indexOf('Cannot GET /api/')===-1)){
-						if (object.notFoundMessage)
-							console.log(object.notFoundMessage);
+						if (object.notFoundMessage) console.log(object.notFoundMessage);
 						else alert(object.errorMessageToUser);
-					} else alert(object.errorMessageToUser);
+					} 
+					else alert(object.errorMessageToUser);
 				}
 			}
 		}
