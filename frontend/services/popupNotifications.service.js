@@ -3,36 +3,47 @@
 
   angular
     .module("base")
-    .service("popupNotifications", popupNotifications);
+    .factory("popupNotifications", popupNotifications);
 
   popupNotifications.$inject = ["Alertify"];
 
   function popupNotifications(Alertify) {
-    var vm = this;
-    vm.notifyAlert = notifyAlert;
-    vm.notifyConfirm = notifyConfirm;
-    vm.notifySuccess = notifySuccess;
-    vm.notifyStandart = notifyStandart;
-    vm.notifyError = notifyError;
-    vm.notifyPersistent = notifyPersistent;
-    vm.notifyNewMsg = notifyNewMsg;
+    let service = {
+      notifyAlert: notifyAlert,
+      notifyConfirm: notifyConfirm,
+      notifySuccess: notifySuccess,
+      notifyStandard: notifyStandard,
+      notifyError: notifyError,
+      persistentSuccess: persistentSuccess,
+      persistentStandard: persistentStandard,
+      persistentError: persistentError
+    };
+
+    return service;
 
     function notifyAlert(alertMsg) {
-      alertMsg = alertMsg || "Hello in Farm Apps";
+      alertMsg = alertMsg || "Alert Dialog!";
       Alertify.alert(alertMsg);
     }
 
     function notifyConfirm(confirmMsg) {
       confirmMsg = confirmMsg || "Are you sure?";
-      Alertify.set({buttonReverse: true});
-      Alertify.confirm(confirmMsg).then(
-        function onOk() {
-          Alertify.success("You've clicked Ok");
-        },
-        function onCancel() {
-          Alertify.error("You've clicked Cancel")
+
+      Alertify.set({
+        buttonReverse: true,
+        labels: {
+          ok: "Accept",
+          cancel: "Deny"
         }
-      );
+      });
+
+      Alertify.confirm(confirmMsg)
+        .then(function () {
+          return notifySuccess("You've clicked OK");
+        })
+        .catch(function () {
+          return notifyError("You've clicked Cancel");
+        });
     }
 
     function notifySuccess(successMsg) {
@@ -40,9 +51,9 @@
       Alertify.success(successMsg);
     }
 
-    function notifyStandart(standartMsg) {
-      standartMsg = standartMsg || "Standard log message";
-      Alertify.log(standartMsg);
+    function notifyStandard(standardMsg) {
+      standardMsg = standardMsg || "Standard log message";
+      Alertify.log(standardMsg);
     }
 
     function notifyError(errorMsg) {
@@ -50,22 +61,25 @@
       Alertify.error(errorMsg);
     }
 
-    function notifyPersistent(persistentMsg) {
-      persistentMsg = persistentMsg || "Will stay untill clicked";
-      alertify.log(persistentMsg, 0);
+    function persistentSuccess(successPersist) {
+      successPersist = successPersist || "Will stay untill clicked";
+      alertify.success(successPersist, 0);
     }
 
-    function notifyNewMsg(newMsg) {
-      newMsg = newMsg || "You have a new message";
-      alertify.success(newMsg, 0);
+    function persistentStandard(standardPersist) {
+      standardPersist = standardPersist || "Will stay untill clicked";
+      alertify.log(standardPersist, "", 0);
+    }
+
+    function persistentError(errorPersist) {
+      errorPersist = errorPersist || "Will stay untill clicked";
+      alertify.error(errorPersist, 0);
     }
 
     // Prompt Dialog
     // Alertify.prompt("Your age", 21).then(
-    //   function onOk(answer) {
-    //   },
-    //   function onCancel() {
-    //   }
+    //   function onOk(answer) {},
+    //   function onCancel() {}
     // );
 
     // Pops dialog with JSON of the object
