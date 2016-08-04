@@ -8,7 +8,7 @@
 
 	httpGeneral.$inject = [
 		'$http',
-	]
+	];
 	/*
 		object = {
 			type: request type,
