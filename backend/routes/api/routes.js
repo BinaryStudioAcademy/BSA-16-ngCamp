@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var projectRoutes = require('./projectRoutes');
 
 module.exports = function(app) {
@@ -5,3 +6,10 @@ module.exports = function(app) {
 		projectRoutes: projectRoutes(app)
 	};
 };
+=======
+module.exports = function (app) {
+    return {
+        userRoutes: require('./userController')(app)
+    };
+};
+>>>>>>> develop
