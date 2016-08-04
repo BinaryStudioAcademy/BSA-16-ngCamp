@@ -45,6 +45,8 @@ function setObjPropsById(id, setObj, callback) {
         _id: id
     }, {
         $set: setObj
+    }, {
+        multi: false
     });
     query.exec(callback);
 }

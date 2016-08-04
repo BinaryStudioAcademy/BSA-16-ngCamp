@@ -1,5 +1,3 @@
-module.exports = function(app) {
-	return {
-
-	};
+module.exports = function (app) {
+    app.use('/user', require('./userController'));
 };
