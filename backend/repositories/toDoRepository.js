@@ -28,4 +28,4 @@ function deleteAllToDosInTask(id, callback) {
     query.exec(callback);
 }
 //==============================================================
-model.exports = new ToDoRepository();
+module.exports = new ToDoRepository();
