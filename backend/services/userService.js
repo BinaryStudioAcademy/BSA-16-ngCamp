@@ -14,10 +14,9 @@ function addItem(body, callback) {
     }    
 }
 
-function updateItem(body, callback) {
-    if (validationService.validationBodyProperty(body, '_id', callback) &&
-            validationService.validationBodyProperty(body, 'dataToUpdate', callback)) {
-        userRepository.setObjPropsById(body._id, body.dataToUpdate, callback);
+function updateItem(id, body, callback) {
+    if (validationService.validationBodyProperty(body, 'dataToUpdate', callback)) {
+        userRepository.setObjPropsById(id, body.dataToUpdate, callback);
     }
 }
 
