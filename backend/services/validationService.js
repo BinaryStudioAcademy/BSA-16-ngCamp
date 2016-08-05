@@ -115,7 +115,7 @@ function addEventValidation(body, callback) {
         });
         return false;
     }
-
+    return true;
 }
 
 module.exports = new ValidationService();
