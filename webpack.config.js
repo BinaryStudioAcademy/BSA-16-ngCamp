@@ -16,9 +16,17 @@ module.exports = {
 		contentBase: 'public'
 	},
 
+
+
 	module: {
+		preLoaders: [{
+			test: /\.js$/,
+			loader: "eslint",
+			exclude: /node_modules/
+		}],
+
 		loaders: [{
-			test: /\.es6$/,
+			test: /\.js$/,
 			exclude: /node_modules/,
 			loader: 'babel-loader'
 		}, {
@@ -32,7 +40,12 @@ module.exports = {
 		}]
 	},
 
+	eslint: {
+		failOnWarning: true,
+		failOnError: true
+	},
+
 	resolve: {
-		extensions: ['', '.js', '.es6', '.styl', '.pug']
+		extensions: ['', '.js', '.styl', '.pug']
 	}
 };
