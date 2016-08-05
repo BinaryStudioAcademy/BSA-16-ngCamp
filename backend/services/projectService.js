@@ -15,7 +15,7 @@ function addItem(body, callback) {
 
 function updateItem(id, body, callback) {
     if (validationService.ProjectValidation(body, callback)) {
-        projectRepository.updateProjectById(id, body, callback);
+        projectRepository.setObjPropsById(id, body, callback);
     }
 }
 

@@ -20,7 +20,7 @@ module.exports = function(app) {
         });
     }, apiResponse);
 
-	app.post(baseUrl, function (req, res, next) {
+	app.post(baseUrl, function (req, res, next){
 		messageService.addItem(req.body, function (err, data) {
             res.data = data;
             res.err = err;
@@ -29,10 +29,10 @@ module.exports = function(app) {
     }, apiResponse);
 
     app.put(baseUrl + ':id', function(req, res, next){
-		messageService.updateItem(req.params.id, req.body, function(err, data){
-			res.data = data;
-			res.err = err;
-			next();
+        messageService.updateItem(req.params.id, req.body, function(err, data){
+            res.data = data;
+            res.err = err;
+            next();
 		});
 	}, apiResponse);
 
