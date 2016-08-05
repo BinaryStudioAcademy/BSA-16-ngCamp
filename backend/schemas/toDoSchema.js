@@ -19,4 +19,4 @@ var ToDoSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('ToDo', TaskSchema);
+module.exports = mongoose.model('ToDo', ToDoSchema);

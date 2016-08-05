@@ -8,4 +8,4 @@ function TaskRepository() {
 
 TaskRepository.prototype = new Repository();
 
-model.exports = new TaskRepository();
+module.exports = new TaskRepository();
