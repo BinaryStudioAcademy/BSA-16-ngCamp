@@ -7,9 +7,6 @@ module.exports = function (app) {
 
     app.get(baseUrl, function (req, res, next) {
         eventRepository.getAll(function (err, data) {
-            for (var i = 0; i < data.length; i++) {
-                data[i] = data[i].toObject();
-            }
             res.data = data;
             res.err = err;
             next();
