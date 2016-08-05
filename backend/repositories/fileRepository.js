@@ -1,6 +1,6 @@
-var Repository = require('./generalRepository');
-File = require('../schemas/fileSchema');
-mongoose = require('mongoose');
+var Repository = require('./generalRepository'),
+    File = require('../schemas/fileSchema'),
+    mongoose = require('mongoose');
 
 
 function FileRepository() {
