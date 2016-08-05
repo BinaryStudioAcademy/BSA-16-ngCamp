@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Project = require('./projectSchema');
+var bcrypt = require('bcrypt-nodejs');
 
-var userSchema = new Schema({
+var User = new Schema({
     firstName: String,
     lastName: String,
     email: String,
@@ -12,9 +13,23 @@ var userSchema = new Schema({
     company: String,
     imageUrl: String,
     projects: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Project'
-        }]
+        type: Schema.Types.ObjectId,
+        ref: 'Project'
+    }]
 });
 
-module.exports = mongoose.model('User', userSchema);
+User.pre('save', function (next) {
+    var userData = this;
+
+    if (!userData.isModified('password')) return next();
+
+    bcrypt.genSalt(1012, function (err, salt) {
+        bcrypt.hash(userData.password, null, null, function (err, hash) {
+            userData.password = hash;
+            next();
+        });
+    });
+});
+
+
+module.exports = mongoose.model('User', User);
