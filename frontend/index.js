@@ -1,6 +1,8 @@
+'use strict';
+
 import angular from 'angular';
 
-var app = angular.module('base', []);
+let app = angular.module('base', []);
 
 app.component('someEl', {
 	template: require('./user/user-pug.component.pug')(),
