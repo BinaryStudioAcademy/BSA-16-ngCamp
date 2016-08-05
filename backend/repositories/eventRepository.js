@@ -8,4 +8,4 @@ function EventRepository() {
 
 EventRepository.prototype = new Repository();
 
-model.exports = new EventRepository();
+module.exports = new EventRepository();
