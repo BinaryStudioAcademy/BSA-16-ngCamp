@@ -22,7 +22,7 @@ module.exports = function (app) {
     }, apiResponse);
     //===================================================
     app.post(baseUrl, function (req, res, next) {
-        toDoService.addToDo(req.body, function (err, data) {
+        toDoService.addToDoValidations(req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();
