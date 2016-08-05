@@ -1,7 +1,7 @@
-module.exports = function (app) {
-    return {
-        userRoutes: require('./projectRoutes')(app),
-        userRoutes: require('./messageRoutes')(app),
-        userRoutes: require('./userController')(app)
-    };
+module.exports = function(app) {
+	return {
+		projectRoutes: require('./projectRoutes')(app),
+		messageRoutes: require('./messageRoutes')(app),
+		userRoutes: require('./userRoutes')(app)
+	};
 };
