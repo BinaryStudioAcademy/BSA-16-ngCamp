@@ -6,11 +6,11 @@ ProjectRepository.prototype = new Repository();
 ProjectRepository.prototype.updateProjectById = updateProjectById;
 
 function ProjectRepository() {
-	Repository.prototype.constructor.call(this);
-	this.model = Project;
+    Repository.prototype.constructor.call(this);
+    this.model = Project;
 };
 
-function updateProjectById(id, data, callback){
+function updateProjectById(id, data, callback) {
     var model = this.model;
     var query = model.update({_id: id}, data);
     query.exec(callback);
