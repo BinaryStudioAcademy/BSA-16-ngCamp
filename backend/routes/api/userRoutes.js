@@ -1,14 +1,11 @@
 var apiResponse = require('express-api-response'),
     userService = require('../../services/userService'),
-    userRepository = require('../../repositories/UserRepository'),
+    userRepository = require('../../repositories/userRepository'),
     baseUrl = '/api/user/';
 
 module.exports = function (app) {
     app.get(baseUrl, function (req, res, next) {
-        userRepository.getAll(function (err, data) {
-            for (var i = 0; i < data.length; i++) {
-                data[i] = data[i].toObject();
-            }
+        userRepository.getAll(function (err, data) {            
             res.data = data;
             res.err = err;
             next();
@@ -31,8 +28,8 @@ module.exports = function (app) {
         });
     }, apiResponse);
 
-    app.put(baseUrl, function (req, res, next) {
-        userService.updateItem(req.body, function (err, data) {
+    app.put(baseUrl + ':id', function (req, res, next) {
+        userService.updateItem(req.params.id, req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();

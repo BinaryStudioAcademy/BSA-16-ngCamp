@@ -5,6 +5,7 @@ var User = require('./userSchema');
 var Project = require('./projectSchema');
 
 var messageSchema = new Schema({
+    isDraft: Boolean,
     title: String,
     description: String,
     author: {

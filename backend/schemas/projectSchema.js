@@ -9,6 +9,7 @@ var projectSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
+
     startDate: Date,
     endDate: Date,
     version: String,
