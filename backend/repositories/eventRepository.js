@@ -8,16 +8,7 @@ function EventRepository() {
 
 EventRepository.prototype = new Repository();
 
-EventRepository.prototype.addEvent = addEvent;
 EventRepository.prototype.updateEvent = updateEvent;
-//===================================================================
-function addEvent(event, callback) {
-    var model = this.model;
-
-    var newEvent = new model(event);
-
-    newEvent.save(callback);
-}
 //===================================================================
 function updateEvent(event, callback) {
     var model = this.model;
