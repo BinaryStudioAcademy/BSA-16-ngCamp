@@ -12,6 +12,7 @@ ToDoService.prototype.updateToDo = updateToDo;
 //================================================================ 
 function addToDo(body, callback) {
     if (validationService.addToDoValidation(body, callback)) {
+        body.dateCreated = Date();
         toDoRepository.add(body, callback);
     };
 }

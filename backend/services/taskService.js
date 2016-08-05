@@ -12,6 +12,7 @@ TaskService.prototype.updateTask = updateTask;
 //================================================================ 
 function addTask(body, callback) {
     if (validationService.addTaskValidation(body, callback)) {
+        body.dateCreated = Date();
         taskRepository.add(body, callback);
     };
 }
