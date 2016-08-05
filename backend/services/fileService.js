@@ -11,12 +11,12 @@ FileService.prototype.updateItem = updateItem;
 function addItem(body, callback) {
     if (addFileValidation(body, callback)) {
         fileRepository.add(body, callback);
-    }    
+    }
 }
 
 function updateItem(body, callback) {
     if (validationService.validationBodyProperty(body, '_id', callback) &&
-            validationService.validationBodyProperty(body, 'dataToUpdate', callback)) {
+        validationService.validationBodyProperty(body, 'dataToUpdate', callback)) {
         fileRepository.setObjPropsById(body._id, body.dataToUpdate, callback);
     }
 }
