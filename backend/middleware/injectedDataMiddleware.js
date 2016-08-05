@@ -1,15 +1,15 @@
 var fs = require('fs'),
-	replaceStream = require('replacestream');
+    replaceStream = require('replacestream');
 
-module.exports = function(req, res, obj, error) {
-	error = error || false;
+module.exports = function (req, res, obj, error) {
+    error = error || false;
 
-	populateInjectData(req.user, function(data) {
-		if (req.user !== null && req.user !== undefined) {
-			obj.isLoggedIn = true;
-			obj.userId = req.user._id;
-			obj.role = req.user.role;
-		}
+    populateInjectData(req.user, function (data) {
+        if (req.user !== null && req.user !== undefined) {
+            obj.isLoggedIn = true;
+            obj.userId = req.user._id;
+            obj.role = req.user.role;
+        }
 
 		res.header = ('Content-Type', 'text/html');
 		fs.createReadStream(__dirname + '/../../public/' + 'index.html')
@@ -17,9 +17,9 @@ module.exports = function(req, res, obj, error) {
 			.pipe(replaceStream("window._is404Error = false;", "window._is404Error = " + error + ";"))
 			.pipe(res);
 
-	});
+    });
 
-	function populateInjectData(user, callback_main) {
-		callback_main(null, null);
-	}
+    function populateInjectData(user, callback_main) {
+        callback_main(null, null);
+    }
 };
