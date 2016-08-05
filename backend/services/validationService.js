@@ -5,6 +5,7 @@ function ValidationService() {
 ValidationService.prototype.validationBodyProperty = validationBodyProperty;
 ValidationService.prototype.addUserValidation = addUserValidation;
 ValidationService.prototype.addEventValidation = addEventValidation;
+ValidationService.prototype.addTaskValidation = addTaskValidation;
 
 function addUserValidation(body, callback) {
     if (!body.firstName && !body.lastName) {
@@ -78,6 +79,33 @@ function addEventValidation(body, callback) {
         return false;
     }
 
+}
+//========================================================
+function addTaskValidation(body, callback) {
+    if (!body.title) {
+        callback({
+            message: "Task title is undefined"
+        });
+        return false;
+    }
+    if (!body.project) {
+        callback({
+            message: "Project id is undefined"
+        });
+        return false;
+    }
+    if (!body.author) {
+        callback({
+            message: "Author is undefined"
+        });
+        return false;
+    }
+    if (!body.toDos.title) {
+        callback({
+            message: "To-do title is undefined"
+        });
+        return false;
+    }
 }
 
 module.exports = new ValidationService();
