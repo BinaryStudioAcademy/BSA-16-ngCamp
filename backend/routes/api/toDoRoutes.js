@@ -14,7 +14,7 @@ module.exports = function (app) {
     }, apiResponse);
     //===================================================
     app.get(baseUrl + ":toDoId", function (req, res, next) {
-        toDosRepository.getById(req.params.toDoId, function (err, data) {
+        toDoRepository.getById(req.params.toDoId, function (err, data) {
             res.data = data;
             res.err = err;
             next();
@@ -30,7 +30,7 @@ module.exports = function (app) {
     }, apiResponse);
     //===================================================
     app.put(baseUrl + ":toDoId", function (req, res, next) {
-        todoService.updateToDo(req.params.toDoId, req.body, function (err, data) {
+        toDoService.updateToDo(req.params.toDoId, req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();
