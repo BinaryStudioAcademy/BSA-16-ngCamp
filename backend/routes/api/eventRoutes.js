@@ -29,8 +29,8 @@ module.exports = function (app) {
         });
     }, apiResponse);
     //===================================================
-    app.put(baseUrl, function (req, res, next) {
-        eventService.updateEvent(req.body, function (err, data) {
+    app.put(baseUrl + ":id", function (req, res, next) {
+        eventService.updateEvent(req.params.id, req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();
