@@ -15,17 +15,16 @@ function popupNotifications(Alertify) {
         notifyError: notifyError,
         persistentSuccess: persistentSuccess,
         persistentStandard: persistentStandard,
-        persistentError: persistentError,
-        reset: reset
+        persistentError: persistentError
     };
 
     function notifyAlert(alertMsg) {
-        reset();
+        _reset();
         alertMsg = alertMsg || "Alert Dialog!";
         Alertify.alert(alertMsg);
     }
 
-    function reset() {
+    function _reset() {
         Alertify.set({
             buttonReverse: true,
             labels: {
