@@ -3,10 +3,7 @@ var Schema = mongoose.Schema;
 
 var FileSchema = new Schema({
     url: String,
-    owner: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
+    description: String,
     creationDate: Date,
     allowedTo: [{
         type: Schema.Types.ObjectId,

@@ -14,13 +14,7 @@ FileRepository.prototype.findFilesThatAvailableToUserByUserId = findFilesThatAva
 
 function findFilesThatAvailableToUserByUserId(userId, callback) {
 	var model = this.model;
-	var query = model.aggregate([
-  		{$unwind: "$allowedTo"}, 
-  		{$match: {'allowedTo': mongoose.Types.ObjectId(userId)}},
-  		{$sort: {
-  		    "creationDate": -1
-  		}}
-	]);
+  var query  = model.find( {allowedTo: {$in: [mongoose.Types.ObjectId(userId)] }}) 
 	query.exec(callback);
 };
 

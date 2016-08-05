@@ -5,7 +5,6 @@ var apiResponse = require('express-api-response'),
 
 module.exports = function(app) {
 
-
 	app.get(baseUrl + 'user/:id', function(req, res, next){
 		fileRepository.findFilesThatAvailableToUserByUserId(req.params.id, function(err, data){
 			res.data = data;
@@ -22,7 +21,6 @@ module.exports = function(app) {
         });
     }, apiResponse);
 
-
 	app.post(baseUrl, function(req, res, next) {
 		fileService.addItem(req.body, function(err, data) {
 			res.data = data;
@@ -31,14 +29,21 @@ module.exports = function(app) {
 		});
 	}, apiResponse);
 
-	 app.delete(baseUrl + ':id', function (req, res, next) {
-        fileRepository.deleteById(req.params.id, function (err, data) {
+	app.put(baseUrl, function (req, res, next) {
+        fileService.updateItem(req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();
         });
     }, apiResponse);
 
+	app.delete(baseUrl + ':id', function (req, res, next) {
+        fileRepository.deleteById(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
 }
 
 

@@ -1,6 +1,5 @@
-var FileRepository = require('../repositories/fileRepository');
+var fileRepository = require('../repositories/fileRepository');
 var validationService = require('./validationService');
-
 
 function FileService() {
 
@@ -11,15 +10,14 @@ FileService.prototype.updateItem = updateItem;
 
 function addItem(body, callback) {
     if (addFileValidation(body, callback)) {
-    	body.creationDate = Date();
-        FileRepository.add(body, callback);
+        fileRepository.add(body, callback);
     }    
 }
 
 function updateItem(body, callback) {
     if (validationService.validationBodyProperty(body, '_id', callback) &&
             validationService.validationBodyProperty(body, 'dataToUpdate', callback)) {
-        FileRepository.setObjPropsById(body._id, body.dataToUpdate, callback);
+        fileRepository.setObjPropsById(body._id, body.dataToUpdate, callback);
     }
 }
 
@@ -30,14 +28,13 @@ function addFileValidation(body, callback) {
         }, null);
         return false;
     }
-    if (!body.owner) {
+    if (!body.allowedTo) {
         callback({
-            message: 'Owner isn\'t defined'
+            message: 'allowedTo isn\'t defined'
         }, null);
         return false;
     }
     return true;
 }
-
 
 module.exports = new FileService();
