@@ -1,25 +1,28 @@
-(function() {
+import angular from 'angular';
 
-    angular
-        .module('base')
-        .service('httpGeneral', httpGeneral);
+angular
+    .module('base')
+    .factory('httpGeneral', httpGeneral);
 
-    httpGeneral.$inject = [
-        '$http',
-    ];
-    /*
-		object = {
-			type: request type,
-			url: request url,
-			body: data which will be send in request,
-			errorMessageToUser: message will be shown to user when error occured,
-			errorMessageToDev: console log for debug,
-			notFoundMessage:message that will be display when Not Found,
-			errorCallback: callback if error occured,
-		}
-	*/
-    function httpGeneral($http) {
-        this.httpSend = function(object) {
+httpGeneral.$inject = [
+    '$http',
+];
+/*
+	object = {
+		type: request type,
+		url: request url,
+		body: data which will be send in request,
+		errorMessageToUser: message will be shown to user when error occured,
+		errorMessageToDev: console log for debug,
+		notFoundMessage:message that will be display when Not Found,
+		errorCallback: callback if error occured,
+	}
+*/
+let factory = {httpGeneral: httpGeneral};
+
+function httpGeneral($http) {
+    return {
+        httpSend: function(object) {
             if (typeof object.url !== 'string' || object.url === undefined || object.url.length === 0) {
                 throw "HTTP REQUEST EROR: REQUEST ULR IS ABSENT";
                 return;
@@ -75,4 +78,5 @@
             }
         }
     }
-})();
+}
+return factory;
