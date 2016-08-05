@@ -14,7 +14,8 @@
         "no-undef" : 2,
         "semi": 2,
         "block-scoped-var": 2,
-        "no-var": 2
+        "no-var": 2,
+        "no-unreachable": 2
     },
     "parserOptions": {
         "sourceType": "module"

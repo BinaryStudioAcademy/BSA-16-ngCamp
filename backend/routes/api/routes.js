@@ -1,5 +1,6 @@
 module.exports = function (app) {
     return {
-        userRoutes: require('./userController')(app)
+        userRoutes: require('./userRoutes')(app),
+        eventRoutes: require('./eventRoutes')(app)
     };
 };
