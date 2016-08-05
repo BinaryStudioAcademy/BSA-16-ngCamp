@@ -55,7 +55,7 @@
 					return null;
 				}
 				if (object.errorMessageToDev) {
-        			if (error.data && typeof error.data && error.data.message){
+        			if (error.data && error.data.message){
         				console.log(object.errorMessageToDev + ' ' + error.data.message);
         			}
         			else console.log(object.errorMessageToDev + ' ' + error.data);
