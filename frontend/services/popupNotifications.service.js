@@ -46,7 +46,7 @@ function popupNotifications(Alertify) {
             }
         });
 
-        Alertify.confirm(confirmMsg);
+        return Alertify.confirm(confirmMsg);
     }
 
     function notifySuccess(successMsg) {
