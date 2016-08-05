@@ -57,7 +57,7 @@ function addUserValidation(body, callback) {
         }, null);
         return false;
     }
-    if (!body.password) {
+   /* if (!body.password) {
         callback({
             message: 'Password is not defined'
         }, null);
@@ -68,7 +68,7 @@ function addUserValidation(body, callback) {
             message: 'Password should be more than 6 chars'
         }, null);
         return false;
-    }
+    }*/
     return true;
 }
 
