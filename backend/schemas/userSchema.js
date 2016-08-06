@@ -12,7 +12,7 @@ var User = new Schema({
     position: String,
     company: String,
     curentProject: {
-        Type: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Project'
     },
     imageUrl: String,
