@@ -19,12 +19,7 @@ var TaskSchema = new Schema({
         ref: 'File'
     }],
     archived: Boolean,
-    isFinished: Boolean,
-    toDos: [{
-            type: Schema.Types.ObjectId,
-            ref: 'ToDo'
-        }
-    ]
+    isFinished: Boolean
 });
 
 
