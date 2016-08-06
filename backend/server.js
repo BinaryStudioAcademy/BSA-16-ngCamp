@@ -30,8 +30,10 @@ app.use(express.static(staticPath));
 app.use(bodyParser.json());
 
 var apiRoutes = require('./routes/api/routes')(app),
-	viewRoutes = require('./routes/view/routes')(app);
+	viewRoutes = require('./routes/view/routes')(app),
+	docs = require("express-mongoose-docs");
 
+docs(app);
 // if (app.get('env') === 'development') {
 // 	var webpackMiddleware = require("webpack-dev-middleware");
 // 	var webpack = require('webpack');
