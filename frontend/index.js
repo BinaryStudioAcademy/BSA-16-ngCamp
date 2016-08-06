@@ -12,4 +12,13 @@ app.component('someEl', {
 	}
 });
 
+app.component('notFound', {
+	template: require('./user/404-pug.component.pug')(),
+	restrict: 'E',
+	controller: function() {
+		console.log('404 COMPONENT LOADED');
+	}
+});
+
+
 require('./user/styles.styl');
