@@ -6,6 +6,7 @@ var TaskSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Project'
 
+
     },
     description: String,
     author: {
@@ -18,21 +19,15 @@ var TaskSchema = new Schema({
         ref: 'File'
     }],
     archived: Boolean,
-    isFinished: boolean,
-    toDos: [
-        {
-            title: String,
-            description: String,
-            status: String,
-            dateCreated: Date,
-            participants: [{
-                type: Schema.Types.ObjectId,
-                ref: 'User'
-            }],
-            dateExpired: Date,
-            dateFinished: Date
+    isFinished: Boolean,
+    toDos: [{
+            type: Schema.Types.ObjectId,
+            ref: 'ToDo'
         }
     ]
 });
+
+
+
 
 module.exports = mongoose.model('Task', TaskSchema);

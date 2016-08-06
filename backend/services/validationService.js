@@ -7,6 +7,8 @@ ValidationService.prototype.addUserValidation = addUserValidation;
 ValidationService.prototype.MessageValidation = MessageValidation;
 ValidationService.prototype.ProjectValidation = ProjectValidation;
 ValidationService.prototype.addEventValidation = addEventValidation;
+ValidationService.prototype.addTaskValidation = addTaskValidation;
+ValidationService.prototype.addToDoValidation = addToDoValidation;
 
 function MessageValidation(body, callback) {
     if (!body.hasOwnProperty('isDraft')) {
@@ -57,7 +59,7 @@ function addUserValidation(body, callback) {
         }, null);
         return false;
     }
-    if (!body.password) {
+   /* if (!body.password) {
         callback({
             message: 'Password is not defined'
         }, null);
@@ -68,7 +70,7 @@ function addUserValidation(body, callback) {
             message: 'Password should be more than 6 chars'
         }, null);
         return false;
-    }
+    }*/
     return true;
 }
 
@@ -115,7 +117,46 @@ function addEventValidation(body, callback) {
         });
         return false;
     }
+    return true;
+}
 
+//=========================================================
+function addTaskValidation(body, callback) {
+    if (!body.title) {
+        callback({
+            message: "Task title is undefined"
+        });
+        return false;
+    }
+    if (!body.project) {
+        callback({
+            message: "Project id is undefined"
+        });
+        return false;
+    }
+    if (!body.author) {
+        callback({
+            message: "Author is undefined"
+        });
+        return false;
+    }
+    return true;
+}
+//=========================================================
+function addToDoValidation(body, callback) {
+    if (!body.title) {
+        callback({
+            message: "To-do title is undefined"
+        });
+        return false;
+    }
+    if (!body.task) {
+        callback({
+            message: "Task id is undefined"
+        });
+        return false;
+    }
+    return true;
 }
 
 module.exports = new ValidationService();
