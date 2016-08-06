@@ -33,6 +33,7 @@ function spinner(){
 	function stopSpinn(){
 		sp.spinner.remove();
 		sp.el.children().prop('style','');
+		sp.el = '';
 	};
 	return service;
 };
