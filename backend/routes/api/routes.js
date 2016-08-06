@@ -5,6 +5,7 @@ module.exports = function (app) {
         userRoutes: require('./userRoutes')(app),
         fileRoutes: require('./fileRoutes')(app),
         eventRoutes: require('./eventRoutes')(app),
-        taskRoutes: require('./taskRoutes')(app)
+        taskRoutes: require('./taskRoutes')(app),
+        checkinRoutes: require('./checkinRoutes')(app)
     };
 };
