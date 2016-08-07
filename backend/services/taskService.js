@@ -18,9 +18,9 @@ function addTask(body, callback) {
 }
 //================================================================ 
 function updateTask(id, body, callback) {
-
-    taskRepository.setObjPropsById(id, body, callback);
-
+    if (validationService.addTaskValidation(body, callback)) {
+        taskRepository.setObjPropsById(id, body, callback);
+    }
 }
 
 
