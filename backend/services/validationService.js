@@ -9,6 +9,7 @@ ValidationService.prototype.ProjectValidation = ProjectValidation;
 ValidationService.prototype.addEventValidation = addEventValidation;
 ValidationService.prototype.addTaskValidation = addTaskValidation;
 ValidationService.prototype.addToDoValidation = addToDoValidation;
+ValidationService.prototype.validationBodyProperty = validationBodyProperty;
 
 function MessageValidation(body, callback) {
     if (!body.hasOwnProperty('isDraft')) {
@@ -148,6 +149,18 @@ function addTaskValidation(body, callback) {
         callback({
             message: "Author is undefined"
         });
+        return false;
+    }
+    return true;
+}
+
+function validationBodyProperty(body, propName, callback) {
+    if (!body || !body[propName]) {
+        if (callback) {
+            callback({
+                message: propName + ' is undefined'
+            });
+        }
         return false;
     }
     return true;
