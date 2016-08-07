@@ -5,7 +5,8 @@ var bodyParser = require('body-parser'),
 	path = require('path'),
 	session = require('express-session'),
 	MongoStore = require('connect-mongo')(session),
-	sessionSecret = require('./config/session').secret;
+	sessionSecret = require('./config/session').secret,
+	mongoose = require('mongoose');
 
 var app = express();
 
@@ -34,7 +35,7 @@ var apiRoutes = require('./routes/api/routes')(app),
 
 var docs = require("express-mongoose-docs");
 
-docs(app);
+docs(app, mongoose);
 // if (app.get('env') === 'development') {
 // 	var webpackMiddleware = require("webpack-dev-middleware");
 // 	var webpack = require('webpack');
