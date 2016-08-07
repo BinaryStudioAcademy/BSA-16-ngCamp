@@ -3,11 +3,11 @@ var validationService = require('./validationService');
 
 function EventService() {}
 
-EventService.prototype.addEvent = addEvent;
+EventService.prototype.addItem = addItem;
 EventService.prototype.updateEvent = updateEvent;
 
 //================================================================
-function addEvent(body, callback) {
+function addItem(body, callback) {
     if (validationService.addEventValidation(body, callback)) {
         eventRepository.add(body, callback);
     };

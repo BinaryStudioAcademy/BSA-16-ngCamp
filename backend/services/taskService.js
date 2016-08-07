@@ -5,12 +5,12 @@ var validationService = require('./validationService');
 function TaskService() {}
 
 
-TaskService.prototype.addTask = addTask;
+TaskService.prototype.addItem = addItem;
 TaskService.prototype.updateTask = updateTask;
 
 
 //================================================================ 
-function addTask(body, callback) {
+function addItem(body, callback) {
     if (validationService.addTaskValidation(body, callback)) {
         body.dateCreated = Date();
         taskRepository.add(body, callback);

@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var userService = require('../services/userService');
 var fileService = require('../services/fileService');
 var fileRepository = require('../repositories/fileRepository');
-var mongooseConnection = require('../db/dbConnect').connection;
+var mongooseConnection = require('../db/dbConnect');
 var toDoService  = require('../services/toDoService');
 var projectService = require('../services/projectService');
 var messageService = require('../services/messageService');
@@ -107,10 +107,6 @@ casual.define('event', function(){
     	startDate: casual.date(format = 'YYYY-MM-DD'),
     	endDate: casual.date(format = 'YYYY-MM-DD'),
     	participants: part,
-    	// files: [{
-    	//     type: Schema.Types.ObjectId,
-    	//     ref: "File"
-    	// }]
 	}
 });
 
@@ -129,17 +125,6 @@ casual.define('message', function(){
     	project: casual.random_element(context.projectId),
     	date: casual.date(format = 'YYYY-MM-DD'),
     	comments: comm,
-    	// [
-    	//     {
-    	//         author: {
-    	//             type: Schema.Types.ObjectId,
-    	//             ref: 'User'
-    	//         },
-    	//         date: Date,
-    	//         description: String,
-    	//         files: [String]
-    	//     }
-    	// ],
     	files: casual.word
 	}
 });
@@ -162,74 +147,104 @@ casual.define('project', function(){
     }
 })
 
+function fakeMe(name, n){
+	var sStr = '../services/'+ name +'Service';
+	var service = require(sStr);
+	for (var i=0; i<n; i++){
+		service.addItem(casual[name], function(err, data){
+			if(err){
+				console.log(err)
+			}
+		});
+	}
+}
 
 function fake(){
-
-	for (var i=0; i<3; i++){
-		userService.addItem(casual.user, function(err, data){
-			if(err){
-				console.log(err)
-			}
-		});
-	}
-
-	for (var i=0; i<3; i++){
-		projectService.addItem(casual.project, function(err, data){
-			if(err){
-				console.log(err)
-			}
-		});
-	}
-
-	 for (var i=0; i<3; i++){
-	 	messageService.addItem(casual.message, function(err, data){
-			if(err){
-				console.log(err)
-			}
-		});
-	}
-
-	for (var i=0; i<3; i++){
-		eventService.addEvent(casual.event, function(err, data){
-			if(err){
-				console.log(err)
-			}
-		});
-	}
-
-	for (var i=0; i<3; i++){
-		fileService.addItem(casual.file, function(err, data){
-			if(err){
-				console.log(err)
-			}
-		});
-	}
-
-	for (var i=0; i<3; i++){
-		toDoService.addToDo(casual.toDo, function(err, data){
-			if(err){
-				console.log(err)
-			}
-		});
-	}
-
-	for (var i=0; i<3; i++){
-		taskService.addTask(casual.task, function(err, data){
-			if(err){
-				console.log(err)
-			}
-		});
-	}
-	untrackted.task.forEach(function(t){
-		taskService.addTask(t, function(err, data){
-			if(err){
-				console.log(err)
-			}
-		})
+	var entities = ['user', 'project', 'message', 'event','file', 'toDo', 'task'];
+	var n     =    [   3,       3,         3,        3,      3,      3,      3  ];
+	var i = 0;
+ 	entities.forEach(function(e){
+		fakeMe(e, n[i]);
+		i++;
 	})
 
-};
+	untrackted.task.forEach(function(t){
+	taskService.addTask(t, function(err, data){
+		if(err){
+			console.log(err)
+		}
+	})
+}
 
 fake();
+
+// function fake(){
+
+// 	for (var i=0; i<3; i++){
+// 		userService.addItem(casual.user, function(err, data){
+// 			if(err){
+// 				console.log(err)
+// 			}
+// 		});
+// 	}
+
+// 	for (var i=0; i<3; i++){
+// 		projectService.addItem(casual.project, function(err, data){
+// 			if(err){
+// 				console.log(err)
+// 			}
+// 		});
+// 	}
+
+// 	 for (var i=0; i<3; i++){
+// 	 	messageService.addItem(casual.message, function(err, data){
+// 			if(err){
+// 				console.log(err)
+// 			}
+// 		});
+// 	}
+
+// 	for (var i=0; i<3; i++){
+// 		eventService.addEvent(casual.event, function(err, data){
+// 			if(err){
+// 				console.log(err)
+// 			}
+// 		});
+// 	}
+
+// 	for (var i=0; i<3; i++){
+// 		fileService.addItem(casual.file, function(err, data){
+// 			if(err){
+// 				console.log(err)
+// 			}
+// 		});
+// 	}
+
+// 	for (var i=0; i<3; i++){
+// 		toDoService.addToDo(casual.toDo, function(err, data){
+// 			if(err){
+// 				console.log(err)
+// 			}
+// 		});
+// 	}
+
+// 	for (var i=0; i<3; i++){
+// 		taskService.addTask(casual.task, function(err, data){
+// 			if(err){
+// 				console.log(err)
+// 			}
+// 		});
+// 	}
+// 	untrackted.task.forEach(function(t){
+// 		taskService.addTask(t, function(err, data){
+// 			if(err){
+// 				console.log(err)
+// 			}
+// 		})
+// 	})
+
+// };
+
+// fake();
 
 
