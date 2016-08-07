@@ -60,18 +60,18 @@ function addUserValidation(body, callback) {
         }, null);
         return false;
     }
-   /* if (!body.password) {
-        callback({
-            message: 'Password is not defined'
-        }, null);
-        return false;
-    }
-    if (body.password.length <= 6) {
-        callback({
-            message: 'Password should be more than 6 chars'
-        }, null);
-        return false;
-    }*/
+    /* if (!body.password) {
+         callback({
+             message: 'Password is not defined'
+         }, null);
+         return false;
+     }
+     if (body.password.length <= 6) {
+         callback({
+             message: 'Password should be more than 6 chars'
+         }, null);
+         return false;
+     }*/
     return true;
 }
 
@@ -122,7 +122,7 @@ function addEventValidation(body, callback) {
         });
         return false;
     }
-    if (body.participants.length <= 0 || !body.participants) {
+    if (!body.participants || body.participants.length <= 0) {
         callback({
             message: "Nobody take a part in event"
         });
