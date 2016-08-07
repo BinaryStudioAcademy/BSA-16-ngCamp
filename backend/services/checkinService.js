@@ -15,9 +15,7 @@ function addItem(body, callback) {
 }
 
 function updateItem(id, body, callback) {
-    if (validationService.validationBodyProperty(body, 'dataToUpdate', callback)) {
-        checkinRepository.setObjPropsById(id, body.dataToUpdate, callback);
-    }
+    checkinRepository.setObjPropsById(id, body, callback);
 }
 
 function addCheckinValidation(body, callback) {
