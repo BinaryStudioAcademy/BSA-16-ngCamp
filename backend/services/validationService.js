@@ -2,7 +2,7 @@ function ValidationService() {
 
 }
 
-ValidationService.prototype.validationBodyProperty = validationBodyProperty;
+ValidationService.prototype.updateUserValidation = updateUserValidation;
 ValidationService.prototype.addUserValidation = addUserValidation;
 ValidationService.prototype.MessageValidation = MessageValidation;
 ValidationService.prototype.ProjectValidation = ProjectValidation;
@@ -74,13 +74,23 @@ function addUserValidation(body, callback) {
     return true;
 }
 
-function validationBodyProperty(body, propName, callback) {
-    if (!body || !body[propName]) {
-        if (callback) {
-            callback({
-                message: propName + ' is undefined'
-            });
-        }
+function updateUserValidation(body, callback) {
+    if (!body.firstName) {
+        callback({
+            message: "User name is undefined"
+        });
+        return false;
+    }
+    if (!body.lastName) {
+        callback({
+            message: "User lastname is undefined"
+        });
+        return false;
+    }
+    if (!body.email) {
+        callback({
+            message: "User email is undefined"
+        });
         return false;
     }
     return true;
