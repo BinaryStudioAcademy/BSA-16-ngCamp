@@ -8,15 +8,15 @@ EventService.prototype.updateEvent = updateEvent;
 
 //================================================================
 function addEvent(body, callback) {
-	if (validationService.addEventValidation(body, callback)) {
-		eventRepository.add(body, callback);
-	};
+    if (validationService.addEventValidation(body, callback)) {
+        eventRepository.add(body, callback);
+    };
 }
 //================================================================
 function updateEvent(id, body, callback) {
-	if (validationService.validationBodyProperty(body, 'data', callback)) {
-		eventRepository.setObjPropsById(id, body.data, callback);
-	}
+    if (validationService.addEventValidation(body, callback)) {
+        eventRepository.setObjPropsById(id, body, callback);
+    }
 }
 
 module.exports = new EventService();

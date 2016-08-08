@@ -2,11 +2,14 @@ function ValidationService() {
 
 }
 
-ValidationService.prototype.validationBodyProperty = validationBodyProperty;
+ValidationService.prototype.updateUserValidation = updateUserValidation;
 ValidationService.prototype.addUserValidation = addUserValidation;
 ValidationService.prototype.MessageValidation = MessageValidation;
 ValidationService.prototype.ProjectValidation = ProjectValidation;
 ValidationService.prototype.addEventValidation = addEventValidation;
+ValidationService.prototype.addTaskValidation = addTaskValidation;
+ValidationService.prototype.addToDoValidation = addToDoValidation;
+ValidationService.prototype.validationBodyProperty = validationBodyProperty;
 
 function MessageValidation(body, callback) {
     if (!body.hasOwnProperty('isDraft')) {
@@ -57,28 +60,38 @@ function addUserValidation(body, callback) {
         }, null);
         return false;
     }
-    if (!body.password) {
-        callback({
-            message: 'Password is not defined'
-        }, null);
-        return false;
-    }
-    if (body.password.length <= 6) {
-        callback({
-            message: 'Password should be more than 6 chars'
-        }, null);
-        return false;
-    }
+    /* if (!body.password) {
+         callback({
+             message: 'Password is not defined'
+         }, null);
+         return false;
+     }
+     if (body.password.length <= 6) {
+         callback({
+             message: 'Password should be more than 6 chars'
+         }, null);
+         return false;
+     }*/
     return true;
 }
 
-function validationBodyProperty(body, propName, callback) {
-    if (!body || !body[propName]) {
-        if (callback) {
-            callback({
-                message: propName + ' is undefined'
-            });
-        }
+function updateUserValidation(body, callback) {
+    if (!body.firstName) {
+        callback({
+            message: "User name is undefined"
+        });
+        return false;
+    }
+    if (!body.lastName) {
+        callback({
+            message: "User lastname is undefined"
+        });
+        return false;
+    }
+    if (!body.email) {
+        callback({
+            message: "User email is undefined"
+        });
         return false;
     }
     return true;
@@ -109,13 +122,64 @@ function addEventValidation(body, callback) {
         });
         return false;
     }
-    if (body.participants.length <= 0 || !body.participants) {
+    if (!body.participants || body.participants.length <= 0) {
         callback({
             message: "Nobody take a part in event"
         });
         return false;
     }
+    return true;
+}
 
+//=========================================================
+function addTaskValidation(body, callback) {
+    if (!body.title) {
+        callback({
+            message: "Task title is undefined"
+        });
+        return false;
+    }
+    if (!body.project) {
+        callback({
+            message: "Project id is undefined"
+        });
+        return false;
+    }
+    if (!body.author) {
+        callback({
+            message: "Author is undefined"
+        });
+        return false;
+    }
+    return true;
+}
+
+function validationBodyProperty(body, propName, callback) {
+    if (!body || !body[propName]) {
+        if (callback) {
+            callback({
+                message: propName + ' is undefined'
+            });
+        }
+        return false;
+    }
+    return true;
+}
+//=========================================================
+function addToDoValidation(body, callback) {
+    if (!body.title) {
+        callback({
+            message: "To-do title is undefined"
+        });
+        return false;
+    }
+    if (!body.task) {
+        callback({
+            message: "Task id is undefined"
+        });
+        return false;
+    }
+    return true;
 }
 
 module.exports = new ValidationService();

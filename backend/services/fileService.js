@@ -10,15 +10,13 @@ FileService.prototype.updateItem = updateItem;
 
 function addItem(body, callback) {
     if (addFileValidation(body, callback)) {
+        body.creationDate = Date();
         fileRepository.add(body, callback);
     }
 }
 
-function updateItem(body, callback) {
-    if (validationService.validationBodyProperty(body, '_id', callback) &&
-        validationService.validationBodyProperty(body, 'dataToUpdate', callback)) {
-        fileRepository.setObjPropsById(body._id, body.dataToUpdate, callback);
-    }
+function updateItem(id, body, callback) {
+    fileRepository.setObjPropsById(id, body, callback);
 }
 
 function addFileValidation(body, callback) {

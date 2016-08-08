@@ -1,12 +1,12 @@
 var apiResponse = require('express-api-response'),
-    fileRepository = require('../../repositories/fileRepository'),
-    fileService = require('../../services/fileService'),
-    baseUrl = '/api/files/';
+    checkinRepository = require('../../repositories/checkinRepository'),
+    checkinService = require('../../services/checkinService'),
+    baseUrl = '/api/checkins/';
 
 module.exports = function(app) {
 
-    app.get(baseUrl + 'user/:id', function(req, res, next) {
-        fileRepository.findFilesThatAvailableToUserByUserId(req.params.id, function(err, data) {
+    app.get(baseUrl, function (req, res, next) {       
+        checkinRepository.getAll(function (err, data) {            
             res.data = data;
             res.err = err;
             next();
@@ -14,23 +14,23 @@ module.exports = function(app) {
     }, apiResponse);
 
     app.get(baseUrl + ':id', function(req, res, next) {
-        fileRepository.getById(req.params.id, function(err, data) {
+        checkinRepository.getById(req.params.id, function(err, data) {
             res.data = data;
             res.err = err;
             next();
         });
     }, apiResponse);
 
-    app.post(baseUrl, function(req, res, next) {
-        fileService.addItem(req.body, function(err, data) {
+    app.post(baseUrl, function (req, res, next) {
+        checkinService.addItem(req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();
         });
     }, apiResponse);
 
-    app.put(baseUrl + ':id', function(req, res, next) {
-        fileService.updateItem(req.params.id, req.body, function(err, data) {
+    app.put(baseUrl + ':id', function (req, res, next) {
+        checkinService.updateItem(req.params.id, req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();
@@ -38,10 +38,11 @@ module.exports = function(app) {
     }, apiResponse);
 
     app.delete(baseUrl + ':id', function(req, res, next) {
-        fileRepository.deleteById(req.params.id, function(err, data) {
+        checkinRepository.deleteById(req.params.id, function(err, data) {
             res.data = data;
             res.err = err;
             next();
         });
     }, apiResponse);
+
 }

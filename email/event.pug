@@ -1,0 +1,86 @@
+html
+  head
+    title Event
+    link(href='https://fonts.googleapis.com/css?family=Titillium+Web', rel='stylesheet', type='text/css')
+    style.
+      * {
+      margin:0;
+      padding:0;
+      }
+      img {
+      max-width: 100%;
+      }
+      body {
+      -webkit-font-smoothing:antialiased;
+      -webkit-text-size-adjust:none;
+      width: 100%!important;
+      height: 100%;
+      font-family: "Titillium Web";
+      }
+      .btn {
+      text-decoration:none;
+      color: #FFF;
+      background-color: #666;
+      padding:10px 16px;
+      font-weight:bold;
+      margin-right:10px;
+      text-align:center;
+      cursor:pointer;
+      display: inline-block;
+      }
+      table.body-wrap { width: 100%;}
+      .container {
+      display:block!important;
+      max-width:600px!important;
+      margin:0 auto!important;
+      clear:both!important;
+      }
+      .content {
+      padding:15px;
+      max-width:600px;
+      margin:0 auto;
+      display:block;
+      }
+      .content table { width: 100%; }
+      @media only screen and (max-width: 600px) {
+      a[class="btn"] { display:block!important; margin-bottom:10px!important; background-image:none!important; margin-right:0!important;}
+      }
+      ul img{
+      height: 50px;
+      }
+      ul li{
+      display: inline-block;
+      padding: 5px;
+      }
+  body(bgcolor='#FFFFFF')
+    table.body-wrap
+      tr
+        td.container(bgcolor='#FFFFFF')
+          .content
+            table
+              tr
+                td(align='center')
+                  p
+                    img(src='http://www.freeiconspng.com/uploads/fire-vector-icon-png-27.png', height='100px')
+                  h3 Project name
+                  br
+              tr
+                td
+                  h5 New event
+                  br
+                  p
+                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in aliquet ipsum, non elementum lorem. In ultrices ornare justo. Morbi mollis consectetur velit. Nam sed purus id metus pretium efficitur. Sed libero tellus, mollis in fringilla in, suscipit sit amet orci. Nulla dictum metus eget dui tincidunt, vehicula fermentum nulla sodales. In urna nibh, luctus quis turpis eu, dapibus posuere sem. Proin vestibulum quam id pretium suscipit. Quisque tincidunt porttitor enim, quis faucibus nibh placerat sollicitudin. Nullam sollicitudin aliquet congue. Phasellus mollis semper pharetra. Nunc faucibus, leo sit amet posuere sodales, magna elit placerat quam, ac imperdiet nunc tortor nec tellus.
+                  br
+                  h3 Invited peoples:
+                  ul
+                    li
+                      img(src='http://66.media.tumblr.com/tumblr_m73zms46kS1rue873o1_400.png')
+                    li
+                      img(src='http://66.media.tumblr.com/tumblr_m73zms46kS1rue873o1_400.png')
+                    li
+                      img(src='http://66.media.tumblr.com/tumblr_m73zms46kS1rue873o1_400.png')
+                    li
+                      img(src='http://66.media.tumblr.com/tumblr_m73zms46kS1rue873o1_400.png')
+              tr
+                td(align='right')
+                  a.btn Join
