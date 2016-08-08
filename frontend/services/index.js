@@ -1,4 +1,7 @@
-let req = require.context("./", true, /^(.*\.(js$))[^.]*$/igm);
-req.keys().forEach(function(key){
-    req(key);
-});
+import {app} from '../index';
+
+import {httpGeneral} from './httpGeneral.service.js';
+import {popupNotifications} from './popupNotifications.service.js';
+
+app.service('httpGeneral', httpGeneral);
+app.service('popupNotifications', popupNotifications);

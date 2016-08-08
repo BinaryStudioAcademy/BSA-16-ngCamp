@@ -1,8 +1,15 @@
-angular.module('base')
-	.component('notfound', {
-		template: require('../templates/404-pug.component.pug')(),
-		restrict: 'E',
-		controller: function() {
-			console.log('404 COMPONENT LOADED');
-		}
-});
+class notFoundController {
+	constructor() {
+		console.log('404 COMPONENT LOADED');
+	}
+};
+
+const notFoundComponent = {
+	controller: notFoundController,
+	selector: 'notFound',
+	template: require('../templates/404-pug.component.pug')(),
+};
+
+export {
+	notFoundComponent
+};

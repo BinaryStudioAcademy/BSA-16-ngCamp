@@ -1,15 +1,6 @@
-'use strict';
 import angular from 'angular';
-import './modules';
-import './services';
-import './components';
+const app = angular.module('base', ['ngComponentRouter']);
 
+app.value('$routerRootComponent', 'rootElement');
 
-
-
-
-
-
-
-
-
+export {app};
