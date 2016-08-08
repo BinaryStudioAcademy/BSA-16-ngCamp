@@ -18,7 +18,7 @@ class httpGeneral {
         this.$location = $location;
     }
 
-    httpSend(object) {
+    sendRequest(object) {
         let self = this;
         if (typeof object.url !== 'string' || object.url === undefined || object.url.length === 0) {
             throw "HTTP REQUEST EROR: REQUEST ULR IS ABSENT";
@@ -72,4 +72,4 @@ class httpGeneral {
 
 httpGeneral.$inject = ['$http', '$window', '$location'];
 
-export default httpGeneral;
+export {httpGeneral};

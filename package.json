@@ -12,19 +12,19 @@
         "url": ""
     },
     "authors": [
-    "Dmitriy Beseda <dmitriy.beseda@binary.studio.com>",
-    "Ihor Habshiy <ihor.habshiy@binary-studio.com>",
-    "Dmytro Olashin <bender.d1mon@gmail.com>",
-    "Andrew Hanchuk <andreyblind@gmail.com>",
-    "Yevhen Verva <verba_e_k@mail.ru>",
-    "Shulyakov Dmitriy <d.shuliakov@gmail.com>",
-    "Valeriy Kovalenko <vplusk.od@gmail.com>",
-    "Ivan Stanko <ivan_stanko@ukr.net>",
-    "Vasyl Terlitskiy <vasiafb9@gmail.com>",
-    "Mykola Kris <krise96@gmail.com>",
-    "Antone Stepanishin <step.ant.vic@gmail.com>",
-    "Yaroslav Neznaradko <nezn27@gmail.com>"
-  ],
+        "Dmitriy Beseda <dmitriy.beseda@binary.studio.com>",
+        "Ihor Habshiy <ihor.habshiy@binary-studio.com>",
+        "Dmytro Olashin <bender.d1mon@gmail.com>",
+        "Andrew Hanchuk <andreyblind@gmail.com>",
+        "Yevhen Verva <verba_e_k@mail.ru>",
+        "Shulyakov Dmitriy <d.shuliakov@gmail.com>",
+        "Valeriy Kovalenko <vplusk.od@gmail.com>",
+        "Ivan Stanko <ivan_stanko@ukr.net>",
+        "Vasyl Terlitskiy <vasiafb9@gmail.com>",
+        "Mykola Kris <krise96@gmail.com>",
+        "Antone Stepanishin <step.ant.vic@gmail.com>",
+        "Yaroslav Neznaradko <nezn27@gmail.com>"
+    ],
     "license": "",
     "devDependencies": {},
     "dependencies": {
@@ -60,6 +60,7 @@
         "webpack-dev-middleware": "^1.6.1",
         "jade": "^1.11.0",
         "nodemailer": "^2.5.0",
-        "xoauth2": "^1.2.0"
+        "xoauth2": "^1.2.0",
+        "alertifyjs": "^1.8.0",
     }
 }

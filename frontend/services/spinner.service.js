@@ -1,9 +1,3 @@
-'use strict';
-
-import angular from 'angular';
-
-console.log('spiner ready');
-
 angular
 	.module('base')
 	.factory("spinner", spinner);
@@ -17,7 +11,7 @@ function spinner(){
 	};
 	
 
-	function startSpinn(el = document.querySelector('body')){
+	function startSpinn(el = angular.element(document.querySelector('body'))){
 		if(!sp.el){
 			sp.el = el;
 			el.children().prop('style','opacity: 0.5');
