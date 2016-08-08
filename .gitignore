@@ -20,6 +20,6 @@ build/
 !.elasticbeanstalk/*.cfg.yml
 
 !.elasticbeanstalk/*.global.yml
-
+*.ini
 *.zip
 /nbproject/*
