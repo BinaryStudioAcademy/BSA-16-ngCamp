@@ -5,12 +5,12 @@ var validationService = require('./validationService');
 function ToDoService() {}
 
 
-ToDoService.prototype.addToDo = addToDo;
+ToDoService.prototype.addItem = addItem;
 ToDoService.prototype.updateToDo = updateToDo;
 
 
 //================================================================ 
-function addToDo(body, callback) {
+function addItem(body, callback) {
     if (validationService.addToDoValidation(body, callback)) {
         body.dateCreated = Date();
         toDoRepository.add(body, callback);
