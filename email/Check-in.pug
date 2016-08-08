@@ -63,14 +63,14 @@ html
                 td(align='center')
                   p
                     img(src='http://www.freeiconspng.com/uploads/fire-vector-icon-png-27.png', height='100px')
-                  h3 Project name
+                  h3 #{projectName}
                   br
               tr
-                td
-                  h3 New check-in
+                td(align='center')
+                  h3 Dear #{userName}. You recieved new check-in
                   br
                   p
-                    | What did you work on today?
+                    |#{description}
               tr
-                td(align='right')
-                  a.btn Answer
+                td(align='center')
+                  a(href="#{link}").btn Answer
