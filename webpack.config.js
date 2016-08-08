@@ -16,8 +16,6 @@ module.exports = {
 		contentBase: 'public'
 	},
 
-
-
 	module: {
 		preLoaders: [{
 			test: /\.js$/,
