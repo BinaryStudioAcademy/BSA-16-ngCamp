@@ -21,14 +21,14 @@ class httpGeneral {
 
     sendRequest(object) {
         let self = this;
-        this.spinner.startSpinn();
+        self.spinner.startSpinn();
         if (typeof object.url !== 'string' || object.url === undefined || object.url.length === 0) {
-            this.spinner.stopSpinn();
+            self.spinner.stopSpinn();
             throw "HTTP REQUEST EROR: REQUEST ULR IS ABSENT";
 
         }
         if (typeof object.type !== 'string' || object.type === undefined || object.type.length === 0) {
-            this.spinner.stopSpinn();
+            self.spinner.stopSpinn();
             throw "HTTP REQUEST EROR: REQUEST TYPE IS ABSENT";
         }
         switch (object.type.toLowerCase()) {
