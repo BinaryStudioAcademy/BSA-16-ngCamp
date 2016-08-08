@@ -25,6 +25,7 @@ class httpGeneral {
         if (typeof object.url !== 'string' || object.url === undefined || object.url.length === 0) {
             this.spinner.stopSpinn();
             throw "HTTP REQUEST EROR: REQUEST ULR IS ABSENT";
+
         }
         if (typeof object.type !== 'string' || object.type === undefined || object.type.length === 0) {
             this.spinner.stopSpinn();
@@ -42,14 +43,14 @@ class httpGeneral {
         }
 
         function succesfullRequest(res) {
-            this.spinner.stopSpinn();
+            self.spinner.stopSpinn();
             //console.log("Succesfull Request");
             //alert(object.successMessageToUser);
             return res.data;
         }
 
         function failedRequest(error) {
-            this.spinner.stopSpinn();
+            self.spinner.stopSpinn();
             if (error.status === 403) {
                 handleForbidden();
                 return null;
