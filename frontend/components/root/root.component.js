@@ -11,11 +11,7 @@ const rootComponent = {
 		path: '/user/',
 		name: 'User',
 		component: 'userComponent'
-	}, {
-		path: '/**',
-		name: 'NotFound',
-		component: 'notFound'
-	}, 	{
+	},	{
 		path: '/mainpage/',
 		name: 'MainPage',
 		component: 'mainComponent'
@@ -51,7 +47,11 @@ const rootComponent = {
 		path: '/drafts/',
 		name: 'Drafts',
 		component: 'draftsComponent'
-	}
+	}	{
+		path: '/**',
+		name: 'NotFound',
+		component: 'notFound'
+	},
 	]
 };
 
