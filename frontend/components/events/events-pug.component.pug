@@ -1,0 +1,46 @@
+doctype html
+html
+  head
+   
+    title
+  body
+    .wrapper
+      ul.header-container
+        li
+          span
+            h2 Events
+        li
+          button Set up event
+      .choose-event-container
+        .choose-event
+          .show-events
+            p Show all events: 
+          .form
+            form(action='')
+              | after:
+              input(type='date', name='bday', max='1979-12-31')
+              |           before:
+              input(type='date', name='bday', min='2000-01-02')
+      .big-date
+        h1 13 May 2013
+      .event
+        .event-header
+          .event-title
+            h2 Event#1
+          .event-icons
+            p 10:20
+        .event-description
+          p
+            | orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electron
+      .event
+        .event-header
+          .event-title
+            h2 Event#1
+          .event-icons
+            p 10:20
+        .event-description
+          p
+            | orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electron
+    //
+      </body>
+      </html>

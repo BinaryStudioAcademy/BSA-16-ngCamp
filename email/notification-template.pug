@@ -1,0 +1,33 @@
+html
+  head
+    title Event
+    link(href='https://fonts.googleapis.com/css?family=Titillium+Web', rel='stylesheet', type='text/css')
+    style.
+      * {
+      margin:0;
+      padding:0;
+      }
+      @media only screen and (max-width: 600px) {
+      a[class="btn"] { display:block!important; margin-bottom:10px!important; background-image:none!important; margin-right:0!important;}
+      }
+  body(bgcolor='#FFFFFF', style='-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:none;width:100%!important; height:100%;font-family:"Titillium Web"')
+    table(style={'width': '100%'})
+      tr
+        td(bgcolor='#FFFFFF', style=' display:block!important;max-width:600px!important;margin:0 auto!important;clear:both!important')
+          div(style ={'padding':'15px', 'max-width':'600px', ' margin':'0 auto','display':'block'})
+            table(style ={'width': '100%'})
+              tr
+                td(align='center')
+                  p
+                    img(src='http://www.freeiconspng.com/uploads/fire-vector-icon-png-27.png', height='100px')
+                  h3 ReBaseCamp Project "#{projectName}"
+                  br
+              tr
+                td(align='center')
+                  h3 Dear #{userName}. You recieved a new notification.
+                  br
+                  p #{description}
+                  br
+              tr
+                td(align='center')
+                  a(href='#{link}', style='color:#FFF;background-color:#666;padding:10px 16px;text-decoration:none;font-weight:bold;margin-right:10px;text-align:center;cursor:pointer;display:inline-block') Join
