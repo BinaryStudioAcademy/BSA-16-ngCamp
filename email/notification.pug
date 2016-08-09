@@ -62,14 +62,11 @@ html
                 td(align='center')
                   p
                     img(src='http://www.freeiconspng.com/uploads/fire-vector-icon-png-27.png', height='100px')
-                  h3 Project name
+                  h3 #{projectName}
                   br
               tr
-                td
-                  h5 Title
-                  br
-                  p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in aliquet ipsum, non elementum lorem. In ultrices ornare justo. Morbi mollis consectetur velit. Nam sed purus id metus pretium efficitur. Sed libero tellus, mollis in fringilla in, suscipit sit amet orci. Nulla dictum metus eget dui tincidunt, vehicula fermentum nulla sodales. In urna nibh, luctus quis turpis eu, dapibus posuere sem. Proin vestibulum quam id pretium suscipit. Quisque tincidunt porttitor enim, quis faucibus nibh placerat sollicitudin. Nullam sollicitudin aliquet congue. Phasellus mollis semper pharetra. Nunc faucibus, leo sit amet posuere sodales, magna elit placerat quam, ac imperdiet nunc tortor nec tellus.
+                td(align='center')
+                  h3 Dear #{userName}. You recieved new notification.
               tr
-                td(align='right')
-                  a.btn Open
+                td(align='center')
+                  a(href="#{link}").btn Open

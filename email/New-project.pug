@@ -64,21 +64,11 @@ html
                     img(src='http://www.freeiconspng.com/uploads/fire-vector-icon-png-27.png', height='100px')
                   br
               tr
-                td
-                  p
-                    | You are invited to a new project. Click on link for join on the project: 
-                    a(href='#') link
-                  h3 Project name
-                  h3 Invited peoples:
-                  ul
-                    li
-                      img(src='http://66.media.tumblr.com/tumblr_m73zms46kS1rue873o1_400.png')
-                    li
-                      img(src='http://66.media.tumblr.com/tumblr_m73zms46kS1rue873o1_400.png')
-                    li
-                      img(src='http://66.media.tumblr.com/tumblr_m73zms46kS1rue873o1_400.png')
-                    li
-                      img(src='http://66.media.tumblr.com/tumblr_m73zms46kS1rue873o1_400.png')
+                td(align='center')
+                  h3
+                    |Dear #{userName}. You are invited to a new project "#{projectName}".
+                    
+                
               tr
-                td(align='right')
-                  a.btn Join
+                td(align='center')
+                  a(href="#{link}").btn Join

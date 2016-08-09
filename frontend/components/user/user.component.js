@@ -1,4 +1,4 @@
-import './userStyles.styl';
+//import './userStyles.styl';
 
 class UserComponentController {
 	constructor(http, popupNotifications) {
@@ -10,6 +10,11 @@ class UserComponentController {
 	some() {
 		console.log('http:', this.http);
 		console.log('sendRequest:', this.http.sendRequest);
+
+		console.log(this.http.sendRequest({
+		type: 'get',
+        url: '/api/user/57a8cb7beddaab1445dad9c4'
+    	}));
 	}
 
 	another() {
