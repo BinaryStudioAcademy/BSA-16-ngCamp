@@ -48,6 +48,10 @@ const rootComponent = {
 		name: 'Drafts',
 		component: 'draftsComponent'
 	}, {
+		path: '/messageboard',
+		name: 'MsgBoard',
+		component: 'messageBoard'
+	},{
 		path: '/**',
 		name: 'NotFound',
 		component: 'notFound'
