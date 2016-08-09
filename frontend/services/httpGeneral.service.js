@@ -12,18 +12,23 @@
 
 class httpGeneral {
 
-    constructor($http, $window, $location) {
+    constructor($http, $window, $location,spinner) {
         this.$http = $http;
         this.$window = $window;
         this.$location = $location;
+        this.spinner = spinner;
     }
 
-    httpSend(object) {
+    sendRequest(object) {
         let self = this;
+        self.spinner.startSpinn();
         if (typeof object.url !== 'string' || object.url === undefined || object.url.length === 0) {
+            self.spinner.stopSpinn();
             throw "HTTP REQUEST EROR: REQUEST ULR IS ABSENT";
+
         }
         if (typeof object.type !== 'string' || object.type === undefined || object.type.length === 0) {
+            self.spinner.stopSpinn();
             throw "HTTP REQUEST EROR: REQUEST TYPE IS ABSENT";
         }
         switch (object.type.toLowerCase()) {
@@ -38,12 +43,14 @@ class httpGeneral {
         }
 
         function succesfullRequest(res) {
+            self.spinner.stopSpinn();
             //console.log("Succesfull Request");
             //alert(object.successMessageToUser);
             return res.data;
         }
 
         function failedRequest(error) {
+            self.spinner.stopSpinn();
             if (error.status === 403) {
                 handleForbidden();
                 return null;
@@ -70,6 +77,6 @@ class httpGeneral {
     }
 }
 
-httpGeneral.$inject = ['$http', '$window', '$location'];
+httpGeneral.$inject = ['$http', '$window', '$location','spinner'];
 
-export default httpGeneral;
+export {httpGeneral};

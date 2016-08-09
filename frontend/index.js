@@ -1,24 +1,7 @@
-'use strict';
-
 import angular from 'angular';
+import ngComponentRouter from 'ngcomponentrouter';
+const app = angular.module('base', ['ngComponentRouter']);
 
-let app = angular.module('base', []);
+app.value('$routerRootComponent', 'rootElement');
 
-app.component('someEl', {
-	template: require('./user/user-pug.component.pug')(),
-	restrict: 'E',
-	controller: function() {
-		console.log('COMPONENT LOADED');
-	}
-});
-
-app.component('notFound', {
-	template: require('./user/404-pug.component.pug')(),
-	restrict: 'E',
-	controller: function() {
-		console.log('404 COMPONENT LOADED');
-	}
-});
-
-
-require('./user/styles.styl');
+export {app};
