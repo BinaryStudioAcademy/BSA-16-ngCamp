@@ -16,11 +16,17 @@ const eventsComponent = {
 	selector: 'eventsComponent',
 	template: require('./events-pug.component.pug')(),
 	$routeConfig: [{
+		path:'/',
+		name:'Event list',
+		component:'eventsComponent',
+	},{
   		path:'/post',
   		name:'Create event',
+  		component:'eventEditComponent',
 	},{
  		path:'/:id/post',
  		name:'Edit event',
+ 		component:'eventEditComponent',
 	}]
 };
 
