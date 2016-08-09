@@ -169,11 +169,12 @@ function fake(){
 	})
 
 	untrackted.task.forEach(function(t){
-	taskService.addTask(t, function(err, data){
+	taskService.addItem(t, function(err, data){
 		if(err){
 			console.log(err)
 		}
 	})
+})
 }
 
 fake();

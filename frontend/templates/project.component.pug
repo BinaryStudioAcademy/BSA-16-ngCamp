@@ -1,0 +1,43 @@
+.wrapper
+  .head
+    h1 Project name
+    .nav
+      a(href='#')
+        i.fa.fa-user.fa-2x(aria-hidden='true')
+      a(href='#')
+        i.fa.fa-calendar-check-o.fa-2x(aria-hidden='true')
+      a(href='#')
+        i.fa.fa-list-ul.fa-2x(aria-hidden='true')
+      a(href='#')
+        i.fa.fa-envelope.fa-2x(aria-hidden='true')
+      a(href='#')
+        i.fa.fa-clock-o.fa-2x(aria-hidden='true')
+  h1 Project Settings
+  .goto
+    a(href='') Trash
+    a(href='') Reports
+  .main
+    form(name='projectEdit')
+      .wrap
+        label
+          p Name:
+        input(type='text', name='projectName')
+      .wrap
+        label
+          p Description
+        textarea
+      .wrap
+        label
+          p Participants:
+          i.fa.fa-user(aria-hidden='true')
+        .participants
+          a(href='#')
+            i.fa.fa-plus(aria-hidden='true')
+      .wrap
+        label
+          p  Deadline:
+          i.fa.fa-exclamation-triangle(aria-hidden='true')
+        select
+          option 12 September 2016
+          option 13 September 2016
+      button(type='submit', form='projectEdit', value='Submit') Save

@@ -1,34 +1,41 @@
-angular
-	.module('base')
-	.factory("spinner", spinner);
+class spinner{
 
-function spinner(){
-	let sp = this;
+	constructor($timeout,spinner){
+		this.el = angular.element(document.querySelector('body'));
+		this.spinner = angular.element(require('../templates/spinner.pug')());
+		this.count = 0;
+		this.timeout = $timeout;
+		this.promise;
 
-	let service = {
-		startSpinn: startSpinn,
-		stopSpinn: stopSpinn
-	};
-	
+	}
 
-	function startSpinn(el = angular.element(document.querySelector('body'))){
-		if(!sp.el){
-			sp.el = el;
-			el.children().prop('style','opacity: 0.5');
-			let spinner = angular.element(require('../templates/spinner.pug')());
-			sp.spinner = spinner;
-			el.append(spinner);
+	startSpinn(){
+		let self =this;
 
-		}else{
-			console.log('Not allowed multiply spinners');
+		if(this.count == 0){
+			this.promise = this.timeout( function(){
+				self.el.children().prop('style','opacity: 0.5; pointer-events : none;');
+				self.el.append(self.spinner);
+			},200);
 		};
-	};
+		this.count +=1;
+	}
 
-	function stopSpinn(){
-		sp.spinner.remove();
-		sp.el.children().prop('style','');
-		sp.el = '';
-	};
-	return service;
+	stopSpinn(){
+
+		if(this.count == 1){
+
+		this.timeout.cancel(this.promise);
+		this.spinner.remove();
+		this.el.children().prop('style','');
+
+		};
+
+		this.count -= 1;
+	}
+
 };
 
+spinner.$inject = ['$timeout'];
+
+export {spinner};
