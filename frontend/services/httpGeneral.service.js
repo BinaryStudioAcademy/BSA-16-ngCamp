@@ -1,49 +1,40 @@
-import angular from 'angular';
-
-angular
-    .module('base')
-    .factory('httpGeneral', httpGeneral);
-
-httpGeneral.$inject = [
-    '$http',
-];
 /*
-	object = {
-		type: request type,
-		url: request url,
-		body: data which will be send in request,
-		errorMessageToUser: message will be shown to user when error occured,
-		errorMessageToDev: console log for debug,
-		notFoundMessage:message that will be display when Not Found,
-		errorCallback: callback if error occured,
-	}
+    object = {
+        type: request type,
+        url: request url,
+        body: data which will be send in request,
+        errorMessageToUser: message will be shown to user when error occured,
+        errorMessageToDev: console log for debug,
+        notFoundMessage:message that will be display when Not Found,
+        errorCallback: callback if error occured,
+    }
 */
 
-function httpGeneral($http) {
-    let factory = {httpSend: httpSend};
+class httpGeneral {
 
-    function httpSend(object) {
+    constructor($http, $window, $location) {
+        this.$http = $http;
+        this.$window = $window;
+        this.$location = $location;
+    }
+
+    sendRequest(object) {
+        let self = this;
         if (typeof object.url !== 'string' || object.url === undefined || object.url.length === 0) {
             throw "HTTP REQUEST EROR: REQUEST ULR IS ABSENT";
-            return;
         }
         if (typeof object.type !== 'string' || object.type === undefined || object.type.length === 0) {
             throw "HTTP REQUEST EROR: REQUEST TYPE IS ABSENT";
-            return;
         }
         switch (object.type.toLowerCase()) {
             case 'get':
-                return $http.get(object.url).then(succesfullRequest, failedRequest);
-                break;
+                return this.$http.get(object.url).then(succesfullRequest, failedRequest);
             case 'post':
-                return $http.post(object.url, object.body).then(succesfullRequest, failedRequest);
-                break;
+                return this.$http.post(object.url, object.body).then(succesfullRequest, failedRequest);
             case 'put':
-                return $http.put(object.url, object.body).then(succesfullRequest, failedRequest);
-                break;
+                return this.$http.put(object.url, object.body).then(succesfullRequest, failedRequest);
             case 'delete':
-                return $http.delete(object.url).then(succesfullRequest, failedRequest);
-                break;
+                return this.$http.delete(object.url).then(succesfullRequest, failedRequest);
         }
 
         function succesfullRequest(res) {
@@ -74,9 +65,11 @@ function httpGeneral($http) {
         }
 
         function handleForbidden() {
-            alert("You cant go here");
+            self.$window.location.href = "http://localhost:2020/login";
         }
     }
 }
-return factory;
-}
+
+httpGeneral.$inject = ['$http', '$window', '$location'];
+
+export {httpGeneral};
