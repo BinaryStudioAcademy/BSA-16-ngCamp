@@ -1,0 +1,72 @@
+.mainpage
+	.lableRow
+		.timelineLable
+			h2 Timeline activity
+		select
+			option(value='Today') Today
+			option(value='Yesterday') Yesterday
+
+	.timeline
+		div(id='time1') 9.00
+		div(id='time2') 17.00
+		div(id='tl1' class='eventcircl') M
+			.count 
+				b 3
+		div(id='tl2' class='eventcircl') T
+			.count 
+				b 2
+		div(id='tl3' class='eventcircl') E
+		div(id='tl4' class='eventcircl deadline') DL
+			.time 16.00
+
+	.messagesreview
+		.messagelable
+			h3 Message board
+		.message1
+			img(src = './img/person.gif')
+			span(class='messname')
+				i Name Surname
+			span(class='messtext') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			.time Today 9.30
+		.message2
+			img(src = './img/person.gif')
+			span(class='messname')
+				i Name Surname
+			span(class='messtext') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			.time Today 9.30
+		.message3
+			img(src = './img/person.gif')
+			span(class='messname')
+				i Name Surname
+			span(class='messtext') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			.time Today 9.30
+		.message4
+			img(src = './img/person.gif')
+			span(class='messname')
+				i Name Surname
+			span(class='messtext') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			.time Today 9.30
+
+	.checkinsreview
+		.checkinslable
+			h3 Check-ins
+		.checkins1
+			span(class='question')
+				b See anything great lately that inspired you?
+			span(class='repeattime') every friday 5pm
+			span(class='answercount') 5 answers
+		.checkins2
+			span(class='question')
+				b What are you working on?
+			span(class='repeattime') every monday 9pm
+			span(class='answercount') 12 answers
+		.checkins3
+			span(class='question')
+				b Are you blocked on anything?
+			span(class='repeattime') every friday 3pm
+			span(class='answercount') 3 answers
+		.checkins4
+			span(class='question')
+				b What did you work on today?
+			span(class='repeattime') every thursday 7pm
+			span(class='answercount') 1 answers
