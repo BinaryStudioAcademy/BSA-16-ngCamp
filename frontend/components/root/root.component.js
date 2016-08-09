@@ -51,6 +51,10 @@ const rootComponent = {
         path: '/messageboard',
         name: 'MsgBoard',
         component: 'messageBoard'
+    },{
+        path: '/comments',
+        name: 'Comments',
+        component: 'commentsComponent'
     }, {
         path: '/**',
         name: 'NotFound',
