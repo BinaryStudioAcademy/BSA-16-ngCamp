@@ -23,7 +23,7 @@ context.mongoStore = new MongoStore({
 	mongooseConnection: mongooseConnection
 });
 
-var staticPath = path.resolve('public');
+var staticPath = path.resolve(__dirname + '/../public');
 app.use(express.static(staticPath));
 var staticPath = path.resolve('build');
 app.use(express.static(staticPath));
