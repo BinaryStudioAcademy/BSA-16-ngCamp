@@ -1,4 +1,4 @@
-import './userStyles.styl';
+//import './userStyles.styl';
 
 class UserComponentController {
 	constructor(http, popupNotifications) {
