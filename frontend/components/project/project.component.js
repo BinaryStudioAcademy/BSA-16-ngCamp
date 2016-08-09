@@ -1,4 +1,4 @@
-import '../../templates/styles/project.component.styl';
+import './project.component.styl';
 
 class ProjectComponentController {
     constructor(popupNotifications) {
