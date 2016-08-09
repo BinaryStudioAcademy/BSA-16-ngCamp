@@ -1,5 +1,6 @@
 class rootComponentController {
-    constructor() {}
+    constructor() {
+    }
 }
 
 const rootComponent = {
@@ -50,14 +51,21 @@ const rootComponent = {
     }, {
         path: '/messageboard',
         name: 'MsgBoard',
-        component: 'messageBoard'
+        component: 'messageBoard',
+        useAsDefault: true
     }, {
-        path: '/**',
-        name: 'NotFound',
-        component: 'notFound'
+        path: '/menu',
+        name: 'Menu',
+        component: 'menuComponent'
     }]
 };
 
 export {
     rootComponent
 };
+
+//{
+//    path: '/**',
+//        name: 'NotFound',
+//    component: 'notFound'
+//}
