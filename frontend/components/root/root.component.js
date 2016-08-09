@@ -38,7 +38,7 @@ const rootComponent = {
 	}, {
 		path: '/trash/',
 		name: 'Trash',
-		component: 'mainComponent'
+		component: 'trashComponent'
 	}, {
 		path: '/main/',
 		name: 'Reports',
