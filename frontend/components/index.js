@@ -7,6 +7,7 @@ import {messageBoardComponent} from './messageBoard/messageBoard.component.js';
 import {projectComponent} from './project/project.component.js';
 import {checkinsComponent} from './checkins/checkins.component.js';
 import {menuComponent} from "./menu/menu.component";
+import {eventsComponent} from "./events/events.component";
 
 app.component(messageBoardComponent.selector, messageBoardComponent);
 app.component(rootComponent.selector, rootComponent);
@@ -16,3 +17,4 @@ app.component(checkinsComponent.selector, checkinsComponent);
 app.component(menuComponent.selector, menuComponent);
 app.component(notFoundComponent.selector, notFoundComponent);
 app.component(projectComponent.selector, projectComponent);
+app.component(eventsComponent.selector, eventsComponent);
