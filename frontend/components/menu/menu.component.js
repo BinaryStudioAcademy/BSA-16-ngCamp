@@ -10,8 +10,9 @@ MenuComponentController.$inject = ["httpGeneral"];
 
 const menuComponent = {
     controller: MenuComponentController,
+    controllerAs: 'MenuCtrl',
     selector: 'menuComponent',
-    template: require('./menu-pug.component.pug')(),
+    template: require('./menu-pug.component.pug')()
 };
 
 export {

@@ -14,7 +14,8 @@ const rootComponent = {
     }, {
         path: '/mainpage/',
         name: 'MainPage',
-        component: 'mainComponent'
+        component: 'mainComponent',
+        useAsDefault: true
     }, {
         path: '/account/',
         name: 'Account',
@@ -28,7 +29,7 @@ const rootComponent = {
         name: 'Tasks',
         component: 'tasksComponent'
     }, {
-        path: '/events/',
+        path: '/events/...',
         name: 'Events',
         component: 'eventsComponent'
     }, {
@@ -51,13 +52,13 @@ const rootComponent = {
         path: '/messageboard',
         name: 'MsgBoard',
         component: 'messageBoard'
-    },{
+    }, {
         path: '/comments',
         name: 'Comments',
         component: 'commentsComponent'
     }, {
         path: '/**',
-        name: 'NotFound',
+        name: 'NotFound'
         component: 'notFound'
     }]
 };
