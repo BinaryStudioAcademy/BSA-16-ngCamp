@@ -28,8 +28,9 @@ const rootComponent = {
         path: '/tasks/',
         name: 'Tasks',
         component: 'tasksComponent'
-    }, {
-        path: '/events/',
+    }, 
+    {
+        path: '/events/...',
         name: 'Events',
         component: 'eventsComponent'
     }, {
