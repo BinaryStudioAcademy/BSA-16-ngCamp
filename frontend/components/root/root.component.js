@@ -1,6 +1,5 @@
 class rootComponentController {
-    constructor() {
-    }
+    constructor() {}
 }
 
 const rootComponent = {
@@ -9,63 +8,73 @@ const rootComponent = {
     selector: 'rootElement',
     template: '<ng-outlet></ng-outlet>',
     $routeConfig: [{
-        path: '/user/',
-        name: 'User',
-        component: 'userComponent'
-    }, {
-        path: '/mainpage/',
-        name: 'MainPage',
-        component: 'mainComponent'
-    }, {
-        path: '/account/',
-        name: 'Account',
-        component: 'accountComponent'
-    }, {
-        path: '/checkins/',
-        name: 'Checkins',
-        component: 'checkinsComponent'
-    }, {
-        path: '/tasks/',
-        name: 'Tasks',
-        component: 'tasksComponent'
-    }, {
-        path: '/events/',
-        name: 'Events',
-        component: 'eventsComponent'
-    }, {
-        path: '/project/',
-        name: 'Project',
-        component: 'projectComponent'
-    }, {
-        path: '/trash/',
-        name: 'Trash',
-        component: 'trashComponent'
-    }, {
-        path: '/main/',
-        name: 'Reports',
-        component: 'reportsComponent'
-    }, {
-        path: '/drafts/',
-        name: 'Drafts',
-        component: 'draftsComponent'
-    }, {
-        path: '/messageboard',
-        name: 'MsgBoard',
-        component: 'messageBoard',
-        useAsDefault: true
-    }, {
-        path: '/menu',
-        name: 'Menu',
-        component: 'menuComponent'
-    }]
+            path: '/user/',
+            name: 'User',
+            component: 'userComponent'
+        }, {
+            path: '/',
+            name: 'MainPage',
+            component: 'mainComponent',
+        }, {
+            path: '/account/',
+            name: 'Account',
+            component: 'accountComponent'
+        },
+        {
+            path: '/header/',
+            name: 'Header',
+            component: 'headerComponent'
+        },
+        {
+            path: '/checkins/',
+            name: 'Checkins',
+            component: 'checkinsComponent'
+        }, {
+            path: '/tasks/',
+            name: 'Tasks',
+            component: 'tasksComponent'
+        }, {
+            path: '/events/...',
+            name: 'Events',
+            component: 'eventsComponent'
+        }, {
+            path: '/project/',
+            name: 'Project',
+            component: 'projectComponent'
+        }, {
+            path: '/trash/',
+            name: 'Trash',
+            component: 'trashComponent'
+        },
+        // {
+        //     path: '/reports/',
+        //     name: 'Reports',
+        //     component: 'reportsComponent'
+        // }, 
+        {
+            path: '/drafts/',
+            name: 'Drafts',
+            component: 'draftsComponent'
+        }, {
+            path: '/messageboard', //...
+            name: 'MsgBoard',
+            component: 'messageBoard'
+        }, {
+            path: '/comments',
+            name: 'Comments',
+            component: 'commentsComponent'
+        }, {
+            path: '/files',
+            name: 'File',       //TODO test, remove later
+            component: 'files'
+        }, {
+            path: '/**',
+            name: 'NotFound',
+            component: 'notFound'
+        }
+    ]
 };
 
 export {
     rootComponent
 };
-
-//{
-//    path: '/**',
-//        name: 'NotFound',
-//    component: 'notFound'
-//}

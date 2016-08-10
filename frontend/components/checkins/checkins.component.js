@@ -11,7 +11,7 @@ CheckinsComponentController.$inject = ['httpGeneral'];
 const checkinsComponent = {
     controller: CheckinsComponentController,
     selector: 'checkinsComponent',
-    template: require('./checkins-pug.component.pug')(),
+    template: require('./checkins-pug.component.pug')()
 };
 
 export {
