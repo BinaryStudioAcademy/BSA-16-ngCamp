@@ -58,8 +58,8 @@ const rootComponent = {
             name: 'Comments',
             component: 'commentsComponent'
         }, {
-            path: '/test',
-            name: 'Test',
+            path: '/files',
+            name: 'File',       //TODO test, remove later
             component: 'files'
         }, {
             path: '/**',
