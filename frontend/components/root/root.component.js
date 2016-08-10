@@ -56,13 +56,17 @@ const rootComponent = {
             name: 'Drafts',
             component: 'draftsComponent'
         }, {
-            path: '/messageboard',
+            path: '/messageboard', //...
             name: 'MsgBoard',
             component: 'messageBoard'
         }, {
             path: '/comments',
             name: 'Comments',
             component: 'commentsComponent'
+        }, {
+            path: '/files',
+            name: 'File',       //TODO test, remove later
+            component: 'files'
         }, {
             path: '/**',
             name: 'NotFound',
