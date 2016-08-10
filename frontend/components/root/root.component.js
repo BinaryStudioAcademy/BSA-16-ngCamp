@@ -58,7 +58,7 @@ const rootComponent = {
         component: 'commentsComponent'
     }, {
         path: '/**',
-        name: 'NotFound'
+        name: 'NotFound',
         component: 'notFound'
     }]
 };
