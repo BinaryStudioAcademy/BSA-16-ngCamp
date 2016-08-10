@@ -5,6 +5,7 @@ import {trashComponent} from './trash/trash.component.js';
 import {rootComponent} from './root/root.component.js';
 import {mainComponent} from './main/main.component.js';
 import {messageBoardComponent} from './messageBoard/messageBoard.component.js';
+import {filesComponent} from './files/files.component.js';
 import {projectComponent} from './project/project.component.js';
 import {checkinsComponent} from './checkins/checkins.component.js';
 import {menuComponent} from "./menu/menu.component";
@@ -14,6 +15,7 @@ import {eventListComponent} from "./events/eventList.component.js";
 import {eventEditComponent} from "./events/eventEdit.component.js";
 
 app.component(messageBoardComponent.selector, messageBoardComponent);
+app.component(filesComponent.selector, filesComponent);
 app.component(rootComponent.selector, rootComponent);
 app.component(userComponent.selector, userComponent);
 app.component(mainComponent.selector, mainComponent);

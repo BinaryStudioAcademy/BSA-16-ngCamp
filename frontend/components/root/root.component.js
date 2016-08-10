@@ -58,6 +58,10 @@ const rootComponent = {
             name: 'Comments',
             component: 'commentsComponent'
         }, {
+            path: '/test',
+            name: 'Test',
+            component: 'files'
+        }, {
             path: '/**',
             name: 'NotFound',
             component: 'notFound'
