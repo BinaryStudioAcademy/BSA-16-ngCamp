@@ -50,7 +50,7 @@ const rootComponent = {
             name: 'Drafts',
             component: 'draftsComponent'
         }, {
-            path: '/messageboard',
+            path: '/messageboard', //...
             name: 'MsgBoard',
             component: 'messageBoard'
         }, {

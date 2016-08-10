@@ -2,7 +2,6 @@ import './messageBoard.styl';
 
 class messageBoardController {
     constructor() {
-
     }
 }
 
