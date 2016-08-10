@@ -17,7 +17,7 @@ const eventsComponent = {
 	template: require('./events-pug.component.pug')(),
 	$routeConfig: [{
 		path:'/',
-		name:'Event list',
+		name:'Events_list',
 		component:'eventsComponent',
 	},{
   		path:'/post',

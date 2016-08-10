@@ -6,7 +6,7 @@ class eventEditController {
     }
 }
 
-eventEditController.$inject = ['eventEditController'];
+eventEditController.$inject = ['popupNotifications'];
 
 const eventEditComponent = {
     controller: eventEditController,
