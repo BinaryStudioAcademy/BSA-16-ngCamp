@@ -1,14 +1,9 @@
 import './messageBoard.styl';
 
 class messageBoardController {
-    constructor(httpGeneral) {
-        this.http = httpGeneral;
-    }
+    constructor() {
 
-    onClick() {
-        alert("CLICKED");
     }
-
 }
 
 const messageBoardComponent = {
@@ -18,23 +13,4 @@ const messageBoardComponent = {
     selector: 'messageBoard'
 };
 
-messageBoardController.$inject = ['httpGeneral'];
-
 export {messageBoardComponent};
-
-
-
-//angular
-//    .module('base')
-//    .component('messageBord', {
-//        templateUrl: require('./messageBoard.pug')(),
-//        restrict: 'E',
-//        controller: MessageBoxCtrl,
-//        controllerAs: 'message'
-//    });
-//
-//function MessageBoxCtrl() {
-//    let vm = this;
-//}
-//
-//require('./messageBord.styl');
