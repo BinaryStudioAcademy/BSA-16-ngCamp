@@ -8,7 +8,6 @@ class EventsComponentController {
 
 EventsComponentController.$inject = [
 	'httpGeneral'
-
 ];
 
 const eventsComponent = {
@@ -16,11 +15,17 @@ const eventsComponent = {
 	selector: 'eventsComponent',
 	template: require('./events-pug.component.pug')(),
 	$routeConfig: [{
-  		path:'/post',
-  		name:'Create event',
+		path:'/',
+		name:'Events_list',
+		component:'eventsComponent'
 	},{
- 		path:'/:id/post',
- 		name:'Edit event',
+		path:'/post',
+		name:'Create event',
+		component:'eventEditComponent'
+	},{
+		path:'/:id/post',
+		name:'Edit event',
+		component:'eventEditComponent'
 	}]
 };
 
