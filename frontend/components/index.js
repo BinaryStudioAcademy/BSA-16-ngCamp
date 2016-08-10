@@ -1,5 +1,5 @@
 import {app} from '../index';
-import {notFoundComponent} from './notFound.component.js';
+import {notFoundComponent} from './notFound/notFound.component.js';
 import {userComponent} from './user/user.component.js';
 import {trashComponent} from './trash/trash.component.js';
 import {rootComponent} from './root/root.component.js';
