@@ -1,4 +1,3 @@
-import './reset-css.styl';
 import './trashStyles.styl';
 
 
