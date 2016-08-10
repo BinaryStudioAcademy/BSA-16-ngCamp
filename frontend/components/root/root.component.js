@@ -19,7 +19,13 @@ const rootComponent = {
             path: '/account/',
             name: 'Account',
             component: 'accountComponent'
-        }, {
+        },
+        {
+            path: '/header/',
+            name: 'Header',
+            component: 'headerComponent'
+        },
+        {
             path: '/checkins/',
             name: 'Checkins',
             component: 'checkinsComponent'
