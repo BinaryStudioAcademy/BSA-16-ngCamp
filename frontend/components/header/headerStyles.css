@@ -7,9 +7,7 @@ body {
 /* HEADER*/
 #navigation {
   background: #403f3f;
-  
 }
-
 #nav-list,
 #nav-list-2 {
   list-style-type: none;
@@ -18,7 +16,7 @@ body {
 #navigation input {
   padding: 6px;
   margin: 10px;
-  background-color white;
+  background-color: #fff;
 }
 #navigation li a {
   text-decoration: none;
@@ -36,6 +34,6 @@ body {
     justify-content: flex-end;
   }
 }
-#navigation
-    .fa
-        color white
+#navigation .fa {
+  color: #fff;
+}
