@@ -1,3 +1,5 @@
+import './rootStyles.styl';
+
 class rootComponentController {
     constructor() {}
 }
@@ -6,7 +8,7 @@ const rootComponent = {
     controller: rootComponentController,
     controllerAs: 'rootElement',
     selector: 'rootElement',
-    template: '<ng-outlet></ng-outlet>',
+    template: '<div id=\'mock_header\'>Mock Header</div><div id=\'root_container\'><ng-outlet></ng-outlet></div>',
     $routeConfig: [{
             path: '/user/',
             name: 'User',
