@@ -36,3 +36,6 @@ app.component(commentsComponent.selector, commentsComponent);
 app.component(reportsComponent.selector, reportsComponent);
 app.component(eventEditComponent.selector, eventEditComponent);
 app.component(eventListComponent.selector, eventListComponent);
+
+import {testComponent} from "./test/test.component.js";
+app.component(testComponent.selector, testComponent);

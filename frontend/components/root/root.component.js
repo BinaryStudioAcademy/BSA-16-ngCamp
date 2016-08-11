@@ -72,9 +72,13 @@ const rootComponent = {
         component: 'postMessage'
     }, {
         path: '/editMessage',
-        name: 'EditMessage',
+        name: 'EditMessage', //TODO test, remove later
         component: 'editMessage'
     }, {
+        path: '/test',
+        name: 'Test',
+        component: 'test'
+    },{
         path: '/**',
         name: 'NotFound',
         component: 'notFound'
