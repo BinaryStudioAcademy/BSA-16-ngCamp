@@ -17,6 +17,7 @@ import {reportsComponent} from "./reports/reports.component";
 import {eventsComponent} from "./events/events.component.js";
 import {eventListComponent} from "./events/eventList.component.js";
 import {eventEditComponent} from "./events/eventEdit.component.js";
+import {draftsComponent} from "./drafts/drafts.component.js";
 
 app.component(messageBoardComponent.selector, messageBoardComponent);
 app.component(filesComponent.selector, filesComponent);
@@ -36,3 +37,4 @@ app.component(commentsComponent.selector, commentsComponent);
 app.component(reportsComponent.selector, reportsComponent);
 app.component(eventEditComponent.selector, eventEditComponent);
 app.component(eventListComponent.selector, eventListComponent);
+app.component(draftsComponent.selector, draftsComponent);
