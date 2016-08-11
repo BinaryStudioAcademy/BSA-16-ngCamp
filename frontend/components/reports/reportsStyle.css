@@ -1,0 +1,14 @@
+.reports-wrapper {
+  width: 100%;
+}
+.reports-wrapper * {
+  box-sizing: border-box;
+  padding: 0px;
+}
+.reports-wrapper .reports-holder {
+  width: 100%;
+}
+.reports-wrapper .row,
+.reports-wrapper [class^="col-"] {
+  padding: 0px;
+}
