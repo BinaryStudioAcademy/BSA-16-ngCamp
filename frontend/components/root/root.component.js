@@ -8,7 +8,7 @@ const rootComponent = {
     controller: rootComponentController,
     controllerAs: 'rootElement',
     selector: 'rootElement',
-    template: '<div id=\'mock_header\'>Mock Header</div><div id=\'root_container\'><ng-outlet></ng-outlet></div>',
+    template: '<div id=\'root_container\'><ng-outlet></ng-outlet></div>',
     $routeConfig: [{
             path: '/user/',
             name: 'User',
