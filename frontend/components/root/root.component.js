@@ -1,7 +1,8 @@
 import './rootStyles.styl';
 
 class rootComponentController {
-    constructor() {}
+    constructor() {
+    }
 }
 
 const rootComponent = {
@@ -65,6 +66,14 @@ const rootComponent = {
         path: '/files',
         name: 'File', //TODO test, remove later
         component: 'files'
+    }, {
+        path: '/postMessage',
+        name: 'PostMessage', //TODO test, remove later
+        component: 'postMessage'
+    }, {
+        path: '/editMessage',
+        name: 'EditMessage',
+        component: 'editMessage'
     }, {
         path: '/**',
         name: 'NotFound',
