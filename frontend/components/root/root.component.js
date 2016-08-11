@@ -75,6 +75,10 @@ const rootComponent = {
         name: 'EditMessage',
         component: 'editMessage'
     }, {
+        path: '/tasks',
+        name: 'Tasks',
+        component: 'tasksComponent'
+    }, {
         path: '/**',
         name: 'NotFound',
         component: 'notFound'
