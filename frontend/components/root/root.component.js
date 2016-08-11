@@ -1,3 +1,5 @@
+import './rootStyles.styl';
+
 class rootComponentController {
     constructor() {}
 }
@@ -6,7 +8,7 @@ const rootComponent = {
     controller: rootComponentController,
     controllerAs: 'rootElement',
     selector: 'rootElement',
-    template: '<ng-outlet></ng-outlet>',
+    template: '<div id=\'root_container\'><ng-outlet></ng-outlet></div>',
     $routeConfig: [{
         path: '/user/',
         name: 'User',
@@ -19,6 +21,10 @@ const rootComponent = {
         path: '/account/',
         name: 'Account',
         component: 'accountComponent'
+    }, {
+        path: '/header/',
+        name: 'Header',
+        component: 'headerComponent'
     }, {
         path: '/checkins/',
         name: 'Checkins',
@@ -48,13 +54,17 @@ const rootComponent = {
         name: 'Drafts',
         component: 'draftsComponent'
     }, {
-        path: '/messageboard',
+        path: '/messageboard', //...
         name: 'MsgBoard',
         component: 'messageBoard'
     }, {
         path: '/comments',
         name: 'Comments',
         component: 'commentsComponent'
+    }, {
+        path: '/files',
+        name: 'File', //TODO test, remove later
+        component: 'files'
     }, {
         path: '/**',
         name: 'NotFound',
