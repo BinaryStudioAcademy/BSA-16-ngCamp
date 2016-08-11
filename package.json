@@ -37,6 +37,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "bootstrap-stylus": "^0.2.2",
+    "casual": "^1.5.3",
     "cnfg": "^1.1.1",
     "connect-mongo": "^1.3.2",
     "cookies": "^0.6.1",

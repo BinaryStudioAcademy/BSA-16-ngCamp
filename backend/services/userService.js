@@ -15,9 +15,7 @@ function addItem(body, callback) {
 }
 
 function updateItem(id, body, callback) {
-    if (validationService.updateUserValidation(body, callback)) {
-        userRepository.setObjPropsById(id, body, callback);
-    }
+    userRepository.setObjPropsById(id, body, callback);
 }
 
 module.exports = new UserService();
