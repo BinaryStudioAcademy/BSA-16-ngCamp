@@ -14,9 +14,7 @@ function addItem(body, callback) {
 }
 //================================================================
 function updateEvent(id, body, callback) {
-    if (validationService.addEventValidation(body, callback)) {
-        eventRepository.setObjPropsById(id, body, callback);
-    }
+    eventRepository.setObjPropsById(id, body, callback);
 }
 
 module.exports = new EventService();
