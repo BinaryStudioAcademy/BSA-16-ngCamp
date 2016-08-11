@@ -24,7 +24,7 @@
             li keyword =
             input.trash-input(type="text")
     .trash-items
-        .row
+        .trash-data
             div.data-title
                 span Message
             div.data-desc
@@ -60,5 +60,8 @@
             div.data-button
                 i(class="data-button fa fa-plus-circle" aria-hidden="true")
 
+form#uploadForm(action='/postMessage', method='post', enctype='multipart/form-data')
+    input(type='file', name='message')
+    input(type='submit', value='Upload')
 
 

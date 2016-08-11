@@ -6,7 +6,8 @@ var bodyParser = require('body-parser'),
 	session = require('express-session'),
 	MongoStore = require('connect-mongo')(session),
 	sessionSecret = require('./config/session').secret,
-	mongoose = require('mongoose');
+	mongoose = require('mongoose'),
+	fileUpload = require('express-fileupload');
 
 var app = express();
 
@@ -29,6 +30,7 @@ var staticPath = path.resolve('build');
 app.use(express.static(staticPath));
 
 app.use(bodyParser.json());
+app.use(fileUpload());
 
 var apiRoutes = require('./routes/api/routes')(app),
 	viewRoutes = require('./routes/view/routes')(app);
