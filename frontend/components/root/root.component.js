@@ -12,10 +12,9 @@ const rootComponent = {
         name: 'User',
         component: 'userComponent'
     }, {
-        path: '/mainpage/',
+        path: '/',
         name: 'MainPage',
         component: 'mainComponent',
-        useAsDefault: true
     }, {
         path: '/account/',
         name: 'Account',
@@ -41,7 +40,7 @@ const rootComponent = {
         name: 'Trash',
         component: 'trashComponent'
     }, {
-        path: '/main/',
+        path: '/reports',
         name: 'Reports',
         component: 'reportsComponent'
     }, {
@@ -56,10 +55,6 @@ const rootComponent = {
         path: '/comments',
         name: 'Comments',
         component: 'commentsComponent'
-    }, {
-        path: '/reports',
-        name: 'Reports',
-        component: 'reportsComponent'
     }, {
         path: '/**',
         name: 'NotFound',
