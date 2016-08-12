@@ -25,8 +25,6 @@ context.mongoStore = new MongoStore({
 
 var staticPath = path.resolve(__dirname + '/../public');
 app.use(express.static(staticPath));
-var staticPath = path.resolve('build');
-app.use(express.static(staticPath));
 
 app.use(bodyParser.json());
 
@@ -36,17 +34,6 @@ var apiRoutes = require('./routes/api/routes')(app),
 var docs = require("express-mongoose-docs");
 
 docs(app, mongoose);
-// if (app.get('env') === 'development') {
-// 	var webpackMiddleware = require("webpack-dev-middleware");
-// 	var webpack = require('webpack');
-
-// 	var config = require('../webpack.config');
-
-// 	app.use(webpackMiddleware(webpack(config), {
-// 		publicPath: '/public/js/'
-// 	}));
-
-// }
 
 var server = app.listen(3060);
 
