@@ -1,4 +1,4 @@
-import '../../templates/eventEdit.component.styl';
+import './eventEdit.component.styl';
 
 class eventEditController {
     constructor(popupNotifications) {
@@ -11,7 +11,7 @@ eventEditController.$inject = ['popupNotifications'];
 const eventEditComponent = {
     controller: eventEditController,
     selector: 'eventEditComponent',
-    template: require('../../templates/eventEdit.component.pug')(),
+    template: require('./eventEdit.component.pug')(),
 };
 
 export {
