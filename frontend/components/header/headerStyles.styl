@@ -1,45 +1,87 @@
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css");
-body {
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-}
-/* HEADER*/
-#navigation {
- height: 50px;
-  background: #403f3f;
- overflow: hidden;
-  
-}
-
-#nav-list,
-#nav-list-2 {
-  list-style-type: none;
-  padding: 0;
-}
-#navigation input {
-  border-radius 10px
-  padding: 6px;
-  margin: 10px;
-  background-color white;
-}
-#navigation li a {
-  text-decoration: none;
-  text-align: center;
-  color: #e1e1e1;
-  display: block;
-  padding: 15px;
-  height 50px;
-}
-#navigation a:hover {
-  background-color: #6a6f79;
-}
-@media screen and (min-width: 420px) {
-  #nav-list {
-    display: flex;
-    justify-content: flex-end;
-  }
-}
-#navigation
-    .fa
-        color white
+@import "../../../public/libs/css/generalComponentsStyle.styl"
+//@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css");
+//body {
+//  width: 100%;
+//  max-width: 100%;
+//  margin: 0 auto;
+//}
+///* HEADER*/
+//#navigation {
+//    justify-content flex-end
+//    padding 1%;
+//    display flex
+//    align-items center
+//    background: #403f3f;
+//    overflow: hidden;
+//  
+//}
+//
+//#nav-list,
+//#nav-list-2 {
+//  list-style-type: none;
+//}
+//#navigation input {
+//  border-radius 10px
+//  padding 6px
+//  background-color white;
+//}
+//#navigation li a {
+//  text-decoration: none;
+//  text-align: center;
+//  color: #e1e1e1;
+//  display: block;
+//  padding: 15px;
+//}
+//#navigation a:hover {
+//  background-color: #6a6f79;
+//}
+//@media screen and (min-width: 420px) {
+//  #nav-list {
+//    display: flex;
+//    justify-content: flex-end;
+//  }
+//}
+//#navigation
+//    .fa
+//        color white
+.header-wrapper
+    position  fixed
+    top 0
+    left 0
+    width 100%
+    background-color #403F3F
+    *
+        box-sizing border-box
+    #navigation
+        height 50px
+        .fa
+            color white
+        input
+            color #fbfbfb
+            border-radius 10px
+            height 30px
+        display flex
+        align-items center
+        justify-content flex-end
+        padding-right  2%
+        ul
+            padding-right 1%
+            li
+                display inline-flex
+                justify-content center
+                align-items center
+                list-style none
+                line-height 50px
+                text-align center
+                &:hover
+                    background-color border-grey
+                a
+                    display inline-block
+                    text-decoration none
+                    color white
+                    text-align center
+                        input
+                            color #403F3F
+                    i
+                        padding 2%
+                        text-align center
