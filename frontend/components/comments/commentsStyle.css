@@ -36,7 +36,7 @@
   text-align: left;
 }
 .comments-holder .user-icon {
-  font-size: 20px;
+  font-size: 50px;
 }
 .comments-holder .comment {
   font-family: "Open Sans";
@@ -58,6 +58,7 @@
   font-size: 20px;
 }
 .comments-holder .button {
+  box-shadow: 0px 0px 10px 0px #808080;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,6 +75,9 @@
 }
 .comments-holder .button:hover {
   box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 4px #1d8dbf;
+}
+.comments-holder .button:active {
+  box-shadow: 0px 0px 0px 0.5px #fff, 0px 0px 0px 2px #1d8dbf, 0px 0px 5px 0px #fff inset;
 }
 .comments-holder .comment-button {
   font-family: "Montserrat";
