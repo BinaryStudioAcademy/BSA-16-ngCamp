@@ -1,105 +1,42 @@
+@import "../../../public/libs/css/generalComponentsStyle.styl"
 .events-wrapper
-    width 75%
-    margin auto
-    color: #616161
-
-    h1
-        //margin-top 20px
-        //margin-bottom 10px
-    .button
-        background-color #4CAF50
-        border none
-        color white
-        padding 15px 32px
-        text-align center
-        text-decoration none
-        display inline-block
-        font-size 16px
-        margin 4px 2px
-        cursor pointer
-
-.events-blue-gray
-    color: #7986CB
-.events-icons
-    .fa
-        width 45px
-        height 17px
-        margin-top 2px    
-
-.events-header-container
-    list-style none
-    margin 0
-    display flex
-    justify-content center
-    align-items center
-    font-size 25px
-    button
-        //position absolute
-        //display block
-        //margin-top 45px
-        margin-left 100px
-        padding 5px
-        border-radius 8px
-
-.choose-event
-
-
-.choose-event-container
-    //width 90%
-    //margin-top: 10px
-    display flex
-    justify-content center
-    align-items center
-
-
-
-.show-events
-    font-size 19px
-    margin-right 15px
-    margin-bottom 2px
-
-.big-date
-    margin-top 20px
     width 100%
-    text-align center
+    padding 1%
+    .row
+        padding 0
+        margin 0
 
-.events
-    margin-top 15px
-    padding 10px
-    border-radius 10px
-    background-color whitesmoke
-
-.events-header
-    width 100%
-    display flex
-    justify-content space-between
-    align-items center
-
-.events-title
-    h2
-        margin-top 2px
-        margin-bottom 2px
-
-.events-icons
-    display flex
-    justify-content space-between
-    align-content center
-    p
-        margin-top 2px
-        margin-bottom 2px
-
-.events-description
-    display -webkit-box
-    max-width 995px
-    height 60px
-    margin 0 auto
-    font-size 16px
-    line-height 1.2
-    -webkit-line-clamp 3
-    -webkit-box-orient vertical
-    overflow hidden
-    text-overflow ellipsis
-    p
-        margin-top 2px
-        margin-bottom 2px
-
+    .events-holder
+        padding 1%
+        border 1px solid border-grey
+        border-radius 10px
+        background-color background-white 
+        box-shadow 0px 5px 20px 2px  #808080
+        .events-header 
+            border-bottom 1px solid grey
+            padding 1%
+            span
+                font-family "Montserrat"
+                text-align center
+                width 100%
+                display inline-block
+                font-weight bold
+                font-size 30px    
+        .button
+            button()
+            font-family "Montserrat"
+            font-size 24px
+            height 34px
+        .chose-event
+            input[type=date]
+                border-radius 5px
+        .events-items
+            overflow hidden
+            margin 0px auto
+            
+            .event
+                margin 0px
+                .fa
+                    padding-top 18px
+               
+          
