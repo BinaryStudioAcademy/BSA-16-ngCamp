@@ -1,9 +1,9 @@
 section.post-message-wrapper
   header
-    h2
-      | Post a message
-      img(ng-link='["MsgBoard"]', align='top', src='https://cdn3.iconfinder.com/data/icons/simple-files-1/128/No-128.png', alt='exit')
-    hr
+    h2 Post message
+    button.fa.fa-close(ng-link='["MsgBoard"]')
+      //img(ng-link='["MsgBoard"]', align='top', src='https://cdn3.iconfinder.com/data/icons/simple-files-1/128/No-128.png', alt='exit')
+  hr
   section.input-block
     section.img-block
       img(src='https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_save_48px-128.png', alt='save')
@@ -12,12 +12,12 @@ section.post-message-wrapper
     textarea(name='', id='', cols='30', rows='10')  
     .text-editor
       | TEXT EDITOR
-    form#uploadForm(action='/postMessage', method='post', enctype='multipart/form-data')
-            input(type='file', name='message')
-            input(type='submit', value='Upload')
-  section.draft-post
-    select(name='drafts')
-      option(value='draft1') draft1
-      option(value='draft2') draft2
-      option(value='draft3') draft3
-    button Post
+    //form#uploadForm(action='/postMessage', method='post', enctype='multipart/form-data')
+    //        input(type='file', name='message')
+    //        input(type='submit', value='Upload')
+  //section.draft-post
+  //  select(name='drafts')
+  //    option(value='draft1') draft1
+  //    option(value='draft2') draft2
+  //    option(value='draft3') draft3
+  button Post
