@@ -11,7 +11,7 @@ ProjectComponentController.$inject = ['popupNotifications'];
 const projectComponent = {
     controller: ProjectComponentController,
     selector: 'projectComponent',
-    template: require('../../templates/project.component.pug')(),
+    template: require('./project.component.pug')(),
 };
 
 

@@ -1,0 +1,33 @@
+.projectwrapper
+  section.row.center-xs
+    .main.col-xs-8
+      h1 Project Settings
+      .goto
+        a(href='') Trash
+        a(href='') Reports
+      form(name='projectEdit').row.center-xs
+        .wrap
+          label
+            p Name:
+          input(type='text', name='projectName')
+        .wrap
+          label
+            p Description
+          textarea
+        .wrap
+          label
+            p Participants:
+            i.fa.fa-user(aria-hidden='true')
+          .participants
+            a(href='#')
+              i.fa.fa-plus(aria-hidden='true')
+        .wrap
+          label
+            p  Deadline:
+            i.fa.fa-exclamation-triangle(aria-hidden='true')
+          select#after-date.col-xs-6(name='')
+            option 12 September 2016
+            option 13 September 2016
+        .wrap
+          button.col-xs-6(type='submit', form='projectEdit', value='Submit') Save
+8
