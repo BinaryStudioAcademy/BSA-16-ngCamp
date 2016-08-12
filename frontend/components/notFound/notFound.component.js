@@ -2,7 +2,7 @@ import './notFound.styl';
 
 class notFoundController {
 	constructor() {
-		console.log('404 COMPONENT LOADED');
+		
 	}
 };
 
