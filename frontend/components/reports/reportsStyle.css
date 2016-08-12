@@ -47,7 +47,7 @@
   font-family: "Montserrat";
   font-size: 18px;
 }
-.reports-wrapper .button {
+.reports-wrapper .report-button {
   box-shadow: 0px 0px 10px 0px #808080;
   display: flex;
   justify-content: center;
@@ -63,6 +63,28 @@
   transition: 0.2s;
   cursor: pointer;
   font-family: "Montserrat";
+}
+.reports-wrapper .report-button:hover {
+  box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 4px #1d8dbf;
+}
+.reports-wrapper .report-button:active {
+  box-shadow: 0px 0px 0px 0.5px #fff, 0px 0px 0px 2px #1d8dbf, 0px 0px 5px 0px #fff inset;
+}
+.reports-wrapper .button {
+  box-shadow: 0px 0px 10px 0px #808080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  border-radius: 5px;
+  background-color: #1d8dbf;
+  color: #fff;
+  padding: 1%;
+  font-size: 30px;
+  height: 50px;
+  transition: 0.2s;
+  cursor: pointer;
 }
 .reports-wrapper .button:hover {
   box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 4px #1d8dbf;
