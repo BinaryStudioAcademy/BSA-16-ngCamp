@@ -19,8 +19,8 @@
 	padding: 5px 10px 5px 10px;
 	border-left: 1px solid black;
 	height: 15px;
-	line-height: 15px;
-	font-size: 20px;
+	font-family: "Montserrat";
+    font-size: 20px;
 }
 .trash-container .trash-menu li:nth-child(2){
 	border: none;
@@ -36,7 +36,7 @@
 	color: #ad303f;
 }
 .trash-container .trash-menu-container{
-
+	display: flex;
 }
 .trash-container .trash-items{
 	overflow: hidden;
@@ -63,11 +63,12 @@
 	width: 35%;
 	margin: 0 auto 0 auto;
 }
-.trash-container .trash-data div{
-	display: inline-block;
-	float: left;
-	font-size: 20px;
+.trash-container .trash-data{
+	display: flex;
+	flex-flow: row wrap;
+	min-width: 600px;
 }
+
 .trash-container .data-title{
 	width: 30%;
 	padding-top: 15px;
