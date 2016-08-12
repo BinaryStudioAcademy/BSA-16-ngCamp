@@ -1,76 +1,93 @@
+.trash-container{
+
+
+}
 .trash-container h1{
 	text-align: center;
-	font-size: 50px;
+	font-family: "Montserrat";
+    font-weight: bold;
+	font-size: 30px;
 }
-.trash-menu{
+.trash-container .trash-menu{
 	padding: inherit;
 	display: block;
 	width: 830px;
 	margin: 15px auto;
 }
-.trash-menu li{
+.trash-container .trash-menu li{
 	display: inline-block;
 	padding: 5px 10px 5px 10px;
 	border-left: 1px solid black;
 	height: 15px;
-	line-height: 15px;
-	font-size: 20px;
+	font-family: "Montserrat";
+    font-size: 20px;
 }
-.trash-menu li:nth-child(2){
+.trash-container .trash-menu li:nth-child(2){
 	border: none;
 }
-.trash-menu li:first-child{
+.trash-container .trash-menu li:first-child{
 	border: none;
 }
-.trash-menu li a{
+.trash-container .trash-menu li a{
 	color: #2f6fad;
 }
-.trash-menu li a:hover{
+.trash-container .trash-menu li a:hover{
 	text-decoration: none;
 	color: #ad303f;
 }
-.trash-menu-container{
-	width: 90%;
-	padding-left: 5%;
-	padding-right 5%;
+.trash-container .trash-menu-container{
+	display: flex;
 }
-.trash-items{
+.trash-container .trash-items{
 	overflow: hidden;
 	margin: 50px auto;
 	width: 60%;
+	padding: 1%;
+    border: 1px solid #adadad;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0px 5px 20px 2px #808080;
 }
-.trash-input{
+.trash-container .trash-input{
 	width: 70px;
 	position: relative;
     top: -4px;
 	height: 20px;
 	border-radius 7px;
 }
-.trash-input:focus{
+.trash-container .trash-input:focus{
 	outline: none;
 }
-.trash-line{
-	width: 35%
+.trash-container .trash-line{
+	color: black;
+	width: 35%;
 	margin: 0 auto 0 auto;
 }
-.row div{
-	display: inline-block;
-	float: left;
-	font-size: 20px;
+.trash-container .trash-data{
+	display: flex;
+	flex-flow: row wrap;
+	min-width: 600px;
 }
-.data-title{
+
+.trash-container .data-title{
 	width: 30%;
 	padding-top: 15px;
 	padding-bottom 15px;
 	padding-right 25px;
+	font-family: "Montserrat";
+    font-weight: bold;
+	font-size: 25px;
+
 }
-.data-desc{
+.trash-container .data-desc{
 	width: 50%;
 	padding-top: 15px;
 	padding-bottom 15px;
 	padding-right 25px;
+	font-family: "Open Sans";
+	font-size: 20px;
 }
-.data-button{
+.trash-container .trash-add-button{
 	text-align: right;
 	font-size: 35px !important;
 	position: relative;
