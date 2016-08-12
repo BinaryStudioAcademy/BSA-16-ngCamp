@@ -2,7 +2,7 @@ section.messageBoard
   header
     h2 Message Board
     hr
-    button(ng-link='["PostMessage"]') Post message
+    div(ng-link='["PostMessage"]') Post message
   section.message
     section.messageInfo
       section.header
@@ -10,9 +10,9 @@ section.messageBoard
             img(src='https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-128.png', alt='avatar')
             span Name Surame
         section.useButton
-                button.fa.fa-files-o(ng-link='["File"]')
-                button.fa.fa-comment(ng-link='["Comments"]')
-                button.fa.fa-share
+                div.fa.fa-files-o(ng-link='["File"]')
+                div.fa.fa-comment(ng-link='["Comments"]')
+                div.fa.fa-share
                 //img(ng-link='["File"]', src='https://cdn4.iconfinder.com/data/icons/miu/24/editor-documents-files-outline-stroke-128.png')
                 //img(ng-link='["Comments"]', src='https://cdn4.iconfinder.com/data/icons/miu/24/other-conversation-review-comment-bubble-talk-outline-stroke-128.png')
                 //img(src='https://cdn4.iconfinder.com/data/icons/43-social-media-line-icons/24/Share-128.png')
