@@ -1,72 +1,112 @@
-.mainpage
-	.lableRow
-		.timelineLable
-			h2 Timeline activity
-		select
-			option(value='Today') Today
-			option(value='Yesterday') Yesterday
-
-	.timeline
-		div(id='time1') 9.00
-		div(id='time2') 17.00
-		div(id='tl1' class='eventcircl') M
-			.count 
-				b 3
-		div(id='tl2' class='eventcircl') T
-			.count 
-				b 2
-		div(id='tl3' class='eventcircl') E
-		div(id='tl4' class='eventcircl deadline') DL
-			.time 16.00
-
-	.messagesreview
-		.messagelable
-			h3 Message board
-		.message1
-			img(src = './img/person.gif')
-			span(class='messname')
-				i Name Surname
-			span(class='messtext') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-			.time Today 9.30
-		.message2
-			img(src = './img/person.gif')
-			span(class='messname')
-				i Name Surname
-			span(class='messtext') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-			.time Today 9.30
-		.message3
-			img(src = './img/person.gif')
-			span(class='messname')
-				i Name Surname
-			span(class='messtext') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-			.time Today 9.30
-		.message4
-			img(src = './img/person.gif')
-			span(class='messname')
-				i Name Surname
-			span(class='messtext') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-			.time Today 9.30
-
-	.checkinsreview
-		.checkinslable
-			h3 Check-ins
-		.checkins1
-			span(class='question')
-				b See anything great lately that inspired you?
-			span(class='repeattime') every friday 5pm
-			span(class='answercount') 5 answers
-		.checkins2
-			span(class='question')
-				b What are you working on?
-			span(class='repeattime') every monday 9pm
-			span(class='answercount') 12 answers
-		.checkins3
-			span(class='question')
-				b Are you blocked on anything?
-			span(class='repeattime') every friday 3pm
-			span(class='answercount') 3 answers
-		.checkins4
-			span(class='question')
-				b What did you work on today?
-			span(class='repeattime') every thursday 7pm
-			span(class='answercount') 1 answers
+.main_component
+	.timeline_block
+		.scale_block
+			.lable
+				.icon
+					i(class="fa fa-bar-chart" aria-hidden="true")
+				span ACTIVITY TIMELINE
+			.day_return
+				i(class='fa fa-angle-left',aria-hidden="true")
+				span YESTERDAY
+			.scale
+				.time_mark
+					span 9.00
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+					label(for='timegup1')
+						.mark_lable
+							span 2 messages
+							span 1 task
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+					label(for='timegup2')
+						.mark_lable
+							span 1 message
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+					label(for='timegup3')
+						.mark_lable
+							span 1 event
+							span 3 tasks
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+					.mark_lable.deadline
+						span DEADLINE
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+					span 17.00
+		.preview_block
+			input(type="radio",id="timegup1",name='preview_block')
+			.timegap
+				.message
+					span.type Message
+						span.time 10.13 
+					span.message_text It is to announce that the effort of Mr. Y in the demo project has been recognized and earned rewards for us. His effort has been appreciated and on behalf of the team I extend thanks and best wishes for his work and future.
+				.message
+					span.type Message
+						span.time 10.31 
+					span.message_text I extend a big thank you to the team involved in dual project for their effort and the hard work they have provided in it. The project has been successful and recognized as one of the best. I gladly appreciate your effort and thank you again for the same.
+				.task
+					span.type Task
+						span.time 11.12
+					span.message_text Build frontend route map
+			input(type="radio",id="timegup2",name='preview_block')
+			.timegap
+				.message
+					span.type Message
+						span.time 11.34
+					span.message_text You guys did a great job, but if you guys become any more efficient and self-sufficient, my job as your manager may become redundant. Thank you all.
+			input(type="radio",id="timegup3",name='preview_block',checked)  
+			.timegap
+				.event
+					span.type Event
+						span.time 13.12
+					span.message_text Meeting at the head office
+				.task
+					span.type Task
+						span.time 13.47
+					span.message_text Implement Draft markup
+				.task
+					span.type Task
+						span.time 14.01
+					span.message_text Implement Trash markup
+			.timegap.hollow 

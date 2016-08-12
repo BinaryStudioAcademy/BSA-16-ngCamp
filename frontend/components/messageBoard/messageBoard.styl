@@ -1,63 +1,87 @@
-header
-  text-align center
-  font-size 1.6em
-  padding-bottom 2%
-  input
-    background-color rgb(70, 205, 30)
-    padding 0.5%
-    border-radius 10px
-  hr
-    width 40%
-    background-color rgb(230, 133, 21)
-    height 0.1em
-
-.message
-  margin-top 2%
-
-.messageInfo
-  border-radius 12px
-  background-color rgb(230, 133, 21)
-  margin-left 15%
-  width 70%
-  img
-    width 20%
-    float left
-    padding-right 5%
-  h3
-    font-size 1.4em
-  div
-    width 20%
-    float left
-    padding-top 1%
-    padding-left 6%
-  hr
-    height 1px
-    background-color black
-    border-radius 10px
-    width 98%
-    clear both
-  h5
-    text-align right
-    padding-right 3%
-    font-size 1.2em
-
-.useButton
-  padding-top 2%
-  margin-left 30%
-  padding-left 50%
-  width 40%
-  img
-    width 8%
-
-.messageContent
-  padding 1%
-  background-color rgb(255, 210, 134)
-  border-radius 12px
-  margin-left 5%
-  margin-top 1%
-  width 90%
-  text-align justify
-  font-size 1.4em
-  h2
+section.messageBoard
     text-align center
-    font-size 1.6em
+    header
+        text-align center
+        font-size 1.6em
+        margin-bottom 80px
+        h2
+            color #616161
+            font-size 2.6em
+            font-weight bolder
+        hr
+            margin-top -4%
+            width 40%
+            height 1px
+            background-color #616161
+            margin-bottom 1.5%
+        button
+            font-size 1.6em
+            text-align center
+            color black
+            outline none
+            cursor pointer
+            box-shadow 0 3px #616161
+            background-color #EF6C00
+            border none
+            border-radius 10px
+            padding-top 0.5%
+            padding-bottom 0.5%
+            padding-left 1%
+            padding-right 1%
+        button:hover
+            background-color #FFCC80
+        button:active
+            background-color #EF6C00
+            box-shadow 0 1px #616161
+            transform translateY(4px)
+    .message
+        .messageInfo
+            box-shadow: 0 0 30px #616161
+            border-radius 20px
+            background-color #EF6C00
+            width 70%
+            margin-left 15%
+            div
+                width 30%
+                padding-top 2%
+                float left
+                img
+                    width 15%
+                span
+                    margin-left 8%
+                    font-size 1.4em
+          .useButton
+              padding-top 2%
+              margin-left 30%
+              padding-left 35%
+              width 40%
+              img
+                width 15%
+                margin-right 10%
+          hr
+              height 1px
+              background-color #616161
+              margin-bottom: 1.5%
+              border-radius 10px
+              width 98%
+              clear both
+          .messageContent
+              padding-top 1%
+              padding-bottom 1%
+              background-color #ffcc80
+              border-radius 20px
+              margin-left 5%
+              width 90%
+              font-size 1.4em
+              h2
+                  text-align center
+                  font-size 1.6em
+              .text
+                  padding-left 5%
+                  padding-right 5%
+                  text-align justify
+          h5
+              text-align right
+              padding-right 3%
+              font-size 1.2em
+              padding-bottom 20px

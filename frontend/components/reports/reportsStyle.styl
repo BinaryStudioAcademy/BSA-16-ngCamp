@@ -1,10 +1,48 @@
+@import "../../../public/libs/css/generalComponentsStyle.styl"
 .reports-wrapper
     width 100%
+    padding 1%
     *
         box-sizing border-box
         padding 0px
-    .reports-holder
-        width 100%
     .row, [class^="col-"]
         padding 0px
+    .reports-holder
+        padding-left  1%
+        padding-right   1%
+        padding-bottom 1%
+        border 1px solid border-grey
+        border-radius 10px
+        background-color background-white
+        box-shadow 0px 5px 20px 2px  shadow-grey
+    .reports-header
+        h3
+            font-family "Montserrat"
+            font-size 30px
+        padding 1%
+    .reports-tools
+        .sub-title
+            font-family "Montserrat"
+            font-size 23px
+        li span
+            font-family "Open Sans"
+            font-size 18px
+        [type='checkbox']
+            height 20px
+            width 20px
+        select
+            font-family "Open Sans"
+            font-size 18px
+            margin 1% auto
+    .reports-body
+        .report-item-title
+            font-family "Montserrat"
+            font-size 18px
+    .report-button
+        button()
+        font-family "Montserrat"
+    .button
+        button()
+    
+
         

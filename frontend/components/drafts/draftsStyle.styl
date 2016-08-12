@@ -1,0 +1,70 @@
+@import "../../../public/libs/css/generalComponentsStyle.styl"
+.drafts-container
+    margin-top: 10px;
+    border: 1px solid #adadad;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0px 5px 20px 2px #808080;
+    position: relative;
+    width: 50%;
+    margin: auto;
+
+    .drafts-items h1{
+        margin-left: 10px;
+        font-family: 'Montserrat';
+	    font-size: 30px;
+    }
+
+    .drafts-items{
+        overflow: hidden;
+        margin: 0px auto;
+        width: 80%;   
+    }
+
+    .draft{
+        margin: 0px;
+    }
+
+    .draft-title{
+        height: 70px;
+        position: relative;
+    }    
+    .draft-title:after {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+    .draft-title h2{
+        float: left;
+        margin-left: 10px; 
+        font-family: 'Montserrat';
+        font-size: 23px;
+    }
+    .draft-title img{
+    vertical-align:middle;
+    }
+    .iconRight{
+        position: absolute;
+        right: 0;
+        top: 20px;
+    }
+    .draft-body{
+        padding: 10px;
+    }
+    .draft-body p{
+        font-family: 'Open Sans';
+    }
+
+    .hr-style {
+        border: 0;
+        height: 1px;
+        background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+        background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+        background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+        background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+    }
+    .exit-draft{
+        button();
+        position: absolute;
+    }
