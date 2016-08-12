@@ -1,84 +1,85 @@
 section.reports-wrapper
-    section.row
-        section.col-xs-8.col-xs-offset-2.reports-holder
-          section.row.reports-header
-            h3.col-xs-3.center-xs Project name
-            |                     
-            h3.col-xs-6.center-xs Reports
+    section.row.center-xs
+        section.col-xs-10.reports-holder
+          section.row.reports-header.middle-xs
+            h3.col-xs-6.start-xs.col-xs-offset-1 Reports
+            span.col-xs-1.col-xs-offset-4.fa.fa-close.button
+            
           |                 
+          hr
           section.row.reports-tools
-            span.col-xs-2.start-xs Show report:
+            span.col-xs-2.sub-title Show report:
             |                     
-            section.col-xs-9
+            section.col-xs-10.col-xs-offset-1
               section.row
                 section.col-xs-4.center-xs
-                  span.row.column-title.center-xs For user(s)
+                  span.row.sub-title.center-xs For user(s)
                   |                                 
                   section.row
                     ul.col-xs-12
                       li.row
-                        input.col-xs-2.col-xs-offset-1(type='checkbox')
-                        span.col-xs-6 All
+                        input.col-xs-2.col-xs-offset-3(type='checkbox')
+                        span.col-xs-3 All
                       |                                         
                       li.row
-                        input.col-xs-2.col-xs-offset-1(type='checkbox')
-                        span.col-xs-6 User1
+                        input.col-xs-2.col-xs-offset-3(type='checkbox')
+                        span.col-xs-3 User1
                       |                                         
                       li.row
-                        input.col-xs-2.col-xs-offset-1(type='checkbox')
-                        span.col-xs-6 User2
+                        input.col-xs-2.col-xs-offset-3(type='checkbox')
+                        span.col-xs-3 User2
                 |                             
                 section.col-xs-4.center-xs
-                  span.row.column-title.center-xs For element(s)
+                  span.row.sub-title.center-xs For element(s)
                   |                                 
                   section.row
                     ul.col-xs-12
                       li.row
-                        input.col-xs-2.col-xs-offset-1(type='checkbox')
-                        span.col-xs-6 All
+                        input.col-xs-2.col-xs-offset-3(type='checkbox')
+                        span.col-xs-3 All
                       |                                         
                       li.row
-                        input.col-xs-2.col-xs-offset-1(type='checkbox')
-                        span.col-xs-6 Message
+                        input.col-xs-2.col-xs-offset-3(type='checkbox')
+                        span.col-xs-3 Message
                       |                                         
                       li.row
-                        input.col-xs-2.col-xs-offset-1(type='checkbox')
-                        span.col-xs-6 Check-In
+                        input.col-xs-2.col-xs-offset-3(type='checkbox')
+                        span.col-xs-3 Check-In
                       |                                         
                       li.row
-                        input.col-xs-2.col-xs-offset-1(type='checkbox')
-                        span.col-xs-6 Event
+                        input.col-xs-2.col-xs-offset-3(type='checkbox')
+                        span.col-xs-3 Event
                       |                                         
                       li.row
-                        input.col-xs-2.col-xs-offset-1(type='checkbox')
-                        span.col-xs-6 Task
+                        input.col-xs-2.col-xs-offset-3(type='checkbox')
+                        span.col-xs-3 Task
                 |                             
                 section.col-xs-4.center-xs
-                  span.row.column-title.center-xs For date
+                  span.row.sub-title.center-xs For date
                   |                                 
                   section.row
                     ul.col-xs-12
                       li.row
                         span.col-xs-5 after
                         |                                             
-                        select#after-date.col-xs-7(name='')
+                        select#after-date.col-xs-6(name='')
                           option 13 May 2016
                       |                                         
                       li.row
                         span.col-xs-5 before
                         |                                             
-                        select#after-date.col-xs-7(name='')
+                        select#after-date.col-xs-6(name='')
                           option 13 May 2016
           |                 
           section.row.center-xs
             section.col-xs-4.button Generate
-          |                 
+          hr
           section.row.reports-body.center-xs
             section.col-xs-7
               section.row
-                h3.col-xs-6.col-xs-offset-3 13 May 2016
+                h3.col-xs-6.col-xs-offset-3.report-item-title 13 May 2016
               |                         
-              section.row
+              section.row.item-title
                 span.col-xs-3  Title
                 |                             
                 span.col-xs-4 Name Surname

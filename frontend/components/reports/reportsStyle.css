@@ -5,10 +5,66 @@
   box-sizing: border-box;
   padding: 0px;
 }
-.reports-wrapper .reports-holder {
-  width: 100%;
-}
 .reports-wrapper .row,
 .reports-wrapper [class^="col-"] {
   padding: 0px;
+}
+.reports-wrapper .reports-holder {
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-bottom: 1%;
+  border: 1px solid #adadad;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  box-shadow: 0px 5px 20px 2px #808080;
+}
+.reports-wrapper .reports-header {
+  padding: 1%;
+}
+.reports-wrapper .reports-header h3 {
+  font-family: "Montserrat";
+  font-size: 30px;
+}
+.reports-wrapper .reports-tools .sub-title {
+  font-family: "Montserrat";
+  font-size: 23px;
+}
+.reports-wrapper .reports-tools li span {
+  font-family: "Open Sans";
+  font-size: 18px;
+}
+.reports-wrapper .reports-tools [type='checkbox'] {
+  height: 20px;
+  width: 20px;
+}
+.reports-wrapper .reports-tools select {
+  font-family: "Open Sans";
+  font-size: 18px;
+  margin: 1% auto;
+}
+.reports-wrapper .reports-body .report-item-title {
+  font-family: "Montserrat";
+  font-size: 18px;
+}
+.reports-wrapper .button {
+  box-shadow: 0px 0px 10px 0px #808080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  border-radius: 5px;
+  background-color: #1d8dbf;
+  color: #fff;
+  padding: 1%;
+  font-size: 30px;
+  height: 50px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.reports-wrapper .button:hover {
+  box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 4px #1d8dbf;
+}
+.reports-wrapper .button:active {
+  box-shadow: 0px 0px 0px 0.5px #fff, 0px 0px 0px 2px #1d8dbf, 0px 0px 5px 0px #fff inset;
 }

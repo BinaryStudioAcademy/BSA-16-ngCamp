@@ -1,46 +1,66 @@
+border-grey #adadad,
+background-white #F5F5F5,
+shadow-grey #808080,
+main-text-color #212121,
+add-text-color #F2992E,
+main-blue #1d8dbf,
 .comments-wrapper {
   width: 100%;
   padding: 1%;
 }
+border-grey #adadad .row,
+background-white #F5F5F5 .row,
+shadow-grey #808080 .row,
+main-text-color #212121 .row,
+add-text-color #F2992E .row,
+main-blue #1d8dbf .row,
 .comments-wrapper .row {
   padding: 0;
   margin: 0;
 }
 .comments-holder {
   padding: 1%;
-  border: 1px solid #01c6c6;
-  border-radius: 10%;
+  border: 1px solid #adadad;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  box-shadow: 0px 5px 20px 2px #808080;
 }
 .comments-holder .comments-header {
   border-bottom: 1px solid #808080;
   padding: 1%;
 }
 .comments-holder .comments-header span {
+  font-family: "Montserrat";
   text-align: left;
   width: 100%;
   display: inline-block;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 30px;
 }
 .comments-holder .comments-tools {
   width: 100%;
 }
 .comments-holder .user-name {
   font-weight: bold;
-  color: #a9a9a9;
-  font-size: 20px;
+  font-family: "Montserrat";
+  color: #212121;
+  font-size: 25px;
   text-align: left;
 }
 .comments-holder .user-icon {
-  font-size: 20px;
+  font-size: 50px;
 }
 .comments-holder .comment {
-  font-size: 18px;
+  font-family: "Open Sans";
+  font-weight: 400;
+  font-size: 23px;
   text-align: justify;
 }
 .comments-holder .comment-date {
-  font-size: 15px;
-  color: #01c6c6;
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-weight: bold;
+  color: #f2992e;
 }
 .comments-holder .user-message {
   height: 100px;
@@ -49,12 +69,31 @@
 .comments-holder .attachment {
   font-size: 20px;
 }
+.comments-holder .comments-tools {
+  width: 100%;
+}
 .comments-holder .button {
+  box-shadow: 0px 0px 10px 0px #808080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 1%;
   margin-bottom: 1%;
-  border-radius: 20%;
-  background-color: #adff2f;
+  border-radius: 5px;
+  background-color: #1d8dbf;
+  color: #fff;
   padding: 1%;
-  font-weight: bold;
-  font-size: 25px;
+  font-size: 30px;
+  height: 50px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.comments-holder .button:hover {
+  box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 4px #1d8dbf;
+}
+.comments-holder .button:active {
+  box-shadow: 0px 0px 0px 0.5px #fff, 0px 0px 0px 2px #1d8dbf, 0px 0px 5px 0px #fff inset;
+}
+.comments-holder .comment-button {
+  font-family: "Montserrat";
 }
