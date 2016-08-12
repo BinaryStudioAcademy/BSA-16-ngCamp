@@ -1,43 +1,51 @@
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css");
-body {
+.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
+  background-color: #403f3f;
 }
-/* HEADER*/
-#navigation {
+.header-wrapper * {
+  box-sizing: border-box;
+}
+.header-wrapper #navigation {
   height: 50px;
-  background: #403f3f;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 2%;
 }
-#nav-list,
-#nav-list-2 {
-  list-style-type: none;
-  padding: 0;
-}
-#navigation input {
-  border-radius: 10px;
-  padding: 6px;
-  margin: 10px;
-  background-color: #fff;
-}
-#navigation li a {
-  text-decoration: none;
-  text-align: center;
-  color: #e1e1e1;
-  display: block;
-  padding: 15px;
-  height: 50px;
-}
-#navigation a:hover {
-  background-color: #6a6f79;
-}
-@media screen and (min-width: 420px) {
-  #nav-list {
-    display: flex;
-    justify-content: flex-end;
-  }
-}
-#navigation .fa {
+.header-wrapper #navigation .fa {
   color: #fff;
+}
+.header-wrapper #navigation input {
+  color: #fbfbfb;
+  border-radius: 10px;
+  height: 30px;
+}
+.header-wrapper #navigation ul {
+  padding-right: 1%;
+}
+.header-wrapper #navigation ul li {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  line-height: 50px;
+  text-align: center;
+}
+.header-wrapper #navigation ul li:hover {
+  background-color: #adadad;
+}
+.header-wrapper #navigation ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+}
+.header-wrapper #navigation ul li a text-align center input {
+  color: #403f3f;
+}
+.header-wrapper #navigation ul li a i {
+  padding: 2%;
+  text-align: center;
 }

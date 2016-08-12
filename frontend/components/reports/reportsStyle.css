@@ -43,6 +43,9 @@
   font-size: 18px;
   margin: 1% auto;
 }
+.reports-wrapper .reports-body {
+  display: none;
+}
 .reports-wrapper .reports-body .report-item-title {
   font-family: "Montserrat";
   font-size: 18px;
