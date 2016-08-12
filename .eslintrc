@@ -10,7 +10,6 @@
         "es6" : true
     },
     "rules" : {
-        "no-unused-vars" : 2,
         "no-undef" : 2,
         "semi": 2,
         "block-scoped-var": 2,
@@ -19,5 +18,8 @@
     },
     "parserOptions": {
         "sourceType": "module"
+    },
+    "globals": {
+     "angular": false
     }
 }

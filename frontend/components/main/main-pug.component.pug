@@ -1,0 +1,112 @@
+.main_component
+	.timeline_block
+		.scale_block
+			.lable
+				.icon
+					i(class="fa fa-bar-chart" aria-hidden="true")
+				span ACTIVITY TIMELINE
+			.day_return
+				i(class='fa fa-angle-left',aria-hidden="true")
+				span YESTERDAY
+			.scale
+				.time_mark
+					span 9.00
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+					label(for='timegup1')
+						.mark_lable
+							span 2 messages
+							span 1 task
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+					label(for='timegup2')
+						.mark_lable
+							span 1 message
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+					label(for='timegup3')
+						.mark_lable
+							span 1 event
+							span 3 tasks
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+					.mark_lable.deadline
+						span DEADLINE
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+				.time_mark
+					span 17.00
+		.preview_block
+			input(type="radio",id="timegup1",name='preview_block')
+			.timegap
+				.message
+					span.type Message
+						span.time 10.13 
+					span.message_text It is to announce that the effort of Mr. Y in the demo project has been recognized and earned rewards for us. His effort has been appreciated and on behalf of the team I extend thanks and best wishes for his work and future.
+				.message
+					span.type Message
+						span.time 10.31 
+					span.message_text I extend a big thank you to the team involved in dual project for their effort and the hard work they have provided in it. The project has been successful and recognized as one of the best. I gladly appreciate your effort and thank you again for the same.
+				.task
+					span.type Task
+						span.time 11.12
+					span.message_text Build frontend route map
+			input(type="radio",id="timegup2",name='preview_block')
+			.timegap
+				.message
+					span.type Message
+						span.time 11.34
+					span.message_text You guys did a great job, but if you guys become any more efficient and self-sufficient, my job as your manager may become redundant. Thank you all.
+			input(type="radio",id="timegup3",name='preview_block',checked)  
+			.timegap
+				.event
+					span.type Event
+						span.time 13.12
+					span.message_text Meeting at the head office
+				.task
+					span.type Task
+						span.time 13.47
+					span.message_text Implement Draft markup
+				.task
+					span.type Task
+						span.time 14.01
+					span.message_text Implement Trash markup
+			.timegap.hollow 

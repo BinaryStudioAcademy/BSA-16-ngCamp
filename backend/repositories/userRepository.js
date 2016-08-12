@@ -8,5 +8,11 @@ function UserRepository() {
 
 UserRepository.prototype = new Repository();
 
+UserRepository.prototype.getUserByEmail = getUserByEmail;
+
+function getUserByEmail(email, callback) {
+    var query = this.model.findOne({email : email});
+    query.exec(callback);
+}
 
 module.exports = new UserRepository();

@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
 	context: path.resolve('frontend'),
-	entry: ['./index'],
+	entry: ['./index', './app.js'],
 
 	devtool: 'cheap-module-eval-source-map',
 
@@ -15,8 +15,6 @@ module.exports = {
 	devServer: {
 		contentBase: 'public'
 	},
-
-
 
 	module: {
 		preLoaders: [{

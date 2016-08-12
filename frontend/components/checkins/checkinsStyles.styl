@@ -1,0 +1,204 @@
+body {
+  margin: 5%;
+}
+/* HEADER */
+.title {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+}
+.title button {
+  position: absolute;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  margin-top: 100px;
+  margin-left: -185px;
+  padding: 5px;
+  background: #e87d0b;
+  color: #fff;
+  border-radius: 0.5rem;
+  font-size: 20px;
+}
+.title button:hover {
+  background: #f69a37;
+}
+h1 span {
+  font-size: 50px;
+  border-bottom: 1px solid #000;
+}
+/* ACCORDION */
+.accordion {
+  -webkit-box-shadow: 0px 75px 35px -55px rgba(10,30,65,0.6);
+  -moz-box-shadow: 0px 75px 35px -55px rgba(10,30,65,0.6);
+  box-shadow: 0px 75px 35px -55px rgba(10,30,65,0.6);
+  font-family: Arial, Helvetica, sans-serif;
+  border-color: #ef9d1d;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  margin: 0 auto;
+  height: 450px;
+  width: 1042px;
+  margin-top: 70px;
+}
+.accordion > ul > li,
+.accordion-title,
+.accordion-content,
+.accordion-separator {
+  float: left;
+}
+.accordion > ul > li {
+  background-color: #c26c0c;
+  margin-right: -650px;
+  margin-bottom: 0px;
+}
+.accordion-select:checked ~ .accordion-separator {
+  margin-right: 650px;
+  margin-bottom: 0px;
+}
+.accordion-title,
+.accordion-select {
+  background-color: #e87d0b;
+  color: #fff;
+  width: 55px;
+  height: 450px;
+  font-size: 30px;
+}
+.accordion-title span {
+  margin-bottom: 28px;
+  margin-left: 20px;
+}
+.accordion-select:hover ~ .accordion-title,
+.accordion-select:checked ~ .accordion-title {
+  background-color: #f69a37;
+}
+.accordion-title span {
+  transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -ms-writing-mode: lr-bt;
+  margin-left: 0px;
+  line-height: 55px;
+}
+.accordion-content {
+  background-color: #f5f2f0;
+  color: #4c5157;
+  height: 398px;
+  width: 598px;
+  padding: 26px;
+}
+.accordion-title,
+.accordion-select:checked ~ .accordion-content {
+  margin-right: 1px;
+  margin-bottom: 1px;
+}
+/* Do not change following properties, they aren't
+generated automatically and are common for each slider. */
+.accordion {
+  overflow: hidden;
+}
+.accordion > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 101%;
+}
+.accordion > ul > li,
+.accordion-title {
+  position: relative;
+}
+.accordion-select {
+  cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  margin: 0;
+  z-index: 1;
+}
+.accordion-title span {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  white-space: nowrap;
+}
+.accordion-content {
+  position: relative;
+  overflow: auto;
+}
+.accordion-separator {
+  transition: margin 0.3s ease 0.1s;
+  -o-transition: margin 0.3s ease 0.1s;
+  -moz-transition: margin 0.3s ease 0.1s;
+  -webkit-transition: margin 0.3s ease 0.1s;
+}
+/* QQ */
+.content {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 28px;
+}
+.qq a {
+  display: flex;
+  text-align: center;
+  text-decoration: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #4c5157;
+}
+/* TOOGLE */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.switch input {
+  display: none;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #fff;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+input:checked + .slider {
+  background-color: #e87d0b;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #f69a37;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}

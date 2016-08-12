@@ -1,0 +1,64 @@
+.trash-container
+    h1 Trash
+    hr(color="black").trash-line
+    .trash-menu-container
+        ul.trash-menu
+            li filter by:
+            li
+                a(href="/#/trash") time
+            li
+                a(href="/#/trash") name
+            li
+                a(href="/#/trash") author
+            li
+                a(href="/#/trash") message
+            li
+                a(href="/#/trash") event
+            li
+                a(href="/#/trash") task
+            li
+                a(href="/#/trash") check-ins
+            li
+                a(href="/#/trash") draft
+
+            li keyword =
+                input.trash-input(type="text")
+    .trash-items
+        .trash-data
+            div.data-title
+                span Message
+            div.data-desc
+                span message title
+            div.trash-add-button
+                i(class="trash-add-button fa fa-plus-circle" aria-hidden="true")
+
+            div.data-title
+                span Event
+            div.data-desc
+                span event title
+            div.trash-add-button
+                i(class="trash-add-button fa fa-plus-circle" aria-hidden="true")
+
+            div.data-title
+                span Check-in
+            div.data-desc
+                span check-in title
+            div.trash-add-button
+                i(class="trash-add-button fa fa-plus-circle" aria-hidden="true")
+
+            div.data-title
+                span Task
+            div.data-desc
+                span task title
+            div.trash-add-button
+                i(class="trash-add-button fa fa-plus-circle" aria-hidden="true")
+
+            div.data-title
+                span Draft
+            div.data-desc
+                span draft title
+            div.dtrash-add-button
+                i(class="trash-add-button fa fa-plus-circle" aria-hidden="true")
+
+
+

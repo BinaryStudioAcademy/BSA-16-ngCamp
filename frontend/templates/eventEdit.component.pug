@@ -1,0 +1,29 @@
+.eventsEdit-wrapper
+  form(name='editEvent')
+    .head
+      h1 Event name
+      a(href='#')
+        i.fa.fa-times.fa-2x(aria-hidden='true')
+    .date
+      div
+        p Date
+        select
+          option 12 September 2016
+          option 13 September 2016
+      div
+        p Time
+        input(type='time', name='usr_time')
+    textarea#editor1(name='editor1', rows='10', cols='70')
+      | This is my textarea to be replaced with CKEditor.
+    .participants
+      i.fa.fa-user(aria-hidden='true')
+      a(href='#')
+        i.fa.fa-plus(aria-hidden='true')
+    .period
+      div
+        | Regular
+        input(type='checkbox', name='Regular')
+        select
+          option work week day
+          option work mounth day
+      button(type='submit', form='eventEdit', value='Submit') Save

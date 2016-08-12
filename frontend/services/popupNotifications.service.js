@@ -1,31 +1,10 @@
-import angular from "angular";
-
-angular
-    .module("base")
-    .factory("popupNotifications", popupNotifications);
-
-popupNotifications.$inject = ["Alertify"];
-
-function popupNotifications(Alertify) {
-    let service = {
-        notifyAlert: notifyAlert,
-        notifyConfirm: notifyConfirm,
-        notifySuccess: notifySuccess,
-        notifyStandard: notifyStandard,
-        notifyError: notifyError,
-        persistentSuccess: persistentSuccess,
-        persistentStandard: persistentStandard,
-        persistentError: persistentError
-    };
-
-    function notifyAlert(alertMsg) {
-        _reset();
-        alertMsg = alertMsg || "Alert Dialog!";
-        Alertify.alert(alertMsg);
+class popupNotifications {
+    constructor() {
+        this.alertify = window.alertify;
     }
 
-    function _reset() {
-        Alertify.set({
+    reset() {
+        this.alertify.set({
             buttonReverse: true,
             labels: {
                 ok: "OK",
@@ -34,10 +13,16 @@ function popupNotifications(Alertify) {
         });
     }
 
-    function notifyConfirm(confirmMsg, btnOk, btnCancel) {
+    notifyAlert(alertMsg) {
+        this.reset();
+        alertMsg = alertMsg || "Alert Dialog!";
+        this.alertify.alert(alertMsg);
+    }
+
+    notifyConfirm(confirmMsg, btnOk, btnCancel) {
         confirmMsg = confirmMsg || "Are you sure?";
 
-        Alertify.set({
+        this.alertify.set({
             buttonReverse: true,
             labels: {
                 ok: btnOk ? btnOk : "Ok",
@@ -45,38 +30,37 @@ function popupNotifications(Alertify) {
             }
         });
 
-        return Alertify.confirm(confirmMsg);
+        return this.alertify.confirm(confirmMsg);
     }
 
-    function notifySuccess(successMsg) {
+    notifySuccess(successMsg) {
         successMsg = successMsg || "Success log message";
-        Alertify.success(successMsg);
+        this.alertify.success(successMsg);
     }
-
-    function notifyStandard(standardMsg) {
+    notifyStandard(standardMsg) {
         standardMsg = standardMsg || "Standard log message";
-        Alertify.log(standardMsg);
+        this.alertify.log(standardMsg);
     }
-
-    function notifyError(errorMsg) {
+    notifyError(errorMsg) {
         errorMsg = errorMsg || "Error log message";
-        Alertify.error(errorMsg);
+        this.alertify.error(errorMsg);
     }
-
-    function persistentSuccess(successPersist) {
+    persistentSuccess(successPersist) {
         successPersist = successPersist || "Will stay untill clicked";
-        alertify.success(successPersist, 0);
+        this.alertify.success(successPersist, 0);
     }
-
-    function persistentStandard(standardPersist) {
+    persistentStandard(standardPersist) {
         standardPersist = standardPersist || "Will stay untill clicked";
-        alertify.log(standardPersist, "", 0);
+        this.alertify.log(standardPersist, "", 0);
     }
-
-    function persistentError(errorPersist) {
+    persistentError(errorPersist) {
         errorPersist = errorPersist || "Will stay untill clicked";
-        alertify.error(errorPersist, 0);
+        this.alertify.error(errorPersist, 0);
     }
-
-    return service;
 }
+
+popupNotifications.$inject = [];
+
+export {
+    popupNotifications
+};

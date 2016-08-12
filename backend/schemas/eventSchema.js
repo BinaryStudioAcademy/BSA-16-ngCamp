@@ -8,7 +8,7 @@ var EventSchema = new Schema({
         ref: 'Project'
     },
     isAllDay: Boolean,
-    stardDate: Date,
+    startDate: Date,
     endDate: Date,
     participants: [{
         type: Schema.Types.ObjectId,

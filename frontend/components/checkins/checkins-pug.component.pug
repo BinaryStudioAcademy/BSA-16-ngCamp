@@ -1,0 +1,104 @@
+.header-container
+    ul.title
+        li
+            h1
+                span Check-ins
+        li
+            button(ng-click='setUpCheckin()') Set up check-in
+.accordion
+    ul
+        li
+            input.accordion-select(type='radio', name='select')
+            .accordion-title
+                span Monday
+            .accordion-content
+                ul.content
+                    li.qq 12:30
+                    li.qq
+                        a(href='#') What are you working on?
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', checked='checked')
+                                .slider.round
+            .accordion-separator
+        li
+            input.accordion-select(type='radio', name='select')
+            .accordion-title
+                span Tuesday
+            .accordion-content
+                ul.content
+                    li.qq Tuesday: questions list is empty
+            .accordion-separator
+        li
+            input.accordion-select(type='radio', name='select', checked='checked')
+            .accordion-title
+                span Wednesday
+            .accordion-content
+                ul.content
+                    li.qq 12:30
+                    li.qq
+                        a(href='#') See anything great lately that inspired you?
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox')
+                                .slider.round
+                ul.content
+                    li.qq 12:30
+                    li.qq
+                        a(href='#') Are you blocked on anything?
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', checked='checked')
+                                .slider.round
+            .accordion-separator
+        li
+            input.accordion-select(type='radio', name='select')
+            .accordion-title
+                span Thursday
+            .accordion-content
+                ul.content
+                    li.qq Thursday: questions list is empty
+            .accordion-separator
+        li
+            input.accordion-select(type='radio', name='select')
+            .accordion-title
+                span Friday
+            .accordion-content
+                ul.content
+                    li.qq 09:30
+                    li.qq
+                        a(href='#') Do you have any ideas for a future show?
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', checked='checked')
+                                .slider.round
+                ul.content
+                    li.qq 12:30
+                    li.qq
+                        a(href='#') What did you work on today?
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox')
+                                .slider.round
+            .accordion-separator
+        li
+            input.accordion-select(type='radio', name='select')
+            .accordion-title
+                span Saturday
+            .accordion-content
+                ul.content
+                    li.qq Saturday: questions list is empty
+            .accordion-separator
+        li
+            input.accordion-select(type='radio', name='select')
+            .accordion-title
+                span Sunday
+            .accordion-content
+                ul.content
+                    li.qq Sunday: questions list is empty
+            .accordion-separator
