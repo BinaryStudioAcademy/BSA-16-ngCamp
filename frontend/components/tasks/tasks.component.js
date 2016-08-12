@@ -3,14 +3,14 @@ import './tasksStyles.styl';
 
 class TasksComponentController {
 	constructor(http) {
-		this.http = http;		
+		this.http = http;
 		console.log('Tasks COMPONENT LOADED');
 	}
 	
 }
 
 TasksComponentController.$inject = [
-	'httpGeneral'	
+	'httpGeneral'
 ];
 
 const tasksComponent = {
