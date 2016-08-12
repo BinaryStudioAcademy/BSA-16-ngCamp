@@ -1,8 +1,7 @@
 import './rootStyles.styl';
 
 class rootComponentController {
-    constructor() {
-    }
+    constructor() {}
 }
 
 const rootComponent = {
@@ -75,10 +74,14 @@ const rootComponent = {
         name: 'EditMessage', //TODO test, remove later
         component: 'editMessage'
     }, {
+        path: '/tasks',
+        name: 'Tasks',
+        component: 'tasksComponent'
+    }, {
         path: '/test',
         name: 'Test',
         component: 'test'
-    },{
+    }, {
         path: '/**',
         name: 'NotFound',
         component: 'notFound'
