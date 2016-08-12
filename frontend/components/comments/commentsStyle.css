@@ -1,7 +1,19 @@
+border-grey #adadad,
+background-white #F5F5F5,
+shadow-grey #808080,
+main-text-color #212121,
+add-text-color #F2992E,
+main-blue #1d8dbf,
 .comments-wrapper {
   width: 100%;
   padding: 1%;
 }
+border-grey #adadad .row,
+background-white #F5F5F5 .row,
+shadow-grey #808080 .row,
+main-text-color #212121 .row,
+add-text-color #F2992E .row,
+main-blue #1d8dbf .row,
 .comments-wrapper .row {
   padding: 0;
   margin: 0;
@@ -56,6 +68,9 @@
 }
 .comments-holder .attachment {
   font-size: 20px;
+}
+.comments-holder .comments-tools {
+  width: 100%;
 }
 .comments-holder .button {
   box-shadow: 0px 0px 10px 0px #808080;
