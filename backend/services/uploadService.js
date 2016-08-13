@@ -1,14 +1,13 @@
 var userRepository = require('../repositories/userRepository'),
+    fileRepository = require('../repositories/fileRepository'),
     fs = require('fs');
 
-var rootPath = 'C:/www/BSA-16-ngCamp/test/';
+var rootPath = 'C:/www/BSA-16-ngCamp/files2';
 
 function UploadService() {
 }
 
 UploadService.prototype.saveFile = saveFile;
-
-
 
 function checkDir(path){
     if(fs.existsSync(path)){
@@ -29,20 +28,32 @@ function createDir(path){
         }
     }
     return true;
-
 }
-function saveFile(res, file, entity) {
-    var filePath = rootPath + entity + "/";
-    checkDir(filePath);
-    file.mv(filePath, function(err) {
-        if (err) {
-            res.status(500).send(err);
-        }
-        else {
-            res.send('File uploaded!');
-        }
-    });
+function saveModel(data, callback){
+    fileRepository.add(data, callback);
 }
 
+function saveFile(res, file, desc, entity) {
+    var projectId = "0100101"; // need to remove this hardcode when models will be available from views
+    var filePath = rootPath + '/' + projectId + '/' + entity + "/";
+
+    if (checkDir(filePath)) {
+        var fileUrl = filePath + file.name;
+        file.mv(fileUrl, function (err) {
+            if (err) {
+                res.status(500).send(err);
+            }
+            else {
+                res.send('File uploaded!');
+            }
+        });
+            var data = {
+                url: fileUrl,
+                description: desc,
+                creationDate: Date.now(),
+            }
+        saveModel(data);
+    }
+}
 
 module.exports = new UploadService();

@@ -4,7 +4,7 @@ var uploadService = require('../../services/uploadService'),
 module.exports = function (app) {
 
     app.post('/postMessage', function (req, res, next) {
-        uploadService.saveFile(res, req.files.message, "message", function (err, data) {
+        uploadService.saveFile(res, req.files.message, req.body.description, "message", function (err, data) {
             res.data = data;
             res.err = err;
             next();
