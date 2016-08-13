@@ -1,4 +1,6 @@
-var userRepository = require('../repositories/userRepository');
+var userRepository = require('../repositories/userRepository'),
+    fs = require('fs');
+
 var rootPath = 'C:/www/BSA-16-ngCamp/test/';
 
 function UploadService() {
@@ -6,9 +8,33 @@ function UploadService() {
 
 UploadService.prototype.saveFile = saveFile;
 
+
+
+function checkDir(path){
+    if(fs.existsSync(path)){
+        return true;
+    }
+    else{
+      createDir(path);
+    };
+}
+
+function createDir(path){
+    var pathArr = path.split('/');
+    var curentPath = "";
+    for (el in pathArr){
+        curentPath = curentPath + pathArr[el] + '/';
+        if(!fs.existsSync(curentPath)){
+            fs.mkdirSync(curentPath);
+        }
+    }
+    return true;
+
+}
 function saveFile(res, file, entity) {
-    var filePath = rootPath + entity + "/" + file.name;
-        file.mv(filePath, function(err) {
+    var filePath = rootPath + entity + "/";
+    checkDir(filePath);
+    file.mv(filePath, function(err) {
         if (err) {
             res.status(500).send(err);
         }
@@ -16,7 +42,6 @@ function saveFile(res, file, entity) {
             res.send('File uploaded!');
         }
     });
-
 }
 
 
