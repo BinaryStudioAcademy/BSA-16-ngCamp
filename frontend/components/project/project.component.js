@@ -4,7 +4,8 @@ class ProjectComponentController {
     constructor(popupNotifications, httpGeneral) {
         this.popupNotifications = popupNotifications;
         this.httpGeneral = httpGeneral;
-        this.user = {
+        this.user = undefined;
+        this.userReq = {
             type: "GET",
             url: "api/user/me",
         };
@@ -16,15 +17,21 @@ class ProjectComponentController {
     getProjects() {
         let self = this;
         self.flag = false;
-        self.httpGeneral.sendRequest(self.user).then(function(res) {
-            console.log(res);
-            self.projectsId=res.projects;
+        self.httpGeneral.sendRequest(self.userReq).then(function(res) {
+            self.user = res;
+            console.log( res );
+            self.projectsId = res.projects;
             self.projectsId.forEach(function(item){
                 self.httpGeneral.sendRequest({type: 'get',url: `api/projects/${item}`}).then(function(res){
                     self.projects.push(res);
                 });
             });
         });
+    }
+
+    setProject(){
+        let self = this;
+
     }
 }
 
