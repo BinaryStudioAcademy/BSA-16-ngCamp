@@ -8,6 +8,7 @@ class ProjectComponentController {
             type: "GET",
             url: "api/user/me",
         };
+        this.projectsId = [];
         this.projects = [];
         this.flag = true;
         this.id = null;
@@ -17,7 +18,12 @@ class ProjectComponentController {
         self.flag = false;
         self.httpGeneral.sendRequest(self.user).then(function(res) {
             console.log(res);
-            self.projects=res.projects;
+            self.projectsId=res.projects;
+            self.projectsId.forEach(function(item){
+                self.httpGeneral.sendRequest({type: 'get',url: `api/projects/${item}`}).then(function(res){
+                    self.projects.push(res);
+                });
+            });
         });
     }
 }

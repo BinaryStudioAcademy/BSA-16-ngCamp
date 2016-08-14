@@ -7,11 +7,8 @@ var apiResponse = require('express-api-response'),
 module.exports = function (app) {
 
     app.get(baseUrl+'me', auth, function (req, res, next) {    
-         userRepository.getById(req.session.user._id, function (err, data) {
-            res.data = data;
-            res.err = err;
-            next();
-        });
+        res.data = req.session.user;
+        next();
     }, apiResponse);
 
     app.get(baseUrl, auth, function (req, res, next) {    
