@@ -2,6 +2,10 @@
   section.row.center-xs
     .main.col-xs-8
       h1 Project Settings
+      button.col-xs-8(ng-click="proj.getProjects()",ng-if="proj.flag") Change project
+      select.col-xs-6(ng-if="!proj.flag")
+        option(ng-repeat="project in proj.projects track by $index")
+          p {{project.title}}
       .goto
         a(href='') Trash
         a(href='') Reports
