@@ -4,7 +4,7 @@
       h1 Project Settings
       .changeProj
         button(ng-click="proj.getProjects()",ng-if="proj.flag") Change project
-        select(ng-if="!proj.flag")
+        select(ng-if="!proj.flag",ng-model="proj.curentProjectTitle",ng-change="proj.setProject()")
           option(ng-repeat="project in proj.projects track by $index",ng-selected="{{project._id == proj.user.curentProject}}")
             p {{project.title}}
       .goto
