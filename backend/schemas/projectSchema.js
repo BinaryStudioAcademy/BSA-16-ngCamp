@@ -21,33 +21,48 @@ var projectSchema = new Schema({
 });
 
 
-projectSchema.pre('remove', function(next){
-    var tasks = Task.find({project: this._id}, function(err, data){
-        if(err){console.log(err);}
+projectSchema.pre('remove', function(next) {
+    var tasks = Task.find({
+        project: this._id
+    }, function(err, data) {
+        if (err) {
+            console.log(err);
+        }
     });
-    tasks.then(function(tasks){
-        tasks.forEach(function(task){
-        task.remove();
+    tasks.then(function(tasks) {
+        tasks.forEach(function(task) {
+            task.remove();
         });
     });
     next();
 });
 
-projectSchema.pre('remove', function(next){
-    User.update(
-    { projects: { $in: [this._id] }},
-    { $pull: { projects: this._id }, { curentProject: this._id}},
-    { multi: true }
-     ).exec();
+projectSchema.pre('remove', function(next) {
+    User.update({
+        projects: {
+            $in: [this._id]
+        }
+    }, {
+        $pull: {
+            projects: this._id
+        },
+        $set: {
+            curentProject: this._id
+        }
+    }, {
+        multi: true
+    }).exec();
     next();
 });
 
 
-projectSchema.pre('remove', function(next){
-    Event.remove({project: this._id}, function(err, obj) {
-    }).exec();
-    Message.remove({project: this._id}, function(err, obj) {
-    }).exec();
+projectSchema.pre('remove', function(next) {
+    Event.remove({
+        project: this._id
+    }, function(err, obj) {}).exec();
+    Message.remove({
+        project: this._id
+    }, function(err, obj) {}).exec();
     next();
 });
 
