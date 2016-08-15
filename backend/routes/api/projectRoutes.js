@@ -44,4 +44,18 @@ module.exports = function (app) {
         });
     }, apiResponse);
 
+    app.post(baseUrl + ':id/participants', function (req, res, next) {
+        projectService.addParticipants(req.params.id, req.body, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+    app.delete(baseUrl + ':id/participants', function (req, res, next) {
+        projectService.removeParticipants(req.params.id, req.body, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
 };
