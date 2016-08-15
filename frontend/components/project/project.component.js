@@ -11,9 +11,9 @@ class ProjectComponentController {
         };
         this.flag = true;
         this.id = null;
-        this.currentProject=window._injectedData.currentProject;
-        this.currentProjectTitle;
+        this.currentProject = window._injectedData.currentProject;
     }
+
     getProjects() {
         let self = this;
         self.flag = false;
@@ -24,11 +24,9 @@ class ProjectComponentController {
 
     setProject() {
         let self = this;
-        for (let proj in self.userProjects) {
-            if (self.userProjects[proj].title === self.currentProjectTitle) {
-                self.currentProject = self.userProjects[proj]._id;
-            }
-        };
+        
+        window._injectedData.currentProject = self.currentProject;
+
         self.httpGeneral.sendRequest({
             type: "PUT",
             url: `api/user/${window._injectedData.userId}`,

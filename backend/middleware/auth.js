@@ -13,7 +13,6 @@ module.exports = function (req, res, next) {
         var id = req.session.user._id
         userRepository.getById(id, function (err, data) {                     
             req.session.user = data;
-            console.log(req.session.user);
             next();
         });
     } else {

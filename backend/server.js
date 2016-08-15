@@ -6,6 +6,7 @@ var bodyParser = require('body-parser'),
     session = require('express-session'),
     MongoStore = require('connect-mongo')(session),
     sessionSecret = require('./config/session').secret,
+    auth = require('./middleware/auth'),
     mongoose = require('mongoose');
 
 var app = express();
@@ -19,6 +20,8 @@ app.use(session({
     })
 }));
 
+app.use(auth);
+
 context.mongoStore = new MongoStore({
     mongooseConnection: mongooseConnection
 });
@@ -27,10 +30,6 @@ var staticPath = path.resolve(__dirname + '/../public');
 app.use(express.static(staticPath));
 
 app.use(bodyParser.json());
-app.use(function(req,res,next){
-    console.log(req.session.user);
-    next();
-});
 
 var apiRoutes = require('./routes/api/routes')(app),
     viewRoutes = require('./routes/view/routes')(app);
