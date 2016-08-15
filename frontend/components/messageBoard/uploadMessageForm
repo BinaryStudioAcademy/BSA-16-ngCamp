@@ -1,5 +1,0 @@
-
-form#uploadForm(action='/postMessage', method='post', enctype='multipart/form-data')
-    input(type='file', name='message')
-    input(type='text', name='description' placeholder='description')
-    input(type='submit', value='Upload')
