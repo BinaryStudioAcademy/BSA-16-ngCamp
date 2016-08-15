@@ -4,52 +4,39 @@ class ProjectComponentController {
     constructor(popupNotifications, httpGeneral) {
         this.popupNotifications = popupNotifications;
         this.httpGeneral = httpGeneral;
-        this.user = undefined;
+        this.userProjects;
         this.userReq = {
             type: "GET",
-            url: "api/user/me",
+            url: "api/projects/forCurrentUser",
         };
-        this.projectsId = [];
-        this.projects = [];
         this.flag = true;
         this.id = null;
-        self.curentProjectId;
-        self.curentProjectTitle;
+        this.currentProject=window._injectedData.currentProject;
+        this.currentProjectTitle;
     }
     getProjects() {
         let self = this;
         self.flag = false;
         self.httpGeneral.sendRequest(self.userReq).then(function(res) {
-            self.user = res;
-            self.projectsId = res.projects;
-            self.projectsId.forEach(function(item) {
-                self.httpGeneral.sendRequest({
-                    type: 'get',
-                    url: `api/projects/${item}`
-                }).then(function(res) {
-                    self.projects.push(res);
-                });
-            });
+            self.userProjects = res;
         });
     }
 
     setProject() {
         let self = this;
-        self.curentProjectId;
-        for (let proj in self.projects) {
-            if (self.projects[proj].title === self.curentProjectTitle) {
-                self.curentProjectId = self.projects[proj]._id;
-                self.user.curentProject = self.projects[proj]._id;
+        for (let proj in self.userProjects) {
+            if (self.userProjects[proj].title === self.currentProjectTitle) {
+                self.currentProject = self.userProjects[proj]._id;
             }
         };
         self.httpGeneral.sendRequest({
             type: "PUT",
-            url: `api/user/${self.user._id}`,
+            url: `api/user/${window._injectedData.userId}`,
             body: {
-                curentProject: self.curentProjectId,
+                currentProject: self.currentProject,
             }
         }).then(function(res) {
-            //console.log("Succesfull update");
+            //console.log("Succesfull update currentProject");
         });
     }
 }
