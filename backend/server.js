@@ -12,43 +12,34 @@ var bodyParser = require('body-parser'),
 var app = express();
 
 app.use(session({
-	secret: sessionSecret,
-	resave: true,
-	saveUninitialized: true,
-	store: new MongoStore({
-		mongooseConnection: mongooseConnection
-	})
+    secret: sessionSecret,
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({
+        mongooseConnection: mongooseConnection
+    })
 }));
 
 context.mongoStore = new MongoStore({
-	mongooseConnection: mongooseConnection
+    mongooseConnection: mongooseConnection
 });
 
 var staticPath = path.resolve(__dirname + '/../public');
 app.use(express.static(staticPath));
-var staticPath = path.resolve('build');
-app.use(express.static(staticPath));
 
 app.use(bodyParser.json());
 app.use(fileUpload());
+app.use(function(req,res,next){
+    console.log(req.session.user);
+    next();
+});
 
 var apiRoutes = require('./routes/api/routes')(app),
-	viewRoutes = require('./routes/view/routes')(app);
+    viewRoutes = require('./routes/view/routes')(app);
 
 var docs = require("express-mongoose-docs");
 
 docs(app, mongoose);
-// if (app.get('env') === 'development') {
-// 	var webpackMiddleware = require("webpack-dev-middleware");
-// 	var webpack = require('webpack');
-
-// 	var config = require('../webpack.config');
-
-// 	app.use(webpackMiddleware(webpack(config), {
-// 		publicPath: '/public/js/'
-// 	}));
-
-// }
 
 var server = app.listen(3060);
 

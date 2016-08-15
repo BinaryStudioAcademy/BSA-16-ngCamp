@@ -18,9 +18,7 @@ function addItem(body, callback) {
 }
 //================================================================ 
 function updateToDo(id, body, callback) {
-    if (validationService.addToDoValidation(body, callback)) {
-        toDoRepository.setObjPropsById(id, body, callback);
-    }
+    toDoRepository.setObjPropsById(id, body, callback);
 }
 
 

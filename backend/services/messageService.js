@@ -15,9 +15,7 @@ function addItem(body, callback) {
 }
 
 function updateItem(id, body, callback) {
-    if (validationService.MessageValidation(body, callback)) {
-        messageRepository.setObjPropsById(id, body, callback);
-    }
+    messageRepository.setObjPropsById(id, body, callback);
 }
 
 module.exports = new MessageService();

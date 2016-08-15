@@ -1,0 +1,37 @@
+.projectwrapper
+  section.row.center-xs
+    .main.col-xs-8
+      h1 Project Settings
+      .changeProj
+        button(ng-click="proj.getProjects()",ng-if="proj.flag") Change project
+        select(ng-if="!proj.flag",ng-model="proj.currentProjectTitle",ng-change="proj.setProject()")
+          option(ng-repeat="project in proj.userProjects track by $index")
+            p {{project.title}}
+      .goto
+        a(href='') Trash
+        a(href='') Reports
+      form(name='projectEdit').row.center-xs
+        .wrap
+          label
+            p Name:
+          input(type='text', name='projectName')
+        .wrap
+          label
+            p Description
+          textarea
+        .wrap
+          label
+            p Participants:
+            i.fa.fa-user(aria-hidden='true')
+          .participants
+            a(href='#')
+              i.fa.fa-plus(aria-hidden='true')
+        .wrap
+          label
+            p  Deadline:
+            i.fa.fa-exclamation-triangle(aria-hidden='true')
+          select#after-date.col-xs-6(name='')
+            option 12 September 2016
+            option 13 September 2016
+        .wrap
+          button.col-xs-6(type='submit', form='projectEdit', value='Submit') Save

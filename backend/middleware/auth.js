@@ -9,8 +9,13 @@ module.exports = function (req, res, next) {
             token = cookies.get('x-access-token'),
             getReadyForCreateUser = getReadyForCreateUser;
 
-    if (req.session.user) {       
-        next();
+    if (req.session.user) {
+        var id = req.session.user._id
+        userRepository.getById(id, function (err, data) {                     
+            req.session.user = data;
+            console.log(req.session.user);
+            next();
+        });
     } else {
         if (token) {
             jsonwebtoken.verify(token, tokenSecret, function (err, decoded) {
