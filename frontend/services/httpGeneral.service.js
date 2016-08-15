@@ -19,7 +19,7 @@ class httpGeneral {
         this.spinner = spinner;
     }
 
-    sendRequest(object) {
+    sendRequest(object){
         let self = this;
         self.spinner.startSpinn();
         if (typeof object.url !== 'string' || object.url === undefined || object.url.length === 0) {

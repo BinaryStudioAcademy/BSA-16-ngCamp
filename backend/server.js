@@ -6,6 +6,7 @@ var bodyParser = require('body-parser'),
     session = require('express-session'),
     MongoStore = require('connect-mongo')(session),
     sessionSecret = require('./config/session').secret,
+    auth = require('./middleware/auth'),
     mongoose = require('mongoose');
 
 var app = express();
@@ -18,6 +19,8 @@ app.use(session({
         mongooseConnection: mongooseConnection
     })
 }));
+
+app.use(auth);
 
 context.mongoStore = new MongoStore({
     mongooseConnection: mongooseConnection

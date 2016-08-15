@@ -1,10 +1,10 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var ToDoSchema = new Schema({
-    task: [{
+    task: {
         type: Schema.Types.ObjectId,
         ref: 'Task'
-            }],
+            },
     title: String,
     description: String,
     status: String,
@@ -15,8 +15,6 @@ var ToDoSchema = new Schema({
             }],
     dateExpired: Date,
     dateFinished: Date
-
-
 });
 
 module.exports = mongoose.model('ToDo', ToDoSchema);

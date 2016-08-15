@@ -5,7 +5,13 @@ var apiResponse = require('express-api-response'),
     baseUrl = '/api/user/';
 
 module.exports = function (app) {
-    app.get(baseUrl, auth, function (req, res, next) {       
+
+    app.get(baseUrl+'me', auth, function (req, res, next) {    
+        res.data = req.session.user;
+        next();
+    }, apiResponse);
+
+    app.get(baseUrl, auth, function (req, res, next) {    
         userRepository.getAll(function (err, data) {            
             res.data = data;
             res.err = err;

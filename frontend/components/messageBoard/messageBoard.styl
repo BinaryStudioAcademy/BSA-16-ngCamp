@@ -1,20 +1,18 @@
-@import "../../../public/libs/css/generalComponentsStyle.styl"
 section.messageBoard
     text-align center
-    background-color background-white
-    width 70%
-    margin-left 15%
-    margin-top 2%
+    background-color #F5F5F5
+    width 80%
+    margin-left 10%
     margin-bottom 2%
-    box-shadow 0px 5px 20px 2px shadow-grey
-    border 1px solid border-grey
+    box-shadow 0 5px 20px 2px #808080
+    border 1px solid #ADADAD
     border-radius 10px
     header
         text-align center
         font-size 1.6em
         margin-bottom 50px
         h2
-            color main-text-color
+            color #212121
             font-size 1.8em
             font-family "Montserrat"
         hr
@@ -23,61 +21,145 @@ section.messageBoard
             height 1px
             background-color #616161
             margin-bottom 2%
-        button
-            button()
-            margin-left 37.5%
+        div
+            -moz-user-select -moz-none
+            -o-user-select none
+            -khtml-user-select none
+            -webkit-user-select none
+            user-select none
+            box-shadow 0 0 10px 0 GREY
+            display flex
+            justify-content center
+            align-items center
+            margin-top 1%
+            border-radius 5px
+            background-color #1D8DBF
+            color WHITE
+            padding 1% 3% 1% 3%
+            font-size 30px
+            height 50px
+            transition 0.2s
+            cursor pointer
+            &:active
+                box-shadow 0 0 0 0.5px WHITE, 0 0 0 2px main-blue, 0 0 5px 0 WHITE inset
+            &:hover
+                box-shadow 0 0 0 1px white, 0 0 0 4px #1D8DBF
+            margin-left 34.5%
             font-family "Montserrat"
             width 25%
-    .message
-        .messageInfo
-            box-shadow: 0 0 30px #616161
-            border-radius 20px
-            width 90%
-            margin-left 5%
-            .header
+    .message-block
+        margin 0 5% 5% 5%
+        padding-left 1%
+        padding-right 1%
+        width 90%
+        display flex
+        align-items stretch
+        .user-info
+            border 1px solid #260595
+            border-top-left-radius 20px
+            border-bottom-left-radius 20px
+            background-color #1D8DBF
+            color #212121
+            width 20%
+            display flex
+            justify-content center
+            align-items center
+            header
+                -moz-user-select -moz-none
+                -o-user-select none
+                -khtml-user-select none
+                -webkit-user-select none
+                user-select none
+                padding 10% 2% 10% 2%
                 display flex
-                div
-                    width 60%
-                    padding-top 2%
-                    img
-                        width 20%
-                    span
-                        width 30%
-                        margin-left 3%
-                        font-size 1.8em
-                        color add-text-color
-                .useButton
-                    padding-top 2%
-                    padding-left 45%
-                    width 40%
-                    display flex
-                    button
-                        button()
-                        margin-right 5%
-            hr
-                height 1px
-                background-color #616161
-                margin-bottom: 3%
-                border-radius 10px
-                width 98%
-                clear both
-            .messageContent
-                padding-bottom 1%
-                background-color background-white
-                margin-left 5%
-                width 90%
-                font-size 1.4em
-                h2
+                justify-content center
+                align-items center
+                flex-direction column
+                .img
+                    width 64px
+                h3
+                    font-size 1em
+                    padding-top 15%
+                    margin-top 0
+                    margin-bottom 0
                     text-align center
-                    font-size 1.6em
-                .text
-                    padding-left 5%
-                    padding-right 5%
-                    text-align justify
-                    font-family "Open Sans"
-            h5
+        .message-info
+            border-top 1px solid #ADADAD
+            border-bottom 1px solid #ADADAD
+            background-color #F5F5F5
+            width 65%
+            padding 3% 5% 3% 5%
+            font-size 1.2em
+            text-align justify
+            color #212121
+            font-family "Open Sans"
+            h3
+                text-align center
+                font-size 1.8em
+                margin-top 0
+                margin-bottom 4%
+                font-family "Montserrat"
+            .text
+                text-indent 20px
+                text-align justify
+                color #212121
+                font-weight 500
+                .read-more-target
+                    opacity 0
+                    max-height 0
+                    font-size 0
+                    transition .25s ease
+                .read-more-state
+                    display none
+                    &:checked
+                        & ~ .read-more-target
+                            opacity 1
+                            font-size inherit
+                            max-height 999em
+                        & ~ .read-more-trigger
+                            display none
+                .read-more-trigger
+                    cursor pointer
+                    margin-left 1%
+                    color #1D8DBF
+                    font-weight 700
+            .post-date
+                color #F2992E
                 text-align right
-                padding-right 3%
-                font-size 1.2em
-                padding-bottom 20px
-                color add-text-color
+                font-weight bold
+                margin-bottom 0
+        .use-button
+            border-top-right-radius 20px
+            border-bottom-right-radius 20px
+            border 1px solid #ADADAD
+            background-color #F5F5F5
+            width 15%
+            display flex
+            flex-direction column
+            justify-content center
+            align-items stretch
+            padding-left 2%
+            padding-right 2%
+            div
+                -moz-user-select -moz-none
+                -o-user-select none
+                -khtml-user-select none
+                -webkit-user-select none
+                user-select none
+                display flex
+                margin-top 15%
+                margin-bottom 15%
+                justify-content center
+                align-items center
+                border-radius 5px
+                background-color #1D8DBF
+                color WHITE
+                padding 1% 3% 1% 3%
+                font-size 30px
+                height 50px
+                transition 0.2s
+                cursor pointer
+                &:active
+                    box-shadow 0 0 0 0.5px WHITE, 0 0 0 2px main-blue, 0 0 5px 0 WHITE inset
+                &:hover
+                    box-shadow 0 0 0 1px white, 0 0 0 4px #1D8DBF

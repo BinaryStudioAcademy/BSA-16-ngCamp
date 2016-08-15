@@ -10,6 +10,7 @@ ValidationService.prototype.addEventValidation = addEventValidation;
 ValidationService.prototype.addTaskValidation = addTaskValidation;
 ValidationService.prototype.addToDoValidation = addToDoValidation;
 ValidationService.prototype.validationBodyProperty = validationBodyProperty;
+ValidationService.prototype.manageProjectParticipants = manageProjectParticipants;
 
 function MessageValidation(body, callback) {
     if (!body.hasOwnProperty('isDraft')) {
@@ -176,6 +177,16 @@ function addToDoValidation(body, callback) {
     if (!body.task) {
         callback({
             message: "Task id is undefined"
+        });
+        return false;
+    }
+    return true;
+}
+//===========================================================
+function manageProjectParticipants(body, callback){
+    if (body.length<=0) {
+        callback({
+            message: "No participants here"
         });
         return false;
     }

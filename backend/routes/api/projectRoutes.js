@@ -12,6 +12,14 @@ module.exports = function (app) {
         });
     }, apiResponse);
 
+    app.get(baseUrl + 'forCurrentUser', function(req, res,next) {
+        projectService.getProjectsForCurrentUser(req.session.user._id, function(err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
     app.get(baseUrl + ':id', function (req, res, next) {
         projectRepository.getById(req.params.id, function (err, data) {
             res.data = data;
@@ -37,11 +45,25 @@ module.exports = function (app) {
     }, apiResponse);
 
     app.delete(baseUrl + ':id', function (req, res, next) {
-        projectRepository.deleteById(req.params.id, function (err, data) {
+        projectService.deleteItem(req.params.id, function (err, data) {
             res.data = data;
             res.err = err;
             next();
         });
     }, apiResponse);
 
+    app.post(baseUrl + ':id/participants', function (req, res, next) {
+        projectService.addParticipants(req.params.id, req.body, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+    app.delete(baseUrl + ':id/participants', function (req, res, next) {
+        projectService.removeParticipants(req.params.id, req.body, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
 };
