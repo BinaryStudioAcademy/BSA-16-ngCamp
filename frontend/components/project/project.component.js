@@ -14,6 +14,10 @@ class ProjectComponentController {
         this.currentProject = window._injectedData.currentProject;
     }
 
+    $onInit(){
+        console.log(this);
+    }
+
     getProjects() {
         let self = this;
         self.flag = false;
