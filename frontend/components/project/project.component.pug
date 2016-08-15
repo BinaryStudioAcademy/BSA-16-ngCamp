@@ -2,6 +2,11 @@
   section.row.center-xs
     .main.col-xs-8
       h1 Project Settings
+      .changeProj
+        button(ng-click="proj.getProjects()",ng-if="proj.flag") Change project
+        select(ng-if="!proj.flag",ng-model="proj.currentProjectTitle",ng-change="proj.setProject()")
+          option(ng-repeat="project in proj.userProjects track by $index")
+            p {{project.title}}
       .goto
         a(href='') Trash
         a(href='') Reports

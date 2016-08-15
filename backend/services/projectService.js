@@ -1,6 +1,6 @@
 var projectRepository = require('../repositories/projectRepository');
 var validationService = require('./validationService');
-
+var projectSchema = require('../schemas/projectSchema');
 function ProjectService() {}
 
 ProjectService.prototype.addItem = addItem;
@@ -8,6 +8,7 @@ ProjectService.prototype.updateItem = updateItem;
 ProjectService.prototype.deleteItem = deleteItem;
 ProjectService.prototype.addParticipants = addParticipants;
 ProjectService.prototype.removeParticipants = removeParticipants;
+ProjectService.prototype.getProjectsForCurrentUser = getProjectsForCurrentUser;
 
 function addItem(body, callback) {
     if (validationService.ProjectValidation(body, callback)) {
@@ -18,6 +19,12 @@ function addItem(body, callback) {
 function updateItem(id, body, callback) {
     projectRepository.setObjPropsById(id, body, callback);
 }
+
+
+function getProjectsForCurrentUser(userId, callback) {
+    projectRepository.getProjectsByParticipantId(userId, callback);
+}
+
 
 function deleteItem(id, callback) {
     var project = projectRepository.getById(id, function(err, project) {

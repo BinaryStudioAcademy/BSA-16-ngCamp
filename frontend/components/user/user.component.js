@@ -13,7 +13,7 @@ class UserComponentController {
 
 		console.log(this.http.sendRequest({
 		type: 'get',
-        url: '/api/user/57a8cb7beddaab1445dad9c4'
+        url: '/api/user'
     	}));
 	}
 

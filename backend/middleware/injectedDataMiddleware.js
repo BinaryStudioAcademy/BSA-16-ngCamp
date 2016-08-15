@@ -9,6 +9,8 @@ module.exports = function (req, res, obj, error) {
             obj.isLoggedIn = true;
             obj.userId = req.session.user._id;
             obj.role = req.session.user.role;
+            console.log(req.session.user.curentProject);
+            obj.currentProject = req.session.user.curentProject;
         }
 
         res.header = ('Content-Type', 'text/html');
