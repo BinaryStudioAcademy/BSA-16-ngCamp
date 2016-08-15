@@ -37,7 +37,7 @@ module.exports = function (app) {
     }, apiResponse);
 
     app.delete(baseUrl + ':id', function (req, res, next) {
-        projectRepository.deleteById(req.params.id, function (err, data) {
+        projectService.deleteItem(req.params.id, function (err, data) {
             res.data = data;
             res.err = err;
             next();
