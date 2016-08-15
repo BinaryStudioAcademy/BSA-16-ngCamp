@@ -35,7 +35,7 @@ class httpGeneral {
             case 'get':
                 return this.$http.get(object.url).then(succesfullRequest, failedRequest);
             case 'post':
-                return this.$http.post(object.url, object.body).then(succesfullRequest, failedRequest);
+                return this.$http.post(object.url, object.body.data).then(succesfullRequest, failedRequest);
             case 'put':
                 return this.$http.put(object.url, object.body).then(succesfullRequest, failedRequest);
             case 'delete':

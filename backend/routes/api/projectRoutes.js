@@ -13,6 +13,7 @@ module.exports = function (app) {
     }, apiResponse);
 
     app.get(baseUrl + 'forCurrentUser', function(req, res,next) {
+        console.log(req.session.uesr);
         projectService.getProjectsForCurrentUser(req.session.user._id, function(err, data) {
             res.data = data;
             res.err = err;

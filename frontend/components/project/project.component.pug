@@ -22,9 +22,12 @@
           label
             p Participants:
             i.fa.fa-user(aria-hidden='true')
-          .participants
-            a(href='#')
+          .participants(ng-model="proj.projectParticipants")
+            p(ng-repeat="participator in proj.projectParticipants track by $index") {{participator}}
+            a(ng-click="proj.addParticipatorFlag=true;")
               i.fa.fa-plus(aria-hidden='true')
+            select(ng-if="proj.addParticipatorFlag",ng-model="proj.participatorToAdd",ng-change="proj.addParticipator()")
+              option(ng-repeat="participator in proj.users track by $index") {{participator.email}}
         .wrap
           label
             p  Deadline:
