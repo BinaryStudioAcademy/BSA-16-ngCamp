@@ -4,7 +4,6 @@ section.messageBoard
     width 80%
     margin-left 10%
     margin-bottom 2%
-    //margin-top 8%
     box-shadow 0 5px 20px 2px #808080
     border 1px solid #ADADAD
     border-radius 10px
@@ -105,6 +104,25 @@ section.messageBoard
                 text-align justify
                 color #212121
                 font-weight 500
+                .read-more-target
+                    opacity 0
+                    max-height 0
+                    font-size 0
+                    transition .25s ease
+                .read-more-state
+                    display none
+                    &:checked
+                        & ~ .read-more-target
+                            opacity 1
+                            font-size inherit
+                            max-height 999em
+                        & ~ .read-more-trigger
+                            display none
+                .read-more-trigger
+                    cursor pointer
+                    margin-left 1%
+                    color #1D8DBF
+                    font-weight 700
             .post-date
                 color #F2992E
                 text-align right
@@ -128,8 +146,9 @@ section.messageBoard
                 -khtml-user-select none
                 -webkit-user-select none
                 user-select none
-                box-shadow 0 0 10px 0 GREY
                 display flex
+                margin-top 15%
+                margin-bottom 15%
                 justify-content center
                 align-items center
                 border-radius 5px
