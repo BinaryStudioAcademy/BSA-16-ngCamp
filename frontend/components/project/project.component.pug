@@ -22,7 +22,8 @@
           label
             p Participants:
           .participants(ng-model="proj.projectParticipants")
-            p(ng-repeat="participator in proj.projectParticipants track by $index")  {{participator.firstName}} {{participator.lastName}} 
+            
+            p(ng-repeat="participator in proj.projectParticipants track by $index") {{participator.firstName}} {{participator.lastName}} 
               a(ng-click="proj.removeParticipant(participator._id);")
                 i.fa.fa-times(aria-hidden='true')
             a(ng-click="proj.addParticipatorFlag=true;")
