@@ -36,6 +36,12 @@
           label
             p Delete project:
           .delete_button
-            button.delete Delete
+            button.delete(ng-click="proj.modalToggle()") Delete
+          .confirming_modal(ng-if="proj.modalFlag")
+            .background(ng-click="proj.modalToggle()")
+            .window
+              label Are you Sure?
+              button.confirm(ng-click="proj.deleteProject()") Confirm
+              button.cancel(ng-click="proj.modalToggle()") Cancel
         .wrap
           button.col-xs-6(type='submit', form='projectEdit', value='Submit') Save

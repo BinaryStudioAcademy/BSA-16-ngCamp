@@ -1,9 +1,10 @@
 import './project.component.styl';
 
 class ProjectComponentController {
-    constructor(popupNotifications, httpGeneral) {
+    constructor(popupNotifications, httpGeneral,$location) {
         this.popupNotifications = popupNotifications;
         this.httpGeneral = httpGeneral;
+        this.location = $location;
         this.userProjects;
         this.userReq = {
             type: "GET",
@@ -12,10 +13,7 @@ class ProjectComponentController {
         this.flag = true;
         this.id = null;
         this.currentProject = window._injectedData.currentProject;
-    }
-
-    $onInit(){
-        console.log(this);
+        this.modalFlag = false;
     }
 
     getProjects() {
@@ -41,9 +39,23 @@ class ProjectComponentController {
             //console.log("Succesfull update currentProject");
         });
     }
+
+    modalToggle() {
+        this.modalFlag = !this.modalFlag;
+    }
+
+    deleteProject() {
+        let self = this;
+        self.httpGeneral.sendRequest({
+            type: "DELETE",
+            url: `api/projects/57a8cb7beddaab1445dad9e1`
+        }).then(() => {
+            self.location.path('/');
+        });
+    }
 }
 
-ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral'];
+ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral','$location'];
 
 const projectComponent = {
     controller: ProjectComponentController,
