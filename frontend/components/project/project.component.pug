@@ -3,29 +3,34 @@
     .main.col-xs-8
       h1 Project Settings
       .changeProj
-        button(ng-click="proj.getProjects()",ng-if="proj.flag") Change project
+        button(ng-click="proj.getProjects()",ng-if="proj.flag") 
+          p Change project
         select(ng-if="!proj.flag",ng-model="proj.currentProjectId",ng-change="proj.setProject()")
           option(ng-repeat="project in proj.userProjects track by $index" value='{{project._id}}') {{project.title}}
-      .goto
-        a(href='') Trash
-        a(href='') Reports
       form(name='projectEdit').row.center-xs
         .wrap
           label
-            p Name:
-          p {{proj.currentProject.title}}
+            p Name
+            i.fa.fa-pencil(ng-click="proj.editName=true",ng-if="!proj.editName")
+            i.fa.fa-check(ng-click="proj.edit('title')",ng-if="proj.editName")
+          p(ng-if="!proj.editName") {{proj.currentProject.title}}
+          input(type="text",ng-model="proj.currentProject.title",ng-if="proj.editName")
         .wrap
           label
             p Description
-          p {{proj.currentProject.description}}
+            i.fa.fa-pencil(ng-click="proj.editDesc=true",ng-if="!proj.editDesc")
+            i.fa.fa-check(ng-click="proj.edit('description')",ng-if="proj.editDesc")
+          p(ng-if="!proj.editDesc") {{proj.currentProject.description}}
+          textarea(type="text",ng-model="proj.currentProject.description",ng-if="proj.editDesc")
         .wrap
           label
             p Participants:
           .participants(ng-model="proj.projectParticipants")
-            
-            p(ng-repeat="participator in proj.projectParticipants track by $index") {{participator.firstName}} {{participator.lastName}} 
-              a(ng-click="proj.removeParticipant(participator._id);")
-                i.fa.fa-times(aria-hidden='true')
+            .btn-group.open(ng-repeat="participator in proj.projectParticipants track by $index") 
+              a.participant
+                i.fa.fa-user.fa-2x
+                span {{participator.firstName}} {{participator.lastName}}
+                i.fa.fa-times.fa-fw(ng-click="proj.removeParticipant(participator._id)")
             a(ng-click="proj.addParticipatorFlag=true;")
               i.fa.fa-plus(aria-hidden='true')
             select(ng-if="proj.addParticipatorFlag",ng-model="proj.participatorToAdd",ng-change="proj.addParticipator();")
@@ -33,7 +38,5 @@
         .wrap
           label
             p  Deadline:
-            i.fa.fa-exclamation-triangle(aria-hidden='true')
+            i.fa.fa-pencil(aria-hidden='true')
           p {{proj.currentProject.endDate}}
-        .wrap
-          button.col-xs-6(type='submit', form='projectEdit', value='Submit') Edit Project

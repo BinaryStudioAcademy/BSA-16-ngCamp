@@ -19,6 +19,8 @@ class ProjectComponentController {
         this.participatorToDelete;
         this.users;
         this.projectParticipants = [];
+        this.editName = false;
+        this.editDesc = false;
     }
 
     $onInit() {
@@ -88,6 +90,38 @@ class ProjectComponentController {
             console.log("Succesfull delete participator");
         });
         this.$onInit();
+    }
+    edit(prop) {
+        let self = this;
+        console.log(prop);
+        switch (prop) {
+            case "title":{
+                self.editName = false;
+                self.httpGeneral.sendRequest({
+                    type: "PUT",
+                    url: `api/projects/${self.currentProjectId}`,
+                    body: {
+                        title:self.currentProject.title,
+                    }
+                }).then(function(res) {
+                    console.log("Succesfull edit title");
+                });
+                break;
+            }
+            case "description":{
+                self.editDesc = false;
+                self.httpGeneral.sendRequest({
+                    type: "PUT",
+                    url: `api/projects/${self.currentProjectId}`,
+                    body: {
+                        description:self.currentProject.description,
+                    }
+                }).then(function(res) {
+                    console.log("Succesfull edit description");
+                });
+                break;
+            }
+        }
     }
 }
 
