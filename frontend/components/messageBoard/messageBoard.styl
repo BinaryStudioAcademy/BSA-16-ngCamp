@@ -1,4 +1,4 @@
-section.messageBoard
+.messageBoard-wrapper
     text-align center
     background-color #F5F5F5
     width 80%
@@ -7,14 +7,15 @@ section.messageBoard
     box-shadow 0 5px 20px 2px #808080
     border 1px solid #ADADAD
     border-radius 10px
-    header
-        text-align center
+    .header
+        //text-align center
         font-size 1.6em
         margin-bottom 50px
         h2
             color #212121
             font-size 1.8em
             font-family "Montserrat"
+            margin-bottom 0.83em
         hr
             margin-top -4%
             width 40%
@@ -22,6 +23,7 @@ section.messageBoard
             background-color #616161
             margin-bottom 2%
         div
+            box-sizing: content-box;
             -moz-user-select -moz-none
             -o-user-select none
             -khtml-user-select none
@@ -47,6 +49,7 @@ section.messageBoard
             margin-left 34.5%
             font-family "Montserrat"
             width 25%
+
     .message-block
         margin 0 5% 5% 5%
         padding-left 1%
@@ -128,6 +131,7 @@ section.messageBoard
                 text-align right
                 font-weight bold
                 margin-bottom 0
+                word-spacing: 10px;
         .use-button
             border-top-right-radius 20px
             border-bottom-right-radius 20px
