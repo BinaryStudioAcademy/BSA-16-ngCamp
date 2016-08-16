@@ -4,7 +4,7 @@
       h1 Project Settings
       .changeProj
         button(ng-click="proj.getProjects()",ng-if="proj.flag") Change project
-        select(ng-if="!proj.flag",ng-model="proj.currentProject",ng-change="proj.setProject()")
+        select(ng-if="!proj.flag",ng-model="proj.currentProjectId",ng-change="proj.setProject()")
           option(ng-repeat="project in proj.userProjects track by $index" value='{{project._id}}') {{project.title}}
       .goto
         a(href='') Trash
@@ -13,24 +13,26 @@
         .wrap
           label
             p Name:
-          input(type='text', name='projectName')
+          p {{proj.currentProject.title}}
         .wrap
           label
             p Description
-          textarea
+          p {{proj.currentProject.description}}
         .wrap
           label
             p Participants:
-            i.fa.fa-user(aria-hidden='true')
-          .participants
-            a(href='#')
+          .participants(ng-model="proj.projectParticipants")
+            p(ng-repeat="participator in proj.projectParticipants track by $index")  {{participator.firstName}} {{participator.lastName}} 
+              a(ng-click="proj.removeParticipant(participator._id);")
+                i.fa.fa-times(aria-hidden='true')
+            a(ng-click="proj.addParticipatorFlag=true;")
               i.fa.fa-plus(aria-hidden='true')
+            select(ng-if="proj.addParticipatorFlag",ng-model="proj.participatorToAdd",ng-change="proj.addParticipator();")
+              option(ng-repeat="participator in proj.users track by $index",value="{{participator._id}}") {{participator.email}} 
         .wrap
           label
             p  Deadline:
             i.fa.fa-exclamation-triangle(aria-hidden='true')
-          select#after-date.col-xs-6(name='')
-            option 12 September 2016
-            option 13 September 2016
+          p {{proj.currentProject.endDate}}
         .wrap
-          button.col-xs-6(type='submit', form='projectEdit', value='Submit') Save
+          button.col-xs-6(type='submit', form='projectEdit', value='Submit') Edit Project
