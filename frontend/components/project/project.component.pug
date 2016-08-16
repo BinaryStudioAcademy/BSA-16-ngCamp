@@ -38,5 +38,10 @@
         .wrap
           label
             p  Deadline:
-            i.fa.fa-pencil(aria-hidden='true')
-          p {{proj.currentProject.endDate}}
+            i.fa.fa-pencil(ng-click="proj.editDeadline=true",ng-if="!proj.editDeadline")
+            i.fa.fa-check(ng-click="proj.edit('deadline')",ng-if="proj.editDeadline")
+          p(ng-if="!proj.editDeadline") {{proj.currentProject.endDate}}
+          p.input-group(ng-if="proj.editDeadline")
+            input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='proj.dtDeadline', is-open='proj.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{proj.dtDeadline}}")
+            a.btn.btn-default(type='button', ng-click='proj.open()')
+              i.fa.fa-calendar(aria-hidden='true')
