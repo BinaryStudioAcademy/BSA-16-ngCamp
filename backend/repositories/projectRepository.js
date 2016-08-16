@@ -5,6 +5,7 @@ ProjectRepository.prototype = new Repository();
 ProjectRepository.prototype.addParticipants= addParticipants;
 ProjectRepository.prototype.removeParticipants= removeParticipants;
 ProjectRepository.prototype.getProjectsByParticipantId = getProjectsByParticipantId;
+ProjectRepository.prototype.getByIdWithUsers = getByIdWithUsers;
 
 function ProjectRepository() {
     Repository.prototype.constructor.call(this);
@@ -15,6 +16,14 @@ function getProjectsByParticipantId(userId, callback) {
  var model = this.model;
  var query = model.find({participants: userId});
  query.exec(callback);
+}
+
+function getByIdWithUsers(id,callback){
+    var query = this.model.findOne({
+        _id:id
+    }
+    ).populate('participants');
+    query.exec(callback);
 }
 
 function addParticipants(id, data, callback){
@@ -31,15 +40,14 @@ function addParticipants(id, data, callback){
     query.exec(callback);
 }
 
+
 function removeParticipants(id, data, callback){
     var model = this.model;
     var query = model.update({
         _id: id
     },{
         $pull: {
-            participants: {
-                $in: data
-            }
+            participants: data,
         }
     },
         {
