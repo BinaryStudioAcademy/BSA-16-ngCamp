@@ -5,6 +5,7 @@
       .changeProj
         button(ng-click="proj.getProjects()",ng-if="proj.flag") Change project
         select(ng-if="!proj.flag",ng-model="proj.currentProject",ng-change="proj.setProject()")
+          option(value = "" disable) Not selected
           option(ng-repeat="project in proj.userProjects track by $index" value='{{project._id}}') {{project.title}}
       .goto
         a(href='') Trash

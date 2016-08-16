@@ -12,7 +12,7 @@ class ProjectComponentController {
         };
         this.flag = true;
         this.id = null;
-        this.currentProject = window._injectedData.currentProject;
+        this.currentProject = window._injectedData.currentProject || '';
         this.modalFlag = false;
     }
 
@@ -48,8 +48,9 @@ class ProjectComponentController {
         let self = this;
         self.httpGeneral.sendRequest({
             type: "DELETE",
-            url: `api/projects/57a8cb7beddaab1445dad9e1`
+            url: `api/projects/${window._injectedData.currentProject}`
         }).then(() => {
+            window._injectedData.currentProject = '';
             self.location.path('/');
         });
     }
