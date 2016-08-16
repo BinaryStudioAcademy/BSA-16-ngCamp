@@ -19,6 +19,14 @@ class ProjectComponentController {
         this.participatorToDelete;
         this.users;
         this.projectParticipants = [];
+        this.editName = false;
+        this.editDesc = false;
+        this.popup = {
+            opened: false
+        };
+        this.today;
+        this.dtDeadline = new Date();
+        this.editDeadline = false;
     }
 
     $onInit() {
@@ -35,6 +43,7 @@ class ProjectComponentController {
             }).then(function(res) {
                 self.currentProject = res;
                 self.projectParticipants = res.participants;
+                self.dtDeadline = res.endDate;
             });
         });
     }
@@ -88,6 +97,58 @@ class ProjectComponentController {
             console.log("Succesfull delete participator");
         });
         this.$onInit();
+    }
+    edit(prop) {
+        let self = this;
+        console.log(prop);
+        switch (prop) {
+            case "title":{
+                self.editName = false;
+                self.httpGeneral.sendRequest({
+                    type: "PUT",
+                    url: `api/projects/${self.currentProjectId}`,
+                    body: {
+                        title:self.currentProject.title,
+                    }
+                }).then(function(res) {
+                    console.log("Succesfull edit title");
+                });
+                break;
+            }
+            case "description":{
+                self.editDesc = false;
+                self.httpGeneral.sendRequest({
+                    type: "PUT",
+                    url: `api/projects/${self.currentProjectId}`,
+                    body: {
+                        description:self.currentProject.description,
+                    }
+                }).then(function(res) {
+                    console.log("Succesfull edit description");
+                });
+                break;
+            }
+            case "deadline":{
+                self.editDeadline = false;
+                self.httpGeneral.sendRequest({
+                    type:"PUT",
+                    url: `api/projects/${self.currentProjectId}`,
+                    body: {
+                        endDate:self.dtDeadline,
+                    }
+                }).then(function(res){
+                    console.log("Succesfull edit deadline");
+                });
+                this.$onInit();
+                break;
+            }
+        }
+    }
+    today () {
+        this.dt = new Date();
+    };
+    open() {
+        this.popup.opened = true;
     }
 }
 
