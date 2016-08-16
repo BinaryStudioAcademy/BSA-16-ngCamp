@@ -81,15 +81,12 @@ class ProjectComponentController {
 
     removeParticipant(participator) {
         let self = this;
-        for (let user in self.users)
-            if (self.users[user].email === participator) {
-                self.httpGeneral.sendRequest({
-                    type: "DELETE",
-                    url: `api/projects/${self.currentProjectId}/participants/${self.users[user]._id}`,
-                }).then(function(res) {
-                    console.log("Succesfull delete participator");
-                });
-            }
+        self.httpGeneral.sendRequest({
+            type: "DELETE",
+            url: `api/projects/${self.currentProjectId}/participants/${participator}`,
+        }).then(function(res) {
+            console.log("Succesfull delete participator");
+        });
         this.$onInit();
     }
 }

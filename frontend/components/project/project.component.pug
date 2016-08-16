@@ -23,7 +23,8 @@
             p Participants:
           .participants(ng-model="proj.projectParticipants")
             p(ng-repeat="participator in proj.projectParticipants track by $index")  {{participator.firstName}} {{participator.lastName}} 
-              i.fa.fa-times(aria-hidden='true',ng-click="proj.removeParticipant(participator[2]);")
+              a(ng-click="proj.removeParticipant(participator._id);")
+                i.fa.fa-times(aria-hidden='true')
             a(ng-click="proj.addParticipatorFlag=true;")
               i.fa.fa-plus(aria-hidden='true')
             select(ng-if="proj.addParticipatorFlag",ng-model="proj.participatorToAdd",ng-change="proj.addParticipator();")
