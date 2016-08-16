@@ -10,12 +10,28 @@
                     row.middle-xs
                         .show-events
                             h2 Show all events:
-                        .form
-                            form(action='')
-                                span.events-blue-gray  from:
-                                input(type='date', name='bday', max='1979-12-31')
-                                span.events-blue-gray  to:
-                                input(type='date', name='bday', min='2000-01-02')
+
+                        form.form-inline(role='form').col-md-offset-2
+                            .form-group.col-md-5
+                                .pull-left
+                                    label(for='text') Date from:
+                                p.input-group
+                                    input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='vm.dtfrom', is-open='vm.popup1.opened', datepicker-options='vm.dateOptions',            ng-required='true', close-text='Close', alt-input-formats='altInputFormats')
+                                    span.input-group-btn
+                                        button.btn.btn-default(type='button', ng-click='vm.open1()')
+                                            i.fa.fa-calendar(aria-hidden='true')
+                            .form-group.col-md-5
+                                .pull-left
+                                    label
+                                        | Date to: 
+                                p.input-group
+                                    input.form-control(type='text', uib-datepicker-popup='', ng-model='vm.dtto', is-open='vm.popup2.opened', datepicker-options='vm.dateOptions',                    ng-required='true', close-text='Close')
+                                    span.input-group-btn
+                                        button.btn.btn-default(type='button', ng-click='vm.open2()')
+                                            i.fa.fa-calendar(aria-hidden='true')
+                            
+                            hr
+                          
             section.row.big-date
                 h2.col-xs-4.col-xs-offset-4 13 May 2013
 
@@ -34,7 +50,7 @@
                 .event
                     .section.row.event-header
                         section.row.col-xs-6.event-name
-                            h2  Event1  
+                            h2  Event1 
                             i.fa.fa-folder-open-o.fa-2x
                         .col-xs-2.col-xs-offset-4
                             i.fa.fa-comment.fa-2x
