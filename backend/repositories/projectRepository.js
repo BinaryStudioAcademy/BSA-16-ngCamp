@@ -31,7 +31,7 @@ function addParticipants(id, data, callback){
     var query = model.update({
         _id: id
     },{
-        $push: {
+        $addToSet: {
             participants: {
                 $each: data
             }
