@@ -1,0 +1,20 @@
+
+form#uploadForm(action='/api/files/message-form', method='post', enctype='multipart/form-data')
+    input(type='file', name='message')
+    input(type='text', name='description' placeholder='description')
+    input(type='submit', value='Upload')
+
+form#uploadForm(action='/api/files/event-form', method='post', enctype='multipart/form-data')
+    input(type='file', name='event')
+    input(type='text', name='description' placeholder='description')
+    input(type='submit', value='Upload')
+
+form#uploadForm(action='/api/files/task-form', method='post', enctype='multipart/form-data')
+    input(type='file', name='task')
+    input(type='text', name='description' placeholder='description')
+    input(type='submit', value='Upload')
+
+form#uploadForm(action='/api/files/comment-form', method='post', enctype='multipart/form-data')
+    input(type='file', name='comment')
+    input(type='text', name='description' placeholder='description')
+    input(type='submit', value='Upload')
