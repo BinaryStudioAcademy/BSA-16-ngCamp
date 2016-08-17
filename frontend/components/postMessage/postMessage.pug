@@ -1,7 +1,7 @@
 section.post-message-wrapper
   header
     h2 Post message
-    button.fa.fa-close(ng-link='["MsgBoard"]')
+    div.fa.fa-close(ng-link='["MsgBoard"]')
       //img(ng-link='["MsgBoard"]', align='top', src='https://cdn3.iconfinder.com/data/icons/simple-files-1/128/No-128.png', alt='exit')
   hr
   section.input-block
@@ -9,7 +9,7 @@ section.post-message-wrapper
       img(src='https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_save_48px-128.png', alt='save')
       br
       img(src='https://cdn2.iconfinder.com/data/icons/files-folders-3/24/files-folders-48-128.png', alt='share')
-    textarea(name='', id='', cols='30', rows='10')  
+    textarea(name='', id='', cols='30', rows='10')
     .text-editor
       | TEXT EDITOR
     //form#uploadForm(action='/postMessage', method='post', enctype='multipart/form-data')
@@ -20,4 +20,4 @@ section.post-message-wrapper
   //    option(value='draft1') draft1
   //    option(value='draft2') draft2
   //    option(value='draft3') draft3
-  button Post
+  div.postBtn Post

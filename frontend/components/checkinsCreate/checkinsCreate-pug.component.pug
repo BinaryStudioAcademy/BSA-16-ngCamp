@@ -1,0 +1,61 @@
+.checkin-create-wrapper
+    .checkin-title
+        ul.title
+            li
+                h1
+                    span Set up check-in
+    .container
+        .wrapper
+            header.header
+                .header-container
+                    h2 What question do you want to ask?
+                    a(ng-link='["Checkins"]')
+                        i.fa.fa-times.fa-2x
+                input.qq(type='text', placeholder='Type your question...')
+            article.main
+                ul.container-list
+                    h2 Who do you want to ask?
+                    li#all-list.list
+                        span Check All
+                        input.checkbox-btn(type='checkbox')
+                    li.list
+                        span Name Surname
+                        input.checkbox-btn(type='checkbox')
+                    li.list
+                        span Name Surname
+                        input.checkbox-btn(type='checkbox')
+                    li.list
+                        span Name Surname
+                        input.checkbox-btn(type='checkbox')
+                    li.list
+                        span Name Surname
+                        input.checkbox-btn(type='checkbox')
+                    li.list
+                        span Name Surname
+                        input.checkbox-btn(type='checkbox')
+                    li.list
+                        span Name Surname
+                        input.checkbox-btn(type='checkbox')
+                    li.list
+                        span Name Surname
+                        input.checkbox-btn(type='checkbox')
+                    li.list
+                        span Name Surname
+                        input.checkbox-btn(type='checkbox')
+                    li.list
+                        span Name Surname
+                        input.checkbox-btn(type='checkbox')
+                    li.list
+                        span Name Surname
+                        input.checkbox-btn(type='checkbox')
+            footer.footer
+                h2 How frequently should we ask it?
+                select
+                    option(value='') Every weekday
+                    option(value='') Every Monaday
+                    option(value='') Every Friday
+                    option(value='') First Monday of every month
+                select
+                    option(value='') at the beginning of the day
+                    option(value='') at the end of the day
+                button(ng-click='["Checkins"]') Save

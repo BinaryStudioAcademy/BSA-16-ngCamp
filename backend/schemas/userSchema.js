@@ -11,7 +11,7 @@ var User = new Schema({
     role: String,
     position: String,
     company: String,
-    curentProject: {
+    currentProject: {
         type: Schema.Types.ObjectId,
         ref: 'Project'
     },

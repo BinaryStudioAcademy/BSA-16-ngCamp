@@ -19,7 +19,7 @@ class httpGeneral {
         this.spinner = spinner;
     }
 
-    sendRequest(object) {
+    sendRequest(object){
         let self = this;
         self.spinner.startSpinn();
         if (typeof object.url !== 'string' || object.url === undefined || object.url.length === 0) {
@@ -35,7 +35,7 @@ class httpGeneral {
             case 'get':
                 return this.$http.get(object.url).then(succesfullRequest, failedRequest);
             case 'post':
-                return this.$http.post(object.url, object.body).then(succesfullRequest, failedRequest);
+                return this.$http.post(object.url, object.body.data).then(succesfullRequest, failedRequest);
             case 'put':
                 return this.$http.put(object.url, object.body).then(succesfullRequest, failedRequest);
             case 'delete':

@@ -1,16 +1,21 @@
 header.header-wrapper
-    nav#navigation
-        ul.row
-            li.col-xs-6
-                input(type='text', placeholder='Search')
-            li.col-xs-3
-                a(href='#') Profile
-            li.col-xs-1
-                a(href='#')
-                    i.fa.fa-blind.fa-lg
-            li.col-xs-1
-                a(href='#')
-                    i.fa.fa-glass.fa-lg
-            li.col-xs-1
-                a(href='#')
-                    i.fa.fa-gavel.fa-lg
+	nav#navigation
+		ul.row.col-xs-8
+			li.col-xs-4
+				.black
+					select(ng-model="$ctrl.currentProjectId",ng-change="$ctrl.setProject()",id="green")
+						option(value="" disable) Select Project
+						option(ng-repeat="project in $ctrl.userProjects track by $index" value='{{project._id}}') {{project.title}}	
+			li.col-xs-4
+				input(type='text', placeholder='Search')
+			li.col-xs-4
+				a(href='#') Profile
+//            li.col-xs-1
+//                a(href='#')
+//                    i.fa.fa-blind.fa-lg
+//            li.col-xs-1
+//                a(href='#')
+//                    i.fa.fa-glass.fa-lg
+//            li.col-xs-1
+//                a(href='#')
+//                    i.fa.fa-gavel.fa-lg
