@@ -3,6 +3,10 @@ var Schema = mongoose.Schema;
 
 var CheckinSchema = new Schema({
     title: String,
+    project:[{
+        type: Schema.Types.ObjectId,
+        ref: "Project"
+    }],
     question: String,
     isTurnedOn: Boolean,
     participants: [{
