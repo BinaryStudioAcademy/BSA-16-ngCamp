@@ -45,4 +45,27 @@ module.exports = function (app) {
         });
     }, apiResponse);
     //===================================================
+    app.get(baseUrl + "from/:startDate/to/:endDate", function (req, res, next) {
+        eventRepository.getByDate(req.params.startDate, req.params.endDate, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        })
+    }, apiResponse);
+    //===================================================
+    app.get(baseUrl + ":id/participants", function (req, res, next) {
+        eventRepository.getParticipants(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        })
+    }, apiResponse);
+    //===================================================
+    app.get(baseUrl + ":id/files", function (req, res, next) {
+        eventRepository.getFiles(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        })
+    }, apiResponse);
 }

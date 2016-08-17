@@ -11,6 +11,7 @@ ValidationService.prototype.addTaskValidation = addTaskValidation;
 ValidationService.prototype.addToDoValidation = addToDoValidation;
 ValidationService.prototype.validationBodyProperty = validationBodyProperty;
 ValidationService.prototype.manageProjectParticipants = manageProjectParticipants;
+ValidationService.prototype.eventsDateValidation = eventsDateValidation;
 
 function MessageValidation(body, callback) {
     if (!body.hasOwnProperty('isDraft')) {
@@ -183,10 +184,20 @@ function addToDoValidation(body, callback) {
     return true;
 }
 //===========================================================
-function manageProjectParticipants(body, callback){
-    if (body.length<=0) {
+function manageProjectParticipants(body, callback) {
+    if (body.length <= 0) {
         callback({
             message: "No participants here"
+        });
+        return false;
+    }
+    return true;
+}
+//============================================================
+function eventsDateValidation(startDate, endDate, callback) {
+    if (!(startDate instanceof Date) || !(endDate instanceof Date)) {
+        callback({
+            message: "Invalid events dates"
         });
         return false;
     }
