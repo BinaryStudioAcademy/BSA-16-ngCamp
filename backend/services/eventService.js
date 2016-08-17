@@ -7,6 +7,8 @@ EventService.prototype.addItem = addItem;
 EventService.prototype.updateEvent = updateEvent;
 EventService.prototype.getByDate = getByDate;
 EventService.prototype.getParticipants = getParticipants;
+EventService.prototype.setParticipants = setParticipants;
+EventService.prototype.setFiles = setFiles;
 EventService.prototype.getFiles = getFiles;
 
 //================================================================
@@ -21,7 +23,7 @@ function updateEvent(id, body, callback) {
 }
 
 function getByDate(startDate, endDate, callback) {
-    if (eventsDateValidation(startDate, endDate)) {
+    if (validationService.eventsDateValidation(startDate, endDate, callback)) {
         eventRepository.getByDate(startDate, endDate, callback);
     }
 }
@@ -32,9 +34,21 @@ function getParticipants(id, callback) {
     }
 }
 
+function setParticipants(id, body, callback) {
+    if (validationService.manageArrayInput(body, callback)) {
+        eventRepository.setParticipants(id, body, callback);
+    }
+}
+
 function getFiles(id, callback) {
     if (id) {
         eventRepository.getFiles(id, callback);
+    }
+}
+
+function setFiles(id, body, callback) {
+    if (validationService.manageArrayInput(body, callback)) {
+        eventRepository.setFiles(id, body, callback);
     }
 }
 
