@@ -7,7 +7,7 @@
           p Change project
         select(ng-if="!proj.flag",ng-model="proj.currentProjectId",ng-change="proj.setProject()")
           option(ng-repeat="project in proj.userProjects track by $index" value='{{project._id}}') {{project.title}}
-      form(name='projectEdit').row.center-xs
+      form(name='projectEdit',ng-if="proj.currentProjectId!=''").row.center-xs
         .wrap
           label
             p Name
@@ -45,3 +45,15 @@
             input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='proj.dtDeadline', is-open='proj.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{proj.dtDeadline}}")
             a.btn.btn-default(type='button', ng-click='proj.open()')
               i.fa.fa-calendar(aria-hidden='true')
+        .wrap
+          label
+            p Delete project:
+          .delete_button
+            button.delete(ng-click="proj.modalToggle()") Delete
+          .confirming_modal(ng-if="proj.modalFlag")
+            .background(ng-click="proj.modalToggle()")
+            .window
+              label Are you Sure?
+              button.confirm(ng-click="proj.deleteProject()") Confirm
+              button.cancel(ng-click="proj.modalToggle()") Cancel
+      h1(ng-if="!proj.currentProjectId!=''").row.center-xs Pick your current project
