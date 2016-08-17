@@ -14,10 +14,11 @@ const readMoreDirective = {
     controller: readMoreController,
     controllerAs: 'readmore',
     transclude: true,
-    scope: {
-        mainText: '=',
-        additionalText: '='
-    },
+    scope: true,
+    //scope: {
+    //    mainText: '=',
+    //    additionalText: '='
+    //},
     link: link
 };
 
