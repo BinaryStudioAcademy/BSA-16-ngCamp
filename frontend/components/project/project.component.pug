@@ -3,45 +3,46 @@
     .main.col-xs-8
       h1 Project Settings
       .changeProj
-        button(ng-click="proj.getProjects()",ng-if="proj.flag") 
-          p Change project
-        select(ng-if="!proj.flag",ng-model="proj.currentProjectId",ng-change="proj.setProject()")
+        button(ng-click="proj.getProjects()",ng-if="proj.flag") Change project
+        select(ng-if="!proj.flag",ng-model="proj.currentProject",ng-change="proj.setProject()")
+          option(value = "" disable) Not selected
           option(ng-repeat="project in proj.userProjects track by $index" value='{{project._id}}') {{project.title}}
+      .goto
+        a(href='') Trash
+        a(href='') Reports
       form(name='projectEdit').row.center-xs
         .wrap
           label
-            p Name
-            i.fa.fa-pencil(ng-click="proj.editName=true",ng-if="!proj.editName")
-            i.fa.fa-check(ng-click="proj.edit('title')",ng-if="proj.editName")
-          p(ng-if="!proj.editName") {{proj.currentProject.title}}
-          input(type="text",ng-model="proj.currentProject.title",ng-if="proj.editName")
+            p Name:
+          input(type='text', name='projectName')
         .wrap
           label
             p Description
-            i.fa.fa-pencil(ng-click="proj.editDesc=true",ng-if="!proj.editDesc")
-            i.fa.fa-check(ng-click="proj.edit('description')",ng-if="proj.editDesc")
-          p(ng-if="!proj.editDesc") {{proj.currentProject.description}}
-          textarea(type="text",ng-model="proj.currentProject.description",ng-if="proj.editDesc")
+          textarea
         .wrap
           label
             p Participants:
-          .participants(ng-model="proj.projectParticipants")
-            .btn-group.open(ng-repeat="participator in proj.projectParticipants track by $index") 
-              a.participant
-                i.fa.fa-user.fa-2x
-                span {{participator.firstName}} {{participator.lastName}}
-                i.fa.fa-times.fa-fw(ng-click="proj.removeParticipant(participator._id)")
-            a(ng-click="proj.addParticipatorFlag=true;")
+            i.fa.fa-user(aria-hidden='true')
+          .participants
+            a(href='#')
               i.fa.fa-plus(aria-hidden='true')
-            select(ng-if="proj.addParticipatorFlag",ng-model="proj.participatorToAdd",ng-change="proj.addParticipator();")
-              option(ng-repeat="participator in proj.users track by $index",value="{{participator._id}}") {{participator.email}} 
         .wrap
           label
             p  Deadline:
-            i.fa.fa-pencil(ng-click="proj.editDeadline=true",ng-if="!proj.editDeadline")
-            i.fa.fa-check(ng-click="proj.edit('deadline')",ng-if="proj.editDeadline")
-          p(ng-if="!proj.editDeadline") {{proj.currentProject.endDate}}
-          p.input-group(ng-if="proj.editDeadline")
-            input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='proj.dtDeadline', is-open='proj.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{proj.dtDeadline}}")
-            a.btn.btn-default(type='button', ng-click='proj.open()')
-              i.fa.fa-calendar(aria-hidden='true')
+            i.fa.fa-exclamation-triangle(aria-hidden='true')
+          select#after-date.col-xs-6(name='')
+            option 12 September 2016
+            option 13 September 2016
+        .wrap
+          label
+            p Delete project:
+          .delete_button
+            button.delete(ng-click="proj.modalToggle()") Delete
+          .confirming_modal(ng-if="proj.modalFlag")
+            .background(ng-click="proj.modalToggle()")
+            .window
+              label Are you Sure?
+              button.confirm(ng-click="proj.deleteProject()") Confirm
+              button.cancel(ng-click="proj.modalToggle()") Cancel
+        .wrap
+          button.col-xs-6(type='submit', form='projectEdit', value='Submit') Save

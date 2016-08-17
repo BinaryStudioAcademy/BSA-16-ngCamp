@@ -5,6 +5,7 @@ ProjectRepository.prototype = new Repository();
 ProjectRepository.prototype.addParticipants= addParticipants;
 ProjectRepository.prototype.removeParticipants= removeParticipants;
 ProjectRepository.prototype.getProjectsByParticipantId = getProjectsByParticipantId;
+ProjectRepository.prototype.changeState = changeState;
 ProjectRepository.prototype.getByIdWithUsers = getByIdWithUsers;
 
 function ProjectRepository() {
@@ -14,7 +15,7 @@ function ProjectRepository() {
 
 function getProjectsByParticipantId(userId, callback) {
  var model = this.model;
- var query = model.find({participants: userId});
+ var query = model.find({participants: userId}).find({status: {$in: ['active','finished']}});
  query.exec(callback);
 }
 
@@ -55,4 +56,21 @@ function removeParticipants(id, data, callback){
     });
     query.exec(callback);
 }
+
+function  changeState( id , state , callback ){
+    var query = this.model;
+
+    var conditions = {
+        _id: id
+    };
+
+    var update = {
+        $set: {
+            "status": state
+        }
+    };
+
+    query.update( conditions , update ).exec( callback );
+}
+
 module.exports = new ProjectRepository();

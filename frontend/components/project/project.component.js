@@ -1,9 +1,10 @@
 import './project.component.styl';
 
 class ProjectComponentController {
-    constructor(popupNotifications, httpGeneral) {
+    constructor(popupNotifications, httpGeneral,$location) {
         this.popupNotifications = popupNotifications;
         this.httpGeneral = httpGeneral;
+        this.location = $location;
         this.userProjects;
         this.userReq = {
             type: "GET",
@@ -11,41 +12,8 @@ class ProjectComponentController {
         };
         this.flag = true;
         this.id = null;
-        this.currentProjectId = window._injectedData.currentProject;
-        this.currentProject;
-        this.projectParticipators;
-        this.addParticipatorFlag = false;
-        this.participatorToAdd;
-        this.participatorToDelete;
-        this.users;
-        this.projectParticipants = [];
-        this.editName = false;
-        this.editDesc = false;
-        this.popup = {
-            opened: false
-        };
-        this.today;
-        this.dtDeadline = new Date();
-        this.editDeadline = false;
-    }
-
-    $onInit() {
-        let self = this;
-        self.projectParticipants = [];
-        self.httpGeneral.sendRequest({
-            type: "GET",
-            url: "api/user"
-        }).then(function(res) {
-            self.users = res;
-            self.httpGeneral.sendRequest({
-                type: "GET",
-                url: `api/projects/${window._injectedData.currentProject}/withUsers`,
-            }).then(function(res) {
-                self.currentProject = res;
-                self.projectParticipants = res.participants;
-                self.dtDeadline = res.endDate;
-            });
-        });
+        this.currentProject = window._injectedData.currentProject || '';
+        this.modalFlag = false;
     }
 
     getProjects() {
@@ -58,101 +26,37 @@ class ProjectComponentController {
 
     setProject() {
         let self = this;
-
-        window._injectedData.currentProject = self.currentProjectId;
+        
+        window._injectedData.currentProject = self.currentProject;
 
         self.httpGeneral.sendRequest({
             type: "PUT",
             url: `api/user/${window._injectedData.userId}`,
             body: {
-                currentProject: self.currentProjectId,
+                currentProject: self.currentProject,
             }
         }).then(function(res) {
             //console.log("Succesfull update currentProject");
         });
-        this.$onInit();
     }
 
-    addParticipator() {
-        let self = this;
-        self.httpGeneral.sendRequest({
-            type: "POST",
-            url: `api/projects/${self.currentProjectId}/participants`,
-            body: {
-                data: [self.participatorToAdd],
-            },
-        }).then(function(res) {
-            console.log("Succesfull add participator");
-        });
-        self.addParticipatorFlag = false;
-        this.$onInit();
+    modalToggle() {
+        this.modalFlag = !this.modalFlag;
     }
 
-    removeParticipant(participator) {
+    deleteProject() {
         let self = this;
         self.httpGeneral.sendRequest({
             type: "DELETE",
-            url: `api/projects/${self.currentProjectId}/participants/${participator}`,
-        }).then(function(res) {
-            console.log("Succesfull delete participator");
+            url: `api/projects/${window._injectedData.currentProject}`
+        }).then(() => {
+            window._injectedData.currentProject = '';
+            self.location.path('/');
         });
-        this.$onInit();
-    }
-    edit(prop) {
-        let self = this;
-        console.log(prop);
-        switch (prop) {
-            case "title":{
-                self.editName = false;
-                self.httpGeneral.sendRequest({
-                    type: "PUT",
-                    url: `api/projects/${self.currentProjectId}`,
-                    body: {
-                        title:self.currentProject.title,
-                    }
-                }).then(function(res) {
-                    console.log("Succesfull edit title");
-                });
-                break;
-            }
-            case "description":{
-                self.editDesc = false;
-                self.httpGeneral.sendRequest({
-                    type: "PUT",
-                    url: `api/projects/${self.currentProjectId}`,
-                    body: {
-                        description:self.currentProject.description,
-                    }
-                }).then(function(res) {
-                    console.log("Succesfull edit description");
-                });
-                break;
-            }
-            case "deadline":{
-                self.editDeadline = false;
-                self.httpGeneral.sendRequest({
-                    type:"PUT",
-                    url: `api/projects/${self.currentProjectId}`,
-                    body: {
-                        endDate:self.dtDeadline,
-                    }
-                }).then(function(res){
-                    console.log("Succesfull edit deadline");
-                });
-                this.$onInit();
-                break;
-            }
-        }
-    }
-    today () {
-        this.dt = new Date();
-    };
-    open() {
-        this.popup.opened = true;
     }
 }
 
-ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral'];
+ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral','$location'];
 
 const projectComponent = {
     controller: ProjectComponentController,
