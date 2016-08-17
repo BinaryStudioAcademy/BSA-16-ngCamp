@@ -6,6 +6,7 @@ class createProjectController {
 		this.projectTitle;
 		this.projectDescription;
 		this.participants = [],
+		this.participantsSet = new Set();
 		this.users;
 		this.status = "active";
 		this.popup = {
@@ -14,6 +15,7 @@ class createProjectController {
         this.today;
         this.deadline = new Date();
         this.modalFlag = false;
+        this.userToAdd;
 	}
 
 	$onInit() {
@@ -44,6 +46,18 @@ class createProjectController {
 		}).then(function(res){
 			console.log("Succesfull create project");
 		});
+	}
+
+	participantUpdate(){
+		let self = this;
+		self.participantsSet.add(self.userToAdd);
+		self.participants = Array.from(self.participantsSet);
+	}
+
+	participantDelete(id){
+		let self = this;
+		self.participantsSet.delete(self.id);
+		self.participants = Array.from(self.participantsSet);
 	}
 
 	modalToggle() {
