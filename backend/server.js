@@ -7,8 +7,8 @@ var bodyParser = require('body-parser'),
     MongoStore = require('connect-mongo')(session),
     sessionSecret = require('./config/session').secret,
     mongoose = require('mongoose');
-    auth = require('./middleware/auth'),
-	fileUpload = require('express-fileupload');
+auth = require('./middleware/auth'),
+    fileUpload = require('express-fileupload');
 
 var app = express();
 
@@ -32,8 +32,8 @@ app.use(express.static(staticPath));
 
 app.use(bodyParser.json());
 app.use(fileUpload());
-app.use(function(req,res,next){
-    console.log(req.session.user);
+app.use(function (req, res, next) {
+    //console.log(req.session.user);
     next();
 });
 
