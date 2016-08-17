@@ -74,8 +74,6 @@
                 list-style none
                 line-height 50px
                 text-align center
-                &:hover
-                    background-color border-grey
                 a
                     display inline-block
                     text-decoration none
@@ -111,6 +109,8 @@
                         -ms-transition 0.3s ease all
                         -o-transition 0.3s ease all
                         transition 0.3s ease all
+                        option:first-child
+                            display none
                     select:hover
                         background-color:#2980B9;
 
