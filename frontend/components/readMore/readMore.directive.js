@@ -14,18 +14,28 @@ const readMoreDirective = {
     controller: readMoreController,
     controllerAs: 'readmore',
     transclude: true,
+    scope: {
+        mainText: '=',
+        additionalText: '='
+    },
     link: link
 };
 
 function link(scope, element, attrs, ctrl, transclude) {
-    const length = attrs.length || 10;
+    const length = attrs.length || 300;
 
     transclude(scope, function (clone, scope) {
         ctrl.text = clone.text();
     });
 
-    ctrl.mainText = ctrl.text.substring(0, length);
-    ctrl.additionalText = ctrl.text.substring(length, ctrl.text.length);
+    if (ctrl.text.length > length) {
+        ctrl.mainText = ctrl.text.substring(0, length);
+        ctrl.additionalText = ctrl.text.substring(length, ctrl.text.length);
+    }
+    else {
+        ctrl.mainText = ctrl.text;
+        ctrl.readmoreFlag = false;
+    }
 }
 
 export {readMoreDirective};
