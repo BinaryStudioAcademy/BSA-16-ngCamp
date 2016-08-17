@@ -1,4 +1,12 @@
 .reports-wrapper {
+  display: block;
+  width: 100%;
+  padding: 1%;
+}
+.reports-wrapper .row {
+  margin: 0;
+}
+.reports-wrapper .reports-wrapper {
   width: 100%;
   padding: 1%;
 }
@@ -25,32 +33,9 @@
 .reports-wrapper .reports-header h3 {
   font-family: "Montserrat";
   font-size: 30px;
+  text-align: left;
 }
-.reports-wrapper .reports-tools .sub-title {
-  font-family: "Montserrat";
-  font-size: 23px;
-}
-.reports-wrapper .reports-tools li span {
-  font-family: "Open Sans";
-  font-size: 18px;
-}
-.reports-wrapper .reports-tools [type='checkbox'] {
-  height: 20px;
-  width: 20px;
-}
-.reports-wrapper .reports-tools select {
-  font-family: "Open Sans";
-  font-size: 18px;
-  margin: 1% auto;
-}
-.reports-wrapper .reports-body {
-  display: none;
-}
-.reports-wrapper .reports-body .report-item-title {
-  font-family: "Montserrat";
-  font-size: 18px;
-}
-.reports-wrapper .report-button {
+.report-button {
   box-shadow: 0px 0px 10px 0px #808080;
   display: flex;
   justify-content: center;
@@ -67,13 +52,13 @@
   cursor: pointer;
   font-family: "Montserrat";
 }
-.reports-wrapper .report-button:hover {
+.report-button:hover {
   box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 4px #1d8dbf;
 }
-.reports-wrapper .report-button:active {
+.report-button:active {
   box-shadow: 0px 0px 0px 0.5px #fff, 0px 0px 0px 2px #1d8dbf, 0px 0px 5px 0px #fff inset;
 }
-.reports-wrapper .button {
+.button {
   box-shadow: 0px 0px 10px 0px #808080;
   display: flex;
   justify-content: center;
@@ -89,9 +74,9 @@
   transition: 0.2s;
   cursor: pointer;
 }
-.reports-wrapper .button:hover {
+.button:hover {
   box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 4px #1d8dbf;
 }
-.reports-wrapper .button:active {
+.button:active {
   box-shadow: 0px 0px 0px 0.5px #fff, 0px 0px 0px 2px #1d8dbf, 0px 0px 5px 0px #fff inset;
 }

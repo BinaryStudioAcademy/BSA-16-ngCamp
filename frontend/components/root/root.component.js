@@ -50,9 +50,9 @@ const rootComponent = {
         name: 'Trash',
         component: 'trashComponent'
     }, {
-        path: '/reports',
+        path: '/reports/...',
         name: 'Reports',
-        component: 'reportsComponent'
+        component: 'reportsMainComponent'
     }, {
         path: '/drafts/',
         name: 'Drafts',
