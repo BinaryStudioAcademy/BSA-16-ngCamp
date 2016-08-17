@@ -28,6 +28,14 @@ module.exports = function (app) {
         });
     }, apiResponse);
 
+    app.get(baseUrl + ':id/withUsers', function (req, res, next) {
+        projectRepository.getByIdWithUsers(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
     app.post(baseUrl, function (req, res, next) {
         projectService.addItem(req.body, function (err, data) {
             res.data = data;
@@ -59,8 +67,8 @@ module.exports = function (app) {
             next();
         });
     }, apiResponse);
-    app.delete(baseUrl + ':id/participants', function (req, res, next) {
-        projectService.removeParticipants(req.params.id, req.body, function (err, data) {
+    app.delete(baseUrl + ':id/participants/:part', function (req, res, next) {
+        projectService.removeParticipants(req.params.id, req.params.part, function (err, data) {
             res.data = data;
             res.err = err;
             next();
