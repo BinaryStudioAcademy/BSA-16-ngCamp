@@ -45,7 +45,13 @@ const rootComponent = {
         path: '/project/',
         name: 'Project',
         component: 'projectComponent'
-    }, {
+    },
+    {
+        path: '/createproject/',
+        name: 'CreateProject',
+        component: 'createProjectComponent'
+    },
+    {
         path: '/trash/',
         name: 'Trash',
         component: 'trashComponent'

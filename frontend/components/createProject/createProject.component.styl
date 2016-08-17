@@ -1,0 +1,74 @@
+@import "../../../public/libs/css/generalComponentsStyle.styl"
+
+.createProject_wrapper
+	.main
+		min-width 400px
+		main-component()
+		h1
+			float left
+			display block
+		.cell
+			display flex
+			margin 25px 0
+			flex-wrap wrap
+			font-family "Montserrat"
+			font-size 20px
+			.cellTitle
+				width 100%
+				*
+					float left
+			.componentTitle
+				font-weight bold
+			.projTitle
+				width 100%
+				input
+					width 80%
+					border-radius 7px
+					border none
+					outline none
+					padding 8px
+					border 1px solid gray
+					color #333
+					&:hover
+						box-shadow: 0 0 7px #3498db
+			.projDescription
+				width 100%
+				textarea
+					max-width 80%
+					min-width 80%
+					border-radius 7px
+					border none
+					outline none
+					padding 8px
+					border 1px solid gray
+					color #333
+					&:hover
+						box-shadow: 0 0 7px #3498db
+			.projDeadline
+				width 100%
+				.deadline_wrapper
+					display inline-flex
+					justify-content center
+					align-items center
+					padding 4px 10px
+					background-color white
+					border 1px solid gray
+					border-radius 7px
+					&:hover
+						box-shadow: 0 0 7px #3498db
+					input
+						background-color none
+						border none
+						outline none
+						padding 8px
+					i
+						font-size 28px
+			.button
+				width 100%
+				display flex
+				justify-content center
+				align-items center
+				.save
+					button()
+					padding 0 25%
+					
