@@ -1,7 +1,7 @@
 import './project.component.styl';
 
 class ProjectComponentController {
-    constructor(popupNotifications, httpGeneral) {
+    constructor(popupNotifications, httpGeneral,$location) {
         this.popupNotifications = popupNotifications;
         this.httpGeneral = httpGeneral;
         this.userProjects;
@@ -9,9 +9,10 @@ class ProjectComponentController {
             type: "GET",
             url: "api/projects/forCurrentUser",
         };
+        this.location = $location;
         this.flag = true;
         this.id = null;
-        this.currentProjectId = window._injectedData.currentProject;
+        this.currentProjectId = window._injectedData.currentProject || '';
         this.currentProject;
         this.projectParticipators;
         this.addParticipatorFlag = false;
@@ -27,6 +28,7 @@ class ProjectComponentController {
         this.today;
         this.dtDeadline = new Date();
         this.editDeadline = false;
+        this.modalFlag = false;
     }
 
     $onInit() {
@@ -144,6 +146,20 @@ class ProjectComponentController {
             }
         }
     }
+    modalToggle() {
+        this.modalFlag = !this.modalFlag;
+    }
+
+    deleteProject() {
+        let self = this;
+        self.httpGeneral.sendRequest({
+            type: "DELETE",
+            url: `api/projects/${window._injectedData.currentProject}`
+        }).then(() => {
+            window._injectedData.currentProject = '';
+            self.location.path('/');
+        });
+    }
     today () {
         this.dt = new Date();
     };
@@ -152,7 +168,7 @@ class ProjectComponentController {
     }
 }
 
-ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral'];
+ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral','$location'];
 
 const projectComponent = {
     controller: ProjectComponentController,

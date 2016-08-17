@@ -55,4 +55,21 @@ function removeParticipants(id, data, callback){
     });
     query.exec(callback);
 }
+
+function  changeState( id , state , callback ){
+    var query = this.model;
+
+    var conditions = {
+        _id: id
+    };
+
+    var update = {
+        $set: {
+            "status": state
+        }
+    };
+
+    query.update( conditions , update ).exec( callback );
+}
+
 module.exports = new ProjectRepository();
