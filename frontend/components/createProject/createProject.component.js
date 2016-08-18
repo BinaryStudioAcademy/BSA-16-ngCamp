@@ -21,19 +21,21 @@ class createProjectController {
 	$onInit() {
         let self = this;
         self.projectParticipants = [];
-        self.httpGeneral.sendRequest({
+        self.http.sendRequest({
             type: "GET",
             url: "api/user"
         }).then(function(res) {
             self.users = res;
+            self.userToAdd = self.users[0]._id;
+            console.log(self.userToAdd);
         });
     }
 
 	save(){
 		let self = this;
-		self.httpGeneral.sendRequest({
+		self.http.sendRequest({
 			type: "POST",
-			url: "api/porjects",
+			url: "api/projects/",
 			body: {
 				data: {
 					title:self.projectTitle,
@@ -41,6 +43,7 @@ class createProjectController {
 					participants:self.participants,
 					endDate:self.deadline,
 					startDate: new Date(),
+					status: 'active'
 				}
 			}
 		}).then(function(res){
@@ -54,9 +57,19 @@ class createProjectController {
 		self.participants = Array.from(self.participantsSet);
 	}
 
+	getUserNameById(id){
+		let self = this;
+		let user = self.users.find((element) => {
+			return element._id === id;
+		});
+
+		return `${user.firstName} ${user.lastName}`;
+	}
+
 	participantDelete(id){
 		let self = this;
-		self.participantsSet.delete(self.id);
+		console.log(id);
+		self.participantsSet.delete(id);
 		self.participants = Array.from(self.participantsSet);
 	}
 

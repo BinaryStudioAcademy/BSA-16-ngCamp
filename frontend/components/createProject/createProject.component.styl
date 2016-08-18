@@ -9,12 +9,13 @@
 			display block
 		.cell
 			display flex
-			margin 25px 0
+			margin 10px 0
 			flex-wrap wrap
 			font-family "Montserrat"
 			font-size 20px
 			.cellTitle
 				width 100%
+				margin-bottom 20px
 				*
 					float left
 			.componentTitle
@@ -54,6 +55,8 @@
 					background-color white
 					border 1px solid gray
 					border-radius 7px
+					cursor pointer
+					user-select none
 					&:hover
 						box-shadow: 0 0 7px #3498db
 					input
@@ -61,6 +64,8 @@
 						border none
 						outline none
 						padding 8px
+						cursor pointer
+						user-select none
 					i
 						font-size 28px
 			.button
@@ -70,5 +75,43 @@
 				align-items center
 				.save
 					button()
+					margin-top 30px
 					padding 0 25%
-					
+			.projParticipants
+				width 100%
+				display block-flex
+				flex-wrap wrap
+				justify-content center
+				align-items center
+				select
+					max-width 80%
+					min-width 80%
+					border-radius 7px
+					border none
+					outline none
+					padding 8px
+					border 1px solid gray
+					color #333
+					&:hover
+						box-shadow: 0 0 7px #3498db
+				.participantCell
+					display flex
+					justify-content center
+					align-items center
+					margin-top 10px
+					.participant_wrapper
+						background-color #1d8dbf
+						display inline-flex
+						padding 10px
+						border-radius 8px
+						.participantTitle
+							color white
+							margin-right 10px
+						.deleteButton
+							i
+								font-size 25px
+								transition all 0.3s ease-out;
+								cursor pointer
+								&:hover
+									color white
+							
