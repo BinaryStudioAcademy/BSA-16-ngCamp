@@ -1,10 +1,17 @@
 header.header-wrapper
-    nav#navigation
-        ul.row
-            li.col-xs-6
-                input(type='text', placeholder='Search')
-            li.col-xs-6
-                a(href='#') Profile
+	nav#navigation
+		ul.row.col-xs-12
+			li.col.xs-3
+				a.createProj(ng-link="[\"CreateProject\"]" href="#/createproject") + New project
+			li.col-xs-3
+				.black
+					select(ng-model="head.currentProjectId",ng-change="head.setProject()",id="green")
+						option(value="" disable) Select Project
+						option(ng-repeat="project in head.userProjects track by $index" value='{{project._id}}') {{project.title}}	
+			li.col-xs-3
+				input(type='text', placeholder='Search')
+			li.col-xs-3
+				a(href='#') Profile
 //            li.col-xs-1
 //                a(href='#')
 //                    i.fa.fa-blind.fa-lg

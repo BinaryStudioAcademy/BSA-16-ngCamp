@@ -3,7 +3,7 @@
     .main.col-xs-7
       .head
         h1 Event name
-        i.fa.fa-times.fa-2x(aria-hidden='true')
+        i.fa.fa-times.fa-2x(aria-hidden='true',ng-click="$ctrl.location.path('/events')")
       form(name='editEvent')
         .date
           div

@@ -1,12 +1,13 @@
 import './eventEdit.component.styl';
 
 class eventEditController {
-    constructor(popupNotifications) {
+    constructor(popupNotifications,$location) {
         this.popupNotifications = popupNotifications;
+        this.location = $location;
     }
 }
 
-eventEditController.$inject = ['popupNotifications'];
+eventEditController.$inject = ['popupNotifications','$location'];
 
 const eventEditComponent = {
     controller: eventEditController,

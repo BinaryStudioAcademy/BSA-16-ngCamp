@@ -21,6 +21,9 @@ import {eventEditComponent} from "./events/eventEdit.component.js";
 import {tasksComponent} from "./tasks/tasks.component.js";
 import {draftsComponent} from "./drafts/drafts.component.js";
 import {testComponent} from "./test/test.component.js";
+import {createProjectComponent} from "./createProject/createProject.component.js";
+import {readMoreDirective} from "./readMore/readMore.directive.js";
+
 
 app.component(messageBoardComponent.selector, messageBoardComponent);
 app.component(filesComponent.selector, filesComponent);
@@ -44,3 +47,5 @@ app.component(eventListComponent.selector, eventListComponent);
 app.component(tasksComponent.selector, tasksComponent);
 app.component(testComponent.selector, testComponent);
 app.component(draftsComponent.selector, draftsComponent);
+app.component(createProjectComponent.selector, createProjectComponent);
+app.directive(readMoreDirective.name, ()=>readMoreDirective);

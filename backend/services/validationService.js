@@ -11,6 +11,8 @@ ValidationService.prototype.addTaskValidation = addTaskValidation;
 ValidationService.prototype.addToDoValidation = addToDoValidation;
 ValidationService.prototype.validationBodyProperty = validationBodyProperty;
 ValidationService.prototype.manageProjectParticipants = manageProjectParticipants;
+ValidationService.prototype.eventsDateValidation = eventsDateValidation;
+ValidationService.prototype.manageArrayInput = manageArrayInput;
 
 function MessageValidation(body, callback) {
     if (!body.hasOwnProperty('isDraft')) {
@@ -183,14 +185,37 @@ function addToDoValidation(body, callback) {
     return true;
 }
 //===========================================================
-function manageProjectParticipants(body, callback){
-    if (body.length<=0) {
+function manageProjectParticipants(body, callback) {
+    if (body.length <= 0) {
         callback({
             message: "No participants here"
         });
         return false;
     }
     return true;
+}
+//===========================================================
+function manageArrayInput(body, callback) {
+    if (body.length <= 0) {
+        callback({
+            message: "Invalid input array"
+        });
+        return false;
+    }
+    return true;
+}
+//============================================================
+function eventsDateValidation(startDate, endDate, callback) {
+    var firstDate = Date.parse(startDate);
+    var secondDate = Date.parse(endDate);
+    if ((isNaN(startDate) && !isNaN(firstDate)) && (isNaN(endDate) && !isNaN(secondDate))) {
+        return true;
+    } else {
+        callback({
+            message: "Invalid events dates"
+        });
+        return false;
+    }
 }
 
 module.exports = new ValidationService();
