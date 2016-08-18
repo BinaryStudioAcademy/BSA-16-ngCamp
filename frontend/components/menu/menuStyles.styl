@@ -1,35 +1,40 @@
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css");
 .side-menu-wrapper
+    height 100%
     padding-top 2%
     position fixed
     left 0
-    top 70px
+    top 0px
     z-index 10
+    .burger
+        margin-top 30px
+        background-color #fbfbfb;
+        color black
+        width 100%
+        height 30px
+        display none
     .fa
         position: relative;
         display: table-cell;
         color #929292
-        width: 60px;
+        width: 50px;
         height: 35px;
         text-align: center;
         vertical-align: middle;
         font-size: 20px;
     .side-menu
-        box-shadow 0px 5px 20px 2px  #808080
-        border-top-right-radius : 5px;
-        border-bottom-right-radius : 5px;
+        padding-top 30px
+        height 100%
+
         background-color #fbfbfb;
         position: absolute;
         left: 0;
-        width: 60px;
+        width: 180px;
         overflow: hidden;
         -webkit-transition: width 0.2s linear;
         transition: width 0.2s linear;
         -webkit-transform: translateZ(0) scale(1, 1);
         z-index: 1000;
-    .side-menu:hover
-        width: 180px;
-        overflow: hidden;
     .side-menu > ul
         margin: 1px 0;
     .side-menu li 
@@ -80,3 +85,64 @@
     .side-menu li:hover > a, nav.side-menu li.active > a, .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus, .no-touch .dashboard-page nav.dashboard-menu ul li:hover a, .dashboard-page nav.dashboard-menu ul li.active a
         color: #fff;
         background-color: #5fa2db;
+
+@media only screen  and (max-width : 1000px), screen and (max-device-width : 1000px)
+    .side-menu-wrapper
+        width 100%
+        display flex
+        .burger
+            display flex
+            justify-content center
+            align-items center
+            width 100%
+        .fa
+            padding-right 15px
+            padding-left 5px
+        .side-menu
+            padding-top 0px
+            width 100%
+            height auto
+            margin-top 60px
+            display none 
+            li 
+                width auto
+                margin-left 5px
+                //- float left
+
+            .nav-text
+
+                width  100%
+    .side-menu-wrapper 
+        //- .side-menu
+    .show
+        display block
+    //- .side-menu 
+    //-     display none
+    //-     li
+    //-         float left
+@media only screen  and (max-width : 720px), screen and (max-device-width : 720px)
+    .side-menu-wrapper
+        .side-menu
+            .fa
+                display none
+            //- margin-top 90px
+            li
+                a
+                    font-size 2.5em
+        .burger
+            height 8%
+            .fa
+                font-size: 2.1em;
+@media only screen  and (max-width : 480px), screen and (max-device-width: 480px)
+    .side-menu-wrapper
+        .side-menu
+            .fa
+                display none
+            margin-top 90px
+            li
+                a
+                    font-size 3.5em
+        .burger
+            height 10%
+            .fa
+                font-size: 3.5em;
