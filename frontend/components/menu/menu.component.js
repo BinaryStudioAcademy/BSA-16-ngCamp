@@ -12,14 +12,6 @@ class MenuComponentController {
     	} else {
           	x.className = "side-menu";
     	}
-    	// console.log(document.getElementsByClassName("side-menu").style.display);
-    	// console.log(a.style.display);
-    	// if (a.style.display == "none" ) {
-    	// 	a.style.display = block;
-    	// } else {
-    	// 	a.style.displaly = none;
-    	// }
-    	// console.log(a);
     }
 }
 
