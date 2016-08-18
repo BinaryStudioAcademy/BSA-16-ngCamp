@@ -3,14 +3,105 @@
         .col-xs-10.reports-holder
             .row.reports-header
                 h3.col-xs-10 Reports
-                .col-xs-1.col-xs-offset-1.fa.fa-close.button
+                .col-xs-1.col-xs-offset-1.fa.fa-close.button.font-button
             hr
-            .row.reports-tools
+            .row.generate-holder.center-xs
+                h3.col-xs-6 Quckly report generating
                 .col-xs-12
+                   .row
+                        span(ng-link = "['Reports Edit']").button.btn.col-xs-4.col-xs-offset-4 Generate
+            .row.reports-recent
+                .col-xs-12
+                    .row.start-xs
+                        span.chapter-title.col-xs-10 Recent
+                            .fa.fa-clock-o
+                    .row.center-xs
+                        table.col-xs-12.review-table
+                            tr.row.t-head
+                                td.col-xs-3 Title
+                                td.col-xs-5 Description
+                                td.col-xs-2 Created
+                            tr.row.t-body
+                                td.col-xs-3 Daily report
+                                td.col-xs-5 Message, Events and Check-Ins report for user in NotBaseCamp project
+                                td.col-xs-2 16/08/2016
+                                td.col-xs-2
+                                    .row.around-xs
+                                        span.col-xs-4.fa.fa-folder-open-o.button.f-btn
+                                        span.col-xs-4.fa.fa-trash.button.f-btn
                     .row
-                        .col-xs-4
+                        .col-xs-1.col-xs-offset-11.button.btn More
+            hr
+            .row.reports-samples
+                .col-xs-12
+                    .row.start-xs
+                        span.chapter-title.col-xs-10 Samples
+                            .fa.fa-bookmark-o
                     .row
-            .row 
+                        .col-xs-12.masonry
+                            .item
+                                .row.start-xs.middle-xs
+                                    .col-xs-8.item-title Daily report
+                                    .col-xs-4
+                                        .row.around-xs
+                                            span.col-xs-5.fa.fa-cog.button.f-btn
+                                            span.col-xs-5.fa.fa-trash.button.f-btn
+                                hr
+                                .row.start-xs.item-row
+                                    .col-xs-4
+                                        span.row.item-def Users:
+                                    .col-xs-8
+                                        span.row.item-value Teemo Cook, David Ivy, Kuba Bryant, Brand Cooper
+                            .item
+                                .row.start-xs.middle-xs
+                                    .col-xs-8.item-title Daily report
+                                    .col-xs-4
+                                        .row.around-xs
+                                            span.col-xs-5.fa.fa-cog.button.f-btn
+                                            span.col-xs-5.fa.fa-trash.button.f-btn
+                                hr
+                                .row.start-xs.item-row
+                                    .col-xs-4
+                                        span.row.item-def Users:
+                                    .col-xs-8
+                                        span.row.item-value Teemo Cook, David Ivy, Kuba Bryant, Brand Cooper
+                                .row.start-xs.item-row
+                                    .col-xs-4
+                                        span.row.item-def Elements:
+                                    .col-xs-8
+                                        span.row.item-value Message, Events
+                            .item
+                                .row.start-xs.middle-xs
+                                    .col-xs-8.item-title Daily report
+                                    .col-xs-4
+                                        .row.around-xs
+                                            span.col-xs-5.fa.fa-cog.button.f-btn
+                                            span.col-xs-5.fa.fa-trash.button.f-btn
+                                hr
+                                .row.start-xs.item-row
+                                    .col-xs-4
+                                        span.row.item-def Users:
+                                    .col-xs-8
+                                        span.row.item-value Teemo Cook, David Ivy, Kuba Bryant, Brand Cooper
+                                .row.start-xs.item-row
+                                    .col-xs-4
+                                        span.row.item-def Elements:
+                                    .col-xs-8
+                                        span.row.item-value Message, Events
+                                .row.start-xs.item-row
+                                    .col-xs-4
+                                        span.row.item-def Date:
+                                    .col-xs-8
+                                        span.row.item-value 16/08/2016
+                    .row
+                        .col-xs-1.col-xs-offset-11.button.btn More
+//                                td.col-xs-1.fa.fa-folder-open-o.button
+//                                td.col-xs-1.fa.fa-pencil.button
+//                                td.col-xs-1.fa.fa-trash.button
+                    hr
+                    
+                    
+                    
 //
 //    section.row.center-xs
 //        section.col-xs-10.reports-holder

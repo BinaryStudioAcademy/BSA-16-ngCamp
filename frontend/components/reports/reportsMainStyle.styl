@@ -2,12 +2,10 @@
 .reports-wrapper
     display block
     width 100%
-    padding 1%
     .row
         margin 0
-    .reports-wrapper
-        width 100%
-        padding 1%
+    hr
+        border-top 1px solid border-grey
     *
         box-sizing border-box
         padding 0px
@@ -27,30 +25,67 @@
             font-size 30px
             text-align left
         padding 1%
-//    .reports-tools
-//        .sub-title
-//            font-family "Montserrat"
-//            font-size 23px
-//        li span
-//            font-family "Open Sans"
-//            font-size 18px
-//        [type='checkbox']
-//            height 20px
-//            width 20px
-//        select
-//            font-family "Open Sans"
-//            font-size 18px
-//            margin 1% auto
-//    .reports-body
-//        display none
-//        .report-item-title
-//            font-family "Montserrat"
-//            font-size 18px
-    .report-button
-        button()
-        font-family "Montserrat"
+    .reports-recent
+        table
+            border-radius 5px
+            box-shadow 0px 2px 3px 2px  border-grey
+            td
+                padding 1%
+                text-align left
+            .t-head
+                font-family "Montserrat"
+                font-size 20px
+                background-color border-grey
+                td
+                    border-right 1px solid white
+            .t-body
+                
+                font-size 18px
+                border-bottom 1px solid border-grey
+                td
+                    font-family "Open Sans"
+                    border-right 1px solid border-grey
+    .reports-samples
+        .masonry
+            -moz-column-count 2
+            -webkit-column-count  2
+            -moz-column-gap 1em
+            -webkit-column-gap 1em
+        .item
+            display inline-block
+            background-color #ededed
+            margin  1%
+            padding  2%
+            width 100% 
+            border 2px solid main-blue
+            border-radius 5px
+            box-shadow 0px 2px 3px 2px  border-grey
+            font-family "Montserrat"
+            font-size 18px
+            .item-title
+                font-size 20px
+            .item-def
+                font-weight bold
+                 font-size 20px
+            .item-value
+                 font-family "Open Sans"
+            .item-row
+                margin-bottom 2%
+                
+                
     .button
         button()
-//    
-//
-//        
+    .btn
+        font-family "Montserrat"
+        height 40px
+        font-size 20px
+     .f-btn
+        font-family "FontAwesome" 
+        height 40px
+        font-size 20px
+    .chapter-title
+        font-family "Montserrat"
+        font-size 25px
+        div
+            padding 2%
+            
