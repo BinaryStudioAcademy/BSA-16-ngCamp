@@ -3,6 +3,7 @@ import './createProject.component.styl';
 class createProjectController {
 	constructor(httpGeneral,$location) {
 		this.http = httpGeneral;
+		this.location = $location;
 		this.projectTitle;
 		this.projectDescription;
 		this.participants = [],
@@ -27,12 +28,13 @@ class createProjectController {
         }).then(function(res) {
             self.users = res;
             self.userToAdd = self.users[0]._id;
-            console.log(self.userToAdd);
         });
     }
 
 	save(){
 		let self = this;
+		self.participantsSet.add(window._injectedData.userId);
+		self.participants = Array.from(self.participantsSet);
 		self.http.sendRequest({
 			type: "POST",
 			url: "api/projects/",
@@ -49,6 +51,7 @@ class createProjectController {
 		}).then(function(res){
 			console.log("Succesfull create project");
 		});
+		self.location.path('/');
 	}
 
 	participantUpdate(){
