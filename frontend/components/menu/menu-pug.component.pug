@@ -1,5 +1,8 @@
 aside.side-menu-wrapper
-    nav.side-menu
+    .burger
+        a(ng-click="MenuCtrl.showMenu()")
+            i.fa.fa-bars
+    nav#side-menu.side-menu
         ul
             li
                 a(ng-link='["MainPage"]')
