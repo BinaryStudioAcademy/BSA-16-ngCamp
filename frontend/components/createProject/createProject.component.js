@@ -1,25 +1,26 @@
 import './createProject.component.styl';
 
 class createProjectController {
-	constructor(httpGeneral,$location) {
-		this.http = httpGeneral;
-		this.location = $location;
-		this.projectTitle;
-		this.projectDescription;
-		this.participants = [],
-		this.participantsSet = new Set();
-		this.users;
-		this.status = "active";
-		this.popup = {
+    constructor(httpGeneral, $location,$window) {
+        this.http = httpGeneral;
+        this.location = $location;
+        this.window = $window;
+        this.projectTitle;
+        this.projectDescription;
+        this.participants = [],
+        this.participantsSet = new Set();
+        this.users;
+        this.status = "active";
+        this.popup = {
             opened: false
         };
         this.today;
         this.deadline = new Date();
         this.modalFlag = false;
         this.userToAdd;
-	}
+    }
 
-	$onInit() {
+    $onInit() {
         let self = this;
         self.projectParticipants = [];
         self.http.sendRequest({
@@ -31,55 +32,56 @@ class createProjectController {
         });
     }
 
-	save(){
-		let self = this;
-		self.participantsSet.add(window._injectedData.userId);
-		self.participants = Array.from(self.participantsSet);
-		self.http.sendRequest({
-			type: "POST",
-			url: "api/projects/",
-			body: {
-				data: {
-					title:self.projectTitle,
-					description:self.projectDescription,
-					participants:self.participants,
-					endDate:self.deadline,
-					startDate: new Date(),
-					status: 'active'
-				}
-			}
-		}).then(function(res){
-			console.log("Succesfull create project");
-		});
-		self.location.path('/');
-	}
+    save() {
+        let self = this;
+        self.participantsSet.add(window._injectedData.userId);
+        self.participants = Array.from(self.participantsSet);
+        self.http.sendRequest({
+            type: "POST",
+            url: "api/projects/",
+            body: {
+                data: {
+                    title: self.projectTitle,
+                    description: self.projectDescription,
+                    participants: self.participants,
+                    endDate: self.deadline,
+                    startDate: new Date(),
+                    status: 'active'
+                }
+            }
+        }).then(function(res) {
+            console.log("Succesfull create project");
+        });
+        self.window.location.reload();
+        self.location.path('/');
+    }
 
-	participantUpdate(){
-		let self = this;
-		self.participantsSet.add(self.userToAdd);
-		self.participants = Array.from(self.participantsSet);
-	}
+    participantUpdate() {
+        let self = this;
+        self.participantsSet.add(self.userToAdd);
+        self.participants = Array.from(self.participantsSet);
+    }
 
-	getUserNameById(id){
-		let self = this;
-		let user = self.users.find((element) => {
-			return element._id === id;
-		});
+    getUserNameById(id) {
+        let self = this;
+        let user = self.users.find((element) => {
+            return element._id === id;
+        });
 
-		return `${user.firstName} ${user.lastName}`;
-	}
+        return `${user.firstName} ${user.lastName}`;
+    }
 
-	participantDelete(id){
-		let self = this;
-		console.log(id);
-		self.participantsSet.delete(id);
-		self.participants = Array.from(self.participantsSet);
-	}
+    participantDelete(id) {
+        let self = this;
+        console.log(id);
+        self.participantsSet.delete(id);
+        self.participants = Array.from(self.participantsSet);
+    }
 
-	modalToggle() {
+    modalToggle() {
         this.modalFlag = !this.modalFlag;
     }
-    today () {
+    today() {
         this.dt = new Date();
     };
     open() {
@@ -88,17 +90,18 @@ class createProjectController {
 }
 
 createProjectController.$inject = [
-	'httpGeneral',
-	'$location',
+    'httpGeneral',
+    '$location',
+    '$window',
 ];
 
 const createProjectComponent = {
-	controller: createProjectController,
-	selector: 'createProjectComponent',
-	template: require('./createProject-pug.component.pug')(),
-	controllerAs: 'createProj'
+    controller: createProjectController,
+    selector: 'createProjectComponent',
+    template: require('./createProject-pug.component.pug')(),
+    controllerAs: 'createProj'
 };
 
 export {
-	createProjectComponent
+    createProjectComponent
 };
