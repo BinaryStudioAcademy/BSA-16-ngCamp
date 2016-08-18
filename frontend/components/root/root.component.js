@@ -34,6 +34,10 @@ const rootComponent = {
         name: 'CheckinsCreate',
         component: 'checkinsCreateComponent'
     }, {
+        path: '/checkinsIndo/',
+        name: 'CheckinsInfo',
+        component: 'checkinsInfoComponent'
+    }, {
         path: '/tasks/',
         name: 'Tasks',
         component: 'tasksComponent'
