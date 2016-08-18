@@ -1,4 +1,5 @@
 var projectRepository = require('../repositories/projectRepository');
+var userRepository = require('../repositories/userRepository');
 var validationService = require('./validationService');
 var projectSchema = require('../schemas/projectSchema');
 function ProjectService() {}
@@ -27,11 +28,9 @@ function getProjectsForCurrentUser(userId, callback) {
 
 
 function deleteItem(id, callback) {
-    var project = projectRepository.getById(id, function(err, project) {
-        if (project) {
-            project.remove(callback);
-        }
-    });
+    var state = "deleted";
+    userRepository.removeProjectfromUser(id);
+    projectRepository.changeState(id , state, callback);
 }
 
 function addParticipants(id, body, callback) {
