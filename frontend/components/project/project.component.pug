@@ -34,6 +34,7 @@
                 i.fa.fa-times.fa-fw(ng-click="proj.removeParticipant(participator._id)")
             a(ng-click="proj.addParticipatorFlag=true;")
               i.fa.fa-plus(aria-hidden='true')
+                lable Add Participant
             select(ng-if="proj.addParticipatorFlag",ng-model="proj.participatorToAdd",ng-change="proj.addParticipator();")
               option(ng-repeat="participator in proj.users track by $index",value="{{participator._id}}") {{participator.email}} 
         .wrap

@@ -9,14 +9,14 @@
     margin-bottom 50px
     height 35px
     button
-      display flex
-      flex-wrap no-wrap
       font-family "Montserrat"
       font-size 20px
-      flex-direction column
+      line-height 35px
       button()
+      padding 0 10px
       p
         align-self center
+        margin 0
     select
       height 140%
       width 50%
@@ -38,6 +38,7 @@
     font-weight bold
     font-size 30px
   .main
+    min-width 400px
     padding 1%
     border 1px solid border-grey
     border-radius 10px
@@ -64,10 +65,20 @@
         font-size 25px
         font-weight 400
         float left
-        width 7em
+        width 100%
         margin-right 0.5em
         display flex
         justify-content center
+        align-items center
+        p
+          margin 0
+          margin-right 15px
+        i
+          cursor pointer
+          transition all 0.2s ease-out
+          &:hover
+            color #1d8dbf
+            
       .wrap
         align-items center
         float left
@@ -99,18 +110,27 @@
       font-family "Open Sans"
       font-weight 300
       font-size 17px
-      a
+      > a
         align-self center
-        margin-left 4px
-        margin-bottom 4px
+        margin-left 15px
+        cursor pointer
+        transition all 0.3s ease-out
+        i
+          font-size 24px
+          lable
+            font-family "Open Sans"
+            font-size 18px
+            margin-left 5px
       .participant 
         background-color: #008CBA
         border none
         color white
-        padding 15px 32px
+        padding 7px 24px
         text-align center
         text-decoration none
-        display inline-block
+        display inline-flex
+        justify-content center
+        align-items center
         font-size 16px
         margin 4px 2px
         cursor pointer
