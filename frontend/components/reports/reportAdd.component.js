@@ -1,4 +1,4 @@
-import "./reportAddStyle.styl";
+import "./reportsStyle.styl";
 
 class ReportAddComponentController {
     constructor() {
