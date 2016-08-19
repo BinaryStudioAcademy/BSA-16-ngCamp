@@ -34,7 +34,7 @@ const rootComponent = {
         name: 'CheckinsCreate',
         component: 'checkinsCreateComponent'
     }, {
-        path: '/checkinsIndo/',
+        path: '/checkinsInfo/',
         name: 'CheckinsInfo',
         component: 'checkinsInfoComponent'
     }, {
