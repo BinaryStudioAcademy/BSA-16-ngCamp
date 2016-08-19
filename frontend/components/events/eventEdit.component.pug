@@ -5,26 +5,35 @@
         h1 Event name
         i.fa.fa-times.fa-2x(aria-hidden='true',ng-click="$ctrl.location.path('/events')")
       form(name='editEvent')
+        .title
+          input(type='text',name='eventTitle',ng-model="$ctrl.title")
         .date
-          div
-            p Date
-            select
-              option 12 September 2016
-              option 13 September 2016
-          div
-            p Time
-            input(type='time', name='usr_time')
-        textarea#editor1(name='editor1')
-          | This is my textarea to be replaced with CKEditor.
+          .dataPicker
+            h1 Start Date
+            .picker
+              input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.date', is-open='$ctrl.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.date}}")
+              a.btn.btn-default(type='button', ng-click='$ctrl.open()')
+                i.fa.fa-calendar(aria-hidden='true')
+            h1 End Date
+            .picker
+              input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.endDate', is-open='$ctrl.popup1.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.endDate}}")
+              a.btn.btn-default(type='button', ng-click='$ctrl.open1()')
+                i.fa.fa-calendar(aria-hidden='true')
+        h1 Description
+        textarea(ng-model = "$ctrl.desc")
         .participants
           i.fa.fa-user(aria-hidden='true')
-          a(href='#')
+          select(ng-change = "$ctrl.participantUpdate()" ng-model = "$ctrl.userToAdd")
+            option(ng-repeat="user in $ctrl.users track by $index" value="{{user._id}}") {{user.email}}
+          .participantCell(ng-repeat='userid in $ctrl.participants track by $index')
+            .participant_wrapper
+              .participantTitle {{$ctrl.getUserNameById(userid)}}
+              .deleteButton(ng-click = "$ctrl.participantDelete(userid)")
+                i.fa.fa-times.fa-fw
+          a()
             i.fa.fa-plus(aria-hidden='true')
         .period
           div
-            | Regular
-            input(type='checkbox', name='Regular')
-            select
-              option work week day
-              option work mounth day
-          button(type='submit', form='eventEdit', value='Submit') Save
+            | Is all day
+            input(type='checkbox',ng-model="$ctrl.allDay")
+          button(type='submit', form='eventEdit', value='Submit',ng-click="$ctrl.save()") Save
