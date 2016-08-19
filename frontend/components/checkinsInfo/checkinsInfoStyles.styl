@@ -1,20 +1,6 @@
 .checkins-answer-wrapper
     margin 5%
-    li
-        list-style none
-    .header-answer
-        height 20%
-        button
-            font-size 18px
-            margin 15px
-            padding 5px
-            border-radius 10px
-            cursor pointer
-            background-color #1d8dbf
-            &:hover
-                background-color #27bcff
-        h2
-            margin 0
+
     .checkins-answer
         display flex
         flex-flow row wrap
@@ -30,30 +16,56 @@
 
     .header-answer, .list
         border-bottom 1px solid #adadad
-    nav
+
+    li
+        list-style none
+
+    .header-answer
+        height 20%
+        h2
+            margin 0
+        i
+            color #212121
+            margin-left 5px
+
+    .close-btn
+        text-align right
+        margin-top 5px
+        margin-right 10px
+
+    .control-btn
         display flex
-        justify-content space-between
+        justify-content space-around
         margin 15px
-        ul
-            display flex
-        a
-            text-decoration none
-            margin 0 auto
-            margin 10px
-            color black
-            &:hover
-                color #1d8dbf
+
+    .fa-pencil-square-o
+        &:hover
+            color #ffa502
+
+    .fa-trash-o
+        &:hover
+            color #f20000
+
+    .fa-times
+        &:hover
+            color #f20000
+
+    .fa-commenting-o
+        &:hover
+            color #00c000
+
     .main-answer
         height 80%
+
     .qq-list
         li
             font-size 18px
             padding 1%
+
     .name
         font-weight bold
+
     .list
-        text-decoration none
         text-align left
-        list-style none
         margin-right 15px
 

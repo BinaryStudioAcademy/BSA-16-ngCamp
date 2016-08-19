@@ -1,55 +1,66 @@
 .checkins-setup-wrapper
     .checkins-setup
         .header-setup
-            div
-                h3 What question do you want to ask?
-                input.question(type='text', placeholder='Type your question...')
+            .close-btn
+                a(ng-link='["Checkins"]')
+                    i.fa.fa-times.fa-2x
+            h3 What question do you want to ask?
+            input.question(type='text', placeholder='Type your question...')
         .main-setup
+            h3 Who do you want to ask?
             ul.user-list
-                h3 Who do you want to ask?
-                li#all-list.list
-                    span Check All
-                    input.checkbox-btn(type='checkbox')
                 li.list
-                    span Name Surname
-                    input.checkbox-btn(type='checkbox')
+                    label#check-all.checkbox
+                        span Check All
+                        input(type='checkbox', ng-model='all')
                 li.list
-                    span Name Surname
-                    input.checkbox-btn(type='checkbox')
+                    label.checkbox
+                        span Name Surname
+                        input(type='checkbox', ng-checked='all')
                 li.list
-                    span Name Surname
-                    input.checkbox-btn(type='checkbox')
+                    label.checkbox
+                        span Name Surname
+                        input(type='checkbox', ng-checked='all')
                 li.list
-                    span Name Surname
-                    input.checkbox-btn(type='checkbox')
+                    label.checkbox
+                        span Name Surname
+                        input(type='checkbox', ng-checked='all')
                 li.list
-                    span Name Surname
-                    input.checkbox-btn(type='checkbox')
+                    label.checkbox
+                        span Name Surname
+                        input(type='checkbox', ng-checked='all')
                 li.list
-                    span Name Surname
-                    input.checkbox-btn(type='checkbox')
+                    label.checkbox
+                        span Name Surname
+                        input(type='checkbox', ng-checked='all')
                 li.list
-                    span Name Surname
-                    input.checkbox-btn(type='checkbox')
+                    label.checkbox
+                        span Name Surname
+                        input(type='checkbox', ng-checked='all')
                 li.list
-                    span Name Surname
-                    input.checkbox-btn(type='checkbox')
+                    label.checkbox
+                        span Name Surname
+                        input(type='checkbox', ng-checked='all')
                 li.list
-                    span Name Surname
-                    input.checkbox-btn(type='checkbox')
+                    label.checkbox
+                        span Name Surname
+                        input(type='checkbox', ng-checked='all')
+                li.list
+                    label.checkbox
+                        span Name Surname
+                        input(type='checkbox', ng-checked='all')
         .footer-setup
             h3 How frequently should we ask it?
-            div
-                select
+            .schedule
+                select#schedule-first
                     option(value='') Every weekday
                     option(value='') Every Monday
                     option(value='') Every Friday
                     option(value='') Every other Monday
                     option(value='') Every other Friday
                     option(value='') First Monday of every month
-                select
+                select#schedule-second
                     option(value='') at the beginning of the day
                     option(value='') at the end of the day
-            div
-                button(ng-link='["Checkins"]') Cancel
-                button Save
+                a(href='')
+                    i.fa.fa-floppy-o.fa-3x
