@@ -1,4 +1,4 @@
-import "./reportsMainStyle.styl";
+import "./reportsStyle.styl";
 
 
 class ReportsMainComponentController {
