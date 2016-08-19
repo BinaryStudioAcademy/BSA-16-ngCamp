@@ -68,8 +68,9 @@ class createProjectController {
             return element._id === id;
         });
 
-        return `${user.firstName} ${user.lastName}`;
-    }
+		return `${user.firstName} ${user.lastName || ""}`;
+	}
+
 
     participantDelete(id) {
         let self = this;

@@ -9,14 +9,14 @@
     margin-bottom 50px
     height 35px
     button
-      display flex
-      flex-wrap no-wrap
       font-family "Montserrat"
       font-size 20px
-      flex-direction column
+      line-height 35px
       button()
+      padding 0 10px
       p
         align-self center
+        margin 0
     select
       height 140%
       width 50%
@@ -38,6 +38,7 @@
     font-weight bold
     font-size 30px
   .main
+    min-width 400px
     padding 1%
     border 1px solid border-grey
     border-radius 10px
@@ -64,55 +65,151 @@
         font-size 25px
         font-weight 400
         float left
-        width 7em
+        width 80%
         margin-right 0.5em
         display flex
-        justify-content center
+        align-items center
+        p
+          margin 0
+          margin-right 15px
+        i
+          cursor pointer
+          transition all 0.2s ease-out
+          &:hover
+            color #1d8dbf
+        + p
+          width 80%
+          font-size 1.2em
+          color gray
+        .description
+          margin-top 1em
+            
       .wrap
         align-items center
         float left
         clear left
         width 100%
-        padding-bottom 1em
+        margin-bottom 2em
         display flex
         flex-direction column
         flex-wrap wrap
+        box-sizing padding box
+        min-height 110px
+        &:after
+          content ''
+          height 1px
+          margin-top 0.5em
+          width 80%
+          display block
+          background-image -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+          background-image    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+          background-image     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+          background-image      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+      
+        .dateEditor
+          display flex
+          align-items center
+          justify-content center
+          background-color white
+          border 1px solid black
+          border-radius 7px
+          padding 3px
+          input
+            border none
+            outline none
+            padding 0.1em
+            font-size 28px
+          a
+            cursor pointer
+            color black
+            
+          
+      .last:after
+        height 0
+        margin 0
       i
         align-self center
         margin-right 3px
-      input
-        min-width 60%
+      input:not(.date)
+        min-width 75%
         max-width 75%
+        border-radius 7px
+        outline none
+        border none
+        border 1px solid grey
+        padding 0.3em
+        font-size 28px
+        &:hover
+          box-shadow: 0 0 7px #3498db
       textarea
-        min-width 60%
+        min-width 75%
         max-width 75%
-        height 150px
+        border-radius 7px
+        outline none
+        border none
+        border 1px solid grey
+        padding 0.3em
+        font-size 28px
+        &:hover
+          box-shadow: 0 0 7px #3498db
       select
-        min-width 60%
-        max-width 75%
+        width 100%
+        border-radius 7px
+        outline none
+        border none
+        border 1px solid grey
+        padding 0.3em
+        font-size 28px
+        &:hover
+          box-shadow: 0 0 7px #3498db
+        option
+          &:first-child
+            display none
     .participants
-      min-width 60%
+      min-width 75%
       max-width 75%
       display flex
       flex-direction row
       flex-wrap wrap
+      margin 1em 0
       font-family "Open Sans"
       font-weight 300
       font-size 17px
-      a
+      > a
         align-self center
-        margin-left 4px
-        margin-bottom 4px
+        margin-left 15px
+        cursor pointer
+        transition all 0.3s ease-out
+        i
+          font-size 24px
+          lable
+            font-family "Open Sans"
+            font-size 18px
+            margin-left 5px
+      .addUser
+        display flex
+        align-items center
+        justify-content center
+        text-decoration none
+        lable
+          font-family "Open Sans"
+          font-size 18px
+          margin-left 5px
+          line-height 24px
+        i
+          font-size 24px
       .participant 
         background-color: #008CBA
         border none
         color white
-        padding 15px 32px
+        padding 7px 24px
         text-align center
         text-decoration none
-        display inline-block
+        display inline-flex
+        justify-content center
+        align-items center
         font-size 16px
-        margin 4px 2px
+        margin 10px 2px
         cursor pointer
         border-radius 12px
     .delete_button
@@ -130,6 +227,7 @@
         line-height 50%
         width 40%
         font-size 24px
+        min-width 13em
     .confirming_modal
       button
         font-family "Montserrat"

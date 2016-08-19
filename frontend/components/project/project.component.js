@@ -85,6 +85,7 @@ class ProjectComponentController {
             },
         }).then(function(res) {
             console.log("Succesfull add participator");
+            self.participatorToAdd = "";
         });
         self.addParticipatorFlag = false;
         this.$onInit();
@@ -165,6 +166,10 @@ class ProjectComponentController {
     };
     open() {
         this.popup.opened = true;
+    }
+    localDate(date){
+        let newDate = new Date(date);
+        return newDate.toLocaleDateString();
     }
 }
 
