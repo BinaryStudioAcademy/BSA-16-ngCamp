@@ -1,9 +1,12 @@
 import './test.styl';
 
 class testCtrl {
-    constructor() {
+    constructor(DailyCalendarHelper) {
         let vm = this;
         vm.alert = () => alert('test');
+
+        vm.timeStamps = DailyCalendarHelper.getTimeStampsDaily();
+        console.log(vm.timeStamps);
 
         vm.currentDate = new Date();
         vm.isChangeDate = false;
@@ -16,6 +19,8 @@ class testCtrl {
         };
     }
 }
+
+testCtrl.$inject = ['DailyCalendarHelper'];
 
 const testComponent = {
     controller: testCtrl,

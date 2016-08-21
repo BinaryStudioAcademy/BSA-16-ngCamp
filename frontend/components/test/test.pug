@@ -1,10 +1,16 @@
-header.day-header
-    i.fa.fa-chevron-left(ng-click='ts.changeDateOfStep(-1)')
-    span.current-day
-        span.show-current-day(ng-click='ts.startChangeDate()')
-            |{{ts.currentDate| date: 'd MMM yyyy'}}
-        div(uib-datepicker='', datepicker-options='options', show-button-bar='false', ng-model='ts.currentDate', ng-if='ts.isChangeDate', ng-click='ts.endChangeDate()')
-    i.fa.fa-chevron-right(ng-click='ts.changeDateOfStep(1)')
-
-    //div(style='display:inline-block; min-height:290px;')
-    //  .well.well-sm(uib-datepicker='', ng-model='dt', datepicker-options='options')
+section.calendar-day
+    header.day-header
+        i.fa.fa-chevron-left(ng-click='ts.changeDateOfStep(-1)')
+        span.current-day
+            span.show-current-day(ng-click='ts.startChangeDate()')
+                |{{ts.currentDate| date: 'd MMM yyyy'}}
+            div(uib-datepicker='', datepicker-options='options', show-button-bar='false', ng-model='ts.currentDate', ng-if='ts.isChangeDate', ng-click='ts.endChangeDate()')
+        i.fa.fa-chevron-right(ng-click='ts.changeDateOfStep(1)')
+    section.day-body
+        table.day-in-table
+            tbody
+                tr.hour-row(ng-repeat='timeSt in ts.timeStamps')
+                    td.hourCell
+                        |{{timeSt.value}}:00
+                    td.events
+                        |Events
