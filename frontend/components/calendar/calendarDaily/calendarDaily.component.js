@@ -6,10 +6,10 @@ class CalendarDailyCtrl {
         vm.alert = () => alert('test');
 
         vm.timeStamps = DailyCalendarHelper.getTimeStampsDaily();
-        console.log(vm.timeStamps);
 
         vm.currentDate = new Date();
         vm.isChangeDate = false;
+
         vm.startChangeDate = () => vm.isChangeDate = true;
         vm.endChangeDate = () => vm.isChangeDate = false;
         vm.changeDateOfStep = (step) => {

@@ -7,8 +7,9 @@ section.calendar-day
             div.datepicker(uib-datepicker='', datepicker-options='options', show-button-bar='false', ng-model='cd.currentDate', ng-if='cd.isChangeDate', ng-click='cd.endChangeDate()')
         i.fa.fa-chevron-right(ng-click='cd.changeDateOfStep(1)')
     section.day-body
-        table.day-in-table
+        table#dailyCalendar.day-in-table
             tbody
+                //time-indicator(table='dailyCalendar')
                 tr.hourRow(ng-repeat='timeSt in cd.timeStamps')
                     td.hourCell
                         |{{timeSt.value}}:00
