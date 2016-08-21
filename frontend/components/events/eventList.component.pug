@@ -28,32 +28,21 @@
                                     input.form-control(type='text', uib-datepicker-popup='', ng-model='vm.dtto', is-open='vm.popup2.opened', datepicker-options='vm.dateOptions',                    ng-required='true', close-text='Close')
                                     span.input-group-btn
                                         button.btn.btn-default(type='button', ng-click='vm.open2()')
-                                            i.fa.fa-calendar(aria-hidden='true')
-                            
-                            hr
-                          
-            section.row.big-date
-                h2.col-xs-4.col-xs-offset-4 13 May 2013
-
-            section.events-items
+                                            i.fa.fa-calendar(aria-hidden='true')  
+                section.row
+                    section.button.comment-button.col-xs-4.col-xs-offset-4(ng-click="vm.filter()") Filter   
+                            hr                       
+            section.events-items(ng-repeat="event in vm.userEvents track by $index")
                 .event
                     .section.row.event-header
                         section.row.col-xs-6.event-name
-                            h2  Event1  
+                            a(ng-link="[\'Edit event\', {id: event._id}]")
+                                h2  {{event.title}}  
                             i.fa.fa-folder-open-o.fa-2x
                         .col-xs-2.col-xs-offset-4
                             i.fa.fa-comment.fa-2x
                             i.fa.fa-rss.fa-2x
                     .event-body
-                        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus condimentum efficitur quam, nec tristique urna. Cum sociis natoque         penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque lobortis sem sed metus suscipit, ut euismod massa       scelerisque. Fusce interdum pharetra nulla
-                hr
-                .event
-                    .section.row.event-header
-                        section.row.col-xs-6.event-name
-                            h2  Event1 
-                            i.fa.fa-folder-open-o.fa-2x
-                        .col-xs-2.col-xs-offset-4
-                            i.fa.fa-comment.fa-2x
-                            i.fa.fa-rss.fa-2x
-                    .event-body
-                        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus condimentum efficitur quam, nec tristique urna. Cum sociis natoque         penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque lobortis sem sed metus suscipit, ut euismod massa       scelerisque. Fusce interdum pharetra nulla
+                        p {{event.description}}
+                
+                
