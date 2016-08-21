@@ -22,7 +22,7 @@ const eventsComponent = {
 	},{
   		path:'/post',
   		name:'CreateEvent',
-  		component:'eventEditComponent',
+  		component:'eventCreateComponent',
 	},{
  		path:'/:id/post',
  		name:'Edit event',

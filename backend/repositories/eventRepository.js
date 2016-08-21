@@ -27,7 +27,8 @@ function getByDate(startDate, endDate, callback) {
         description: 1,
         project: 1,
         startDate: 1,
-        endDate: 1
+        endDate: 1,
+        participants: 1
     });
     query.exec(callback);
 }
