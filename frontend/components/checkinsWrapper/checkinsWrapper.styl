@@ -1,0 +1,51 @@
+.checkins-wrapper
+  width 90%
+  height 500px
+  margin 0 auto
+
+
+.resize-main
+  display flex
+  height 100%
+  background #fff
+  border 1px solid border-grey
+  border-radius 10px
+  background-color white
+  box-shadow 0px 5px 20px 2px  #808080
+
+.resize-content
+  flex 1
+  display flex
+  flex-flow column nowrap
+  justify-content space-around
+  align-content space-around
+  padding 7px
+  overflow hidden
+
+.resize-row
+  min-height 50px
+  flex 1
+  display flex
+  flex-flow row nowrap
+  justify-content space-around
+  align-content space-around
+  &.resizable
+    flex 0 0 300px
+
+section
+  box-sizing border-box
+  border-radius 10px
+  padding 1.25em 1.75em
+  flex 1
+  min-width 30px
+  &.resizable
+    flex 0 0 300px
+
+#one
+  background #7bd389
+  color #2d883c
+
+#two
+  background #dc248b
+  color #372aa8
+

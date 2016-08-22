@@ -1,9 +1,12 @@
 import './project.component.styl';
 
 class ProjectComponentController {
-    constructor(popupNotifications, httpGeneral, $location) {
+
+    constructor(popupNotifications, httpGeneral,$location,$window) {
+
         this.popupNotifications = popupNotifications;
         this.httpGeneral = httpGeneral;
+        this.window = $window;
         this.userProjects;
         this.userReq = {
             type: "GET",
@@ -158,6 +161,7 @@ class ProjectComponentController {
             url: `api/projects/${window._injectedData.currentProject}`
         }).then(() => {
             window._injectedData.currentProject = '';
+            self.window.location.reload();
             self.location.path('/');
         });
     }
@@ -173,7 +177,7 @@ class ProjectComponentController {
     }
 }
 
-ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral','$location'];
+ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral','$location','$window'];
 
 const projectComponent = {
     controller: ProjectComponentController,

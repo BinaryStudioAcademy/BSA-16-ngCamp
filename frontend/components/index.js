@@ -24,7 +24,10 @@ import {tasksComponent} from "./tasks/tasks.component.js";
 import {draftsComponent} from "./drafts/drafts.component.js";
 import {testComponent} from "./test/test.component.js";
 import {createProjectComponent} from "./createProject/createProject.component.js";
+import {checkinsWrapperComponent} from "./checkinsWrapper/checkinsWrapper.component";
+import {angularResizableDirective} from "./angularResizable/angularResizable.directive";
 import {calendarDailytComponent} from "./calendar/calendarDaily/calendarDaily.component.js";
+
 
 app.component(messageBoardComponent.selector, messageBoardComponent);
 app.component(filesComponent.selector, filesComponent);
@@ -51,4 +54,7 @@ app.component(tasksComponent.selector, tasksComponent);
 app.component(testComponent.selector, testComponent);
 app.component(draftsComponent.selector, draftsComponent);
 app.component(createProjectComponent.selector, createProjectComponent);
+app.component(checkinsWrapperComponent.selector, checkinsWrapperComponent);
+app.directive('resizable', angularResizableDirective);
 app.component(calendarDailytComponent.selector, calendarDailytComponent);
+
