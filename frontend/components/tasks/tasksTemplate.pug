@@ -15,7 +15,7 @@
 					input(type="text")
 		.wrapper_task.row.center-xs(ng-repeat = "task in tasksctrl.tasks track by $index")
 			.task_progress.col-xs-3
-				.content(ng-if = "task.toDoList.length") {{task.progress}}/{{task.toDoList.length}}
+				.content(ng-if = "task.toDoList.length") Proress: {{task.progress}}/{{task.toDoList.length}}
 			.title.col-xs-5 {{task.title}}
 			.expander.col-xs-3
 				i.fa.fa-arrow-down(aria-hidden = "true")
