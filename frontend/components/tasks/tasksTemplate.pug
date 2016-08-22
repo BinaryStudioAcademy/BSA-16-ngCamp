@@ -19,3 +19,8 @@
 			.title.col-xs-5 {{task.title}}
 			.expander.col-xs-3
 				i.fa.fa-arrow-down(aria-hidden = "true")
+			.task_todos.col-xs-12
+				.toDo.row.start-xs(ng-repeat = "todo in task.toDoList")
+					input.col-xs-1(type="checkbox")
+					.toDo_title.col-xs-8 {{todo.title}}
+					.toDo_dedcription.col-xs-offset-1.col-xs-8.col-xs-offset-3 {{todo.description}}
