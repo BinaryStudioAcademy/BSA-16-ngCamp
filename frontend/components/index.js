@@ -98,10 +98,36 @@ import {
     testComponent
 }
 from "./test/test.component.js";
+
 import {
-    readMoreDirective
+    checkinsInfoComponent
 }
-from "./readMore/readMore.directive.js";
+from "./checkinsInfo/checkinsInfo.component.js";
+
+import {
+    eventCreateComponent
+}
+from "./events/eventCreate.component.js";
+
+import {
+    checkinsWrapperComponent
+}
+from "./checkinsWrapper/checkinsWrapper.component.js";
+
+import {
+    angularResizableDirective
+}
+from "./angularResizable/angularResizable.directive.js";
+
+import {
+    calendarDailytComponent
+}
+from "./calendar/calendarDaily/calendarDaily.component.js";
+
+import {
+    createProjectComponent
+}
+from "./createProject/createProject.component.js";
 
 app.component(messageBoardComponent.selector, messageBoardComponent);
 app.component(filesComponent.selector, filesComponent);
@@ -129,7 +155,6 @@ app.component(eventListComponent.selector, eventListComponent);
 app.component(tasksComponent.selector, tasksComponent);
 app.component(testComponent.selector, testComponent);
 app.component(draftsComponent.selector, draftsComponent);
-app.directive(readMoreDirective.name, () => readMoreDirective);
 app.component(createProjectComponent.selector, createProjectComponent);
 app.component(checkinsWrapperComponent.selector, checkinsWrapperComponent);
 app.directive('resizable', angularResizableDirective);

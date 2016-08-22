@@ -9,5 +9,6 @@ const app = angular.module('base', ['ngComponentRouter', accordion, datepickerPo
 
 
 app.value('$routerRootComponent', 'rootElement');
-
-export {app};
+export {
+    app
+};
