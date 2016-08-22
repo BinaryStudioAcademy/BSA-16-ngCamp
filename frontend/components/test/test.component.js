@@ -7,7 +7,7 @@ class testCtrl {
 
 const testComponent = {
     controller: testCtrl,
-    controllerAs: 'test',
+    controllerAs: 'ts',
     template: require('./test.pug')(),
     selector: 'test'
 };
