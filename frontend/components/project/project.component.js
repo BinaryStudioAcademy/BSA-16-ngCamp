@@ -1,7 +1,9 @@
 import './project.component.styl';
 
 class ProjectComponentController {
+
     constructor(popupNotifications, httpGeneral,$location,$window) {
+
         this.popupNotifications = popupNotifications;
         this.httpGeneral = httpGeneral;
         this.window = $window;

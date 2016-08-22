@@ -34,7 +34,8 @@ class HeaderComponentController {
                 currentProject: self.currentProjectId,
             }
         }).then(function(res) {
-        	self.location.path('/');
+            let currPath ='/'+self.location.path();
+        	self.location.path(currPath);
             //console.log("Succesfull update currentProject");
         });
     }

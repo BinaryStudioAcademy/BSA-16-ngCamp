@@ -1,3 +1,4 @@
+
 var Repository = require('./generalRepository');
 var ToDo = require('../schemas/toDoSchema');
 
@@ -14,7 +15,7 @@ ToDoRepository.prototype.deleteAllToDosInTask = deleteAllToDosInTask;
 //==============================================================
 function getAllToDosInTask(id, callback) {
     var model = this.model;
-    var query = model.findOne({
+    var query = model.find({
         task: id
     });
     query.exec(callback);
