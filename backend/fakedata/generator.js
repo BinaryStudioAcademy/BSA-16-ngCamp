@@ -1,13 +1,7 @@
 var casual = require('casual');
 var mongoose = require('mongoose');
-var userService = require('../services/userService');
-var fileService = require('../services/fileService');
 var fileRepository = require('../repositories/fileRepository');
 var mongooseConnection = require('../db/dbConnect');
-var toDoService  = require('../services/toDoService');
-var projectService = require('../services/projectService');
-var messageService = require('../services/messageService');
-var eventService = require('../services/eventService');
 var taskService = require('../services/taskService');    
 
 var context = {
@@ -17,7 +11,8 @@ var context = {
 	fileId: [],
 	eventId: [],
 	messageId: [],
-	projectId: []
+	projectId: [],
+	checkinId: []
 }
 
 var untrackted = {
@@ -145,7 +140,32 @@ casual.define('project', function(){
         version: casual.century,                                  
         repository: String
     }
-})
+});
+
+casual.define('checkin', function(){
+ 	var id = casual.m_id;
+ 	context.checkinId.push(id);
+ 	var part = [];
+ 	part.push(casual.random_element(context.userId));
+ 	part.push(casual.random_element(context.userId));
+ 	ans = [];
+ 	part.forEach(function(p){
+ 	 	var date = Date();
+ 	 	ans.push({user: p, answer: casual.word, creationDate: date});
+ 	}) 
+ 	return {
+  		_id: id,
+        project: casual.random_element(context.projectId),
+        question: casual.words(n = 7),
+        isTurnedOn: casual.coin_flip,
+        participants: part,
+        frequency: casual.random_element(['Every weekday', 'Every Monday', 'Every Friday', 
+                'Every other Monday', 'Every other Friday', 'Every other Friday',
+                'First Monday of every month']),
+        answers: ans
+    }
+ });
+
 
 function fakeMe(name, n){
 	var sStr = '../services/'+ name +'Service';
@@ -160,8 +180,8 @@ function fakeMe(name, n){
 }
 
 function fake(){
-	var entities = ['user', 'project', 'message', 'event','file', 'toDo', 'task'];
-	var n     =    [   3,       3,         3,        3,      3,      3,      3  ];
+	var entities = ['user', 'project', 'message', 'event','file', 'toDo', 'task', 'checkin'];
+	var n     =    [   3,       3,         3,        3,      3,      3,      3,         3   ];
 	var i = 0;
  	entities.forEach(function(e){
 		fakeMe(e, n[i]);
@@ -178,74 +198,3 @@ function fake(){
 }
 
 fake();
-
-// function fake(){
-
-// 	for (var i=0; i<3; i++){
-// 		userService.addItem(casual.user, function(err, data){
-// 			if(err){
-// 				console.log(err)
-// 			}
-// 		});
-// 	}
-
-// 	for (var i=0; i<3; i++){
-// 		projectService.addItem(casual.project, function(err, data){
-// 			if(err){
-// 				console.log(err)
-// 			}
-// 		});
-// 	}
-
-// 	 for (var i=0; i<3; i++){
-// 	 	messageService.addItem(casual.message, function(err, data){
-// 			if(err){
-// 				console.log(err)
-// 			}
-// 		});
-// 	}
-
-// 	for (var i=0; i<3; i++){
-// 		eventService.addEvent(casual.event, function(err, data){
-// 			if(err){
-// 				console.log(err)
-// 			}
-// 		});
-// 	}
-
-// 	for (var i=0; i<3; i++){
-// 		fileService.addItem(casual.file, function(err, data){
-// 			if(err){
-// 				console.log(err)
-// 			}
-// 		});
-// 	}
-
-// 	for (var i=0; i<3; i++){
-// 		toDoService.addToDo(casual.toDo, function(err, data){
-// 			if(err){
-// 				console.log(err)
-// 			}
-// 		});
-// 	}
-
-// 	for (var i=0; i<3; i++){
-// 		taskService.addTask(casual.task, function(err, data){
-// 			if(err){
-// 				console.log(err)
-// 			}
-// 		});
-// 	}
-// 	untrackted.task.forEach(function(t){
-// 		taskService.addTask(t, function(err, data){
-// 			if(err){
-// 				console.log(err)
-// 			}
-// 		})
-// 	})
-
-// };
-
-// fake();
-
-
