@@ -21,7 +21,7 @@ module.exports = function (app) {
     }, apiResponse);
     //===================================================
     app.post(baseUrl, function (req, res, next) {
-        reportRepository.addItem(req.body, function (err, data) {
+        reportService.addItem(req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();
@@ -29,7 +29,7 @@ module.exports = function (app) {
     }, apiResponse);
     //===================================================
     app.put(baseUrl + ":id", function (req, res, next) {
-        reportRepository.updateItem(req.params.id, req.body, function (err, data) {
+        reportService.updateItem(req.params.id, req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();
