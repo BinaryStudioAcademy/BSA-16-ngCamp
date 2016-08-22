@@ -1,183 +1,21 @@
-.tasks-container
-    div.row
-        div.col-xs-offset-4.col-xs-4
-            div.box.tasks-box-center
-                h1 Tasks
-        div.col-xs-4
-            div.box.tasks-pos-relative
-                button.tasks-add-taskBut() Set up new task
-    hr.tasks-line  
-    .tasks-menu-container
-            ul.tasks-menu
-                li filter by:
-                li
-                    a(href="/#/tasks") time
-                li
-                    a(href="/#/tasks") name
-                li
-                    a(href="/#/tasks") subtasks left
-                li
-                    a(href="/#/tasks") my tasks
-                li
-                    a(href="/#/tasks") time left               
-
-                li keyword =
-                input.tasks-input(type="text")
-    .tasks-main-container
-
-        .wrapper
-            .row.tasks-row-margin-top
-                div.col-xs-1 4/5 |
-                div.col-xs-4 Set up external auth Server
-                div.col-xs-4.tasks-align-right expires in: 36 hours
-                div.col-xs-1.tasks-align-right
-                    i.fa.fa-arrow-down.fa-2(ng-click="expand1 = (!expand1)? 'expand': ''")
-            .row#content-1.collapse(ng-class="expand1")
-                .col-xs-12
-                    span 
-                        i.fa.fa-check-circle-o.fa-2
-                    span 
-                        |  First Step Name1, Name2
-                    br
-                    span 
-                        i.fa.fa-check-circle-o.fa-2
-                    span
-                        |  Second Step Name1, Name2
-                    br
-                    span 
-                        i.fa.fa-check-circle-o.fa-2                    
-                    span
-                        |  Fifth Step Name1, Name2
-                    br
-                    span 
-                        i.fa.fa-check-circle-o.fa-2                   
-                    span
-                        |  Sixth Step Name1, Name2
-                    br
-                    span 
-                        i.fa.fa-circle-o.fa-2                   
-                    span 
-                        |  Sixth Step Name1, Name2
-
-        .wrapper
-            .row.tasks-row-margin-top
-                div.col-xs-1 2/4 |
-                div.col-xs-4 Set up infrastructure for "checkin"
-                div.col-xs-4.tasks-align-right expires in: 72 hours
-                div.col-xs-1.tasks-align-right
-                    i.fa.fa-arrow-down.fa-2(ng-click="expand2 = (!expand2)? 'expand': ''")
-            .row#content-1.collapse(ng-class="expand2")
-                .col-xs-12
-                    span
-                        i.fa.fa-check-circle-o.fa-2
-                    span
-                        | First Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-check-circle-o.fa-2
-                    span
-                        |  Second Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-circle-o.fa-2
-                    span
-                        | Fifth Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-circle-o.fa-2  
-                    span
-                        | Sixth Step Name1, Name2
-
-        .wrapper
-            .row.tasks-row-margin-top
-                div.col-xs-1 1/6 |
-                div.col-xs-4 Set up infrastructure for "task"
-                div.col-xs-4.tasks-align-right expires in: 24 hours
-                div.col-xs-1.tasks-align-right
-                     i.fa.fa-arrow-down.fa-2(ng-click="expand3 = (!expand3)? 'expand': ''")
-            .row#content-1.collapse(ng-class="expand3")
-                .col-xs-12
-                    span
-                        i.fa.fa-check-circle-o.fa-2
-                    span
-                        |  First Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-circle-o.fa-2
-                    span
-                        | Second Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-circle-o.fa-2    
-                    span
-                        |  Third Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-circle-o.fa-2    
-                    span
-                        | Fourth Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-circle-o.fa-2    
-                    span
-                        | Fifth Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-circle-o.fa-2    
-                    span
-                        | Sixth Step Name1, Name2
-
-        .wrapper
-            .row.tasks-row-margin-top
-                div.col-xs-1 3/8 |
-                div.col-xs-4 Create glossary
-                div.col-xs-4.tasks-align-right expires in: 12 hours
-                div.col-xs-1.tasks-align-right
-                    i.fa.fa-arrow-down.fa-2(ng-click="expand4 = (!expand4)? 'expand': ''")
-            .row#content-1.collapse(ng-class="expand4")
-                .col-xs-12
-                    span
-                        i.fa.fa-check-circle-o.fa-2
-                    span
-                        |  First Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-check-circle-o.fa-2
-                    span
-                        | Second Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-check-circle-o.fa-2    
-                    span
-                        |  Third Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-circle-o.fa-2    
-                    span
-                        | Fourth Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-circle-o.fa-2    
-                    span
-                        | Fifth Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-circle-o.fa-2    
-                    span
-                        | Sixth Step Name1, Name2
-                    br
-                    span
-                        i.fa.fa-circle-o.fa-2    
-                    span
-                        | Eight Step Name1, Name2    
-
-//div.row.arround-xs
-   // div.col.xs-4
-   //     div.box 
-    //        a(href="/#")
-   // div.col.xs-4
-    //    div.box
-    //        h1 Tasks  
-   // div.col.xs-4
-   //     div.box        
-   //         button.tasks-add-taskBut() Set up new task
+.task-wrapper.row.center-xs
+	.main-container.col-xs-8
+		.wrapper_lable
+			h1 Tasks
+		.wrapper_createButton.row.center-xs
+			button Create new task
+		.wrapper_filters
+			ul.row.center-xs
+				li filter by :
+				li name
+				li subtasks left
+				li my tasks
+				li time left
+				li keyword =  
+					input(type="text")
+		.wrapper_task.row.center-xs(ng-repeat = "task in tasksctrl.tasks track by $index")
+			.task_progress.col-xs-3
+				.content(ng-if = "task.toDoList.length") {{task.progress}}/{{task.toDoList.length}}
+			.title.col-xs-5 {{task.title}}
+			.expander.col-xs-3
+				i.fa.fa-arrow-down(aria-hidden = "true")
