@@ -30,6 +30,10 @@ const rootComponent = {
         name: 'Checkins',
         component: 'checkinsComponent'
     }, {
+        path: '/checkins2/',
+        name: 'Checkins2',
+        component: 'checkinsWrapperComponent'
+    }, {
         path: '/checkinsCreate/',
         name: 'CheckinsCreate',
         component: 'checkinsCreateComponent'
