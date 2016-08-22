@@ -5,7 +5,7 @@ class HeaderComponentController {
         this.httpGeneral = httpGeneral;
         this.location = $location;
         this.userProjects;
-        this.currentProjectId;
+        this.currentProjectId = window._injectedData.currentProject || '';
         this.userReq = {
             type: "GET",
             url: "api/projects/forCurrentUser",
@@ -34,7 +34,8 @@ class HeaderComponentController {
                 currentProject: self.currentProjectId,
             }
         }).then(function(res) {
-        	self.location.path('/');
+            let currPath ='/'+self.location.path();
+        	self.location.path(currPath);
             //console.log("Succesfull update currentProject");
         });
     }
@@ -45,7 +46,8 @@ HeaderComponentController.$inject = ['httpGeneral','$location'];
 const headerComponent = {
     controller: HeaderComponentController,
     selector: 'headerComponent',
-    template: require('./header-pug.component.pug')()
+    template: require('./header-pug.component.pug')(),
+    controllerAs: 'head'
 };
 
 export {

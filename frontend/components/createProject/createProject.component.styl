@@ -1,0 +1,124 @@
+@import "../../../public/libs/css/generalComponentsStyle.styl"
+
+.createProject_wrapper
+	.main
+		min-width 400px
+		main-component()
+		h1
+			float left
+			display block
+		.cell
+			display flex
+			margin 10px 0
+			flex-wrap wrap
+			font-family "Montserrat"
+			font-size 20px
+			.cellTitle
+				width 100%
+				margin-bottom 20px
+				*
+					float left
+			.componentTitle
+				font-weight bold
+			.projTitle
+				width 100%
+				input
+					width 80%
+					border-radius 7px
+					border none
+					outline none
+					padding 8px
+					border 1px solid gray
+					color #333
+					font-family "Open Sans"
+					&:hover
+						box-shadow: 0 0 7px #3498db
+			.projDescription
+				width 100%
+				textarea
+					max-width 80%
+					min-width 80%
+					border-radius 7px
+					border none
+					outline none
+					padding 8px
+					border 1px solid gray
+					color #333
+					font-family "Open Sans"
+					&:hover
+						box-shadow: 0 0 7px #3498db
+			.projDeadline
+				width 100%
+				.deadline_wrapper
+					display inline-flex
+					justify-content center
+					align-items center
+					padding 4px 10px
+					background-color white
+					border 1px solid gray
+					border-radius 7px
+					cursor pointer
+					user-select none
+					&:hover
+						box-shadow: 0 0 7px #3498db
+					input
+						background-color none
+						border none
+						outline none
+						padding 8px
+						cursor pointer
+						user-select none
+						font-family "Open Sans"
+						min-width 25%
+					i
+						font-size 28px
+			.button
+				width 100%
+				display flex
+				justify-content center
+				align-items center
+				.save
+					button()
+					margin-top 30px
+					padding 0 45px
+			.projParticipants
+				width 100%
+				display block-flex
+				flex-wrap wrap
+				justify-content center
+				align-items center
+				transition all 0.5s ease-out
+				select
+					max-width 80%
+					min-width 80%
+					border-radius 7px
+					border none
+					outline none
+					padding 8px
+					border 1px solid gray
+					color #333
+					font-family "Open Sans"
+					&:hover
+						box-shadow: 0 0 7px #3498db
+				.participantCell
+					display flex
+					justify-content center
+					align-items center
+					margin-top 10px
+					.participant_wrapper
+						background-color #1d8dbf
+						display inline-flex
+						padding 10px
+						border-radius 8px
+						font-family "Open Sans"
+						.participantTitle
+							color white
+							margin-right 10px
+						.deleteButton
+							i
+								font-size 25px
+								transition all 0.3s ease-out;
+								cursor pointer
+								&:hover
+									color white
+							

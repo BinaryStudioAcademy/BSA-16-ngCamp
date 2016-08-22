@@ -1,61 +1,66 @@
-.checkin-create-wrapper
-    .checkin-title
-        ul.title
-            li
-                h1
-                    span Set up check-in
-    .container
-        .wrapper
-            header.header
-                .header-container
-                    h2 What question do you want to ask?
-                    a(ng-link='["Checkins"]')
-                        i.fa.fa-times.fa-2x
-                input.qq(type='text', placeholder='Type your question...')
-            article.main
-                ul.container-list
-                    h2 Who do you want to ask?
-                    li#all-list.list
+.checkins-setup-wrapper
+    .checkins-setup
+        .header-setup
+            .close-btn
+                a(ng-link='["Checkins"]')
+                    i.fa.fa-times.fa-2x
+            h3 What question do you want to ask?
+            input.question(type='text', placeholder='Type your question...')
+        .main-setup
+            h3 Who do you want to ask?
+            ul.user-list
+                li.list
+                    label#check-all.checkbox
                         span Check All
-                        input.checkbox-btn(type='checkbox')
-                    li.list
+                        input(type='checkbox', ng-model='all')
+                li.list
+                    label.checkbox
                         span Name Surname
-                        input.checkbox-btn(type='checkbox')
-                    li.list
+                        input(type='checkbox', ng-checked='all')
+                li.list
+                    label.checkbox
                         span Name Surname
-                        input.checkbox-btn(type='checkbox')
-                    li.list
+                        input(type='checkbox', ng-checked='all')
+                li.list
+                    label.checkbox
                         span Name Surname
-                        input.checkbox-btn(type='checkbox')
-                    li.list
+                        input(type='checkbox', ng-checked='all')
+                li.list
+                    label.checkbox
                         span Name Surname
-                        input.checkbox-btn(type='checkbox')
-                    li.list
+                        input(type='checkbox', ng-checked='all')
+                li.list
+                    label.checkbox
                         span Name Surname
-                        input.checkbox-btn(type='checkbox')
-                    li.list
+                        input(type='checkbox', ng-checked='all')
+                li.list
+                    label.checkbox
                         span Name Surname
-                        input.checkbox-btn(type='checkbox')
-                    li.list
+                        input(type='checkbox', ng-checked='all')
+                li.list
+                    label.checkbox
                         span Name Surname
-                        input.checkbox-btn(type='checkbox')
-                    li.list
+                        input(type='checkbox', ng-checked='all')
+                li.list
+                    label.checkbox
                         span Name Surname
-                        input.checkbox-btn(type='checkbox')
-                    li.list
+                        input(type='checkbox', ng-checked='all')
+                li.list
+                    label.checkbox
                         span Name Surname
-                        input.checkbox-btn(type='checkbox')
-                    li.list
-                        span Name Surname
-                        input.checkbox-btn(type='checkbox')
-            footer.footer
-                h2 How frequently should we ask it?
-                select
+                        input(type='checkbox', ng-checked='all')
+        .footer-setup
+            h3 How frequently should we ask it?
+            .schedule
+                select#schedule-first
                     option(value='') Every weekday
-                    option(value='') Every Monaday
+                    option(value='') Every Monday
                     option(value='') Every Friday
+                    option(value='') Every other Monday
+                    option(value='') Every other Friday
                     option(value='') First Monday of every month
-                select
+                select#schedule-second
                     option(value='') at the beginning of the day
                     option(value='') at the end of the day
-                button(ng-click='["Checkins"]') Save
+                a(href='')
+                    i.fa.fa-floppy-o.fa-3x

@@ -8,4 +8,14 @@ function TaskRepository() {
 
 TaskRepository.prototype = new Repository();
 
+TaskRepository.prototype.getAllTasksInProject = getAllTasksInProject;
+
 module.exports = new TaskRepository();
+
+function getAllTasksInProject(id,callback){
+	var model = this.model;
+	var query = model.find({
+		project: id
+	});
+	query.exec(callback);
+}

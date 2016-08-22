@@ -18,68 +18,31 @@
         input#sunday(type='radio', name='week')
         ul.tabs
             li
-                label(for='week-list') All QQ
+                label(for='week-list') QQ
             li
-                label(for='monday') Monday
+                label(for='monday') Mo
             li
-                label(for='tuesday') Tuesday
+                label(for='tuesday') Tu
             li
-                label(for='wednesday') Wednesday
+                label(for='wednesday') We
             li
-                label(for='thursday') Thursday
+                label(for='thursday') Th
             li
-                label(for='friday') Friday
+                label(for='friday') Fr
             li
-                label(for='saturday') Saturday
+                label(for='saturday') Sa
             li
-                label(for='sunday') Sunday
+                label(for='sunday') Su
         section.tab.all
-            label(for='week-list') All QQ
-            div
+            label(for='week-list') Questions List
+            div(ng-repeat="checkin in check.checkIns track by $index")
                 ul.content
-                    li.qq 09:30
                     li.qq
-                        a(href='') Do you have any ideas for a future show?
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
                     li.qq
                         div
                             label.switch
-                                input(type='checkbox', checked='checked')
-                                .slider.round
-                ul.content
-                    li.qq 12:30
-                    li.qq
-                        a(href='') What did you work on today?
-                    li.qq
-                        div
-                            label.switch
-                                input(type='checkbox')
-                                .slider.round
-                ul.content
-                    li.qq 12:30
-                    li.qq
-                        a(href='') What are you working on?
-                    li.qq
-                        div
-                            label.switch
-                                input(type='checkbox', checked='checked')
-                                .slider.round
-                ul.content
-                    li.qq 12:30
-                    li.qq
-                        a(href='') See anything great lately that inspired you?
-                    li.qq
-                        div
-                            label.switch
-                                input(type='checkbox')
-                                .slider.round
-                ul.content
-                    li.qq 12:30
-                    li.qq
-                        a(href='') Are you blocked on anything?
-                    li.qq
-                        div
-                            label.switch
-                                input(type='checkbox', checked='checked')
+                                input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
                                 .slider.round
         section.tab.mo
             label(for='monday') Monday
@@ -87,7 +50,7 @@
                 ul.content
                     li.qq 12:30
                     li.qq
-                        a(href='') What are you working on?
+                        a(ng-link='["CheckinsInfo"]') What are you working on?
                     li.qq
                         div
                             label.switch
@@ -104,7 +67,7 @@
                 ul.content
                     li.qq 12:30
                     li.qq
-                        a(href='') See anything great lately that inspired you?
+                        a(ng-link='["CheckinsInfo"]') See anything great lately that inspired you?
                     li.qq
                         div
                             label.switch
@@ -113,7 +76,7 @@
                 ul.content
                     li.qq 12:30
                     li.qq
-                        a(href='') Are you blocked on anything?
+                        a(ng-link='["CheckinsInfo"]') Are you blocked on anything?
                     li.qq
                         div
                             label.switch
@@ -121,13 +84,21 @@
                                 .slider.round
         section.tab.th
             label(for='thursday') Thursday
-            div Thursday Content
+            div
+                ul.content
+                    li.qq Thursday: questions list is empty
         section.tab.fr
             label(for='friday') Friday
-            div Friday Content
+            div
+                ul.content
+                    li.qq Friday: questions list is empty
         section.tab.sa
             label(for='saturday') Saturday
-            div Saturday Content
+            div
+                ul.content
+                    li.qq Saturday: questions list is empty
         section.tab.su
             label(for='sunday') Sunday
-            div Sunday Content
+            div
+                ul.content
+                    li.qq Sunday: questions list is empty

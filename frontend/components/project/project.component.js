@@ -1,9 +1,12 @@
 import './project.component.styl';
 
 class ProjectComponentController {
-    constructor(popupNotifications, httpGeneral,$location) {
+
+    constructor(popupNotifications, httpGeneral,$location,$window) {
+
         this.popupNotifications = popupNotifications;
         this.httpGeneral = httpGeneral;
+        this.window = $window;
         this.userProjects;
         this.userReq = {
             type: "GET",
@@ -85,6 +88,7 @@ class ProjectComponentController {
             },
         }).then(function(res) {
             console.log("Succesfull add participator");
+            self.participatorToAdd = "";
         });
         self.addParticipatorFlag = false;
         this.$onInit();
@@ -157,6 +161,7 @@ class ProjectComponentController {
             url: `api/projects/${window._injectedData.currentProject}`
         }).then(() => {
             window._injectedData.currentProject = '';
+            self.window.location.reload();
             self.location.path('/');
         });
     }
@@ -166,9 +171,13 @@ class ProjectComponentController {
     open() {
         this.popup.opened = true;
     }
+    localDate(date){
+        let newDate = new Date(date);
+        return newDate.toLocaleDateString();
+    }
 }
 
-ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral','$location'];
+ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral','$location','$window'];
 
 const projectComponent = {
     controller: ProjectComponentController,

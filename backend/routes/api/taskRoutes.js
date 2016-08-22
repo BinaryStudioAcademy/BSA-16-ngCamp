@@ -4,6 +4,13 @@ var apiResponse = require("express-api-response"),
     baseUrl = "/api/task/";
 
 module.exports = function (app) {
+    app.get(baseUrl+"allFromProject/"+":id", function(req,res,next){
+        taskRepository.getAllTasksInProject(req.params.id, function (err,data){
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
 
     app.get(baseUrl, function (req, res, next) {
         taskRepository.getAll(function (err, data) {

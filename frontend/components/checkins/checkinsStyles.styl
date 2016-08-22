@@ -1,52 +1,43 @@
 .checkins-wrapper
-    margin: 5%;
-    li {
-        list-style: none;
-    }
-
     /* HEADER */
     .checkins-header {
         display: flex;
         justify-content: center;
         flex-direction: row;
     }
-
     .header-list h1 {
         border-bottom: 1px solid black;
     }
-
     .header-list button {
-        font-size: 22px;
+        font-size: 21px;
         padding: 5px;
         border-radius: 10px;
         cursor: pointer;
         background-color: #1d8dbf;
     }
-
     .header-list button:hover {
         background-color: #27bcff;
     }
-
+    li {
+        list-style: none;
+    }
     /* ACCORDION */
     .checkins-accordion {
-        max-width: 690px;
+        max-width: 650px;
         margin: 0 auto;
-        margin-top: 40px;
+        margin-top: 30px;
     }
-
     input[name="week"] {
         display: none;
     }
-
     section {
         font-size: 18px;
         border: 1px solid #adadad;
         border-radius: 10px;
         background: #f5f5f5;
-        overflow: hidden; /*TODO: or set overflow:auto and height:450px*/
-        //height: 450px;
+        overflow: hidden;
+        /*height: 450px;*/
     }
-
     section > label {
         line-height: 2em;
         height: 2em;
@@ -57,17 +48,14 @@
         display: block;
         text-align: center;
     }
-
     .tabs {
         display: none;
     }
-
     .tabs:after {
         content: "";
         display: table;
         clear: both;
     }
-
     input[id="week-list"]:not(:checked) ~ .tab.all,
     input[id="monday"]:not(:checked) ~ .tab.mo,
     input[id="tuesday"]:not(:checked) ~ .tab.tu,
@@ -78,7 +66,6 @@
     input[id="sunday"]:not(:checked) ~ .tab.su {
         height: 2em;
     }
-
     input[id="week-list"]:checked ~ * label[for="week-list"],
     input[id="monday"]:checked ~ * label[for="monday"],
     input[id="tuesday"]:checked ~ * label[for="tuesday"],
@@ -88,9 +75,8 @@
     input[id="saturday"]:checked ~ * label[for="saturday"],
     input[id="sunday"]:checked ~ * label[for="sunday"] {
         background-color: #cccccc;
-        /*border-top: 3px solid #f2992e;*/
+        border-top: 4px solid #f2992e;
     }
-
     @media (min-width: 600px) {
         input[id="week-list"]:not(:checked) ~ .tab.all,
         input[id="monday"]:not(:checked) ~ .tab.mo,
@@ -111,14 +97,14 @@
         }
 
         .tabs {
-            display: block;
+            display: flex;
+            justify-content: space-around;
             margin: 0;
             padding: 0;
         }
 
         .tabs label {
-            font-size: 18px;
-            display: block;
+            font-size: 30px;
             color: #212121;
             margin-left: 5px;
             margin-bottom: 5px;
@@ -127,29 +113,23 @@
             border-radius: 10px;
             float: left;
             cursor: pointer;
-            //padding: 1%;
-            padding: .4em 0.2em;
+            padding: .2em 0.5em;
         }
-    }
-
-    /* QQ */
+    } /* QQ */
     .content {
         display: flex;
         justify-content: space-between;
         margin-top: 20px;
         font-size: 23px;
-        /*list-style: none;*/
     }
-
     .qq a {
         display: flex;
         text-align: center;
         text-decoration: none;
         color: #4c5157;
-        /*margin-left: 10px;*/
-        /*margin-right: 10px;*/
+        margin-left: 10px;
+        margin-right: 10px;
     }
-
     /* TOOGLE */
     .switch {
         position: relative;
@@ -158,11 +138,9 @@
         height: 34px;
         margin-right: 20px;
     }
-
     .switch input {
         display: none;
     }
-
     .slider {
         position: absolute;
         cursor: pointer;
@@ -186,25 +164,20 @@
         -webkit-transition: .4s;
         transition: .4s;
     }
-
     input:checked + .slider {
         background-color: #1d8dbf;
     }
-
     input:focus + .slider {
         box-shadow: 0 0 1px #27bcff;
     }
-
     input:checked + .slider:before {
         -webkit-transform: translateX(26px);
         -ms-transform: translateX(26px);
         transform: translateX(26px);
     }
-
     .slider.round {
         border-radius: 34px;
     }
-
     .slider.round:before {
         border-radius: 50%;
     }

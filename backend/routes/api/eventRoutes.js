@@ -22,7 +22,7 @@ module.exports = function (app) {
     }, apiResponse);
     //===================================================
     app.post(baseUrl, function (req, res, next) {
-        eventService.addEvent(req.body, function (err, data) {
+        eventService.addItem(req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();
