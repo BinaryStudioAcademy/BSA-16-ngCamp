@@ -33,6 +33,11 @@ class eventEditController {
             self.users = res;
         });
     }
+    trixInitialize(e, editor) {
+        let document = editor.getDocument();
+        document.toString();
+        console.log(document);
+    }
     save() {
         let self = this;
         self.httpGeneral.sendRequest({
