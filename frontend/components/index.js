@@ -115,11 +115,6 @@ import {
 from "./checkinsWrapper/checkinsWrapper.component.js";
 
 import {
-    angularResizableDirective
-}
-from "./angularResizable/angularResizable.directive.js";
-
-import {
     calendarDailytComponent
 }
 from "./calendar/calendarDaily/calendarDaily.component.js";
@@ -157,5 +152,4 @@ app.component(testComponent.selector, testComponent);
 app.component(draftsComponent.selector, draftsComponent);
 app.component(createProjectComponent.selector, createProjectComponent);
 app.component(checkinsWrapperComponent.selector, checkinsWrapperComponent);
-app.directive('resizable', angularResizableDirective);
 app.component(calendarDailytComponent.selector, calendarDailytComponent);
