@@ -3,54 +3,16 @@ section.messageBoard-wrapper
     h2 Message Board
     hr
     div(ng-link='["PostMessage"]') Post message
-  section.message-block
+  section.message-block(ng-repeat="message in msgBoard.messages track by $index")
       section.user-info
           header
               img.img(src="./img/person.gif")
-              h3 User Name
+              h3 {{message.author.firstName}} {{message.author.lastName}}
       article.message-info
-          h3 Title
-          read-more
-            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            | Libero fuga facilis vel consectetur quos sapiente deleniti eveniet dolores tempore eos deserunt officia quis ab?
-          p.post-date 13:34 14.08.2016
+          h3 {{message.title}}
+          read-more 
+          | {{message.description}}
+          p.post-date {{message.date}}
       section.use-button
           div.fa.fa-files-o(ng-link='["File"]')
           div.fa.fa-comments-o(ng-link='["Comments"]')
-          div.fa.fa-share-alt
-  section.message-block
-        section.user-info
-            header
-                img.img(src="./img/person.gif")
-                h3 User Name
-        article.message-info
-            h3 Title
-            read-more
-              | On it differed repeated wandered required in. Then girl neat why yet knew rose spot. Moreover property we he kindness greatest be oh striking laughter. In me he at collecting affronting principles apartments. Has visitor law attacks pretend you calling own excited painted. Contented attending smallness it oh ye unwilling.
-            p.post-date 13:34 14.08.2016
-        section.use-button
-            div.fa.fa-files-o
-            div.fa.fa-comments-o
-            div.fa.fa-share-alt
-  section.message-block
-        section.user-info
-            header
-                img.img(src="./img/person.gif")
-                h3 User Name
-        article.message-info
-            h3 Title
-            read-more
-              | On it differed repeated wandered required in. Then girl neat why yet knew rose spot.
-              | Moreover property we he kindness greatest be oh striking laughter.
-              | In me he at collecting affronting principles apartments. Has visitor law attacks pretend you calling own excited painted.
-              | Contented attending smallness it oh ye unwilling. On it differed repeated wandered required in.
-              | Then girl neat why yet knew rose spot. Moreover property we he kindness greatest be oh striking laughter.
-              | In me he at collecting affronting principles apartments. Has visitor law attacks pretend you calling own excited painted.
-              | Contented attending smallness it oh ye unwilling. On it differed repeated wandered required in. Then girl neat why yet knew rose spot.
-              | Moreover property we he kindness greatest be oh striking laughter. In me he at collecting affronting principles apartments.
-              | Has visitor law attacks pretend you calling own excited painted. Contented attending smallness it oh ye unwilling.
-            p.post-date 13:34 14.08.2016
-        section.use-button
-            div.fa.fa-files-o
-            div.fa.fa-comments-o
-            div.fa.fa-share-alt
