@@ -10,6 +10,8 @@ ReportService.prototype.updateItem = updateItem;
 //================================================================
 function addItem(body, callback) {
     if (validationService.addReportValidation(body, callback)) {
+        var creationDate = Date();
+        body.creationDate = creationDate;
         reportRepository.add(body, callback);
     };
 }

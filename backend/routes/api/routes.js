@@ -8,6 +8,7 @@ module.exports = function (app) {
         taskRoutes: require('./taskRoutes')(app),
         checkinRoutes: require('./checkinRoutes')(app),
         uploadRoutes: require('./uploadRoutes')(app),
-        toDoRoutes: require('./toDoRoutes')(app)
+        toDoRoutes: require('./toDoRoutes')(app),
+        reportRoutes: require('./reportRoutes')(app)
     };
 };

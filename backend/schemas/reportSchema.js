@@ -13,7 +13,8 @@ var ReportsSchema = new Schema({
     }
     ],
     dateRange: [Date],
-    creationDate: Date
+    creationDate: Date,
+    isSaved: Boolean
 });
 
 module.exports = mongoose.model('Reports', ReportsSchema);

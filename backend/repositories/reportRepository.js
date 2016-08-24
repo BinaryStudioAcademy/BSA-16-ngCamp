@@ -1,5 +1,5 @@
 var Repository = require("./generalRepository");
-var Report = require("../schema/reportSchema");
+var Report = require("../schemas/reportSchema");
 
 function ReportRepository() {
     Repository.prototype.constructor.call(this);

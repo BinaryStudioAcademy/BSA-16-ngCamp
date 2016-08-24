@@ -244,12 +244,6 @@ function addReportValidation(body, callback) {
         });
         return false;
     }
-    if (!body.creationDate) {
-        callback({
-            message: "Report creation date is undefined"
-        });
-        return false;
-    }
     return true;
 }
 
