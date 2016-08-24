@@ -10,8 +10,7 @@ section.messageBoard-wrapper
               h3 {{message.author.firstName}} {{message.author.lastName}}
       article.message-info
           h3 {{message.title}}
-          read-more 
-          | {{message.description}}
+          read-more(ng-bind-html="message.description")
           p.post-date {{message.date}}
       section.use-button
           div.fa.fa-files-o(ng-link='["File"]')
