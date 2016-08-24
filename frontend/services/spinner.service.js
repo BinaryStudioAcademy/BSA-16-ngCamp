@@ -1,7 +1,7 @@
 class spinner{
 
 	constructor($timeout,spinner){
-		this.el = angular.element(document.querySelector('body'));
+		this.el = angular.element(document.querySelector('root-element'));
 		this.spinner = angular.element(require('../templates/spinner.pug')());
 		this.count = 0;
 		this.timeout = $timeout;
@@ -14,7 +14,7 @@ class spinner{
 
 		if(this.count == 0){
 			this.promise = this.timeout( function(){
-				self.el.children().prop('style','opacity: 0.5; pointer-events : none;');
+				self.el.children().prop('style','opacity: 0; pointer-events : none;');
 				self.el.append(self.spinner);
 			},200);
 		};

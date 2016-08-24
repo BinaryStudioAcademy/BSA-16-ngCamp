@@ -30,6 +30,18 @@ const rootComponent = {
         name: 'Checkins',
         component: 'checkinsComponent'
     }, {
+        path: '/checkins2/',
+        name: 'Checkins2',
+        component: 'checkinsWrapperComponent'
+    }, {
+        path: '/checkinsCreate/',
+        name: 'CheckinsCreate',
+        component: 'checkinsCreateComponent'
+    }, {
+        path: '/checkinsInfo/',
+        name: 'CheckinsInfo',
+        component: 'checkinsInfoComponent'
+    }, {
         path: '/tasks/',
         name: 'Tasks',
         component: 'tasksComponent'
@@ -41,14 +53,20 @@ const rootComponent = {
         path: '/project/',
         name: 'Project',
         component: 'projectComponent'
-    }, {
+    },
+    {
+        path: '/createproject/',
+        name: 'CreateProject',
+        component: 'createProjectComponent'
+    },
+    {
         path: '/trash/',
         name: 'Trash',
         component: 'trashComponent'
     }, {
-        path: '/reports',
+        path: '/reports/...',
         name: 'Reports',
-        component: 'reportsComponent'
+        component: 'reportsMainComponent'
     }, {
         path: '/drafts/',
         name: 'Drafts',

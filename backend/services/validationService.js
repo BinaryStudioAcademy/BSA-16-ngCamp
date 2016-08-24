@@ -10,6 +10,10 @@ ValidationService.prototype.addEventValidation = addEventValidation;
 ValidationService.prototype.addTaskValidation = addTaskValidation;
 ValidationService.prototype.addToDoValidation = addToDoValidation;
 ValidationService.prototype.validationBodyProperty = validationBodyProperty;
+ValidationService.prototype.manageProjectParticipants = manageProjectParticipants;
+ValidationService.prototype.eventsDateValidation = eventsDateValidation;
+ValidationService.prototype.manageArrayInput = manageArrayInput;
+ValidationService.prototype.addReportValidation = addReportValidation;
 
 function MessageValidation(body, callback) {
     if (!body.hasOwnProperty('isDraft')) {
@@ -176,6 +180,67 @@ function addToDoValidation(body, callback) {
     if (!body.task) {
         callback({
             message: "Task id is undefined"
+        });
+        return false;
+    }
+    return true;
+}
+//===========================================================
+function manageProjectParticipants(body, callback) {
+    if (body.length <= 0) {
+        callback({
+            message: "No participants here"
+        });
+        return false;
+    }
+    return true;
+}
+//===========================================================
+function manageArrayInput(body, callback) {
+    if (body.length <= 0) {
+        callback({
+            message: "Invalid input array"
+        });
+        return false;
+    }
+    return true;
+}
+//============================================================
+function eventsDateValidation(startDate, endDate, callback) {
+    var firstDate = Date.parse(startDate);
+    var secondDate = Date.parse(endDate);
+    if ((isNaN(startDate) && !isNaN(firstDate)) && (isNaN(endDate) && !isNaN(secondDate))) {
+        return true;
+    } else {
+        callback({
+            message: "Invalid events dates"
+        });
+        return false;
+    }
+}
+//=============================================================
+function addReportValidation(body, callback) {
+    if (!body.user) {
+        callback({
+            message: "Report owner is undefined"
+        });
+        return false;
+    }
+    if (!body.types || body.types.length <= 0) {
+        callback({
+            message: "Report types is undefined"
+        });
+        return false;
+    }
+    if (!body.participants || body.types.participants <= 0) {
+        callback({
+            message: "Report participants is undefined"
+        });
+        return false;
+    }
+    if (!body.dateRange || body.types.dateRange <= 0) {
+        callback({
+            message: "Report date range is undefined"
         });
         return false;
     }

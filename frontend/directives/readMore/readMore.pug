@@ -1,0 +1,5 @@
+p.readmore-block
+    span
+      | {{readmore.mainText}}
+      span(ng-class="{'invisble':readmore.readmoreFlag}") {{readmore.additionalText}}
+    span(class="trigger", ng-class="{'invisble':!readmore.readmoreFlag}", ng-click='readmore.switchFlag()') ...

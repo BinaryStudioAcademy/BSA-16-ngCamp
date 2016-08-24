@@ -1,20 +1,22 @@
 import "./reportsStyle.styl";
 
+class ReportsComponentController {
+    constructor() {
 
-class ReportsComponentController{
-    constructor(){
-        
     }
-};
+}
 
-ReportsComponentController.$inject = [];
+ReportsComponentController.$inject = [
+
+];
 
 const reportsComponent = {
     controller: ReportsComponentController,
-    selector: "reportsComponent",
-    template: require("./reports.template.pug")()
+    selector: 'reportsComponent',
+    template: require('./reports.template.pug')(),
+    controllerAs: "reports"
 };
 
 export {
     reportsComponent
-}; 
+};

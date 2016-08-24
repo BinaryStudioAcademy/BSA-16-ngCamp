@@ -13,6 +13,8 @@ public/js/
 
 build/
 
+files/
+
 # Elastic Beanstalk Files
 
 .elasticbeanstalk/*

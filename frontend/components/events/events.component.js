@@ -21,8 +21,8 @@ const eventsComponent = {
 		useAsDefault: true
 	},{
   		path:'/post',
-  		name:'Create event',
-  		component:'eventEditComponent',
+  		name:'CreateEvent',
+  		component:'eventCreateComponent',
 	},{
  		path:'/:id/post',
  		name:'Edit event',

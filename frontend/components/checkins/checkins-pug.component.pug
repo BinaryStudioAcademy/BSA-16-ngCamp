@@ -1,44 +1,73 @@
-.header-container
-    ul.title
-        li
-            h1
-                span Check-ins
-        li
-            button(ng-click='setUpCheckin()') Set up check-in
-.accordion
-    ul
-        li
-            input.accordion-select(type='radio', name='select')
-            .accordion-title
-                span Monday
-            .accordion-content
+.checkins-wrapper
+    // HEADER
+    .checkins-header
+        ul
+            li.header-list
+                h1 Check-ins
+            li.header-list
+                button(ng-link='["CheckinsCreate"]') Set up check-in
+    // ACCORDION
+    .checkins-accordion
+        input#week-list(type='radio', name='week', checked='')
+        input#monday(type='radio', name='week')
+        input#tuesday(type='radio', name='week')
+        input#wednesday(type='radio', name='week')
+        input#thursday(type='radio', name='week')
+        input#friday(type='radio', name='week')
+        input#saturday(type='radio', name='week')
+        input#sunday(type='radio', name='week')
+        ul.tabs
+            li
+                label(for='week-list') QQ
+            li
+                label(for='monday') Mo
+            li
+                label(for='tuesday') Tu
+            li
+                label(for='wednesday') We
+            li
+                label(for='thursday') Th
+            li
+                label(for='friday') Fr
+            li
+                label(for='saturday') Sa
+            li
+                label(for='sunday') Su
+        section.tab.all
+            label(for='week-list') Questions List
+            div(ng-repeat="checkin in check.checkIns track by $index")
+                ul.content
+                    li.qq
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
+                                .slider.round
+        section.tab.mo
+            label(for='monday') Monday
+            div
                 ul.content
                     li.qq 12:30
                     li.qq
-                        a(href='#') What are you working on?
+                        a(ng-link='["CheckinsInfo"]') What are you working on?
                     li.qq
                         div
                             label.switch
                                 input(type='checkbox', checked='checked')
                                 .slider.round
-            .accordion-separator
-        li
-            input.accordion-select(type='radio', name='select')
-            .accordion-title
-                span Tuesday
-            .accordion-content
+        section.tab.tu
+            label(for='tuesday') Tuesday
+            div
                 ul.content
                     li.qq Tuesday: questions list is empty
-            .accordion-separator
-        li
-            input.accordion-select(type='radio', name='select', checked='checked')
-            .accordion-title
-                span Wednesday
-            .accordion-content
+        section.tab.we
+            label(for='wednesday') Wednesday
+            div
                 ul.content
                     li.qq 12:30
                     li.qq
-                        a(href='#') See anything great lately that inspired you?
+                        a(ng-link='["CheckinsInfo"]') See anything great lately that inspired you?
                     li.qq
                         div
                             label.switch
@@ -47,58 +76,29 @@
                 ul.content
                     li.qq 12:30
                     li.qq
-                        a(href='#') Are you blocked on anything?
+                        a(ng-link='["CheckinsInfo"]') Are you blocked on anything?
                     li.qq
                         div
                             label.switch
                                 input(type='checkbox', checked='checked')
                                 .slider.round
-            .accordion-separator
-        li
-            input.accordion-select(type='radio', name='select')
-            .accordion-title
-                span Thursday
-            .accordion-content
+        section.tab.th
+            label(for='thursday') Thursday
+            div
                 ul.content
                     li.qq Thursday: questions list is empty
-            .accordion-separator
-        li
-            input.accordion-select(type='radio', name='select')
-            .accordion-title
-                span Friday
-            .accordion-content
+        section.tab.fr
+            label(for='friday') Friday
+            div
                 ul.content
-                    li.qq 09:30
-                    li.qq
-                        a(href='#') Do you have any ideas for a future show?
-                    li.qq
-                        div
-                            label.switch
-                                input(type='checkbox', checked='checked')
-                                .slider.round
-                ul.content
-                    li.qq 12:30
-                    li.qq
-                        a(href='#') What did you work on today?
-                    li.qq
-                        div
-                            label.switch
-                                input(type='checkbox')
-                                .slider.round
-            .accordion-separator
-        li
-            input.accordion-select(type='radio', name='select')
-            .accordion-title
-                span Saturday
-            .accordion-content
+                    li.qq Friday: questions list is empty
+        section.tab.sa
+            label(for='saturday') Saturday
+            div
                 ul.content
                     li.qq Saturday: questions list is empty
-            .accordion-separator
-        li
-            input.accordion-select(type='radio', name='select')
-            .accordion-title
-                span Sunday
-            .accordion-content
+        section.tab.su
+            label(for='sunday') Sunday
+            div
                 ul.content
                     li.qq Sunday: questions list is empty
-            .accordion-separator
