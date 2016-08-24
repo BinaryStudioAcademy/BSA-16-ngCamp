@@ -244,6 +244,12 @@ function addReportValidation(body, callback) {
         });
         return false;
     }
+    if (!body.title) {
+        callback({
+            message: "Report title is undefined"
+        });
+        return false;
+    }
     return true;
 }
 

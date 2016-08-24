@@ -5,6 +5,8 @@ var ReportsSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    title: String,
+    description: String,
     types: [String],
     participants: [
         {
