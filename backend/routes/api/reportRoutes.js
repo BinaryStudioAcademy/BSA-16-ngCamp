@@ -44,4 +44,21 @@ module.exports = function (app) {
         });
     }, apiResponse);
     //===================================================
+    app.get(baseUrl + ":id/recent", function (req, res, next) {
+        reportService.getRecent(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        })
+    }, apiResponse);
+    //===================================================
+    app.get(baseUrl + ":id/saved", function (req, res, next) {
+        reportService.getSaved(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        })
+    }, apiResponse);
+    //===================================================
+    //===================================================
 }

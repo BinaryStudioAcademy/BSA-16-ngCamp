@@ -92,6 +92,9 @@
             justify-content space-around
             border-bottom 1px solid border-grey
         .generate-item
+            position relative
+            width -webkit-fit-content
+            text-indent  2%
             cursor pointer
             background-color add-text-color
             padding 1%
@@ -101,9 +104,12 @@
             font-size 18px
             font-family "Open Sans"
             color black
-            &::before
+            span
+                text-indent 1%
+                position absolute
+                left 0
                 color main-blue
-                display inline
+                display inline-block
                 font-family "FontAwesome"
     .button
         button()
