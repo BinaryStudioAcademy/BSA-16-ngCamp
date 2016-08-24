@@ -5,6 +5,8 @@ var ReportsSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    title: String,
+    description: String,
     types: [String],
     participants: [
         {
@@ -13,7 +15,8 @@ var ReportsSchema = new Schema({
     }
     ],
     dateRange: [Date],
-    creationDate: Date
+    creationDate: Date,
+    isSaved: Boolean
 });
 
 module.exports = mongoose.model('Reports', ReportsSchema);

@@ -244,9 +244,9 @@ function addReportValidation(body, callback) {
         });
         return false;
     }
-    if (!body.creationDate) {
+    if (!body.title) {
         callback({
-            message: "Report creation date is undefined"
+            message: "Report title is undefined"
         });
         return false;
     }
