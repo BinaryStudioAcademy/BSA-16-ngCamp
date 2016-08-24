@@ -1,14 +1,12 @@
 import "./reportsStyle.styl";
 
 class ReportAddComponentController {
-    constructor() {
+    constructor(httpGeneral, popupNotifications) {
 
     }
 }
 
-ReportAddComponentController.$inject = [
-
-];
+ReportAddComponentController.$inject = ['httpGeneral', 'popupNotifications'];
 
 const reportAddComponent = {
     controller: ReportAddComponentController,
