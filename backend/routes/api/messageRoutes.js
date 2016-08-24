@@ -5,7 +5,7 @@ var baseUrl = '/api/messages/';
 
 module.exports = function(app) {
     app.get(baseUrl, function (req, res, next) {
-        messageRepository.getAll(function (err, data) {
+        messageRepository.getMessagesWithAuthors(function (err, data) {
             res.data = data;
             res.err = err;
             next();
