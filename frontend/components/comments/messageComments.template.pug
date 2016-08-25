@@ -1,0 +1,31 @@
+.comments-wrapper
+    section.row.center-xs
+        section.col-xs-8.comments-holder
+          section.row.comments-header
+            span.col-xs-11 Comments
+            |                     
+            .middle-xs.col-xs-1.fa.fa-close.button(ng-link='["MsgBoard"]')
+          |                 
+          .row.comments-body
+            ul.col-xs-12
+              li.row(ng-repeat="comment in $ctrl.comments track by $index")
+                .col-xs-1.user-icon.fa.fa-user
+                |                         
+                .col-xs-9
+                  .row
+                    span.col-xs-12.user-name {{comment.author.firstName}} {{comment.author.secondName}}                            
+                  .row
+                    p.col-xs-12.comment
+                      | {{comment.description}}
+                |                         
+                span.col-xs-2.comment-date {{coment.date}}
+        
+          section.row.comments-tools
+            section.col-xs-12
+              section.row.message-holder
+                span.attachment.button.col-xs-1.fa-paperclip.fa.col-xs-offset-11
+              section.row.center-xs.center-xs
+                textarea.col-xs-11.user-message
+              |                         
+              section.row
+                section.button.comment-button.col-xs-4.col-xs-offset-4(ng-click="$ctrl.sendComment()") Comment

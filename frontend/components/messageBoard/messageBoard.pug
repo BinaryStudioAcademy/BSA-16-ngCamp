@@ -14,4 +14,4 @@ section.messageBoard-wrapper
           p.post-date {{message.date}}
       section.use-button
           div.fa.fa-files-o(ng-link='["File"]')
-          div.fa.fa-comments-o(ng-link='["Comments"]')
+          div.fa.fa-comments-o(ng-link='["Message comments",{id:message._id}]')
