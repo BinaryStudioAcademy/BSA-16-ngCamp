@@ -1,0 +1,70 @@
+.directive_background
+	position fixed
+	z-index 500
+	background-color #212121
+	opacity 0.5
+	height 100vh
+	width 100vw
+	top 0
+	left 0
+.directive_userList
+	position fixed
+	z-index 501
+	width 40%
+	min-width 350px
+	top 30%
+	left 30%
+	border 1px solid #6C7A89
+	border-bottom-right-radius 16px
+	border-bottom-left-radius 16px
+	background-color #ecf0f1
+	padding-bottom 10px
+	.field_description
+		font-family "Montserrat"
+		font-size 1.3em
+		color white
+		background-color #22313F
+	.user_list
+		align-items flex-start
+		justify-content center
+		height 30vh
+		overflow-y scroll
+		.user_field
+			transition all 0.1s ease-out
+			cursor pointer
+			font-family "Open Sans"
+			font-size 1.3em
+			font-weight bold
+			padding 5px 0
+			border-bottom 0.6px dashed #7f8c8d
+			.name
+				overflow hidden
+				text-overflow ellipsis
+				white-space nowrap
+			.email
+				overflow hidden
+				text-overflow ellipsis
+			&:hover
+				color white
+				background-color #22A7F0
+				font-size 1.4em
+			.emailText
+				font-size 0.8em
+				color gray
+			&:last-child
+				border none
+	.search_input
+		input
+			outline none
+			border none
+			font-family "Montserrat"
+			font-size 1.3em
+			padding 5px
+			border 1px solid gray
+			border-radius 7px
+			&:hover
+				box-shadow: 0 0 7px #3498db
+@media only screen and (max-width: 900px)
+	.directive_userList
+		width 70%
+		left 15%
