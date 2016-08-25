@@ -20,6 +20,14 @@ module.exports = function(app) {
         });
     }, apiResponse);
 
+    app.get(baseUrl + ':id' + '/comments', function (req, res, next) {
+        messageRepository.getByIdWithComments(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
 	app.post(baseUrl, function (req, res, next){
 		messageService.addItem(req.body, function (err, data) {
             res.data = data;
