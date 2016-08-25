@@ -44,6 +44,14 @@ module.exports = function(app) {
 		});
 	}, apiResponse);
 
+    app.put(baseUrl + ':id' + '/comment', function(req, res, next){
+        messageRepository.addComment(req.params.id, req.body, function(err, data){
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
     app.delete(baseUrl + ':id', function(req, res, next){
 		messageRepository.deleteById(req.params.id, function(err, data){
 			res.data = data;
