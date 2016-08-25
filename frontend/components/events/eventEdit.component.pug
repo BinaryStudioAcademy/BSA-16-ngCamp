@@ -29,10 +29,10 @@
               a.btn.btn-default(type='button', ng-click='$ctrl.open1()')
                 i.fa.fa-calendar(aria-hidden='true')
         h1  Description 
-        p {{$ctrl.curEvent.description}}
+        p(ng-bind-html="$ctrl.curEvent.description") 
         i.fa.fa-pencil(ng-click="$ctrl.editDescription=true",ng-if="!$ctrl.editDescription")
         i.fa.fa-check(ng-click="$ctrl.edit('description')",ng-if="$ctrl.editDescription")
-        textarea(ng-model = "$ctrl.desc",ng-if="$ctrl.editDescription")
+        textarea(ckeditor,ng-model = "$ctrl.desc",ng-if="$ctrl.editDescription")
         .participants
           h1 Participants
           i.fa.fa-user(aria-hidden='true')

@@ -1,33 +1,128 @@
-import {app} from '../index';
-import {notFoundComponent} from './notFound/notFound.component.js';
-import {userComponent} from './user/user.component.js';
-import {trashComponent} from './trash/trash.component.js';
-import {rootComponent} from './root/root.component.js';
-import {mainComponent} from './main/main.component.js';
-import {messageBoardComponent} from './messageBoard/messageBoard.component.js';
-import {filesComponent} from './files/files.component.js';
-import {postMessageComponent} from './postMessage/postMessage.component.js';
-import {editMessageComponent} from './editMessage/editMessage.component.js';
-import {projectComponent} from './project/project.component.js';
-import {checkinsComponent} from './checkins/checkins.component.js';
-import {checkinsCreateComponent} from './checkinsCreate/checkinsCreate.component.js';
-import {checkinsInfoComponent} from './checkinsInfo/checkinsInfo.component.js';
-import {menuComponent} from './menu/menu.component';
-import {headerComponent} from './header/header.component';
-import {commentsComponent} from "./comments/comments.component";
-import {reportsComponent} from "./reports/reports.component";
-import {eventsComponent} from "./events/events.component.js";
-import {eventListComponent} from "./events/eventList.component.js";
-import {eventCreateComponent} from "./events/eventCreate.component.js";
-import {eventEditComponent} from "./events/eventEdit.component.js";
-import {tasksComponent} from "./tasks/tasks.component.js";
-import {draftsComponent} from "./drafts/drafts.component.js";
-import {testComponent} from "./test/test.component.js";
-import {createProjectComponent} from "./createProject/createProject.component.js";
-import {checkinsWrapperComponent} from "./checkinsWrapper/checkinsWrapper.component";
-import {angularResizableDirective} from "./angularResizable/angularResizable.directive";
-import {calendarDailytComponent} from "./calendar/calendarDaily/calendarDaily.component.js";
+import {
+    app
+}
+from '../index';
+import {
+    notFoundComponent
+}
+from './notFound/notFound.component.js';
+import {
+    userComponent
+}
+from './user/user.component.js';
+import {
+    trashComponent
+}
+from './trash/trash.component.js';
+import {
+    rootComponent
+}
+from './root/root.component.js';
+import {
+    mainComponent
+}
+from './main/main.component.js';
+import {
+    messageBoardComponent
+}
+from './messageBoard/messageBoard.component.js';
+import {
+    filesComponent
+}
+from './files/files.component.js';
+import {
+    postMessageComponent
+}
+from './postMessage/postMessage.component.js';
+import {
+    editMessageComponent
+}
+from './editMessage/editMessage.component.js';
+import {
+    projectComponent
+}
+from './project/project.component.js';
+import {
+    checkinsComponent
+}
+from './checkins/checkins.component.js';
+import {
+    checkinsCreateComponent
+}
+from './checkinsCreate/checkinsCreate.component.js';
+import {
+    menuComponent
+}
+from './menu/menu.component';
+import {
+    headerComponent
+}
+from './header/header.component';
+import {
+    commentsComponent
+}
+from "./comments/comments.component";
+import {
+    reportsMainComponent
+}
+from "./reports/reportsMain.component";
+import {
+    reportsComponent
+}
+from "./reports/reports.component";
+import {
+    reportAddComponent
+}
+from "./reports/reportAdd.component";
+import {
+    eventsComponent
+}
+from "./events/events.component.js";
+import {
+    eventListComponent
+}
+from "./events/eventList.component.js";
+import {
+    eventEditComponent
+}
+from "./events/eventEdit.component.js";
+import {
+    tasksComponent
+}
+from "./tasks/tasks.component.js";
+import {
+    draftsComponent
+}
+from "./drafts/drafts.component.js";
+import {
+    testComponent
+}
+from "./test/test.component.js";
 
+import {
+    checkinsInfoComponent
+}
+from "./checkinsInfo/checkinsInfo.component.js";
+
+import {
+    eventCreateComponent
+}
+from "./events/eventCreate.component.js";
+
+import {
+    checkinsWrapperComponent
+}
+from "./checkinsWrapper/checkinsWrapper.component.js";
+
+import {
+    calendarDailytComponent
+}
+from "./calendar/calendarDaily/calendarDaily.component.js";
+
+import {
+    createProjectComponent
+}
+from "./createProject/createProject.component.js";
 
 app.component(messageBoardComponent.selector, messageBoardComponent);
 app.component(filesComponent.selector, filesComponent);
@@ -46,6 +141,8 @@ app.component(notFoundComponent.selector, notFoundComponent);
 app.component(projectComponent.selector, projectComponent);
 app.component(eventsComponent.selector, eventsComponent);
 app.component(commentsComponent.selector, commentsComponent);
+app.component(reportsMainComponent.selector, reportsMainComponent);
+app.component(reportAddComponent.selector, reportAddComponent);
 app.component(reportsComponent.selector, reportsComponent);
 app.component(eventCreateComponent.selector, eventCreateComponent);
 app.component(eventEditComponent.selector, eventEditComponent);
@@ -55,6 +152,4 @@ app.component(testComponent.selector, testComponent);
 app.component(draftsComponent.selector, draftsComponent);
 app.component(createProjectComponent.selector, createProjectComponent);
 app.component(checkinsWrapperComponent.selector, checkinsWrapperComponent);
-app.directive('resizable', angularResizableDirective);
 app.component(calendarDailytComponent.selector, calendarDailytComponent);
-
