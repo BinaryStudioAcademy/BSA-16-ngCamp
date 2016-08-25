@@ -32,5 +32,6 @@ section.calendar-month
                 th  Sat
                 th  Sun
             tr(ng-repeat='week in cm.weeks')
-                td(ng-repeat='day in week.days') {{day.number}}
+                td(ng-repeat='day in week.days',
+                    ng-class="{'day-today': day.isToday, 'different-month': !day.isCurrentMonth}") {{day.number}}
 
