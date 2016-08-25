@@ -20,6 +20,15 @@ class ReportsComponentController {
             }).then(function (result, error) {
                 vm._reports = result;
                 vm.recentReports = vm._reports.slice(0, 3);
+                res.forEach(function (elem, index) {
+
+                    elem.participants.forEach(function (e, i) {
+                        elem.participants[i] = (e.firstName ? e.firstName : " ") + (e.lastName ? e.lastName : " ");
+                    });
+                });
+                vm.savedReports = res;
+                console.log(vm.savedReports);
+                console.log(vm.recentReports);
             });
         });
     }
