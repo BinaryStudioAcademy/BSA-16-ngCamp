@@ -1,0 +1,28 @@
+section.calendar-month
+    header.month-header
+        i.fa.fa-chevron-left(ng-click='cm.prev()')
+        span.current-month
+            span.show-current-month(ng-click='cm.startChangeMonth()')
+                |{{cm.monthStartMoment.format("MMMM, YYYY")}}
+            div.datepicker(uib-datepicker='',
+                            datepicker-popup="MMMM/yyyy",
+                            datepicker-options="{minMode: 'month'}"
+                            datepicker-mode='month',
+                            show-button-bar='true',
+                            ng-model='cm.currentMonth',
+                            ng-if='cm.isChangeMonth',
+                            ng-change='cm.endChangeMonth()')
+        i.fa.fa-chevron-right(ng-click='cm.next()')
+    section.month-body
+        table
+            tr
+                th  Mon
+                th  Tue
+                th  Wed
+                th  Thu
+                th  Fri
+                th  Sat
+                th  Sun
+            tr(ng-repeat='week in cm.weeks')
+                td(ng-repeat='day in week.days') {{day.number}}
+

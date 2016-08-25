@@ -1,0 +1,55 @@
+.calendar-month
+    width 80%
+    margin-left 10%
+    .month-header
+        display flex
+        justify-content space-around
+        align-items center
+        border 1px solid #ADADAD
+        background-color #F5F5F5
+        border-radius 10px
+        i
+            color #1D8DBF
+            font-size 2em
+            &:hover
+                color #260595
+
+        .current-month
+            .show-current-month
+                font-family "Montserrat"
+                font-size 1.8em
+            .datepicker
+                position absolute
+                background-color #F5F5F5
+                top 20%
+                left 35%
+                //width 150px
+                //height 175px
+                z-index 2
+    .month-body
+        margin-top 10px
+        width 100%
+        background-color #F5F5F5
+        padding 0
+        table
+            margin 0
+            margin-bottom 10px
+            width 100%
+            font-size 1.4em
+            font-family "Open Sans"
+            col(width='14.29')
+            col(width='14.29')
+            col(width='14.29')
+            col(width='14.29')
+            col(width='14.29')
+            col(width='14.28')
+            col(width='14.28')
+            tr
+                th
+                    padding 1%
+                    border-style solid
+                    border-width 1px
+                    border-color #808080
+                    color #212121
+                    background-color #ADADAD
+                    text-align center
