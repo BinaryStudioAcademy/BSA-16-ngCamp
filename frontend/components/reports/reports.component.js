@@ -4,6 +4,8 @@ class ReportsComponentController {
     constructor(httpGeneral, popupNotifications) {
         this.usedId = "57af0ec9ddc523292575d42b";
         this.httpGeneral = httpGeneral;
+        this._reports = '';
+        this.recentReports = '';
 
     }
     $onInit() {
@@ -16,8 +18,8 @@ class ReportsComponentController {
                 type: "GET",
                 url: "api/report/" + vm.usedId + "/recent"
             }).then(function (result, error) {
-                console.log(res);
-                console.log(result);
+                vm._reports = result;
+                vm.recentReports = vm._reports.slice(0, 3);
             });
         });
     }

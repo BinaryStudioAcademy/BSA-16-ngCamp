@@ -15,20 +15,21 @@
                         span.chapter-title.col-xs-10 Recent
                             .fa.fa-clock-o
                     .row.center-xs
-                        table.col-xs-12.review-table
+                        table.col-xs-12.review-table(ng-show="reports.recentReports")
                             tr.row.t-head
                                 td.col-xs-3 Title
                                 td.col-xs-5 Description
                                 td.col-xs-2 Created
-                            tr.row.t-body
-                                td.col-xs-3 Daily report
-                                td.col-xs-5 Message, Events and Check-Ins report for user in NotBaseCamp project
-                                td.col-xs-2 16/08/2016
+                            tr.row.t-body(ng-repeat = "r in reports.recentReports track by $index")
+                                td.col-xs-3 {{r.title}}
+                                td.col-xs-5 {{r.description}}
+                                td.col-xs-2 {{r.creationDate | date : "dd/MM/y"}}
                                 td.col-xs-2
                                     .row.around-xs
                                         span.col-xs-4.fa.fa-eye.button.f-btn
                                         span.col-xs-4.fa.fa-trash.button.f-btn
-                    .row
+                        h4.col-xs-12.start-xs(ng-show="!reports.recentReports") You don't have reports yet
+                    .row(ng-show="reports.recentReports")
                         .col-xs-1.col-xs-offset-11.button.btn More
             hr
             .row.reports-samples
