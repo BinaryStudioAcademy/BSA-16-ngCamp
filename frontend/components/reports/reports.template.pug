@@ -15,20 +15,21 @@
                         span.chapter-title.col-xs-10 Recent
                             .fa.fa-clock-o
                     .row.center-xs
-                        table.col-xs-12.review-table
+                        table.col-xs-12.review-table(ng-show="reports.recentReports")
                             tr.row.t-head
                                 td.col-xs-3 Title
                                 td.col-xs-5 Description
                                 td.col-xs-2 Created
-                            tr.row.t-body
-                                td.col-xs-3 Daily report
-                                td.col-xs-5 Message, Events and Check-Ins report for user in NotBaseCamp project
-                                td.col-xs-2 16/08/2016
+                            tr.row.t-body(ng-repeat = "r in reports.recentReports track by $index")
+                                td.col-xs-3 {{r.title}}
+                                td.col-xs-5 {{r.description}}
+                                td.col-xs-2 {{r.creationDate | date : "dd/MM/y"}}
                                 td.col-xs-2
                                     .row.around-xs
                                         span.col-xs-4.fa.fa-eye.button.f-btn
                                         span.col-xs-4.fa.fa-trash.button.f-btn
-                    .row
+                        h4.col-xs-12.start-xs(ng-show="!reports.recentReports") You don't have reports yet
+                    .row(ng-show="reports.recentReports")
                         .col-xs-1.col-xs-offset-11.button.btn More
             hr
             .row.reports-samples
@@ -38,176 +39,29 @@
                             .fa.fa-bookmark-o
                     .row
                         .col-xs-12.masonry
-                            .item
+                            .item(ng-repeat = "r in reports.savedReports track by $index")
                                 .row.start-xs.middle-xs
-                                    .col-xs-8.item-title Daily report
+                                    .col-xs-8.item-title {{r.title}}
                                     .col-xs-4
                                         .row.around-xs
                                             span.col-xs-5.fa.fa-eye.button.f-btn
                                             span.col-xs-5.fa.fa-trash.button.f-btn
                                 hr
-                                .row.start-xs.item-row
+                                .row.start-xs.item-row(ng-show = "r.participants")
                                     .col-xs-4
                                         span.row.item-def Users:
                                     .col-xs-8
-                                        span.row.item-value Teemo Cook, David Ivy, Kuba Bryant, Brand Cooper
-                            .item
-                                .row.start-xs.middle-xs
-                                    .col-xs-8.item-title Daily report
+                                        span.row.item-value {{r.participants.join(',')}}
+                                .row.start-xs.item-row(ng-show = "r.types")
                                     .col-xs-4
-                                        .row.around-xs
-                                            span.col-xs-5.fa.fa-folder-open-o.button.f-btn
-                                            span.col-xs-5.fa.fa-trash.button.f-btn
-                                hr
-                                .row.start-xs.item-row
-                                    .col-xs-4
-                                        span.row.item-def Users:
+                                        span.row.item-def Type:
                                     .col-xs-8
-                                        span.row.item-value Teemo Cook, David Ivy, Kuba Bryant, Brand Cooper
-                                .row.start-xs.item-row
+                                        span.row.item-value {{r.types.join(', ')}}
+                                .row.start-xs.item-row(ng-show = "r.dateRange")
                                     .col-xs-4
-                                        span.row.item-def Elements:
+                                        span.row.item-def Dates:
                                     .col-xs-8
-                                        span.row.item-value Message, Events
-                            .item
-                                .row.start-xs.middle-xs
-                                    .col-xs-8.item-title Daily report
-                                    .col-xs-4
-                                        .row.around-xs
-                                            span.col-xs-5.fa.fa-folder-open-o.button.f-btn
-                                            span.col-xs-5.fa.fa-trash.button.f-btn
-                                hr
-                                .row.start-xs.item-row
-                                    .col-xs-4
-                                        span.row.item-def Users:
-                                    .col-xs-8
-                                        span.row.item-value Teemo Cook, David Ivy, Kuba Bryant, Brand Cooper
-                                .row.start-xs.item-row
-                                    .col-xs-4
-                                        span.row.item-def Elements:
-                                    .col-xs-8
-                                        span.row.item-value Message, Events
-                                .row.start-xs.item-row
-                                    .col-xs-4
-                                        span.row.item-def Date:
-                                    .col-xs-8
-                                        span.row.item-value 16/08/2016
+                                        span.row.item-value {{r.dateRange[0] | date : 'dd/MM/y'}} - {{r.dateRange[1] | date : 'dd/MM/y'}}
+
                     .row
                         .col-xs-1.col-xs-offset-11.button.btn More
-//                                td.col-xs-1.fa.fa-folder-open-o.button
-//                                td.col-xs-1.fa.fa-pencil.button
-//                                td.col-xs-1.fa.fa-trash.button
-                    hr
-                    
-                    
-                    
-//
-//    section.row.center-xs
-//        section.col-xs-10.reports-holder
-//          section.row.reports-header.middle-xs
-//            h3.col-xs-6.start-xs.col-xs-offset-1 Reports
-//            span.col-xs-1.col-xs-offset-4.fa.fa-close.button(ng-link='["MainPage"]')
-//            
-//          |                 
-//          hr
-//          section.row.reports-tools
-//            span.col-xs-2.sub-title Show report:
-//            |                     
-//            section.col-xs-10.col-xs-offset-1
-//              section.row
-//                section.col-xs-4.center-xs
-//                  span.row.sub-title.center-xs For user(s)
-//                  |                                 
-//                  section.row
-//                    ul.col-xs-12
-//                      li.row
-//                        input.col-xs-2.col-xs-offset-3(type='checkbox')
-//                        span.col-xs-3 All
-//                      |                                         
-//                      li.row
-//                        input.col-xs-2.col-xs-offset-3(type='checkbox')
-//                        span.col-xs-3 User1
-//                      |                                         
-//                      li.row
-//                        input.col-xs-2.col-xs-offset-3(type='checkbox')
-//                        span.col-xs-3 User2
-//                |                             
-//                section.col-xs-4.center-xs
-//                  span.row.sub-title.center-xs For element(s)
-//                  |                                 
-//                  section.row
-//                    ul.col-xs-12
-//                      li.row
-//                        input.col-xs-2.col-xs-offset-3(type='checkbox')
-//                        span.col-xs-3 All
-//                      |                                         
-//                      li.row
-//                        input.col-xs-2.col-xs-offset-3(type='checkbox')
-//                        span.col-xs-3 Message
-//                      |                                         
-//                      li.row
-//                        input.col-xs-2.col-xs-offset-3(type='checkbox')
-//                        span.col-xs-3 Check-In
-//                      |                                         
-//                      li.row
-//                        input.col-xs-2.col-xs-offset-3(type='checkbox')
-//                        span.col-xs-3 Event
-//                      |                                         
-//                      li.row
-//                        input.col-xs-2.col-xs-offset-3(type='checkbox')
-//                        span.col-xs-3 Task
-//                |                             
-//                section.col-xs-4.center-xs
-//                  span.row.sub-title.center-xs For date
-//                  |                                 
-//                  section.row
-//                    ul.col-xs-12
-//                      li.row
-//                        span.col-xs-5 after
-//                        |                                             
-//                        select#after-date.col-xs-6(name='')
-//                          option 13 May 2016
-//                      |                                         
-//                      li.row
-//                        span.col-xs-5 before
-//                        |                                             
-//                        select#after-date.col-xs-6(name='')
-//                          option 13 May 2016
-//          |                 
-//          section.row.center-xs
-//            section.col-xs-4.report-button Generate
-//          hr
-//          section.row.reports-body.center-xs
-//            section.col-xs-9
-//              section.row
-//                h3.col-xs-6.col-xs-offset-3.report-item-title 13 May 2016
-//              |                         
-//              section.row.item-title
-//                span.col-xs-3  Title
-//                |                             
-//                span.col-xs-4 Name Surname
-//                |                             
-//                span.col-xs-1.fa.fa-paperclip
-//                |                             
-//                span.col-xs-1.fa.fa-comment
-//                |                             
-//                span.col-xs-1.fa.fa-rss
-//                |                             
-//                span.col-xs-2 Time
-//              |                         
-//              section.row
-//                section.col-xs-12
-//                  section.row.start-xs 
-//                    span.col-xs-7 Set up external auth server
-//                    |                                     
-//                    span.col-xs-1.col-xs-offset-1.fa.fa-comment
-//                    |                                     
-//                    span.col-xs-1.fa.fa-rss
-//                  |                                 
-//                  section.row.start-xs 
-//                    span.col-xs-8
-//                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos officia eveniet recusandae iusto nisi consequuntur quia. Enim rerum repellendus delectus, assumenda in similique voluptates quo, sint recusandae quaerat facere reiciendis.
-//                    |                                     
-//                    span.col-xs-2 UserName1
-//                    |                                     
-//                    span.col-xs-2 10:50

@@ -30,6 +30,9 @@ function getSaved(id, callback) {
     var query = model.find({
         user: id,
         isSaved: true
+    }).populate({
+        path: "participants",
+        select: "firstName lastName"
     });
     query.exec(callback);
 }
