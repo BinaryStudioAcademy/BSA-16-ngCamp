@@ -123,6 +123,11 @@ import {
     createProjectComponent
 }
 from "./createProject/createProject.component.js";
+import {
+    messageCommentsComponent
+}
+from "./comments/messageComments.component.js";
+
 
 app.component(messageBoardComponent.selector, messageBoardComponent);
 app.component(filesComponent.selector, filesComponent);
@@ -153,3 +158,4 @@ app.component(draftsComponent.selector, draftsComponent);
 app.component(createProjectComponent.selector, createProjectComponent);
 app.component(checkinsWrapperComponent.selector, checkinsWrapperComponent);
 app.component(calendarDailytComponent.selector, calendarDailytComponent);
+app.component(messageCommentsComponent.selector, messageCommentsComponent);

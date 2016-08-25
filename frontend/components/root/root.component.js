@@ -79,7 +79,12 @@ const rootComponent = {
         path: '/comments',
         name: 'Comments',
         component: 'commentsComponent'
-    }, {
+    },{
+        path:'comments/:id/message',
+        name: 'Message comments',
+        component: 'messageCommentsComponent'
+    },
+    {
         path: '/files',
         name: 'File', //TODO test, remove later
         component: 'files'

@@ -5,7 +5,7 @@ var baseUrl = '/api/messages/';
 
 module.exports = function(app) {
     app.get(baseUrl, function (req, res, next) {
-        messageRepository.getAll(function (err, data) {
+        messageRepository.getMessagesWithAuthors(function (err, data) {
             res.data = data;
             res.err = err;
             next();
@@ -14,6 +14,14 @@ module.exports = function(app) {
 
     app.get(baseUrl + ':id', function (req, res, next) {
         messageRepository.getById(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
+    app.get(baseUrl + ':id' + '/comments', function (req, res, next) {
+        messageRepository.getByIdWithComments(req.params.id, function (err, data) {
             res.data = data;
             res.err = err;
             next();
@@ -35,6 +43,14 @@ module.exports = function(app) {
             next();
 		});
 	}, apiResponse);
+
+    app.put(baseUrl + ':id' + '/comment', function(req, res, next){
+        messageRepository.addComment(req.params.id, req.body, function(err, data){
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
 
     app.delete(baseUrl + ':id', function(req, res, next){
 		messageRepository.deleteById(req.params.id, function(err, data){

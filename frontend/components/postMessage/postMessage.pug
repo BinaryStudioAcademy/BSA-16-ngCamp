@@ -4,20 +4,16 @@ section.post-message-wrapper
     div.fa.fa-close(ng-link='["MsgBoard"]')
       //img(ng-link='["MsgBoard"]', align='top', src='https://cdn3.iconfinder.com/data/icons/simple-files-1/128/No-128.png', alt='exit')
   hr
-  section.input-block
-    section.img-block
-      img(src='https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_save_48px-128.png', alt='save')
-      br
-      img(src='https://cdn2.iconfinder.com/data/icons/files-folders-3/24/files-folders-48-128.png', alt='share')
-    textarea(name='', id='', cols='30', rows='10')
-    .text-editor
-      | TEXT EDITOR
-    //form#uploadForm(action='/postMessage', method='post', enctype='multipart/form-data')
-    //        input(type='file', name='message')
-    //        input(type='submit', value='Upload')
+  h1 Title
+  input(name="title",ng-model="postCtrl.title")
+  h1 Description
+  textarea(ckeditor,name='', id='', cols='30', rows='10',ng-model="postCtrl.desc")
+  //  form#uploadForm(action='/postMessage', method='post', enctype='multipart/form-data')
+  //          input(type='file', name='message')
+  //          input(type='submit', value='Upload')
   //section.draft-post
   //  select(name='drafts')
   //    option(value='draft1') draft1
   //    option(value='draft2') draft2
   //    option(value='draft3') draft3
-  div.postBtn Post
+  div.postBtn(ng-click="postCtrl.post()") Post

@@ -85,6 +85,7 @@
 }
 .reports-wrapper .reports-samples .item .item-value {
   font-family: "Open Sans";
+  flex-wrap: wrap;
 }
 .reports-wrapper .reports-samples .item .item-row {
   margin-bottom: 2%;
