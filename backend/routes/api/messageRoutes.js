@@ -28,6 +28,15 @@ module.exports = function(app) {
         });
     }, apiResponse);
 
+    app.get(baseUrl + ':id' + '/drafts', function (req, res, next) {
+        messageRepository.getDrafts(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
+
 	app.post(baseUrl, function (req, res, next){
 		messageService.addItem(req.body, function (err, data) {
             res.data = data;

@@ -5,6 +5,7 @@ MessageRepository.prototype = new Repository();
 MessageRepository.prototype.getMessagesWithAuthors = getMessagesWithAuthors;
 MessageRepository.prototype.getByIdWithComments = getByIdWithComments;
 MessageRepository.prototype.addComment = addComment;
+MessageRepository.prototype.getDrafts = getDrafts;
 
 function MessageRepository() {
     Repository.prototype.constructor.call(this);
@@ -14,6 +15,15 @@ function MessageRepository() {
 function getMessagesWithAuthors(callback) {
     var model = this.model;
     var query = model.find().populate('author');
+    query.exec(callback);
+}
+
+function getDrafts(id,callback){
+    var model = this.model;
+    var query = model.find({
+        author:id,
+        isDraft:true
+    });
     query.exec(callback);
 }
 
