@@ -16,4 +16,7 @@ section.post-message-wrapper
   //    option(value='draft1') draft1
   //    option(value='draft2') draft2
   //    option(value='draft3') draft3
-  div.postBtn(ng-click="postCtrl.post()") Post
+  div.sendBtn
+    button(ng-click="postCtrl.draft()") Save as Draft
+  div.sendBtn
+    button(ng-click="postCtrl.post()") Post

@@ -93,7 +93,7 @@ const rootComponent = {
         name: 'PostMessage', //TODO test, remove later
         component: 'postMessage'
     }, {
-        path: '/editMessage',
+        path: '/editMessage/:id',
         name: 'EditMessage', //TODO test, remove later
         component: 'editMessage'
     }, {
