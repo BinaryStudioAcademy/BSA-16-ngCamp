@@ -18,8 +18,16 @@ var TaskSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'File'
     }],
+    toDos: [{
+        type: Schema.Types.ObjectId,
+        ref: 'ToDo'
+    }],
     archived: Boolean,
-    isFinished: Boolean
+    isFinished: Boolean,
+    participants: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }] 
 });
 
 TaskSchema.pre('remove', function(next){
