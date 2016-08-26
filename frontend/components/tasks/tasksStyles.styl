@@ -58,10 +58,9 @@
 		.wrapper_noTask
 			font-size 1.3em
 			font-family "Montserrat"
-			
 		.wrapper_task
 			margin 20px 0
-			border 1px solid gray
+			border 1px solid #212121
 			padding 7px 0
 			border-radius 7px
 			background-color #212121
@@ -76,6 +75,7 @@
 					display flex
 					align-items center
 					justify-content center
+
 					
 				.expander
 					display flex
@@ -114,6 +114,8 @@
 					font-size 1em
 					color gray
 					margin-bottom 10px
+					padding-bottom 10px
+					border-bottom 2px dashed #6C7A89
 				.toDo_status
 					display flex
 					align-items center
@@ -137,4 +139,25 @@
 			.animate-expand.ng-leave,.animate-expand.ng-enter.ng-enter-active
 				opacity 1
 				margin-top 10px
-				
+		.no_participants
+			position relative
+			&:after
+				content ''
+				display block
+				position absolute
+				right 5px
+				width 15px
+				height 15px
+				border-radius 7.5px
+				background-color #EC644B
+		.my_task
+			position relative
+			&:after
+				content ''
+				display block
+				position absolute
+				right 5px
+				width 15px
+				height 15px
+				border-radius 7.5px
+				background-color #52B3D9

@@ -2,11 +2,13 @@ import './tasksStyles.styl';
 
 
 class TasksComponentController {
-	constructor(httpGeneral) {
+	constructor(httpGeneral,$timeout) {
 		this.http = httpGeneral;
 		this.tasks = [];
 		this.contentFlag = true;
 		this.projUsers = [];
+		this.currUserId = window._injectedData.userId;
+		this.timeout = $timeout;
 	}
 
 	$onInit(){
@@ -87,11 +89,20 @@ class TasksComponentController {
 		console.log(user);
 	}
 
+	expand(task){
+		task.expanded = !task.expanded;
+		this.timeout(function(){
+			let element = document.getElementById(task._id);
+			window.scrollTo(0,element.offsetTop);
+		},0,false);
+	}
+
 	}
 	
 
 TasksComponentController.$inject = [
-	'httpGeneral'
+	'httpGeneral',
+	'$timeout'
 ];
 
 const tasksComponent = {
