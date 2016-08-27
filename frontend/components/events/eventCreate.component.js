@@ -47,6 +47,7 @@ class eventEditController {
                     startDate: self.date,
                     endDate:self.endDate,
                     isAllDay:self.allDay,
+                    author:window._injectedData.userId,
                 }
             }
         }).then(function(res) {
