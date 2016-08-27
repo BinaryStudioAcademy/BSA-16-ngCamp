@@ -17,8 +17,11 @@ var EventSchema = new Schema({
     files: [{
         type: Schema.Types.ObjectId,
         ref: "File"
-    }]
-
+    }],
+    author:{
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }
 });
 
 module.exports = mongoose.model('Event', EventSchema);
