@@ -60,5 +60,12 @@ module.exports = function (app) {
         })
     }, apiResponse);
     //===================================================
+    app.get(baseUrl + "item/:id", function (req, res, next) {
+        reportService.getItem(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        })
+    }, apiResponse);
     //===================================================
 }

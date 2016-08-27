@@ -1,0 +1,49 @@
+.reports-wrapper
+    .row.center-xs
+        .col-xs-12.col-md-10.reports-holder
+            .row.reports-header
+                h3.col-xs-10 Report Generating
+                .col-xs-1.col-xs-offset-1.fa.fa-close.button.font-button(ng-link="['Reports']")
+            .row.generate-holder.center-xs
+                .col-xs-12
+                    .row.center-xs
+                        .col-xs-11
+                            .row.generate-item-header.middle-xs
+                                .col-xs-2 Title:
+                                input(type='text' ng-model='reportEdit.report.title' ).col-xs-10
+                            .row.generate-item-header.middle-xs
+                                .col-xs-2 Description:
+                                input(type='text' ng-model='reportEdit.report.description').col-xs-10
+                            .row.generate-item-header.middle-xs
+                                .col-xs-2 Type:
+                                .col-xs-9
+                                    .generate-item(ng-repeat = 't in reportEdit.report.types track by $index') {{t}}
+                                        span &#xf068
+                                .col-xs-1.fa.fa-angle-down.button.f-btn
+                            .row
+                                .col-xs-12.generate-item-holder
+                                    span.generate-item All
+                                        span &#xf067
+
+                                    span.generate-item Message
+                                        span &#xf067
+                                    span.generate-item  Event
+                                        span &#xf067
+                            .row.generate-item-header.middle-xs
+                                .col-xs-2 User:
+                                .col-xs-9
+                                .col-xs-1.fa.fa-angle-left.button.f-btn
+                            .row
+                                .col-xs-12.generate-item-holder
+                            .row.generate-item-header.middle-xs
+                                .col-xs-2 Date:
+                                .col-xs-2.center-xs From:
+                                input(type="date" ng-model='reportEdit.report.dateRange[0]').col-xs-3
+                                .col-xs-1.col-xs-1.center-xs To:
+                                input(type="date" ng-model='reportEdit.report.dateRange[1]').col-xs-3
+                    .row
+                        span.button.btn.col-xs-4.col-xs-offset-4 Generate
+                    .row.start-xs
+                        span.chapter-title.col-xs-10 History
+                            .fa.fa-history
+

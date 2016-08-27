@@ -9,6 +9,7 @@ function ReportRepository() {
 ReportRepository.prototype = new Repository();
 ReportRepository.prototype.getRecent = getRecent;
 ReportRepository.prototype.getSaved = getSaved;
+ReportRepository.prototype.getItem = getItem;
 
 
 function getRecent(id, callback) {
@@ -30,6 +31,17 @@ function getSaved(id, callback) {
     var query = model.find({
         user: id,
         isSaved: true
+    }).populate({
+        path: "participants",
+        select: "firstName lastName"
+    });
+    query.exec(callback);
+}
+
+function getItem(id, callback) {
+    var model = this.model;
+    var query = model.find({
+        _id: id
     }).populate({
         path: "participants",
         select: "firstName lastName"

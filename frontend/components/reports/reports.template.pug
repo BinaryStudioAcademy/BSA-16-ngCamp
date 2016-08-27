@@ -8,7 +8,7 @@
                 h3.col-xs-6 Quckly report generating
                 .col-xs-12
                    .row
-                        span(ng-link = "['Reports Edit']").button.btn.col-xs-4.col-xs-offset-4 Generate
+                        span(ng-link = "['Reports Add']").button.btn.col-xs-4.col-xs-offset-4 Generate
             .row.reports-recent
                 .col-xs-12
                     .row.start-xs
@@ -26,7 +26,7 @@
                                 td.col-xs-2 {{r.creationDate | date : "dd/MM/y"}}
                                 td.col-xs-2
                                     .row.around-xs
-                                        span.col-xs-4.fa.fa-eye.button.f-btn
+                                        span.col-xs-4.fa.fa-eye.button.f-btn(ng-link = "['Reports Edit', {id: reports.recentReports[$index]._id}]")
                                         span.col-xs-4.fa.fa-trash.button.f-btn
                         h4.col-xs-12.start-xs(ng-show="!reports.recentReports") You don't have reports yet
                     .row(ng-show="reports.recentReports")

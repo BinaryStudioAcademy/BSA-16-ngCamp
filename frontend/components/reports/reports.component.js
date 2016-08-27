@@ -2,7 +2,7 @@ import "./reportsStyle.styl";
 
 class ReportsComponentController {
     constructor(httpGeneral, popupNotifications) {
-        this.usedId = "57af0ec9ddc523292575d42b";
+        this.usedId = window._injectedData.userId;
         this.httpGeneral = httpGeneral;
         this._reports = '';
         this.recentReports = '';
@@ -20,15 +20,15 @@ class ReportsComponentController {
             }).then(function (result, error) {
                 vm._reports = result;
                 vm.recentReports = vm._reports.slice(0, 3);
-                res.forEach(function (elem, index) {
+                if (res) {
+                    res.forEach(function (elem, index) {
 
-                    elem.participants.forEach(function (e, i) {
-                        elem.participants[i] = (e.firstName ? e.firstName : " ") + (e.lastName ? e.lastName : " ");
+                        elem.participants.forEach(function (e, i) {
+                            elem.participants[i] = (e.firstName ? e.firstName : " ") + (e.lastName ? e.lastName : " ");
+                        });
                     });
-                });
-                vm.savedReports = res;
-                console.log(vm.savedReports);
-                console.log(vm.recentReports);
+                    vm.savedReports = res;
+                }
             });
         });
     }
