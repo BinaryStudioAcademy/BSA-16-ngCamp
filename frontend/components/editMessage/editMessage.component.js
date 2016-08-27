@@ -48,6 +48,16 @@ class editMessageController {
     		self.popupNotifications.notifySuccess("Succesfull post draft");
     	});
     }
+    delete(){
+    	let self = this;
+    	self.httpGeneral.sendRequest({
+    		type:"DELETE",
+    		url:`api/messages/${self.draft._id}`,
+    	}).then(function(res){
+    		self.location.path("/messageboard");
+    		self.popupNotifications.notifySuccess("You delete message");
+    	});
+    }
 }
 
 editMessageController.$inject = ['httpGeneral','$location','$window','popupNotifications'];
