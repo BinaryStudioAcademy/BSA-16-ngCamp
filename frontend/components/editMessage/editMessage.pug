@@ -19,3 +19,4 @@ section.post-message-wrapper
   .sendButtons
     div.postBtn(ng-click="editCtrl.edit()") Edit
     div.postBtn(ng-if="editCtrl.draft.isDraft",ng-click="editCtrl.postDraft()") Post on message board
+    button.delete(ng-click="editCtrl.delete()",ng-if="editCtrl.draft.author === editCtrl.window._injectedData.userId") Delete

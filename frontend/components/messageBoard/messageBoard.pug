@@ -9,7 +9,8 @@ section.messageBoard-wrapper
               img.img(src="./img/person.gif")
               h3 {{message.author.firstName}} {{message.author.lastName}}
       article.message-info
-          h3 {{message.title}}
+          a
+            h3(ng-link='["EditMessage",{id:message._id}]') {{message.title}}
           read-more(ng-bind-html="message.description")
           p.post-date {{message.date}}
       section.use-button
