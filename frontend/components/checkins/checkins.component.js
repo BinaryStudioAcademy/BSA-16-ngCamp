@@ -12,6 +12,7 @@ class CheckinsComponentController {
             url: "api/checkins"
         }).then(function(res) {
             for (let check in res) {
+                console.log();
                 if (res[check].project[0] === window._injectedData.currentProject) {
                     self.checkIns.push(res[check]);
                 }
@@ -30,6 +31,16 @@ class CheckinsComponentController {
         }).then(function(res) {
             console.log("Succesfull change status of checkin");
         });
+    }
+    filterFunction (mday){
+
+        console.log(mday+ 'sdfsdfsd');
+        let day = new RegExp(mday, 'g');
+
+        return function(element){
+            return (element.frequency.match(day) ? true : false);
+        };
+        // || (element.frequency.match(/weekday/) ? true : false);
     }
 }
 

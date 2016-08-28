@@ -46,15 +46,15 @@
                                 .slider.round
         section.tab.mo
             label(for='monday') Monday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.filterFunction('Monday') ")
                 ul.content
-                    li.qq 12:30
+                    li.qq {{checkin._id}}
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') What are you working on?
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
                     li.qq
                         div
                             label.switch
-                                input(type='checkbox', checked='checked')
+                                input(type='checkbox', ng-disabled="true", checked='checked')
                                 .slider.round
         section.tab.tu
             label(for='tuesday') Tuesday
