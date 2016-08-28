@@ -226,27 +226,15 @@ function addReportValidation(body, callback) {
         });
         return false;
     }
-    if (!body.types || body.types.length <= 0) {
-        callback({
-            message: "Report types is undefined"
-        });
-        return false;
-    }
-    if (!body.participants || body.types.participants <= 0) {
-        callback({
-            message: "Report participants is undefined"
-        });
-        return false;
-    }
-    if (!body.dateRange || body.types.dateRange <= 0) {
-        callback({
-            message: "Report date range is undefined"
-        });
-        return false;
-    }
     if (!body.title) {
         callback({
             message: "Report title is undefined"
+        });
+        return false;
+    }
+    if (((!body.types && body.types.length <= 0) && (!body.participants && body.participants.length <= 0)) && (!isSaved && (!body.dateRange && body.dateRange.length <= 0))) {
+        callback({
+            message: "Report filter is undefined"
         });
         return false;
     }
