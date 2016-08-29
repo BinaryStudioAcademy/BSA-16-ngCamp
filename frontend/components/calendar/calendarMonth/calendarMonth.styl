@@ -5,18 +5,18 @@
     color #ADADAD
 
 .calendar-month
-    width 80%
-    margin-left 10%
+
     .month-header
         display flex
         justify-content space-around
         align-items center
-        border 1px solid #ADADAD
+        border 2px solid #ADADAD
         background-color #F5F5F5
         border-radius 10px
+        min-width 360px
         i
             color #1D8DBF
-            font-size 2em
+            font-size 20px
             &:hover
                 color #260595
 
@@ -35,13 +35,14 @@
     .month-body
         margin-top 10px
         width 100%
+        min-width 360px
         background-color #F5F5F5
         padding 0
         table
             margin 0
             margin-bottom 10px
             width 100%
-            font-size 1.4em
+            font-size 18px
             font-family "Open Sans"
             col(width='14.29')
             col(width='14.29')
@@ -63,3 +64,4 @@
                     padding 1%
                     border 1px solid #808080
                     text-align right
+
