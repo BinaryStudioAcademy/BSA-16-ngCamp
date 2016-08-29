@@ -11,7 +11,7 @@ function sendEmailToCheckinPartisipants(p, question, projectName) {
 					to: [data.email],
     				subject: "invitation to answer survey",
     				path: "d:/BSA/BSA/email/checkIn-notification-template.pug",
-   					html: "<b>Hello world 🐴</b>",
+   					html: "<b>Err!</b>",
     				content: {
     					userName: username,
     					projectName: projectName,
@@ -23,7 +23,7 @@ function sendEmailToCheckinPartisipants(p, question, projectName) {
 					if(err){
 						console.log(err);
 					} else {
-						console.log(mailPost);
+						//console.log(mailPost);
 					}
 				})
 			}
