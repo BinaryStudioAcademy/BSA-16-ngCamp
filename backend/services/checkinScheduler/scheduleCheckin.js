@@ -2,10 +2,8 @@ var sendEmailToCheckinPartisipants = require('./sendEmail');
 var repo = require('../../repositories/checkinRepository');
 
 function scheduleCheckinsByFrequency(frequency, time){
-	repo.findCheckinsByFrequency(frequency, function(err, checkins){
+	repo.findCheckinsByFrequencyAndTime(frequency,time, function(err, checkins){
 	    checkins.forEach(function(checkin){
-	    	var toggle = 0;
-	    	if (checkin.time === time){
 	    		var date = Date.now();
 				var answers = [];
 				var question = checkin.question;
@@ -21,7 +19,7 @@ function scheduleCheckinsByFrequency(frequency, time){
 						// console.log(result);
 					}
 				});
-	    	}
+
 		})
 	});
 }
