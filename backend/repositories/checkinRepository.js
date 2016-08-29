@@ -9,6 +9,12 @@ function CheckinRepository() {
 CheckinRepository.prototype = new Repository();
 
 CheckinRepository.prototype.findCheckinsByFrequency = findCheckinsByFrequency;
+CheckinRepository.prototype.getAll = getAll;
+
+function getAll(callback) {
+    var query = Checkin.find({}).populate('participants');
+    query.exec(callback);
+}
 
 function findCheckinsByFrequency(freq, callback){
 	var query = Checkin.find({frequency: freq}).populate('project');
