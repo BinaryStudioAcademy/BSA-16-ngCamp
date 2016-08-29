@@ -5,31 +5,40 @@
         justify-content: center;
         flex-direction: row;
     }
+
     .header-list h1 {
         border-bottom: 1px solid black;
     }
-    .header-list button {
-        font-size: 21px;
+
+    .header-list a {
+        text-decoration: none;
+        color: #212121;
+        font-size: 22px;
         padding: 5px;
         border-radius: 10px;
         cursor: pointer;
         background-color: #1d8dbf;
     }
-    .header-list button:hover {
+
+    .header-list a:hover {
         background-color: #27bcff;
     }
+
     li {
         list-style: none;
     }
+
     /* ACCORDION */
     .checkins-accordion {
         max-width: 650px;
         margin: 0 auto;
         margin-top: 30px;
     }
+
     input[name="week"] {
         display: none;
     }
+
     section {
         font-size: 18px;
         border: 1px solid #adadad;
@@ -38,6 +47,7 @@
         overflow: hidden;
         /*height: 450px;*/
     }
+
     section > label {
         line-height: 2em;
         height: 2em;
@@ -48,14 +58,17 @@
         display: block;
         text-align: center;
     }
+
     .tabs {
         display: none;
     }
+
     .tabs:after {
         content: "";
         display: table;
         clear: both;
     }
+
     input[id="week-list"]:not(:checked) ~ .tab.all,
     input[id="monday"]:not(:checked) ~ .tab.mo,
     input[id="tuesday"]:not(:checked) ~ .tab.tu,
@@ -66,6 +79,7 @@
     input[id="sunday"]:not(:checked) ~ .tab.su {
         height: 2em;
     }
+
     input[id="week-list"]:checked ~ * label[for="week-list"],
     input[id="monday"]:checked ~ * label[for="monday"],
     input[id="tuesday"]:checked ~ * label[for="tuesday"],
@@ -77,6 +91,7 @@
         background-color: #cccccc;
         border-top: 4px solid #f2992e;
     }
+
     @media (min-width: 600px) {
         input[id="week-list"]:not(:checked) ~ .tab.all,
         input[id="monday"]:not(:checked) ~ .tab.mo,
@@ -115,13 +130,16 @@
             cursor: pointer;
             padding: .2em 0.5em;
         }
-    } /* QQ */
+    }
+
+    /* QQ */
     .content {
         display: flex;
         justify-content: space-between;
         margin-top: 20px;
         font-size: 23px;
     }
+
     .qq a {
         display: flex;
         text-align: center;
@@ -130,6 +148,22 @@
         margin-left: 10px;
         margin-right: 10px;
     }
+
+    .user-list {
+        text-align: center;
+        //border-bottom: 1px solid black;
+        //padding: 1%;
+    }
+
+    .avatar {
+        background-color: #f2992e;
+        border-radius: 5px;
+        font-size: 18px;
+        padding: 3px;
+        margin: 3px;
+        /*padding: .2em 0.2em;*/
+    }
+
     /* TOOGLE */
     .switch {
         position: relative;
@@ -138,9 +172,11 @@
         height: 34px;
         margin-right: 20px;
     }
+
     .switch input {
         display: none;
     }
+
     .slider {
         position: absolute;
         cursor: pointer;
@@ -164,20 +200,25 @@
         -webkit-transition: .4s;
         transition: .4s;
     }
+
     input:checked + .slider {
         background-color: #1d8dbf;
     }
+
     input:focus + .slider {
         box-shadow: 0 0 1px #27bcff;
     }
+
     input:checked + .slider:before {
         -webkit-transform: translateX(26px);
         -ms-transform: translateX(26px);
         transform: translateX(26px);
     }
+
     .slider.round {
         border-radius: 34px;
     }
+
     .slider.round:before {
         border-radius: 50%;
     }
