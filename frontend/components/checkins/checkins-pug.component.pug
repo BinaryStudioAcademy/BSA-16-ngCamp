@@ -37,6 +37,7 @@
             label(for='week-list') Questions List
             div(ng-repeat="checkin in check.checkIns track by $index")
                 ul.content
+                    li.qq 12:30
                     li.qq
                         a(ng-link='["CheckinsInfo"]') {{checkin.question}}
                     li.qq
@@ -48,7 +49,7 @@
             label(for='monday') Monday
             div(ng-repeat="checkin in check.checkIns | filter: check.filterFunction('Monday') ")
                 ul.content
-                    li.qq {{checkin._id}}
+                    li.qq 12:30
                     li.qq
                         a(ng-link='["CheckinsInfo"]') {{checkin.question}}
                     li.qq
@@ -58,47 +59,73 @@
                                 .slider.round
         section.tab.tu
             label(for='tuesday') Tuesday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.filterFunction('Tuesday') ")
                 ul.content
-                    li.qq Tuesday: questions list is empty
+                    li.qq 12:30
+                    li.qq
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', ng-disabled="true", checked='checked')
+                                .slider.round
         section.tab.we
             label(for='wednesday') Wednesday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.filterFunction('Wednesday') ")
                 ul.content
                     li.qq 12:30
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') See anything great lately that inspired you?
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
                     li.qq
                         div
                             label.switch
-                                input(type='checkbox')
-                                .slider.round
-                ul.content
-                    li.qq 12:30
-                    li.qq
-                        a(ng-link='["CheckinsInfo"]') Are you blocked on anything?
-                    li.qq
-                        div
-                            label.switch
-                                input(type='checkbox', checked='checked')
+                                input(type='checkbox', ng-disabled="true", checked='checked')
                                 .slider.round
         section.tab.th
             label(for='thursday') Thursday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.filterFunction('Thursday') ")
                 ul.content
-                    li.qq Thursday: questions list is empty
+                    li.qq 12:30
+                    li.qq
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', ng-disabled="true", checked='checked')
+                                .slider.round
         section.tab.fr
             label(for='friday') Friday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.filterFunction('Friday') ")
                 ul.content
-                    li.qq Friday: questions list is empty
+                    li.qq 12:30
+                    li.qq
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', ng-disabled="true", checked='checked')
+                                .slider.round
         section.tab.sa
             label(for='saturday') Saturday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.filterFunction('Saturday') ")
                 ul.content
-                    li.qq Saturday: questions list is empty
+                    li.qq 12:30
+                    li.qq
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', ng-disabled="true", checked='checked')
+                                .slider.round
         section.tab.su
             label(for='sunday') Sunday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.filterFunction('Sunday') ")
                 ul.content
-                    li.qq Sunday: questions list is empty
+                    li.qq 12:30
+                    li.qq
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', ng-disabled="true", checked='checked')
+                                .slider.round
