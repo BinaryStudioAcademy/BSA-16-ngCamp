@@ -10,10 +10,11 @@
                         .col-xs-11
                             .row.generate-item-header.middle-xs
                                 .col-xs-2 Title:
-                                input(type='text').col-xs-10
+                                input(type='text' ng-model="reportAdd.title").col-xs-8
+                                span.col-xs-1.col-xs-offset-1.button.f-btn.fa.fa-star-o.center-xs(ng-class ="{'fa-star-o': !reportAdd.isSaved, 'fa-star': reportAdd.isSaved}" ng-click="reportAdd.manageReportSaving()")
                             .row.generate-item-header.middle-xs
                                 .col-xs-2 Description:
-                                input(type='text').col-xs-10
+                                input(type='text' ng-model="reportAdd.description").col-xs-10
                             .row.generate-item-header.middle-xs
                                 .col-xs-2 Type:
                                 .col-xs-9.generate-item-holder
@@ -38,9 +39,9 @@
                             .row.generate-item-header.middle-xs
                                 .col-xs-2 Date:
                                 .col-xs-2.center-xs From:
-                                input(type="date").col-xs-3
+                                input(type="date" ng-model='reportAdd.dateRange[0]').col-xs-3
                                 .col-xs-1.col-xs-1.center-xs To:
-                                input(type="date").col-xs-3
+                                input(type="date" ng-model='reportAdd.dateRange[1]').col-xs-3
                     .row
                         span.button.btn.col-xs-4.col-xs-offset-4(ng-click='reportAdd.generateReport()') Generate
                     .row.start-xs(ng-show='reportAdd.isGenerated')

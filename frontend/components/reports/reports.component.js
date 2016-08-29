@@ -31,7 +31,7 @@ class ReportsComponentController {
                             });
                         });
                         vm._saved = res;
-                        vm.savedReports = vm._saved.slice(0, 3);
+                        vm.savedReports = vm._saved.slice(0, 4);
                     }
                 });
             });

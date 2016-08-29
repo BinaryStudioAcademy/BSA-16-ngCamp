@@ -6,17 +6,11 @@ class reportsGUI {
         this.manageTypePanel = manageTypePanel;
         this.manageUserPanel = manageUserPanel;
         this._types = ['Message', 'Task', 'Event', 'CheckIn'];
-        this.hello = hello;
-
     }
 }
 
-function hello() {
-    console.log("obj");
-}
 
 function manageItem(index, fromArr, toArr) {
-    // console.log(fromArr);
     let item = fromArr[index];
     let indexTo = fromArr.indexOf(item);
     if (item == 'All') {

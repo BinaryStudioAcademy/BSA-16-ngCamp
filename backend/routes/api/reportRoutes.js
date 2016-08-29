@@ -21,6 +21,7 @@ module.exports = function (app) {
     }, apiResponse);
     //===================================================
     app.post(baseUrl, function (req, res, next) {
+        console.log(req.body);
         reportService.addItem(req.body, function (err, data) {
             res.data = data;
             res.err = err;
