@@ -5,7 +5,7 @@
             li.header-list
                 h1 Check-ins
             li.header-list
-                button(ng-link='["CheckinsCreate"]') Set up check-in
+                a(ng-link='["CheckinsCreate"]') Set up check-in
     // ACCORDION
     .checkins-accordion
         input#week-list(type='radio', name='week', checked='')
@@ -35,14 +35,74 @@
                 label(for='sunday') Su
         section.tab.all
             label(for='week-list') Questions List
-            div(ng-repeat="checkin in check.checkIns track by $index")
+            div
                 ul.content
+                    li.qq 09:30
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                        a(ng-link='["CheckinsInfo"]') Do you have any ideas for a future show?
                     li.qq
                         div
                             label.switch
-                                input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
+                                input(type='checkbox', checked='checked')
+                                .slider.round
+                .user-list
+                    span.avatar IS
+                    span.avatar AK
+                    span.avatar DB
+                    span.avatar IH
+                    span.avatar MK
+                    span.avatar AS
+                    span.avatar VT
+                    span.avatar YV
+                    span.avatar YN
+                    span.avatar DS
+                    span.avatar DB
+                ul.content
+                    li.qq 12:30
+                    li.qq
+                        a(href='') What did you work on today?
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox')
+                                .slider.round
+                ul.content
+                    li.qq 12:30
+                    li.qq
+                        a(href='') What are you working on?
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', checked='checked')
+                                .slider.round
+                .user-list
+                    span.avatar AK
+                    span.avatar DB
+                    span.avatar IH
+                ul.content
+                    li.qq 12:30
+                    li.qq
+                        a(href='') See anything great lately that inspired you?
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', checked='checked')
+                                .slider.round
+                .user-list
+                    span.avatar DB
+                    span.avatar IH
+                    span.avatar MK
+                    span.avatar AS
+                    span.avatar VT
+                    span.avatar YV
+                ul.content
+                    li.qq 12:30
+                    li.qq
+                        a(href='') Are you blocked on anything?
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox')
                                 .slider.round
         section.tab.mo
             label(for='monday') Monday
@@ -50,7 +110,7 @@
                 ul.content
                     li.qq 12:30
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') What are you working on?
+                        a(href='') What are you working on?
                     li.qq
                         div
                             label.switch
@@ -67,7 +127,7 @@
                 ul.content
                     li.qq 12:30
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') See anything great lately that inspired you?
+                        a(href='') See anything great lately that inspired you?
                     li.qq
                         div
                             label.switch
@@ -76,7 +136,7 @@
                 ul.content
                     li.qq 12:30
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') Are you blocked on anything?
+                        a(href='') Are you blocked on anything?
                     li.qq
                         div
                             label.switch
