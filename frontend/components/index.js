@@ -75,6 +75,10 @@ import {
 }
 from "./reports/reportAdd.component";
 import {
+    reportEditComponent
+}
+from "./reports/reportEdit.component";
+import {
     eventsComponent
 }
 from "./events/events.component.js";
@@ -154,6 +158,7 @@ app.component(eventsComponent.selector, eventsComponent);
 app.component(commentsComponent.selector, commentsComponent);
 app.component(reportsMainComponent.selector, reportsMainComponent);
 app.component(reportAddComponent.selector, reportAddComponent);
+app.component(reportEditComponent.selector, reportEditComponent);
 app.component(reportsComponent.selector, reportsComponent);
 app.component(eventCreateComponent.selector, eventCreateComponent);
 app.component(eventEditComponent.selector, eventEditComponent);

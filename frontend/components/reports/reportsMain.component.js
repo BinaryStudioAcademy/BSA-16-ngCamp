@@ -23,9 +23,14 @@ const reportsMainComponent = {
             useAsDefault: true
     },
         {
-            path: "/edit",
-            name: "Reports Edit",
+            path: "/add",
+            name: "Reports Add",
             component: "reportAddComponent"
+    },
+        {
+            path: "/edit/:id",
+            name: "Reports Edit",
+            component: "reportEditComponent"
     }]
 };
 

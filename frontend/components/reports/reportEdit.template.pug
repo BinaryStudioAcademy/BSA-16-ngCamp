@@ -1,0 +1,51 @@
+.reports-wrapper
+    .row.center-xs
+        .col-xs-12.col-md-10.reports-holder
+            .row.reports-header
+                h3.col-xs-10 Report Generating
+                .col-xs-1.col-xs-offset-1.fa.fa-close.button.font-button(ng-link="['Reports']")
+            .row.generate-holder.center-xs
+                .col-xs-12
+                    .row.center-xs
+                        .col-xs-11
+                            .row.generate-item-header.middle-xs
+                                .col-xs-2 Title:
+                                input(type='text' ng-model="reportEdit.title").col-xs-4
+                                .col-xs-2.center-xs Created:
+                                .col-xs-2 {{reportEdit.creationDate | date: 'dd/MM/y'}}
+                                span.col-xs-1.col-xs-offset-1.button.f-btn.fa.fa-star-o.center-xs(ng-class ="{'fa-star-o': !reportEdit.isSaved, 'fa-star': reportEdit.isSaved}" ng-click="reportEdit.manageReportSaving()")
+                            .row.generate-item-header.middle-xs
+                                .col-xs-2 Description:
+                                input(type='text' ng-model='reportEdit.description').col-xs-10
+                            .row.generate-item-header.middle-xs
+                                .col-xs-2 Type:
+                                .col-xs-9.generate-item-holder
+                                    .generate-item(ng-click='reportEdit.gui.manageItem($index, reportEdit.types, reportEdit.typeSamples)' ng-repeat = 't in reportEdit.types track by $index') {{t}}
+                                        span &#xf068
+                                .col-xs-1.fa.button.f-btn(ng-class = '{"fa-angle-left": !reportEdit.gui.isTypePanel, "fa-angle-down": reportEdit.gui.isTypePanel}' ng-click='reportEdit.gui.manageTypePanel()')
+                            .row
+                                .col-xs-12.generate-item-holder(ng-show='reportEdit.gui.isTypePanel')
+                                    span.generate-item(ng-click='reportEdit.gui.manageItem($index, reportEdit.typeSamples, reportEdit.types)' ng-repeat = 't in reportEdit.typeSamples track by $index') {{t}}
+                                        span &#xf067
+                            .row.generate-item-header.middle-xs
+                                .col-xs-2 User:
+                                .col-xs-9.generate-item-holder
+                                    span.generate-item(ng-click='reportEdit.gui.manageItem($index, reportEdit.users, reportEdit.userSamples)' ng-repeat = 'u in reportEdit.users track by $index') {{u}}
+                                        span &#xf068
+                                .col-xs-1.fa.button.f-btn(ng-class = '{"fa-angle-left": !reportEdit.gui.isUserPanel, "fa-angle-down": reportEdit.gui.isUserPanel}' ng-click='reportEdit.gui.manageUserPanel()')
+                            .row
+                                .col-xs-12.generate-item-holder(ng-show='reportEdit.gui.isUserPanel')
+                                    span.generate-item.middle-xs(ng-click='reportEdit.gui.manageItem($index, reportEdit.userSamples, reportEdit.users)' ng-repeat = 'u in reportEdit.userSamples track by $index') {{u}}
+                                        span &#xf067
+                            .row.generate-item-header.middle-xs
+                                .col-xs-2 Date:
+                                .col-xs-2.center-xs From:
+                                input(type="date" ng-model='reportEdit.dateRange[0]').col-xs-3
+                                .col-xs-1.col-xs-1.center-xs To:
+                                input(type="date" ng-model='reportEdit.dateRange[1]').col-xs-3
+                    .row
+                        span.button.btn.col-xs-4.col-xs-offset-4 Generate
+                    .row.start-xs(ng-show='reportAdd.isGenerated')
+                        span.chapter-title.col-xs-10 History
+                            .fa.fa-history
+

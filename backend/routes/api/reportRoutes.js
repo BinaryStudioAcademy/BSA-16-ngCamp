@@ -21,6 +21,7 @@ module.exports = function (app) {
     }, apiResponse);
     //===================================================
     app.post(baseUrl, function (req, res, next) {
+        console.log(req.body);
         reportService.addItem(req.body, function (err, data) {
             res.data = data;
             res.err = err;
@@ -60,5 +61,12 @@ module.exports = function (app) {
         })
     }, apiResponse);
     //===================================================
+    app.get(baseUrl + "item/:id", function (req, res, next) {
+        reportService.getItem(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        })
+    }, apiResponse);
     //===================================================
 }
