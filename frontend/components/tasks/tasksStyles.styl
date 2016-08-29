@@ -55,21 +55,109 @@
 						color #25373D
 						&:hover
 							box-shadow: 0 0 7px #3498db
+		.wrapper_noTask
+			font-size 1.3em
+			font-family "Montserrat"
 		.wrapper_task
 			margin 20px 0
-			border 1px solid gray
+			border 1px solid #212121
 			padding 7px 0
 			border-radius 7px
 			background-color #212121
 			color white
+			// overflow hidden
+			position relative
 			font-family "Montserrat"
-			i
-				font-size 24px
-				cursor pointer
+			.task_header
+				position relative
+				z-index 30
+				.title
+					display flex
+					align-items center
+					justify-content center
+
+					
+				.expander
+					display flex
+					align-items center
+					justify-content center
+					i
+						font-size 24px
+						cursor pointer
+				.task_progress
+					.countProgress
+						display inline-block
+					.complete
+						color #26A65B
 			.task_todos
 				background-color white
 				color black
-				.toDo_dedcription
-					font-size 12px
+				margin-top 10px
+				padding-bottom 10px
+				.task_itemLable
+					font-size 1.3em
+					.task_Participant
+						font-size 0.8em
+						color #1d8dbf
+						display inline-block
+						margin 0 7px
+						&:after
+							content ","
+						&:last-child:after
+							content ";"
+				.toDo
+					margin-top 10px
+				.toDo_description
+					font-size 1em
 					color gray
-		
+				.task_description
+					font-size 1em
+					color gray
+					margin-bottom 10px
+					padding-bottom 10px
+					border-bottom 2px dashed #6C7A89
+				.toDo_status
+					display flex
+					align-items center
+					justify-content center
+					font-size 22px
+					i
+						cursor pointer
+						display block
+						min-width 18px
+						max-width 18px
+						height 18px
+				.toDo_title
+					display flex
+					align-items center
+					font-size 1.3em
+			.animate-expand.ng-enter,.animate-expand.ng-leave
+				transition all 0.3s ease-out;
+			.animate-expand.ng-enter,.animate-expand.ng-leave.ng-leave-active
+				opacity 0
+				margin-top 0
+			.animate-expand.ng-leave,.animate-expand.ng-enter.ng-enter-active
+				opacity 1
+				margin-top 10px
+		.no_participants
+			position relative
+			&:after
+				content ''
+				display block
+				position absolute
+				right 5px
+				width 15px
+				height 15px
+				border-radius 7.5px
+				background-color #EC644B
+		.my_task
+			position relative
+			&:after
+				content ''
+				display block
+				position absolute
+				right 5px
+				width 15px
+				height 15px
+				border-radius 7.5px
+				background-color #52B3D9

@@ -3,29 +3,13 @@
     .drafts-items
         h1 Drafts
         hr.drafts-line.hr-style
-        .draft
+        .draft(ng-repeat="draft in $ctrl.drafts track by $index")
             .draft-title
-                h2  Draft Title
+                h2  {{draft.title}}
                 i.fa.fa-folder-open-o.fa-2x.draft-folder(ng-link='["File"]')
-                i.fa.fa-pencil.fa-2x.iconRight(ng-link='["EditMessage"]')
+                i.fa.fa-pencil.fa-2x.iconRight(ng-link='["EditMessage",{id:draft._id}]')
             .draft-body
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus condimentum efficitur quam, nec tristique urna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque lobortis sem sed metus suscipit, ut euismod massa scelerisque. Fusce interdum pharetra nulla
-        hr.hr-style
-        .draft
-            .draft-title
-                h2  Draft Title2
-                i.fa.fa-folder-open-o.fa-2x.draft-folder(ng-link='["File"]')
-                i.fa.fa-pencil.fa-2x.iconRight(ng-link='["EditMessage"]')
-            .draft-body
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus condimentum efficitur quam, nec tristique urna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque lobortis sem sed metus suscipit, ut euismod massa scelerisque. Fusce interdum pharetra nulla
-        hr.hr-style
-        .draft
-            .draft-title
-                h2  Draft Title3
-                i.fa.fa-folder-open-o.fa-2x.draft-folder(ng-link='["File"]')
-                i.fa.fa-pencil.fa-2x.iconRight(ng-link='["EditMessage"]')
-            .draft-body
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus condimentum efficitur quam, nec tristique urna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque lobortis sem sed metus suscipit, ut euismod massa scelerisque. Fusce interdum pharetra nulla
+                p(ng-bind-html="draft.description")
         hr.hr-style
                 
                     

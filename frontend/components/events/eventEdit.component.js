@@ -76,6 +76,8 @@ class eventEditController {
         }).then(function(res) {
             self.curEvent = res;
             self.desc = res.description;
+            self.author = res.author;
+            console.log(res.author);
             for (let part in res.participants) {
                 self.participantsSet.add(res.participants[part]);
                 self.participants = Array.from(self.participantsSet);
@@ -102,6 +104,17 @@ class eventEditController {
             console.log("Succesfull create event");
             self.window.location.reload();
             self.location.path('/');
+        });
+    }
+
+    delete(){
+        let self = this;
+        self.httpGeneral.sendRequest({
+            type: "DELETE",
+            url: `api/event/${self.curEvent._id}`,
+        }).then(function(res) {
+            self.window.location.reload();
+            self.location.path('/events');
         });
     }
 

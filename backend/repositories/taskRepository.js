@@ -16,6 +16,10 @@ function getAllTasksInProject(id,callback){
 	var model = this.model;
 	var query = model.find({
 		project: id
+	}).populate({
+		path: "toDos"
+	}).populate({
+		path: "participants"
 	});
 	query.exec(callback);
 }

@@ -1,7 +1,13 @@
-.calendar-day
+.day-today
+    background-color #1d8dbf
+
+.different-month
+    color #ADADAD
+
+.calendar-month
     width 80%
     margin-left 10%
-    .day-header
+    .month-header
         display flex
         justify-content space-around
         align-items center
@@ -14,8 +20,8 @@
             &:hover
                 color #260595
 
-        .current-day
-            .show-current-day
+        .current-month
+            .show-current-month
                 font-family "Montserrat"
                 font-size 1.8em
             .datepicker
@@ -23,35 +29,37 @@
                 background-color #F5F5F5
                 top 20%
                 left 35%
-                width 300px
-                height 225px
+                //width 150px
+                //height 175px
                 z-index 2
-    .day-body
+    .month-body
         margin-top 10px
         width 100%
         background-color #F5F5F5
         padding 0
-        .day-in-table
+        table
             margin 0
             margin-bottom 10px
             width 100%
             font-size 1.4em
             font-family "Open Sans"
-            .hourRow
-                box-sizing border-box
-                .hourCell
-                    color #212121
-                    padding 1%
-                    width 7%
-                    background-color #ADADAD
+            col(width='14.29')
+            col(width='14.29')
+            col(width='14.29')
+            col(width='14.29')
+            col(width='14.29')
+            col(width='14.28')
+            col(width='14.28')
+            tr
+                th
+                    padding 2%
                     border-style solid
                     border-width 1px
                     border-color #808080
-                    white-space nowrap
-                    text-overflow clip
-                    overflow hidden
-                .infoCell
-                    border 1px solid #808080
+                    color #212121
+                    background-color #ADADAD
                     text-align center
-                    width 93%
-                    position relative
+                td
+                    padding 1%
+                    border 1px solid #808080
+                    text-align right

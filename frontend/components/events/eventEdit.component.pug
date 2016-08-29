@@ -48,3 +48,4 @@
             | Is all day
             input(type='checkbox',ng-model="$ctrl.allDay",ng-checked='$ctrl.curEvent.isAllDay')
           button(type='submit', form='eventEdit', value='Submit',ng-click="$ctrl.save()") Save
+          button.deleteButton(ng-if="$ctrl.author === $ctrl.window._injectedData.userId",ng-click="$ctrl.delete()") Delete

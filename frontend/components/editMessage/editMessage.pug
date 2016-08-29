@@ -4,14 +4,10 @@ section.post-message-wrapper
     div.fa.fa-close(ng-link='["MsgBoard"]')
       //img(ng-link='["MsgBoard"]', align='top', src='https://cdn3.iconfinder.com/data/icons/simple-files-1/128/No-128.png', alt='exit')
   hr
-  section.input-block
-    section.img-block
-      img(src='https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_save_48px-128.png', alt='save')
-      br
-      img(src='https://cdn2.iconfinder.com/data/icons/files-folders-3/24/files-folders-48-128.png', alt='share')
-    textarea(name='', id='', cols='30', rows='10')  Examine she brother prudent add day ham. Far stairs now coming bed oppose hunted become his. You zealously departure had procuring suspicion. Books whose front would purse if be do decay. Quitting you way formerly disposed perceive ladyship are.
-    .text-editor
-      | TEXT EDITOR
+  h1 Title
+  input(ng-model="editCtrl.draft.title")
+  h1 Description
+  textarea(ckeditor, cols='30', rows='10',ng-model="editCtrl.draft.description")  
     //form#uploadForm(action='/postMessage', method='post', enctype='multipart/form-data')
     //        input(type='file', name='message')
     //        input(type='submit', value='Upload')
@@ -20,4 +16,7 @@ section.post-message-wrapper
   //    option(value='draft1') draft1
   //    option(value='draft2') draft2
   //    option(value='draft3') draft3
-  div.postBtn Edit
+  .sendButtons
+    div.postBtn(ng-click="editCtrl.edit()") Edit
+    div.postBtn(ng-if="editCtrl.draft.isDraft",ng-click="editCtrl.postDraft()") Post on message board
+    button.delete(ng-click="editCtrl.delete()",ng-if="editCtrl.draft.author === editCtrl.window._injectedData.userId") Delete

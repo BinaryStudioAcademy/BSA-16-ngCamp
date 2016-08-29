@@ -29,7 +29,7 @@ casual.define('user', function() {
     return {
     	_id: id,
         firstName: casual.first_name,
-        lirstName: casual.last_name,
+        lastName: casual.last_name,
         email: casual.email,
         password: casual.password,
         role: casual.random_element(["create", "remove", "view", "list"]),
@@ -181,7 +181,7 @@ function fakeMe(name, n){
 
 function fake(){
 	var entities = ['user', 'project', 'message', 'event','file', 'toDo', 'task', 'checkin'];
-	var n     =    [   3,       3,         3,        3,      3,      3,      3,         3   ];
+	var n     =    [   3,       3,         3,        3,      3,      3,      3,        3   ];
 	var i = 0;
  	entities.forEach(function(e){
 		fakeMe(e, n[i]);
@@ -189,12 +189,12 @@ function fake(){
 	})
 
 	untrackted.task.forEach(function(t){
-	taskService.addItem(t, function(err, data){
-		if(err){
-			console.log(err)
-		}
+		taskService.addItem(t, function(err, data){
+			if(err){
+				console.log(err)
+			}
+		})
 	})
-})
 }
 
 fake();
