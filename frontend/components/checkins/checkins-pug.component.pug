@@ -35,130 +35,123 @@
                 label(for='sunday') Su
         section.tab.all
             label(for='week-list') Questions List
-            div
+            div(ng-repeat="checkin in check.checkIns track by $index")
                 ul.content
-                    li.qq 09:30
+                    li.qq {{checkin.time}}
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') Do you have any ideas for a future show?
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
                     li.qq
                         div
                             label.switch
-                                input(type='checkbox', checked='checked')
+                                input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
                                 .slider.round
                 .user-list
-                    span.avatar IS
-                    span.avatar AK
-                    span.avatar DB
-                    span.avatar IH
-                    span.avatar MK
-                    span.avatar AS
-                    span.avatar VT
-                    span.avatar YV
-                    span.avatar YN
-                    span.avatar DS
-                    span.avatar DB
-                ul.content
-                    li.qq 12:30
-                    li.qq
-                        a(href='') What did you work on today?
-                    li.qq
-                        div
-                            label.switch
-                                input(type='checkbox')
-                                .slider.round
-                ul.content
-                    li.qq 12:30
-                    li.qq
-                        a(href='') What are you working on?
-                    li.qq
-                        div
-                            label.switch
-                                input(type='checkbox', checked='checked')
-                                .slider.round
-                .user-list
-                    span.avatar AK
-                    span.avatar DB
-                    span.avatar IH
-                ul.content
-                    li.qq 12:30
-                    li.qq
-                        a(href='') See anything great lately that inspired you?
-                    li.qq
-                        div
-                            label.switch
-                                input(type='checkbox', checked='checked')
-                                .slider.round
-                .user-list
-                    span.avatar DB
-                    span.avatar IH
-                    span.avatar MK
-                    span.avatar AS
-                    span.avatar VT
-                    span.avatar YV
-                ul.content
-                    li.qq 12:30
-                    li.qq
-                        a(href='') Are you blocked on anything?
-                    li.qq
-                        div
-                            label.switch
-                                input(type='checkbox')
-                                .slider.round
+                    span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                        //- span.avatar AK
+                        //- span.avatar DB
+                        //- span.avatar IH
+                        //- span.avatar MK
+                        //- span.avatar AS
+                        //- span.avatar VT
+                        //- span.avatar YV
+                        //- span.avatar YN
+                        //- span.avatar DS
+                        //- span.avatar DB
         section.tab.mo
             label(for='monday') Monday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Monday') ")
                 ul.content
-                    li.qq 12:30
+                    li.qq {{checkin.time}}
                     li.qq
-                        a(href='') What are you working on?
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
                     li.qq
                         div
                             label.switch
-                                input(type='checkbox', checked='checked')
+                                input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
                                 .slider.round
+                .user-list
+                    span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
         section.tab.tu
             label(for='tuesday') Tuesday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Tuesday') ")
                 ul.content
-                    li.qq Tuesday: questions list is empty
+                    li.qq {{checkin.time}}
+                    li.qq
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
+                                .slider.round
+                .user-list
+                    span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
         section.tab.we
             label(for='wednesday') Wednesday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Wednesday') ")
                 ul.content
-                    li.qq 12:30
+                    li.qq {{checkin.time}}
                     li.qq
-                        a(href='') See anything great lately that inspired you?
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
                     li.qq
                         div
                             label.switch
-                                input(type='checkbox')
+                                input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
                                 .slider.round
-                ul.content
-                    li.qq 12:30
-                    li.qq
-                        a(href='') Are you blocked on anything?
-                    li.qq
-                        div
-                            label.switch
-                                input(type='checkbox', checked='checked')
-                                .slider.round
+                .user-list
+                    span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
         section.tab.th
             label(for='thursday') Thursday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Thursday') ")
                 ul.content
-                    li.qq Thursday: questions list is empty
+                    li.qq {{checkin.time}}
+                    li.qq
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
+                                .slider.round
+                .user-list
+                    span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
         section.tab.fr
             label(for='friday') Friday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Friday') ")
                 ul.content
-                    li.qq Friday: questions list is empty
+                    li.qq {{checkin.time}}
+                    li.qq
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
+                                .slider.round
+                .user-list
+                    span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
         section.tab.sa
             label(for='saturday') Saturday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Saturday') ")
                 ul.content
-                    li.qq Saturday: questions list is empty
+                    li.qq {{checkin.time}}
+                    li.qq
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
+                                .slider.round
+                .user-list
+                    span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
         section.tab.su
             label(for='sunday') Sunday
-            div
+            div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Sunday') ")
                 ul.content
-                    li.qq Sunday: questions list is empty
+                    li.qq {{checkin.time}}
+                    li.qq
+                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                    li.qq
+                        div
+                            label.switch
+                                input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
+                                .slider.round
+                .user-list
+                    span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
