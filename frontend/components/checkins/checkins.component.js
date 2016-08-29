@@ -31,6 +31,12 @@ class CheckinsComponentController {
             console.log("Succesfull change status of checkin");
         });
     }
+    filterFunction (mday){
+        let day = new RegExp(mday, 'g');
+        return function(element){
+            return (element.frequency.match(day) ? true : false);
+        };
+    }
 }
 
 CheckinsComponentController.$inject = ['httpGeneral'];
