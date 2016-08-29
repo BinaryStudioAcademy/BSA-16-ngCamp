@@ -10,6 +10,8 @@ var bodyParser = require('body-parser'),
 auth = require('./middleware/auth'),
     fileUpload = require('express-fileupload');
 
+var scheduler = require('./services/checkinScheduler/checkinScheduler');
+
 var app = express();
 
 app.use(session({
