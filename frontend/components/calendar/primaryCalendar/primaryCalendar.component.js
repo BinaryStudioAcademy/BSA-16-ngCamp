@@ -10,7 +10,12 @@ const primaryCalendarComponent = {
     controller: primaryCalendarCtrl,
     controllerAs: 'pc',
     template: require('./primaryCalendar.pug')(),
-    selector: 'primaryCalendar'
+    selector: 'primaryCalendar',
+    $routeConfig: [{
+        path:'/',
+        name:'Month Calendar',
+        component:'calendarMonth'
+    }]
 };
 
 export{primaryCalendarComponent};

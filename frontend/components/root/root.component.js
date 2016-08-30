@@ -101,6 +101,10 @@ const rootComponent = {
         name: 'Tasks',
         component: 'tasksComponent'
     }, {
+        path: '/calendar/...',
+        name: 'Calendar',
+        component: 'primaryCalendar'
+    },{
         path: '/test',
         name: 'Test',
         component: 'test'
