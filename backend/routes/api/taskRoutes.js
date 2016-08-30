@@ -54,6 +54,7 @@ module.exports = function (app) {
     }, apiResponse);
 
     app.put(baseUrl + ":id"+"/removeParticipant", function (req, res, next) {
+        var data = data || {ok: 1};
         taskService.removeTaskParticipant(req.params.id, req.body.participantId, function (err, data) {
             res.data = data;
             res.err = err;
