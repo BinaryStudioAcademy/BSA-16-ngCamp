@@ -16,7 +16,7 @@ const rootComponent = {
     }, {
         path: '/',
         name: 'MainPage',
-        component: 'mainComponent',
+        component: 'checkinsWrapperComponent',
     }, {
         path: '/account/',
         name: 'Account',
@@ -28,7 +28,7 @@ const rootComponent = {
     },  {
         path: '/checkins/',
         name: 'Checkins',
-        component: 'checkinsWrapperComponent'
+        component: 'checkinsComponent'
     }, {
         path: '/checkinsCreate/',
         name: 'CheckinsCreate',
