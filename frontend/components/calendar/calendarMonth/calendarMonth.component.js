@@ -32,7 +32,7 @@ class CalendarMonthCtrl {
                     days.push({
                         number: date.date(),
                         isCurrentMonth: date.month() === vm.monthStartMoment.month(),
-                        isToday: date.isSame(new Date(), "day"),
+                        isToday: date.isSame(new Date(), 'day'),
                         date: date.clone()
                     });
                     date.add(1, "d");
