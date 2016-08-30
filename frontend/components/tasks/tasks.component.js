@@ -2,13 +2,17 @@ import './tasksStyles.styl';
 
 
 class TasksComponentController {
-	constructor(httpGeneral,$timeout) {
+	constructor(httpGeneral,$timeout,$filter,popupNotifications) {
 		this.http = httpGeneral;
 		this.tasks = [];
 		this.contentFlag = true;
 		this.projUsers = [];
 		this.currUserId = window._injectedData.userId;
 		this.timeout = $timeout;
+		this.filter = $filter;
+		this.popup = popupNotifications;
+		this.keyword;
+		this.filterKey;
 	}
 
 	$onInit(){
@@ -18,11 +22,15 @@ class TasksComponentController {
 			url: `api/task/allFromProject/${window._injectedData.currentProject}`,
 			errorCallback(){
 				self.contentFlag = false;
+				self.popup.notifyError('Tasks download Error!');
 			}
 		};
 		let projReq = {
 			type: "GET",
-			url: `api/projects/${window._injectedData.currentProject}/withUsers`
+			url: `api/projects/${window._injectedData.currentProject}/withUsers`,
+			errorCallback(){
+				self.popup.notifyError('Project download Error!');
+			}	
 		};
 		self.http.sendRequest(projReq).then(function(res){
 			self.projUsers = res.participants;
@@ -57,10 +65,13 @@ class TasksComponentController {
 			url: `/api/task/${task._id}/todo/${todo._id}`,
 			body: {
 				status: todo.status
+			},
+			errorCallback() {
+				self.popup.notifyError('ToDo update Error!');
 			}
 		};
 		self.calcProgress(task).changeTaskState(task);
-		self.http.sendRequest(statusChangeReq);
+		self.http.sendRequest(statusChangeReq);		
 	}
 
 	changeTaskState(task){
@@ -79,10 +90,13 @@ class TasksComponentController {
 				url: `/api/task/${task._id}`,
 				body: {
 					isFinished: task.isFinished
-				}
+				},
+				errorCallback() {
+					self.popup.notifyError('Task update Error!');
+				}	
 			};
-			self.http.sendRequest(statusChangeReq);
-		};
+			self.http.sendRequest(statusChangeReq);		
+		};		
 	}
 
 	selectUser(user){
@@ -90,19 +104,97 @@ class TasksComponentController {
 	}
 
 	expand(task){
+		let self = this;
 		task.expanded = !task.expanded;
-		this.timeout(function(){
+		self.timeout(function(){
 			let element = document.getElementById(task._id);
 			window.scrollTo(0,element.offsetTop);
 		},0,false);
 	}
+
+	takePart(task){
+		let self = this;
+		let takePartReq = {
+			type: "PUT",
+			url: `/api/task/${task._id}/addParticipant`,
+			body: {
+				participantId: self.currUserId
+			},
+			errorCallback(){
+				self.popup.notifyError('Participants update Error!');
+			}
+		};
+		self.http.sendRequest(takePartReq).then(function(res = {}){
+			if(res.ok){
+				let userObj = self.filter('filter')(self.projUsers,{_id: self.currUserId})[0];
+				task.participants.push(userObj);
+			};
+		});
+
+
+	}
+
+	leaveTask(task){
+		let self = this;
+		let memberIndex;
+		let leaveTaskReq = {
+			type: "PUT",
+			url: `/api/task/${task._id}/removeParticipant`,
+			body : {
+				participantId: self.currUserId
+			},
+			errorCallback(){
+				self.popup.notifyError('Participants update Error!');
+			}
+		};
+
+		self.http.sendRequest(leaveTaskReq).then(function(res = {}){
+			if(res.ok){
+				task.participants.find(function(element,index){
+					if(element._id === self.currUserId){
+						task.participants.splice(index,1);
+						return true;
+					}else{
+						return false;
+					}
+				});
+			}
+		});
+	}
+
+	changeFilter(type){
+		let self = this;
+		switch(type){
+			case 'my':
+				self.filterKey = self.currUserId;
+				break;
+			case 'free':
+				self.filterKey = emptyArrayFilter;
+				break;
+			case 'done':
+				self.filterKey = {isFinished: true};
+				break;
+			case 'none':
+				self.filterKey = '';
+				self.keyword = '';
+				break;
+		};
+
+		function emptyArrayFilter(element){
+			return !element.participants.length;
+		};
+	}
+
+
 
 	}
 	
 
 TasksComponentController.$inject = [
 	'httpGeneral',
-	'$timeout'
+	'$timeout',
+	'$filter',
+	'popupNotifications'
 ];
 
 const tasksComponent = {

@@ -30,6 +30,9 @@
 				button()
 				font-family "Montserrat"
 				line-height 32.406px
+				font-size 1.8em
+				border none
+				outline none
 		.wrapper_filters
 			margin 20px 0
 			ul
@@ -40,25 +43,32 @@
 					display flex
 					align-items center
 					margin 0 7px
+					cursor pointer
 					&:first-child
 						color #25373D
+						cursor default
 					input
 						margin-left 4px
-						font-family "Open Sans"
 						width 70px
 						border-radius 7px
 						border none
-						font-size 16px
+						font-size 0.9em
 						border 1px solid gray
 						outline none
 						padding 3px 6px
 						color #25373D
 						&:hover
 							box-shadow: 0 0 7px #3498db
+				.resetfilter
+					color #25373D
 		.wrapper_noTask
 			font-size 1.3em
 			font-family "Montserrat"
+		.no_result
+			font-size 1.3em
+			font-family "Montserrat"
 		.wrapper_task
+			cursor default
 			margin 20px 0
 			border 1px solid #212121
 			padding 7px 0
@@ -80,10 +90,11 @@
 				.expander
 					display flex
 					align-items center
-					justify-content center
+					justify-content end
 					i
 						font-size 24px
 						cursor pointer
+						margin-left 50%
 				.task_progress
 					.countProgress
 						display inline-block
@@ -93,7 +104,7 @@
 				background-color white
 				color black
 				margin-top 10px
-				padding-bottom 10px
+				padding-top 15px
 				.task_itemLable
 					font-size 1.3em
 					.task_Participant
@@ -105,6 +116,17 @@
 							content ","
 						&:last-child:after
 							content ";"
+					button
+						display inline-flex
+						font-size 0.8em
+						outline none
+						background-color #336E7B
+						color #E4F1FE
+						border 1px solid #336E7B
+						border-radius 10px
+						margin-left 5px
+						&:active
+							background-color #446CB3
 				.toDo
 					margin-top 10px
 				.toDo_description
@@ -140,24 +162,36 @@
 				opacity 1
 				margin-top 10px
 		.no_participants
-			position relative
 			&:after
 				content ''
 				display block
-				position absolute
-				right 5px
-				width 15px
-				height 15px
+				min-width 15px
+				min-height 15px
 				border-radius 7.5px
 				background-color #EC644B
+				margin-left 10%
 		.my_task
 			position relative
 			&:after
 				content ''
 				display block
-				position absolute
-				right 5px
-				width 15px
-				height 15px
+				min-width 15px
+				min-height 15px
 				border-radius 7.5px
 				background-color #52B3D9
+				margin-left 10%
+		.sub_functions
+			padding 3px 0
+			margin-top 20px
+			.date
+				display flex
+				align-items center
+				color #808080
+			.icon_bar
+				font-size 1.7em
+				i
+					margin-right 25px
+					cursor pointer
+					transition all 0.2s ease-out
+					&:hover
+						color #1d8dbf
