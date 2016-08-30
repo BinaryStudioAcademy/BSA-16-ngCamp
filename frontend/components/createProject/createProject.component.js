@@ -18,6 +18,7 @@ class createProjectController {
         this.deadline = new Date();
         this.modalFlag = false;
         this.userToAdd;
+        this.addParticipatorFlag = false;
     }
 
     $onInit() {
@@ -60,6 +61,7 @@ class createProjectController {
         let self = this;
         self.participantsSet.add(self.userToAdd);
         self.participants = Array.from(self.participantsSet);
+        self.addParticipatorFlag = false;
     }
 
     getUserNameById(id) {
