@@ -25,13 +25,9 @@ const rootComponent = {
         path: '/header/',
         name: 'Header',
         component: 'headerComponent'
-    }, {
+    },  {
         path: '/checkins/',
         name: 'Checkins',
-        component: 'checkinsComponent'
-    }, {
-        path: '/checkins2/',
-        name: 'Checkins2',
         component: 'checkinsWrapperComponent'
     }, {
         path: '/checkinsCreate/',
