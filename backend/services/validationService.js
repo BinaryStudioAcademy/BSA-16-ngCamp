@@ -231,27 +231,10 @@ function eventsDateValidation(startDate, endDate, callback) {
 }
 //=============================================================
 function addReportValidation(body, callback) {
+    console.log(body);
     if (!body.user) {
         callback({
             message: "Report owner is undefined"
-        });
-        return false;
-    }
-    if (!body.types || body.types.length <= 0) {
-        callback({
-            message: "Report types is undefined"
-        });
-        return false;
-    }
-    if (!body.participants || body.types.participants <= 0) {
-        callback({
-            message: "Report participants is undefined"
-        });
-        return false;
-    }
-    if (!body.dateRange || body.types.dateRange <= 0) {
-        callback({
-            message: "Report date range is undefined"
         });
         return false;
     }
@@ -261,7 +244,18 @@ function addReportValidation(body, callback) {
         });
         return false;
     }
+    if (((!body.types || body.types.length <= 0) && (!body.participants || body.participants.length <= 0)) && (!body.dateRange || body.dateRange.length <= 0)) {
+        callback({
+            message: "Report filter is undefined"
+        });
+        return false;
+    }
+    if (body.isSaved === undefined) {
+        callback({
+            message: "Report saving is undefined"
+        });
+        return false;
+    }
     return true;
 }
-
 module.exports = new ValidationService();

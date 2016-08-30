@@ -1,20 +1,33 @@
 .checkins-answer-wrapper
     .checkins-answer
         .header-answer
-            .close-btn
-                a(ng-link='["Checkins"]')
-                    i.fa.fa-times.fa-2x
+            .header-btn
+                .control-btn
+                    a(href='')
+                        i.fa.fa-commenting-o.fa-3x
+                    a(ng-link='["CheckinsCreate"]')
+                        i.fa.fa-pencil-square-o.fa-3x
+                    a(href='')
+                        i.fa.fa-trash-o.fa-3x
+                .close-btn
+                    a(ng-link='["Checkins"]')
+                        i.fa.fa-times.fa-2x
             h2 Do you have any ideas for a future show?
-            .control-btn
-                a(href='')
-                    i.fa.fa-commenting-o.fa-3x
-                a(ng-link='["CheckinsCreate"]')
-                    i.fa.fa-pencil-square-o.fa-3x
-                a(href='')
-                    i.fa.fa-trash-o.fa-3x
+            .user-list
+                span.avatar IS
+                span.avatar AK
+                span.avatar DB
+                span.avatar IH
+                span.avatar MK
+                span.avatar AS
+                span.avatar VT
+                span.avatar YV
+                span.avatar YN
+                span.avatar DS
+                span.avatar DB
         .main-answer
             ul.qq-list
-                h4 Thursday, July 14
+                h3 Thursday, July 14
                 li.list
                     span.name Steve Marsh
                     br
@@ -23,7 +36,7 @@
                     span.name Josh Fiske
                     br
                     span I just went to Speedy Car Wash. That was kind of a blast from the past.
-                h4 Wednesday, July 13
+                h3 Wednesday, July 13
                 li.list
                     span.name Nicole Katz
                     br
@@ -38,7 +51,7 @@
                     span
                         | Zildjian! They have to have been around forever. I don't think I can even name another
                         | symbol.
-                h4 Tuesday, July 12
+                h3 Tuesday, July 12
                 li.list
                     span.name Cheryl Walters
                     br

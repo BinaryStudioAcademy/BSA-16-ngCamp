@@ -108,7 +108,6 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-bottom: 1px solid #adadad;
 }
 .reports-wrapper .generate-holder .generate-item {
   position: relative;
@@ -128,6 +127,7 @@
   text-indent: 1%;
   position: absolute;
   left: 0;
+  top: 20%;
   color: #1d8dbf;
   display: inline-block;
   font-family: "FontAwesome";
