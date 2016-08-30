@@ -2,8 +2,9 @@ section.calendar-month
     header.month-header
         i.fa.fa-chevron-left(ng-click='cm.prev()')
         span.current-month
-            span.show-current-month(ng-click='cm.startChangeMonth()')
+            span.show-current-month
                 |{{cm.monthStartMoment.format("MMMM, YYYY")}}
+            span.calendar-picker.fa.fa-calendar(ng-click='cm.startChangeMonth()')
             div.datepicker(uib-datepicker='',
                             datepicker-popup="MMMM/yyyy",
                             datepicker-options="{minMode: 'month'}"
@@ -33,5 +34,6 @@ section.calendar-month
                 th  Sun
             tr(ng-repeat='week in cm.weeks')
                 td(ng-repeat='day in week.days',
+                    ng-dblclick="cm.goto(day.date)",
                     ng-class="{'day-today': day.isToday, 'different-month': !day.isCurrentMonth}") {{day.number}}
 

@@ -13,8 +13,12 @@ const primaryCalendarComponent = {
     selector: 'primaryCalendar',
     $routeConfig: [{
         path:'/',
-        name:'Month Calendar',
+        name:'MonthCalendar',
         component:'calendarMonth'
+    },{
+        path:'/dailyDetails',
+        name:'DailyCalendar',
+        component:'calendarDaily'
     }]
 };
 

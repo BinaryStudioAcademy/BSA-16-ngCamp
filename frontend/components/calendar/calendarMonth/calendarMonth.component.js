@@ -16,7 +16,7 @@ class CalendarMonthCtrl {
             vm.monthStartMoment.startOf('month');
             vm.monthEndMoment = vm.monthStartMoment.clone().endOf('month');
 
-            createMonthView();
+            vm.createMonthView();
 
             vm.buildMonth();
         };
@@ -46,7 +46,7 @@ class CalendarMonthCtrl {
             vm.monthStartMoment.startOf('month');
             vm.monthEndMoment = vm.monthStartMoment.clone().endOf('month');
 
-            createMonthView();
+            vm.createMonthView();
 
             vm.buildMonth();
         };
@@ -56,20 +56,30 @@ class CalendarMonthCtrl {
             vm.monthStartMoment.startOf('month');
             vm.monthEndMoment = vm.monthStartMoment.clone().endOf('month');
 
-            createMonthView();
+            vm.createMonthView();
 
             vm.buildMonth();
         };
 
-        function createMonthView() {
+        vm.goto = (date) => {
+            let dateObj = {
+                year: date.year(),
+                month: date.month(),
+                day: date.date()
+            };
+
+            vm.$router.navigate(['DailyCalendar', dateObj]);
+        };
+
+        vm.createMonthView = () => {
             vm.mViewStartMoment = vm.monthStartMoment.clone();
             vm.mViewStartMoment.add(-vm.monthStartMoment.isoWeekday() + 1, 'd');
             vm.mViewEndMoment = vm.mViewStartMoment.clone();
             vm.mViewEndMoment.add(6, 'w');
             vm.mViewEndMoment.set({'hour': 23, 'minute': 59});
-        }
+        };
 
-        vm.init = function () {
+        vm.init = () => {
             vm.monthStartMoment = moment();
             vm.monthStartMoment.set({hour: 0, minute: 0});
             vm.monthStartMoment.startOf('month');
@@ -88,6 +98,21 @@ class CalendarMonthCtrl {
 
         vm.init();
     }
+
+    $routerOnActivate(next) {
+        let vm = this;
+
+        let {day,month, year} = next.params;
+        let date = day !== undefined ? new Date(year, month, day) : new Date();
+
+        vm.monthStartMoment = moment(date || new Date());
+        vm.monthStartMoment.startOf('month');
+        vm.monthEndMoment = vm.monthStartMoment.clone().endOf('month');
+
+        vm.createMonthView();
+
+        vm.buildMonth();
+    }
 }
 
 CalendarMonthCtrl.$inject = [];
@@ -96,7 +121,8 @@ const calendarMonthComponent = {
     controller: CalendarMonthCtrl,
     controllerAs: 'cm',
     template: require('./calendarMonth.pug')(),
-    selector: 'calendarMonth'
+    selector: 'calendarMonth',
+    bindings: {$router: '<'}
 };
 
 export  {calendarMonthComponent};
