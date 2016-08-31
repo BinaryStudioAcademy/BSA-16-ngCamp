@@ -38,11 +38,10 @@ class ProjectComponentController {
 
         isAdmin() {
             let self = this;
-            if (self.projectAdmins.indexOf(window._injectedData.userId)>0) {
-                    self.isUserAdmin = true;
-                } else self.isUserAdmin = false;
-            console.log(self.isUserAdmin);
+            for (let i = 0; i < self.projectAdmins.length; i++){
+                if (self.projectAdmins[i]._id === window._injectedData.userId) self.isUserAdmin = true;
             }
+        }
 
         $onInit() {
             let self = this;
