@@ -42,11 +42,12 @@ function getById(id, callback) {
 
 function setObjPropsById(id, setObj, callback) {
     var query = this.model.update({
-        _id: id
+        _id: ObjectId(id)
     }, {
         $set: setObj
     });
     query.exec(callback);
+    console.log(setObj);
 }
 
 module.exports = Repository;

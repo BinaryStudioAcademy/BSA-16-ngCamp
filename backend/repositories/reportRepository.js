@@ -12,10 +12,11 @@ ReportRepository.prototype.getSaved = getSaved;
 ReportRepository.prototype.getItem = getItem;
 
 
-function getRecent(id, callback) {
+function getRecent(id, project, callback) {
     var model = this.model;
     var query = model.find({
-        user: id
+        user: id,
+        project: project
     }, {
         title: 1,
         description: 1,
@@ -26,11 +27,12 @@ function getRecent(id, callback) {
     query.exec(callback);
 }
 
-function getSaved(id, callback) {
+function getSaved(id, project, callback) {
     var model = this.model;
     var query = model.find({
         user: id,
-        isSaved: true
+        isSaved: true,
+        project: project
     }).populate({
         path: "participants",
         select: "firstName lastName"
