@@ -49,11 +49,19 @@ module.exports = function (app) {
             res.data = data;
             res.err = err;
             next();
-        });
+        });s
     }, apiResponse);
 
     app.delete(baseUrl + ':id', function (req, res, next) {
         projectService.deleteItem(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
+    app.get(baseUrl + ':id/participants', function (req, res, next) {
+        projectRepository.getParticipantsByProjectId(req.params.id, function (err, data) {
             res.data = data;
             res.err = err;
             next();
