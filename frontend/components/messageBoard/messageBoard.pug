@@ -13,7 +13,7 @@ section.messageBoard-wrapper
           a
             h3(ng-link='["EditMessage",{id:message._id}]') {{message.title}}
           read-more(ng-bind-html="message.description")
-          p.post-date {{message.date}}
+          p.post-date {{message.date | date:"dd/MM/yyyy 'at' h:mma"}}
       section.use-button
           div.fa.fa-files-o(ng-link='["File"]')
           div.fa.fa-comments-o(ng-link='["Message comments",{id:message._id}]')
