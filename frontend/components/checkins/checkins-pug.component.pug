@@ -1,11 +1,10 @@
 .checkins-wrapper
     // HEADER
-    .checkins-header
-        ul
-            li.header-list
-                h1 Check-ins
-            li.header-list
-                a(ng-link='["CheckinsCreate"]') Set up check-in
+    div.checkins-header
+        .header-title.row.center-xs
+            h1 Check-ins
+        .header-button.row.center-xs
+            button(ng-link='["CheckinsCreate"]') Set up check-in
     // ACCORDION
     .checkins-accordion
         input#week-list(type='radio', name='week', checked='')
