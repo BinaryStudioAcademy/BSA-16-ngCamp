@@ -49,7 +49,7 @@ module.exports = function (app) {
             res.data = data;
             res.err = err;
             next();
-        });s
+        });
     }, apiResponse);
 
     app.delete(baseUrl + ':id', function (req, res, next) {
