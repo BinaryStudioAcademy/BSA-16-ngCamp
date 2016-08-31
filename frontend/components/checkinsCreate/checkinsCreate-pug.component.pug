@@ -5,62 +5,24 @@
                 a(ng-link='["Checkins"]')
                     i.fa.fa-times.fa-2x
             h3 What question do you want to ask?
-            input.question(type='text', placeholder='Type your question...')
+            input.question(type='text', ng-model="CheckCr.question" placeholder='Type your question...')
         .main-setup
             h3 Who do you want to ask?
             ul.user-list
                 li.list
                     label#check-all.checkbox
                         span Check All
-                        input(type='checkbox', ng-model='all')
-                li.list
-                    label.checkbox
-                        span Name Surname
-                        input(type='checkbox', ng-checked='all')
-                li.list
-                    label.checkbox
-                        span Name Surname
-                        input(type='checkbox', ng-checked='all')
-                li.list
-                    label.checkbox
-                        span Name Surname
-                        input(type='checkbox', ng-checked='all')
-                li.list
-                    label.checkbox
-                        span Name Surname
-                        input(type='checkbox', ng-checked='all')
-                li.list
-                    label.checkbox
-                        span Name Surname
-                        input(type='checkbox', ng-checked='all')
-                li.list
-                    label.checkbox
-                        span Name Surname
-                        input(type='checkbox', ng-checked='all')
-                li.list
-                    label.checkbox
-                        span Name Surname
-                        input(type='checkbox', ng-checked='all')
-                li.list
-                    label.checkbox
-                        span Name Surname
-                        input(type='checkbox', ng-checked='all')
-                li.list
-                    label.checkbox
-                        span Name Surname
-                        input(type='checkbox', ng-checked='all')
+                        input(type='checkbox', ng-click='CheckCr.toggleAll()')
+                li.list(ng-repeat="part in CheckCr.participants track by $index")
+                    label.checkbox(ng-click="CheckCr.toggleChekin()")
+                        span  {{part.lastName +' '+  part.firstName}}
+                        input(type='checkbox', ng-checked="CheckCr.parties.indexOf(part._id) > -1",ng-click="CheckCr.toggleChekin(part._id)" )
+            p {{CheckCr.parties}}
+              
         .footer-setup
             h3 How frequently should we ask it?
             .schedule
-                select#schedule-first
-                    option(value='') Every weekday
-                    option(value='') Every Monday
-                    option(value='') Every Friday
-                    option(value='') Every other Monday
-                    option(value='') Every other Friday
-                    option(value='') First Monday of every month
-                select#schedule-second
-                    option(value='') at the beginning of the day
-                    option(value='') at the end of the day
-                a(href='')
+                select#schedule-first(ng-model='CheckCr.selectedFrequency', ng-options='item for item in CheckCr.frequency ')
+                input#schedule-second(type="text", placeholder="10:30", ng-model="CheckCr.time")
+                a(href='', ng-click="CheckCr.save()")
                     i.fa.fa-floppy-o.fa-3x

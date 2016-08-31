@@ -7,6 +7,7 @@ ProjectRepository.prototype.removeParticipants= removeParticipants;
 ProjectRepository.prototype.getProjectsByParticipantId = getProjectsByParticipantId;
 ProjectRepository.prototype.getByIdWithUsers = getByIdWithUsers;
 ProjectRepository.prototype.changeState = changeState;
+ProjectRepository.prototype.getParticipantsByProjectId = getParticipantsByProjectId;
 
 function ProjectRepository() {
     Repository.prototype.constructor.call(this);
@@ -71,6 +72,17 @@ function  changeState( id , state , callback ){
     };
 
     query.update( conditions , update ).exec( callback );
+}
+
+function getParticipantsByProjectId(id, callback){
+    var model = this.model;
+    var query = model.findOne({
+        _id: id
+    }).select({
+        participants: 1,
+        _id: 0       
+    }).populate('participants');
+    query.exec(callback);
 }
 
 module.exports = new ProjectRepository();
