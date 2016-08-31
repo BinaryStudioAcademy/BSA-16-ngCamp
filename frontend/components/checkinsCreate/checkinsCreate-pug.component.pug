@@ -8,21 +8,25 @@
             input.question(type='text', ng-model="CheckCr.question" placeholder='Type your question...')
         .main-setup
             h3 Who do you want to ask?
+            section.use-button
+                div(ng-click='CheckCr.toggleAll()') Ask all
             ul.user-list
-                li.list
-                    label#check-all.checkbox
-                        span Check All
-                        input(type='checkbox', ng-click='CheckCr.toggleAll()')
+                //- li.list
+                //-     label#check-all.checkbox
+                //-         span Check All
+                //-         input(type='checkbox', ng-click='CheckCr.toggleAll()')
                 li.list(ng-repeat="part in CheckCr.participants track by $index")
                     label.checkbox(ng-click="CheckCr.toggleChekin()")
                         span  {{part.lastName +' '+  part.firstName}}
                         input(type='checkbox', ng-checked="CheckCr.parties.indexOf(part._id) > -1",ng-click="CheckCr.toggleChekin(part._id)" )
-            p {{CheckCr.parties}}
               
         .footer-setup
             h3 How frequently should we ask it?
             .schedule
-                select#schedule-first(ng-model='CheckCr.selectedFrequency', ng-options='item for item in CheckCr.frequency ')
+                select#schedule-first(ng-model='CheckCr.selectedFrequency', ng-options='item for item in CheckCr.frequency',
+                 ng-selected="CheckCr.frequency[0]")
                 input#schedule-second(type="text", placeholder="10:30", ng-model="CheckCr.time")
-                a(href='', ng-click="CheckCr.save()")
-                    i.fa.fa-floppy-o.fa-3x
+                //- a(href='', ")
+                //-     i.fa.fa-floppy-o.fa-3x
+                div.use-button
+                    div.save-button(ng-click="CheckCr.save()") Save

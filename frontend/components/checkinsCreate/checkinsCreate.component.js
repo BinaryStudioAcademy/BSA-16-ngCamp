@@ -14,7 +14,7 @@ class CheckinsCreateComponentController {
             'Every other Friday',
             'First Monday of every month'
             ];
-        this.selectedFrequency = '';
+        this.selectedFrequency = this.frequency[0];
         this.time = '10:30';
         this.parties = [];
     }
