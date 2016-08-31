@@ -2,7 +2,7 @@ import './project.component.styl';
 
 class ProjectComponentController {
 
-    constructor(popupNotifications, httpGeneral,$location,$window) {
+    constructor(popupNotifications, httpGeneral, $location, $window) {
 
         this.popupNotifications = popupNotifications;
         this.httpGeneral = httpGeneral;
@@ -23,6 +23,7 @@ class ProjectComponentController {
         this.participatorToDelete;
         this.users;
         this.projectParticipants = [];
+        this.projectAdmins = [];
         this.editName = false;
         this.editDesc = false;
         this.popup = {
@@ -32,161 +33,175 @@ class ProjectComponentController {
         this.dtDeadline = new Date();
         this.editDeadline = false;
         this.modalFlag = false;
+        this.isUserAdmin = false;
     }
 
-    $onInit() {
-        let self = this;
-        self.projectParticipants = [];
-        self.httpGeneral.sendRequest({
-            type: "GET",
-            url: "api/user"
-        }).then(function(res) {
-            self.users = res;
+        isAdmin() {
+            let self = this;
+            if (self.projectAdmins.indexOf(window._injectedData.userId)>0) {
+                    self.isUserAdmin = true;
+                } else self.isUserAdmin = false;
+            console.log(self.isUserAdmin);
+            }
+
+        $onInit() {
+            let self = this;
+            self.projectParticipants = [];
             self.httpGeneral.sendRequest({
                 type: "GET",
-                url: `api/projects/${window._injectedData.currentProject}/withUsers`,
+                url: "api/user"
             }).then(function(res) {
-                self.currentProject = res;
-                self.projectParticipants = res.participants;
-                self.dtDeadline = res.endDate;
+                self.users = res;
+                self.httpGeneral.sendRequest({
+                    type: "GET",
+                    url: `api/projects/${window._injectedData.currentProject}/withUsers`,
+                }).then(function(res) {
+                    self.currentProject = res;
+                    self.projectParticipants = res.participants;
+                    self.projectAdmins = res.admins;
+                    self.dtDeadline = res.endDate;
+                    self.isAdmin();
+                });
             });
-        });
-    }
+        }
 
-    getProjects() {
-        let self = this;
-        self.flag = false;
-        self.httpGeneral.sendRequest(self.userReq).then(function(res) {
-            self.userProjects = res;
-        });
-    }
+        getProjects() {
+            let self = this;
+            self.flag = false;
+            self.httpGeneral.sendRequest(self.userReq).then(function(res) {
+                self.userProjects = res;
+            });
+        }
 
-    setProject() {
-        let self = this;
+        setProject() {
+            let self = this;
 
-        window._injectedData.currentProject = self.currentProjectId;
+            window._injectedData.currentProject = self.currentProjectId;
 
-        self.httpGeneral.sendRequest({
-            type: "PUT",
-            url: `api/user/${window._injectedData.userId}`,
-            body: {
-                currentProject: self.currentProjectId,
-            }
-        }).then(function(res) {
-            //console.log("Succesfull update currentProject");
-        });
-        this.$onInit();
-    }
+            self.httpGeneral.sendRequest({
+                type: "PUT",
+                url: `api/user/${window._injectedData.userId}`,
+                body: {
+                    currentProject: self.currentProjectId,
+                }
+            }).then(function(res) {
+                //console.log("Succesfull update currentProject");
+            });
+            this.$onInit();
+        }
 
-    addParticipator() {
-        let self = this;
-        self.httpGeneral.sendRequest({
-            type: "POST",
-            url: `api/projects/${self.currentProjectId}/participants`,
-            body: {
-                data: [self.participatorToAdd],
-            },
-        }).then(function(res) {
-            console.log("Succesfull add participator");
-            self.participatorToAdd = "";
-        });
-        self.addParticipatorFlag = false;
-        this.$onInit();
-    }
+        addParticipator() {
+            let self = this;
+            self.httpGeneral.sendRequest({
+                type: "POST",
+                url: `api/projects/${self.currentProjectId}/participants`,
+                body: {
+                    data: [self.participatorToAdd],
+                },
+            }).then(function(res) {
+                console.log("Succesfull add participator");
+                self.participatorToAdd = "";
+            });
+            self.addParticipatorFlag = false;
+            this.$onInit();
+        }
 
-    removeParticipant(participator) {
-        let self = this;
-        self.httpGeneral.sendRequest({
-            type: "DELETE",
-            url: `api/projects/${self.currentProjectId}/participants/${participator}`,
-        }).then(function(res) {
-            console.log("Succesfull delete participator");
-        });
-        this.$onInit();
-    }
-    edit(prop) {
-        let self = this;
-        console.log(prop);
-        switch (prop) {
-            case "title":{
-                self.editName = false;
-                self.httpGeneral.sendRequest({
-                    type: "PUT",
-                    url: `api/projects/${self.currentProjectId}`,
-                    body: {
-                        title:self.currentProject.title,
+        removeParticipant(participator) {
+            let self = this;
+            self.httpGeneral.sendRequest({
+                type: "DELETE",
+                url: `api/projects/${self.currentProjectId}/participants/${participator}`,
+            }).then(function(res) {
+                console.log("Succesfull delete participator");
+            });
+            this.$onInit();
+        }
+        edit(prop) {
+            let self = this;
+            console.log(prop);
+            switch (prop) {
+                case "title":
+                    {
+                        self.editName = false;
+                        self.httpGeneral.sendRequest({
+                            type: "PUT",
+                            url: `api/projects/${self.currentProjectId}`,
+                            body: {
+                                title: self.currentProject.title,
+                            }
+                        }).then(function(res) {
+                            console.log("Succesfull edit title");
+                        });
+                        break;
                     }
-                }).then(function(res) {
-                    console.log("Succesfull edit title");
-                });
-                break;
-            }
-            case "description":{
-                self.editDesc = false;
-                self.httpGeneral.sendRequest({
-                    type: "PUT",
-                    url: `api/projects/${self.currentProjectId}`,
-                    body: {
-                        description:self.currentProject.description,
+                case "description":
+                    {
+                        self.editDesc = false;
+                        self.httpGeneral.sendRequest({
+                            type: "PUT",
+                            url: `api/projects/${self.currentProjectId}`,
+                            body: {
+                                description: self.currentProject.description,
+                            }
+                        }).then(function(res) {
+                            console.log("Succesfull edit description");
+                        });
+                        break;
                     }
-                }).then(function(res) {
-                    console.log("Succesfull edit description");
-                });
-                break;
-            }
-            case "deadline":{
-                self.editDeadline = false;
-                self.httpGeneral.sendRequest({
-                    type:"PUT",
-                    url: `api/projects/${self.currentProjectId}`,
-                    body: {
-                        endDate:self.dtDeadline,
+                case "deadline":
+                    {
+                        self.editDeadline = false;
+                        self.httpGeneral.sendRequest({
+                            type: "PUT",
+                            url: `api/projects/${self.currentProjectId}`,
+                            body: {
+                                endDate: self.dtDeadline,
+                            }
+                        }).then(function(res) {
+                            console.log("Succesfull edit deadline");
+                        });
+                        this.$onInit();
+                        break;
                     }
-                }).then(function(res){
-                    console.log("Succesfull edit deadline");
-                });
-                this.$onInit();
-                break;
             }
         }
-    }
-    modalToggle() {
-        this.modalFlag = !this.modalFlag;
+        modalToggle() {
+            this.modalFlag = !this.modalFlag;
+        }
+
+        deleteProject() {
+            let self = this;
+            self.httpGeneral.sendRequest({
+                type: "DELETE",
+                url: `api/projects/${window._injectedData.currentProject}`
+            }).then(() => {
+                window._injectedData.currentProject = '';
+                self.window.location.reload();
+                self.location.path('/');
+            });
+        }
+        today() {
+            this.dt = new Date();
+        };
+        open() {
+            this.popup.opened = true;
+        }
+        localDate(date) {
+            let newDate = new Date(date);
+            return newDate.toLocaleDateString();
+        }
     }
 
-    deleteProject() {
-        let self = this;
-        self.httpGeneral.sendRequest({
-            type: "DELETE",
-            url: `api/projects/${window._injectedData.currentProject}`
-        }).then(() => {
-            window._injectedData.currentProject = '';
-            self.window.location.reload();
-            self.location.path('/');
-        });
-    }
-    today () {
-        this.dt = new Date();
+    ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral', '$location', '$window'];
+
+    const projectComponent = {
+        controller: ProjectComponentController,
+        selector: 'projectComponent',
+        template: require('./project.component.pug')(),
+        controllerAs: 'proj',
     };
-    open() {
-        this.popup.opened = true;
-    }
-    localDate(date){
-        let newDate = new Date(date);
-        return newDate.toLocaleDateString();
-    }
-}
-
-ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral','$location','$window'];
-
-const projectComponent = {
-    controller: ProjectComponentController,
-    selector: 'projectComponent',
-    template: require('./project.component.pug')(),
-    controllerAs: 'proj',
-};
 
 
-export {
-    projectComponent
-};
+    export {
+        projectComponent
+    };
