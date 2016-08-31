@@ -11,7 +11,11 @@ var projectSchema = new Schema({
     description: String,
     participants: [{
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+    }],
+    admins: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
     }],
     startDate: Date,
     endDate: Date,
@@ -23,6 +27,11 @@ var projectSchema = new Schema({
     }
 });
 
+projectSchema.post('findOne',function(doc){
+    for (var i = 0; i < doc.admins.length;i++){
+        delete doc.admins[i].password;
+    }
+});
 
 // projectSchema.pre('remove', function(next) {
 //     var tasks = Task.find({

@@ -9,6 +9,7 @@ class createProjectController {
         this.projectDescription;
         this.participants = [],
         this.participantsSet = new Set();
+        this.adminsSet = new Set();
         this.users;
         this.status = "active";
         this.popup = {
@@ -19,6 +20,9 @@ class createProjectController {
         this.modalFlag = false;
         this.userToAdd;
         this.addParticipatorFlag = false;
+        this.admins;
+        this.addAdminFlag = false;
+        this.adminToAdd;
     }
 
     $onInit() {
@@ -37,6 +41,8 @@ class createProjectController {
         let self = this;
         self.participantsSet.add(window._injectedData.userId);
         self.participants = Array.from(self.participantsSet);
+        self.adminsSet.add(window._injectedData.userId);
+        self.admins = Array.from(self.adminsSet);
         self.http.sendRequest({
             type: "POST",
             url: "api/projects/",
@@ -47,7 +53,8 @@ class createProjectController {
                     participants: self.participants,
                     endDate: self.deadline,
                     startDate: new Date(),
-                    status: 'active'
+                    status: 'active',
+                    admins: self.admins,
                 }
             }
         }).then(function(res) {
@@ -79,6 +86,23 @@ class createProjectController {
         console.log(id);
         self.participantsSet.delete(id);
         self.participants = Array.from(self.participantsSet);
+    }
+
+    adminUpdate() {
+        let self = this;
+        self.adminsSet.add(self.adminToAdd);
+        self.admins = Array.from(self.adminsSet);
+        self.addAdminFlag = false;
+        self.participantsSet.add(self.adminToAdd);
+        self.participants = Array.from(self.participantsSet);
+    }
+
+
+    adminDelete(id) {
+        let self = this;
+        console.log(id);
+        self.adminsSet.delete(id);
+        self.admins = Array.from(self.adminsSet);
     }
 
     modalToggle() {
