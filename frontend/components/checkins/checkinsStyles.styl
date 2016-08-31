@@ -1,22 +1,37 @@
+@import "../../../public/libs/css/generalComponentsStyle.styl"
 .checkins-wrapper
-    .checkins-header
+    max-width 1024px
+    main-component()
+    .header-title
         display flex
+        align-items center
         justify-content center
-        flex-direction row
-
-    .header-list
+        flex-wrap wrap
+        color #212121
+        font-size 1.8em
+        font-family "Montserrat"
         h1
-            border-bottom 1px solid black
-        a
-            text-decoration none
-            color #212121
-            font-size 22px
-            padding 5px
-            border-radius 10px
-            cursor pointer
-            background-color #1d8dbf
-            &:hover
-                background-color #27bcff
+            width 100%
+            margin-bottom 0
+        &:after
+            content ''
+            height 1px
+            margin-top 0.3em
+            width 80%
+            display block
+            background-image -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+            background-image    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+            background-image     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+            background-image      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+    .header-button
+        margin 30px 0
+        button
+            button()
+            font-family "Montserrat"
+            line-height 32.406px
+            font-size 1.8em
+            border none
+            outline none
 
     li
         list-style none
