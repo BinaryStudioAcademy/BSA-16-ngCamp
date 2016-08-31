@@ -1,8 +1,9 @@
 section.messageBoard-wrapper
   div.header
-    h2 Message Board
-    hr
-    div(ng-link='["PostMessage"]') Post message
+    .wrapper_lable
+        h1 Message Board
+    .wrapper_createButton.row.center-xs
+        button(ng-link='["PostMessage"]') Post message
   section.message-block(ng-repeat="message in msgBoard.messages track by $index")
       section.user-info
           header
