@@ -1,3 +1,6 @@
+html {
+  overflow-y: scroll;
+}
 .reports-wrapper {
   display: block;
   width: 100%;
@@ -42,6 +45,7 @@
 .reports-wrapper .reports-recent table td {
   padding: 1%;
   text-align: left;
+  word-break: break-all;
 }
 .reports-wrapper .reports-recent table .t-head {
   font-family: "Montserrat";
@@ -79,6 +83,7 @@
 }
 .reports-wrapper .reports-samples .item .item-title {
   font-size: 20px;
+  word-break: break-all;
 }
 .reports-wrapper .reports-samples .item .item-def font-weight bold {
   font-size: 20px;

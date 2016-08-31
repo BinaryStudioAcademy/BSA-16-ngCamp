@@ -20,18 +20,19 @@ function addItem(body, callback) {
 }
 //================================================================
 function updateItem(id, body, callback) {
-    reportRepository.setObjPropsById(id, body, callback);
+    console.log(id);
+    reportRepository.setObjPropsById(id, body.data, callback);
 }
 //================================================================
-function getRecent(id, callback) {
+function getRecent(id, project, callback) {
     if (id && callback) {
-        reportRepository.getRecent(id, callback);
+        reportRepository.getRecent(id, project, callback);
     }
 }
 //================================================================
-function getSaved(id, callback) {
+function getSaved(id, project, callback) {
     if (id && callback) {
-        reportRepository.getSaved(id, callback);
+        reportRepository.getSaved(id, project, callback);
     }
 }
 //================================================================

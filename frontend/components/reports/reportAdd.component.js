@@ -13,7 +13,9 @@ class ReportAddComponentController {
         this.dateRange = [];
         this.users = [];
         this.isGenerated = false;
+
         this.userId = window._injectedData.userId;
+        this.projectId = window._injectedData.currentProject;
         this.generateReport = generateReport;
         this.manageReportSaving = manageReportSaving;
     }
@@ -36,6 +38,7 @@ function generateReport() {
     let vm = this;
     let data = {
         user: vm.userId,
+        project: vm.projectId,
         participants: []
     };
     if (vm.title) {
@@ -43,6 +46,9 @@ function generateReport() {
     } else {
         vm.popupNotifications.notifyError("Please define report title");
         return;
+    }
+    if (vm.description) {
+        data.description = vm.description;
     }
     if (((!vm.types || vm.types.length <= 0) && (!vm.users || vm.users.length <= 0)) && (!vm.dateRange || vm.dateRange.length <= 0)) {
         vm.popupNotifications.notifyError("Report filter is undefined");

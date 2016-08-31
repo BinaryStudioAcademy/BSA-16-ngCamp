@@ -238,6 +238,12 @@ function addReportValidation(body, callback) {
         });
         return false;
     }
+    if (!body.project) {
+        callback({
+            message: "Report project is undefined"
+        });
+        return false;
+    }
     if (!body.title) {
         callback({
             message: "Report title is undefined"
