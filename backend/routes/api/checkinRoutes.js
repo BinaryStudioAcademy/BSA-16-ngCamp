@@ -13,6 +13,14 @@ module.exports = function(app) {
         });
     }, apiResponse);
 
+    app.get(baseUrl + ':id/withparticipants', function(req, res, next) {
+        checkinRepository.getByIdWithParticipants(req.params.id, function(err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
     app.get(baseUrl + ':id', function(req, res, next) {
         checkinRepository.getById(req.params.id, function(err, data) {
             res.data = data;

@@ -1,6 +1,6 @@
 import './checkinsCreateStyles.styl';
 
-class CheckinsCreateComponentController {
+class CheckinsEditComponentController {
     constructor(httpGeneral, $window) {
         this.httpGeneral = httpGeneral;
         this.window = $window;
@@ -14,61 +14,57 @@ class CheckinsCreateComponentController {
             'Every other Friday',
             'First Monday of every month'
             ];
-        this.selectedFrequency = this.frequency[0];
-        this.time = [
-            '08:00',
-            '09:00',
-            '10:00',
-            '11:00',
-            '12:00',
-            '13:00',
-            '14:00',
-            '15:00',
-            '16:00',
-            '17:00',
-            '18:00',
-            '19:00'
-        ];
-        this.selectedTime = this.time[0];
+        this.selectedFrequency = '';
+        this.time = '10:30';
         this.parties = [];
+        this.checkin = null;
     }
-    $onInit(){
-    	let vm = this;
+    $routerOnActivate(next){
+        let vm = this;
+        vm.httpGeneral.sendRequest({
+            type:"GET",
+            url:`/api/checkins/${next.params.id}/withparticipants`
+        }).then(function(res){
+            vm.checkin = res;
+            vm.selectedFrequency = res.frequency;
+            vm.question = res.question;
+            vm.time = res.time;
+            res.participants.forEach(function(p){
+                vm.parties.push(p._id);
+            });
+        });
         vm.httpGeneral.sendRequest({
             type: "GET",
-            url: `api/projects/${window._injectedData.currentProject}/participants`
+            url: `api/projects/${window._injectedData.currentProject}/participants`,
         }).then(function(res) {
             vm.participants = res.participants;
         });
     }
+
     save(){
         let vm = this;
         vm.httpGeneral.sendRequest({
-            type: "POST",
-            url: "/api/checkins/",
+            type: "PUT",
+            url: "/api/checkins/" + vm.checkin._id,
             body: {
-                data: {
                     question: vm.question,
-                    project: [window._injectedData.currentProject],
                     frequency: vm.selectedFrequency,
                     participants: vm.parties,
-                    isTurnedOn: true,
-                    time: vm.selectedTime
-                }
+                    time: vm.time
             }
         }).then(function(res) {
-            console.log("Succesfull create checkin");
+            console.log(res);
         });
     }
     toggleAll(){
         let vm = this;
         if (vm.parties.length == vm.participants.length){
-            vm.parties = [];
+            vm.parties = []; 
         } else {
             vm.participants.forEach(function(p){
                 if(vm.parties.indexOf(p._id) == -1){
                     vm.parties.push(p._id);
-                }
+                }                 
             });
         }
     }
@@ -81,19 +77,17 @@ class CheckinsCreateComponentController {
             vm.parties.push(id);
         }
     }
-
 }
 
-CheckinsCreateComponentController.$inject = ['httpGeneral', '$window'];
+CheckinsEditComponentController.$inject = ['httpGeneral', '$window'];
 
-const checkinsCreateComponent = {
-    controller: CheckinsCreateComponentController,
-    controllerAs: 'CheckCr',
-    selector: 'checkinsCreateComponent',
-    template: require('./checkinsCreate-pug.component.pug')(),
-
+const checkinsEditComponent = {
+    controller: CheckinsEditComponentController,
+    controllerAs: 'CheckEd',
+    selector: 'checkinsEditComponent',
+    template: require('./checkinsEdit-pug.component.pug')(),
 };
 
 export {
-    checkinsCreateComponent
+    checkinsEditComponent
 };

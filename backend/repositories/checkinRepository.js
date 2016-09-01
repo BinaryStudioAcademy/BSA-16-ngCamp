@@ -11,6 +11,17 @@ CheckinRepository.prototype = new Repository();
 
 CheckinRepository.prototype.findCheckinsByFrequencyAndTime = findCheckinsByFrequencyAndTime;
 CheckinRepository.prototype.getAll = getAll;
+CheckinRepository.prototype.getByIdWithParticipants = getByIdWithParticipants;
+
+
+function getByIdWithParticipants(id, callback){
+	var query = Checkin.findOne({
+		_id: id
+	})
+	.populate('participants')
+	.populate('answers.user').sort({'answers.creationDate': -1});
+    query.exec(callback);
+}
 
 function getAll(callback) {
     var query = Checkin.find({}).populate('participants');
@@ -19,7 +30,10 @@ function getAll(callback) {
 
 
 function findCheckinsByFrequencyAndTime(freq, time, callback){
-	var query = Checkin.find({frequency: freq, time: time}).populate('project');
+	var query = Checkin.find({
+		frequency: freq, 
+		time: time
+	}).populate('project');
 	query.exec(callback);
 }
 
