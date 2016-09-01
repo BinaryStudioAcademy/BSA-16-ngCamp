@@ -1,5 +1,5 @@
 .projectwrapper
-  section.row.center-xs
+  .row.center-xs
     .main.col-xs-8
       h1 Project Settings
       .changeProj
@@ -65,8 +65,8 @@
               input.date(type='text', uib-datepicker-popup='dd.MM.yyyy', ng-model='proj.dtDeadline', is-open='proj.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{proj.localDate(proj.dtDeadline)}}")
               a(type='button', ng-click='proj.open()')
                 i.fa.fa-calendar(aria-hidden='true')
-        .wrap.last
-          .delete_button(ng-if="proj.isUserAdmin")
+        .wrap.last(ng-if="proj.isUserAdmin")
+          .delete_button
             button.delete(ng-click="proj.modalToggle()") Delete project
           .confirming_modal(ng-if="proj.modalFlag")
             .background(ng-click="proj.modalToggle()")
