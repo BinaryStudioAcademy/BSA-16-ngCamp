@@ -15,14 +15,28 @@ class CheckinsCreateComponentController {
             'First Monday of every month'
             ];
         this.selectedFrequency = this.frequency[0];
-        this.time = '10:30';
+        this.time = [
+            '08:00',
+            '09:00',
+            '10:00',
+            '11:00',
+            '12:00',
+            '13:00',
+            '14:00',
+            '15:00',
+            '16:00',
+            '17:00',
+            '18:00',
+            '19:00'
+        ];
+        this.selectedTime = this.time[0];
         this.parties = [];
     }
     $onInit(){
     	let vm = this;
         vm.httpGeneral.sendRequest({
             type: "GET",
-            url: `api/projects/${window._injectedData.currentProject}/participants`,
+            url: `api/projects/${window._injectedData.currentProject}/participants`
         }).then(function(res) {
             vm.participants = res.participants;
         });
@@ -39,7 +53,7 @@ class CheckinsCreateComponentController {
                     frequency: vm.selectedFrequency,
                     participants: vm.parties,
                     isTurnedOn: true,
-                    time: vm.time
+                    time: vm.selectedTime
                 }
             }
         }).then(function(res) {
@@ -49,12 +63,12 @@ class CheckinsCreateComponentController {
     toggleAll(){
         let vm = this;
         if (vm.parties.length == vm.participants.length){
-            vm.parties = []; 
+            vm.parties = [];
         } else {
             vm.participants.forEach(function(p){
                 if(vm.parties.indexOf(p._id) == -1){
                     vm.parties.push(p._id);
-                }                 
+                }
             });
         }
     }

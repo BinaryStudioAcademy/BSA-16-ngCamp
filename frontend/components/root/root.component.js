@@ -42,9 +42,9 @@ const rootComponent = {
         name: 'CheckinsInfo',
         component: 'checkinsInfoComponent'
     }, {
-        path: '/tasks/',
+        path: '/tasks/...',
         name: 'Tasks',
-        component: 'tasksComponent'
+        component: 'tasksRootComponent'
     }, {
         path: '/events/...',
         name: 'Events',
@@ -96,10 +96,6 @@ const rootComponent = {
         path: '/editMessage/:id',
         name: 'EditMessage', //TODO test, remove later
         component: 'editMessage'
-    }, {
-        path: '/tasks',
-        name: 'Tasks',
-        component: 'tasksComponent'
     }, {
         path: '/calendar/...',
         name: 'Calendar',

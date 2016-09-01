@@ -82,4 +82,11 @@ module.exports = function (app) {
             next();
         });
     }, apiResponse);
+    app.delete(baseUrl + ':id/admins/:part', function (req, res, next) {
+        projectService.removeAdmins(req.params.id, req.params.part, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
 };

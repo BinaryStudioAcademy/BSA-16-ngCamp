@@ -34,14 +34,11 @@ class HeaderComponentController {
                 currentProject: self.currentProjectId,
             }
         }).then(function (res) {
-            let reportReg = /^\/reports\/+/;
             let currPath = self.location.path();
+            let newReg = /^(\/)[^(\/)]+/;
 
-            if (reportReg.test(currPath)) {
-                self.location.path("/reports");
-            } else {
-                self.location.path(currPath);
-            }
+            self.location.path("/"+currPath.match(newReg)[0]);
+
 
             //console.log("Succesfull update currentProject");
         });
