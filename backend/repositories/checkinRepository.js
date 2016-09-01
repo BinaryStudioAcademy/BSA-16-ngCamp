@@ -20,7 +20,6 @@ function getByIdWithParticipants(id, callback){
 	})
 	.populate('participants')
 	.populate('answers.user').sort({'answers.creationDate': -1});
-	// .populate('answers.user');
     query.exec(callback);
 }
 

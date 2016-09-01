@@ -1,6 +1,6 @@
 import './checkinsCreateStyles.styl';
 
-class CheckinsCreateComponentController {
+class CheckinsEditComponentController {
     constructor(httpGeneral, $window) {
         this.httpGeneral = httpGeneral;
         this.window = $window;
@@ -14,12 +14,25 @@ class CheckinsCreateComponentController {
             'Every other Friday',
             'First Monday of every month'
             ];
-        this.selectedFrequency = this.frequency[0];
+        this.selectedFrequency = '';
         this.time = '10:30';
         this.parties = [];
+        this.checkin = null;
     }
-    $onInit(){
-    	let vm = this;
+    $routerOnActivate(next){
+        let vm = this;
+        vm.httpGeneral.sendRequest({
+            type:"GET",
+            url:`/api/checkins/${next.params.id}/withparticipants`
+        }).then(function(res){
+            vm.checkin = res;
+            vm.selectedFrequency = res.frequency;
+            vm.question = res.question;
+            vm.time = res.time;
+            res.participants.forEach(function(p){
+                vm.parties.push(p._id);
+            });
+        });
         vm.httpGeneral.sendRequest({
             type: "GET",
             url: `api/projects/${window._injectedData.currentProject}/participants`,
@@ -27,23 +40,20 @@ class CheckinsCreateComponentController {
             vm.participants = res.participants;
         });
     }
+
     save(){
         let vm = this;
         vm.httpGeneral.sendRequest({
-            type: "POST",
-            url: "/api/checkins/",
+            type: "PUT",
+            url: "/api/checkins/" + vm.checkin._id,
             body: {
-                data: {
                     question: vm.question,
-                    project: [window._injectedData.currentProject],
                     frequency: vm.selectedFrequency,
                     participants: vm.parties,
-                    isTurnedOn: true,
                     time: vm.time
-                }
             }
         }).then(function(res) {
-            console.log("Succesfull create checkin");
+            console.log(res);
         });
     }
     toggleAll(){
@@ -67,19 +77,17 @@ class CheckinsCreateComponentController {
             vm.parties.push(id);
         }
     }
-
 }
 
-CheckinsCreateComponentController.$inject = ['httpGeneral', '$window'];
+CheckinsEditComponentController.$inject = ['httpGeneral', '$window'];
 
-const checkinsCreateComponent = {
-    controller: CheckinsCreateComponentController,
-    controllerAs: 'CheckCr',
-    selector: 'checkinsCreateComponent',
-    template: require('./checkinsCreate-pug.component.pug')(),
-
+const checkinsEditComponent = {
+    controller: CheckinsEditComponentController,
+    controllerAs: 'CheckEd',
+    selector: 'checkinsEditComponent',
+    template: require('./checkinsEdit-pug.component.pug')(),
 };
 
 export {
-    checkinsCreateComponent
+    checkinsEditComponent
 };

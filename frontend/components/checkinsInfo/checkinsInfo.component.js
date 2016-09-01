@@ -19,7 +19,6 @@ class CheckinsInfoComponentController {
     		vm.checkin = res;                          //{_id: res_id, question: res.question}
             vm.answers = res.answers;
             vm.answers.forEach(function(answer){
-
                 let date = new Date(answer.creationDate);
                 let month = vm.months[date.getMonth()];
                 let dayofMonths = date.getDate();
@@ -32,14 +31,11 @@ class CheckinsInfoComponentController {
                 }
                 vm.groupedAsnwers[d].push(answer);
             });
-            // vm.groupedAsnwers.sort();
-            // vm.groupedAsnwers.reverse();
-            
+
     	});
         console.log(vm.groupedAsnwers);
     }
     deleteCheckin(){
-        // console.log('deleting');
         let vm = this;
         vm.httpGeneral.sendRequest({
             type:"DELETE",

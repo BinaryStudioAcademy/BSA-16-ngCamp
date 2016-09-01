@@ -11,10 +11,6 @@
             section.use-button
                 div(ng-click='CheckCr.toggleAll()') Ask all
             ul.user-list
-                //- li.list
-                //-     label#check-all.checkbox
-                //-         span Check All
-                //-         input(type='checkbox', ng-click='CheckCr.toggleAll()')
                 li.list(ng-repeat="part in CheckCr.participants track by $index")
                     label.checkbox(ng-click="CheckCr.toggleChekin()")
                         span  {{part.lastName +' '+  part.firstName}}
@@ -26,7 +22,5 @@
                 select#schedule-first(ng-model='CheckCr.selectedFrequency', ng-options='item for item in CheckCr.frequency',
                  ng-selected="CheckCr.frequency[0]")
                 input#schedule-second(type="text", placeholder="10:30", ng-model="CheckCr.time")
-                //- a(href='', ")
-                //-     i.fa.fa-floppy-o.fa-3x
                 div.use-button
                     div.save-button(ng-click="CheckCr.save()") Save

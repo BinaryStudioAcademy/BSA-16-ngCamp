@@ -109,6 +109,11 @@ import {
 from "./checkinsInfo/checkinsInfo.component.js";
 
 import {
+    checkinsEditComponent
+}
+from "./checkinsEdit/checkinsEdit.component.js";
+
+import {
     eventCreateComponent
 }
 from "./events/eventCreate.component.js";
@@ -177,3 +182,5 @@ app.component(calendarDailytComponent.selector, calendarDailytComponent);
 app.component(messageCommentsComponent.selector, messageCommentsComponent);
 app.component(calendarMonthComponent.selector, calendarMonthComponent);
 app.component(primaryCalendarComponent.selector, primaryCalendarComponent);
+app.component(checkinsEditComponent.selector, checkinsEditComponent);
+
