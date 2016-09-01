@@ -7,60 +7,62 @@
                         i.fa.fa-commenting-o.fa-3x
                     a(ng-link='["CheckinsCreate"]')
                         i.fa.fa-pencil-square-o.fa-3x
-                    a(href='')
+                    button(ng-click='chInfo.deleteCheckin()')
                         i.fa.fa-trash-o.fa-3x
                 .close-btn
                     a(ng-link='["Checkins"]')
                         i.fa.fa-times.fa-2x
-            h2 Do you have any ideas for a future show?
+            h2 {{chInfo.checkin.question}}
             .user-list
-                span.avatar IS
-                span.avatar AK
-                span.avatar DB
-                span.avatar IH
-                span.avatar MK
-                span.avatar AS
-                span.avatar VT
-                span.avatar YV
-                span.avatar YN
-                span.avatar DS
-                span.avatar DB
+                span.avatar(ng-repeat="part in chInfo.checkin.participants ") {{part.lastName.charAt(0) + part.firstName.charAt(0)}}
+
         .main-answer
-            ul.qq-list
-                h3 Thursday, July 14
-                li.list
-                    span.name Steve Marsh
+            ul.qq-list(ng-repeat="i in chInfo.iter | orderBy: reverse")  <h3>{{i}}</h3>
+                li.list(ng-repeat="var in chInfo.groupedAsnwers[i]") 
+                    span.name {{var.user.firstName + ' ' + var.user.lastName }}
                     br
-                    span Alliance Rubber Company! They make rubber bands!
-                li.list
-                    span.name Josh Fiske
-                    br
-                    span I just went to Speedy Car Wash. That was kind of a blast from the past.
-                h3 Wednesday, July 13
-                li.list
-                    span.name Nicole Katz
-                    br
-                    span You should check out French Paper company!
-                li.list
-                    span.name Jennifer Young
-                    br
-                    span Answering this question during lunch so... Harold's Chicken Shack
-                li.list
-                    span.name Jared Davis
-                    br
-                    span
-                        | Zildjian! They have to have been around forever. I don't think I can even name another
-                        | symbol.
-                h3 Tuesday, July 12
-                li.list
-                    span.name Cheryl Walters
-                    br
-                    span
-                        | I buy soap from Caswell Massey. They made the soap that George Washington once gave to General
-                        | Lafeyette as a thank you.
-                li.list
-                    span.name Victor Cooper
-                    br
-                    span
-                        | I'd love to hear a story about Pendleton Wool. They've been around for over a century I
-                        | think.
+                    span {{var.answer}}
+            //- ul.qq-list
+            //-     h3 Thursday, July 14 
+            //-     p {{chInfo.groupedAsnwers.length}} 
+
+
+            //-     li.list(ng-repeat="i in chInfo.iter | orderBy: reverse")  {{i}}
+
+             
+            //-     li.list
+            //-         span.name Steve Marsh
+            //-         br
+            //-         span Alliance Rubber Company! They make rubber bands!
+            //-     li.list
+            //-         span.name Josh Fiske
+            //-         br
+            //-         span I just went to Speedy Car Wash. That was kind of a blast from the past.
+            //-     h3 Wednesday, July 13
+            //-     li.list
+            //-         span.name Nicole Katz
+            //-         br
+            //-         span You should check out French Paper company!
+            //-     li.list
+            //-         span.name Jennifer Young
+            //-         br
+            //-         span Answering this question during lunch so... Harold's Chicken Shack
+            //-     li.list
+            //-         span.name Jared Davis
+            //-         br
+            //-         span
+            //-             | Zildjian! They have to have been around forever. I don't think I can even name another
+            //-             | symbol.
+            //-     h3 Tuesday, July 12
+            //-     li.list
+            //-         span.name Cheryl Walters
+            //-         br
+            //-         span
+            //-             | I buy soap from Caswell Massey. They made the soap that George Washington once gave to General
+            //-             | Lafeyette as a thank you.
+            //-     li.list
+            //-         span.name Victor Cooper
+            //-         br
+            //-         span
+            //-             | I'd love to hear a story about Pendleton Wool. They've been around for over a century I
+            //-             | think.
