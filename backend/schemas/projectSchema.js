@@ -23,13 +23,18 @@ var projectSchema = new Schema({
     repository: String,
     status: {
         type: String,
-        enum: ['active','finished','deleted']
+        enum: ['active', 'finished', 'deleted']
     }
 });
 
-projectSchema.post('findOne',function(doc){
-    for (var i = 0; i < doc.admins.length;i++){
-        delete doc.admins[i].password;
+projectSchema.post('findOne', function(doc) {
+    if (doc.admins != undefined) {
+        for (var i = 0; i < doc.admins.length; i++) {
+            delete doc.admins[i].password;
+        }
+    } else
+    {
+        console.log("You havent admins at project");
     }
 });
 
