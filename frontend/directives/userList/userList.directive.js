@@ -22,7 +22,8 @@ const userListDirective = {
     transclude: true,
     scope: {
         userData: '=',
-        selectCallback: '=' 
+        selectCallback: '=',
+        parentScope: '='
     },
     link: userListlink
 };

@@ -3,8 +3,8 @@
 		.wrapper_lable
 			h1 Tasks
 		.wrapper_createButton.row.center-xs
-			button Create new task
-		.wrapper_filters
+			button(ng-link = "['TaskUpdate', {id: 'new'}]") Create new task
+		.wrapper_filters(ng-if = "tasksctrl.contentFlag")
 			ul.row.center-xs
 				li filter by :
 				li(ng-click = "tasksctrl.changeFilter('free')") free task
@@ -25,7 +25,7 @@
 			.task_todos.col-xs-12.animate-expand(ng-if="task.expanded")
 				.row.start-xs
 					.task_itemLable.col-xs-offset-1.col-xs-11(ng-if = "task.description") Task description:
-					.task_description.col-xs-offset-1.col-xs-10(ng-if = "task.description") {{task.description}}
+					.task_description.col-xs-offset-1.col-xs-10(ng-if = "task.description" ng-bind-html="task.description")
 					.task_itemLable.col-xs-offset-1.col-xs-10 Participants:
 						span
 							.task_Participant(ng-if = "!task.participants.length") No members
@@ -37,7 +37,7 @@
 					.col-xs-1.toDo_status
 						i.fa(aria-hidden = "true",ng-class = "{'fa-square-o': todo.status === 'uncomplete','fa-check-square-o': todo.status === 'complete'}",ng-click="tasksctrl.changeToDoState(todo,task)")
 					.toDo_title.col-xs-8 {{todo.title}}
-					.toDo_description.col-xs-offset-1.col-xs-10 {{todo.description}}
+					.toDo_description.col-xs-offset-1.col-xs-10(ng-bind-html="todo.description")
 				.sub_functions.row.center-xs
 					.col-xs-5.start-xs.date {{task.dateCreated | date: "MMM d, y h:mm"}} ({{task.author.firstName}} {{task.author.lastName}})
 					.col-xs-7.end-xs.icon_bar 
@@ -47,6 +47,6 @@
 						i.fa.fa-times(aria-hidden = "true")
 		.wrapper_noTask.row.center-xs(ng-if = "!tasksctrl.contentFlag")
 			.col-xs-12 No tasks in this project
-		.no_result.row.middle-xs.center-xs(ng-hide = "filtredTasks.length")
+		.no_result.row.middle-xs.center-xs(ng-hide = "filtredTasks.length" ng-if = "tasksctrl.contentFlag")
 			.col-xs-12 No results
 		//- user-list(user-data = `tasksctrl.projUsers`,select-callback = 'tasksctrl.selectUser')

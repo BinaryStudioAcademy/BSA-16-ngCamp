@@ -30,7 +30,7 @@ module.exports = function (app) {
     }, apiResponse);
     //===================================================
     app.post(baseUrl, function (req, res, next) {
-        taskService.addTask(req.body, function (err, data) {
+        taskService.addItem(req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();

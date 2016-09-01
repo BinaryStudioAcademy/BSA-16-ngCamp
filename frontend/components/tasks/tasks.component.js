@@ -1,6 +1,3 @@
-import './tasksStyles.styl';
-
-
 class TasksComponentController {
 	constructor(httpGeneral,$timeout,$filter,popupNotifications) {
 		this.http = httpGeneral;
@@ -34,7 +31,6 @@ class TasksComponentController {
 		};
 		self.http.sendRequest(projReq).then(function(res){
 			self.projUsers = res.participants;
-			console.log(self.projUsers);
 		});
 		self.http.sendRequest(taskReq)
 		.then(function(res) {
@@ -43,7 +39,6 @@ class TasksComponentController {
 				task.expanded = false;
 				self.calcProgress(task);
 				});
-			console.log(self.tasks);
 			});
     }
 
@@ -166,7 +161,7 @@ class TasksComponentController {
 		let self = this;
 		switch(type){
 			case 'my':
-				self.filterKey = self.currUserId;
+				self.filterKey = myTasksFilter;
 				break;
 			case 'free':
 				self.filterKey = emptyArrayFilter;
@@ -183,6 +178,16 @@ class TasksComponentController {
 		function emptyArrayFilter(element){
 			return !element.participants.length;
 		};
+		function myTasksFilter(element){
+			let count = 0;
+			element.participants.forEach(function(elem){
+				if (elem._id === self.currUserId) {
+					count +=1;
+				};
+			});
+			return !!count;
+
+		}
 	}
 
 
