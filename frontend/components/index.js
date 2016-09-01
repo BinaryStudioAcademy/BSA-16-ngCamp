@@ -33,6 +33,7 @@ import {calendarDailytComponent} from "./calendar/calendarDaily/calendarDaily.co
 import {createProjectComponent} from "./createProject/createProject.component.js";
 import {messageCommentsComponent} from "./comments/messageComments.component.js";
 import {calendarMonthComponent} from "./calendar/calendarMonth/calendarMonth.component.js";
+import {primaryCalendarComponent} from "./calendar/primaryCalendar/primaryCalendar.component.js";
 
 
 app.component(messageBoardComponent.selector, messageBoardComponent);
@@ -69,3 +70,4 @@ app.component(messageCommentsComponent.selector, messageCommentsComponent);
 app.component(calendarMonthComponent.selector, calendarMonthComponent);
 app.component(taskCreateEditComponent.selector, taskCreateEditComponent);
 app.component(tasksRootComponent.selector, tasksRootComponent);
+app.component(primaryCalendarComponent.selector, primaryCalendarComponent);

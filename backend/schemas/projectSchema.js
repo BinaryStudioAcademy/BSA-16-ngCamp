@@ -11,7 +11,11 @@ var projectSchema = new Schema({
     description: String,
     participants: [{
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+    }],
+    admins: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
     }],
     startDate: Date,
     endDate: Date,
@@ -19,10 +23,20 @@ var projectSchema = new Schema({
     repository: String,
     status: {
         type: String,
-        enum: ['active','finished','deleted']
+        enum: ['active', 'finished', 'deleted']
     }
 });
 
+projectSchema.post('findOne', function(doc) {
+    if (doc.admins != undefined) {
+        for (var i = 0; i < doc.admins.length; i++) {
+            delete doc.admins[i].password;
+        }
+    } else
+    {
+        console.log("You havent admins at project");
+    }
+});
 
 // projectSchema.pre('remove', function(next) {
 //     var tasks = Task.find({

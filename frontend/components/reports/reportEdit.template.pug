@@ -44,7 +44,7 @@
                                 .col-xs-1.col-xs-1.center-xs To:
                                 input(type="date" ng-model='reportEdit.dateRange[1]').col-xs-3
                     .row
-                        span.button.btn.col-xs-4.col-xs-offset-4 Generate
+                        span.button.btn.col-xs-4.col-xs-offset-4(ng-click='reportEdit.reportGenerate()') Generate
                     .row.start-xs(ng-show='reportAdd.isGenerated')
                         span.chapter-title.col-xs-10 History
                             .fa.fa-history

@@ -2,8 +2,9 @@ section.calendar-day
     header.day-header
         i.fa.fa-chevron-left(ng-click='cd.changeDateOfStep(-1)')
         span.current-day
-            span.show-current-day(ng-click='cd.startChangeDate()')
+            span.show-current-day(ng-click='cd.goto()')
                 |{{cd.currentDate| date: 'd MMM yyyy'}}
+            span.calendar-picker.fa.fa-calendar(ng-click='cd.startChangeDate()')
             div.datepicker(uib-datepicker='', datepicker-options='options', show-button-bar='false', ng-model='cd.currentDate', ng-if='cd.isChangeDate', ng-click='cd.endChangeDate()')
         i.fa.fa-chevron-right(ng-click='cd.changeDateOfStep(1)')
     section.day-body

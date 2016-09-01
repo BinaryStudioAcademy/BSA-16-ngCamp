@@ -18,12 +18,30 @@
 				.cellTitle
 					h2 Participants:
 				.projParticipants
-					select(ng-change = "createProj.participantUpdate()" ng-model = "createProj.userToAdd")
-						option(ng-repeat="user in createProj.users track by $index" value="{{user._id}}") {{user.email}}
+					a.addUser(ng-click="createProj.addParticipatorFlag=true;")
+						i.fa.fa-plus(aria-hidden='true')
+						lable Add Participant
+					select(ng-if="createProj.addParticipatorFlag",ng-change = "createProj.participantUpdate()" ng-model = "createProj.userToAdd")
+						option(value="") Select User to Add
+						option(ng-repeat="user in createProj.users track by $index" value="{{user._id}}") {{user.email}} 
 					.participantCell(ng-repeat='userid in createProj.participants track by $index')
 						.participant_wrapper
 							.participantTitle {{createProj.getUserNameById(userid)}}
 							.deleteButton(ng-click = "createProj.participantDelete(userid)")
+								i.fa.fa-times.fa-fw
+				.cellTitle
+					h2 Admins:					
+				.projParticipants
+					a.addUser(ng-click="createProj.addAdminFlag=true;")
+						i.fa.fa-plus(aria-hidden='true')
+						lable Add Participant
+					select(ng-if="createProj.addAdminFlag",ng-change = "createProj.adminUpdate()" ng-model = "createProj.adminToAdd")
+						option(value="") Select User to Add
+						option(ng-repeat="user in createProj.users track by $index" value="{{user._id}}") {{user.email}} 
+					.participantCell(ng-repeat='userid in createProj.admins track by $index')
+						.participant_wrapper
+							.participantTitle {{createProj.getUserNameById(userid)}}
+							.deleteButton(ng-click = "createProj.adminDelete(userid)")
 								i.fa.fa-times.fa-fw
 			.cell
 				.cellTitle

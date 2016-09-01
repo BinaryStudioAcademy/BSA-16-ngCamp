@@ -12,14 +12,14 @@
         .wrap
           label
             p Name
-            i.fa.fa-pencil(ng-click="proj.editName=true",ng-if="!proj.editName")
+            i.fa.fa-pencil(ng-click="proj.editName=true",ng-if="!proj.editName && proj.isUserAdmin")
             i.fa.fa-check(ng-click="proj.edit('title')",ng-if="proj.editName")
           p(ng-if="!proj.editName") {{proj.currentProject.title}}
           input(type="text",ng-model="proj.currentProject.title",ng-if="proj.editName")
         .wrap
           label
             p Description
-            i.fa.fa-pencil(ng-click="proj.editDesc=true",ng-if="!proj.editDesc")
+            i.fa.fa-pencil(ng-click="proj.editDesc=true",ng-if="!proj.editDesc && proj.isUserAdmin")
             i.fa.fa-check(ng-click="proj.edit('description')",ng-if="proj.editDesc")
           p.description(ng-if="!proj.editDesc") {{proj.currentProject.description}}
           textarea(type="text",ng-model="proj.currentProject.description",ng-if="proj.editDesc")
@@ -41,8 +41,24 @@
               option(ng-repeat="participator in proj.users track by $index",value="{{participator._id}}") {{participator.email}} 
         .wrap
           label
+            p Admins:
+          .participants(ng-model="proj.projectAdmins")
+            .btn-group.open(ng-repeat="admin in proj.projectAdmins track by $index") 
+              a.participant
+                i.fa.fa-user.fa-2x
+                span {{admin.firstName}} {{admin.lastName}}
+                i.fa.fa-times.fa-fw(ng-click="proj.removeAdmin(admin._id)")
+            
+            a.addUser(ng-click="proj.addAdminFlag=true;",ng-if="proj.isUserAdmin")
+              i.fa.fa-plus(aria-hidden='true')
+              lable Add Participant
+            select(ng-if="proj.addAdminFlag",ng-model="proj.adminToAdd",ng-change="proj.addAdmin();")
+              option(value="") Select User to Add
+              option(ng-repeat="participator in proj.users track by $index",value="{{participator._id}}") {{participator.email}} 
+        .wrap
+          label
             p  Deadline:
-            i.fa.fa-pencil(ng-click="proj.editDeadline=true",ng-if="!proj.editDeadline")
+            i.fa.fa-pencil(ng-click="proj.editDeadline=true",ng-if="!proj.editDeadline && proj.isUserAdmin")
             i.fa.fa-check(ng-click="proj.edit('deadline')",ng-if="proj.editDeadline")
           p(ng-if="!proj.editDeadline") {{proj.localDate(proj.currentProject.endDate)}}
           .input-group.dateEditor(ng-if="proj.editDeadline")
@@ -50,7 +66,7 @@
               a(type='button', ng-click='proj.open()')
                 i.fa.fa-calendar(aria-hidden='true')
         .wrap.last
-          .delete_button
+          .delete_button(ng-if="proj.isUserAdmin")
             button.delete(ng-click="proj.modalToggle()") Delete project
           .confirming_modal(ng-if="proj.modalFlag")
             .background(ng-click="proj.modalToggle()")

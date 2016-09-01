@@ -1,11 +1,10 @@
 .checkins-wrapper
     // HEADER
-    .checkins-header
-        ul
-            li.header-list
-                h1 Check-ins
-            li.header-list
-                a(ng-link='["CheckinsCreate"]') Set up check-in
+    div.checkins-header
+        .header-title.row.center-xs
+            h1 Check-ins
+        .header-button.row.center-xs
+            button(ng-link='["CheckinsCreate"]') Set up check-in
     // ACCORDION
     .checkins-accordion
         input#week-list(type='radio', name='week', checked='')
@@ -39,7 +38,7 @@
                 ul.content
                     li.qq {{checkin.time}}
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                        a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                     li.qq
                         div
                             label.switch
@@ -63,7 +62,7 @@
                 ul.content
                     li.qq {{checkin.time}}
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                        a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                     li.qq
                         div
                             label.switch
@@ -77,7 +76,7 @@
                 ul.content
                     li.qq {{checkin.time}}
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                        a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                     li.qq
                         div
                             label.switch
@@ -91,7 +90,7 @@
                 ul.content
                     li.qq {{checkin.time}}
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                        a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                     li.qq
                         div
                             label.switch
@@ -105,7 +104,7 @@
                 ul.content
                     li.qq {{checkin.time}}
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                        a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                     li.qq
                         div
                             label.switch
@@ -119,7 +118,7 @@
                 ul.content
                     li.qq {{checkin.time}}
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                        a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                     li.qq
                         div
                             label.switch
@@ -133,7 +132,7 @@
                 ul.content
                     li.qq {{checkin.time}}
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                        a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                     li.qq
                         div
                             label.switch
@@ -147,7 +146,7 @@
                 ul.content
                     li.qq {{checkin.time}}
                     li.qq
-                        a(ng-link='["CheckinsInfo"]') {{checkin.question}}
+                        a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                     li.qq
                         div
                             label.switch

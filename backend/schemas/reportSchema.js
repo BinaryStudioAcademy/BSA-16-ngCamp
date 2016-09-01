@@ -5,6 +5,10 @@ var ReportsSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    project: {
+        type: Schema.Types.ObjectId,
+        ref: 'Project'
+    },
     title: String,
     description: String,
     types: [String],
