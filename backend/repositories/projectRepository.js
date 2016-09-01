@@ -4,6 +4,8 @@ var Project = require('../schemas/projectSchema');
 ProjectRepository.prototype = new Repository();
 ProjectRepository.prototype.addParticipants = addParticipants;
 ProjectRepository.prototype.removeParticipants = removeParticipants;
+ProjectRepository.prototype.addAdmin = addAdmin;
+ProjectRepository.prototype.removeAdmin = removeAdmin;
 ProjectRepository.prototype.getProjectsByParticipantId = getProjectsByParticipantId;
 ProjectRepository.prototype.getByIdWithUsers = getByIdWithUsers;
 ProjectRepository.prototype.changeState = changeState;
@@ -55,6 +57,35 @@ function removeParticipants(id, data, callback) {
     }, {
         $pull: {
             participants: data,
+        }
+    }, {
+        multi: true
+    });
+    query.exec(callback);
+}
+
+function addAdmin(id, data, callback) {
+    var model = this.model;
+    var query = model.update({
+        _id: id
+    }, {
+        $addToSet: {
+            admins: {
+                $each: data
+            }
+        }
+    });
+    query.exec(callback);
+}
+
+
+function removeAdmin(id, data, callback) {
+    var model = this.model;
+    var query = model.update({
+        _id: id
+    }, {
+        $pull: {
+            admins: data,
         }
     }, {
         multi: true

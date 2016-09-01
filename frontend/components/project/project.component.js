@@ -115,6 +115,35 @@ class ProjectComponentController {
             });
             this.$onInit();
         }
+
+        addAdmin() {
+            let self = this;
+            self.projectAdmins.push(self.adminToAdd);
+            self.httpGeneral.sendRequest({
+                type: "PUT",
+                url: `api/projects/${self.currentProjectId}`,
+                body: {
+                    admins: self.projectAdmins,
+                },
+            }).then(function(res) {
+                console.log("Succesfull add participator");
+                self.adminToAdd = "";
+            });
+            self.addAdminFlag = false;
+            this.$onInit();
+        }
+
+        removeAdmin(participator) {
+            let self = this;
+            self.httpGeneral.sendRequest({
+                type: "DELETE",
+                url: `api/projects/${self.currentProjectId}/admins/${participator}`,
+            }).then(function(res) {
+                console.log("Succesfull delete participator");
+            });
+            this.$onInit();
+        }
+
         edit(prop) {
             let self = this;
             console.log(prop);
