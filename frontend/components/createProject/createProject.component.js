@@ -86,6 +86,7 @@ class createProjectController {
         console.log(id);
         self.participantsSet.delete(id);
         self.participants = Array.from(self.participantsSet);
+        self.userToAdd = 0;
     }
 
     adminUpdate() {
@@ -100,9 +101,10 @@ class createProjectController {
 
     adminDelete(id) {
         let self = this;
-        console.log(id);
+        self.addAdminFlag = false;
         self.adminsSet.delete(id);
         self.admins = Array.from(self.adminsSet);
+        self.adminToAdd = 0;
     }
 
     modalToggle() {
