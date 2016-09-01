@@ -93,10 +93,6 @@ const rootComponent = {
         name: 'EditMessage', //TODO test, remove later
         component: 'editMessage'
     }, {
-        path: '/tasks',
-        name: 'Tasks',
-        component: 'tasksComponent'
-    }, {
         path: '/calendar/...',
         name: 'Calendar',
         component: 'primaryCalendar'

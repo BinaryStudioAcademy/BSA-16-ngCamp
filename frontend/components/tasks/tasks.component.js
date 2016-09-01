@@ -94,10 +94,6 @@ class TasksComponentController {
 		};		
 	}
 
-	selectUser(user){
-		console.log(user);
-	}
-
 	expand(task){
 		let self = this;
 		task.expanded = !task.expanded;
