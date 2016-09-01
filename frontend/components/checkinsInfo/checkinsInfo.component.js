@@ -1,8 +1,18 @@
 import './checkinsInfoStyles.styl';
 
 class CheckinsInfoComponentController {
-    constructor(http) {
-        this.http = http;
+    constructor(httpGeneral) {
+        this.httpGeneral = httpGeneral;
+        this.checkin = null;
+    }
+    $routerOnActivate(next){
+    	let vm = this;
+    	vm.httpGeneral.sendRequest({
+    		type:"GET",
+    		url:`/api/checkins/${next.params.id}`
+    	}).then(function(res){
+    		vm.checkin = res;
+    	});
     }
 }
 
