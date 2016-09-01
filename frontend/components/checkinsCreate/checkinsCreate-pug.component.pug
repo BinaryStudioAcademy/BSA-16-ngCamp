@@ -25,7 +25,8 @@
             .schedule
                 select#schedule-first(ng-model='CheckCr.selectedFrequency', ng-options='item for item in CheckCr.frequency',
                  ng-selected="CheckCr.frequency[0]")
-                input#schedule-second(type="text", placeholder="10:30", ng-model="CheckCr.time")
+                select#schedule-second(ng-model='CheckCr.selectedTime', ng-options='item for item in CheckCr.time',
+                ng-selected='CheckCr.time[0]')
                 //- a(href='', ")
                 //-     i.fa.fa-floppy-o.fa-3x
                 div.use-button
