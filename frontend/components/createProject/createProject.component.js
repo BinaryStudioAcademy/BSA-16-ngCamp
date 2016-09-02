@@ -1,10 +1,11 @@
 import './createProject.component.styl';
 
 class createProjectController {
-    constructor(httpGeneral, $location,$window) {
+    constructor(httpGeneral, $location,$window,popupNotifications) {
         this.http = httpGeneral;
         this.location = $location;
         this.window = $window;
+        this.popupNotifications = popupNotifications;
         this.projectTitle;
         this.projectDescription;
         this.participants = [],
@@ -26,6 +27,17 @@ class createProjectController {
         this.datePickerOpt = {
             minDate: new Date()
         };
+        this.projects = [];
+    }
+
+    $routerOnActivate(){
+        let self = this;
+        self.http.sendRequest({
+            type:"GET",
+            url:"api/projects"
+        }).then(function(res){
+            self.projects = res;
+        });
     }
 
     $onInit() {
@@ -46,6 +58,18 @@ class createProjectController {
         self.participants = Array.from(self.participantsSet);
         self.adminsSet.add(window._injectedData.userId);
         self.admins = Array.from(self.adminsSet);
+        let duplicateTitle = false;
+        if (self.projects!=undefined){
+        for (let i = 0; i < self.projects.length; i++){
+            if (self.projects[i].title === self.projectTitle){
+                self.popupNotifications.notifyError("Project with this title is already created");
+                duplicateTitle = true;
+                break;
+            } 
+        }
+        }
+        console.log(duplicateTitle);
+        if (!duplicateTitle){
         self.http.sendRequest({
             type: "POST",
             url: "api/projects/",
@@ -62,9 +86,10 @@ class createProjectController {
             }
         }).then(function(res) {
             console.log("Succesfull create project");
-        });
-        self.window.location.reload();
-        self.location.path('/');
+            self.window.location.reload();
+            self.location.path('/');
+        }); 
+        }
     }
 
     participantUpdate() {
@@ -72,6 +97,7 @@ class createProjectController {
         self.participantsSet.add(self.userToAdd);
         self.participants = Array.from(self.participantsSet);
         self.addParticipatorFlag = false;
+        self.userToAdd = 0;
     }
 
     getUserNameById(id) {
@@ -99,6 +125,7 @@ class createProjectController {
         self.addAdminFlag = false;
         self.participantsSet.add(self.adminToAdd);
         self.participants = Array.from(self.participantsSet);
+        self.adminToAdd = 0;
     }
 
 
@@ -125,6 +152,7 @@ createProjectController.$inject = [
     'httpGeneral',
     '$location',
     '$window',
+    'popupNotifications',
 ];
 
 const createProjectComponent = {

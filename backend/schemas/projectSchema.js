@@ -28,7 +28,7 @@ var projectSchema = new Schema({
 });
 
 projectSchema.post('findOne', function(doc) {
-    if (doc.admins != undefined) {
+    if ( doc!=null && doc.admins != undefined ) {
         for (var i = 0; i < doc.admins.length; i++) {
             delete doc.admins[i].password;
         }

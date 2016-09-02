@@ -31,7 +31,7 @@
               a.participant
                 i.fa.fa-user.fa-2x
                 span {{participator.firstName}} {{participator.lastName}}
-                i.fa.fa-times.fa-fw(ng-click="proj.removeParticipant(participator._id)")
+                i.fa.fa-times.fa-fw(ng-click="proj.removeParticipant(participator._id)",ng-if="proj.projectParticipants.length>1")
             
             a.addUser(ng-click="proj.addParticipatorFlag=true;")
               i.fa.fa-plus(aria-hidden='true')
@@ -47,7 +47,7 @@
               a.participant
                 i.fa.fa-user.fa-2x
                 span {{admin.firstName}} {{admin.lastName}}
-                i.fa.fa-times.fa-fw(ng-click="proj.removeAdmin(admin._id)")
+                i.fa.fa-times.fa-fw(ng-click="proj.removeAdmin(admin._id)",ng-if="proj.projectAdmins.length>1")
             
             a.addUser(ng-click="proj.addAdminFlag=true;",ng-if="proj.isUserAdmin")
               i.fa.fa-plus(aria-hidden='true')
