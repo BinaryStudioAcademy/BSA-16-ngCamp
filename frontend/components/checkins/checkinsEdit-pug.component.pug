@@ -2,7 +2,7 @@
     .checkins-setup
         .header-setup
             .close-btn
-                a(ng-link='["Checkins"]')
+                a(ng-link='["Checkins List"]')
                     i.fa.fa-times.fa-2x
             h3 What question do you want to ask?
             input.question(type='text', ng-model="CheckEd.question" placeholder='Type your question...')
@@ -20,6 +20,10 @@
             .schedule
                 select#schedule-first(ng-model='CheckEd.selectedFrequency', ng-options='item for item in CheckEd.frequency',
                  ng-selected="CheckEd.frequency[0]")
-                input#schedule-second(type="text", placeholder="10:30", ng-model="CheckEd.time")
-                div.use-button
-                    div.save-button(ng-click="CheckEd.save()") Save
+                select#schedule-second(ng-model='CheckEd.selectedTime', ng-options='item for item in CheckEd.time',
+                ng-selected='CheckEd.time[0]')
+                a(ng-click="CheckEd.save()" ng-link='["Checkins List"]')
+                    i.fa.fa-floppy-o.fa-3x
+
+                //div.use-button
+                //    div.save-button(ng-click="CheckEd.save()" ng-link='["Checkins List"]') Save

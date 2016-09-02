@@ -2,7 +2,7 @@
     .checkins-setup
         .header-setup
             .close-btn
-                a(ng-link='["Checkins"]')
+                a(ng-link='["Checkins List"]')
                     i.fa.fa-times.fa-2x
             h3 What question do you want to ask?
             input.question(type='text', ng-model="CheckCr.question" placeholder='Type your question...')
@@ -25,5 +25,8 @@
                 select#schedule-second(ng-model='CheckCr.selectedTime', ng-options='item for item in CheckCr.time',
                 ng-selected='CheckCr.time[0]')
 
-                div.use-button
-                    div.save-button(ng-click="CheckCr.save()") Save
+                a(ng-click="CheckCr.save()" ng-link='["Checkins List"]')
+                    i.fa.fa-floppy-o.fa-3x
+
+                //div.use-button
+                //    div.save-button(ng-click="CheckCr.save()" ng-link='["Checkins List"]') Save
