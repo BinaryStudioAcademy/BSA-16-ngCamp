@@ -34,6 +34,9 @@ class ProjectComponentController {
         this.editDeadline = false;
         this.modalFlag = false;
         this.isUserAdmin = false;
+        this.datePickerOpt = {
+            minDate: new Date()
+        };
     }
 
         isAdmin() {
@@ -146,7 +149,6 @@ class ProjectComponentController {
 
         edit(prop) {
             let self = this;
-            console.log(prop);
             switch (prop) {
                 case "title":
                     {
