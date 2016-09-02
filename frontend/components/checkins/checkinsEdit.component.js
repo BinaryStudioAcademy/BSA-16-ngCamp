@@ -70,6 +70,7 @@ class CheckinsEditComponentController {
             }
         }).then(function(res) {
             console.log(res);
+            vm.location.path('/checkins');
         });
     }
     toggleAll(){

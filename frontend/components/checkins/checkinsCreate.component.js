@@ -60,6 +60,7 @@ class CheckinsCreateComponentController {
             }
         }).then(function(res) {
             console.log("Succesfull create checkin");
+            vm.location.path('/checkins');
         });
     }
     toggleAll(){
