@@ -1,7 +1,7 @@
 import './createProject.component.styl';
 
 class createProjectController {
-    constructor(httpGeneral, $location,$window,popupNotifications) {
+    constructor(httpGeneral, $location, $window, popupNotifications) {
         this.http = httpGeneral;
         this.location = $location;
         this.window = $window;
@@ -30,12 +30,12 @@ class createProjectController {
         this.projects = [];
     }
 
-    $routerOnActivate(){
+    $routerOnActivate() {
         let self = this;
         self.http.sendRequest({
-            type:"GET",
-            url:"api/projects"
-        }).then(function(res){
+            type: "GET",
+            url: "api/projects"
+        }).then(function(res) {
             self.projects = res;
         });
     }
@@ -52,43 +52,50 @@ class createProjectController {
         });
     }
 
-    save() {
+    save(valid) {
         let self = this;
         self.participantsSet.add(window._injectedData.userId);
         self.participants = Array.from(self.participantsSet);
         self.adminsSet.add(window._injectedData.userId);
         self.admins = Array.from(self.adminsSet);
         let duplicateTitle = false;
-        if (self.projects!=undefined){
-        for (let i = 0; i < self.projects.length; i++){
-            if (self.projects[i].title === self.projectTitle){
-                self.popupNotifications.notifyError("Project with this title is already created");
-                duplicateTitle = true;
-                break;
-            } 
-        }
-        }
-        console.log(duplicateTitle);
-        if (!duplicateTitle){
-        self.http.sendRequest({
-            type: "POST",
-            url: "api/projects/",
-            body: {
-                data: {
-                    title: self.projectTitle,
-                    description: self.projectDescription,
-                    participants: self.participants,
-                    endDate: self.deadline,
-                    startDate: new Date(),
-                    status: 'active',
-                    admins: self.admins,
+        let clearDateField = false;
+        if (self.projects != undefined) {
+            for (let i = 0; i < self.projects.length; i++) {
+                if (self.projects[i].title === self.projectTitle) {
+                    self.popupNotifications.notifyError("Project with this title is already created");
+                    duplicateTitle = true;
+                    break;
                 }
             }
-        }).then(function(res) {
-            console.log("Succesfull create project");
-            self.window.location.reload();
-            self.location.path('/');
-        }); 
+        }
+        if (self.deadline === undefined) {
+            self.popupNotifications.notifyError("You must pick deadline date");
+            clearDateField = true;
+        }
+        if(!valid){
+            self.popupNotifications.notifyError("Please enter info corectrly");
+        }
+        if (!duplicateTitle && !clearDateField && valid) {
+            self.http.sendRequest({
+                type: "POST",
+                url: "api/projects/",
+                body: {
+                    data: {
+                        title: self.projectTitle,
+                        description: self.projectDescription,
+                        participants: self.participants,
+                        endDate: self.deadline,
+                        startDate: new Date(),
+                        status: 'active',
+                        admins: self.admins,
+                    }
+                }
+            }).then(function(res) {
+                console.log("Succesfull create project");
+                self.window.location.reload();
+                self.location.path('/');
+            });
         }
     }
 
@@ -106,8 +113,8 @@ class createProjectController {
             return element._id === id;
         });
 
-		return `${user.firstName} ${user.lastName || ""}`;
-	}
+        return `${user.firstName} ${user.lastName || ""}`;
+    }
 
 
     participantDelete(id) {
