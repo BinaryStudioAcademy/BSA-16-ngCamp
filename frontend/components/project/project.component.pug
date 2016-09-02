@@ -21,7 +21,7 @@
             p Description
             i.fa.fa-pencil(ng-click="proj.editDesc=true",ng-if="!proj.editDesc && proj.isUserAdmin")
             i.fa.fa-check(ng-click="proj.edit('description')",ng-if="proj.editDesc")
-          p.description(ng-if="!proj.editDesc") {{proj.currentProject.description}}
+          p.description(ng-if="!proj.editDesc",ng-bind-html="proj.currentProject.description") 
           textarea(type="text",ng-model="proj.currentProject.description",ng-if="proj.editDesc")
         .wrap
           label

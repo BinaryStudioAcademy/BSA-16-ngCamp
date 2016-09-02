@@ -1,53 +1,61 @@
 .createProject_wrapper
 	.row.center-xs
-		.main.col-xs-6
-			.cell
-				.cellTitle
-					h1.componentTitle New Project
-			.cell
-				.cellTitle
-					h2 Title:
-				.projTitle
-					input(type = "text", ng-model = "createProj.projectTitle")
-			.cell
-				.cellTitle
-					h2 Description:
-				.projDescription
-					textarea(ng-model = "createProj.projectDescription")
-			.cell
-				.cellTitle
-					h2 Participants:
-				.projParticipants
-					a.addUser(ng-click="createProj.addParticipatorFlag=true;")
-						i.fa.fa-plus(aria-hidden='true')
-						lable Add Participant
-					select(ng-if="createProj.addParticipatorFlag",ng-change = "createProj.participantUpdate()" ng-model = "createProj.userToAdd",ng-options = "user._id as user.firstName + ' ' + user.secondName for user in createProj.users")
-						option(value="" selected hidden) Select User to Add
-					.participantCell(ng-repeat='userid in createProj.participants track by $index')
-						.participant_wrapper
-							.participantTitle {{createProj.getUserNameById(userid)}}
-							.deleteButton(ng-click = "createProj.participantDelete(userid)")
-								i.fa.fa-times.fa-fw
-				.cellTitle
-					h2 Admins:					
-				.projParticipants
-					a.addUser(ng-click="createProj.addAdminFlag=true;")
-						i.fa.fa-plus(aria-hidden='true')
-						lable Add admin
-					select(ng-if="createProj.addAdminFlag",ng-change = "createProj.adminUpdate()",ng-model = "createProj.adminToAdd",ng-options = "user._id as user.firstName + ' ' + user.secondName for user in createProj.users")
-						option(value="" selected hidden) Select User to Add
-					.participantCell(ng-repeat='userid in createProj.admins track by $index')
-						.participant_wrapper
-							.participantTitle {{createProj.getUserNameById(userid)}}
-							.deleteButton(ng-click = "createProj.adminDelete(userid)")
-								i.fa.fa-times.fa-fw
-			.cell
-				.cellTitle
-					h2 Deadline: 
-				.projDeadline
-					.deadline_wrapper(ng-click = "createProj.open()")
-						.date(type="date", uib-datepicker-popup="{{format}}",datepicker-options = 'createProj.datePickerOpt', ng-model="createProj.deadline", is-open='createProj.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats') {{createProj.deadline | date: "dd.MM.yyyy"}}
-						i.fa.fa-calendar(aria-hidden='true')
-			.cell
-				.button
-					button.save(ng-click="createProj.save()") Save
+		.main.col-xs-8
+			form(name="newProject",novalidate)
+				.cell
+					.cellTitle
+						h1.componentTitle New Project
+				.cell
+					.cellTitle
+						h2 Title:
+					.projTitle
+						input(name="title",type="text",ng-model="createProj.projectTitle",required,ng-minlength="3" ng-maxlength="30")
+						p(ng-show="newProject.title.$invalid" class="help-block") Title is required.
+						p(ng-show="newProject.title.$error.minlength" class="help-block") Title is too short.
+						p(ng-show="newProject.title.$error.maxlength" class="help-block") Title is too long.
+				.cell
+					.cellTitle
+						h2 Description:
+					.projDescription
+						input(ckeditor,type="text",name="text" , cols='25', rows='10',ng-model = "createProj.projectDescription",required,ng-minlength="10" ng-maxlength="300")
+						hr
+						p(ng-show="newProject.text.$invalid" class="help-block") Description is required.
+						p(ng-show="newProject.text.$error.minlength" class="help-block") Description is too short.
+						p(ng-show="newProject.text.$error.maxlength" class="help-block") Description is too long.
+				.cell
+					.cellTitle
+						h2 Participants:
+					.projParticipants
+						a.addUser(ng-click="createProj.addParticipatorFlag=true;")
+							i.fa.fa-plus(aria-hidden='true')
+							lable Add Participant
+						select(ng-if="createProj.addParticipatorFlag",ng-change = "createProj.participantUpdate()" ng-model = "createProj.userToAdd",ng-options = "user._id as user.firstName + ' ' + user.secondName for user in createProj.users")
+							option(value="" selected hidden) Select User to Add
+						.participantCell(ng-repeat='userid in createProj.participants track by $index')
+							.participant_wrapper
+								.participantTitle {{createProj.getUserNameById(userid)}}
+								.deleteButton(ng-click = "createProj.participantDelete(userid)")
+									i.fa.fa-times.fa-fw
+					.cellTitle
+						h2 Admins:					
+					.projParticipants
+						a.addUser(ng-click="createProj.addAdminFlag=true;")
+							i.fa.fa-plus(aria-hidden='true')
+							lable Add admin
+						select(ng-if="createProj.addAdminFlag",ng-change = "createProj.adminUpdate()",ng-model = "createProj.adminToAdd",ng-options = "user._id as user.firstName + ' ' + user.secondName for user in createProj.users")
+							option(value="" selected hidden) Select User to Add
+						.participantCell(ng-repeat='userid in createProj.admins track by $index')
+							.participant_wrapper
+								.participantTitle {{createProj.getUserNameById(userid)}}
+								.deleteButton(ng-click = "createProj.adminDelete(userid)")
+									i.fa.fa-times.fa-fw
+				.cell
+					.cellTitle
+						h2 Deadline: 
+					.projDeadline
+						.deadline_wrapper(ng-click = "createProj.open()")
+							.date(type="date", uib-datepicker-popup="{{format}}",datepicker-options = 'createProj.datePickerOpt', ng-model="createProj.deadline", is-open='createProj.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats') {{createProj.deadline | date: "dd.MM.yyyy"}}
+							i.fa.fa-calendar(aria-hidden='true')
+				.cell
+					.button
+						button.save(ng-click="createProj.save(newProject.$valid)",type="submit") Save
