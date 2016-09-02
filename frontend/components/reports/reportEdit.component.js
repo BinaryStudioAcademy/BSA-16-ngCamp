@@ -41,11 +41,11 @@ class ReportEditComponentController {
             vm.dateRange = (res[0].dateRange || []);
             vm.httpGeneral.sendRequest({
                 type: "GET",
-                url: "api/user"
+                url: "api/projects/" + vm.projectId + "/users"
             }).then(function (res) {
-                vm._usersData = res;
+                vm._usersData = res.participants;
                 for (let i = 0; i < res.length; i++) {
-                    vm.userSamples[i] = (res[i].firstName || "") + " " + (res[i].secondtName || "");
+                    vm.userSamples[i] = (res.participants[i].firstName || "") + " " + (res.participants[i].secondtName || "");
                 }
                 vm.userSamples.unshift("All");
                 vm.userSamples = vm.userSamples.filter(function (el) {

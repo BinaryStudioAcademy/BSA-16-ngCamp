@@ -22,11 +22,16 @@ module.exports = function (app) {
     //===================================================
     app.post(baseUrl, function (req, res, next) {
         console.log(req.body);
-        reportService.addItem(req.body, function (err, data) {
+        reportService.generateReport(req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();
         });
+        //        reportService.addItem(req.body, function (err, data) {
+        //            res.data = data;
+        //            res.err = err;
+        //            next();
+        //        });
     }, apiResponse);
     //===================================================
     app.put(baseUrl + ":id", function (req, res, next) {

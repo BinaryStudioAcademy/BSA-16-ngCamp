@@ -50,4 +50,9 @@ function setObjPropsById(id, setObj, callback) {
     console.log(setObj);
 }
 
+function findByObject(obj, callback) {
+    var query = this.model.find(obj);
+    query.exec(callback);
+}
+
 module.exports = Repository;

@@ -1,4 +1,8 @@
 var reportRepository = require('../repositories/reportRepository');
+var eventRepository = require('../repositories/eventRepository');
+var checkinRepository = require('../repositories/checkinRepository');
+var messageRepository = require('../repositories/messageRepository');
+var taskRepository = require('../repositories/taskRepository');
 var validationService = require("./validationService");
 
 function ReportService() {
@@ -9,6 +13,7 @@ ReportService.prototype.getItem = getItem;
 ReportService.prototype.updateItem = updateItem;
 ReportService.prototype.getRecent = getRecent;
 ReportService.prototype.getSaved = getSaved;
+ReportService.prototype.generateReport = generateReport;
 
 //================================================================
 function addItem(body, callback) {
@@ -39,6 +44,14 @@ function getSaved(id, project, callback) {
 function getItem(id, callback) {
     if (id && callback) {
         reportRepository.getItem(id, callback);
+    }
+}
+
+//============================================================
+function generateReport(data, callback) {
+    if (validationService.addReportValidation(data, callback)) {
+
+        callback(null, "op");
     }
 }
 
