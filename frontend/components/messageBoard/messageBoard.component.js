@@ -14,7 +14,7 @@ class messageBoardController {
     		url:"api/messages"
     	}).then(function(res){
     		for (let msg in res){
-    			if (res[msg].project === window._injectedData.currentProject && res[msg].isDraft === false){
+    			if (res[msg].project === window._injectedData.currentProject ){
     				self.messages.push(res[msg]);
     			}
     		};
