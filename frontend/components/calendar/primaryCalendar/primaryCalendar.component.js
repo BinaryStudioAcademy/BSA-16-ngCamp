@@ -14,7 +14,8 @@ const primaryCalendarComponent = {
     $routeConfig: [{
         path:'/',
         name:'MonthCalendar',
-        component:'calendarMonth'
+        component:'calendarMonth',
+        useAsDefault: true
     },{
         path:'/dailyDetails',
         name:'DailyCalendar',

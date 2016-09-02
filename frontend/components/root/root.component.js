@@ -14,9 +14,9 @@ const rootComponent = {
         name: 'User',
         component: 'userComponent'
     }, {
-        path: '/',
+        path: '/...',
         name: 'MainPage',
-        component: 'checkinsWrapperComponent',
+        component: 'checkinsWrapperComponent'
     }, {
         path: '/account/',
         name: 'Account',

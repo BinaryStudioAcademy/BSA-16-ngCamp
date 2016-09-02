@@ -1,4 +1,4 @@
-section.calendar-month
+.calendar-month
     header.month-header
         i.fa.fa-chevron-left(ng-click='cm.prev()')
         span.current-month
@@ -14,13 +14,13 @@ section.calendar-month
                             ng-if='cm.isChangeMonth',
                             ng-change='cm.endChangeMonth()')
         i.fa.fa-chevron-right(ng-click='cm.next()')
-    section.month-body
+    .month-body
         table
             col(width='14.29%')
             col(width='14.29%')
             col(width='14.29%')
             col(width='14.29%')
-            col(width='14.29%')
+            col(width='14.28%')
             col(width='14.28%')
             col(width='14.28%')
             col(width='14.28%')
