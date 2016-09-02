@@ -7,10 +7,10 @@
                         i.fa.fa-commenting-o.fa-3x
                     a(ng-link="['CheckinsEdit', {id: chInfo.checkin._id}]")
                         i.fa.fa-pencil-square-o.fa-3x
-                    button(ng-click='chInfo.deleteCheckin()')
+                    a(ng-click='chInfo.deleteCheckin()' ng-link='["Checkins List"]')
                         i.fa.fa-trash-o.fa-3x
                 .close-btn
-                    a(ng-link='["Checkins"]')
+                    a(ng-link='["Checkins List"]')
                         i.fa.fa-times.fa-2x
             h2 {{chInfo.checkin.question}}
             .user-list
