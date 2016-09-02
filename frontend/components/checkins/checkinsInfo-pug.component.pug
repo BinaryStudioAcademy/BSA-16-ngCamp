@@ -1,0 +1,24 @@
+.checkins-answer-wrapper
+    .checkins-answer
+        .header-answer
+            .header-btn
+                .control-btn
+                    a(href='')
+                        i.fa.fa-commenting-o.fa-3x
+                    a(ng-link="['CheckinsEdit', {id: chInfo.checkin._id}]")
+                        i.fa.fa-pencil-square-o.fa-3x
+                    button(ng-click='chInfo.deleteCheckin()')
+                        i.fa.fa-trash-o.fa-3x
+                .close-btn
+                    a(ng-link='["Checkins"]')
+                        i.fa.fa-times.fa-2x
+            h2 {{chInfo.checkin.question}}
+            .user-list
+                span.avatar(ng-repeat="part in chInfo.checkin.participants ") {{part.lastName.charAt(0) + part.firstName.charAt(0)}}
+
+        .main-answer
+            ul.qq-list(ng-repeat="i in chInfo.iter | orderBy: reverse")  <h3>{{i}}</h3>
+                li.list(ng-repeat="var in chInfo.groupedAsnwers[i]") 
+                    span.name {{var.user.firstName + ' ' + var.user.lastName }}
+                    br
+                    span {{var.answer}}
