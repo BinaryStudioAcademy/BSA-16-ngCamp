@@ -120,17 +120,25 @@ class ProjectComponentController {
 
     addAdmin() {
         let self = this;
-        self.projectAdmins.push(self.adminToAdd);
-        self.httpGeneral.sendRequest({
-            type: "PUT",
-            url: `api/projects/${self.currentProjectId}`,
-            body: {
-                admins: self.projectAdmins,
-            },
-        }).then(function(res) {
-            console.log("Succesfull add participator");
-            self.adminToAdd = "";
-        });
+        let duplicateAdmin = false;
+        for (let i in self.projectAdmins) {
+            if (self.projectAdmins[i]._id === self.adminToAdd) {
+                duplicateAdmin = true;
+            }
+        }
+        if (!duplicateAdmin) {
+            self.projectAdmins.push(self.adminToAdd);
+            self.httpGeneral.sendRequest({
+                type: "PUT",
+                url: `api/projects/${self.currentProjectId}`,
+                body: {
+                    admins: self.projectAdmins,
+                },
+            }).then(function(res) {
+                console.log("Succesfull add participator");
+                self.adminToAdd = "";
+            });
+        }
         self.addAdminFlag = false;
         this.$onInit();
     }
