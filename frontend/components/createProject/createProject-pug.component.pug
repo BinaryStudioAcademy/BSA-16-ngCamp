@@ -46,7 +46,7 @@
 					h2 Deadline: 
 				.projDeadline
 					.deadline_wrapper(ng-click = "createProj.open()")
-						.date(type="text", uib-datepicker-popup="{{format}}",datepicker-options = 'createProj.datePickerOpt', ng-model="createProj.deadline", is-open='createProj.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{createProj.deadline}}") {{createProj.deadline | date : "mediumDate"}}
+						.date(type="date", uib-datepicker-popup="{{format}}",datepicker-options = 'createProj.datePickerOpt', ng-model="createProj.deadline", is-open='createProj.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats') {{createProj.deadline | date: "dd.MM.yyyy"}}
 						i.fa.fa-calendar(aria-hidden='true')
 			.cell
 				.button

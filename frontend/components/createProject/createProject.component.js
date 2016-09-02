@@ -59,6 +59,7 @@ class createProjectController {
         self.adminsSet.add(window._injectedData.userId);
         self.admins = Array.from(self.adminsSet);
         let duplicateTitle = false;
+        let clearDateField = false;
         if (self.projects!=undefined){
         for (let i = 0; i < self.projects.length; i++){
             if (self.projects[i].title === self.projectTitle){
@@ -68,8 +69,11 @@ class createProjectController {
             } 
         }
         }
-        console.log(duplicateTitle);
-        if (!duplicateTitle){
+        if (self.deadline === undefined){
+            self.popupNotifications.notifyError("You must pick deadline date");
+            clearDateField = true;
+        }
+        if (!duplicateTitle && !clearDateField){
         self.http.sendRequest({
             type: "POST",
             url: "api/projects/",
