@@ -1,10 +1,11 @@
 import './createProject.component.styl';
 
 class createProjectController {
-    constructor(httpGeneral, $location,$window) {
+    constructor(httpGeneral, $location,$window,popupNotifications) {
         this.http = httpGeneral;
         this.location = $location;
         this.window = $window;
+        this.popupNotifications = popupNotifications;
         this.projectTitle;
         this.projectDescription;
         this.participants = [],
@@ -35,7 +36,7 @@ class createProjectController {
             type:"GET",
             url:"api/projects"
         }).then(function(res){
-            console.log(res);
+            self.projects = res;
         });
     }
 
@@ -57,6 +58,18 @@ class createProjectController {
         self.participants = Array.from(self.participantsSet);
         self.adminsSet.add(window._injectedData.userId);
         self.admins = Array.from(self.adminsSet);
+        let duplicateTitle = false;
+        if (self.projects!=undefined){
+        for (let i = 0; i < self.projects.length; i++){
+            if (self.projects[i].title === self.projectTitle){
+                self.popupNotifications.notifyError("Project with this title is already created");
+                duplicateTitle = true;
+                break;
+            } 
+        }
+        }
+        console.log(duplicateTitle);
+        if (!duplicateTitle){
         self.http.sendRequest({
             type: "POST",
             url: "api/projects/",
@@ -73,9 +86,10 @@ class createProjectController {
             }
         }).then(function(res) {
             console.log("Succesfull create project");
-        });
-        self.window.location.reload();
-        self.location.path('/');
+            self.window.location.reload();
+            self.location.path('/');
+        }); 
+        }
     }
 
     participantUpdate() {
@@ -138,6 +152,7 @@ createProjectController.$inject = [
     'httpGeneral',
     '$location',
     '$window',
+    'popupNotifications',
 ];
 
 const createProjectComponent = {
