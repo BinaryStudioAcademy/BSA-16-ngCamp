@@ -1,7 +1,7 @@
 .content
-  .resizable-row(resizable='', r-directions="['bottom']", r-flex='true')
+  .resizable-row
     section#one(resizable='', r-directions="['right']", r-flex='true')
-      p Month calendar will be here.
+        ng-outlet
     section#two
       .checkins-info-container
         checkins-info-component

@@ -82,8 +82,11 @@ function angularResizableDirective() {
                             element[0].style[prop] = h - (offset * vy) + 'px';
                             break;
                         case 'right':
+                            let gap = w - (offset * vx);
                             prop = scope.rFlex ? flexBasis : 'width';
-                            element[0].style[prop] = w - (offset * vx) + 'px';
+                            if(gap < (element[0].parentElement.offsetWidth - 390)){
+                                element[0].style[prop] = gap + 'px';
+                            };
                             break;
                         case 'left':
                             prop = scope.rFlex ? flexBasis : 'width';
