@@ -8,14 +8,30 @@ class CheckinsEditComponentController {
         this.question = '';
         this.frequency = [
             'Every weekday',
-            'Every Monday',
-            'Every Friday',
-            'Every other Monday',
-            'Every other Friday',
-            'First Monday of every month'
-            ];
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday'
+        ];
         this.selectedFrequency = '';
-        this.time = '10:30';
+        this.time = [
+            '08:00',
+            '09:00',
+            '10:00',
+            '11:00',
+            '12:00',
+            '13:00',
+            '14:00',
+            '15:00',
+            '16:00',
+            '17:00',
+            '18:00',
+            '19:00'
+        ];
+        this.selectedTime = '';
         this.parties = [];
         this.checkin = null;
     }
@@ -28,7 +44,7 @@ class CheckinsEditComponentController {
             vm.checkin = res;
             vm.selectedFrequency = res.frequency;
             vm.question = res.question;
-            vm.time = res.time;
+            vm.selectedTime = res.time;
             res.participants.forEach(function(p){
                 vm.parties.push(p._id);
             });
@@ -50,7 +66,7 @@ class CheckinsEditComponentController {
                     question: vm.question,
                     frequency: vm.selectedFrequency,
                     participants: vm.parties,
-                    time: vm.time
+                    time: vm.selectedTime
             }
         }).then(function(res) {
             console.log(res);

@@ -8,11 +8,13 @@ class CheckinsCreateComponentController {
         this.question = '';
         this.frequency = [
             'Every weekday',
-            'Every Monday',
-            'Every Friday',
-            'Every other Monday',
-            'Every other Friday',
-            'First Monday of every month'
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday'
             ];
         this.selectedFrequency = this.frequency[0];
         this.time = [

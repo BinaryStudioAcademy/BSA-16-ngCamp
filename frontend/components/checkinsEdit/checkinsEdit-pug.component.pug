@@ -20,6 +20,7 @@
             .schedule
                 select#schedule-first(ng-model='CheckEd.selectedFrequency', ng-options='item for item in CheckEd.frequency',
                  ng-selected="CheckEd.frequency[0]")
-                input#schedule-second(type="text", placeholder="10:30", ng-model="CheckEd.time")
+                select#schedule-second(ng-model='CheckEd.selectedTime', ng-options='item for item in CheckEd.time',
+                ng-selected='CheckEd.time[0]')
                 div.use-button
                     div.save-button(ng-click="CheckEd.save()") Save
