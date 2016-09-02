@@ -8,21 +8,28 @@
         select(ng-if="!proj.flag",ng-model="proj.currentProjectId",ng-change="proj.setProject()")
           option(value = "" disable) Not selected
           option(ng-repeat="project in proj.userProjects track by $index" value='{{project._id}}') {{project.title}}
-      form(name='projectEdit',ng-if="proj.currentProjectId!=''").row.center-xs
+      form(name='projectEdit',ng-if="proj.currentProjectId!=''",novalidate).row.center-xs
         .wrap
           label
-            p Name
+            p Title
             i.fa.fa-pencil(ng-click="proj.editName=true",ng-if="!proj.editName && proj.isUserAdmin")
-            i.fa.fa-check(ng-click="proj.edit('title')",ng-if="proj.editName")
+            i.fa.fa-check(ng-click="proj.edit('title',projectEdit.title.$valid)",ng-if="proj.editName")
           p(ng-if="!proj.editName") {{proj.currentProject.title}}
-          input(type="text",ng-model="proj.currentProject.title",ng-if="proj.editName")
+          input(name="title",type="text",ng-model="proj.currentProject.title",ng-if="proj.editName",required,ng-minlength="3" ng-maxlength="30")
+          p(ng-show="projectEdit.title.$invalid" class="help-block",ng-if="proj.editName") Title is required.
+          p(ng-show="projectEdit.title.$error.minlength" class="help-block",ng-if="proj.editName") Title is too short.
+          p(ng-show="projectEdit.title.$error.maxlength" class="help-block",ng-if="proj.editName") Title is too long.
         .wrap
           label
             p Description
             i.fa.fa-pencil(ng-click="proj.editDesc=true",ng-if="!proj.editDesc && proj.isUserAdmin")
-            i.fa.fa-check(ng-click="proj.edit('description')",ng-if="proj.editDesc")
+            i.fa.fa-check(ng-click="proj.edit('description',projectEdit.text.$valid)",ng-if="proj.editDesc")
           p.description(ng-if="!proj.editDesc",ng-bind-html="proj.currentProject.description") 
-          textarea(type="text",ng-model="proj.currentProject.description",ng-if="proj.editDesc")
+          input(ckeditor,type="text",name="text" , cols='25', rows='10',ng-model="proj.currentProject.description",ng-if="proj.editDesc",required,ng-minlength="10" ng-maxlength="300")
+          hr
+          p(ng-show="projectEdit.text.$invalid" class="help-block",ng-if="proj.editDesc") Description is required.
+          p(ng-show="projectEdit.text.$error.minlength" class="help-block",ng-if="proj.editDesc") Description is too short.
+          p(ng-show="projectEdit.text.$error.maxlength" class="help-block",ng-if="proj.editDesc") Description is too long.
         .wrap
           label
             p Participants:
