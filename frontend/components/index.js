@@ -10,7 +10,7 @@ import {postMessageComponent} from './postMessage/postMessage.component.js';
 import {editMessageComponent} from './editMessage/editMessage.component.js';
 import {projectComponent} from './project/project.component.js';
 import {checkinsComponent} from './checkins/checkins.component.js';
-import {checkinsCreateComponent} from './checkinsCreate/checkinsCreate.component.js';
+import {checkinsCreateComponent} from './checkins/checkinsCreate.component.js';
 import {menuComponent} from './menu/menu.component';
 import {headerComponent} from './header/header.component';
 import {commentsComponent} from "./comments/comments.component";
@@ -26,7 +26,7 @@ import {tasksComponent} from "./tasks/tasks.component.js";
 import {taskCreateEditComponent} from "./tasks/taskCreateEdit.component.js";
 import {draftsComponent} from "./drafts/drafts.component.js";
 import {testComponent} from "./test/test.component.js";
-import {checkinsInfoComponent} from "./checkinsInfo/checkinsInfo.component.js";
+import {checkinsInfoComponent} from "./checkins/checkinsInfo.component.js";
 import {eventCreateComponent} from "./events/eventCreate.component.js";
 import {checkinsWrapperComponent} from "./checkinsWrapper/checkinsWrapper.component.js";
 import {calendarDailytComponent} from "./calendar/calendarDaily/calendarDaily.component.js";
@@ -34,7 +34,9 @@ import {createProjectComponent} from "./createProject/createProject.component.js
 import {messageCommentsComponent} from "./comments/messageComments.component.js";
 import {calendarMonthComponent} from "./calendar/calendarMonth/calendarMonth.component.js";
 import {primaryCalendarComponent} from "./calendar/primaryCalendar/primaryCalendar.component.js";
-import {checkinsEditComponent} from "./checkinsEdit/checkinsEdit.component.js";
+import {checkinsEditComponent} from "./checkins/checkinsEdit.component.js";
+import {checkinsListComponent} from "./checkins/checkinsList.component.js";
+
 
 
 
@@ -74,4 +76,6 @@ app.component(taskCreateEditComponent.selector, taskCreateEditComponent);
 app.component(tasksRootComponent.selector, tasksRootComponent);
 app.component(primaryCalendarComponent.selector, primaryCalendarComponent);
 app.component(checkinsEditComponent.selector, checkinsEditComponent);
+app.component(checkinsListComponent.selector, checkinsListComponent);
+
 
