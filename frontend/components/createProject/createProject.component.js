@@ -23,6 +23,9 @@ class createProjectController {
         this.admins;
         this.addAdminFlag = false;
         this.adminToAdd;
+        this.datePickerOpt = {
+            minDate: new Date()
+        };
     }
 
     $onInit() {
