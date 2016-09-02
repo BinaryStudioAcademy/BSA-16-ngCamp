@@ -26,6 +26,17 @@ class createProjectController {
         this.datePickerOpt = {
             minDate: new Date()
         };
+        this.projects = [];
+    }
+
+    $routerOnActivate(){
+        let self = this;
+        self.http.sendRequest({
+            type:"GET",
+            url:"api/projects"
+        }).then(function(res){
+            console.log(res);
+        });
     }
 
     $onInit() {
@@ -72,6 +83,7 @@ class createProjectController {
         self.participantsSet.add(self.userToAdd);
         self.participants = Array.from(self.participantsSet);
         self.addParticipatorFlag = false;
+        self.userToAdd = 0;
     }
 
     getUserNameById(id) {
@@ -99,6 +111,7 @@ class createProjectController {
         self.addAdminFlag = false;
         self.participantsSet.add(self.adminToAdd);
         self.participants = Array.from(self.participantsSet);
+        self.adminToAdd = 0;
     }
 
 

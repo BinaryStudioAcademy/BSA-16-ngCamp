@@ -45,7 +45,6 @@ class ProjectComponentController {
                 if (self.projectAdmins[i]._id === window._injectedData.userId) self.isUserAdmin = true;
             }
         }
-
         $onInit() {
             let self = this;
             self.projectParticipants = [];
