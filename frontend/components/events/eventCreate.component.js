@@ -58,8 +58,7 @@ class eventEditController {
             }
         }).then(function(res) {
             console.log("Succesfull create event");
-            self.window.location.reload();
-        	self.location.path('/');
+        	self.location.path('/events');
         });
         }
     }
