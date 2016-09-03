@@ -29,18 +29,6 @@ const rootComponent = {
         path: '/checkins/...',
         name: 'Checkins',
         component: 'checkinsComponent'
-    //}, {
-    //    path: '/checkinsCreate/',
-    //    name: 'CheckinsCreate',
-    //    component: 'checkinsCreateComponent'
-    //}, {
-    //    path: '/checkinsEdit/:id',
-    //    name: 'CheckinsEdit',
-    //    component: 'checkinsEditComponent'
-    //}, {
-    //    path: '/checkinsInfo/:id',
-    //    name: 'CheckinsInfo',
-    //    component: 'checkinsInfoComponent'
     }, {
         path: '/tasks/...',
         name: 'Tasks',

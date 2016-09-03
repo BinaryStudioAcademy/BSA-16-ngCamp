@@ -21,11 +21,11 @@
             .schedule
                 select#schedule-first(ng-model='CheckCr.selectedFrequency', ng-options='item for item in CheckCr.frequency',
                  ng-selected="CheckCr.frequency[0]")
-
+                
                 select#schedule-second(ng-model='CheckCr.selectedTime', ng-options='item for item in CheckCr.time',
                 ng-selected='CheckCr.time[0]')
 
-                a(ng-click="CheckCr.save()" ng-link='["Checkins List"]')
+                a(ng-click="CheckCr.save()" )
                     i.fa.fa-floppy-o.fa-3x
 
                 //div.use-button

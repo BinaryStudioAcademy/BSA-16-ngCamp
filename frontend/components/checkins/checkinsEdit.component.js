@@ -1,9 +1,10 @@
 import './checkinsCreateStyles.styl';
 
 class CheckinsEditComponentController {
-    constructor(httpGeneral, $window) {
+    constructor(httpGeneral, $window, $location) {
         this.httpGeneral = httpGeneral;
         this.window = $window;
+        this.location = $location;
         this.participants = [];
         this.question = '';
         this.frequency = [
@@ -70,6 +71,7 @@ class CheckinsEditComponentController {
             }
         }).then(function(res) {
             console.log(res);
+            vm.location.path('/checkins');
         });
     }
     toggleAll(){
@@ -95,7 +97,7 @@ class CheckinsEditComponentController {
     }
 }
 
-CheckinsEditComponentController.$inject = ['httpGeneral', '$window'];
+CheckinsEditComponentController.$inject = ['httpGeneral', '$window', '$location'];
 
 const checkinsEditComponent = {
     controller: CheckinsEditComponentController,
