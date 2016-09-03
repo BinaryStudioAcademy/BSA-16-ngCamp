@@ -43,4 +43,4 @@
           div
             | Is all day
             input(type='checkbox',ng-model="$ctrl.allDay")
-          button(type='submit', form='eventEdit', value='Submit',ng-click="$ctrl.save(valid)") Save
+          button(type='submit', form='eventEdit', value='Submit',ng-click="$ctrl.save(editEvent.$valid)") Save
