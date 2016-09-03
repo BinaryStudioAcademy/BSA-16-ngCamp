@@ -66,7 +66,7 @@ class createProjectController {
         let clearDateField = false;
         if (self.projects != undefined) {
             for (let i = 0; i < self.projects.length; i++) {
-                if (self.projects[i].title === self.projectTitle) {
+                if (self.projects[i].title === self.projectTitle && self.projects[i].status === "active") {
                     self.popupNotifications.notifyError("Project with this title is already created");
                     duplicateTitle = true;
                     break;
