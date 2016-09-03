@@ -78,7 +78,7 @@ class createProjectController {
             clearDateField = true;
         }
         if(!valid){
-            self.popupNotifications.notifyError("Please enter info correctrly");
+            self.popupNotifications.notifyError("Please enter info correctly");
         }
         if (!duplicateTitle && !clearDateField && valid) {
             self.http.sendRequest({
