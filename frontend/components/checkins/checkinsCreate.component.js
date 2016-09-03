@@ -1,9 +1,10 @@
 import './checkinsCreateStyles.styl';
 
 class CheckinsCreateComponentController {
-    constructor(httpGeneral, $window) {
+    constructor(httpGeneral, $window, $location) {
         this.httpGeneral = httpGeneral;
         this.window = $window;
+        this.location = $location;
         this.participants = [];
         this.question = '';
         this.frequency = [
@@ -45,6 +46,7 @@ class CheckinsCreateComponentController {
     }
     save(){
         let vm = this;
+        console.log(vm.selectedTime);
         vm.httpGeneral.sendRequest({
             type: "POST",
             url: "/api/checkins/",
@@ -87,7 +89,7 @@ class CheckinsCreateComponentController {
 
 }
 
-CheckinsCreateComponentController.$inject = ['httpGeneral', '$window'];
+CheckinsCreateComponentController.$inject = ['httpGeneral', '$window', '$location'];
 
 const checkinsCreateComponent = {
     controller: CheckinsCreateComponentController,

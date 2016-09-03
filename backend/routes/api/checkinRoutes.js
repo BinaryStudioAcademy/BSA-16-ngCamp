@@ -29,6 +29,14 @@ module.exports = function(app) {
         });
     }, apiResponse);
 
+    app.get(baseUrl + 'answer/:id', function (req, res, next) {
+        checkinRepository.getByAnswerToken(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
     app.post(baseUrl, function (req, res, next) {
         checkinService.addItem(req.body, function (err, data) {
             res.data = data;
@@ -39,6 +47,14 @@ module.exports = function(app) {
 
     app.put(baseUrl + ':id', function (req, res, next) {
         checkinService.updateItem(req.params.id, req.body, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
+    app.put(baseUrl + 'answer/:id', function (req, res, next) {
+        checkinRepository.updateAnswerItem(req.params.id, req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();

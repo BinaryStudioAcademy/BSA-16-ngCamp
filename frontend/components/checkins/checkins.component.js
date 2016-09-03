@@ -1,8 +1,8 @@
 ﻿import './checkinsStyles.styl';
 
 class CheckinsComponentController {
-    constructor(http) {
-        this.http = http;
+    constructor(httpGeneral) {
+        this.httpGeneral = httpGeneral;
     }
 }
 
@@ -32,7 +32,11 @@ const checkinsComponent = {
         path: '/edit/:id',
         name: 'CheckinsEdit',
         component: 'checkinsEditComponent'
-        }
+    },{
+        path: '/answer/:id',
+        name: 'CheckinsAnswer',
+        component: 'checkinsAnswerComponent'
+    }
     ]
 };
 
