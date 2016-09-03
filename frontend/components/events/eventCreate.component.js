@@ -33,14 +33,14 @@ class eventEditController {
             self.users = res;
         });
     }
-    save() {
+    save(valid) {
         let self = this;
         let emptyParticipants = false;
         if (self.participants.length === 0){
             self.popupNotifications.notifyError("Participants is empty");
             emptyParticipants = true;
         }
-        if (!emptyParticipants){
+        if (!emptyParticipants && valid){
         self.httpGeneral.sendRequest({
             type: "POST",
             url: "api/event/",
@@ -60,6 +60,8 @@ class eventEditController {
             console.log("Succesfull create event");
         	self.location.path('/events');
         });
+        } else{
+            self.popupNotifications.notifyError("Please enter info correctly");
         }
     }
 
