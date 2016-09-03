@@ -35,7 +35,7 @@
 							.participant_wrapper
 								.participantTitle {{createProj.getUserNameById(userid)}}
 								.deleteButton(ng-click = "createProj.participantDelete(userid)")
-									i.fa.fa-times.fa-fw
+									i.fa.fa-times.fa-fw(ng-if="createProj.participants.length>1")
 					.cellTitle
 						h2 Admins:					
 					.projParticipants
@@ -48,7 +48,7 @@
 							.participant_wrapper
 								.participantTitle {{createProj.getUserNameById(userid)}}
 								.deleteButton(ng-click = "createProj.adminDelete(userid)")
-									i.fa.fa-times.fa-fw
+									i.fa.fa-times.fa-fw(ng-if="createProj.admins.length>1")
 				.cell
 					.cellTitle
 						h2 Deadline: 

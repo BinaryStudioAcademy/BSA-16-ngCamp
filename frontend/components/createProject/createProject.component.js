@@ -38,6 +38,10 @@ class createProjectController {
         }).then(function(res) {
             self.projects = res;
         });
+        self.participantsSet.add(window._injectedData.userId);
+        self.participants = Array.from(self.participantsSet);
+        self.adminsSet.add(window._injectedData.userId);
+        self.admins = Array.from(self.adminsSet);
     }
 
     $onInit() {
