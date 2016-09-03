@@ -1,5 +1,5 @@
 .eventsEdit-wrapper
-  section.row.center-xs
+  .row.center-xs
     .main.col-xs-7
       .head
         div
@@ -9,7 +9,10 @@
         i.fa.fa-times.fa-2x(aria-hidden='true',ng-click="$ctrl.location.path('/events')")
       form(name='editEvent')
         .title
-          input(type='text',name='eventTitle',ng-model="$ctrl.title",ng-if="$ctrl.editTitle",placeholder="{{$ctrl.curEvent.title}}")
+          input(name="title",type="text",ng-model="$ctrl.title",ng-if="$ctrl.editTitle",required,ng-minlength="3" ng-maxlength="30")
+          p(ng-show="editEvent.title.$invalid",class="help-block",ng-if="$ctrl.editTitle") Title is required.
+          p(ng-show="editEvent.title.$error.minlength",class="help-block",ng-if="$ctrl.editTitle") Title is too short.
+          p(ng-show="editEvent.title.$error.maxlength",class="help-block",ng-if="$ctrl.editTitle") Title is too long.
         .date
           .dataPicker
             h1 Start Date
@@ -32,7 +35,11 @@
         p(ng-bind-html="$ctrl.curEvent.description") 
         i.fa.fa-pencil(ng-click="$ctrl.editDescription=true",ng-if="!$ctrl.editDescription")
         i.fa.fa-check(ng-click="$ctrl.edit('description')",ng-if="$ctrl.editDescription")
-        textarea(ckeditor,ng-model = "$ctrl.desc",ng-if="$ctrl.editDescription")
+        input(ckeditor,type="text",name="text" , cols='25', rows='10',ng-model = "$ctrl.desc",ng-if="$ctrl.editDescription",required,ng-minlength="10" ng-maxlength="300")
+        hr
+        p(ng-show="editEvent.text.$invalid",class="help-block",ng-if="$ctrl.editDescription") Description is required.
+        p(ng-show="editEvent.text.$error.minlength",class="help-block",ng-if="$ctrl.editDescription") Description is too short.
+        p(ng-show="editEvent.text.$error.maxlength",class="help-block",ng-if="$ctrl.editDescription") Description is too long.
         .participants
           h1 Participants
           i.fa.fa-user(aria-hidden='true')
@@ -47,5 +54,5 @@
           div
             | Is all day
             input(type='checkbox',ng-model="$ctrl.allDay",ng-checked='$ctrl.curEvent.isAllDay')
-          button(type='submit', form='eventEdit', value='Submit',ng-click="$ctrl.save()") Save
+          button(type='submit', form='eventEdit', value='Submit',ng-click="$ctrl.save(editEvent.$valid)") Save
           button.deleteButton(ng-if="$ctrl.author === $ctrl.window._injectedData.userId",ng-click="$ctrl.delete()") Delete

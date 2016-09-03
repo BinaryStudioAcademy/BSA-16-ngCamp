@@ -4,9 +4,12 @@
       .head
         h1 Event name
         i.fa.fa-times.fa-2x(aria-hidden='true',ng-click="$ctrl.location.path('/events')")
-      form(name='editEvent')
+      form(name='editEvent',novalidate)
         .title
-          input(type='text',name='eventTitle',ng-model="$ctrl.title")
+          input(name="title",type="text",ng-model="$ctrl.title",required,ng-minlength="3" ng-maxlength="30")
+          p(ng-show="editEvent.title.$invalid" class="help-block") Title is required.
+          p(ng-show="editEvent.title.$error.minlength" class="help-block") Title is too short.
+          p(ng-show="editEvent.title.$error.maxlength" class="help-block") Title is too long.
         .date
           .dataPicker
             h1 Start Date
@@ -20,7 +23,11 @@
               a.btn.btn-default(type='button', ng-click='$ctrl.open1()')
                 i.fa.fa-calendar(aria-hidden='true')
         h1 Description
-        textarea(ng-model = "$ctrl.desc",ckeditor)
+        input(ckeditor,type="text",name="text" , cols='25', rows='10',ng-model = "$ctrl.desc",required,ng-minlength="10" ng-maxlength="300")
+        hr
+        p(ng-show="editEvent.text.$invalid" class="help-block") Description is required.
+        p(ng-show="editEvent.text.$error.minlength" class="help-block") Description is too short.
+        p(ng-show="editEvent.text.$error.maxlength" class="help-block") Description is too long.
         .participants
           i.fa.fa-user(aria-hidden='true')
           select(ng-change = "$ctrl.participantUpdate()" ng-model = "$ctrl.userToAdd",ng-options="user._id as user.email for user in $ctrl.users")
@@ -36,4 +43,4 @@
           div
             | Is all day
             input(type='checkbox',ng-model="$ctrl.allDay")
-          button(type='submit', form='eventEdit', value='Submit',ng-click="$ctrl.save()") Save
+          button(type='submit', form='eventEdit', value='Submit',ng-click="$ctrl.save(valid)") Save

@@ -75,6 +75,7 @@ class eventEditController {
             url: `api/event/${next.params.id}`
         }).then(function(res) {
             self.curEvent = res;
+            self.title = res.title;
             self.desc = res.description;
             self.author = res.author;
             console.log(res.author);
@@ -84,30 +85,33 @@ class eventEditController {
             };
         });
     }
-    save() {
+    save(valid) {
         let self = this;
-        self.httpGeneral.sendRequest({
-            type: "PUT",
-            url: `api/event/${self.curEvent._id}`,
-            body: {
+        if (valid) {
+            self.httpGeneral.sendRequest({
+                type: "PUT",
+                url: `api/event/${self.curEvent._id}`,
+                body: {
 
-                title: self.title,
-                description: self.desc,
-                project: window._injectedData.currentProject,
-                participants: self.participants,
-                startDate: self.date,
-                endDate: self.endDate,
-                isAllDay: self.allDay,
+                    title: self.title,
+                    description: self.desc,
+                    project: window._injectedData.currentProject,
+                    participants: self.participants,
+                    startDate: self.date,
+                    endDate: self.endDate,
+                    isAllDay: self.allDay,
 
-            }
-        }).then(function(res) {
-            console.log("Succesfull create event");
-            self.window.location.reload();
-            self.location.path('/');
-        });
+                }
+            }).then(function(res) {
+                console.log("Succesfull create event");
+                self.location.path('/events');
+            });
+        }else{
+            self.popupNotifications.notifyError("Please enter info correctly");
+        }
     }
 
-    delete(){
+    delete() {
         let self = this;
         self.httpGeneral.sendRequest({
             type: "DELETE",

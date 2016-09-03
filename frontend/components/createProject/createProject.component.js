@@ -38,6 +38,10 @@ class createProjectController {
         }).then(function(res) {
             self.projects = res;
         });
+        self.participantsSet.add(window._injectedData.userId);
+        self.participants = Array.from(self.participantsSet);
+        self.adminsSet.add(window._injectedData.userId);
+        self.admins = Array.from(self.adminsSet);
     }
 
     $onInit() {
@@ -62,7 +66,7 @@ class createProjectController {
         let clearDateField = false;
         if (self.projects != undefined) {
             for (let i = 0; i < self.projects.length; i++) {
-                if (self.projects[i].title === self.projectTitle) {
+                if (self.projects[i].title === self.projectTitle && self.projects[i].status === "active") {
                     self.popupNotifications.notifyError("Project with this title is already created");
                     duplicateTitle = true;
                     break;
@@ -74,7 +78,7 @@ class createProjectController {
             clearDateField = true;
         }
         if(!valid){
-            self.popupNotifications.notifyError("Please enter info corectrly");
+            self.popupNotifications.notifyError("Please enter info correctrly");
         }
         if (!duplicateTitle && !clearDateField && valid) {
             self.http.sendRequest({
