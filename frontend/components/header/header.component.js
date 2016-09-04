@@ -1,9 +1,10 @@
 import './headerStyles.styl';
 
 class HeaderComponentController {
-    constructor(httpGeneral, $location) {
+    constructor(httpGeneral, $location, $rootRouter) {
         this.httpGeneral = httpGeneral;
         this.location = $location;
+        this.rootRouter = $rootRouter;
         this.userProjects;
         this.currentProjectId = window._injectedData.currentProject || '';
         this.userReq = {
@@ -34,18 +35,18 @@ class HeaderComponentController {
                 currentProject: self.currentProjectId,
             }
         }).then(function (res) {
-            let currPath = self.location.path();
-            let newReg = /^(\/)[^(\/)]+/;
-
-            self.location.path("/"+currPath.match(newReg)[0]);
-
-
+            // let currPath = self.location.path();
+            let newReg = /^(\/)[^(\/)]*/;
+            // self.location.path("/"+currPath.match(newReg)[0]);
+            let currPath = self.rootRouter.lastNavigationAttempt.match(newReg)[0];
+            self.rootRouter.navigate(['NotFound']);
+            self.rootRouter.navigateByUrl(currPath);
             //console.log("Succesfull update currentProject");
         });
     }
 }
 
-HeaderComponentController.$inject = ['httpGeneral', '$location'];
+HeaderComponentController.$inject = ['httpGeneral', '$location', '$rootRouter'];
 
 const headerComponent = {
     controller: HeaderComponentController,

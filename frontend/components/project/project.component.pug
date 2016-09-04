@@ -67,7 +67,7 @@
             p  Deadline:
             i.fa.fa-pencil(ng-click="proj.editDeadline=true",ng-if="!proj.editDeadline && proj.isUserAdmin")
             i.fa.fa-check(ng-click="proj.edit('deadline')",ng-if="proj.editDeadline")
-          p(uib-datepicker-popup='{{format}}', datepicker-options = 'proj.datePickerOpt', ng-model='proj.dtDeadline', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',is-open = 'proj.editDeadline', ng-change="proj.edit('deadline')") {{proj.dtDeadline | date: "dd.MM.yyyy"}}
+          p(uib-datepicker-popup='{{format}}', datepicker-options = 'proj.datePickerOpt', ng-model='proj.dtDeadline', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',is-open = 'proj.editDeadline', ng-change="proj.edit('deadline',true)", ng-model-options = "{timezone: '0000'}") {{proj.dtDeadline | date: "dd.MM.yyyy"}} 
         .wrap.last(ng-if="proj.isUserAdmin")
           .delete_button
             button.delete(ng-click="proj.modalToggle()") Delete project

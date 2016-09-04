@@ -1,8 +1,11 @@
 import './rootStyles.styl';
 
 class rootComponentController {
-    constructor() {}
+    constructor() {
+    }
 }
+
+rootComponentController.$inject = [];
 
 const rootComponent = {
     controller: rootComponentController,
