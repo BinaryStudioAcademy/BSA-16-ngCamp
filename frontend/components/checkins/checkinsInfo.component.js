@@ -1,8 +1,9 @@
 import './checkinsInfoStyles.styl';
 
 class CheckinsInfoComponentController {
-    constructor(httpGeneral) {
+    constructor(httpGeneral, $location) {
         this.httpGeneral = httpGeneral;
+        this.location = $location;
         this.checkin = null;
         this.answers = [];
         this.groupedAsnwers = {};
@@ -42,11 +43,13 @@ class CheckinsInfoComponentController {
             url:'/api/checkins/' + vm.checkin._id
         }).then(function(res){
             console.log(res);
+            vm.location.path('/checkins');
         });
+
     }
 }
 
-CheckinsInfoComponentController.$inject = ['httpGeneral'];
+CheckinsInfoComponentController.$inject = ['httpGeneral','$location'];
 
 const checkinsInfoComponent = {
     controller: CheckinsInfoComponentController,

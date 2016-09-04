@@ -36,6 +36,8 @@ import {calendarMonthComponent} from "./calendar/calendarMonth/calendarMonth.com
 import {primaryCalendarComponent} from "./calendar/primaryCalendar/primaryCalendar.component.js";
 import {checkinsEditComponent} from "./checkins/checkinsEdit.component.js";
 import {checkinsListComponent} from "./checkins/checkinsList.component.js";
+import {checkinsAnswerComponent} from "./checkins/checkinsAnswer.component.js";
+
 
 
 
@@ -77,5 +79,6 @@ app.component(tasksRootComponent.selector, tasksRootComponent);
 app.component(primaryCalendarComponent.selector, primaryCalendarComponent);
 app.component(checkinsEditComponent.selector, checkinsEditComponent);
 app.component(checkinsListComponent.selector, checkinsListComponent);
+app.component(checkinsAnswerComponent.selector, checkinsAnswerComponent);
 
 
