@@ -12,8 +12,8 @@ module.exports = function (app) {
         });
     }, apiResponse);
 
-    app.get(baseUrl + 'forCurrentUser', function(req, res,next) {
-        projectService.getProjectsForCurrentUser(req.session.user._id, function(err, data) {
+    app.get(baseUrl + 'forCurrentUser', function (req, res, next) {
+        projectService.getProjectsForCurrentUser(req.session.user._id, function (err, data) {
             res.data = data;
             res.err = err;
             next();
@@ -22,6 +22,14 @@ module.exports = function (app) {
 
     app.get(baseUrl + ':id', function (req, res, next) {
         projectRepository.getById(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
+    app.get(baseUrl + ':id/users', function (req, res, next) {
+        projectRepository.getUsers(req.params.id, function (err, data) {
             res.data = data;
             res.err = err;
             next();
@@ -90,3 +98,4 @@ module.exports = function (app) {
         });
     }, apiResponse);
 };
+

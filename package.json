@@ -26,8 +26,8 @@
     "Yaroslav Neznaradko <nezn27@gmail.com>"
   ],
   "license": "",
-  "devDependencies": {},
   "dependencies": {
+    "async": "^2.0.1",
     "alertifyjs": "^1.8.0",
     "angular": "^1.5.8",
     "angular-animate": "^1.5.8",
