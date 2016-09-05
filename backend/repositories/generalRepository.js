@@ -47,7 +47,6 @@ function setObjPropsById(id, setObj, callback) {
         $set: setObj
     });
     query.exec(callback);
-    console.log(setObj);
 }
 
 module.exports = Repository;

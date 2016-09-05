@@ -43,8 +43,8 @@
 					.col-xs-7.end-xs.icon_bar 
 						i.fa.fa-comments-o(aria-hidden = "true")
 						i.fa.fa-files-o(aria-hidden = "true")
-						i.fa.fa-pencil(aria-hidden = "true")
-						i.fa.fa-times(aria-hidden = "true")
+						i.fa.fa-pencil(aria-hidden = "true", ng-link = "['TaskUpdate', {id: task._id}]")
+						i.fa.fa-times(aria-hidden = "true", ng-click = "tasksctrl.deleteTask(task._id,$index)")
 		.wrapper_noTask.row.center-xs(ng-if = "!tasksctrl.contentFlag")
 			.col-xs-12 No tasks in this project
 		.no_result.row.middle-xs.center-xs(ng-hide = "filtredTasks.length" ng-if = "tasksctrl.contentFlag")

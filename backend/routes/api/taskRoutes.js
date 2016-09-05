@@ -26,7 +26,15 @@ module.exports = function (app) {
             res.data = data;
             res.err = err;
             next();
-        })
+        });
+    }, apiResponse);
+    //===================================================
+    app.get(baseUrl+"populated/"+":id", function (req,res,next){
+        taskRepository.getPopulatedTask(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
     }, apiResponse);
     //===================================================
     app.post(baseUrl, function (req, res, next) {
@@ -63,7 +71,7 @@ module.exports = function (app) {
     }, apiResponse);
     //===================================================
     app.delete(baseUrl + ':id', function (req, res, next) {
-        taskRepository.deleteById(req.params.id, function (err, data) {
+        taskService.deleteTask(req.params.id, function (err, data) {
             res.data = data;
             res.err = err;
             next();

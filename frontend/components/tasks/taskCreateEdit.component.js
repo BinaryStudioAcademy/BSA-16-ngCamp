@@ -30,6 +30,17 @@ class taskCreateEditController {
 		let self = this;
 		self.editMode = !(next.params.id === "new");
 		if(self.editMode){
+			let taskReq = {
+				type: "GET",
+				url: `/api/task/populated/${next.params.id}`,
+				errorCallback(err){
+					self.popup.notifyError('Failed to Load Task Data');
+					self.location.path('/tasks');
+				}
+			};
+			self.http.sendRequest(taskReq).then((res) => {
+				self.task = res;
+			});
 
 		}else{
 			self.task = {
@@ -92,16 +103,24 @@ class taskCreateEditController {
 		},100,false);
 	}
 
-	removeToDo(index){
+	removeToDo(todo,index){
 		let self = this;
-		self.task.toDos.splice(index,1);
+		todo.status = "removed";
+		if(!self.editMode || !todo._id){
+			self.task.toDos.splice(index,1);
+		};	
 	}
 
 	saveTask(){
 		let self = this;
-		let participantsIdList = self.task.participants.map((elem) => {return elem._id;});
+		self.task.participants = self.task.participants.map((elem) => {return elem._id;});
 		let taskUpdateReq = (self.editMode) ? {
-
+			type: "PUT",
+			url: `/api/task/${self.task._id}`,
+			body: self.task,
+			errorCallback(err){
+				self.popup.notifyError(err);
+			}
 		} : {
 			type: "POST",
 			url: "/api/task/",
@@ -109,7 +128,7 @@ class taskCreateEditController {
 				data: {
 					title: self.task.title,
 					description: self.task.description,
-					participants: participantsIdList,
+					participants: self.task.participants,
 					author: window._injectedData.userId,
 					isFinished: false,
 					archived: false,
@@ -122,7 +141,10 @@ class taskCreateEditController {
 			}
 		};
 		self.http.sendRequest(taskUpdateReq).then(function(res){
-            self.location.path('/tasks');
+			console.log(res);
+			if(res.ok){
+				self.location.path('/tasks');
+			};
 		});
 	}
 
