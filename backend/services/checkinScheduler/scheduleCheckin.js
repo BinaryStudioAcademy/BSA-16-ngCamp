@@ -9,12 +9,11 @@ function scheduleCheckinsByFrequency(frequency, time){
                 var date = Date.now();
                 var answers = [];
                 var question = checkin.question;
-                //var projectName = checkin.project[0].title;
-                var projectName ="ProjName";
+                var projectName = checkin.project.title;                   
                 if (checkin.participants.length > 0) {
                     checkin.participants.forEach(function (p) {
                         var token = getToken();
-                        console.log(p);
+                        //console.log(p);
                         sendEmailToCheckinPartisipants(p, question, projectName, token);
                         checkin.answers.push({ user: p, answer: 'noAnswer', creationDate: date, token: token });
                     });
@@ -22,7 +21,7 @@ function scheduleCheckinsByFrequency(frequency, time){
                         if (err) {
                             console.log(err);
                         } else {
-                            console.log(result);
+                            //console.log(result);
                         }
                     });
                 }
