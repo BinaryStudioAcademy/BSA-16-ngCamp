@@ -25,7 +25,7 @@ class ReportAddComponentController {
             type: "GET",
             url: "api/projects/" + vm.projectId + "/users"
         }).then(function (res) {
-            console.log(res);
+            //console.log(res);
             vm._usersData = res.participants;
             for (let i = 0; i < res.participants.length; i++) {
                 vm.userSamples[i] = (res.participants[i].firstName || "") + " " + (res.participants[i].secondtName || "");
@@ -70,14 +70,16 @@ function generateReport() {
             vm.users = undefined;
         }
         if (vm.dateRange && vm.dateRange.length > 0) {
-            data.dataRange = vm.dateRange;
+            data.dateRange = vm.dateRange;
 
         } else {
+
             vm.dateRange = undefined;
         }
     }
     data.isSaved = vm.isSaved;
     console.log(data);
+
     vm.httpGeneral.sendRequest({
         type: "POST",
         url: "/api/report/",

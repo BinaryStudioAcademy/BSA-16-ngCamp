@@ -105,7 +105,7 @@ function reportGenerate() {
         }
     }
     data.isSaved = vm.isSaved;
-    console.log(data);
+    //console.log(data);
     vm.httpGeneral.sendRequest({
         type: "PUT",
         url: "/api/report/" + vm.reportId,

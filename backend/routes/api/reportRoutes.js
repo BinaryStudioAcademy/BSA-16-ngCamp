@@ -21,21 +21,15 @@ module.exports = function (app) {
     }, apiResponse);
     //===================================================
     app.post(baseUrl, function (req, res, next) {
-        console.log(req.body);
         reportService.generateReport(req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();
         });
-        //        reportService.addItem(req.body, function (err, data) {
-        //            res.data = data;
-        //            res.err = err;
-        //            next();
-        //        });
     }, apiResponse);
     //===================================================
     app.put(baseUrl + ":id", function (req, res, next) {
-        console.log(req.params.id);
+        //console.log(req.params.id);
         reportService.updateItem(req.params.id, req.body, function (err, data) {
             res.data = data;
             res.err = err;
@@ -52,7 +46,7 @@ module.exports = function (app) {
     }, apiResponse);
     //===================================================
     app.get(baseUrl + ":project/recent/:id", function (req, res, next) {
-        console.log(req.params);
+        //console.log(req.params);
         reportService.getRecent(req.params.id, req.params.project, function (err, data) {
             res.data = data;
             res.err = err;
