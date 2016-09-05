@@ -7,7 +7,7 @@ function timeToCompare() {
     var dayOfWeekString = days[currentDate.getDay()];
     var dayOfWeekNumber = currentDate.getDay()
     var minutes = date('{Minutes}', currentDate);
-    var hour = date('{hh}', currentDate);
+    var hour = date('{hh24}', currentDate);
     return  {time: hour + ':' + minutes, dayOfWeekString: dayOfWeekString, dayOfWeekNumber: dayOfWeekNumber};
 }
 
