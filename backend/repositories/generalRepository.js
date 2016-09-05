@@ -10,6 +10,7 @@ Repository.prototype.deleteById = deleteById;
 Repository.prototype.getAll = getAll;
 Repository.prototype.getById = getById;
 Repository.prototype.setObjPropsById = setObjPropsById;
+Repository.prototype.findByObject = findByObject;
 
 function add(data, callback) {
     var model = this.model;
@@ -46,6 +47,11 @@ function setObjPropsById(id, setObj, callback) {
     }, {
         $set: setObj
     });
+    query.exec(callback);
+}
+
+function findByObject(obj, populate, select, callback) {
+    var query = this.model.find(obj, select).populate(populate);
     query.exec(callback);
 }
 

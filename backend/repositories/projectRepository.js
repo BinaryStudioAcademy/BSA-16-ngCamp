@@ -9,13 +9,24 @@ ProjectRepository.prototype.removeAdmin = removeAdmin;
 ProjectRepository.prototype.getProjectsByParticipantId = getProjectsByParticipantId;
 ProjectRepository.prototype.getByIdWithUsers = getByIdWithUsers;
 ProjectRepository.prototype.changeState = changeState;
+ProjectRepository.prototype.getUsers = getUsers;
 ProjectRepository.prototype.getParticipantsByProjectId = getParticipantsByProjectId;
 
 function ProjectRepository() {
     Repository.prototype.constructor.call(this);
     this.model = Project;
 };
-
+function getUsers(id, callback) {
+    var query = this.model.findOne({
+        _id: id
+    }, {
+        participants: 1
+    }).populate({
+        path: "participants",
+        select: "firstName secondName"
+    });
+    query.exec(callback);
+}
 function getProjectsByParticipantId(userId, callback) {
     var model = this.model;
     var query = model.find({
@@ -48,7 +59,6 @@ function addParticipants(id, data, callback) {
     });
     query.exec(callback);
 }
-
 
 function removeParticipants(id, data, callback) {
     var model = this.model;
@@ -93,6 +103,7 @@ function removeAdmin(id, data, callback) {
     query.exec(callback);
 }
 
+
 function changeState(id, state, callback) {
     var query = this.model;
 
@@ -105,7 +116,6 @@ function changeState(id, state, callback) {
             "status": state
         }
     };
-
     query.update(conditions, update).exec(callback);
 }
 
