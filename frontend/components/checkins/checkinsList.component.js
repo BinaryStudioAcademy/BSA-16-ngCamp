@@ -12,7 +12,7 @@ class CheckinsListComponentController {
             url: "api/checkins"
         }).then(function(res) {
             for (let check in res) {
-                if (res[check].project[0] === window._injectedData.currentProject) {
+                if (res[check].project === window._injectedData.currentProject) {
                     self.checkIns.push(res[check]);
                 }
             }
