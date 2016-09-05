@@ -10,6 +10,17 @@ class CalendarDailyCtrl {
         vm.currentDate = new Date();
         vm.isChangeDate = false;
 
+        vm.goto = () => {
+            let date = vm.currentDate;
+            let dateObj = {
+                year: date.getFullYear(),
+                month: date.getMonth(),
+                day: date.getDate()
+            };
+
+            vm.$router.navigate(['MonthCalendar', dateObj]);
+        };
+
         vm.startChangeDate = () => vm.isChangeDate = true;
         vm.endChangeDate = () => vm.isChangeDate = false;
         vm.changeDateOfStep = (step) => {
@@ -17,6 +28,14 @@ class CalendarDailyCtrl {
             date.setDate(date.getDate() + step);
             vm.currentDate = date;
         };
+    }
+
+    $routerOnActivate(next) {
+        let vm = this;
+
+        let {day,month, year} = next.params;
+
+        vm.currentDate = new Date(year, month, day);
     }
 }
 
@@ -26,7 +45,8 @@ const calendarDailytComponent = {
     controller: CalendarDailyCtrl,
     controllerAs: 'cd',
     template: require('./calendarDaily.pug')(),
-    selector: 'calendarDaily'
+    selector: 'calendarDaily',
+    bindings: { $router: '<' }
 };
 
 export {calendarDailytComponent};

@@ -1,9 +1,11 @@
-.checkins-wrapper
- .resize-main
-    .resize-content
-        .resize-row
-            section#one(resizable='', r-directions="['right']", r-flex='true')
-                p Works with flexbox.
-            section#two
-                p 2
+.content
+  .resizable-row
+    section#one(resizable='', r-directions="['right']", r-flex='true')
+        ng-outlet
+    section#two
+      .checkins-info-container
+        checkins-info-component
+
+
+
 

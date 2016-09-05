@@ -1,60 +1,67 @@
 import './postMessage.styl';
 
 class postMessageController {
-    constructor(httpGeneral,$window,$location,popupNotifications) {
-    	this.httpGeneral = httpGeneral;
-    	this.window = $window;
-    	this.location = $location;
+    constructor(httpGeneral, $window, $location, popupNotifications) {
+        this.httpGeneral = httpGeneral;
+        this.window = $window;
+        this.location = $location;
         this.popupNotifications = popupNotifications;
-    	this.title;
-    	this.desc;
-    	this.date = new Date();
+        this.title;
+        this.desc;
+        this.date = new Date();
     }
-    post(){
-    	let self = this;
-    	self.httpGeneral.sendRequest({
-    		type:"POST",
-    		url:"api/messages",
-    		body:{
-    			data:{
-    				title:self.title,
-    				description:self.desc,
-    				project:window._injectedData.currentProject,
-    				date:self.date,
-    				author:window._injectedData.userId,
-    				isDraft:false,
-    			}
-    		}
-    	}).then(function(res){
-    		console.log("Succesfull create new message");
-    		self.window.location.reload();
-    		self.location.path('/messageboard');
-    	});
+    post(valid) {
+        let self = this;
+        if (valid) {
+            self.httpGeneral.sendRequest({
+                type: "POST",
+                url: "api/messages",
+                body: {
+                    data: {
+                        title: self.title,
+                        description: self.desc,
+                        project: window._injectedData.currentProject,
+                        date: self.date,
+                        author: window._injectedData.userId,
+                        isDraft: false,
+                    }
+                }
+            }).then(function(res) {
+                console.log("Succesfull create new message");
+                self.location.path('/messageboard');
+            });
+        } else {
+            self.popupNotifications.notifyError("Plese complete all fields correctly");
+        }
     }
 
-    draft(){
+    draft(valid) {
         let self = this;
-        self.httpGeneral.sendRequest({
-            type:"POST",
-            url:"api/messages",
-            body:{
-                data:{
-                    title:self.title,
-                    description:self.desc,
-                    project:window._injectedData.currentProject,
-                    data:self.date,
-                    author:window._injectedData.userId,
-                    isDraft:true,
+        if (valid) {
+            self.httpGeneral.sendRequest({
+                type: "POST",
+                url: "api/messages",
+                body: {
+                    data: {
+                        title: self.title,
+                        description: self.desc,
+                        project: window._injectedData.currentProject,
+                        data: self.date,
+                        author: window._injectedData.userId,
+                        isDraft: true,
+                    }
                 }
-            }
-        }).then(function(res){
-            console.log("Succesfull create new draft");
-            self.popupNotifications.notifySuccess("Succesfull create draft");
-        });
+            }).then(function(res) {
+                console.log("Succesfull create new draft");
+                self.popupNotifications.notifySuccess("Succesfull create draft");
+            });
+        } else {
+            self.popupNotifications.notifyError("Plese complete all fields correctly");
+        }
     }
 }
 
-postMessageController.$inject = ['httpGeneral','$window','$location','popupNotifications'];
+postMessageController.$inject = ['httpGeneral', '$window', '$location', 'popupNotifications'];
 
 const postMessageComponent = {
     controller: postMessageController,
@@ -63,4 +70,6 @@ const postMessageComponent = {
     selector: 'postMessage'
 };
 
-export {postMessageComponent};
+export {
+    postMessageComponent
+};

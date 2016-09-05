@@ -14,9 +14,9 @@ const rootComponent = {
         name: 'User',
         component: 'userComponent'
     }, {
-        path: '/',
+        path: '/...',
         name: 'MainPage',
-        component: 'mainComponent',
+        component: 'checkinsWrapperComponent'
     }, {
         path: '/account/',
         name: 'Account',
@@ -25,26 +25,14 @@ const rootComponent = {
         path: '/header/',
         name: 'Header',
         component: 'headerComponent'
-    }, {
-        path: '/checkins/',
+    },  {
+        path: '/checkins/...',
         name: 'Checkins',
         component: 'checkinsComponent'
     }, {
-        path: '/checkins2/',
-        name: 'Checkins2',
-        component: 'checkinsWrapperComponent'
-    }, {
-        path: '/checkinsCreate/',
-        name: 'CheckinsCreate',
-        component: 'checkinsCreateComponent'
-    }, {
-        path: '/checkinsInfo/',
-        name: 'CheckinsInfo',
-        component: 'checkinsInfoComponent'
-    }, {
-        path: '/tasks/',
+        path: '/tasks/...',
         name: 'Tasks',
-        component: 'tasksComponent'
+        component: 'tasksRootComponent'
     }, {
         path: '/events/...',
         name: 'Events',
@@ -97,10 +85,10 @@ const rootComponent = {
         name: 'EditMessage', //TODO test, remove later
         component: 'editMessage'
     }, {
-        path: '/tasks',
-        name: 'Tasks',
-        component: 'tasksComponent'
-    }, {
+        path: '/calendar/...',
+        name: 'Calendar',
+        component: 'primaryCalendar'
+    },{
         path: '/test',
         name: 'Test',
         component: 'test'

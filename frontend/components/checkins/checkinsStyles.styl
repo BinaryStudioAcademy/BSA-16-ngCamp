@@ -1,98 +1,77 @@
+@import "../../../public/libs/css/generalComponentsStyle.styl"
 .checkins-wrapper
-    /* HEADER */
-    .checkins-header {
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-    }
+    display flex
+    justify-content center
+    div.checkins-container
+        width 1024px
+        main-component()
+        .header-title
+            display flex
+            align-items center
+            justify-content center
+            flex-wrap wrap
+            color #212121
+            font-size 1.8em
+            font-family "Montserrat"
+            h1
+                width 100%
+                margin-bottom 0
+            &:after
+                content ''
+                height 1px
+                margin-top 0.3em
+                width 80%
+                display block
+                background-image -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+                background-image    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+                background-image     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+                background-image      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+        .header-button
+            margin 30px 0
+            button
+                button()
+                font-family "Montserrat"
+                line-height 32.406px
+                font-size 1.8em
+                border none
+                width 230px
+                outline none
+                white-space nowrap
 
-    .header-list h1 {
-        border-bottom: 1px solid black;
-    }
+        li
+            list-style none
 
-    .header-list a {
-        text-decoration: none;
-        color: #212121;
-        font-size: 22px;
-        padding: 5px;
-        border-radius: 10px;
-        cursor: pointer;
-        background-color: #1d8dbf;
-    }
+        .checkins-accordion
+            max-width 650px
+            margin 0 auto
+            margin-top 30px
 
-    .header-list a:hover {
-        background-color: #27bcff;
-    }
+        input[name="week"]
+            display none
 
-    li {
-        list-style: none;
-    }
+        section
+            font-size 18px
+            border 1px solid #35a720
+            border-radius 10px
+            background #f5f5f5
+            overflow hidden
+            & > label
+                line-height 2em
+                height 2em
+                background-color #3e8846
+                font-size 23px
+                font-weight bold
+                color #f9f9f9
+                display block
+                text-align center
 
-    /* ACCORDION */
-    .checkins-accordion {
-        max-width: 650px;
-        margin: 0 auto;
-        margin-top: 30px;
-    }
+        .tabs
+            display none
+            &:after
+                content ""
+                display table
+                clear both
 
-    input[name="week"] {
-        display: none;
-    }
-
-    section {
-        font-size: 18px;
-        border: 1px solid #adadad;
-        border-radius: 10px;
-        background: #f5f5f5;
-        overflow: hidden;
-        /*height: 450px;*/
-    }
-
-    section > label {
-        line-height: 2em;
-        height: 2em;
-        background-color: #808080;
-        font-size: 23px;
-        font-weight: bold;
-        color: #212121;
-        display: block;
-        text-align: center;
-    }
-
-    .tabs {
-        display: none;
-    }
-
-    .tabs:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    input[id="week-list"]:not(:checked) ~ .tab.all,
-    input[id="monday"]:not(:checked) ~ .tab.mo,
-    input[id="tuesday"]:not(:checked) ~ .tab.tu,
-    input[id="wednesday"]:not(:checked) ~ .tab.we,
-    input[id="thursday"]:not(:checked) ~ .tab.th,
-    input[id="friday"]:not(:checked) ~ .tab.fr,
-    input[id="saturday"]:not(:checked) ~ .tab.sa,
-    input[id="sunday"]:not(:checked) ~ .tab.su {
-        height: 2em;
-    }
-
-    input[id="week-list"]:checked ~ * label[for="week-list"],
-    input[id="monday"]:checked ~ * label[for="monday"],
-    input[id="tuesday"]:checked ~ * label[for="tuesday"],
-    input[id="wednesday"]:checked ~ * label[for="wednesday"],
-    input[id="thursday"]:checked ~ * label[for="thursday"],
-    input[id="friday"]:checked ~ * label[for="friday"],
-    input[id="saturday"]:checked ~ * label[for="saturday"],
-    input[id="sunday"]:checked ~ * label[for="sunday"] {
-        background-color: #cccccc;
-        border-top: 4px solid #f2992e;
-    }
-
-    @media (min-width: 600px) {
         input[id="week-list"]:not(:checked) ~ .tab.all,
         input[id="monday"]:not(:checked) ~ .tab.mo,
         input[id="tuesday"]:not(:checked) ~ .tab.tu,
@@ -101,124 +80,131 @@
         input[id="friday"]:not(:checked) ~ .tab.fr,
         input[id="saturday"]:not(:checked) ~ .tab.sa,
         input[id="sunday"]:not(:checked) ~ .tab.su {
-            position: absolute;
-            overflow: hidden;
-            clip: rect(0 0 0 0);
-            height: 1px;
-            width: 1px;
-            margin: -1px;
-            padding: 0;
-            border: 0;
+            height: 2em;
         }
 
-        .tabs {
-            display: flex;
-            justify-content: space-around;
-            margin: 0;
-            padding: 0;
+        input[id="week-list"]:checked ~ * label[for="week-list"],
+        input[id="monday"]:checked ~ * label[for="monday"],
+        input[id="tuesday"]:checked ~ * label[for="tuesday"],
+        input[id="wednesday"]:checked ~ * label[for="wednesday"],
+        input[id="thursday"]:checked ~ * label[for="thursday"],
+        input[id="friday"]:checked ~ * label[for="friday"],
+        input[id="saturday"]:checked ~ * label[for="saturday"],
+        input[id="sunday"]:checked ~ * label[for="sunday"] {
+            background-color: #4aca51;
+            border-top: 4px solid #35a720;
         }
 
-        .tabs label {
-            font-size: 30px;
-            color: #212121;
-            margin-left: 5px;
-            margin-bottom: 5px;
-            background-color: #808080;
-            border: 1px solid #adadad;
-            border-radius: 10px;
-            float: left;
-            cursor: pointer;
-            padding: .2em 0.5em;
+        @media (min-width: 600px) {
+            input[id="week-list"]:not(:checked) ~ .tab.all,
+            input[id="monday"]:not(:checked) ~ .tab.mo,
+            input[id="tuesday"]:not(:checked) ~ .tab.tu,
+            input[id="wednesday"]:not(:checked) ~ .tab.we,
+            input[id="thursday"]:not(:checked) ~ .tab.th,
+            input[id="friday"]:not(:checked) ~ .tab.fr,
+            input[id="saturday"]:not(:checked) ~ .tab.sa,
+            input[id="sunday"]:not(:checked) ~ .tab.su {
+                position: absolute;
+                overflow: hidden;
+                clip: rect(0 0 0 0);
+                height: 1px;
+                width: 1px;
+                margin: -1px;
+                padding: 0;
+                border: 0;
+            }
+
+            .tabs {
+                display: flex;
+                justify-content: space-around;
+                margin: 0;
+                padding: 0;
+            }
+
+            .tabs label {
+                font-size: 30px;
+                color: #ffffff;
+                margin-left: 5px;
+                margin-bottom: 5px;
+                background-color: #3e8846;
+                border: 1px solid #35a720;
+                border-radius: 10px;
+                float: left;
+                cursor: pointer;
+                padding: .2em 0.5em;
+            }
         }
-    }
 
-    /* QQ */
-    .content {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-        font-size: 23px;
-    }
+        .content
+        display flex
+        justify-content space-between
+        margin-top 20px
+        font-size 23px
 
-    .qq a {
-        display: flex;
-        text-align: center;
-        text-decoration: none;
-        color: #4c5157;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
+        .qq
+            a
+                display flex
+                text-align center
+                text-decoration none
+                color #4c5157
+                margin-left 10px
+                margin-right 10px
 
-    .user-list {
-        text-align: center;
-        //border-bottom: 1px solid black;
-        //padding: 1%;
-    }
+        .user-list
+            text-align center
+        //border-bottom 1px solid black
+        //padding 1%
 
-    .avatar {
-        background-color: #f2992e;
-        border-radius: 5px;
-        font-size: 18px;
-        padding: 3px;
-        margin: 3px;
-        /*padding: .2em 0.2em;*/
-    }
+        .avatar
+            background-color #f2992e
+            border-radius 5px
+            font-size 18px
+            padding 3px
+            margin 3px
 
-    /* TOOGLE */
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 34px;
-        margin-right: 20px;
-    }
+        .switch
+            position relative
+            display inline-block
+            width 60px
+            height 34px
+            margin-right 20px
+            input
+                display none
 
-    .switch input {
-        display: none;
-    }
+        .slider
+            position absolute
+            cursor pointer
+            top 0
+            left 0
+            right 0
+            bottom 0
+            background-color #ccc
+            -webkit-transition .4s
+            transition .4s
+            &:before
+                position absolute
+                content ""
+                height 26px
+                width 26px
+                left 4px
+                bottom 4px
+                background-color white
+                -webkit-transition .4s
+                transition .4s
+            &.round
+                border-radius 34px
+                &:before
+                    border-radius 50%
 
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        -webkit-transition: .4s;
-        transition: .4s;
-    }
+        input
+            &:checked
+                & + .slider
+                    background-color #1d8dbf
+                    &:before
+                        -webkit-transform translateX(26px)
+                        -ms-transform translateX(26px)
+                        transform translateX(26px)
+            &:focus
+                & + .slider
+                    box-shadow 0 0 1px #27bcff
 
-    .slider:before {
-        position: absolute;
-        content: "";
-        height: 26px;
-        width: 26px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        -webkit-transition: .4s;
-        transition: .4s;
-    }
-
-    input:checked + .slider {
-        background-color: #1d8dbf;
-    }
-
-    input:focus + .slider {
-        box-shadow: 0 0 1px #27bcff;
-    }
-
-    input:checked + .slider:before {
-        -webkit-transform: translateX(26px);
-        -ms-transform: translateX(26px);
-        transform: translateX(26px);
-    }
-
-    .slider.round {
-        border-radius: 34px;
-    }
-
-    .slider.round:before {
-        border-radius: 50%;
-    }

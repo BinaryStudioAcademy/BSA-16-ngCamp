@@ -4,16 +4,29 @@ var Project = require('../schemas/projectSchema');
 ProjectRepository.prototype = new Repository();
 ProjectRepository.prototype.addParticipants = addParticipants;
 ProjectRepository.prototype.removeParticipants = removeParticipants;
+ProjectRepository.prototype.addAdmin = addAdmin;
+ProjectRepository.prototype.removeAdmin = removeAdmin;
 ProjectRepository.prototype.getProjectsByParticipantId = getProjectsByParticipantId;
 ProjectRepository.prototype.getByIdWithUsers = getByIdWithUsers;
 ProjectRepository.prototype.changeState = changeState;
 ProjectRepository.prototype.getUsers = getUsers;
+ProjectRepository.prototype.getParticipantsByProjectId = getParticipantsByProjectId;
 
 function ProjectRepository() {
     Repository.prototype.constructor.call(this);
     this.model = Project;
 };
-
+function getUsers(id, callback) {
+    var query = this.model.findOne({
+        _id: id
+    }, {
+        participants: 1
+    }).populate({
+        path: "participants",
+        select: "firstName secondName"
+    });
+    query.exec(callback);
+}
 function getProjectsByParticipantId(userId, callback) {
     var model = this.model;
     var query = model.find({
@@ -29,19 +42,7 @@ function getProjectsByParticipantId(userId, callback) {
 function getByIdWithUsers(id, callback) {
     var query = this.model.findOne({
         _id: id
-    }).populate('participants');
-    query.exec(callback);
-}
-
-function getUsers(id, callback) {
-    var query = this.model.findOne({
-        _id: id
-    }, {
-        participants: 1
-    }).populate({
-        path: "participants",
-        select: "firstName secondName"
-    });
+    }).populate('participants admins');
     query.exec(callback);
 }
 
@@ -59,7 +60,6 @@ function addParticipants(id, data, callback) {
     query.exec(callback);
 }
 
-
 function removeParticipants(id, data, callback) {
     var model = this.model;
     var query = model.update({
@@ -74,6 +74,36 @@ function removeParticipants(id, data, callback) {
     query.exec(callback);
 }
 
+function addAdmin(id, data, callback) {
+    var model = this.model;
+    var query = model.update({
+        _id: id
+    }, {
+        $addToSet: {
+            admins: {
+                $each: data
+            }
+        }
+    });
+    query.exec(callback);
+}
+
+
+function removeAdmin(id, data, callback) {
+    var model = this.model;
+    var query = model.update({
+        _id: id
+    }, {
+        $pull: {
+            admins: data,
+        }
+    }, {
+        multi: true
+    });
+    query.exec(callback);
+}
+
+
 function changeState(id, state, callback) {
     var query = this.model;
 
@@ -86,8 +116,18 @@ function changeState(id, state, callback) {
             "status": state
         }
     };
-
     query.update(conditions, update).exec(callback);
+}
+
+function getParticipantsByProjectId(id, callback){
+    var model = this.model;
+    var query = model.findOne({
+        _id: id
+    }).select({
+        participants: 1,
+        _id: 0       
+    }).populate('participants');
+    query.exec(callback);
 }
 
 module.exports = new ProjectRepository();

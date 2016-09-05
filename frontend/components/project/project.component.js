@@ -2,7 +2,7 @@ import './project.component.styl';
 
 class ProjectComponentController {
 
-    constructor(popupNotifications, httpGeneral,$location,$window) {
+    constructor(popupNotifications, httpGeneral, $location, $window) {
 
         this.popupNotifications = popupNotifications;
         this.httpGeneral = httpGeneral;
@@ -23,6 +23,7 @@ class ProjectComponentController {
         this.participatorToDelete;
         this.users;
         this.projectParticipants = [];
+        this.projectAdmins = [];
         this.editName = false;
         this.editDesc = false;
         this.popup = {
@@ -32,8 +33,18 @@ class ProjectComponentController {
         this.dtDeadline = new Date();
         this.editDeadline = false;
         this.modalFlag = false;
+        this.isUserAdmin = false;
+        this.datePickerOpt = {
+            minDate: new Date()
+        };
     }
 
+    isAdmin() {
+        let self = this;
+        for (let i = 0; i < self.projectAdmins.length; i++) {
+            if (self.projectAdmins[i]._id === window._injectedData.userId) self.isUserAdmin = true;
+        }
+    }
     $onInit() {
         let self = this;
         self.projectParticipants = [];
@@ -48,7 +59,9 @@ class ProjectComponentController {
             }).then(function(res) {
                 self.currentProject = res;
                 self.projectParticipants = res.participants;
+                self.projectAdmins = res.admins;
                 self.dtDeadline = res.endDate;
+                self.isAdmin();
             });
         });
     }
@@ -104,50 +117,94 @@ class ProjectComponentController {
         });
         this.$onInit();
     }
-    edit(prop) {
+
+    addAdmin() {
         let self = this;
-        console.log(prop);
-        switch (prop) {
-            case "title":{
-                self.editName = false;
-                self.httpGeneral.sendRequest({
-                    type: "PUT",
-                    url: `api/projects/${self.currentProjectId}`,
-                    body: {
-                        title:self.currentProject.title,
-                    }
-                }).then(function(res) {
-                    console.log("Succesfull edit title");
-                });
-                break;
+        let duplicateAdmin = false;
+        for (let i in self.projectAdmins) {
+            if (self.projectAdmins[i]._id === self.adminToAdd) {
+                duplicateAdmin = true;
             }
-            case "description":{
-                self.editDesc = false;
-                self.httpGeneral.sendRequest({
-                    type: "PUT",
-                    url: `api/projects/${self.currentProjectId}`,
-                    body: {
-                        description:self.currentProject.description,
+        }
+        if (!duplicateAdmin) {
+            self.projectAdmins.push(self.adminToAdd);
+            self.httpGeneral.sendRequest({
+                type: "PUT",
+                url: `api/projects/${self.currentProjectId}`,
+                body: {
+                    admins: self.projectAdmins,
+                },
+            }).then(function(res) {
+                console.log("Succesfull add participator");
+                self.adminToAdd = "";
+            });
+        }
+        self.addAdminFlag = false;
+        this.$onInit();
+    }
+
+    removeAdmin(participator) {
+        let self = this;
+        self.httpGeneral.sendRequest({
+            type: "DELETE",
+            url: `api/projects/${self.currentProjectId}/admins/${participator}`,
+        }).then(function(res) {
+            console.log("Succesfull delete participator");
+        });
+        this.$onInit();
+    }
+
+    edit(prop, valid) {
+        let self = this;
+        console.log(valid);
+        if (valid) {
+            switch (prop) {
+                case "title":
+                    {
+                        self.editName = false;
+                        self.httpGeneral.sendRequest({
+                            type: "PUT",
+                            url: `api/projects/${self.currentProjectId}`,
+                            body: {
+                                title: self.currentProject.title,
+                            }
+                        }).then(function(res) {
+                            console.log("Succesfull edit title");
+                        });
+                        break;
                     }
-                }).then(function(res) {
-                    console.log("Succesfull edit description");
-                });
-                break;
-            }
-            case "deadline":{
-                self.editDeadline = false;
-                self.httpGeneral.sendRequest({
-                    type:"PUT",
-                    url: `api/projects/${self.currentProjectId}`,
-                    body: {
-                        endDate:self.dtDeadline,
+                case "description":
+                    {
+                        self.editDesc = false;
+                        self.httpGeneral.sendRequest({
+                            type: "PUT",
+                            url: `api/projects/${self.currentProjectId}`,
+                            body: {
+                                description: self.currentProject.description,
+                            }
+                        }).then(function(res) {
+                            console.log("Succesfull edit description");
+                        });
+                        break;
                     }
-                }).then(function(res){
-                    console.log("Succesfull edit deadline");
-                });
-                this.$onInit();
-                break;
+                case "deadline":
+                    {
+                        self.editDeadline = false;
+                        self.httpGeneral.sendRequest({
+                            type: "PUT",
+                            url: `api/projects/${self.currentProjectId}`,
+                            body: {
+                                endDate: self.dtDeadline,
+                            }
+                        }).then(function(res) {
+                            console.log("Succesfull edit deadline");
+                        });
+                        this.$onInit();
+                        break;
+                    }
             }
+        } else {
+            self.popupNotifications.notifyError("Please enter new info correctrly");
         }
     }
     modalToggle() {
@@ -165,19 +222,19 @@ class ProjectComponentController {
             self.location.path('/');
         });
     }
-    today () {
+    today() {
         this.dt = new Date();
     };
     open() {
         this.popup.opened = true;
     }
-    localDate(date){
+    localDate(date) {
         let newDate = new Date(date);
         return newDate.toLocaleDateString();
     }
 }
 
-ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral','$location','$window'];
+ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral', '$location', '$window'];
 
 const projectComponent = {
     controller: ProjectComponentController,

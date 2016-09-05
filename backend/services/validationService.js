@@ -11,9 +11,11 @@ ValidationService.prototype.addTaskValidation = addTaskValidation;
 ValidationService.prototype.addToDoValidation = addToDoValidation;
 ValidationService.prototype.validationBodyProperty = validationBodyProperty;
 ValidationService.prototype.manageProjectParticipants = manageProjectParticipants;
+ValidationService.prototype.manageProjectAdmins = manageProjectAdmins;
 ValidationService.prototype.eventsDateValidation = eventsDateValidation;
 ValidationService.prototype.manageArrayInput = manageArrayInput;
 ValidationService.prototype.addReportValidation = addReportValidation;
+ValidationService.prototype.TaskParticipantValidation = TaskParticipantValidation;
 
 function MessageValidation(body, callback) {
     if (!body.hasOwnProperty('isDraft')) {
@@ -158,6 +160,16 @@ function addTaskValidation(body, callback) {
     return true;
 }
 
+function TaskParticipantValidation(participantId,callback){
+ if(typeof participantId === "string"){
+    return true
+ }else{
+    callback({
+        message: "Invalid participant id"
+    });
+ };
+}
+
 function validationBodyProperty(body, propName, callback) {
     if (!body || !body[propName]) {
         if (callback) {
@@ -190,6 +202,16 @@ function manageProjectParticipants(body, callback) {
     if (body.length <= 0) {
         callback({
             message: "No participants here"
+        });
+        return false;
+    }
+    return true;
+}
+//===========================================================
+function manageProjectAdmins(body, callback) {
+    if (body.length <= 0) {
+        callback({
+            message: "No admins here"
         });
         return false;
     }

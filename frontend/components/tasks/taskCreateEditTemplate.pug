@@ -1,0 +1,54 @@
+user-list(user-data = 'taskCE.users', select-callback = 'taskCE.onUserSelect', parent-scope='taskCE', ng-if='taskCE.userListFlag')
+.task-wrapper.row.center-xs
+	.main-container.col-xs-8
+		.wrapper_lable.row
+			.col-xs-3
+				a(href = "#/tasks" ng-link = "['TasksList']")
+					.fa.fa-arrow-left.button 
+			.col-xs-6
+				h1(ng-if = '!taskCE.editMode') Create Task
+				h1(ng-if = 'taskCE.editMode') Edit Task
+			.col-xs-3
+		.wrapper_prop.row
+			.prop_lable.col-xs-12 Task title:
+			.prop_editor.col-xs-12 
+				input.tasktitle(type="text" ng-model = "taskCE.task.title" placeholder = "insert task title")
+		.wrapper_prop.row
+			.prop_lable.col-xs-12 Task description:
+			.prop_editor.col-xs-12
+				textarea(ng-model = "taskCE.task.description" ckeditor ng-if="true")
+		.wrapper_prop.row
+			.prop_lable.col-xs-12 Task participants: 
+			.prop_editor.col-xs-12.participants
+				.participant(ng-repeat = "user in taskCE.task.participants track by $index")
+					i.fa.fa-user
+					span {{user.firstName}} {{user.lastName}}
+					i.fa.fa-close.fa-fw(ng-click = "taskCE.removeParticipant(user)")
+			.col-xs-12
+				button.addButton(ng-click = 'taskCE.userListFlag = true')
+					i.fa.fa-plus-square
+						span add participant
+		.wrapper_prop.row.center-xs.lastblock
+			.prop_lable.col-xs-12 ToDo:
+			.prop_editor.col-xs-10
+				.toDo.row(ng-repeat = "todo in taskCE.task.toDos track by $index")
+					.toDo_lable.col-xs-6 ToDo title:
+					.deletetodo.col-xs-6(ng-click = "taskCE.removeToDo($index)")
+						i.fa.fa-times.fa-2x
+						span delete
+					.toDo_title.col-xs-12
+						input(type="text" ng-model="todo.title" placeholder="insert To Do title")
+					.toDo_lable.col-xs-12 ToDo description:
+					.todo_description.col-xs-12
+						textarea(ng-model = "todo.description" ckeditor ng-if="true")
+			.col-xs-12(id="addtodo")
+				button.addButton(ng-click = "taskCE.addToDo()")
+					i.fa.fa-plus-square
+						span add ToDo
+		.wrapper_save.row-center-xs
+			button.saveButton(ng-click = "taskCE.saveTask()")
+				i.fa.fa-arrow-down
+					span SAVE TASK
+
+
+

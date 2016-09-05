@@ -13,12 +13,15 @@ var CheckinSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     }],
+    time: String,
     frequency: String,
+    
     answers: [{
         user: {
             type: Schema.Types.ObjectId,
             ref: "User"
         },
+        token: String,
         answer: String,
         creationDate: Date,
         editedDate: Date

@@ -68,6 +68,14 @@ module.exports = function (app) {
         });
     }, apiResponse);
 
+    app.get(baseUrl + ':id/participants', function (req, res, next) {
+        projectRepository.getParticipantsByProjectId(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
     app.post(baseUrl + ':id/participants', function (req, res, next) {
         projectService.addParticipants(req.params.id, req.body, function (err, data) {
             res.data = data;
@@ -82,4 +90,12 @@ module.exports = function (app) {
             next();
         });
     }, apiResponse);
+    app.delete(baseUrl + ':id/admins/:part', function (req, res, next) {
+        projectService.removeAdmins(req.params.id, req.params.part, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
 };
+

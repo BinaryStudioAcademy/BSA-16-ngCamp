@@ -1,0 +1,144 @@
+@import "../../../public/libs/css/generalComponentsStyle.styl"
+.task-wrapper
+	.main-container
+		.wrapper_lable
+			a
+				button()
+				font-size 1.3em
+				text-decoration none
+				padding 0 0.3em
+				max-width 50px
+		.wrapper_prop
+			font-family "Montserrat"
+			font-size 1em
+			margin-top 25px
+			.prop_lable
+				text-align left
+				font-size 1.7em
+				padding-left 2em
+				margin-bottom 20px
+				color shadow-grey
+			.prop_editor
+				.tasktitle
+					text-align center
+					color main-text-color
+					font-size 1.5em
+					width 80%
+					padding 5px
+					outline none
+					border none
+					border 1px solid border-grey
+					border-radius 7px
+				.toDo
+					border 1px solid border-grey
+					padding 5px
+					padding-bottom 20px
+					border-radius 7px
+					margin-bottom 20px
+					align-items center
+					.toDo_lable
+						text-align left
+						font-size 1.4em
+						color shadow-grey
+					.deletetodo
+						text-align right
+						font-size 1.4em
+						color #ec644b
+						cursor pointer
+						display flex
+						align-items center
+						justify-content flex-end
+						span
+							margin-left -60px
+							opacity 0
+							transition all 0.2s ease-out
+						&:hover
+							span
+								margin-left 5px
+								opacity 1
+					.toDo_title
+						input
+							text-align center
+							color main-text-color
+							font-size 1.3em
+							width 80%
+							padding 5px
+							outline none
+							border none
+							border 1px solid border-grey
+							border-radius 7px
+							margin 20px 0
+							
+			.participants
+				font-size 1.2em
+				padding 0 4em
+				display flex
+				justify-content center
+				flex-wrap wrap
+				.participant
+					background-color #008cba
+					color white
+					border-radius 12px
+					margin 10px 2px
+					cursor pointer
+					display inline-flex
+					justify-content center
+					align-items center
+					text-decoration none
+					text-align center
+					padding 7px 24px
+					span
+						margin 0 5px
+			.addButton
+				button()
+				margin 25px auto
+				font-size 1.2em
+				padding 0 0.5em
+				display flex
+				flex-wrap nowrap
+				justify-content space-between
+				i
+					display inline
+					font-size 1.2em
+					margin-right 0.5em
+					span
+						display: -moz-inline-stack;
+						display inline
+						font-family "Montserrat"
+						font-family 1em
+						margin-left 0.5em
+		.wrapper_save
+			margin-top 50px
+			button
+				button()
+				background-color #1E824C
+				font-size 1.5em
+				margin 25px auto
+				font-size 1.5em
+				padding 0 0.5em
+				display flex
+				flex-wrap nowrap
+				justify-content space-between	
+				i
+					display inline
+					font-size 1.2em
+					margin-right 0.5em
+					span
+						display: -moz-inline-stack;
+						display inline
+						font-family "Montserrat"
+						font-family 1em
+						margin-left 0.5em	
+		.lastblock
+			&:after
+				content ''
+				height 1px
+				width 80%
+				display block
+				background-image -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0))
+				background-image -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0))
+				background-image -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0))
+				background-image -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0))
+		
+				
+					

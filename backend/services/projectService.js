@@ -9,6 +9,8 @@ ProjectService.prototype.updateItem = updateItem;
 ProjectService.prototype.deleteItem = deleteItem;
 ProjectService.prototype.addParticipants = addParticipants;
 ProjectService.prototype.removeParticipants = removeParticipants;
+ProjectService.prototype.addAdmins = addAdmins;
+ProjectService.prototype.removeAdmins = removeAdmins;
 ProjectService.prototype.getProjectsForCurrentUser = getProjectsForCurrentUser;
 
 function addItem(body, callback) {
@@ -42,6 +44,18 @@ function addParticipants(id, body, callback) {
 function removeParticipants(id, body, callback) {
     if (validationService.manageProjectParticipants(body, callback)) {
         projectRepository.removeParticipants(id, body, callback);
+    }
+}
+
+function addAdmins(id, body, callback) {
+    if (validationService.manageProjectAdmins(body, callback)) {
+        projectRepository.addAdmin(id, body, callback);
+    }
+}
+
+function removeAdmins(id, body, callback) {
+    if (validationService.manageProjectAdmins(body, callback)) {
+        projectRepository.removeAdmin(id, body, callback);
     }
 }
 

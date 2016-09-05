@@ -7,6 +7,8 @@
 		h1
 			float left
 			display block
+		padding-left 5%
+		padding-right 5%
 		.cell
 			display flex
 			margin 10px 0
@@ -61,14 +63,14 @@
 					user-select none
 					&:hover
 						box-shadow: 0 0 7px #3498db
-					input
+					.date
 						background-color none
 						border none
 						outline none
 						padding 8px
 						cursor pointer
 						user-select none
-						font-family "Open Sans"
+						font-family "Montserrat"
 						min-width 25%
 					i
 						font-size 28px
@@ -81,6 +83,18 @@
 					button()
 					margin-top 30px
 					padding 0 45px
+			.addUser
+				display flex
+				align-items center
+				justify-content center
+				text-decoration none
+				lable
+					font-family "Open Sans"
+					font-size 18px
+					margin-left 5px
+					line-height 24px
+				i
+					font-size 24px
 			.projParticipants
 				width 100%
 				display block-flex

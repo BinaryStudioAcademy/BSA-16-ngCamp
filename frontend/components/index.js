@@ -1,142 +1,45 @@
-import {
-    app
-}
-from '../index';
-import {
-    notFoundComponent
-}
-from './notFound/notFound.component.js';
-import {
-    userComponent
-}
-from './user/user.component.js';
-import {
-    trashComponent
-}
-from './trash/trash.component.js';
-import {
-    rootComponent
-}
-from './root/root.component.js';
-import {
-    mainComponent
-}
-from './main/main.component.js';
-import {
-    messageBoardComponent
-}
-from './messageBoard/messageBoard.component.js';
-import {
-    filesComponent
-}
-from './files/files.component.js';
-import {
-    postMessageComponent
-}
-from './postMessage/postMessage.component.js';
-import {
-    editMessageComponent
-}
-from './editMessage/editMessage.component.js';
-import {
-    projectComponent
-}
-from './project/project.component.js';
-import {
-    checkinsComponent
-}
-from './checkins/checkins.component.js';
-import {
-    checkinsCreateComponent
-}
-from './checkinsCreate/checkinsCreate.component.js';
-import {
-    menuComponent
-}
-from './menu/menu.component';
-import {
-    headerComponent
-}
-from './header/header.component';
-import {
-    commentsComponent
-}
-from "./comments/comments.component";
-import {
-    reportsMainComponent
-}
-from "./reports/reportsMain.component";
-import {
-    reportsComponent
-}
-from "./reports/reports.component";
-import {
-    reportAddComponent
-}
-from "./reports/reportAdd.component";
-import {
-    reportEditComponent
-}
-from "./reports/reportEdit.component";
-import {
-    eventsComponent
-}
-from "./events/events.component.js";
-import {
-    eventListComponent
-}
-from "./events/eventList.component.js";
-import {
-    eventEditComponent
-}
-from "./events/eventEdit.component.js";
-import {
-    tasksComponent
-}
-from "./tasks/tasks.component.js";
-import {
-    draftsComponent
-}
-from "./drafts/drafts.component.js";
-import {
-    testComponent
-}
-from "./test/test.component.js";
+import {app} from '../index';
+import {notFoundComponent} from './notFound/notFound.component.js';
+import {userComponent} from './user/user.component.js';
+import {trashComponent} from './trash/trash.component.js';
+import {rootComponent} from './root/root.component.js';
+import {mainComponent} from './main/main.component.js';
+import {messageBoardComponent} from './messageBoard/messageBoard.component.js';
+import {filesComponent} from './files/files.component.js';
+import {postMessageComponent} from './postMessage/postMessage.component.js';
+import {editMessageComponent} from './editMessage/editMessage.component.js';
+import {projectComponent} from './project/project.component.js';
+import {checkinsComponent} from './checkins/checkins.component.js';
+import {checkinsCreateComponent} from './checkins/checkinsCreate.component.js';
+import {menuComponent} from './menu/menu.component';
+import {headerComponent} from './header/header.component';
+import {commentsComponent} from "./comments/comments.component";
+import {reportsMainComponent} from "./reports/reportsMain.component";
+import {reportsComponent} from "./reports/reports.component";
+import {reportAddComponent} from "./reports/reportAdd.component";
+import {reportEditComponent} from "./reports/reportEdit.component";
+import {eventsComponent} from "./events/events.component.js";
+import {eventListComponent} from "./events/eventList.component.js";
+import {eventEditComponent} from "./events/eventEdit.component.js";
+import {tasksRootComponent} from "./tasks/tasksRoot.component.js";
+import {tasksComponent} from "./tasks/tasks.component.js";
+import {taskCreateEditComponent} from "./tasks/taskCreateEdit.component.js";
+import {draftsComponent} from "./drafts/drafts.component.js";
+import {testComponent} from "./test/test.component.js";
+import {checkinsInfoComponent} from "./checkins/checkinsInfo.component.js";
+import {eventCreateComponent} from "./events/eventCreate.component.js";
+import {checkinsWrapperComponent} from "./checkinsWrapper/checkinsWrapper.component.js";
+import {calendarDailytComponent} from "./calendar/calendarDaily/calendarDaily.component.js";
+import {createProjectComponent} from "./createProject/createProject.component.js";
+import {messageCommentsComponent} from "./comments/messageComments.component.js";
+import {calendarMonthComponent} from "./calendar/calendarMonth/calendarMonth.component.js";
+import {primaryCalendarComponent} from "./calendar/primaryCalendar/primaryCalendar.component.js";
+import {checkinsEditComponent} from "./checkins/checkinsEdit.component.js";
+import {checkinsListComponent} from "./checkins/checkinsList.component.js";
+import {checkinsAnswerComponent} from "./checkins/checkinsAnswer.component.js";
 
-import {
-    checkinsInfoComponent
-}
-from "./checkinsInfo/checkinsInfo.component.js";
 
-import {
-    eventCreateComponent
-}
-from "./events/eventCreate.component.js";
 
-import {
-    checkinsWrapperComponent
-}
-from "./checkinsWrapper/checkinsWrapper.component.js";
-
-import {
-    calendarDailytComponent
-}
-from "./calendar/calendarDaily/calendarDaily.component.js";
-
-import {
-    createProjectComponent
-}
-from "./createProject/createProject.component.js";
-
-import {
-    messageCommentsComponent
-}
-from "./comments/messageComments.component.js";
-
-import {
-    calendarMonthComponent
-}
-from "./calendar/calendarMonth/calendarMonth.component.js";
 
 
 app.component(messageBoardComponent.selector, messageBoardComponent);
@@ -171,3 +74,11 @@ app.component(checkinsWrapperComponent.selector, checkinsWrapperComponent);
 app.component(calendarDailytComponent.selector, calendarDailytComponent);
 app.component(messageCommentsComponent.selector, messageCommentsComponent);
 app.component(calendarMonthComponent.selector, calendarMonthComponent);
+app.component(taskCreateEditComponent.selector, taskCreateEditComponent);
+app.component(tasksRootComponent.selector, tasksRootComponent);
+app.component(primaryCalendarComponent.selector, primaryCalendarComponent);
+app.component(checkinsEditComponent.selector, checkinsEditComponent);
+app.component(checkinsListComponent.selector, checkinsListComponent);
+app.component(checkinsAnswerComponent.selector, checkinsAnswerComponent);
+
+

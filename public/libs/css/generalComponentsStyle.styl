@@ -4,8 +4,6 @@ shadow-grey = #808080
 main-text-color = #212121
 add-text-color = #F2992E
 main-blue = #1d8dbf
-html
-    overflow-y scroll
 button()
     box-shadow 0px 0px 10px 0px grey
     display flex
@@ -21,13 +19,14 @@ button()
     height 50px
     transition 0.2s
     cursor pointer
+    border none
     &:hover
         box-shadow 0px 0px 0px 1px white, 0px 0px 0px 4px main-blue
     &:active
         box-shadow 0px 0px 0px 0.5px white, 0px 0px 0px 2px main-blue, 0px 0px 5px 0px white inset
 main-component()
-    padding 1%
-    border 1px solid border-grey
+    padding 1em
+    // border 1px solid border-grey
     border-radius 10px
     background-color #F5F5F5 
     box-shadow 0px 5px 20px 2px  shadow-grey

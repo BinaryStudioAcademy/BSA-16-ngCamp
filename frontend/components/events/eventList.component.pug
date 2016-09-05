@@ -1,12 +1,12 @@
 .events-wrapper
-    section.row.center-xs
-        section.col-xs-8.events-holder
-            section.row.events-header.center-xs
+    .row.center-xs
+        .col-xs-8.events-holder
+            .row.events-header.center-xs
                 span.col-xs-11 Events
-            section.row
-                section.button.comment-button.col-xs-4.col-xs-offset-4(ng-link='["CreateEvent"]') Set up event
+            .row
+                .button.comment-button.col-xs-4.col-xs-offset-4(ng-link='["CreateEvent"]') Set up event
             .choose-event-container
-                section.row.choose-event.center-xs
+                .row.choose-event.center-xs
                     row.middle-xs
                         .show-events
                             h2 Show all events:
@@ -29,13 +29,13 @@
                                     span.input-group-btn
                                         button.btn.btn-default(type='button', ng-click='vm.open2()')
                                             i.fa.fa-calendar(aria-hidden='true')  
-                section.row
-                    section.button.comment-button.col-xs-4.col-xs-offset-4(ng-click="vm.filter()") Filter   
+                .row
+                    .button.comment-button.col-xs-4.col-xs-offset-4(ng-click="vm.filter()") Filter   
                             hr                       
-            section.events-items(ng-repeat="event in vm.userEvents track by $index")
+            .events-items(ng-repeat="event in vm.userEvents track by $index")
                 .event
-                    .section.row.event-header
-                        section.row.col-xs-6.event-name
+                    .row.event-header
+                        .row.col-xs-6.event-name
                             a(ng-link="[\'Edit event\', {id: event._id}]")
                                 h2  {{event.title}}  
                             i.fa.fa-folder-open-o.fa-2x

@@ -1,0 +1,32 @@
+.checkins-setup-wrapper
+    .checkins-setup
+        .header-setup
+            .close-btn
+                a(ng-link='["Checkins List"]')
+                    i.fa.fa-times.fa-2x
+            h3 What question do you want to ask?
+            input.question(type='text', ng-model="CheckCr.question" placeholder='Type your question...')
+        .main-setup
+            h3 Who do you want to ask?
+            section.use-button
+                div(ng-click='CheckCr.toggleAll()') Ask all
+            ul.user-list
+                li.list(ng-repeat="part in CheckCr.participants track by $index")
+                    label.checkbox(ng-click="CheckCr.toggleChekin()")
+                        span  {{part.lastName +' '+  part.firstName}}
+                        input(type='checkbox', ng-checked="CheckCr.parties.indexOf(part._id) > -1",ng-click="CheckCr.toggleChekin(part._id)" )
+              
+        .footer-setup
+            h3 How frequently should we ask it?
+            .schedule
+                select#schedule-first(ng-model='CheckCr.selectedFrequency', ng-options='item for item in CheckCr.frequency',
+                 ng-selected="CheckCr.frequency[0]")
+                
+                select#schedule-second(ng-model='CheckCr.selectedTime', ng-options='item for item in CheckCr.time',
+                ng-selected='CheckCr.time[0]')
+
+                a(ng-click="CheckCr.save()" )
+                    i.fa.fa-floppy-o.fa-3x
+
+                //div.use-button
+                //    div.save-button(ng-click="CheckCr.save()" ng-link='["Checkins List"]') Save

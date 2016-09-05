@@ -1,5 +1,5 @@
 .projectwrapper
-  section.row.center-xs
+  .row.center-xs
     .main.col-xs-8
       h1 Project Settings
       .changeProj
@@ -8,21 +8,28 @@
         select(ng-if="!proj.flag",ng-model="proj.currentProjectId",ng-change="proj.setProject()")
           option(value = "" disable) Not selected
           option(ng-repeat="project in proj.userProjects track by $index" value='{{project._id}}') {{project.title}}
-      form(name='projectEdit',ng-if="proj.currentProjectId!=''").row.center-xs
+      form(name='projectEdit',ng-if="proj.currentProjectId!=''",novalidate).row.center-xs
         .wrap
           label
-            p Name
-            i.fa.fa-pencil(ng-click="proj.editName=true",ng-if="!proj.editName")
-            i.fa.fa-check(ng-click="proj.edit('title')",ng-if="proj.editName")
+            p Title
+            i.fa.fa-pencil(ng-click="proj.editName=true",ng-if="!proj.editName && proj.isUserAdmin")
+            i.fa.fa-check(ng-click="proj.edit('title',projectEdit.title.$valid)",ng-if="proj.editName")
           p(ng-if="!proj.editName") {{proj.currentProject.title}}
-          input(type="text",ng-model="proj.currentProject.title",ng-if="proj.editName")
+          input(name="title",type="text",ng-model="proj.currentProject.title",ng-if="proj.editName",required,ng-minlength="3" ng-maxlength="30")
+          p(ng-show="projectEdit.title.$invalid" class="help-block",ng-if="proj.editName") Title is required.
+          p(ng-show="projectEdit.title.$error.minlength" class="help-block",ng-if="proj.editName") Title is too short.
+          p(ng-show="projectEdit.title.$error.maxlength" class="help-block",ng-if="proj.editName") Title is too long.
         .wrap
           label
             p Description
-            i.fa.fa-pencil(ng-click="proj.editDesc=true",ng-if="!proj.editDesc")
-            i.fa.fa-check(ng-click="proj.edit('description')",ng-if="proj.editDesc")
-          p.description(ng-if="!proj.editDesc") {{proj.currentProject.description}}
-          textarea(type="text",ng-model="proj.currentProject.description",ng-if="proj.editDesc")
+            i.fa.fa-pencil(ng-click="proj.editDesc=true",ng-if="!proj.editDesc && proj.isUserAdmin")
+            i.fa.fa-check(ng-click="proj.edit('description',projectEdit.text.$valid)",ng-if="proj.editDesc")
+          p.description(ng-if="!proj.editDesc",ng-bind-html="proj.currentProject.description") 
+          input(ckeditor,type="text",name="text" , cols='25', rows='10',ng-model="proj.currentProject.description",ng-if="proj.editDesc",required,ng-minlength="10" ng-maxlength="300")
+          hr
+          p(ng-show="projectEdit.text.$invalid" class="help-block",ng-if="proj.editDesc") Description is required.
+          p(ng-show="projectEdit.text.$error.minlength" class="help-block",ng-if="proj.editDesc") Description is too short.
+          p(ng-show="projectEdit.text.$error.maxlength" class="help-block",ng-if="proj.editDesc") Description is too long.
         .wrap
           label
             p Participants:
@@ -31,7 +38,7 @@
               a.participant
                 i.fa.fa-user.fa-2x
                 span {{participator.firstName}} {{participator.lastName}}
-                i.fa.fa-times.fa-fw(ng-click="proj.removeParticipant(participator._id)")
+                i.fa.fa-times.fa-fw(ng-click="proj.removeParticipant(participator._id)",ng-if="proj.projectParticipants.length>1")
             
             a.addUser(ng-click="proj.addParticipatorFlag=true;")
               i.fa.fa-plus(aria-hidden='true')
@@ -41,15 +48,27 @@
               option(ng-repeat="participator in proj.users track by $index",value="{{participator._id}}") {{participator.email}} 
         .wrap
           label
+            p Admins:
+          .participants(ng-model="proj.projectAdmins")
+            .btn-group.open(ng-repeat="admin in proj.projectAdmins track by $index") 
+              a.participant
+                i.fa.fa-user.fa-2x
+                span {{admin.firstName}} {{admin.lastName}}
+                i.fa.fa-times.fa-fw(ng-click="proj.removeAdmin(admin._id)",ng-if="proj.projectAdmins.length>1")
+            
+            a.addUser(ng-click="proj.addAdminFlag=true;",ng-if="proj.isUserAdmin")
+              i.fa.fa-plus(aria-hidden='true')
+              lable Add Participant
+            select(ng-if="proj.addAdminFlag",ng-model="proj.adminToAdd",ng-change="proj.addAdmin();")
+              option(value="") Select User to Add
+              option(ng-repeat="participator in proj.users track by $index",value="{{participator._id}}") {{participator.email}} 
+        .wrap
+          label
             p  Deadline:
-            i.fa.fa-pencil(ng-click="proj.editDeadline=true",ng-if="!proj.editDeadline")
+            i.fa.fa-pencil(ng-click="proj.editDeadline=true",ng-if="!proj.editDeadline && proj.isUserAdmin")
             i.fa.fa-check(ng-click="proj.edit('deadline')",ng-if="proj.editDeadline")
-          p(ng-if="!proj.editDeadline") {{proj.localDate(proj.currentProject.endDate)}}
-          .input-group.dateEditor(ng-if="proj.editDeadline")
-              input.date(type='text', uib-datepicker-popup='dd.MM.yyyy', ng-model='proj.dtDeadline', is-open='proj.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{proj.localDate(proj.dtDeadline)}}")
-              a(type='button', ng-click='proj.open()')
-                i.fa.fa-calendar(aria-hidden='true')
-        .wrap.last
+          p(uib-datepicker-popup='{{format}}', datepicker-options = 'proj.datePickerOpt', ng-model='proj.dtDeadline', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',is-open = 'proj.editDeadline', ng-change="proj.edit('deadline')") {{proj.dtDeadline | date: "dd.MM.yyyy"}}
+        .wrap.last(ng-if="proj.isUserAdmin")
           .delete_button
             button.delete(ng-click="proj.modalToggle()") Delete project
           .confirming_modal(ng-if="proj.modalFlag")

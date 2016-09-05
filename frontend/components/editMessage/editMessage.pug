@@ -4,19 +4,27 @@ section.post-message-wrapper
     div.fa.fa-close(ng-link='["MsgBoard"]')
       //img(ng-link='["MsgBoard"]', align='top', src='https://cdn3.iconfinder.com/data/icons/simple-files-1/128/No-128.png', alt='exit')
   hr
-  h1 Title
-  input(ng-model="editCtrl.draft.title")
-  h1 Description
-  textarea(ckeditor, cols='30', rows='10',ng-model="editCtrl.draft.description")  
-    //form#uploadForm(action='/postMessage', method='post', enctype='multipart/form-data')
-    //        input(type='file', name='message')
-    //        input(type='submit', value='Upload')
-  //section.draft-post
-  //  select(name='drafts')
-  //    option(value='draft1') draft1
-  //    option(value='draft2') draft2
-  //    option(value='draft3') draft3
-  .sendButtons
-    div.postBtn(ng-click="editCtrl.edit()") Edit
-    div.postBtn(ng-if="editCtrl.draft.isDraft",ng-click="editCtrl.postDraft()") Post on message board
-    button.delete(ng-click="editCtrl.delete()",ng-if="editCtrl.draft.author === editCtrl.window._injectedData.userId") Delete
+  form(name="message",novalidate)
+    h1 Title
+    input(name="title",type="text",ng-model="editCtrl.draft.title",required,ng-minlength="3" ng-maxlength="30")
+    p(ng-show="message.title.$invalid" class="help-block") Title is required.
+    p(ng-show="message.title.$error.minlength" class="help-block") Title is too short.
+    p(ng-show="message.title.$error.maxlength" class="help-block") Title is too long
+    h1 Description
+    input(ckeditor,type="text",name="text" , cols='30', rows='10',ng-model="editCtrl.draft.description",required,ng-minlength="10" ng-maxlength="300")
+    hr
+    p(ng-show="message.text.$invalid" class="help-block") Description is required.
+    p(ng-show="message.text.$error.minlength" class="help-block") Description is too short.
+    p(ng-show="message.text.$error.maxlength" class="help-block") Description is too long.
+      //form#uploadForm(action='/postMessage', method='post', enctype='multipart/form-data')
+      //        input(type='file', name='message')
+      //        input(type='submit', value='Upload')
+    //section.draft-post
+    //  select(name='drafts')
+    //    option(value='draft1') draft1
+    //    option(value='draft2') draft2
+    //    option(value='draft3') draft3
+    .sendButtons
+      div.postBtn(ng-click="editCtrl.edit(message.$valid)") Edit
+      div.postBtn(ng-if="editCtrl.draft.isDraft",ng-click="editCtrl.postDraft(message.$valid)") Post on message board
+      button.delete(ng-click="editCtrl.delete()",ng-if="editCtrl.draft.author === editCtrl.window._injectedData.userId") Delete
