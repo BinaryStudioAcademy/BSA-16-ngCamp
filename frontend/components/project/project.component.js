@@ -157,7 +157,7 @@ class ProjectComponentController {
     edit(prop, valid) {
         let self = this;
         console.log(valid);
-        if (valid) {
+        if (valid || prop === "deadline") {
             switch (prop) {
                 case "title":
                     {

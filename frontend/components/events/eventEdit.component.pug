@@ -16,7 +16,7 @@
         .date
           .dataPicker
             h1 Start Date
-            p {{$ctrl.curEvent.startDate}}
+            p {{$ctrl.curEvent.startDate | date:"dd/MM/yyyy"}}
             i.fa.fa-pencil(ng-click="$ctrl.editStartDate=true",ng-if="!$ctrl.editStartDate")
             i.fa.fa-check(ng-click="$ctrl.edit('startDate')",ng-if="$ctrl.editStartDate")
             .picker(ng-if="$ctrl.editStartDate")
@@ -24,7 +24,7 @@
               a.btn.btn-default(type='button', ng-click='$ctrl.open()')
                 i.fa.fa-calendar(aria-hidden='true')
             h1 End Date 
-            p {{$ctrl.curEvent.endDate}}
+            p {{$ctrl.curEvent.endDate | date:"dd/MM/yyyy"}}
             i.fa.fa-pencil(ng-click="$ctrl.editEndDate=true",ng-if="!$ctrl.editEndDate")
             i.fa.fa-check(ng-click="$ctrl.edit('endDate')",ng-if="$ctrl.editEndDate")
             .picker(ng-if="$ctrl.editEndDate")

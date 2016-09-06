@@ -11,18 +11,18 @@ class readMoreController {
 const readMoreDirective = {
     template: require('./readMore.pug')(),
     name: 'readMore',
+    restrict: 'AE',
     controller: readMoreController,
     controllerAs: 'readmore',
     transclude: true,
-    scope: true,
+    scope: {'ngBindHtml': '=ngBindHtml'},
     link: link
 };
 
 function link(scope, element, attrs, ctrl, transclude) {
     const length = attrs.length || 300;
-
     transclude(scope, function (clone, scope) {
-        ctrl.text = clone.text();
+        ctrl.text = scope.ngBindHtml;
     });
 
     if (ctrl.text.length > length) {
