@@ -13,6 +13,10 @@ class MenuComponentController {
           	x.className = "side-menu";
     	}
     }
+    hideMenu(){
+        let x = document.getElementById("side-menu");
+        x.className += "hide";
+    }
 }
 
 MenuComponentController.$inject = ["httpGeneral"];

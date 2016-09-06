@@ -20,10 +20,10 @@ class messageBoardController {
                     self.messages.push(res[msg]);
                     self.messages[i].showFull = false;
                     let len = self.messages[i].description.length;
-                    if (self.messages[i].description.length > 300) {
+                    if (self.messages[i].description.length > 400) {
                         self.messages[i].isBigText = true;
-                        self.messages[i].firstPart = self.messages[i].description.substring(0, 300);
-                        self.messages[i].secondPart = self.messages[i].description.substring(301, self.messages[i].description.length);
+                        self.messages[i].firstPart = self.messages[i].description.substring(0, 400);
+                        self.messages[i].secondPart = self.messages[i].description.substring(401, self.messages[i].description.length);
                     } else {
                         self.messages[i].isBigText = false;
                     }

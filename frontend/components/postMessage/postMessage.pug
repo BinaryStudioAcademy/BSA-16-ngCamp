@@ -11,7 +11,7 @@ section.post-message-wrapper
     p(ng-show="message.title.$error.minlength" class="help-block") Title is too short.
     p(ng-show="message.title.$error.maxlength" class="help-block") Title is too long.
     h1 Description
-    input(ckeditor,type="text",name="text" , cols='30', rows='10',ng-model="postCtrl.desc",required,ng-minlength="10" ng-maxlength="600")
+    input(ckeditor,type="text",name="text" , cols='30', rows='10',ng-model="postCtrl.desc",required,ng-minlength="10" ng-maxlength="2000")
     hr
     p(ng-show="message.text.$invalid" class="help-block") Description is required.
     p(ng-show="message.text.$error.minlength" class="help-block") Description is too short.
