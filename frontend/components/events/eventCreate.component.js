@@ -36,11 +36,16 @@ class eventEditController {
     save(valid) {
         let self = this;
         let emptyParticipants = false;
+        let badDate = false;
         if (self.participants.length === 0){
             self.popupNotifications.notifyError("Participants is empty");
             emptyParticipants = true;
         }
-        if (!emptyParticipants && valid){
+        if (self.startDate>self.endDate || self.startDate < new Date() || self.endDate < new Date()){
+            self.popupNotifications.notifyError('You set date incorrectly');
+            badDate = true;
+        }
+        if (!emptyParticipants && valid && !badDate){
         self.httpGeneral.sendRequest({
             type: "POST",
             url: "api/event/",
