@@ -48,7 +48,6 @@ function setObjPropsById(id, setObj, callback) {
         $set: setObj
     });
     query.exec(callback);
-    console.log(setObj);
 }
 
 function findByObject(obj, populate, select, callback) {

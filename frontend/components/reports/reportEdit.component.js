@@ -43,10 +43,12 @@ class ReportEditComponentController {
                 type: "GET",
                 url: "api/projects/" + vm.projectId + "/users"
             }).then(function (res) {
+                console.log(res);
                 vm._usersData = res.participants;
-                for (let i = 0; i < res.length; i++) {
+                for (let i = 0; i < res.participants.length; i++) {
                     vm.userSamples[i] = (res.participants[i].firstName || "") + " " + (res.participants[i].secondtName || "");
                 }
+
                 vm.userSamples.unshift("All");
                 vm.userSamples = vm.userSamples.filter(function (el) {
                     return vm.users.indexOf(el) < 0;
