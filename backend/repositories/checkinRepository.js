@@ -14,8 +14,7 @@ CheckinRepository.prototype.getAll = getAll;
 CheckinRepository.prototype.getByIdWithParticipants = getByIdWithParticipants;
 CheckinRepository.prototype.getByAnswerToken = getByAnswerToken;
 CheckinRepository.prototype.updateAnswerItem = updateAnswerItem;
-
-
+CheckinRepository.prototype.getAnswersById = getAnswersById;
 
 
 function getByIdWithParticipants(id, callback){
@@ -65,6 +64,15 @@ function updateAnswerItem(id, data, callback) {
             'answers.$.answer': data.answer
         }
     });
+    query.exec(callback);
+}
+
+function getAnswersById(id, callback) {
+    var query = Checkin.find({
+        _id: id
+    }, {
+        answers: 1
+    })
     query.exec(callback);
 }
 

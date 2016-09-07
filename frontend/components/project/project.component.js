@@ -156,8 +156,7 @@ class ProjectComponentController {
 
     edit(prop, valid) {
         let self = this;
-        console.log(valid);
-        if (valid) {
+        if (valid || prop === "deadline") {
             switch (prop) {
                 case "title":
                     {
@@ -170,6 +169,7 @@ class ProjectComponentController {
                             }
                         }).then(function(res) {
                             console.log("Succesfull edit title");
+                            self.popupNotifications.notifySuccess("You change title Succesfully");
                         });
                         break;
                     }
@@ -184,6 +184,7 @@ class ProjectComponentController {
                             }
                         }).then(function(res) {
                             console.log("Succesfull edit description");
+                            self.popupNotifications.notifySuccess("You change description Succesfully");
                         });
                         break;
                     }
@@ -198,6 +199,7 @@ class ProjectComponentController {
                             }
                         }).then(function(res) {
                             console.log("Succesfull edit deadline");
+                            self.popupNotifications.notifySuccess("You change deadline Succesfully");
                         });
                         this.$onInit();
                         break;

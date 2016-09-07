@@ -1,7 +1,7 @@
 ﻿var randomToken = require('random-token');
-var tokens = require('./tokens');
+var tokens = require('./tokens').mySet;
 
-function getUniqueToken(){
+function getUniqueToken() {
     var token = randomToken(16);
 
     for (i = 0; i < 5; i++) {

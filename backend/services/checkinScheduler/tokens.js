@@ -1,3 +1,29 @@
-﻿var mySet = new Set();
+﻿var checkinRepository = require('../../repositories/checkinRepository');
+var mySet = new Set();
 
-module.exports = mySet;
+
+function getTokens() {
+    if (mySet.length == 0) {
+        checkinRepository.getAnswersById(id, function (err, data) {
+            if (err) {
+                console.log(err)
+            } else {
+                data.forEach(function (answer) {
+                    mySet.add(answer.token);
+                })
+            }
+        })
+    }
+}
+
+function clearTokens(){
+    mySet.clear();
+    console.log('cleared');
+}
+
+module.exports = {
+    mySet,
+    getTokens,
+    clearTokens
+}
+
