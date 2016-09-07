@@ -47,7 +47,8 @@ class taskCreateEditController {
 				title: "",
 				description: "",
 				participants: [],
-				toDos: []
+				toDos: [],
+				files: []
 			};
 		};
 	}
@@ -64,7 +65,6 @@ class taskCreateEditController {
 		};
 		let self = this.parentScope;
 		let repeat = self.task.participants.find(filterArrayUsers);
-		console.log(repeat);
 
 		if(repeat){
 			self.popup.notifyError('already added!');
@@ -113,7 +113,14 @@ class taskCreateEditController {
 
 	saveTask(){
 		let self = this;
+		let errTaskTitle;
 		self.task.participants = self.task.participants.map((elem) => {return elem._id;});
+		self.task.files = self.task.files.map((elem) => {return elem._id;});
+		self.task.toDos.forEach((todo)=>{
+			if(!todo.title){
+				errTaskTitle = true;
+			};
+		});
 		let taskUpdateReq = (self.editMode) ? {
 			type: "PUT",
 			url: `/api/task/${self.task._id}`,
@@ -129,6 +136,7 @@ class taskCreateEditController {
 					title: self.task.title,
 					description: self.task.description,
 					participants: self.task.participants,
+					files: self.task.files,
 					author: window._injectedData.userId,
 					isFinished: false,
 					archived: false,
@@ -140,12 +148,18 @@ class taskCreateEditController {
 				self.popup.notifyError(err);
 			}
 		};
-		self.http.sendRequest(taskUpdateReq).then(function(res){
-			console.log(res);
-			if(res.ok){
+		if(!self.task.title){
+			self.popup.notifyError('Task title reuired');
+		}else if(errTaskTitle){
+			self.popup.notifyError('ToDo title required');
+		}else{
+			self.http.sendRequest(taskUpdateReq).then(function(res){
+				if(res.ok){
 				self.location.path('/tasks');
 			};
 		});
+		};
+
 	}
 
 

@@ -5,6 +5,9 @@ var FileSchema = new Schema({
 	url: String,
 	description: String,
 	creationDate: Date,
+    type: String,
+    name: String,
+    size: Number,
 	allowedTo: [{
 		type: Schema.Types.ObjectId,
 		ref: 'User'

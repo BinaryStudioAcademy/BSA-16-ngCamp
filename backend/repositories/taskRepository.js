@@ -27,6 +27,8 @@ function getAllTasksInProject(id,callback){
 		path: "participants"
 	}).populate({
 		path: "author"
+	}).populate({
+		path: "files"
 	});
 	query.exec(callback);
 }
@@ -39,6 +41,8 @@ function getPopulatedTask(id,callback){
 		path: "toDos"
 	}).populate({
 		path: "participants"
+	}).populate({
+		path: "files"
 	});
 	query.exec(callback);
 }

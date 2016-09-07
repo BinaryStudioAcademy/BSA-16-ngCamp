@@ -19,7 +19,6 @@ class TasksComponentController {
 			url: `api/task/allFromProject/${window._injectedData.currentProject}`,
 			errorCallback(){
 				self.contentFlag = false;
-				self.popup.notifyError('Tasks download Error!');
 			}
 		};
 		let projReq = {

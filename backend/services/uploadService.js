@@ -3,7 +3,7 @@ var userRepository = require('../repositories/userRepository'),
     fs = require('fs'),
     path = require('path');
 
-var rootPath = path.resolve(__dirname, '/../../', 'files');
+var rootPath = path.resolve(__dirname+'/../../'+'files');
 
 
 function UploadService() {
@@ -35,26 +35,23 @@ function saveModel(data, callback){
     fileRepository.add(data, callback);
 }
 
-function saveFile(res, file, desc, entity) {
-    var projectId = "0100101"; // need to remove this hardcode when models will be available from views
+function saveFile(file, projectId, entity, callback) {
     var filePath = rootPath + '/' + projectId + '/' + entity + "/";
-
     if (checkDir(filePath) && fs.existsSync(filePath)) {
         var fileUrl = path.resolve(filePath, './', file.name);
         file.mv(fileUrl, function (err) {
             if (err) {
-                res.status(500).send(err);
-            }
-            else {
-                res.send('File uploaded!');
-            }
+                callback(err);
+            };
         });
             var data = {
                 url: fileUrl,
-                description: desc,
                 creationDate: Date.now(),
+                type: file.mimetype,
+                size: file.data.length,
+                name: file.name
             }
-        saveModel(data);
+        saveModel(data ,callback);
     }
 }
 

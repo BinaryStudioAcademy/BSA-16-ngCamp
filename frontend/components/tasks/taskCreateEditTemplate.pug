@@ -18,6 +18,10 @@ user-list(user-data = 'taskCE.users', select-callback = 'taskCE.onUserSelect', p
 			.prop_editor.col-xs-12
 				textarea(ng-model = "taskCE.task.description" ckeditor)
 		.wrapper_prop.row
+			.prop_lable.col-xs-12 Files:
+			.prop_editor.col-xs-12
+				file-upload(file-list = 'taskCE.task.files')
+		.wrapper_prop.row
 			.prop_lable.col-xs-12 Task participants: 
 			.prop_editor.col-xs-12.participants
 				.participant(ng-repeat = "user in taskCE.task.participants track by $index")

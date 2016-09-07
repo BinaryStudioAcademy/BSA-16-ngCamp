@@ -1,0 +1,8 @@
+.fileupload_wrapper
+	.row.file-Item.start-xs(ng-repeat = 'file in fu.scope.fileList track by $index')
+		.col-xs-10.col-xs-offset-1.file-description {{file.name}} ({{fu.transformSize(file.size)}})
+			i.fa.fa-times(ng-click = 'fu.removeFile($index)')
+	input(id="fileInput", type="file", onchange = 'angular.element(this).scope().fu.uploadFiles(this.files)', style = "display: none;")
+	button.addFile(ng-click = 'fu.triggerFileList()')
+		i.fa(ng-class = "{'fa-spinner fa-spin': fu.uploading, 'fa-plus-square': !fu.uploading}")
+		span add file

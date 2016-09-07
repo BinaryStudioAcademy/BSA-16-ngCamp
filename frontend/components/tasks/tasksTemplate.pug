@@ -4,7 +4,7 @@
 			h1 Tasks
 		.wrapper_createButton.row.center-xs
 			button(ng-link = "['TaskUpdate', {id: 'new'}]") Create new task
-		.wrapper_filters(ng-if = "tasksctrl.contentFlag")
+		.wrapper_filters(ng-if = "tasksctrl.tasks.length")
 			ul.row.center-xs
 				li filter by :
 				li(ng-click = "tasksctrl.changeFilter('free')") free task
@@ -45,8 +45,8 @@
 						i.fa.fa-files-o(aria-hidden = "true")
 						i.fa.fa-pencil(aria-hidden = "true", ng-link = "['TaskUpdate', {id: task._id}]")
 						i.fa.fa-times(aria-hidden = "true", ng-click = "tasksctrl.deleteTask(task._id,$index)")
-		.wrapper_noTask.row.center-xs(ng-if = "!tasksctrl.contentFlag")
+		.wrapper_noTask.row.center-xs(ng-if = "!tasksctrl.tasks.length")
 			.col-xs-12 No tasks in this project
-		.no_result.row.middle-xs.center-xs(ng-hide = "filtredTasks.length" ng-if = "tasksctrl.contentFlag")
+		.no_result.row.middle-xs.center-xs(ng-hide = "filtredTasks.length" ng-if = "tasksctrl.tasks.length")
 			.col-xs-12 No results
 		//- user-list(user-data = `tasksctrl.projUsers`,select-callback = 'tasksctrl.selectUser')
