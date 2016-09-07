@@ -67,7 +67,7 @@ class httpGeneral {
                 } else alert(object.errorMessageToUser);
             }
             if (object.errorCallback != null && object.errorCallback != undefined) {
-                object.errorCallback(error.message);
+                object.errorCallback(error.data);
             }
         }
 

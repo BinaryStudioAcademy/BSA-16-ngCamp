@@ -8,6 +8,7 @@ function ToDoService() {}
 ToDoService.prototype.addItem = addItem;
 ToDoService.prototype.updateToDo = updateToDo;
 ToDoService.prototype.addBatch = addBatch;
+ToDoService.prototype.deleteToDo = deleteToDo;
 
 
 //================================================================ 
@@ -31,7 +32,13 @@ function addBatch(body,callback) {
 }
 //================================================================ 
 function updateToDo(id, body, callback) {
-    toDoRepository.setObjPropsById(id, body, callback);
+    if(validationService.addToDoValidation(body,callback)){
+        toDoRepository.setObjPropsById(id, body, callback);
+    };
+}
+// ===============================================================
+function deleteToDo(id,callback){
+    toDoRepository.deleteById(id,callback);
 }
 
 

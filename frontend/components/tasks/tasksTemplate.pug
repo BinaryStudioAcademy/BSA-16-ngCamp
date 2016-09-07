@@ -4,7 +4,7 @@
 			h1 Tasks
 		.wrapper_createButton.row.center-xs
 			button(ng-link = "['TaskUpdate', {id: 'new'}]") Create new task
-		.wrapper_filters(ng-if = "tasksctrl.contentFlag")
+		.wrapper_filters(ng-if = "tasksctrl.tasks.length")
 			ul.row.center-xs
 				li filter by :
 				li(ng-click = "tasksctrl.changeFilter('free')") free task
@@ -23,7 +23,7 @@
 				.expander.col-xs-3.start-xs(ng-class = "{'no_participants': !task.participants.length,'my_task': !!(task.participants | filter: tasksctrl.currUserId).length}")
 					i.fa(aria-hidden = "true", ng-click = "tasksctrl.expand(task)",ng-class="{'fa-arrow-down': !task.expanded, 'fa-arrow-up': task.expanded}")
 			.task_todos.col-xs-12.animate-expand(ng-if="task.expanded")
-				.row.start-xs
+				.row.start-xs.information_block
 					.task_itemLable.col-xs-offset-1.col-xs-11(ng-if = "task.description") Task description:
 					.task_description.col-xs-offset-1.col-xs-10(ng-if = "task.description" ng-bind-html="task.description")
 					.task_itemLable.col-xs-offset-1.col-xs-10 Participants:
@@ -43,10 +43,10 @@
 					.col-xs-7.end-xs.icon_bar 
 						i.fa.fa-comments-o(aria-hidden = "true")
 						i.fa.fa-files-o(aria-hidden = "true")
-						i.fa.fa-pencil(aria-hidden = "true")
-						i.fa.fa-times(aria-hidden = "true")
-		.wrapper_noTask.row.center-xs(ng-if = "!tasksctrl.contentFlag")
+						i.fa.fa-pencil(aria-hidden = "true", ng-link = "['TaskUpdate', {id: task._id}]")
+						i.fa.fa-times(aria-hidden = "true", ng-click = "tasksctrl.deleteTask(task._id,$index)")
+		.wrapper_noTask.row.center-xs(ng-if = "!tasksctrl.tasks.length")
 			.col-xs-12 No tasks in this project
-		.no_result.row.middle-xs.center-xs(ng-hide = "filtredTasks.length" ng-if = "tasksctrl.contentFlag")
+		.no_result.row.middle-xs.center-xs(ng-hide = "filtredTasks.length" ng-if = "tasksctrl.tasks.length")
 			.col-xs-12 No results
 		//- user-list(user-data = `tasksctrl.projUsers`,select-callback = 'tasksctrl.selectUser')

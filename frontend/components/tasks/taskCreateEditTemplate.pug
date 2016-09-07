@@ -16,7 +16,11 @@ user-list(user-data = 'taskCE.users', select-callback = 'taskCE.onUserSelect', p
 		.wrapper_prop.row
 			.prop_lable.col-xs-12 Task description:
 			.prop_editor.col-xs-12
-				textarea(ng-model = "taskCE.task.description" ckeditor ng-if="true")
+				textarea(ng-model = "taskCE.task.description" ckeditor)
+		.wrapper_prop.row
+			.prop_lable.col-xs-12 Files:
+			.prop_editor.col-xs-12
+				file-upload(file-list = 'taskCE.task.files')
 		.wrapper_prop.row
 			.prop_lable.col-xs-12 Task participants: 
 			.prop_editor.col-xs-12.participants
@@ -31,9 +35,9 @@ user-list(user-data = 'taskCE.users', select-callback = 'taskCE.onUserSelect', p
 		.wrapper_prop.row.center-xs.lastblock
 			.prop_lable.col-xs-12 ToDo:
 			.prop_editor.col-xs-10
-				.toDo.row(ng-repeat = "todo in taskCE.task.toDos track by $index")
+				.toDo.row(ng-repeat = "todo in taskCE.task.toDos | filter: {status: '!removed'} track by $index")
 					.toDo_lable.col-xs-6 ToDo title:
-					.deletetodo.col-xs-6(ng-click = "taskCE.removeToDo($index)")
+					.deletetodo.col-xs-6(ng-click = "taskCE.removeToDo(todo,$index)")
 						i.fa.fa-times.fa-2x
 						span delete
 					.toDo_title.col-xs-12

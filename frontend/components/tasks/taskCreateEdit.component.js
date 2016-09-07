@@ -30,13 +30,25 @@ class taskCreateEditController {
 		let self = this;
 		self.editMode = !(next.params.id === "new");
 		if(self.editMode){
+			let taskReq = {
+				type: "GET",
+				url: `/api/task/populated/${next.params.id}`,
+				errorCallback(err){
+					self.popup.notifyError('Failed to Load Task Data');
+					self.location.path('/tasks');
+				}
+			};
+			self.http.sendRequest(taskReq).then((res) => {
+				self.task = res;
+			});
 
 		}else{
 			self.task = {
 				title: "",
 				description: "",
 				participants: [],
-				toDos: []
+				toDos: [],
+				files: []
 			};
 		};
 	}
@@ -53,7 +65,6 @@ class taskCreateEditController {
 		};
 		let self = this.parentScope;
 		let repeat = self.task.participants.find(filterArrayUsers);
-		console.log(repeat);
 
 		if(repeat){
 			self.popup.notifyError('already added!');
@@ -92,16 +103,31 @@ class taskCreateEditController {
 		},100,false);
 	}
 
-	removeToDo(index){
+	removeToDo(todo,index){
 		let self = this;
-		self.task.toDos.splice(index,1);
+		todo.status = "removed";
+		if(!self.editMode || !todo._id){
+			self.task.toDos.splice(index,1);
+		};	
 	}
 
 	saveTask(){
 		let self = this;
-		let participantsIdList = self.task.participants.map((elem) => {return elem._id;});
+		let errTaskTitle;
+		self.task.participants = self.task.participants.map((elem) => {return elem._id;});
+		self.task.files = self.task.files.map((elem) => {return elem._id;});
+		self.task.toDos.forEach((todo)=>{
+			if(!todo.title){
+				errTaskTitle = true;
+			};
+		});
 		let taskUpdateReq = (self.editMode) ? {
-
+			type: "PUT",
+			url: `/api/task/${self.task._id}`,
+			body: self.task,
+			errorCallback(err){
+				self.popup.notifyError(err);
+			}
 		} : {
 			type: "POST",
 			url: "/api/task/",
@@ -109,7 +135,8 @@ class taskCreateEditController {
 				data: {
 					title: self.task.title,
 					description: self.task.description,
-					participants: participantsIdList,
+					participants: self.task.participants,
+					files: self.task.files,
 					author: window._injectedData.userId,
 					isFinished: false,
 					archived: false,
@@ -121,9 +148,18 @@ class taskCreateEditController {
 				self.popup.notifyError(err);
 			}
 		};
-		self.http.sendRequest(taskUpdateReq).then(function(res){
-            self.location.path('/tasks');
+		if(!self.task.title){
+			self.popup.notifyError('Task title reuired');
+		}else if(errTaskTitle){
+			self.popup.notifyError('ToDo title required');
+		}else{
+			self.http.sendRequest(taskUpdateReq).then(function(res){
+				if(res.ok){
+				self.location.path('/tasks');
+			};
 		});
+		};
+
 	}
 
 

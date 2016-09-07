@@ -19,7 +19,6 @@ class TasksComponentController {
 			url: `api/task/allFromProject/${window._injectedData.currentProject}`,
 			errorCallback(){
 				self.contentFlag = false;
-				self.popup.notifyError('Tasks download Error!');
 			}
 		};
 		let projReq = {
@@ -59,10 +58,12 @@ class TasksComponentController {
 			type: "PUT",
 			url: `/api/task/${task._id}/todo/${todo._id}`,
 			body: {
+				title: todo.title,
+				task: task._id,
 				status: todo.status
 			},
-			errorCallback() {
-				self.popup.notifyError('ToDo update Error!');
+			errorCallback(err) {
+				self.popup.notifyError(err);
 			}
 		};
 		self.calcProgress(task).changeTaskState(task);
@@ -84,10 +85,13 @@ class TasksComponentController {
 				type: "PUT",
 				url: `/api/task/${task._id}`,
 				body: {
+					title: task.title,
+					project: task.project,
+					author: task.author,
 					isFinished: task.isFinished
 				},
-				errorCallback() {
-					self.popup.notifyError('Task update Error!');
+				errorCallback(err) {
+					self.popup.notifyError(err);
 				}	
 			};
 			self.http.sendRequest(statusChangeReq);		
@@ -184,6 +188,22 @@ class TasksComponentController {
 			return !!count;
 
 		}
+	}
+
+	deleteTask(id,index){
+		let self = this;
+		let deleteReq = {
+			type: "DELETE",
+			url: `/api/task/${id}`,
+			errorCallback(err){
+				self.popup.notifyError(err);
+			}
+		};
+		self.http.sendRequest(deleteReq).then(function(res){
+			if(res){
+				self.tasks.splice(index,1);
+			};
+		});
 	}
 
 
