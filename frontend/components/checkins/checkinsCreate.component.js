@@ -56,7 +56,7 @@ class CheckinsCreateComponentController {
                     project: window._injectedData.currentProject,
                     frequency: vm.selectedFrequency,
                     participants: vm.parties,
-                    isTurnedOn: true,
+                    isTurnedOn: false,
                     time: vm.selectedTime
                 }
             }
@@ -86,7 +86,6 @@ class CheckinsCreateComponentController {
             vm.parties.push(id);
         }
     }
-
 }
 
 CheckinsCreateComponentController.$inject = ['httpGeneral', '$window', '$location'];
