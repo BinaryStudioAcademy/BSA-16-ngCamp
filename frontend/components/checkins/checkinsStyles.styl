@@ -135,32 +135,36 @@
             }
         }
 
-        .content
-        display flex
-        justify-content space-between
-        margin-top 20px
-        font-size 23px
+        nav.content
+            display block
+            font-size 22px
+            margin-top 25px
+            //padding 1%
 
-        .qq
-            a
-                display flex
-                text-align center
-                text-decoration none
-                color #4c5157
-                margin-left 10px
-                margin-right 10px
+        ul.header
+            display flex
+            justify-content space-between
+            font-size 21px
+
+        ul.main
+            margin-top -20px
+            text-align justify //or center
+
+        .question
+            margin-right 25px
 
         .user-list
             text-align center
-        //border-bottom 1px solid black
-        //padding 1%
+            //border-bottom 1px solid black
+            //padding 1%
 
         .avatar
             background-color #f2992e
             border-radius 5px
-            font-size 18px
+            font-size 20px
             padding 3px
             margin 3px
+            text-transform: uppercase
 
         .switch
             position relative
@@ -199,12 +203,12 @@
         input
             &:checked
                 & + .slider
-                    background-color #1d8dbf
+                    background-color #1d8dbf    //#4ACA51
                     &:before
                         -webkit-transform translateX(26px)
                         -ms-transform translateX(26px)
                         transform translateX(26px)
             &:focus
                 & + .slider
-                    box-shadow 0 0 1px #27bcff
+                    box-shadow 0 0 1px #27bcff  //#3E8846
 

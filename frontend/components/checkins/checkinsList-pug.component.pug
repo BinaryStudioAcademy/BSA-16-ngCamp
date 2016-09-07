@@ -36,122 +36,121 @@
             section.tab.all
                 label(for='week-list') Questions List
                 div(ng-repeat="checkin in check.checkIns track by $index")
-                    ul.content
-                        li.qq {{checkin.time}}
-                        li.qq
-                            a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                        li.qq
-                            div
+                    nav.content
+                        ul.header
+                            li {{checkin.frequency}} at {{checkin.time}}
+                            li
                                 label.switch
                                     input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
                                     .slider.round
-                    .user-list
-                        span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
-                            //- span.avatar AK
-                            //- span.avatar DB
-                            //- span.avatar IH
-                            //- span.avatar MK
-                            //- span.avatar AS
-                            //- span.avatar VT
-                            //- span.avatar YV
-                            //- span.avatar YN
-                            //- span.avatar DS
-                            //- span.avatar DB
+                        ul.main
+                            li.question
+                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
+                            li.user-list
+                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+
             section.tab.mo
                 label(for='monday') Monday
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Monday') ")
-                    ul.content
-                        li.qq {{checkin.time}}
-                        li.qq
-                            a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                        li.qq
-                            div
+                    nav.content
+                        ul.header
+                            li {{checkin.time}}
+                            li
                                 label.switch
                                     input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
                                     .slider.round
-                    .user-list
-                        span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                        ul.main
+                            li.question
+                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
+                            li.user-list
+                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
             section.tab.tu
                 label(for='tuesday') Tuesday
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Tuesday') ")
-                    ul.content
-                        li.qq {{checkin.time}}
-                        li.qq
-                            a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                        li.qq
-                            div
+                    nav.content
+                        ul.header
+                            li {{checkin.time}}
+                            li
                                 label.switch
                                     input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
                                     .slider.round
-                    .user-list
-                        span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                        ul.main
+                            li.question
+                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
+                            li.user-list
+                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
             section.tab.we
                 label(for='wednesday') Wednesday
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Wednesday') ")
-                    ul.content
-                        li.qq {{checkin.time}}
-                        li.qq
-                            a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                        li.qq
-                            div
+                    nav.content
+                        ul.header
+                            li {{checkin.time}}
+                            li
                                 label.switch
                                     input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
                                     .slider.round
-                    .user-list
-                        span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                        ul.main
+                            li.question
+                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
+                            li.user-list
+                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
             section.tab.th
                 label(for='thursday') Thursday
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Thursday') ")
-                    ul.content
-                        li.qq {{checkin.time}}
-                        li.qq
-                            a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                        li.qq
-                            div
+                    nav.content
+                        ul.header
+                            li {{checkin.time}}
+                            li
                                 label.switch
                                     input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
                                     .slider.round
-                    .user-list
-                        span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                        ul.main
+                            li.question
+                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
+                            li.user-list
+                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
             section.tab.fr
                 label(for='friday') Friday
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Friday') ")
-                    ul.content
-                        li.qq {{checkin.time}}
-                        li.qq
-                            a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                        li.qq
-                            div
+                    nav.content
+                        ul.header
+                            li {{checkin.time}}
+                            li
                                 label.switch
                                     input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
                                     .slider.round
-                    .user-list
-                        span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                        ul.main
+                            li.question
+                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
+                            li.user-list
+                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
             section.tab.sa
                 label(for='saturday') Saturday
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Saturday') ")
-                    ul.content
-                        li.qq {{checkin.time}}
-                        li.qq
-                            a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                        li.qq
-                            div
+                    nav.content
+                        ul.header
+                            li {{checkin.time}}
+                            li
                                 label.switch
                                     input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
                                     .slider.round
-                    .user-list
-                        span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                        ul.main
+                            li.question
+                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
+                            li.user-list
+                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
             section.tab.su
                 label(for='sunday') Sunday
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Sunday') ")
-                    ul.content
-                        li.qq {{checkin.time}}
-                        li.qq
-                            a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
-                        li.qq
-                            div
+                    nav.content
+                        ul.header
+                            li {{checkin.time}}
+                            li
                                 label.switch
                                     input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
                                     .slider.round
-                    .user-list
-                        span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                        ul.main
+                            li.question
+                                a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
+                            li.user-list
+                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
