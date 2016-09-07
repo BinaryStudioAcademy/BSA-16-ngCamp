@@ -21,6 +21,10 @@ const rootComponent = {
         name: 'MainPage',
         component: 'checkinsWrapperComponent'
     }, {
+        path: '/rightpanel/...',
+        name: 'RightPanel',
+        component: 'rightPanelComponent'
+    }, {
         path: '/account/',
         name: 'Account',
         component: 'accountComponent'

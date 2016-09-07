@@ -2,9 +2,9 @@ import './calendarMonth.styl';
 let moment = require('moment');
 
 class CalendarMonthCtrl {
-    constructor() {
+    constructor($rootScope) {
         let vm = this;
-
+        vm.rootScp = $rootScope;
         vm.currentMonth = new Date();
         vm.isChangeMonth = false;
 
@@ -60,12 +60,21 @@ class CalendarMonthCtrl {
 
             vm.buildMonth();
         };
-
+        vm.broadcastDate = (date) => {
+            let dateObj = {
+                year: date.year(),
+                month: date.month(),
+                day: date.date(),
+                dow: date.isoWeekday()
+            };
+            vm.rootScp.$broadcast('date', dateObj);
+         };
         vm.goto = (date) => {
             let dateObj = {
                 year: date.year(),
                 month: date.month(),
-                day: date.date()
+                day: date.date(),
+                dow: date.dayOfWeek()
             };
 
             vm.$router.navigate(['DailyCalendar', dateObj]);
@@ -115,7 +124,7 @@ class CalendarMonthCtrl {
     }
 }
 
-CalendarMonthCtrl.$inject = [];
+CalendarMonthCtrl.$inject = ['$rootScope'];
 
 const calendarMonthComponent = {
     controller: CalendarMonthCtrl,

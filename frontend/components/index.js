@@ -37,6 +37,8 @@ import {primaryCalendarComponent} from "./calendar/primaryCalendar/primaryCalend
 import {checkinsEditComponent} from "./checkins/checkinsEdit.component.js";
 import {checkinsListComponent} from "./checkins/checkinsList.component.js";
 import {checkinsAnswerComponent} from "./checkins/checkinsAnswer.component.js";
+import {rightPanelComponent} from "./rightPanel/rightPanel.component.js";
+
 
 
 
@@ -80,5 +82,7 @@ app.component(primaryCalendarComponent.selector, primaryCalendarComponent);
 app.component(checkinsEditComponent.selector, checkinsEditComponent);
 app.component(checkinsListComponent.selector, checkinsListComponent);
 app.component(checkinsAnswerComponent.selector, checkinsAnswerComponent);
+app.component(rightPanelComponent.selector, rightPanelComponent);
+
 
 

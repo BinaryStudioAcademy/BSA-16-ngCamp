@@ -15,6 +15,8 @@ CheckinRepository.prototype.getByIdWithParticipants = getByIdWithParticipants;
 CheckinRepository.prototype.getByAnswerToken = getByAnswerToken;
 CheckinRepository.prototype.updateAnswerItem = updateAnswerItem;
 CheckinRepository.prototype.getAnswersById = getAnswersById;
+CheckinRepository.prototype.findCheckinsByFrequency = findCheckinsByFrequency;
+
 
 
 function getByIdWithParticipants(id, callback){
@@ -52,6 +54,14 @@ function findCheckinsByFrequencyAndTime(freq, time, callback){
         frequency: freq, 
         time: time
     }).populate('project');
+    query.exec(callback);
+}
+
+function findCheckinsByFrequency(freq, callback) {
+    var query = Checkin.find({
+        frequency: freq
+    })
+        .populate('answers.user');
     query.exec(callback);
 }
 

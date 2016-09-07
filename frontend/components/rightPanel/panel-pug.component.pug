@@ -1,0 +1,4 @@
+﻿ul(ng-repeat="checkin in rpanel.checkins") <h2>qestion: {{checkin.question}}</h2>
+	li(ng-repeat="answer in checkin.answers | filter: rpanel.checkinFilter()") 
+		h3 {{answer.user.firstName + ' '+ answer.user.lastName }}
+		p {{answer.answer}}
