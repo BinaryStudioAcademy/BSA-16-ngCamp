@@ -78,7 +78,7 @@ function generateReport() {
         }
     }
     data.isSaved = vm.isSaved;
-    console.log(data);
+    //console.log(data);
 
     vm.httpGeneral.sendRequest({
         type: "POST",
