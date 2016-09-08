@@ -65,8 +65,8 @@ class TasksComponentController {
 				title: todo.title,
 				task: task._id,
 				status: todo.status,
-				executor: (todo.status === "complete") ? self.currUserId : undefined,
-				dateFinished: (todo.status === "complete") ? new Date() : undefined
+				executor: (todo.status === "complete") ? self.currUserId : null,
+				dateFinished: (todo.status === "complete") ? new Date() : null
 			},
 			errorCallback(err) {
 				self.popup.notifyError(err);
