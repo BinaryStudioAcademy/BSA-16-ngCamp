@@ -2,12 +2,13 @@ import './project.component.styl';
 
 class ProjectComponentController {
 
-    constructor(popupNotifications, httpGeneral, $location, $window) {
+    constructor(popupNotifications, httpGeneral, $location, $window,$rootRouter) {
 
         this.popupNotifications = popupNotifications;
         this.httpGeneral = httpGeneral;
         this.window = $window;
         this.userProjects;
+        this.rootRouter = $rootRouter;
         this.userReq = {
             type: "GET",
             url: "api/projects/forCurrentUser",
@@ -64,6 +65,9 @@ class ProjectComponentController {
                 self.isAdmin();
             });
         });
+        if (window._injectedData.currentProject === undefined) {
+            self.rootRouter.navigateByUrl('/noProject');
+        }
     }
 
     getProjects() {
@@ -236,7 +240,7 @@ class ProjectComponentController {
     }
 }
 
-ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral', '$location', '$window'];
+ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral', '$location', '$window','$rootRouter'];
 
 const projectComponent = {
     controller: ProjectComponentController,
