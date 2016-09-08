@@ -84,7 +84,7 @@ function updateTask(id, body, callback) {
 							});
 						}else{
 							toDoService.updateToDo(todo._id, todo, function(updateToDoError, updateToDoData){
-								taskIsFinished = (todo.status === "unomplete") ? false : taskIsFinished;
+								taskIsFinished = (todo.status === "uncomplete") ? false : taskIsFinished;
 								if(updateToDoError){
 									callback(updateToDoError);
 								}else if(index === array.length - 1){ 
