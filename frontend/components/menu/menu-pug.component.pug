@@ -2,37 +2,37 @@ aside.side-menu-wrapper
     .burger
         a(ng-click="MenuCtrl.showMenu()")
             i.fa.fa-bars
-    nav#side-menu.side-menu
+    nav#side-menu.side-menu(ng-disabled="MenuCtrl.disabled")
         ul
             li
-                a(ng-link='["MainPage"]')
+                a(ng-link='["MainPage"]',ng-disabled="MenuCtrl.disabled")
                     i.fa.fa-home.fa-2x
                     span.nav-text Home
             li
-                a(ng-link='["MsgBoard"]')
+                a(ng-link='["MsgBoard"]',ng-disabled="MenuCtrl.disabled")
                     i.fa.fa-television.fa-2x
                     span.nav-text Message Board
             li
-                a(ng-link='["Checkins"]')
+                a(ng-link='["Checkins"]',ng-disabled="MenuCtrl.disabled")
                     i.fa.fa-calendar-check-o.fa-2x
                     span.nav-text Check-ins
             li
-                a(ng-link='["Tasks"]')
+                a(ng-link='["Tasks"]',ng-disabled="MenuCtrl.disabled")
                     i.fa.fa-tasks.fa-2x
                     span.nav-text Tasks
             li
-                a(ng-link='["Events"]')
+                a(ng-link='["Events"]',ng-disabled="MenuCtrl.disabled")
                     i.fa.fa-calendar.fa-2x
                     span.nav-text Events
             li
-                a(ng-link='["Reports"]')
+                a(ng-link='["Reports"]',ng-disabled="MenuCtrl.disabled")
                     i.fa.fa-area-chart.fa-2x
                     span.nav-text Reports
             li
-                a(ng-link='["Drafts"]')
+                a(ng-link='["Drafts"]',ng-disabled="MenuCtrl.disabled")
                     i.fa.fa-pencil-square-o.fa-2x
                     span.nav-text Drafts
             li
-                a(ng-link='["Project"]')
+                a(ng-link='["Project"]',ng-disabled="MenuCtrl.disabled")
                     i.fa.fa-cogs.fa-2x
                     span.nav-text Settings
