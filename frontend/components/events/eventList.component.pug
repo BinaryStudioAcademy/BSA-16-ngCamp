@@ -40,7 +40,7 @@
                                 h2  {{event.title}}  
                             i.fa.fa-folder-open-o.fa-2x
                         .col-xs-2.col-xs-offset-4
-                            p Place for participants
+                            span.avatar(ng-repeat="participant in vm.userEvents[$index].participants track by $index") {{ participant.firstName[0] + participant.lastName[0]}}
                     .event-body
                         p(ng-bind-html="event.description")
                 

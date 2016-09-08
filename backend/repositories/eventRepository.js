@@ -12,6 +12,13 @@ EventRepository.prototype.getParticipants = getParticipants;
 EventRepository.prototype.setParticipants = setParticipants;
 EventRepository.prototype.getFiles = getFiles;
 EventRepository.prototype.setFiles = setFiles;
+EventRepository.prototype.getAllWithParticipants = getAllWithParticipants;
+
+function getAllWithParticipants(callback){
+    var model = this.model;
+    var query = model.find({}).populate('participants');
+    query.exec(callback);
+}
 
 function getByDate(startDate, endDate, callback) {
     var model = this.model;

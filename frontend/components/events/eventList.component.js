@@ -1,3 +1,5 @@
+import './eventsStyles.styl';
+
 class EventListComponentController {
     constructor(httpGeneral, $location) {
         this.httpGeneral = httpGeneral;
@@ -13,6 +15,7 @@ class EventListComponentController {
         this.popup2 = {
             opened: false
         };
+        this.participants = [];
     }
     open1() {
         this.popup1.opened = true;
