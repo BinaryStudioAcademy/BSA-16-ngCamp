@@ -224,8 +224,7 @@ class ProjectComponentController {
             url: `api/projects/${window._injectedData.currentProject}`
         }).then(() => {
             window._injectedData.currentProject = '';
-            self.window.location.reload();
-            self.location.path('/');
+            self.rootRouter.navigate(['NoProject']);
         });
     }
     today() {
