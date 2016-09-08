@@ -44,7 +44,8 @@ class RightPanelComponentController {
             let elementDate = new Date(element.creationDate);
             return (elementDate.getFullYear() == vm.date.year &&
                     elementDate.getMonth() == vm.date.month &&
-                    elementDate.getDate() == vm.date.day) ? true : false;
+                    elementDate.getDate() == vm.date.day &&
+                    element.answer != 'noAnswer') ? true : false;
         };
     }
 }

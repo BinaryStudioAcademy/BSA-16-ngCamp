@@ -1,4 +1,3 @@
-﻿ul(ng-repeat="checkin in rpanel.checkins") <h2>qestion: {{checkin.question}}</h2>
+﻿ul.checkinsList(ng-repeat="checkin in rpanel.checkins") <h2 class="checkin_title">{{checkin.question}}</h2>
 	li(ng-repeat="answer in checkin.answers | filter: rpanel.checkinFilter()") 
-		h3 {{answer.user.firstName + ' '+ answer.user.lastName }}
-		p {{answer.answer}}
+		.answer <span class="user_name">{{answer.user.firstName + ' '+ answer.user.lastName }}</span> <span class="creation_date">{{answer.creationDate | date: "HH:mm"}}</span> <span class="answer_text" ng-bind-html='answer.answer'></span>
