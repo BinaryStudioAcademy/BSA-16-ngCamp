@@ -14,34 +14,38 @@ class HeaderComponentController {
     }
     $onInit() {
         let self = this;
-        self.httpGeneral.sendRequest(self.userReq).then(function (res) {
+        self.httpGeneral.sendRequest(self.userReq).then(function(res) {
             self.userProjects = res;
         });
         self.httpGeneral.sendRequest({
             type: "GET",
             url: `api/projects/${window._injectedData.currentProject}/withUsers`,
-        }).then(function (res) {
+        }).then(function(res) {
             self.currentProject = res;
         });
     }
     setProject() {
         let self = this;
         window._injectedData.currentProject = self.currentProjectId;
-
         self.httpGeneral.sendRequest({
             type: "PUT",
             url: `api/user/${window._injectedData.userId}`,
             body: {
                 currentProject: self.currentProjectId,
             }
-        }).then(function (res) {
+        }).then(function(res) {
             // let currPath = self.location.path();
-            let newReg = /^(\/)[^(\/)]*/;
-            // self.location.path("/"+currPath.match(newReg)[0]);
-            let currPath = self.rootRouter.lastNavigationAttempt.match(newReg)[0];
-            self.rootRouter.navigate(['NotFound']);
-            self.rootRouter.navigateByUrl(currPath);
-            //console.log("Succesfull update currentProject");
+            if (self.location.path() === '/noProject' && window._injectedData.currentProject != undefined) {
+                self.rootRouter.navigate(['MainPage']);
+            } else {
+                let newReg = /^(\/)[^(\/)]*/;
+                // self.location.path("/"+currPath.match(newReg)[0]);
+                let currPath = self.rootRouter.lastNavigationAttempt.match(newReg)[0];
+                //console.log(currPath);
+                self.rootRouter.navigate(['NotFound']);
+                self.rootRouter.navigateByUrl(currPath);
+                //console.log("Succesfull update currentProject");
+            }
         });
     }
 }
