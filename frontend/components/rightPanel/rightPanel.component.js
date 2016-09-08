@@ -7,6 +7,7 @@ class RightPanelComponentController {
         vm.date = new Date();
         vm.scp = $scope;
         vm.checkins = [];
+        vm.checkinsSet = new Set();
         this.days = ['Sunday',
             'Monday',
             'Tuesday',
@@ -22,6 +23,8 @@ class RightPanelComponentController {
             vm.date = date;
             vm.checkins = [];
             vm.getCheckins(vm.days[vm.date.dow]);
+            vm.checkinsSet.add({day: vm.checkins});
+            console.log(vm.checkinsSet+ 'dfgdfg');
         });
     }
     getCheckins(day){
@@ -30,13 +33,14 @@ class RightPanelComponentController {
             type: "GET",
             url: 'api/checkins/freq/' + day
         }).then(function(res) {
-            //console.log(res);
+            console.log(res);
             res.forEach(function(check){
                 vm.checkins.push(check);
                 //console.log(check);
             });
-            //console.log(vm.checkins[0]);
+            
         });
+
     }
     checkinFilter(){
         let vm = this;
