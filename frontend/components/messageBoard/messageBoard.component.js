@@ -1,12 +1,13 @@
 import './messageBoard.styl';
 
 class messageBoardController {
-    constructor(httpGeneral, $location, $window) {
+    constructor(httpGeneral, $location, $window,$rootRouter) {
         this.httpGeneral = httpGeneral;
         this.location = $location;
         this.window = $window;
         this.messages = [];
         this.isBigText = false;
+        this.rootRouter = $rootRouter;
     }
     $onInit() {
         let self = this;
@@ -31,6 +32,9 @@ class messageBoardController {
                 }
             };
         });
+        if (window._injectedData.currentProject === undefined) {
+            self.rootRouter.navigateByUrl('/noProject');
+        }
     }
     showText(index) {
         let self = this;
@@ -42,7 +46,7 @@ class messageBoardController {
     }
 }
 
-messageBoardController.$inject = ['httpGeneral', '$location', '$window'];
+messageBoardController.$inject = ['httpGeneral', '$location', '$window','$rootRouter'];
 
 const messageBoardComponent = {
     controller: messageBoardController,

@@ -1,5 +1,5 @@
 class TasksComponentController {
-	constructor(httpGeneral,$timeout,$filter,popupNotifications) {
+	constructor(httpGeneral,$timeout,$filter,popupNotifications,$rootRouter) {
 		this.http = httpGeneral;
 		this.tasks = [];
 		this.contentFlag = true;
@@ -10,6 +10,7 @@ class TasksComponentController {
 		this.popup = popupNotifications;
 		this.keyword;
 		this.filterKey;
+		this.rootRouter = $rootRouter;
 	}
 
 	$onInit(){
@@ -39,6 +40,9 @@ class TasksComponentController {
 				self.calcProgress(task);
 				});
 			});
+		if (window._injectedData.currentProject === undefined) {
+            self.rootRouter.navigateByUrl('/noProject');
+        }
     }
 
 	calcProgress(task){
@@ -215,7 +219,8 @@ TasksComponentController.$inject = [
 	'httpGeneral',
 	'$timeout',
 	'$filter',
-	'popupNotifications'
+	'popupNotifications',
+	'$rootRouter'
 ];
 
 const tasksComponent = {
