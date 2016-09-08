@@ -9,11 +9,10 @@ var ToDoSchema = new Schema({
     description: String,
     status: String,
     dateCreated: Date,
-    participants: [{
+    executor: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-            }],
-    dateExpired: Date,
+            },
     dateFinished: Date
 });
 
