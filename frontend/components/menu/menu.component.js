@@ -1,8 +1,17 @@
 import './menuStyles.styl';
 
 class MenuComponentController {
-    constructor(http) {
+    constructor(http,$location) {
         this.http = http;
+        this.disabled = false;
+        this.location = $location;
+    }
+
+    $onInit(){
+        let self = this;
+        if (self.location.path() === 'noProject'){
+            self.disabled = true;
+        }
     }
     showMenu(){
 
@@ -19,7 +28,7 @@ class MenuComponentController {
     }
 }
 
-MenuComponentController.$inject = ["httpGeneral"];
+MenuComponentController.$inject = ["httpGeneral","$location"];
 
 const menuComponent = {
     controller: MenuComponentController,

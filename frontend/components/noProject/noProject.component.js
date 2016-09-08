@@ -1,12 +1,12 @@
 import './noProject.component.styl';
 
 class noProjectComponentController{
-	constructor(){
-
+	constructor($location){
+		this.location = $location;
 	}
 }
 
-noProjectComponentController.$inject = [];
+noProjectComponentController.$inject = ['$location'];
 
 const noProjectComponent = {
     controller: noProjectComponentController,

@@ -38,7 +38,7 @@ import {checkinsEditComponent} from "./checkins/checkinsEdit.component.js";
 import {checkinsListComponent} from "./checkins/checkinsList.component.js";
 import {checkinsAnswerComponent} from "./checkins/checkinsAnswer.component.js";
 import {rightPanelComponent} from "./rightPanel/rightPanel.component.js";
-
+import {noProjectComponent} from "./noProject/noProject.component.js";
 
 
 
@@ -83,6 +83,6 @@ app.component(checkinsEditComponent.selector, checkinsEditComponent);
 app.component(checkinsListComponent.selector, checkinsListComponent);
 app.component(checkinsAnswerComponent.selector, checkinsAnswerComponent);
 app.component(rightPanelComponent.selector, rightPanelComponent);
-
+app.component(noProjectComponent.selector, noProjectComponent);
 
 
