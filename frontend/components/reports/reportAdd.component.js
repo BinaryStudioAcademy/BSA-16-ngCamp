@@ -13,7 +13,6 @@ class ReportAddComponentController {
         this.dateRange = [];
         this.users = [];
         this.isGenerated = false;
-
         this.userId = window._injectedData.userId;
         this.projectId = window._injectedData.currentProject;
         this.generateReport = generateReport;
@@ -70,7 +69,7 @@ function generateReport() {
             vm.users = undefined;
         }
         if (vm.dateRange && vm.dateRange.length > 0) {
-            data.dateRange = vm.dateRange;
+            data.dateRange = vm.dateRange.slice(0,2);
 
         } else {
 

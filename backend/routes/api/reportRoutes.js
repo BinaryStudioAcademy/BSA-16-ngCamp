@@ -34,11 +34,6 @@ module.exports = function (app) {
             res.err = err;
             next();
         }, req.params.id);
-        //        reportService.updateItem(req.params.id, req.body, function (err, data) {
-        //            res.data = data;
-        //            res.err = err;
-        //            next();
-        //        });
     }, apiResponse);
     //===================================================
     app.delete(baseUrl + ':id', function (req, res, next) {

@@ -100,7 +100,7 @@ function reportGenerate() {
             vm.users = undefined;
         }
         if (vm.dateRange && vm.dateRange.length > 0) {
-            data.dataRange = vm.dateRange;
+            data.dateRange = vm.dateRange.slice(0,2);
 
         } else {
             vm.dateRange = undefined;
@@ -111,17 +111,15 @@ function reportGenerate() {
     vm.httpGeneral.sendRequest({
         type: "PUT",
         url: "/api/report/" + vm.reportId,
-        body: {
-            data: data
-        }
+        body: data
     }).then(function (res) {
         console.log(res);
-        if (res.gen.data) {
-            vm.history = res.gen.data;
-            console.log(vm.history);
-            vm.popupNotifications.notifySuccess("Report added");
-            vm.isGenerated = true;
-        }
+        // if (res.gen.data) {
+        //     vm.history = res.gen.data;
+        //     console.log(vm.history);
+        //     vm.popupNotifications.notifySuccess("Report added");
+        //     vm.isGenerated = true;
+        // }
     });
 }
 

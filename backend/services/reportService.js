@@ -75,13 +75,13 @@ function generateReport(data, callback, idForUpdate) {
                             $in: data.participants
                         }
                     }
-                    if (data.dataRange && data.dataRange.length > 0) {
-                        query.date = {};
-                        if (data.dataRange[0]) {
-                            queryM.date.$gte = data.dataRange[0];
+                    if (data.dateRange && data.dateRange.length > 0) {
+                        queryM.date = {};
+                        if (data.dateRange[0]) {
+                            queryM.date.$gte = data.dateRange[0];
                         }
-                        if (data.dataRange[1]) {
-                            queryM.date.$lte = data.dataRange[1];
+                        if (data.dateRange[1]) {
+                            queryM.date.$lte = data.dateRange[1];
                         }
                     }
                     //console.log(query);
@@ -125,19 +125,19 @@ function generateReport(data, callback, idForUpdate) {
                             }
                         ];
                     }
-                    if (data.dataRange && data.dataRange.length > 0) {
+                    if (data.dateRange && data.dateRange.length > 0) {
                         queryE.$and = [];
-                        if (data.dataRange[0]) {
+                        if (data.dateRange[0]) {
                             queryE.$and.push({
                                 startDate: {
-                                    $gte: data.dataRange[0]
+                                    $gte: data.dateRange[0]
                                 }
                             });
                         }
-                        if (data.dataRange[1]) {
+                        if (data.dateRange[1]) {
                             queryE.$and.push({
                                 endDate: {
-                                    $lte: data.dataRange[1]
+                                    $lte: data.dateRange[1]
                                 }
                             });
                         }
@@ -188,13 +188,13 @@ function generateReport(data, callback, idForUpdate) {
                             }
                         ];
                     }
-                    if (data.dataRange && data.dataRange.length > 0) {
+                    if (data.dateRange && data.dateRange.length > 0) {
                         queryT.dateCreated = {};
-                        if (data.dataRange[0]) {
-                            queryT.dateCreated.$gte = data.dataRange[0];
+                        if (data.dateRange[0]) {
+                            queryT.dateCreated.$gte = data.dateRange[0];
                         }
-                        if (data.dataRange[1]) {
-                            queryT.dateCreated.$lte = data.dataRange[1];
+                        if (data.dateRange[1]) {
+                            queryT.dateCreated.$lte = data.dateRange[1];
                         }
                     }
 
@@ -269,7 +269,7 @@ function generateReport(data, callback, idForUpdate) {
                 reports = reports.concat(pack.checkin);
             }
             if (idForUpdate) {
-                reportRepository.setObjPropsById(idForUpdate, data, function (error, da) {
+                reportRepository.setObjPropsById(idForUpdate, data.data, function (error, da) {
                     var res = {
                         db: {
                             data: null,
