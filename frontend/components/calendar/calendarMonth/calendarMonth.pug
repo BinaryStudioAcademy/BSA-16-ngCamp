@@ -35,6 +35,6 @@
             tr(ng-repeat='week in cm.weeks')
                 td(ng-repeat='day in week.days',
 					ng-click="cm.broadcastDate(day.date)",
-                    ng-dblclick="cm.goto(day.date)",
+                   
                     ng-class="{'day-today': day.isToday, 'different-month': !day.isCurrentMonth}") {{day.number}}
 

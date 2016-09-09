@@ -67,6 +67,7 @@ class CalendarMonthCtrl {
                 day: date.date(),
                 dow: date.isoWeekday()
             };
+            console.log(dateObj);
             vm.rootScp.$broadcast('date', dateObj);
          };
         vm.goto = (date) => {
@@ -76,7 +77,6 @@ class CalendarMonthCtrl {
                 day: date.date(),
                 dow: date.dayOfWeek()
             };
-
             vm.$router.navigate(['DailyCalendar', dateObj]);
         };
 

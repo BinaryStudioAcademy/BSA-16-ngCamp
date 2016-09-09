@@ -1,4 +1,22 @@
-﻿ul(ng-repeat="checkin in rpanel.checkins") <h2>qestion: {{checkin.question}}</h2>
-	li(ng-repeat="answer in checkin.answers | filter: rpanel.checkinFilter()") 
-		h3 {{answer.user.firstName + ' '+ answer.user.lastName }}
-		p {{answer.answer}} 
+﻿a(href="", ng-click="rpanel.previousDay()")
+    p previous
+div(ng-repeat="obj in rpanel.dailyCheckinsList ") 
+    ul(ng-repeat="checkin in obj.checkins") <h2>qestion: {{checkin.question}}</h2>
+        li(ng-repeat="answer in checkin.answers | filter: rpanel.checkinFilter(obj.day)") 
+             h3 {{answer.user.firstName + ' '+ answer.user.lastName }}
+             p {{answer.answer}} 
+
+    //- p {{obj.day.day}} {{obj.checkins[0].frequency}}
+
+
+
+a(href="", ng-click="rpanel.nextDay()")
+    p next
+
+
+
+
+    //- ul(ng-repeat="checkin in checkins") <h2>qestion: {{checkin.question}}</h2>
+    //-     li(ng-repeat="answer in checkin.answers | filter: rpanel.checkinFilter()") 
+    //-         h3 {{answer.user.firstName + ' '+ answer.user.lastName }}
+    //-         p {{answer.answer}} 
