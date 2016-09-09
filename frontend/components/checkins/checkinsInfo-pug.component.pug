@@ -14,7 +14,7 @@
                         .fa.fa-close.fa-3x.button
             h2 {{chInfo.checkin.question}}
             .user-list
-                span.avatar(ng-repeat="part in chInfo.checkin.participants ") {{part.lastName.charAt(0) + part.firstName.charAt(0)}}
+                span.avatar(ng-repeat="part in chInfo.checkin.participants ") {{part.lastName.charAt(0) + part.firstName.charAt(0) | uppercase}}
 
         .main-answer
             ul.qq-list(ng-repeat="i in chInfo.iter | orderBy: reverse")  <h3>{{i}}</h3>
