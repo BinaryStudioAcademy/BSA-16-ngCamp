@@ -5,6 +5,7 @@ class reportsGUI {
         this.isTypePanel = true;
         this.manageTypePanel = manageTypePanel;
         this.manageUserPanel = manageUserPanel;
+        this.arrayToString = arrayToString;
         this._types = ['Message', 'Task', 'Event', 'CheckIn'];
     }
 }
@@ -36,6 +37,15 @@ function manageTypePanel() {
     else {
         this.isTypePanel = true;
     }
+}
+
+function arrayToString(arr) {
+    let result = "";
+    for (let i = 0; i < arr.length; i++) {
+        result += ((arr[i].firstName ? arr[i].firstName : " ") + (arr[i].lastName ? arr[i].lastName : " "));
+        if (i != arr.length - 1) result += ", ";
+    }
+    return result;
 }
 
 export {

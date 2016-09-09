@@ -87,7 +87,12 @@ function generateReport() {
             data: data
         }
     }).then(function (res) {
-        vm.popupNotifications.notifySuccess("Report added");
+        if (res.gen.data) {
+            vm.history = res.gen.data;
+            console.log(vm.history);
+            vm.popupNotifications.notifySuccess("Report added");
+            vm.isGenerated = true;
+        }
     });
 }
 

@@ -45,6 +45,48 @@
                     .row
                         span.button.btn.col-xs-4.col-xs-offset-4(ng-click='reportAdd.generateReport()') Generate
                     .row.start-xs(ng-show='reportAdd.isGenerated')
-                        span.chapter-title.col-xs-10 History
+                        span.chapter-title.col-xs-12 History
                             .fa.fa-history
+                        .col-xs-12
+                            .row.history-item(ng-repeat='h in reportAdd.history track by $index')
+                                .col-xs-12
+                                    .row
+                                        .col-xs-12
+                                            .row.his-head
+                                                .col-xs-3 Type
+                                                .col-xs-4 Title
+                                                //.col-xs-4(ng-show='h._type!="question"') {{h._type=="event"?'Start Date':'Date'}}
+                                                .col-xs-4(ng-show='h._type=="checkin"') Question
+                                                .col-xs-4(ng-show='(h._type!="checkin" && h._type!="event")') Author
+                                                .col-xs-4(ng-show='h._type=="event"')
+                                                .col-xs-1.fa.fa-eye.button.f-btn
+                                            .row.his-body
+                                                .col-xs-3 {{h._type.toUpperCase()}}
+                                                .col-xs-4 {{h.title}}
+                                                .col-xs-5(ng-show='h._type=="checkin"') {{h.question}}
+                                                .col-xs-5(ng-show='h._type!="checkin"') {{(h.author.firstName?h.author.firstName:"")+(h.author.secondName?h.author.secondName:"")}}
+                                                //.col-xs-4(ng-show="h._type=='message'") {{h.date | date: 'dd/MM/y'}}
+                                                //.col-xs-4(ng-show="h._type=='event'") {{h.startDate | date: 'dd/MM/y'}}
+                                                //.col-xs-4(ng-show="h._type=='task'") {{h.dateCreated | date: 'dd/MM/y'}}
+                                                //.col-xs-6(ng-show="h._type=='checkin'") {{h.question}}
+                                    .row
+                                        .col-xs-12
+                                            .row.his-head
+                                                .col-xs-3(ng-show="h._type=='message'") Date
+                                                .col-xs-3(ng-show="h._type=='event'") Start Date
+                                                .col-xs-3(ng-show="h._type=='event'") End Date
+                                                .col-xs-3(ng-show="h._type=='task'") Date
+                                                .col-xs-3(ng-show="h._type=='task'") Status
+                                                .col-xs-3(ng-show="h._type=='checkin'") Time
+                                                .col-xs-3(ng-show="h._type=='checkin'") Frequency
+                                                .col-xs-6(ng-show="h._type!='message'") Participants
+                                            .row.his-body
+                                                .col-xs-3(ng-show="h._type=='message'") {{h.date | date: 'dd/MM/y'}}
+                                                .col-xs-3(ng-show="h._type=='event'") {{h.startDate | date: 'dd/MM/y'}}
+                                                .col-xs-3(ng-show="h._type=='event'") {{h.endDate | date: 'dd/MM/y'}}
+                                                .col-xs-3(ng-show="h._type=='task'") {{h.dateCreated | date: 'dd/MM/y'}}
+                                                .col-xs-3(ng-show="h._type=='task'") {{h.isFinished?'Done':'In progress'}}
+                                                .col-xs-3(ng-show="h._type=='checkin'") {{h.time}}
+                                                .col-xs-3(ng-show="h._type=='checkin'") {{h.frequency}}
+                                                .col-xs-6(ng-show="h._type!='message'") {{h._type!='message'?reportAdd.gui.arrayToString(h.participants):""}}
 
