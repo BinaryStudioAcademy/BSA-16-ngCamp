@@ -1,11 +1,21 @@
 import './rootStyles.styl';
 
 class rootComponentController {
-    constructor() {
+    constructor($location,$rootRouter) {
+        this.location = $location;
+        this.rootRouter = $rootRouter;
+    }
+
+    $onInit(){
+        let self = this;
+        console.log(window._injectedData.currentProject);
+        if (window._injectedData.currentProject === undefined) {
+            self.rootRouter.navigateByUrl('/noProject');
+        }
     }
 }
 
-rootComponentController.$inject = [];
+rootComponentController.$inject = ["$location",'$rootRouter'];
 
 const rootComponent = {
     controller: rootComponentController,
@@ -100,6 +110,10 @@ const rootComponent = {
         name: 'Test',
         component: 'test'
     }, {
+        path: 'noProject',
+        name: 'NoProject',
+        component: 'noProjectComponent'
+    },{
         path: '/**',
         name: 'NotFound',
         component: 'notFound'

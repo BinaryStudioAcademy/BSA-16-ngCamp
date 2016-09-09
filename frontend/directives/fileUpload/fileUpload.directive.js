@@ -6,6 +6,7 @@ class fileUploadController{
         this.http = httpGeneral;
         this.popup = popupNotifications;
         this.uploading = false;
+        this.uploadProgress;
     }
 
     triggerFileList(){
@@ -27,6 +28,10 @@ class fileUploadController{
             let formData = new FormData();
             formData.append('file', file);
             let xhr = new XMLHttpRequest;
+            xhr.upload.onprogress = (event) => {
+                self.uploadProgress = event.loaded/event.total;
+                self.scope.$apply();
+            };
             xhr.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 201) {
                     if(this.status == 201){

@@ -1,48 +1,52 @@
 import "./reportsStyle.styl";
 
 class ReportsComponentController {
-    constructor(httpGeneral, popupNotifications, reportsGUI) {
-            this.usedId = window._injectedData.userId;
-            this.projectId = window._injectedData.currentProject;
-            this.httpGeneral = httpGeneral;
-            this.popupNotifications = popupNotifications;
-            this.gui = reportsGUI;
-            this._reports = [];
-            this._saved = [];
-            this.recentReports = [];
-            this.savedReports = [];
-            this.isRecentMore = false;
-            this.isSavedMore = false;
-            this.manageMore = manageMore;
-            this.deleteReport = deleteReport;
-        }
-        //========================================================================
+    constructor(httpGeneral, popupNotifications, reportsGUI,$rootRouter) {
+        this.usedId = window._injectedData.userId;
+        this.projectId = window._injectedData.currentProject;
+        this.httpGeneral = httpGeneral;
+        this.popupNotifications = popupNotifications;
+        this.gui = reportsGUI;
+        this._reports = [];
+        this._saved = [];
+        this.recentReports = [];
+        this.savedReports = [];
+        this.isRecentMore = false;
+        this.isSavedMore = false;
+        this.manageMore = manageMore;
+        this.deleteReport = deleteReport;
+        this.rootRouter = $rootRouter;
+    }
+    //========================================================================
     $onInit() {
-            let vm = this;
+        let vm = this;
+        vm.httpGeneral.sendRequest({
+            type: "GET",
+            url: "api/report/" + vm.projectId + "/saved/" + vm.usedId
+        }).then(function(res, err) {
             vm.httpGeneral.sendRequest({
                 type: "GET",
-                url: "api/report/" + vm.projectId + "/saved/" + vm.usedId
-            }).then(function (res, err) {
-                vm.httpGeneral.sendRequest({
-                    type: "GET",
-                    url: "api/report/" + vm.projectId + "/recent/" + vm.usedId
-                }).then(function (result, error) {
-                    vm._reports = result;
-                    vm.recentReports = vm._reports.slice(0, 3);
-                    if (res) {
-                        res.forEach(function (elem, index) {
+                url: "api/report/" + vm.projectId + "/recent/" + vm.usedId
+            }).then(function(result, error) {
+                vm._reports = result;
+                vm.recentReports = vm._reports.slice(0, 3);
+                if (res) {
+                    res.forEach(function(elem, index) {
 
-                            elem.participants.forEach(function (e, i) {
-                                elem.participants[i] = (e.firstName ? e.firstName : " ") + (e.lastName ? e.lastName : " ");
-                            });
+                        elem.participants.forEach(function(e, i) {
+                            elem.participants[i] = (e.firstName ? e.firstName : " ") + (e.lastName ? e.lastName : " ");
                         });
-                        vm._saved = res;
-                        vm.savedReports = vm._saved.slice(0, 4);
-                    }
-                });
+                    });
+                    vm._saved = res;
+                    vm.savedReports = vm._saved.slice(0, 4);
+                }
             });
+        });
+        if (window._injectedData.currentProject === undefined) {
+            vm.rootRouter.navigateByUrl('/noProject');
         }
-        //====================================================================
+    }
+    //====================================================================
 }
 
 function manageMore(type) {
@@ -73,7 +77,7 @@ function deleteReport(id) {
     vm.httpGeneral.sendRequest({
         type: "DELETE",
         url: "api/report/" + id
-    }).then(function (res) {
+    }).then(function(res) {
         removeFromArray(id, vm.recentReports);
         removeFromArray(id, vm._reports);
         vm.recentReports = vm._reports.slice(0, 3);
@@ -101,7 +105,7 @@ function removeFromArray(id, arr) {
 
 
 
-ReportsComponentController.$inject = ['httpGeneral', 'popupNotifications', 'reportsGUI'];
+ReportsComponentController.$inject = ['httpGeneral', 'popupNotifications', 'reportsGUI','$rootRouter'];
 
 const reportsComponent = {
     controller: ReportsComponentController,

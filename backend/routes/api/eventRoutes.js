@@ -6,7 +6,7 @@ var apiResponse = require("express-api-response"),
 module.exports = function (app) {
 
     app.get(baseUrl, function (req, res, next) {
-        eventRepository.getAll(function (err, data) {
+        eventRepository.getAllWithParticipants(function (err, data) {
             res.data = data;
             res.err = err;
             next();

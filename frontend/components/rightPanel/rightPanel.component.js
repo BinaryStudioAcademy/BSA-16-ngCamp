@@ -16,18 +16,23 @@ class RightPanelComponentController {
             'Thursday',
             'Friday',
             'Saturday'];
-     }
+    }
+
     $onInit() {
         let vm = this;
         vm.getCheckins(vm.days[vm.date.getDay()]);
         vm.scp.$on('date', function(event, date){
             vm.date = date;
             vm.checkins = [];
+
             let dayOW = vm.days[vm.date.dow];
             vm.getCheckins(dayOW);
             vm.dailyCheckinsList = [];
             vm.dailyCheckinsList.push({checkins: vm.checkins, day: vm.date});
             // console.log(vm.dailyCheckinsList);
+
+           // vm.getCheckins(vm.days[vm.date.dow]);
+
         });
     }
     getCheckins(day){
@@ -41,7 +46,7 @@ class RightPanelComponentController {
                 vm.checkins.push(check);
                 //console.log(check);
             });
-            
+           
         });
 
     }
@@ -96,9 +101,16 @@ class RightPanelComponentController {
         let vm = this;
         return function(element){
             let elementDate = new Date(element.creationDate);
+
             return (elementDate.getFullYear() == day.year &&
                     elementDate.getMonth() == day.month &&
                     elementDate.getDate() == day.day) ? true : false;
+
+            // return (elementDate.getFullYear() == vm.date.year &&
+            //         elementDate.getMonth() == vm.date.month &&
+            //         elementDate.getDate() == vm.date.day &&
+            //         element.answer != 'noAnswer') ? true : false;
+
         };
     }
 }

@@ -5,9 +5,8 @@ header.header-wrapper
 				a.createProj(ng-link="[\"CreateProject\"]" href="#/createproject") + New project
 			li.col-xs-3
 				.black
-					select(ng-model="head.currentProjectId",ng-change="head.setProject()",id="green")
+					select(ng-model="head.currentProjectId",ng-change="head.setProject()",id="green",ng-options = "project._id as project.title for project in head.userProjects")
 						option(value="" disable) Select Project
-						option(ng-repeat="project in head.userProjects track by $index" value='{{project._id}}') {{project.title}}	
 			li.col-xs-3
 				input(type='text', placeholder='Search')
 			li.col-xs-3

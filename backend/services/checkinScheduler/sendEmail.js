@@ -1,7 +1,9 @@
 var userRepository = require('../../repositories/userRepository');
 var mailer = require('../mailer/index');
+var path = require('path');
 
 function sendEmailToCheckinPartisipants(p, question, projectName, token) {
+    var mailTemplatePath = path.resolve(__dirname+'/../../../'+'email/checkIn-notification-template.pug');
     userRepository.getById(p, function(err, data){
         if(err){
             console.log(err);
@@ -10,7 +12,7 @@ function sendEmailToCheckinPartisipants(p, question, projectName, token) {
                 var mailPost = {
                     to: [data.email],
                     subject: "invitation to answer survey",
-                    path: "d:/BSA/BSA/email/checkIn-notification-template.pug",
+                    path: mailTemplatePath,
                     html: "<b>Err!</b>",
                     content: {
                         userName: username,
