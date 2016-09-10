@@ -66,14 +66,14 @@ function generateReport() {
                 }
             }
         } else {
-            vm.users = undefined;
+            vm.users = [];
         }
         if (vm.dateRange && vm.dateRange.length > 0) {
             data.dateRange = vm.dateRange.slice(0,2);
 
         } else {
 
-            vm.dateRange = undefined;
+            vm.dateRange = [];
         }
     }
     data.isSaved = vm.isSaved;

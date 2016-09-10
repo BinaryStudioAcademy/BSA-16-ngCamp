@@ -11,12 +11,20 @@ class reportsGUI {
 }
 
 
-function manageItem(index, fromArr, toArr) {
+function manageItem(index, fromArr, toArr, def) {
     let item = fromArr[index];
     let indexTo = fromArr.indexOf(item);
     if (item == 'All') {
-        fromArr.splice(0, fromArr.length, "All");
-        toArr.splice(0, toArr.length, 'Message', 'Task', 'Event', 'CheckIn');
+        if (def == 'user') {
+            Array.prototype.splice.apply(toArr, [toArr.length, 0].concat(fromArr));
+            fromArr.splice(0, fromArr.length, "All");
+            toArr.splice(toArr.indexOf("All"), 1);
+
+        }
+        if (def == 'type') {
+            fromArr.splice(0, fromArr.length, "All");
+            toArr.splice(0, toArr.length, 'Message', 'Task', 'Event', 'CheckIn');
+        }
     } else {
         fromArr.splice(indexTo, 1);
         toArr.push(item);
