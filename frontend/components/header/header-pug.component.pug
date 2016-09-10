@@ -1,22 +1,40 @@
 header.header-wrapper
-	nav#navigation
-		ul.row.col-xs-12
-			li.col.xs-3
-				a.createProj(ng-link="[\"CreateProject\"]" href="#/createproject") + New project
-			li.col-xs-3
-				.black
-					select(ng-model="head.currentProjectId",ng-change="head.setProject()",id="green",ng-options = "project._id as project.title for project in head.userProjects")
-						option(value="" disable) Select Project
-			li.col-xs-3
-				input(type='text', placeholder='Search')
-			li.col-xs-3
-				a(href='#') Profile
-//            li.col-xs-1
-//                a(href='#')
-//                    i.fa.fa-blind.fa-lg
-//            li.col-xs-1
-//                a(href='#')
-//                    i.fa.fa-glass.fa-lg
-//            li.col-xs-1
-//                a(href='#')
-//                    i.fa.fa-gavel.fa-lg
+	#news-view
+		header#header
+			.hdr-header
+				img#BSheaderLogo.hdr-logo(src='http://academy.binary-studio.com/resources/logo.png')
+				ul.row.col-xs-8
+					li.col.xs-3
+						a.createProj(ng-link="[\"CreateProject\"]" href="#/createproject") + New project
+					li.col-xs-3
+						.black
+							select(ng-model="head.currentProjectId",ng-change="head.setProject()",id="green")
+								option(value="" disable) Select Project
+								option(ng-repeat="project in head.userProjects track by $index" value='{{project._id}}') {{project.title}}
+
+
+				div
+					.hdr-buttons
+						//#menu-gen(ng-click='newsCtrl.toggleGenMenu()')
+						//	i.fa.fa-bars.fa-2x
+						input#searchBar(placeholder='Search')
+						a#userLink.hdr-noTextDecoration
+							#userProfile
+								//img#avatar.hdr-avatar(src='http://team.binary-studio.com/profile/api/files/get/Unknown.png')
+								i.fa.fa-user.fa-2x
+								span#userName Admin
+								span#profileBarArrDwn
+						button#appsBtn.hdr-button
+							img.hdr-appsLogo(src='http://team.binary-studio.com/app/images/Thumbnails.png')
+							// <i class="fa fa-th fa-2x"></i>
+						button#notificationBtn.hdr-button
+							img.hdr-appsLogo(src='http://team.binary-studio.com/app/images/bell.png')
+							// <i class="fa fa-bell-o fa-2x"></i>
+					#notificationCounter 13
+					#search
+			// INVISIBLE
+			#logOutBox.hdr-headerElements.hdr-invisible
+			#appsBlock.hdr-invisible
+			#notificationBlock.hdr-invisible
+
+	script(src='http://team.binary-studio.com/app/javascripts/header.js')
