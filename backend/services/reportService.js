@@ -49,135 +49,73 @@ function getItem(id, callback) {
 
 //============================================================
 function generateReport(data, callback, idForUpdate) {
+    console.log(data);
     if (idForUpdate || validationService.addReportValidation(data, callback)) {
         var types = (!data.types || data.types.length <= 0) ? new Array("Message", "Task", "Event", "Checkin") : data.types;
         var reportTypesCount = types.length;
         var parallel = {};
         for (var i = 0; i < reportTypesCount; i++) {
             switch (types[i]) {
-            case "Message":
-                {
-                    var queryM = {
-                        project: data.project
-                    };
-                    var selectM = {
-                        title: 1,
-                        date: 1,
-                        author: 1
-                    }
-                    var populateM = [{
-                        path: "author",
-                        select: "firstName secondName",
-                        model: "User"
-                    }];
-                    if (data.participants && data.participants.length > 0) {
-                        queryM.author = {
-                            $in: data.participants
+                case "Message":
+                    {
+                        var queryM = {
+                            project: data.project
+                        };
+                        var selectM = {
+                            title: 1,
+                            date: 1,
+                            author: 1
                         }
-                    }
-                    if (data.dateRange && data.dateRange.length > 0) {
-                        queryM.date = {};
-                        if (data.dateRange[0]) {
-                            queryM.date.$gte = data.dateRange[0];
-                        }
-                        if (data.dateRange[1]) {
-                            queryM.date.$lte = data.dateRange[1];
-                        }
-                    }
-                    //console.log(query);
-                    parallel.message = function (cb) {
-                        getData(messageRepository, queryM, selectM, populateM, cb);
-                    }
-                    break;
-                }
-            case "Event":
-                {
-                    var queryE = {
-                        project: data.project
-                    };
-                    var selectE = {
-                        title: 1,
-                        startDate: 1,
-                        endDate: 1,
-                        participants: 1,
-                        author: 1
-                    }
-                    var populateE = [{
-                        path: "author",
-                        select: "firstName secondName",
-                        model: "User"
-                    }, {
-                        path: "participants",
-                        select: "firstName secondName",
-                        model: "User"
-                    }];
-
-                    if (data.participants && data.participants.length > 0) {
-                        queryE.$or = [
-                            {
-                                author: {
-                                    $in: data.participants
-                                }
-                            }, {
-                                participants: {
-                                    $in: data.participants
-                                }
-                            }
-                        ];
-                    }
-                    if (data.dateRange && data.dateRange.length > 0) {
-                        queryE.$and = [];
-                        if (data.dateRange[0]) {
-                            queryE.$and.push({
-                                startDate: {
-                                    $gte: data.dateRange[0]
-                                }
-                            });
-                        }
-                        if (data.dateRange[1]) {
-                            queryE.$and.push({
-                                endDate: {
-                                    $lte: data.dateRange[1]
-                                }
-                            });
-                        }
-                        if (queryE.$and.length == 0) {
-                            queryE.$and = undefined;
-                        }
-                    }
-                    // console.log(query);
-                    parallel.event = function (cb) {
-                        getData(eventRepository, queryE, selectE, populateE, cb);
-                    }
-                    break;
-                }
-            case "Task":
-                {
-                    var queryT = {
-                        project: data.project
-                    };
-                    var selectT = {
-                        title: 1,
-                        participants: 1,
-                        author: 1,
-                        isFinished: 1,
-                        dateCreated: 1
-                    }
-                    var populateT = [{
+                        var populateM = [{
                             path: "author",
                             select: "firstName secondName",
                             model: "User"
-                    },
-
-                        {
+                        }];
+                        if (data.participants && data.participants.length > 0) {
+                            queryM.author = {
+                                $in: data.participants
+                            }
+                        }
+                        if (data.dateRange && data.dateRange.length > 0) {
+                            queryM.date = {};
+                            if (data.dateRange[0]) {
+                                queryM.date.$gte = data.dateRange[0];
+                            }
+                            if (data.dateRange[1]) {
+                                queryM.date.$lte = data.dateRange[1];
+                            }
+                            if (Object.keys(queryM.date).length == 0)
+                                delete queryM.date;
+                        }
+                        parallel.message = function(cb) {
+                            getData(messageRepository, queryM, selectM, populateM, cb);
+                        }
+                        break;
+                    }
+                case "Event":
+                    {
+                        var queryE = {
+                            project: data.project
+                        };
+                        var selectE = {
+                            title: 1,
+                            startDate: 1,
+                            endDate: 1,
+                            participants: 1,
+                            author: 1
+                        }
+                        var populateE = [{
+                            path: "author",
+                            select: "firstName secondName",
+                            model: "User"
+                        }, {
                             path: "participants",
                             select: "firstName secondName",
                             model: "User"
-                            }
-                            ];
-                    if (data.participants && data.participants.length > 0) {
-                        queryT.$or = [
-                            {
+                        }];
+
+                        if (data.participants && data.participants.length > 0) {
+                            queryE.$or = [{
                                 author: {
                                     $in: data.participants
                                 }
@@ -185,55 +123,116 @@ function generateReport(data, callback, idForUpdate) {
                                 participants: {
                                     $in: data.participants
                                 }
+                            }];
+                        }
+                        if (data.dateRange && data.dateRange.length > 0) {
+                            queryE.$and = [];
+                            if (data.dateRange[0]) {
+                                queryE.$and.push({
+                                    startDate: {
+                                        $gte: data.dateRange[0]
+                                    }
+                                });
+                            }
+                            if (data.dateRange[1]) {
+                                queryE.$and.push({
+                                    endDate: {
+                                        $lte: data.dateRange[1]
+                                    }
+                                });
+                            }
+                            if (queryE.$and.length == 0) {
+                                delete queryE.$and;
+                            }
+                        }
+                        // console.log(query);
+                        parallel.event = function(cb) {
+                            getData(eventRepository, queryE, selectE, populateE, cb);
+                        }
+                        break;
+                    }
+                case "Task":
+                    {
+                        var queryT = {
+                            project: data.project
+                        };
+                        var selectT = {
+                            title: 1,
+                            participants: 1,
+                            author: 1,
+                            isFinished: 1,
+                            dateCreated: 1
+                        }
+                        var populateT = [{
+                                path: "author",
+                                select: "firstName secondName",
+                                model: "User"
+                            },
+
+                            {
+                                path: "participants",
+                                select: "firstName secondName",
+                                model: "User"
                             }
                         ];
-                    }
-                    if (data.dateRange && data.dateRange.length > 0) {
-                        queryT.dateCreated = {};
-                        if (data.dateRange[0]) {
-                            queryT.dateCreated.$gte = data.dateRange[0];
-                        }
-                        if (data.dateRange[1]) {
-                            queryT.dateCreated.$lte = data.dateRange[1];
-                        }
-                    }
+                        if (data.participants && data.participants.length > 0) {
+                            queryT.$or = [{
+                                author: {
+                                    $in: data.participants
+                                }
+                            }, {
+                                participants: {
+                                    $in: data.participants
+                                }
+                            }];
 
-                    parallel.task = function (cb) {
-                        getData(taskRepository, queryT, selectT, populateT, cb);
+                        }
+                        if (data.dateRange && data.dateRange.length > 0) {
+                            queryT.dateCreated = {};
+                            if (data.dateRange[0]) {
+                                queryT.dateCreated.$gte = data.dateRange[0];
+                            }
+                            if (data.dateRange[1]) {
+                                queryT.dateCreated.$lte = data.dateRange[1];
+                            }
+                            if (Object.keys(queryT.dateCreated).length == 0) delete queryT.dateCreated;
+                        }
+                        console.log(queryT);
+                        parallel.task = function(cb) {
+                            getData(taskRepository, queryT, selectT, populateT, cb);
+                        }
+                        break;
                     }
-                    break;
-                }
-            case "CheckIn":
-                {
-                    var queryCk = {
-                        project: data.project
-                    };
-                    var selectCk = {
-                        title: 1,
-                        question: 1,
-                        participants: 1,
-                        time: 1,
-                        frequency: 1
-                    }
-                    var populateCk = [{
+                case "CheckIn":
+                    {
+                        var queryCk = {
+                            project: data.project
+                        };
+                        var selectCk = {
+                            title: 1,
+                            question: 1,
+                            participants: 1,
+                            time: 1,
+                            frequency: 1
+                        }
+                        var populateCk = [{
                             path: "participants",
                             select: "firstName secondName",
                             model: "User"
-                            }
-                            ];
-                    if (data.participants && data.participants.length > 0) {
-                        queryCk.participants = data.participants;
+                        }];
+                        if (data.participants && data.participants.length > 0) {
+                            queryCk.participants = data.participants;
 
-                    }
+                        }
 
-                    parallel.checkin = function (cb) {
-                        getData(checkinRepository, queryCk, selectCk, populateCk, cb);
+                        parallel.checkin = function(cb) {
+                            getData(checkinRepository, queryCk, selectCk, populateCk, cb);
+                        }
+                        break;
                     }
-                    break;
-                }
             }
         }
-        async(parallel, function (err, pack) {
+        async(parallel, function(err, pack) {
             data.creationDate = new Date();
             var reports = [];
             if (pack.event) {
@@ -269,7 +268,7 @@ function generateReport(data, callback, idForUpdate) {
                 reports = reports.concat(pack.checkin);
             }
             if (idForUpdate) {
-                reportRepository.setObjPropsById(idForUpdate, data.data, function (error, da) {
+                reportRepository.setObjPropsById(idForUpdate, data, function(error, da) {
                     var res = {
                         db: {
                             data: null,
@@ -284,11 +283,10 @@ function generateReport(data, callback, idForUpdate) {
                     res.db.err = error;
                     res.gen.data = reports;
                     res.gen.err = err;
-                    console.log("update");
                     callback(null, res);
                 });
             } else {
-                reportRepository.add(data, function (error, da) {
+                reportRepository.add(data, function(error, da) {
                     var res = {
                         db: {
                             data: null,

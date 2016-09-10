@@ -23,7 +23,7 @@ class ReportEditComponentController {
         vm.httpGeneral.sendRequest({
             type: "GET",
             url: "api/report/item/" + next.params.id
-        }).then(function (res, err) {
+        }).then(function(res, err) {
             res[0].dateRange[0] = new Date(res[0].dateRange[0]);
             res[0].dateRange[1] = new Date(res[0].dateRange[1]);
             vm.creationDate = new Date(res[0].creationDate);
@@ -32,25 +32,28 @@ class ReportEditComponentController {
             vm.isSaved = (res[0].isSaved || false);
 
             vm.types = (res[0].types || []);
-            vm.typeSamples = vm.typeSamples.filter(function (el) {
+            vm.typeSamples = vm.typeSamples.filter(function(el) {
                 return vm.types.indexOf(el) < 0;
             });
             for (let i = 0; i < res[0].participants.length; i++) {
                 vm.users[i] = (res[0].participants[i].firstName || "") + " " + (res[0].participants[i].secondtName || "");
             }
             vm.dateRange = (res[0].dateRange || []);
+            if (res[0].dateRange[0].getTime() == 0);
+            vm.dateRange[0] = undefined;
+            if (res[0].dateRange[1].getTime() == 0);
+            vm.dateRange[1] = undefined;
             vm.httpGeneral.sendRequest({
                 type: "GET",
                 url: "api/projects/" + vm.projectId + "/users"
-            }).then(function (res) {
-                console.log(res);
+            }).then(function(res) {
                 vm._usersData = res.participants;
                 for (let i = 0; i < res.participants.length; i++) {
                     vm.userSamples[i] = (res.participants[i].firstName || "") + " " + (res.participants[i].secondtName || "");
                 }
 
                 vm.userSamples.unshift("All");
-                vm.userSamples = vm.userSamples.filter(function (el) {
+                vm.userSamples = vm.userSamples.filter(function(el) {
                     return vm.users.indexOf(el) < 0;
                 });
             });
@@ -71,7 +74,9 @@ function manageReportSaving() {
 function reportGenerate() {
     let vm = this;
     let data = {
-        participants: []
+        user: vm.userId,
+        participants: [],
+        project: vm.projectId
     };
     if (vm.title) {
         data.title = vm.title;
@@ -97,29 +102,26 @@ function reportGenerate() {
                 }
             }
         } else {
-            vm.users = undefined;
+            vm.users = [];
         }
         if (vm.dateRange && vm.dateRange.length > 0) {
-            data.dateRange = vm.dateRange.slice(0,2);
+            data.dateRange = vm.dateRange.slice(0, 2);
 
         } else {
-            vm.dateRange = undefined;
+            vm.dateRange = [];
         }
     }
     data.isSaved = vm.isSaved;
-    //console.log(data);
     vm.httpGeneral.sendRequest({
         type: "PUT",
         url: "/api/report/" + vm.reportId,
         body: data
-    }).then(function (res) {
-        console.log(res);
-        // if (res.gen.data) {
-        //     vm.history = res.gen.data;
-        //     console.log(vm.history);
-        //     vm.popupNotifications.notifySuccess("Report added");
-        //     vm.isGenerated = true;
-        // }
+    }).then(function(res) {
+        if (res.gen.data) {
+            vm.history = res.gen.data;
+            vm.popupNotifications.notifySuccess("Report updated");
+            vm.isGenerated = true;
+        }
     });
 }
 

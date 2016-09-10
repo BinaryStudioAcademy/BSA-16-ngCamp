@@ -18,23 +18,23 @@
                             .row.generate-item-header.middle-xs
                                 .col-xs-2 Type:
                                 .col-xs-9.generate-item-holder
-                                    span.generate-item(ng-click='reportAdd.gui.manageItem($index, reportAdd.types, reportAdd.typeSamples)' ng-repeat = 't in reportAdd.types track by $index') {{t}}
+                                    span.generate-item(ng-click='reportAdd.gui.manageItem($index, reportAdd.types, reportAdd.typeSamples, "type")' ng-repeat = 't in reportAdd.types track by $index') {{t}}
                                         span &#xf068
                                 .col-xs-1.fa.button.f-btn(ng-class = '{"fa-angle-left": !reportAdd.gui.isTypePanel, "fa-angle-down": reportAdd.gui.isTypePanel}' ng-click='reportAdd.gui.manageTypePanel()')
                             .row
                                 .col-xs-12.generate-item-holder(ng-show='reportAdd.gui.isTypePanel')
-                                    span.generate-item(ng-click='reportAdd.gui.manageItem($index, reportAdd.typeSamples, reportAdd.types)' ng-repeat = 't in reportAdd.typeSamples track by $index') {{t}}
+                                    span.generate-item(ng-click='reportAdd.gui.manageItem($index, reportAdd.typeSamples, reportAdd.types, "type")' ng-repeat = 't in reportAdd.typeSamples track by $index') {{t}}
                                         span &#xf067
 
                             .row.generate-item-header.middle-xs
                                 .col-xs-2 User:
                                 .col-xs-9.generate-item-holder
-                                    span.generate-item(ng-click='reportAdd.gui.manageItem($index, reportAdd.users, reportAdd.userSamples)' ng-repeat = 'u in reportAdd.users track by $index') {{u}}
+                                    span.generate-item(ng-click='reportAdd.gui.manageItem($index, reportAdd.users, reportAdd.userSamples, "user")' ng-repeat = 'u in reportAdd.users track by $index') {{u}}
                                         span &#xf068
                                 .col-xs-1.fa.button.f-btn(ng-class = '{"fa-angle-left": !reportAdd.gui.isUserPanel, "fa-angle-down": reportAdd.gui.isUserPanel}' ng-click='reportAdd.gui.manageUserPanel()')
                             .row
                                 .col-xs-12.generate-item-holder(ng-show='reportAdd.gui.isUserPanel')
-                                    span.generate-item.middle-xs(ng-click='reportAdd.gui.manageItem($index, reportAdd.userSamples, reportAdd.users)' ng-repeat = 'u in reportAdd.userSamples track by $index') {{u}}
+                                    span.generate-item.middle-xs(ng-click='reportAdd.gui.manageItem($index, reportAdd.userSamples, reportAdd.users, "user")' ng-repeat = 'u in reportAdd.userSamples track by $index') {{u}}
                                         span &#xf067
                             .row.generate-item-header.middle-xs
                                 .col-xs-2 Date:
@@ -45,8 +45,10 @@
                     .row
                         span.button.btn.col-xs-4.col-xs-offset-4(ng-click='reportAdd.generateReport()') Generate
                     .row.start-xs(ng-show='reportAdd.isGenerated')
-                        span.chapter-title.col-xs-12 History
+                        span.chapter-title.col-xs-10 History
                             .fa.fa-history
+                        span.chapter-title.col-xs-1.end-xs Total:
+                        span.chapter-title.col-xs-1.end-xs {{reportAdd.history.length}}
                         .col-xs-12
                             .row.history-item(ng-repeat='h in reportAdd.history track by $index')
                                 .col-xs-12
@@ -55,7 +57,6 @@
                                             .row.his-head
                                                 .col-xs-3 Type
                                                 .col-xs-4 Title
-                                                //.col-xs-4(ng-show='h._type!="question"') {{h._type=="event"?'Start Date':'Date'}}
                                                 .col-xs-4(ng-show='h._type=="checkin"') Question
                                                 .col-xs-4(ng-show='(h._type!="checkin" && h._type!="event")') Author
                                                 .col-xs-4(ng-show='h._type=="event"')
@@ -65,10 +66,6 @@
                                                 .col-xs-4 {{h.title}}
                                                 .col-xs-5(ng-show='h._type=="checkin"') {{h.question}}
                                                 .col-xs-5(ng-show='h._type!="checkin"') {{(h.author.firstName?h.author.firstName:"")+(h.author.secondName?h.author.secondName:"")}}
-                                                //.col-xs-4(ng-show="h._type=='message'") {{h.date | date: 'dd/MM/y'}}
-                                                //.col-xs-4(ng-show="h._type=='event'") {{h.startDate | date: 'dd/MM/y'}}
-                                                //.col-xs-4(ng-show="h._type=='task'") {{h.dateCreated | date: 'dd/MM/y'}}
-                                                //.col-xs-6(ng-show="h._type=='checkin'") {{h.question}}
                                     .row
                                         .col-xs-12
                                             .row.his-head
