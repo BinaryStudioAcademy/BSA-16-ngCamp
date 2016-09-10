@@ -88,7 +88,6 @@ function generateReport() {
     }).then(function (res) {
         if (res.gen.data) {
             vm.history = res.gen.data;
-            console.log(vm.history);
             vm.popupNotifications.notifySuccess("Report added");
             vm.isGenerated = true;
         }
