@@ -3,10 +3,20 @@ header.header-wrapper
 		header#header
 			.hdr-header
 				img#BSheaderLogo.hdr-logo(src='http://academy.binary-studio.com/resources/logo.png')
+				ul.row.col-xs-8
+					li.col.xs-3
+						a.createProj(ng-link="[\"CreateProject\"]" href="#/createproject") + New project
+					li.col-xs-3
+						.black
+							select(ng-model="head.currentProjectId",ng-change="head.setProject()",id="green")
+								option(value="" disable) Select Project
+								option(ng-repeat="project in head.userProjects track by $index" value='{{project._id}}') {{project.title}}
+
+
 				div
 					.hdr-buttons
-						#menu-gen(ng-click='newsCtrl.toggleGenMenu()')
-							i.fa.fa-bars.fa-2x
+						//#menu-gen(ng-click='newsCtrl.toggleGenMenu()')
+						//	i.fa.fa-bars.fa-2x
 						input#searchBar(placeholder='Search')
 						a#userLink.hdr-noTextDecoration
 							#userProfile
