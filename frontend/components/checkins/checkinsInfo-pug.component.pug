@@ -4,14 +4,14 @@
             .header-btn
                 .control-btn
                     a(href='')
-                        .fa.fa-commenting-o.fa-3x.button
+                        .fa.fa-commenting-o.fa-2x.button
                     a(ng-link="['CheckinsEdit', {id: chInfo.checkin._id}]")
-                        .fa.fa-pencil-square-o.fa-3x.button
+                        .fa.fa-pencil-square-o.fa-2x.button
                     a(ng-click='chInfo.deleteCheckin()')
-                        .fa.fa-trash-o.fa-3x.button
+                        .fa.fa-trash-o.fa-2x.button
                 .close-btn
                     a(ng-link='["Checkins List"]')
-                        .fa.fa-close.fa-3x.button
+                        .fa.fa-close.fa-2x.button
             h2 {{chInfo.checkin.question}}
             .user-list
                 span.avatar(ng-repeat="part in chInfo.checkin.participants ") {{part.lastName.charAt(0) + part.firstName.charAt(0) | uppercase}}
