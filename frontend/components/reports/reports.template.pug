@@ -47,7 +47,7 @@
                                             span.col-xs-5.fa.fa-trash.button.f-btn(ng-click='reports.deleteReport(reports.savedReports[$index]._id)')
                                 hr
                                 .row.start-xs.item-row(ng-show = "r.participants")
-                                    .col-xs-4
+                                    .col-xs-4 
                                         span.row.item-def Users:
                                     .col-xs-8
                                         span.row.item-value {{r.participants.join(',')}}
@@ -60,7 +60,7 @@
                                     .col-xs-4
                                         span.row.item-def Dates:
                                     .col-xs-8
-                                        span.row.item-value {{r.dateRange[0] | date : 'dd/MM/y'}} - {{r.dateRange[1] | date : 'dd/MM/y'}}
+                                        span.row.item-value {{r.dateRange[0]?undefined:r.dateRange[0] | date : 'dd/MM/y'}} - {{r.dateRange[1]?undefined:r.dateRange[1] | date : 'dd/MM/y'}}
 
                     .row
                         .col-xs-1.col-xs-offset-11.button.btn(ng-click='reports.manageMore("saved")' ng-hide="(reports.savedReports.length==reports._saved.length) && !reports.isSavedMore ") {{reports.isSavedMore ? 'Less' : 'More'}}

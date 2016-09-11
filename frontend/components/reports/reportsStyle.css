@@ -1,6 +1,3 @@
-html {
-  overflow-y: scroll;
-}
 .reports-wrapper {
   display: block;
   width: 100%;
@@ -137,6 +134,39 @@ html {
   display: inline-block;
   font-family: "FontAwesome";
 }
+.reports-wrapper .history-item {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border-radius: 5px;
+  box-shadow: 0px 2px 3px 2px #adadad;
+  padding: 1%;
+  border: 2px solid #1d8dbf;
+  text-indent: 1%;
+  word-break: break-all;
+}
+.reports-wrapper .history-item .his-head {
+  line-height: 40px;
+  vertical-align: middle;
+  border-bottom: 1px solid #adadad;
+  font-size: 20px;
+  font-family: "Montserrat";
+  background-color: #d8d8d8;
+  padding: 1%;
+}
+.reports-wrapper .history-item .his-head div {
+  border-left: 1px solid #fff;
+}
+.reports-wrapper .history-item .his-body {
+  padding: 1%;
+  font-size: 18px;
+  background: #fff;
+  line-height: 30px;
+  vertical-align: middle;
+  font-family: "Open Sans";
+}
+.reports-wrapper .history-item .his-body div {
+  border-left: 1px solid #d8d8d8;
+}
 .reports-wrapper .button {
   box-shadow: 0px 0px 10px 0px #808080;
   display: flex;
@@ -152,6 +182,7 @@ html {
   height: 50px;
   transition: 0.2s;
   cursor: pointer;
+  border: none;
 }
 .reports-wrapper .button:hover {
   box-shadow: 0px 0px 0px 1px #fff, 0px 0px 0px 4px #1d8dbf;

@@ -1,12 +1,12 @@
 import './rootStyles.styl';
 
 class rootComponentController {
-    constructor($location,$rootRouter) {
+    constructor($location, $rootRouter) {
         this.location = $location;
         this.rootRouter = $rootRouter;
     }
 
-    $onInit(){
+    $onInit() {
         let self = this;
         console.log(window._injectedData.currentProject);
         if (window._injectedData.currentProject === undefined) {
@@ -15,7 +15,7 @@ class rootComponentController {
     }
 }
 
-rootComponentController.$inject = ["$location",'$rootRouter'];
+rootComponentController.$inject = ["$location", '$rootRouter'];
 
 const rootComponent = {
     controller: rootComponentController,
@@ -42,7 +42,7 @@ const rootComponent = {
         path: '/header/',
         name: 'Header',
         component: 'headerComponent'
-    },  {
+    }, {
         path: '/checkins/...',
         name: 'Checkins',
         component: 'checkinsComponent'
@@ -58,13 +58,11 @@ const rootComponent = {
         path: '/project/',
         name: 'Project',
         component: 'projectComponent'
-    },
-    {
+    }, {
         path: '/createproject/',
         name: 'CreateProject',
         component: 'createProjectComponent'
-    },
-    {
+    }, {
         path: '/trash/',
         name: 'Trash',
         component: 'trashComponent'
@@ -84,12 +82,15 @@ const rootComponent = {
         path: '/comments',
         name: 'Comments',
         component: 'commentsComponent'
-    },{
-        path:'comments/:id/message',
+    }, {
+        path: 'comments/:id/message',
         name: 'Message comments',
         component: 'messageCommentsComponent'
-    },
-    {
+    }, {
+        path: 'comments/:id/event',
+        name: 'Event comments',
+        component: 'eventsCommentsComponent'
+    }, {
         path: '/files',
         name: 'File', //TODO test, remove later
         component: 'files'
@@ -105,7 +106,7 @@ const rootComponent = {
         path: '/calendar/...',
         name: 'Calendar',
         component: 'primaryCalendar'
-    },{
+    }, {
         path: '/test',
         name: 'Test',
         component: 'test'
@@ -113,7 +114,7 @@ const rootComponent = {
         path: 'noProject',
         name: 'NoProject',
         component: 'noProjectComponent'
-    },{
+    }, {
         path: '/**',
         name: 'NotFound',
         component: 'notFound'

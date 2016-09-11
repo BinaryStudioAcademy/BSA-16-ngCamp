@@ -5,34 +5,34 @@ aside.side-menu-wrapper
     nav#side-menu.side-menu(ng-disabled="MenuCtrl.disabled")
         ul
             li
-                a(ng-link='["MainPage"]',ng-disabled="MenuCtrl.disabled")
+                a(ng-link='["MainPage"]',ng-disabled="MenuCtrl.disabled", ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-home.fa-2x
                     span.nav-text Home
             li
-                a(ng-link='["MsgBoard"]',ng-disabled="MenuCtrl.disabled")
+                a(ng-link='["MsgBoard"]',ng-disabled="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-television.fa-2x
                     span.nav-text Message Board
             li
-                a(ng-link='["Checkins"]',ng-disabled="MenuCtrl.disabled")
+                a(ng-link='["Checkins"]',ng-disabled="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-calendar-check-o.fa-2x
                     span.nav-text Check-ins
             li
-                a(ng-link='["Tasks"]',ng-disabled="MenuCtrl.disabled")
+                a(ng-link='["Tasks"]',ng-disabled="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-tasks.fa-2x
                     span.nav-text Tasks
             li
-                a(ng-link='["Events"]',ng-disabled="MenuCtrl.disabled")
+                a(ng-link='["Events"]',ng-disabled="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-calendar.fa-2x
                     span.nav-text Events
             li
-                a(ng-link='["Reports"]',ng-disabled="MenuCtrl.disabled")
+                a(ng-link='["Reports"]',ng-disabled="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-area-chart.fa-2x
                     span.nav-text Reports
             li
-                a(ng-link='["Drafts"]',ng-disabled="MenuCtrl.disabled")
+                a(ng-link='["Drafts"]',ng-disabled="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-pencil-square-o.fa-2x
                     span.nav-text Drafts
             li
-                a(ng-link='["Project"]',ng-disabled="MenuCtrl.disabled")
+                a(ng-link='["Project"]',ng-disabled="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-cogs.fa-2x
                     span.nav-text Settings

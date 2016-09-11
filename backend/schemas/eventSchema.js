@@ -18,6 +18,17 @@ var EventSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "File"
     }],
+    comments: [
+        {
+            author: {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            },
+            date: Date,
+            description: String,
+            files: [String]
+        }
+    ],
     author:{
         type: Schema.Types.ObjectId,
         ref: "User"

@@ -1,8 +1,9 @@
 import './checkinsCreateStyles.styl';
 
 class CheckinsCreateComponentController {
-    constructor(httpGeneral, $window, $location) {
+    constructor(httpGeneral, popupNotifications, $window, $location) {
         this.httpGeneral = httpGeneral;
+        this.popupNotifications = popupNotifications;
         this.window = $window;
         this.location = $location;
         this.participants = [];
@@ -46,8 +47,8 @@ class CheckinsCreateComponentController {
     }
     save(){
         let vm = this;
-        console.log(vm.selectedTime);
-        vm.httpGeneral.sendRequest({
+        if(vm.question && vm.participants){
+            vm.httpGeneral.sendRequest({
             type: "POST",
             url: "/api/checkins/",
             body: {
@@ -61,9 +62,14 @@ class CheckinsCreateComponentController {
                 }
             }
         }).then(function(res) {
-            console.log("Succesfull create checkin");
+            console.log("Checkin created succesfuly");
             vm.location.path('/checkins');
         });
+        }
+        else {
+            vm.popupNotifications.notifyError("You must define your question and participants");
+        }
+
     }
     toggleAll(){
         let vm = this;
@@ -88,7 +94,7 @@ class CheckinsCreateComponentController {
     }
 }
 
-CheckinsCreateComponentController.$inject = ['httpGeneral', '$window', '$location'];
+CheckinsCreateComponentController.$inject = ['httpGeneral', 'popupNotifications', '$window', '$location'];
 
 const checkinsCreateComponent = {
     controller: CheckinsCreateComponentController,
