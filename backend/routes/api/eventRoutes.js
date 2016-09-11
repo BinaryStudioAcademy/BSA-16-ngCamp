@@ -87,4 +87,18 @@ module.exports = function (app) {
                 next();
             })
     }, apiResponse);
+    app.get(baseUrl + ':id' + '/comments', function (req, res, next) {
+        eventRepository.getByIdWithComments(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+    app.put(baseUrl + ':id' + '/comment', function(req, res, next){
+        eventRepository.addComment(req.params.id, req.body, function(err, data){
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
 }

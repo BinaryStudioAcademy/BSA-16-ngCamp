@@ -17,7 +17,11 @@ const commentsComponent = {
     $routeConfig: [{
  		path:'/:id/message',
  		name:'Message comments',
- 		component:'messageComments',
+ 		component:'messageCommentsComponent',
+	},{
+		path:'/:id/event',
+		name:'Event comments',
+		component:'eventsCommentsComponent'
 	}]
 };
 

@@ -1,3 +1,4 @@
+@import "../../../public/libs/css/generalComponentsStyle.styl"
 .checkins-answer-wrapper
 
     .checkins-answer
@@ -21,23 +22,33 @@
 
     .header-answer
         height 20%
+        max-width 650px
         h2
-            margin 0
-        .fa
-            margin-left 10px
+            word-wrap break-word
+            margin 15px
+            text-align center
 
     .header-btn
         display flex
         justify-content space-between
-        margin 15px
+        margin 10px
 
-    .close-btn
-        //text-align right
-        margin-top -10px
-        margin-right -5px
-
-    .control-btn
+    .button
+        box-shadow 0px 0px 10px 0px grey
+        background-color main-blue
+        color white
+        border-radius 5px
+        height 40px
+        width 50px
+        padding 5px
         margin 5px
+        transition 0.2s
+        cursor pointer
+        border none
+        &:hover
+            box-shadow 0px 0px 0px 1px white, 0px 0px 0px 4px main-blue
+        &:active
+            box-shadow 0px 0px 0px 0.5px white, 0px 0px 0px 2px main-blue, 0px 0px 5px 0px white inset
 
     .user-list
         margin 10px
@@ -45,29 +56,31 @@
         text-align center
 
     .avatar
-        bottom 35px
-        margin 3px
         background-color #f2992e
         border-radius 5px
-        font-size 23px
-        padding .2em 0.2em
+        font-size 20px
+        padding 3px
+        margin 3px
+        text-transform uppercase
+        font-weight bold
 
-    .fa-pencil-square-o
-        &:hover
-            color #ffa502
+    //.fa-pencil-square-o
+    //    &:hover
+    //        color #ffa502
+    //
+    //.fa-trash-o
+    //    cursor pointer
+    //    &:hover
+    //        color #f20000
+    //
+    //.fa-times
+    //    &:hover
+    //        color #f20000
+    //
+    //.fa-commenting-o
+    //    &:hover
+    //        color #00c000
 
-    .fa-trash-o
-        cursor pointer
-        &:hover
-            color #f20000
-
-    .fa-times
-        &:hover
-            color #f20000
-
-    .fa-commenting-o
-        &:hover
-            color #00c000
 
     .main-answer
         height 80%
@@ -83,4 +96,3 @@
     .list
         text-align left
         margin-right 15px
-

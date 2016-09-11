@@ -13,6 +13,8 @@ EventRepository.prototype.setParticipants = setParticipants;
 EventRepository.prototype.getFiles = getFiles;
 EventRepository.prototype.setFiles = setFiles;
 EventRepository.prototype.getAllWithParticipants = getAllWithParticipants;
+EventRepository.prototype.getByIdWithComments = getByIdWithComments;
+EventRepository.prototype.addComment = addComment;
 
 function getAllWithParticipants(callback){
     var model = this.model;
@@ -77,6 +79,30 @@ function setFiles(id, data, callback) {
     }, {
         $addToSet: {
             files: {
+                $each: data
+            }
+        }
+    });
+    query.exec(callback);
+}
+
+function getByIdWithComments(id, callback) {
+    var model = this.model;
+    var query = model.findOne({
+        _id: id,
+    }).populate({
+        path:'comments.author',
+    });
+    query.exec(callback);
+}
+
+function addComment(id, data, callback){
+    var model = this.model;
+    var query = model.update({
+        _id: id
+    },{
+        $push: {
+            comments: {
                 $each: data
             }
         }

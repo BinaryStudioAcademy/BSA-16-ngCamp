@@ -1,0 +1,35 @@
+.comments-wrapper
+    .row.center-xs
+        .col-xs-8.comments-holder
+          .row.comments-header
+            span.col-xs-11 Comments
+            |                     
+            .middle-xs.col-xs-1.fa.fa-close.button(ng-link='["Events List"]')
+          |                 
+          .row.comments-body
+            ul.col-xs-12
+              li.row(ng-repeat="comment in $ctrl.comments track by $index")
+                .col-xs-1.user-icon.fa.fa-user
+                |                         
+                .col-xs-9
+                  .row
+                    span.col-xs-12.user-name {{comment.author.firstName}} {{comment.author.secondName}}                            
+                  .row
+                    p.col-xs-12.comment
+                      | {{comment.description}}
+                |                         
+                span.col-xs-2.comment-date {{coment.date}}
+        
+          .row.comments-tools
+            .col-xs-12
+              form(name="comment",novalidate)
+                .row.message-holder
+                  span.attachment.button.col-xs-1.fa-paperclip.fa.col-xs-offset-11
+                .row.center-xs.center-xs
+                  textarea.col-xs-11.user-message(type="text",name="text",ng-model="$ctrl.myComment",required,ng-minlength="3",ng-maxlength="250")
+                  hr
+                  p(ng-show="comment.text.$error.minlength" class="help-block") Comment is too short.
+                  p(ng-show="comment.text.$error.maxlength" class="help-block") Comment is too long.
+                |                         
+                .row
+                  .button.comment-button.col-xs-4.col-xs-offset-4(ng-click="$ctrl.sendComment(comment.$valid)") Comment

@@ -29,11 +29,11 @@ module.exports = function (app) {
     }, apiResponse);
     //===================================================
     app.put(baseUrl + ":id", function (req, res, next) {
-        reportService.updateItem(req.params.id, req.body, function (err, data) {
+        reportService.generateReport(req.body, function (err, data) {
             res.data = data;
             res.err = err;
             next();
-        });
+        }, req.params.id);
     }, apiResponse);
     //===================================================
     app.delete(baseUrl + ':id', function (req, res, next) {

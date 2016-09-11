@@ -1,123 +1,69 @@
 @import "../../../public/libs/css/generalComponentsStyle.styl"
-//@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css");
-//body {
-//  width: 100%;
-//  max-width: 100%;
-//  margin: 0 auto;
-//}
-///* HEADER*/
-//#navigation {
-//    justify-content flex-end
-//    padding 1%;
-//    display flex
-//    align-items center
-//    background: #403f3f;
-//    overflow: hidden;
-//  
-//}
-//
-//#nav-list,
-//#nav-list-2 {
-//  list-style-type: none;
-//}
-//#navigation input {
-//  border-radius 10px
-//  padding 6px
-//  background-color white;
-//}
-//#navigation li a {
-//  text-decoration: none;
-//  text-align: center;
-//  color: #e1e1e1;
-//  display: block;
-//  padding: 15px;
-//}
-//#navigation a:hover {
-//  background-color: #6a6f79;
-//}
-//@media screen and (min-width: 420px) {
-//  #nav-list {
-//    display: flex;
-//    justify-content: flex-end;
-//  }
-//}
-//#navigation
-//    .fa
-//        color white
+@import "http://team.binary-studio.com/app/styles/css/style.css"
+
 .header-wrapper
     position  fixed
     z-index 100
     top 0
     left 0
     width 100%
-    background-color #403F3F
     *
         box-sizing border-box
-    #navigation
-        height 50px
-        .fa
-            color white
-        input
-            color #fbfbfb
-            border-radius 10px
-            height 30px
-        display flex
-        align-items center
-        justify-content flex-end
-        padding-right  2%
-        ul
-            padding-right 1%
-            li
-                display inline-flex
-                justify-content center
-                align-items center
-                list-style none
-                line-height 50px
+    ul
+        padding-right 1%
+        li
+            display inline-flex
+            justify-content center
+            align-items center
+            list-style none
+            line-height 50px
+            text-align center
+            a
+                display inline-block
+                text-decoration none
+                color white
                 text-align center
-                a
-                    display inline-block
-                    text-decoration none
-                    color white
+                    input
+                        color #403F3F
+                i
+                    padding 2%
                     text-align center
-                        input
-                            color #403F3F
-                    i
-                        padding 2%
-                        text-align center
-                .createProj
+            .createProj
+                font-family "Montserrat"
+                font-size 20px
+                margin-top 10px
+            .black
+                select
+                    background-color #3498DB
+                    background-repeat no-repeat
+                    background-position right 10px top 15px
+                    background-size 16px 16px
+                    color white
+                    padding 5px
+                    margin-top 18px
+                    width auto
                     font-family "Montserrat"
-                    font-size 20px
-                .black
-                    select
-                        background-color #3498DB
-                        background-repeat no-repeat
-                        background-position right 10px top 15px
-                        background-size 16px 16px
-                        color white
-                        padding 12px
-                        width auto
-                        font-family "Montserrat"
-                        font-size 16px
-                        font-weight bold
-                        color #fff
-                        text-align center
-                        text-shadow 0 -1px 0 rgba(0, 0, 0, 0.25)
-                        border-radius 3px
-                        -webkit-border-radius 3px
-                        -webkit-appearance #0088cc  none
+                    font-size 16px
+                    font-weight bold
+                    color #fff
+                    text-align center
+                    text-shadow 0 -1px 0 rgba(0, 0, 0, 0.25)
+                    border-radius 3px
+                    -webkit-border-radius 3px
+                    -webkit-appearance #0088cc  none
+                    border 0
+                    outline 0
+                    -webkit-transition 0.3s ease all
+                    -moz-transition 0.3s ease all
+                    -ms-transition 0.3s ease all
+                    -o-transition 0.3s ease all
+                    transition 0.3s ease all
+                    option:first-child
+                        display none
+                select:hover
+                    background-color:#2980B9;
+
+
+                    select:focus, select:active
                         border 0
                         outline 0
-                        -webkit-transition 0.3s ease all
-                        -moz-transition 0.3s ease all
-                        -ms-transition 0.3s ease all
-                        -o-transition 0.3s ease all
-                        transition 0.3s ease all
-                        option:first-child
-                            display none
-                    select:hover
-                        background-color:#2980B9;
-
-
-                        select:focus, select:active
-                          border 0
-                          outline 0 
