@@ -18,11 +18,22 @@ class RightPanelComponentController {
             'Friday',
             'Saturday',
             'Sunday'];
+        angular.element(document.querySelectorAll('.ng-isolate-scope')).bind("scroll", function(){
+             if ((document.getElementsByTagName('right-panel-component')[0].scrollHeight - 
+             document.getElementsByTagName('right-panel-component')[0].scrollTop - 
+             document.getElementsByTagName('right-panel-component')[0].offsetHeight
+             ) < 50 ) {
+                 vm.nextDay();
+                
+             }
+           
+          
+        });
     }
 
     $onInit() {
         let vm = this;
-        vm.getCheckins(vm.days[vm.date.getUTCDay()]);
+        vm.getCheckins(vm.days[vm.date.getUTCDay()+1]);
         let dateObj = {
             year: vm.date.getFullYear(),
             month: vm.date.getMonth(),
@@ -43,6 +54,10 @@ class RightPanelComponentController {
            // vm.getCheckins(vm.days[vm.date.dow]);
 
         });
+
+        
+        // console.log(angular.element(document.querySelectorAll('#two')));
+        
     }
     getCheckins(day){
         let vm = this;
