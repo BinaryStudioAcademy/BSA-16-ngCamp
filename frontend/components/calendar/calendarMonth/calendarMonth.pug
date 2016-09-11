@@ -34,7 +34,7 @@
                 th  Sun
             tr(ng-repeat='week in cm.weeks')
                 td(ng-repeat='day in week.days',
-					ng-click="cm.broadcastDate(day.date)",
+					ng-click="cm.broadcastDate(day)",
                    
-                    ng-class="{'day-today': day.isToday, 'different-month': !day.isCurrentMonth}") {{day.number}}
+                    ng-class="{'day-today': day.isToday, 'different-month': !day.isCurrentMonth, 'day-checked': day.isChecked }") {{day.number}}
 

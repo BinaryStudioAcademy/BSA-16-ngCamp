@@ -1,11 +1,12 @@
 ﻿//import './checkinsStyles.styl';
 
 class RightPanelComponentController {
-    constructor(httpGeneral, $scope) {
+    constructor(httpGeneral, $scope, $rootScope) {
         let vm = this;
         vm.httpGeneral = httpGeneral;
         vm.date = new Date();
         vm.scp = $scope;
+        vm.rootScp = $rootScope;
         vm.checkins = [];
         vm.dailyCheckinsList = [];
 
@@ -15,16 +16,24 @@ class RightPanelComponentController {
             'Wednesday',
             'Thursday',
             'Friday',
-            'Saturday'];
+            'Saturday',
+            'Sunday'];
     }
 
     $onInit() {
         let vm = this;
-        vm.getCheckins(vm.days[vm.date.getDay()]);
-        vm.scp.$on('date', function(event, date){
-            vm.date = date;
+        vm.getCheckins(vm.days[vm.date.getUTCDay()]);
+        let dateObj = {
+            year: vm.date.getFullYear(),
+            month: vm.date.getMonth(),
+            day: vm.date.getUTCDate(),
+            dow: vm.date.getUTCDay()
+       };
+       console.log(dateObj.dow + "dow");
+        vm.dailyCheckinsList.push({checkins: vm.checkins, day: dateObj});
+        vm.scp.$on('date', function(event, day){
+            vm.date = day;
             vm.checkins = [];
-
             let dayOW = vm.days[vm.date.dow];
             vm.getCheckins(dayOW);
             vm.dailyCheckinsList = [];
@@ -53,6 +62,7 @@ class RightPanelComponentController {
     previousDay(){
         let vm = this;
         let daynumber;
+        // console.log(vm.dailyCheckinsList[0]['day'].dow);
         if((vm.dailyCheckinsList[0]['day'].dow - 1)>=0){
             daynumber = vm.dailyCheckinsList[0]['day'].dow - 1;
         } else {
@@ -61,6 +71,7 @@ class RightPanelComponentController {
         let nextdate = vm.dailyCheckinsList[0]['day'];
         let dayOfWeekString = vm.days[daynumber];
         vm.checkins = [];
+        // console.log(dayOfWeekString);
         vm.getCheckins(dayOfWeekString);
 
         let date = {
@@ -71,7 +82,8 @@ class RightPanelComponentController {
         };
         // date = vm.dailyCheckinsList[0]['day'];
         vm.dailyCheckinsList.unshift({checkins: vm.checkins, day: date});
-        console.log(vm.dailyCheckinsList);
+        vm.rootScp.$broadcast('addDate', date);
+        // console.log(vm.dailyCheckinsList);
     }
     nextDay(){
         let vm = this;
@@ -79,7 +91,7 @@ class RightPanelComponentController {
         if((vm.dailyCheckinsList[vm.dailyCheckinsList.length -1]['day'].dow + 1)<=6){
 
             daynumber = vm.dailyCheckinsList[vm.dailyCheckinsList.length -1]['day'].dow + 1;
-            console.log(daynumber);
+            // console.log(daynumber);
         } else {
             daynumber = 0;
         }
@@ -96,6 +108,8 @@ class RightPanelComponentController {
         };
         // date = vm.dailyCheckinsList[0]['day'];
         vm.dailyCheckinsList.push({checkins: vm.checkins, day: date});
+        vm.rootScp.$broadcast('addDate', date);
+        
     }   
     checkinFilter(day){
         let vm = this;
@@ -115,7 +129,7 @@ class RightPanelComponentController {
     }
 }
 
-RightPanelComponentController.$inject = ['httpGeneral', '$scope'];
+RightPanelComponentController.$inject = ['httpGeneral', '$scope', '$rootScope'];
 
 const rightPanelComponent = {
     controller: RightPanelComponentController,
