@@ -35,6 +35,10 @@ const eventsComponent = {
         path: '/:id/post',
         name: 'Edit event',
         component: 'eventEditComponent',
+    },{
+        path: 'comments/:id/event',
+        name: 'Event comments',
+        component: 'eventsCommentsComponent'
     }]
 };
 

@@ -39,6 +39,7 @@
                             a(ng-link="[\'Edit event\', {id: event._id}]")
                                 h2  {{event.title}}  
                             i.fa.fa-folder-open-o.fa-2x
+                            i.fa.fa-comments-o.fa-2x(ng-link='["Event comments", {id:event._id}]')
                         .col-xs-2.col-xs-offset-4
                             span.avatar(ng-repeat="participant in vm.userEvents[$index].participants track by $index") {{ participant.firstName[0] + participant.lastName[0]}}
                     .event-body
