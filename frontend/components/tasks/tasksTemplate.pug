@@ -39,10 +39,10 @@
 					.toDo_title.col-xs-8 {{todo.title}}
 					.toDo_description.col-xs-offset-1.col-xs-10(ng-bind-html="todo.description")
 				.sub_functions.row.center-xs
-					.col-xs-5.start-xs.date {{task.dateCreated | date: "MMM d, y h:mm"}} ({{task.author.firstName}} {{task.author.lastName}})
-					.col-xs-7.end-xs.icon_bar 
+					.col-xs-4.start-xs.date {{task.dateCreated | date: "MMM d, y h:mm"}} ({{task.author.firstName}} {{task.author.lastName}})
+					.col-xs-8.end-xs.icon_bar 
 						i.fa.fa-comments-o(aria-hidden = "true")
-						i.fa.fa-files-o(aria-hidden = "true")
+						file-wrapper(files = 'task.files', source-id = 'task._id')
 						i.fa.fa-pencil(aria-hidden = "true", ng-link = "['TaskUpdate', {id: task._id}]")
 						i.fa.fa-times(aria-hidden = "true", ng-click = "tasksctrl.deleteTask(task._id,$index)")
 		.wrapper_noTask.row.center-xs(ng-if = "!tasksctrl.tasks.length")
