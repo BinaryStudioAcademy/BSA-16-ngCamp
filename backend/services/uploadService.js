@@ -10,6 +10,36 @@ function UploadService() {
 }
 
 UploadService.prototype.saveFile = saveFile;
+UploadService.prototype.downloadFile = downloadFile;
+UploadService.prototype.multDownload = multDownload;
+
+function multDownload(idList,callback){
+    var filesDataArray = [];
+    idList = idList.split(",");
+    idList.forEach(function(elem,index,array){
+        fileRepository.getById(elem, function(err,data){
+            if(err){
+                callback({message: "Get File error"});
+            }else{
+                filesDataArray.push({path: data.url, name: data.name});
+                if(index == array.length-1){
+                    callback(undefined,filesDataArray);
+                };
+            }
+        });
+    });
+}
+
+function downloadFile(id,callback){
+    fileRepository.getById(id,function(err,data){
+        console.log(data.url);
+        if(err){
+            callback({message: "File don't find :("});
+        }else{
+            callback(undefined, data);
+        };
+    });
+}
 
 function checkDir(path){
     if(fs.existsSync(path)){
