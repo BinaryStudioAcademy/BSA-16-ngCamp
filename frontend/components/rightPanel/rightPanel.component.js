@@ -33,7 +33,7 @@ class RightPanelComponentController {
 
     $onInit() {
         let vm = this;
-        vm.getCheckins(vm.days[vm.date.getUTCDay()+1]);
+        vm.getCheckins(vm.days[vm.date.getUTCDay()]);
         let dateObj = {
             year: vm.date.getFullYear(),
             month: vm.date.getMonth(),
