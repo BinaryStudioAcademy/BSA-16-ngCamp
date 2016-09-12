@@ -3,7 +3,7 @@
 		.col-xs-10.col-xs-offset-1.file-description {{file.name}} ({{fu.transformSize(file.size)}})
 			i.fa.fa-times(ng-click = 'fu.removeFile($index)')
 	input(id="fileInput", type="file", onchange = 'angular.element(this).scope().fu.uploadFiles(this.files)', style = "display: none;")
-	button.addFile(ng-click = 'fu.triggerFileList()' ng-class = "{'buttonDownload': fu.uploading}")
+	button.addFile(ng-click = 'fu.triggerFileList()', ng-class = "{'buttonDownload': fu.uploading}", ng-disabled = "fu.uploading")
 		.button_background(style = "width: {{100*fu.uploadProgress}}%" ng-show = "fu.uploading")
 		i.fa(ng-class = "{'fa-spinner fa-spin': fu.uploading, 'fa-plus-square': !fu.uploading}")
 		span {{(fu.uploading) ? "uploading..." : "add file"}}

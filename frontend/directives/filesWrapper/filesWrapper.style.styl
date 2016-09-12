@@ -1,0 +1,69 @@
+@import "../../../public/libs/css/generalComponentsStyle.styl"
+.filesWrapper_wrapper
+    position absolute
+    &:hover
+        color #212121
+    .filesWrapper_background
+        position fixed
+        z-index 500
+        background-color #212121
+        opacity 0.5
+        height 100vh
+        width 100vw
+        top 0
+        left 0
+    .filesWrapper_window
+        font-family 'Montserrat'
+        position fixed
+        z-index 600
+        background-color white
+        width 60vw
+        top 30vh
+        min-width 360px
+        left 24vw
+        border-radius 7px
+        padding 10px
+        @media only screen and (max-width : 1000px)
+            left 50%
+            top 50%
+            width 90vw
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        .filesWrapper-lable
+            .close-ic
+                display flex
+                align-items center
+                i
+                    font-size 1.4em
+        .filesWrapper-content
+            overflow-y auto
+            max-height 30vh
+            @media only screen and (max-width : 1000px)
+                max-height 60vh
+            margin 10px
+            padding 10px
+            border 3px dashed shadow-grey
+            .file_item
+                white-space nowrap
+                a
+                    font-size 0.7em
+                    cursor pointer
+                    text-decoration none
+                    transition all 0.5s ease-out
+                    .file_size
+                        margin-left 0px
+                        color #212121
+                        opacity 0
+                        transition all 0.5s ease-out
+                    &:hover
+                        .file_size
+                            margin-left 10px
+                            opacity 1
+        .filesWrapper-downloadAll
+            .dAll
+                button()
+                color white
+                text-decoration none

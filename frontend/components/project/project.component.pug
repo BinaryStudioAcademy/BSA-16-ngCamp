@@ -1,3 +1,5 @@
+user-list(user-data = 'proj.users', select-callback = 'proj.onUserSelect', parent-scope='proj', ng-if='proj.userListFlag')
+user-list(user-data = 'proj.users', select-callback = 'proj.onAdminSelect', parent-scope='proj', ng-if='proj.adminListFlag')
 .projectwrapper
   .row.center-xs
     .main.col-xs-8
@@ -39,12 +41,9 @@
                 span {{participator.firstName}} {{participator.lastName}}
                 i.fa.fa-times.fa-fw(ng-click="proj.removeParticipant(participator._id)",ng-if="proj.projectParticipants.length>1")
             
-            a.addUser(ng-click="proj.addParticipatorFlag=true;")
-              i.fa.fa-plus(aria-hidden='true')
-              lable Add Participant
-            select(ng-if="proj.addParticipatorFlag",ng-model="proj.participatorToAdd",ng-change="proj.addParticipator();")
-              option(value="") Select User to Add
-              option(ng-repeat="participator in proj.users track by $index",value="{{participator._id}}") {{participator.email}} 
+          button.addButton(ng-click = 'proj.userListFlag = true')
+            i.fa.fa-plus(aria-hidden='true')
+            span add participant
         .wrap
           label
             p Admins:
@@ -53,14 +52,10 @@
               a.participant
                 i.fa.fa-user.fa-2x
                 span {{admin.firstName}} {{admin.lastName}}
-                i.fa.fa-times.fa-fw(ng-click="proj.removeAdmin(admin._id)",ng-if="proj.projectAdmins.length>1")
-            
-            a.addUser(ng-click="proj.addAdminFlag=true;",ng-if="proj.isUserAdmin")
-              i.fa.fa-plus(aria-hidden='true')
-              lable Add Participant
-            select(ng-if="proj.addAdminFlag",ng-model="proj.adminToAdd",ng-change="proj.addAdmin();")
-              option(value="") Select User to Add
-              option(ng-repeat="participator in proj.users track by $index",value="{{participator._id}}") {{participator.email}} 
+                i.fa.fa-times.fa-fw(ng-click="proj.removeAdmin(admin._id)",ng-if="proj.projectAdmins.length>1") 
+          button.addButton(ng-click = 'proj.adminListFlag = true',ng-if="proj.isUserAdmin")
+            i.fa.fa-plus(aria-hidden='true')
+            span add admin
         .wrap
           label
             p  Deadline:

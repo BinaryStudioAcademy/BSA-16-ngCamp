@@ -1,5 +1,7 @@
 var uploadService = require('../../services/uploadService'),
     apiResponse = require('express-api-response');
+    fs = require('fs');
+    zip = require('express-zip');
 
 var baseUrl = '/api/files/';
 
@@ -34,6 +36,25 @@ module.exports = function (app) {
             res.data = data;
             res.err = err;
             next();
+        });
+    }, apiResponse);
+
+    app.get(baseUrl+"download/"+ ":id", function (req,res,next){
+        uploadService.downloadFile(req.params.id,function(err,data){
+            // res.setHeader('Content-disposition', 'attachment; filename=' + data.name);
+            // res.setHeader('Content-type', data.type);
+            // var filestream = fs.createReadStream(data.url);
+            // filestream.pipe(res);
+            res.download(data.url);
+            res.err = err;
+        });
+
+    }, apiResponse);
+    app.get(baseUrl+"downloadAll/"+":sourceIdList", function(req,res,next){
+        console.log(req.params.sourceIdList);
+        uploadService.multDownload(req.params.sourceIdList, function(err,data){
+            res.zip(data);
+            res.err = err;
         });
     }, apiResponse);
 }

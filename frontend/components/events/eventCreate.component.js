@@ -22,6 +22,7 @@ class eventEditController {
         };
         this.today;
         this.userToAdd;
+        this.userListFlag = false;
     }
     $onInit(){
     	let self = this;
@@ -68,6 +69,28 @@ class eventEditController {
         } else{
             self.popupNotifications.notifyError("Please enter info correctly");
         }
+    }
+
+    onUserSelect(user){
+        function filterArrayUsers(element){
+            let eq;
+            if( element._id == user._id ){
+                eq = true;
+            }else{
+                eq = false;
+            };
+            return eq;
+        };
+        let self = this.parentScope;
+        let repeat = self.participants.find(filterArrayUsers);
+
+        if(repeat){
+            self.popupNotifications.notifyError('already added!');
+        }else{
+            self.participants.push(user);
+        };
+
+        self.userListFlag = false;
     }
 
     participantUpdate() {

@@ -56,6 +56,24 @@
           justify-content center
           align-items center
           margin-top 10px
+        .addButton
+          button()
+          margin 25px auto
+          font-size 1.2em
+          padding 0 0.5em
+          display flex
+          flex-wrap nowrap
+          justify-content space-between
+          i
+            display inline
+            font-size 1.2em
+            &:hover
+              color white
+            span
+              display: -moz-inline-stack;
+              display inline
+              font-family "Montserrat"
+              font-family 1em
           .participant_wrapper
             background-color #1d8dbf
             display inline-flex
@@ -71,7 +89,6 @@
                 cursor pointer
                 &:hover
                   color white
-
     .period
       display flex
       flex-direction row
@@ -79,11 +96,4 @@
       button
         font-family "Montserrat"
         button()
-    i
-      color black
-
-    a
-      i
-        &:hover
-          color blue
 
