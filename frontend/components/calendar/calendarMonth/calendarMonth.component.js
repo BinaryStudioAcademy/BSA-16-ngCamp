@@ -2,24 +2,24 @@ import './calendarMonth.styl';
 let moment = require('moment');
 
 class CalendarMonthCtrl {
-    constructor($rootScope) {
+    constructor($rootScope, $scope) {
         let vm = this;
         vm.rootScp = $rootScope;
+        // vm.date = new Date();
+        vm.scp = $scope;
         vm.currentMonth = new Date();
         vm.isChangeMonth = false;
-
+        vm.checkedDays = [];
         vm.startChangeMonth = () => vm.isChangeMonth = true;
         vm.endChangeMonth = () => {
             vm.isChangeMonth = false;
-
             vm.monthStartMoment = moment(vm.currentMonth);
             vm.monthStartMoment.startOf('month');
             vm.monthEndMoment = vm.monthStartMoment.clone().endOf('month');
-
             vm.createMonthView();
-
             vm.buildMonth();
         };
+                    
 
         vm.buildMonth = () => {
             let date = vm.mViewStartMoment.clone();
@@ -33,6 +33,7 @@ class CalendarMonthCtrl {
                         number: date.date(),
                         isCurrentMonth: date.month() === vm.monthStartMoment.month(),
                         isToday: date.isSame(new Date(), 'day'),
+                        isChecked: false,
                         date: date.clone()
                     });
                     date.add(1, "d");
@@ -60,13 +61,20 @@ class CalendarMonthCtrl {
 
             vm.buildMonth();
         };
-        vm.broadcastDate = (date) => {
+        vm.broadcastDate = (day) => {
+            day.isChecked = true;
+            for (let i=0; i<vm.checkedDays.length; i++){
+                 vm.checkedDays[i].isChecked = false;
+            }
+            vm.checkedDays = [];
+            vm.checkedDays.push(day);
             let dateObj = {
-                year: date.year(),
-                month: date.month(),
-                day: date.date(),
-                dow: date.isoWeekday()
+                year: day.date.year(),
+                month: day.date.month(),
+                day: day.date.date(),
+                dow: day.date.isoWeekday()
             };
+            // console.log(dateObj);
             vm.rootScp.$broadcast('date', dateObj);
          };
         vm.goto = (date) => {
@@ -76,7 +84,6 @@ class CalendarMonthCtrl {
                 day: date.date(),
                 dow: date.dayOfWeek()
             };
-
             vm.$router.navigate(['DailyCalendar', dateObj]);
         };
 
@@ -110,10 +117,10 @@ class CalendarMonthCtrl {
 
     $routerOnActivate(next) {
         let vm = this;
-
+        
         let {day,month, year} = next.params;
         let date = day !== undefined ? new Date(year, month, day) : new Date();
-
+     
         vm.monthStartMoment = moment(date || new Date());
         vm.monthStartMoment.startOf('month');
         vm.monthEndMoment = vm.monthStartMoment.clone().endOf('month');
@@ -121,10 +128,34 @@ class CalendarMonthCtrl {
         vm.createMonthView();
 
         vm.buildMonth();
+        vm.scp.$on('addDate', function(event, addedDay){
+            vm.weeks.forEach(function(week){
+                week.days.forEach(function(day){
+                    // console.log(day.date.date());
+                    if(day.date.year() == addedDay.year && day.date.month() == addedDay.month  && day.date.date() == (addedDay.day)){
+                        day.isChecked = true;
+                        
+                    }
+                });
+            });
+        //     console.log('added date'+ addedDay.dow + ' '+addedDay.day);
+        //     // vm.date = day;
+        //     // vm.checkins = [];
+        //     // let dayOW = vm.days[vm.date.dow-1];
+        //     // vm.getCheckins(dayOW);
+        //     // vm.dailyCheckinsList = [];
+        //     // vm.dailyCheckinsList.push({checkins: vm.checkins, day: vm.date});
+        //     // console.log(vm.dailyCheckinsList);
+
+        //    // vm.getCheckins(vm.days[vm.date.dow]);
+
+        });
+
+        vm.rootScp.$broadcast('endmonthdate', vm.monthEndMoment.date());
     }
 }
 
-CalendarMonthCtrl.$inject = ['$rootScope'];
+CalendarMonthCtrl.$inject = ['$rootScope', '$scope'];
 
 const calendarMonthComponent = {
     controller: CalendarMonthCtrl,
