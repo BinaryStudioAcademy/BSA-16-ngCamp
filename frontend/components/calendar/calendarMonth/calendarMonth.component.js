@@ -19,6 +19,7 @@ class CalendarMonthCtrl {
             vm.createMonthView();
             vm.buildMonth();
         };
+                    
 
         vm.buildMonth = () => {
             let date = vm.mViewStartMoment.clone();
@@ -73,7 +74,7 @@ class CalendarMonthCtrl {
                 day: day.date.date(),
                 dow: day.date.isoWeekday()
             };
-            console.log(dateObj);
+            // console.log(dateObj);
             vm.rootScp.$broadcast('date', dateObj);
          };
         vm.goto = (date) => {
@@ -116,10 +117,10 @@ class CalendarMonthCtrl {
 
     $routerOnActivate(next) {
         let vm = this;
-
+        
         let {day,month, year} = next.params;
         let date = day !== undefined ? new Date(year, month, day) : new Date();
-
+     
         vm.monthStartMoment = moment(date || new Date());
         vm.monthStartMoment.startOf('month');
         vm.monthEndMoment = vm.monthStartMoment.clone().endOf('month');
@@ -149,6 +150,8 @@ class CalendarMonthCtrl {
         //    // vm.getCheckins(vm.days[vm.date.dow]);
 
         });
+
+        vm.rootScp.$broadcast('endmonthdate', vm.monthEndMoment.date());
     }
 }
 
