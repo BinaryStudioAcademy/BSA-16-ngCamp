@@ -38,6 +38,8 @@ class ProjectComponentController {
         this.datePickerOpt = {
             minDate: new Date()
         };
+        this.userListFlag = false;
+        this.adminListFlag = false;
     }
 
     isAdmin() {
@@ -120,6 +122,53 @@ class ProjectComponentController {
             console.log("Succesfull delete participator");
         });
         this.$onInit();
+    }
+
+    onUserSelect(user){
+        function filterArrayUsers(element){
+            let eq;
+            if( element._id == user._id ){
+                eq = true;
+            }else{
+                eq = false;
+            };
+            return eq;
+        };
+        let self = this.parentScope;
+        let repeat = self.projectParticipants.find(filterArrayUsers);
+
+        if(repeat){
+            self.popupNotifications.notifyError('already added!');
+        }else{
+            //self.projectParticipants.push(user);
+            self.participatorToAdd = user;
+            self.addParticipator();
+        };
+
+        self.userListFlag = false;
+    }
+
+    onAdminSelect(user){
+        function filterArrayUsers(element){
+            let eq;
+            if( element._id == user._id ){
+                eq = true;
+            }else{
+                eq = false;
+            };
+            return eq;
+        };
+        let self = this.parentScope;
+        let repeat = self.projectAdmins.find(filterArrayUsers);
+        if(repeat){
+            self.popupNotifications.notifyError('already added!');
+        }else{
+            //self.projectAdmins.push(user);
+            self.adminToAdd = user;
+            self.addAdmin();
+        };
+
+        self.adminListFlag = false;
     }
 
     addAdmin() {

@@ -1,3 +1,4 @@
+user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', parent-scope='$ctrl', ng-if='$ctrl.userListFlag')
 .eventsEdit-wrapper
   .row.center-xs
     .main.col-xs-7
@@ -29,16 +30,14 @@
         p(ng-show="editEvent.text.$error.minlength" class="help-block") Description is too short.
         p(ng-show="editEvent.text.$error.maxlength" class="help-block") Description is too long.
         .participants
-          i.fa.fa-user(aria-hidden='true')
-          select(ng-change = "$ctrl.participantUpdate()" ng-model = "$ctrl.userToAdd",ng-options="user._id as user.email for user in $ctrl.users")
-            option(value ="" selected hidden) Select user to add
+          button.addButton(ng-click = '$ctrl.userListFlag = true')
+            i.fa.fa-plus(aria-hidden='true')
+            span add participant
           .participantCell(ng-repeat='userid in $ctrl.participants track by $index')
             .participant_wrapper
-              .participantTitle {{$ctrl.getUserNameById(userid)}}
+              .participantTitle {{userid.firstName + ' ' + userid.lastName}}
               .deleteButton(ng-click = "$ctrl.participantDelete(userid)")
                 i.fa.fa-times.fa-fw
-          a()
-            i.fa.fa-plus(aria-hidden='true')
         .period
           div
             | Is all day
