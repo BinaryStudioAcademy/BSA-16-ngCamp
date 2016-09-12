@@ -142,10 +142,7 @@ class RightPanelComponentController {
                     elementDate.getMonth() == day.month &&
                     elementDate.getDate() == day.day) ? true : false;
 
-            // return (elementDate.getFullYear() == vm.date.year &&
-            //         elementDate.getMonth() == vm.date.month &&
-            //         elementDate.getDate() == vm.date.day &&
-            //         element.answer != 'noAnswer') ? true : false;
+
 
         };
     }
