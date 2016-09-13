@@ -15,6 +15,9 @@ class TasksComponentController {
 
 	$onInit(){
 		let self = this;
+		if (window._injectedData.currentProject === undefined) {
+            self.rootRouter.navigateByUrl('/noProject');
+        };
 		let taskReq = {
 			type: "GET",
 			url: `api/task/allFromProject/${window._injectedData.currentProject}`,
@@ -40,9 +43,6 @@ class TasksComponentController {
 				self.calcProgress(task);
 				});
 			});
-		if (window._injectedData.currentProject === undefined) {
-            self.rootRouter.navigateByUrl('/noProject');
-        }
     }
 
 	calcProgress(task){
