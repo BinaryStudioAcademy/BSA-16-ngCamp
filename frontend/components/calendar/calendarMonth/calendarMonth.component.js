@@ -19,15 +19,13 @@ class CalendarMonthCtrl {
             vm.createMonthView();
             vm.buildMonth();
         };
-                    
+               
 
         vm.buildMonth = () => {
             let date = vm.mViewStartMoment.clone();
             vm.weeks = [];
-
             for (let weekIndex = 0; weekIndex < 6; weekIndex++) {
                 let days = [];
-
                 for (let j = 0; j < 7; j++) {
                     days.push({
                         number: date.date(),
@@ -61,26 +59,43 @@ class CalendarMonthCtrl {
 
             vm.buildMonth();
         };
-        vm.broadcastDate = (day) => {
-            // console.log(vm.checkedDays + 'sdfsdf');
+        vm.broadcastDate = (event, day) => {
+           if(event.ctrlKey){
+               let dateObj = {
+                    year: day.date.year(),
+                    month: day.date.month(),
+                    date: day.date.date(),
+                    dow: day.date.isoWeekday()
+                };
+                vm.rootScp.$broadcast('ctrldate', dateObj);
+           } else if(event.shiftKey){
+                let dateObj = {
+                    year: day.date.year(),
+                    month: day.date.month(),
+                    date: day.date.date(),
+                    dow: day.date.isoWeekday()
+                };
+                vm.rootScp.$broadcast('shiftdate', dateObj);
+            } else {
            
-            for (let i=0; i<vm.weeks.length; i++){
-                vm.weeks[i].days.forEach(function(dayi){
-                    dayi.isChecked = false;
-                });
-                //  vm.checkedDays[i].isChecked = 
+                for (let i=0; i<vm.weeks.length; i++){
+                    vm.weeks[i].days.forEach(function(dayi){
+                        dayi.isChecked = false;
+                    });
+                    //  vm.checkedDays[i].isChecked = 
+                }
+                day.isChecked = true;
+                vm.checkedDays = [];
+                vm.checkedDays.push(day);
+                let dateObj = {
+                    year: day.date.year(),
+                    month: day.date.month(),
+                    date: day.date.date(),
+                    dow: day.date.isoWeekday()
+                };
+                console.log(dateObj);
+                vm.rootScp.$broadcast('date', dateObj);
             }
-            day.isChecked = true;
-            vm.checkedDays = [];
-            vm.checkedDays.push(day);
-            let dateObj = {
-                year: day.date.year(),
-                month: day.date.month(),
-                date: day.date.date(),
-                dow: day.date.isoWeekday()
-            };
-            console.log(dateObj);
-            vm.rootScp.$broadcast('date', dateObj);
          };
         vm.goto = (date) => {
             let dateObj = {
