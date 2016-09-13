@@ -36,8 +36,9 @@
                 .event
                     .row.event-header
                         .row.col-xs-6.event-name
-                            a(ng-link="[\'Edit event\', {id: event._id}]")
+                            a(ng-link="[\'Edit event\', {id: event._id}]",ng-if="vm.isAuthor(event)")
                                 h2  {{event.title}}  
+                            h2(ng-if="!vm.isAuthor(event)") {{event.title}}
                             i.fa.fa-folder-open-o.fa-2x
                             i.fa.fa-comments-o.fa-2x(ng-link='["Event comments", {id:event._id}]')
                         .col-xs-2.col-xs-offset-4
