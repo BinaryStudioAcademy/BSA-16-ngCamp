@@ -11,6 +11,8 @@ class TasksComponentController {
 		this.keyword;
 		this.filterKey;
 		this.rootRouter = $rootRouter;
+		this.admins = [];
+		this.isAdmin = false;
 	}
 
 	$onInit(){
@@ -34,6 +36,11 @@ class TasksComponentController {
 		};
 		self.http.sendRequest(projReq).then(function(res){
 			self.projUsers = res.participants;
+			for (let i = 0; i < res.admins.length; i ++){
+				if (res.admins[i]._id === window._injectedData.userId){
+					self.isAdmin = true;
+				}
+			}
 		});
 		self.http.sendRequest(taskReq)
 		.then(function(res) {
@@ -43,6 +50,12 @@ class TasksComponentController {
 				self.calcProgress(task);
 				});
 			});
+    }
+
+    isAuthor(task){
+    	let self = this;
+    	if (task.author._id === window._injectedData.userId) return true; else
+    	return false;
     }
 
 	calcProgress(task){
