@@ -2,6 +2,7 @@ var projectRepository = require('../repositories/projectRepository');
 var userRepository = require('../repositories/userRepository');
 var validationService = require('./validationService');
 var projectSchema = require('../schemas/projectSchema');
+
 function ProjectService() {}
 
 ProjectService.prototype.addItem = addItem;
@@ -32,7 +33,7 @@ function getProjectsForCurrentUser(userId, callback) {
 function deleteItem(id, callback) {
     var state = "deleted";
     userRepository.removeProjectfromUser(id);
-    projectRepository.changeState(id , state, callback);
+    projectRepository.changeState(id, state, callback);
 }
 
 function addParticipants(id, body, callback) {
@@ -56,6 +57,16 @@ function addAdmins(id, body, callback) {
 function removeAdmins(id, body, callback) {
     if (validationService.manageProjectAdmins(body, callback)) {
         projectRepository.removeAdmin(id, body, callback);
+    }
+}
+
+function genPass(pass, callback) {
+    if (pass == 0) {
+        var key = {
+            isSettingsEdit: false,
+            isReports: false
+
+        }
     }
 }
 
