@@ -1,3 +1,5 @@
+user-list(user-data = 'createProj.users', select-callback = 'createProj.onUserSelect', parent-scope='createProj', ng-if='createProj.userListFlag')
+user-list(user-data = 'createProj.users', select-callback = 'createProj.onAdminSelect', parent-scope='createProj', ng-if='createProj.adminListFlag')
 .createProject_wrapper
 	.row.center-xs
 		.main.col-xs-8
@@ -26,11 +28,9 @@
 					.cellTitle
 						h2 Participants:
 					.projParticipants
-						a.addUser(ng-click="createProj.addParticipatorFlag=true;")
+						a.addUser(ng-click="createProj.userListFlag=true;")
 							i.fa.fa-plus(aria-hidden='true')
 							lable Add Participant
-						select(ng-if="createProj.addParticipatorFlag",ng-change = "createProj.participantUpdate()" ng-model = "createProj.userToAdd",ng-options = "user._id as user.firstName + ' ' + user.secondName for user in createProj.users")
-							option(value="" selected hidden) Select User to Add
 						.participantCell(ng-repeat='userid in createProj.participants track by $index')
 							.participant_wrapper
 								.participantTitle {{createProj.getUserNameById(userid)}}
@@ -39,11 +39,8 @@
 					.cellTitle
 						h2 Admins:					
 					.projParticipants
-						a.addUser(ng-click="createProj.addAdminFlag=true;")
+						a.addUser(ng-click="createProj.adminListFlag=true;")
 							i.fa.fa-plus(aria-hidden='true')
-							lable Add admin
-						select(ng-if="createProj.addAdminFlag",ng-change = "createProj.adminUpdate()",ng-model = "createProj.adminToAdd",ng-options = "user._id as user.firstName + ' ' + user.secondName for user in createProj.users")
-							option(value="" selected hidden) Select User to Add
 						.participantCell(ng-repeat='userid in createProj.admins track by $index')
 							.participant_wrapper
 								.participantTitle {{createProj.getUserNameById(userid)}}

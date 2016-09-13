@@ -21,13 +21,15 @@ class createProjectController {
         this.modalFlag = false;
         this.userToAdd;
         this.addParticipatorFlag = false;
-        this.admins;
+        this.admins = [];
         this.addAdminFlag = false;
         this.adminToAdd;
         this.datePickerOpt = {
             minDate: new Date()
         };
         this.projects = [];
+        this.userListFlag = false;
+        this.adminListFlag = false;
     }
 
     $routerOnActivate() {
@@ -54,6 +56,54 @@ class createProjectController {
             self.users = res;
             self.userToAdd = self.users[0]._id;
         });
+    }
+
+    onUserSelect(user){
+        function filterArrayUsers(element){
+            let eq;
+            if( element._id == user._id ){
+                eq = true;
+            }else{
+                eq = false;
+            };
+            return eq;
+        };
+        let self = this.parentScope;
+        let repeat = self.participants.find(filterArrayUsers);
+
+        if(repeat){
+            self.popupNotifications.notifyError('already added!');
+        }else{
+            self.participants.push(user._id);
+            self.userToAdd = user._id;
+            self.participantUpdate();
+        };
+
+        self.userListFlag = false;
+    }
+
+    onAdminSelect(user){
+        function filterArrayUsers(element){
+            let eq;
+            if( element._id == user._id ){
+                eq = true;
+            }else{
+                eq = false;
+            };
+            return eq;
+        };
+        let self = this.parentScope;
+        let repeat = self.participants.find(filterArrayUsers);
+
+        if(repeat){
+            self.popupNotifications.notifyError('already added!');
+        }else{
+            self.admins.push(user._id);
+            self.adminToAdd = user._id;
+            self.adminUpdate();
+        };
+
+        self.adminListFlag = false;
     }
 
     save(valid) {
