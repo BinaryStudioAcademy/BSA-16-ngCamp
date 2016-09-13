@@ -1,56 +1,12 @@
 import './headerStyles.styl';
 
 class HeaderComponentController {
-    constructor(httpGeneral, $location, $rootRouter) {
-        this.httpGeneral = httpGeneral;
-        this.location = $location;
-        this.rootRouter = $rootRouter;
-        this.userProjects;
-        this.currentProjectId = window._injectedData.currentProject || '';
-        this.userReq = {
-            type: "GET",
-            url: "api/projects/forCurrentUser",
-        };
+    constructor() {
     }
-    $onInit() {
-        let self = this;
-        self.httpGeneral.sendRequest(self.userReq).then(function(res) {
-            self.userProjects = res;
-        });
-        self.httpGeneral.sendRequest({
-            type: "GET",
-            url: `api/projects/${window._injectedData.currentProject}/withUsers`,
-        }).then(function(res) {
-            self.currentProject = res;
-        });
-    }
-    setProject() {
-        let self = this;
-        window._injectedData.currentProject = self.currentProjectId;
-        self.httpGeneral.sendRequest({
-            type: "PUT",
-            url: `api/user/${window._injectedData.userId}`,
-            body: {
-                currentProject: self.currentProjectId,
-            }
-        }).then(function(res) {
-            // let currPath = self.location.path();
-            if (self.location.path() === '/noProject' && window._injectedData.currentProject != undefined) {
-                self.rootRouter.navigate(['MainPage']);
-            } else {
-                let newReg = /^(\/)[^(\/)]*/;
-                // self.location.path("/"+currPath.match(newReg)[0]);
-                let currPath = self.rootRouter.lastNavigationAttempt.match(newReg)[0];
-                //console.log(currPath);
-                self.rootRouter.navigate(['NotFound']);
-                self.rootRouter.navigateByUrl(currPath);
-                //console.log("Succesfull update currentProject");
-            }
-        });
-    }
+    
 }
 
-HeaderComponentController.$inject = ['httpGeneral', '$location', '$rootRouter'];
+HeaderComponentController.$inject = [];
 
 const headerComponent = {
     controller: HeaderComponentController,

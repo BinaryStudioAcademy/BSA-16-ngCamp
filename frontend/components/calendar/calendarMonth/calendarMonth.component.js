@@ -93,7 +93,7 @@ class CalendarMonthCtrl {
                     date: day.date.date(),
                     dow: day.date.isoWeekday()
                 };
-                console.log(dateObj);
+                // console.log(dateObj);
                 vm.rootScp.$broadcast('date', dateObj);
             }
          };
@@ -154,8 +154,8 @@ class CalendarMonthCtrl {
                     // console.log(day.date.date());
                     if(day.date.year() == addedDay.year && day.date.month() == addedDay.month  && day.date.date() == (addedDay.date)){
                         day.isChecked = true;
-                        console.log('before');
-                        console.log(day);
+                        // console.log('before');
+                        // console.log(day);
                     }
                 });
             });

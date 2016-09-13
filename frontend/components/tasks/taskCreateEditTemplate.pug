@@ -4,7 +4,7 @@ user-list(user-data = 'taskCE.users', select-callback = 'taskCE.onUserSelect', p
 		.wrapper_lable.row
 			.col-xs-3
 				a(href = "#/tasks" ng-link = "['TasksList']")
-					.fa.fa-arrow-left.button 
+					i.fa.fa-arrow-left.button 
 			.col-xs-6
 				h1(ng-if = '!taskCE.editMode') Create Task
 				h1(ng-if = 'taskCE.editMode') Edit Task
