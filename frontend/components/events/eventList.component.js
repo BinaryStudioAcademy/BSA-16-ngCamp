@@ -16,6 +16,7 @@ class EventListComponentController {
             opened: false
         };
         this.participants = [];
+        this.isAdmin = false;
     }
     open1() {
         this.popup1.opened = true;
@@ -37,6 +38,20 @@ class EventListComponentController {
                   self.userEvents.push(self.events[event]);
                 };
             };
+        });
+        let projReq = {
+            type: "GET",
+            url: `api/projects/${window._injectedData.currentProject}/withUsers`,
+            errorCallback(){
+                self.popup.notifyError('Project download Error!');
+            }   
+        };
+        self.httpGeneral.sendRequest(projReq).then(function(res){
+            for (let i = 0; i < res.admins.length; i ++){
+                if (res.admins[i]._id === window._injectedData.userId){
+                    self.isAdmin = true;
+                }
+            }
         });
     }
     filter() {
