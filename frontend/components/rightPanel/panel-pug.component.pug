@@ -3,7 +3,7 @@
 //-     p previous
 div#chlist(ng-repeat="obj in rpanel.dailyCheckinsList ") 
     ul.checkinsList(ng-repeat="checkin in obj.checkins") <h2 class="checkin_title">{{checkin.question}}</h2>
-        li(ng-repeat="answer in checkin.answers | filter: rpanel.checkinFilter(obj.day)") 
+        li(ng-repeat="answer in checkin.answers ") 
              .answer <span class="user_name">{{answer.user.firstName + ' '+ answer.user.lastName }} (<span class="creation_date">{{answer.creationDate | date: "HH:mm"}}</span>)</span>  <span class="answer_text" ng-bind-html='answer.answer'></span>             
 
     //- p {{obj.day.day}} {{obj.checkins[0].frequency}}

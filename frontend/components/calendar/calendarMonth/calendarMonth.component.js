@@ -62,19 +62,24 @@ class CalendarMonthCtrl {
             vm.buildMonth();
         };
         vm.broadcastDate = (day) => {
-            day.isChecked = true;
-            for (let i=0; i<vm.checkedDays.length; i++){
-                 vm.checkedDays[i].isChecked = false;
+            // console.log(vm.checkedDays + 'sdfsdf');
+           
+            for (let i=0; i<vm.weeks.length; i++){
+                vm.weeks[i].days.forEach(function(dayi){
+                    dayi.isChecked = false;
+                });
+                //  vm.checkedDays[i].isChecked = 
             }
+            day.isChecked = true;
             vm.checkedDays = [];
             vm.checkedDays.push(day);
             let dateObj = {
                 year: day.date.year(),
                 month: day.date.month(),
-                day: day.date.date(),
+                date: day.date.date(),
                 dow: day.date.isoWeekday()
             };
-            // console.log(dateObj);
+            console.log(dateObj);
             vm.rootScp.$broadcast('date', dateObj);
          };
         vm.goto = (date) => {
@@ -132,9 +137,10 @@ class CalendarMonthCtrl {
             vm.weeks.forEach(function(week){
                 week.days.forEach(function(day){
                     // console.log(day.date.date());
-                    if(day.date.year() == addedDay.year && day.date.month() == addedDay.month  && day.date.date() == (addedDay.day)){
+                    if(day.date.year() == addedDay.year && day.date.month() == addedDay.month  && day.date.date() == (addedDay.date)){
                         day.isChecked = true;
-                        
+                        console.log('before');
+                        console.log(day);
                     }
                 });
             });
