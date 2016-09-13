@@ -27,6 +27,7 @@ class eventEditController {
         this.editDescription = false;
         this.editEndDate = false;
         this.editStartDate = false;
+        this.userListFlag = false;
     }
     edit(prop) {
         let self = this;
@@ -58,6 +59,29 @@ class eventEditController {
             case "participants":
                 {}
         }
+    }
+    onUserSelect(user){
+        function filterArrayUsers(element){
+            let eq;
+            if( element._id == user._id ){
+                eq = true;
+            }else{
+                eq = false;
+            };
+            return eq;
+        };
+        let self = this.parentScope;
+        let repeat = self.participants.find(filterArrayUsers);
+
+        if(repeat){
+            self.popupNotifications.notifyError('already added!');
+        }else{
+            self.participants.push(user._id);
+            self.userToAdd = user._id;
+            self.participantUpdate();
+        };
+
+        self.userListFlag = false;
     }
     $onInit() {
         let self = this;

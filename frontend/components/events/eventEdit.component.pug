@@ -1,3 +1,4 @@
+user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', parent-scope='$ctrl', ng-if='$ctrl.userListFlag')
 .eventsEdit-wrapper
   .row.center-xs
     .main.col-xs-7
@@ -43,8 +44,10 @@
         .participants
           h1 Participants
           i.fa.fa-user(aria-hidden='true')
-          select(ng-change = "$ctrl.participantUpdate()" ng-model = "$ctrl.userToAdd")
-            option(ng-repeat="user in $ctrl.users track by $index" value="{{user._id}}") {{user.email}}
+          .participants
+          button.addButton(ng-click = '$ctrl.userListFlag = true')
+            i.fa.fa-plus(aria-hidden='true')
+            span add participant
           .participantCell(ng-repeat='userid in $ctrl.participants track by $index')
             .participant_wrapper
               .participantTitle {{$ctrl.getUserNameById(userid)}}
