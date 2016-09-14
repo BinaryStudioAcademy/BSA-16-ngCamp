@@ -13,6 +13,7 @@ ProjectService.prototype.removeParticipants = removeParticipants;
 ProjectService.prototype.addAdmins = addAdmins;
 ProjectService.prototype.removeAdmins = removeAdmins;
 ProjectService.prototype.getProjectsForCurrentUser = getProjectsForCurrentUser;
+ProjectService.prototype.genPass = genPass;
 
 function addItem(body, callback) {
     if (validationService.ProjectValidation(body, callback)) {

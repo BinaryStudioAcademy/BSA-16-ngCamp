@@ -100,11 +100,17 @@ module.exports = function(app) {
 
     app.get(baseUrl + ':id/isAdmin/:user', function(req, res, next) {
         projectRepository.isAdmin(req.params.id, req.params.user, function(err, data) {
-            console.log(data.length);
-            res.data = data;
-            res.err = err;
-            console.log(data);
-            next();
+            if (data) {
+                projectService.genPass(data.length, function(d) {
+                    res.data = d;
+                    res.err = err;
+                    next();
+                });
+
+            } else {
+                res.err = err;
+                next();
+            }
         });
     }, apiResponse);
 };
