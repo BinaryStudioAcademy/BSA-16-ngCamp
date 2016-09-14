@@ -2,28 +2,26 @@ user-list(user-data = 'proj.users', select-callback = 'proj.onUserSelect', paren
 user-list(user-data = 'proj.users', select-callback = 'proj.onAdminSelect', parent-scope='proj', ng-if='proj.adminListFlag')
 .projectwrapper
   .row.center-xs
-    .main.col-xs-8
+    .main.col-xs-12
       h1 Project Settings
-      .changeProj
-        button(ng-click="proj.getProjects()",ng-if="proj.flag") 
-          p Change project
-        select(ng-if="!proj.flag",ng-model="proj.currentProjectId",ng-change="proj.setProject()")
-          option(value = "" disable) Not selected
-          option(ng-repeat="project in proj.userProjects track by $index" value='{{project._id}}') {{project.title}}
       form(name='projectEdit',ng-if="proj.currentProjectId!=''",novalidate).row.center-xs
         .wrap
           label
-            p Title
-            i.fa.fa-pencil(ng-click="proj.editName=true",ng-if="!proj.editName && proj.isUserAdmin")
-            i.fa.fa-check(ng-click="proj.edit('title',projectEdit.title.$valid)",ng-if="proj.editName")
-          p(ng-if="!proj.editName") {{proj.currentProject.title}}
-          input(name="title",type="text",ng-model="proj.currentProject.title",ng-if="proj.editName",required,ng-minlength="3" ng-maxlength="30")
+            p Title:
+          p.inputWrapper(ng-if="!proj.editName", ng-click = "proj.editNameActivate()") {{proj.currentProject.title}}
+            i.fa.fa-pencil
+
+          .inputNameWrapper(ng-if="proj.editName")
+            input.inputWrapper#projTitleInput(name="title",type="text",ng-model="proj.currentProject.title",required,ng-minlength="3" ng-maxlength="30", ng-class = "{'invalid': projectEdit.title.$invalid}", ng-focus='true')
+            i.fa.fa-check(ng-click="proj.edit('title',projectEdit.title.$valid)")
+
+
           p(ng-show="projectEdit.title.$invalid" class="help-block",ng-if="proj.editName") Title is required.
           p(ng-show="projectEdit.title.$error.minlength" class="help-block",ng-if="proj.editName") Title is too short.
           p(ng-show="projectEdit.title.$error.maxlength" class="help-block",ng-if="proj.editName") Title is too long.
         .wrap
           label
-            p Description
+            p Description:
             i.fa.fa-pencil(ng-click="proj.editDesc=true",ng-if="!proj.editDesc && proj.isUserAdmin")
             i.fa.fa-check(ng-click="proj.edit('description',projectEdit.text.$valid)",ng-if="proj.editDesc")
           p.description(ng-if="!proj.editDesc",ng-bind-html="proj.currentProject.description") 

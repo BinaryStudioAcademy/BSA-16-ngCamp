@@ -1,288 +1,251 @@
 @import "../../../public/libs/css/generalComponentsStyle.styl"
 .projectwrapper
-  width 100%
-  h1
-    text-align center
-  .changeProj
-    display flex
-    justify-content center
-    margin-bottom 50px
-    height 35px
-    button
-      font-family "Montserrat"
-      font-size 20px
-      line-height 35px
-      button()
-      padding 0 10px
-      p
-        align-self center
-        margin 0
-    select
-      height 140%
-      width 50%
-      border-radius 5px
-      outline none
-      font-family "Montserrat"
-      font-size 18px
-      font-weight 400
-      option:first-child
-        display none
-        opacity 0
-  padding 1%
-  h1
-    align-self center
-    font-family "Montserrat"
-    text-align left
-    width 100%
-    display inline-block
-    font-weight bold
-    font-size 30px
-  .main
-    min-width 400px
-    padding 1%
-    border 1px solid border-grey
-    border-radius 10px
-    background-color background-white 
-    box-shadow 0px 5px 20px 2px  #808080
-    display flex
-    flex-direction column
-    justify-content center
-    font-family "Open Sans"
-    font-weight 400
-    font-size 23px
-    text-align justify
-    form[name="projectEdit"]
-      display flex
-      flex-direction column
-      float left
-      clear left
-      width 100%
-      margin 30px 0 1.5em 0
-      padding 0
-      justify-content center
-      label
-        font-family "Montserrat"
-        font-size 25px
-        font-weight 400
-        float left
-        width 80%
-        margin-right 0.5em
-        display flex
-        align-items center
-        p
-          margin 0
-          margin-right 15px
-        i
-          cursor pointer
-          transition all 0.2s ease-out
-          &:hover
-            color #1d8dbf
-        + p
-          width 80%
-          font-size 1.2em
-          color gray
-        .description
-          margin-top 1em
-            
-      .wrap
-        align-items center
-        float left
-        clear left
-        width 100%
-        margin-bottom 2em
-        display flex
-        flex-direction column
-        flex-wrap wrap
-        box-sizing padding box
-        min-height 110px
-        &:after
-          content ''
-          height 1px
-          width 80%
-          display block
-          background-image -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-          background-image    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-          background-image     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-          background-image      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-      
-        .dateEditor
-          display flex
-          align-items center
-          justify-content center
-          background-color white
-          border 1px solid black
-          border-radius 7px
-          padding 3px
-          margin-bottom 10px
-          input
-            border none
-            outline none
-            padding 0.1em
-            font-size 28px
-          a
-            cursor pointer
-            color black
-        .addButton
-          button()
-          margin 25px auto
-          font-size 1.2em
-          padding 0 0.5em
-          display flex
-          flex-wrap nowrap
-          justify-content space-between
-          i
-            display inline
-            font-size 1.2em
-            span
-              display: -moz-inline-stack;
-              display inline
-              font-family "Montserrat"
-              font-family 1em
-            
-          
-      .last:after
-        height 0
-        margin 0
-      i
-        align-self center
-        margin-right 3px
-      input:not(.date)
-        min-width 75%
-        max-width 75%
-        border-radius 7px
-        outline none
-        border none
-        border 1px solid grey
-        padding 0.3em
-        font-size 28px
-        &:hover
-          box-shadow: 0 0 7px #3498db
-      textarea
-        min-width 75%
-        max-width 75%
-        border-radius 7px
-        outline none
-        border none
-        border 1px solid grey
-        padding 0.3em
-        font-size 28px
-        &:hover
-          box-shadow: 0 0 7px #3498db
-      select
-        width 100%
-        border-radius 7px
-        outline none
-        border none
-        border 1px solid grey
-        padding 0.3em
-        font-size 28px
-        &:hover
-          box-shadow: 0 0 7px #3498db
-        option
-          &:first-child
-            display none
-    .participants
-      min-width 75%
-      max-width 75%
-      display flex
-      flex-direction row
-      flex-wrap wrap
-      margin 1em 0
-      font-family "Open Sans"
-      font-weight 300
-      font-size 17px
-      > a
-        align-self center
-        margin-left 15px
-        cursor pointer
-        transition all 0.3s ease-out
-        i
-          font-size 24px
-          lable
-            font-family "Open Sans"
-            font-size 18px
-            margin-left 5px
-      .addUser
-        display flex
-        align-items center
-        justify-content center
-        text-decoration none
-        lable
-          font-family "Open Sans"
-          font-size 18px
-          margin-left 5px
-          line-height 24px
-        i
-          font-size 24px
-      .participant 
-        background-color: #008CBA
-        border none
-        color white
-        padding 7px 24px
-        text-align center
-        text-decoration none
-        display inline-flex
-        justify-content center
-        align-items center
-        font-size 16px
-        margin 10px 2px
-        cursor pointer
-        border-radius 12px
-    .delete_button
-      button
-        font-family "Montserrat"
-        button()
-      min-width 60%
-      max-width 75%
-      display flex
-      justify-content center
-      align-items center
-      .delete
-        font-family "Montserrat"
-        background-color #FF5252
-        line-height 50%
-        width 40%
-        font-size 24px
-        min-width 13em
-    .confirming_modal
-      button
-        font-family "Montserrat"
-        button()
-      .background
-        position fixed
-        z-index 500
-        background-color #212121
-        opacity 0.5
-        height 100vh
-        width 100vw
-        top 0
-        left 0
-      .window
-        position fixed
-        z-index 501
-        top 35%
-        left 35%
-        background-color #f5f5f5
-        width 30%
-        padding 20px
-        border-radius 10px
-        label
-          font-size 24px
-          font-weight 600
-          width 100%
-          margin-bottom 20px
-        .confirm
-          display inline-block
-          margin 5px 10px
-          width 150px
-          background-color #FF5252
-        .cancel
-          display inline-block
-          margin 5px 10px
-          width 150px
-          background-color #212121
-
-      
+	width 100%
+	h1
+		header-style()
+	.main
+		main-component()
+		min-width 400px
+		display flex
+		flex-direction column
+		justify-content center
+		font-size 23px
+		text-align justify
+		form[name="projectEdit"]
+			display flex
+			flex-direction column
+			float left
+			clear left
+			width 100%
+			margin 30px 0 1.5em 0
+			padding 0
+			justify-content center
+			label
+				font-family "Montserrat"
+				font-size 1.3em
+				font-weight 400
+				float left
+				width 80%
+				margin-right 0.5em
+				display flex
+				align-items center
+				p
+					margin 0
+					margin-right 15px
+				i
+					cursor pointer
+					transition all 0.2s ease-out
+					&:hover
+						color #1d8dbf
+				+ p
+					width 80%
+					font-size 1.2em
+					color gray
+				.description
+					margin-top 1em
+						
+			.wrap
+				align-items center
+				float left
+				clear left
+				width 100%
+				margin-bottom 2em
+				display flex
+				flex-direction column
+				flex-wrap wrap
+				box-sizing padding box
+				min-height 110px
+				.inputNameWrapper
+					width 80%
+					position relative
+					.inputWrapper
+						width 100%
+						cursor text
+					i
+						position absolute
+						right 5px
+						top 7px
+						font-size 1.3em
+						cursor pointer
+						&:hover
+							color #1d8dbf
+				.inputWrapper
+					background-color #DADFE1
+					border none
+					outline none
+					text-align center
+					border-bottom 4px solid #95A5A6
+					font-size 1.3em
+					color #34495E
+					margin-bottom 0
+					position relative
+					cursor pointer
+					padding 0
+					width 80%
+					padding-right 31px
+					&.invalid
+						border-bottom 4px solid #D24D57
+					i
+						position absolute
+						right 5px
+						top 7px
+						&:hover
+							color #1d8dbf
+					
+					
+					
+				.dateEditor
+					display flex
+					align-items center
+					justify-content center
+					background-color white
+					border 1px solid black
+					border-radius 7px
+					padding 3px
+					margin-bottom 10px
+					input
+						border none
+						outline none
+						padding 0.1em
+						font-size 28px
+					a
+						cursor pointer
+						color black
+				.addButton
+					button()
+					margin 25px auto
+					font-size 1.2em
+					padding 0 0.5em
+					display flex
+					flex-wrap nowrap
+					justify-content space-between
+					i
+						display inline
+						font-size 1.2em
+						span
+							display: -moz-inline-stack;
+							display inline
+							font-family "Montserrat"
+							font-family 1em
+						
+					
+			.last:after
+				height 0
+				margin 0
+			i
+				align-self center
+				margin-right 3px
+			textarea
+				min-width 75%
+				max-width 75%
+				border-radius 7px
+				outline none
+				border none
+				border 1px solid grey
+				padding 0.3em
+				font-size 28px
+				&:hover
+					box-shadow: 0 0 7px #3498db
+		.participants
+			min-width 75%
+			max-width 75%
+			display flex
+			flex-direction row
+			flex-wrap wrap
+			margin 1em 0
+			font-family "Open Sans"
+			font-weight 300
+			font-size 17px
+			> a
+				align-self center
+				margin-left 15px
+				cursor pointer
+				transition all 0.3s ease-out
+				i
+					font-size 24px
+					lable
+						font-family "Open Sans"
+						font-size 18px
+						margin-left 5px
+			.addUser
+				display flex
+				align-items center
+				justify-content center
+				text-decoration none
+				lable
+					font-family "Open Sans"
+					font-size 18px
+					margin-left 5px
+					line-height 24px
+				i
+					font-size 24px
+			.participant 
+				background-color: #008CBA
+				border none
+				color white
+				padding 7px 24px
+				text-align center
+				text-decoration none
+				display inline-flex
+				justify-content center
+				align-items center
+				font-size 16px
+				margin 10px 2px
+				cursor pointer
+		.delete_button
+			button
+				font-family "Montserrat"
+				button()
+			min-width 60%
+			max-width 75%
+			display flex
+			justify-content center
+			align-items center
+			.delete
+				font-family "Montserrat"
+				background-color #FF5252
+				line-height 50%
+				width 40%
+				font-size 24px
+				min-width 13em
+		.confirming_modal
+			button
+				font-family "Montserrat"
+				button()
+			.background
+				position fixed
+				z-index 500
+				background-color #212121
+				opacity 0.5
+				height 100vh
+				width 100vw
+				top 0
+				left 0
+			.window
+				position fixed
+				z-index 501
+				top 35%
+				left 35%
+				background-color #f5f5f5
+				width 30%
+				padding 20px
+				border-radius 10px
+				label
+					font-size 24px
+					font-weight 600
+					width 100%
+					margin-bottom 20px
+				.confirm
+					display inline-block
+					margin 5px 10px
+					width 150px
+					background-color #FF5252
+				.cancel
+					display inline-block
+					margin 5px 10px
+					width 150px
+					background-color #212121
+			
 
 
 

@@ -2,10 +2,11 @@ import './project.component.styl';
 
 class ProjectComponentController {
 
-    constructor(popupNotifications, httpGeneral, $location, $window,$rootRouter,$rootScope) {
+    constructor(popupNotifications, httpGeneral, $location, $window,$rootRouter,$rootScope, $timeout) {
 
         this.popupNotifications = popupNotifications;
         this.httpGeneral = httpGeneral;
+        this.timeout = $timeout;
         this.window = $window;
         this.userProjects;
         this.rootRouter = $rootRouter;
@@ -71,31 +72,6 @@ class ProjectComponentController {
         if (window._injectedData.currentProject === undefined) {
             self.rootRouter.navigateByUrl('/noProject');
         }
-    }
-
-    getProjects() {
-        let self = this;
-        self.flag = false;
-        self.httpGeneral.sendRequest(self.userReq).then(function(res) {
-            self.userProjects = res;
-        });
-    }
-
-    setProject() {
-        let self = this;
-
-        window._injectedData.currentProject = self.currentProjectId;
-
-        self.httpGeneral.sendRequest({
-            type: "PUT",
-            url: `api/user/${window._injectedData.userId}`,
-            body: {
-                currentProject: self.currentProjectId,
-            }
-        }).then(function(res) {
-            //console.log("Succesfull update currentProject");
-        });
-        this.$onInit();
     }
 
     addParticipator() {
@@ -224,6 +200,7 @@ class ProjectComponentController {
                         }).then(function(res) {
                             console.log("Succesfull edit title");
                             self.popupNotifications.notifySuccess("You change title Succesfully");
+                            self.rootScope.$broadcast('menuReload');
                         });
                         break;
                     }
@@ -255,7 +232,6 @@ class ProjectComponentController {
                             console.log("Succesfull edit deadline");
                             self.popupNotifications.notifySuccess("You change deadline Succesfully");
                         });
-                        this.$onInit();
                         break;
                     }
             }
@@ -288,9 +264,19 @@ class ProjectComponentController {
         let newDate = new Date(date);
         return newDate.toLocaleDateString();
     }
+
+    editNameActivate(){
+        let self = this;
+        if(self.isUserAdmin){
+            self.editName = true;
+            self.timeout(function(){
+                window.document.querySelector("#projTitleInput").focus();
+            },0,true);
+        }
+    }
 }
 
-ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral', '$location', '$window','$rootRouter','$rootScope'];
+ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral', '$location', '$window','$rootRouter','$rootScope','$timeout'];
 
 const projectComponent = {
     controller: ProjectComponentController,
