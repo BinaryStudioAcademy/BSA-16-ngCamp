@@ -8,6 +8,8 @@ class MenuComponentController {
         this.rootRouter = $rootRouter;
         this.scope = $scope;
         this.userProjects;
+        this.checkinsAccess = window._injectedData.isCheckinEdit;
+        this.reportAccess = window._injectedData.isReports;
     }
 
     $onInit(){
@@ -27,7 +29,18 @@ class MenuComponentController {
         self.http.sendRequest(userReq).then(function(res) {
             self.userProjects = res;
         });
-
+        self.http.sendRequest({
+            type:"GET",
+            url:`api/projects/${window._injectedData.currentProject}/isAdmin/${window._injectedData.userId}`
+        }).then(function(res) {
+            console.log(res);
+            window._injectedData.isSettingsEdit = res.isSettingsEdit;
+            self.checkinsAccess = res.isCheckinEdit;
+            window._injectedData.isReports = res.isReports;
+            self.checkinsAccess = res.isReports;
+            window._injectedData.isCheckinEdit = res.isCheckinEdit;
+        });
+        self.showMenu();
     }
     showMenu(){
 
@@ -69,6 +82,15 @@ class MenuComponentController {
                 self.rootRouter.navigateByUrl(currPath);
                 //console.log("Succesfull update currentProject");
             }
+        });
+        self.http.sendRequest({
+            type:"GET",
+            url:`api/projects/${window._injectedData.currentProject}/isAdmin/${window._injectedData.userId}`
+        }).then(function(res) {
+            self.checkinsAccess = res.isCheckinEdit;
+            window._injectedData.isReports = res.isReports;
+            self.reportsAccess = res.isReports;
+            window._injectedData.isCheckinEdit = res.isCheckinEdit;
         });
         self.showMenu();
     }
