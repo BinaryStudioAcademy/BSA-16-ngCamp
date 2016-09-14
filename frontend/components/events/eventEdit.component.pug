@@ -5,8 +5,8 @@ user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', par
       .head
         div
           h1 {{$ctrl.curEvent.title}}
-          i.fa.fa-pencil(ng-click="$ctrl.editTitle=true",ng-if="!$ctrl.editTitle")
-          i.fa.fa-check(ng-click="$ctrl.edit('title')",ng-if="$ctrl.editTitle")
+           i.fa.fa-pencil.edit-icon(ng-click="$ctrl.editTitle=true",ng-if="!$ctrl.editTitle")
+           i.fa.fa-check.edit-icon(ng-click="$ctrl.edit('title')",ng-if="$ctrl.editTitle")
         i.fa.fa-times.fa-2x(aria-hidden='true',ng-click="$ctrl.location.path('/events')")
       form(name='editEvent')
         .title
@@ -18,16 +18,16 @@ user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', par
           .dataPicker
             h1 Start Date
             p {{$ctrl.curEvent.startDate | date:"dd/MM/yyyy"}}
-            i.fa.fa-pencil(ng-click="$ctrl.editStartDate=true",ng-if="!$ctrl.editStartDate")
-            i.fa.fa-check(ng-click="$ctrl.edit('startDate')",ng-if="$ctrl.editStartDate")
+             i.fa.fa-pencil.edit-icon(ng-click="$ctrl.editStartDate=true",ng-if="!$ctrl.editStartDate")
+             i.fa.fa-check.edit-icon(ng-click="$ctrl.edit('startDate')",ng-if="$ctrl.editStartDate")
             .picker(ng-if="$ctrl.editStartDate")
               input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.date', is-open='$ctrl.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.curEvent.startDate}}")
               a.btn.btn-default(type='button', ng-click='$ctrl.open()')
                 i.fa.fa-calendar(aria-hidden='true')
             h1 End Date 
             p {{$ctrl.curEvent.endDate | date:"dd/MM/yyyy"}}
-            i.fa.fa-pencil(ng-click="$ctrl.editEndDate=true",ng-if="!$ctrl.editEndDate")
-            i.fa.fa-check(ng-click="$ctrl.edit('endDate')",ng-if="$ctrl.editEndDate")
+             i.fa.fa-pencil.edit-icon(ng-click="$ctrl.editEndDate=true",ng-if="!$ctrl.editEndDate")
+             i.fa.fa-check.edit-icon(ng-click="$ctrl.edit('endDate')",ng-if="$ctrl.editEndDate")
             .picker(ng-if="$ctrl.editEndDate")
               input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.endDate', is-open='$ctrl.popup1.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.curEvent.endDate}}")
               a.btn.btn-default(type='button', ng-click='$ctrl.open1()')
