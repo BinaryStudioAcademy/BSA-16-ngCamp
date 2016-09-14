@@ -12,11 +12,12 @@
 
 class httpGeneral {
 
-    constructor($http, $window, $location,spinner) {
+    constructor($http, $window, $location,spinner,rootRouter) {
         this.$http = $http;
         this.$window = $window;
         this.$location = $location;
         this.spinner = spinner;
+        this.rootRouter = rootRouter;
     }
 
     sendRequest(object){
@@ -72,11 +73,19 @@ class httpGeneral {
         }
 
         function handleForbidden() {
+            if (self.location.path().indexOf('checkins')>0 && window._injectedData.isCheckinsEdit === false){
+                self.rootRouter.navigate(['Main Page']);
+                return;
+            }
+            if (self.location.path().indexOf('reports')>0 && window._injectedData.isReports === false){
+                self.rootRouter.navigate(['Main Page']);
+                return;
+            }
             self.$window.location.href = "http://localhost:2020/login";
         }
     }
 }
 
-httpGeneral.$inject = ['$http', '$window', '$location','spinner'];
+httpGeneral.$inject = ['$http', '$window', '$location','spinner','rootRouter'];
 
 export {httpGeneral};
