@@ -1,7 +1,6 @@
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css");
 .side-menu-wrapper
     height 100%
-    padding-top 2%
     position fixed
     left 0
     top 0
@@ -9,52 +8,97 @@
     *
         box-sizing border-box
     .burger
-        margin-top 30px
-        background-color #fbfbfb;
         color black
-        width 100%
-        height 6%
         display none
     .fa
         position: relative;
         display: table-cell;
-        color #929292
+        color #E4F1FE
         width: 50px;
         height: 35px;
         text-align: center;
         vertical-align: middle;
         font-size: 20px;
     .side-menu
-        padding-top 30px
+        padding-top 60px
         height 100%
-
-        background-color #fbfbfb;
+        
+        background-color #67809F;
         position: absolute;
         left: 0;
         width: 185px;
-        overflow: hidden;
+        // overflow: hidden;
         -webkit-transition: width 0.2s linear;
         transition: width 0.2s linear;
         -webkit-transform: translateZ(0) scale(1, 1);
         z-index: 1000;
     .side-menu > ul
-        margin: 1px 0;
+        margin: 20px 0;
     .side-menu li 
         transition 0.2s;
-        overflow hidden;
+        // overflow hidden;
         position: relative;
         display: block;
         width: 250px;
+        cursor pointer
         &:hover
             .fa
                 color black
+        &.lastItem
+            margin-bottom 20px
+            padding-bottom 10px
+            a
+                border-bottom 2px dashed white
+    .changeProject
+        .projects_change
+            max-height 50vh
+            overflow-y auto
+            font-family "Montserrat"
+            font-size 15px
+            color white
+            background-color #545861;
+            position absolute;
+            width auto
+            left 185px
+            transform translateY(-100%)
+            padding 5px
+            display none
+            transition all 0.5s ease-out
+            .porjects_lable
+                font-family "Montserrat"
+                font-size 1.1em
+                padding 5px
+                margin-bottom 5px
+                white-space nowrap
+            .project_item
+                font-family "Montserrat"
+                background-color #626378
+                font-size 1.1em
+                padding 5px
+                margin-bottom 5px
+                white-space nowrap
+                overflow hidden
+                text-overflow ellipsis
+                &:hover
+                    background-color: #5fa2db;
+            .chosen
+                background-color #2E8F35
+                cursor default
+                &:hover
+                    background-color #2E8F35
+        &:hover
+            .projects_change
+                display block
+        .changePos
+            top 0
+            transform translateY(0%)
     .side-menu li > a
         overflow hidden;
         position: relative;
         display: table;
         border-collapse: collapse;
         border-spacing: 0;
-        color: #929292;
+        color: #E4F1FE
         font-family: "Montserrat";
         font-size: 15px;
         text-decoration: none;
@@ -91,14 +135,25 @@
 @media only screen  and (max-width : 1000px), screen and (max-device-width : 1000px)
     .side-menu-wrapper
         height auto
-        width 100%
+        width 100vw
         display flex
+        z-index 101
+        .changeProject
+            .projects_change
+                border-top 2px dashed white
+                left -5px
+                width 100vw
         .burger
             display flex
             justify-content flex-start
+            cursor pointer
             align-items center
+            padding 10px
             width 100%
-            z-index 10
+            position absolute
+            z-index 101
+            .fa
+                font-size 3em
         .fa
             padding-right 15px
             padding-left 5px
@@ -106,9 +161,10 @@
             //- padding-top 0px
             width 100%
             height auto
-            margin-top 35px
+            margin-top 60px
             display none 
-            z-index: 5;
+            z-index: 101;
+            padding-top 0px
             li 
                 width auto
                 margin-left 5px
@@ -119,16 +175,15 @@
         display block
 @media only screen  and (max-width : 720px), screen and (max-device-width : 720px)
     .side-menu-wrapper
+        .changeProject
+            .projects_change
+                font-size 1.7em
         .side-menu
             .fa
                 display none
             li
                 a
                     font-size 2.5em
-        .burger
-            height 5%
-            .fa
-                font-size: 2.1em;
 @media only screen  and (max-width : 480px), screen and (max-device-width: 480px)
     .side-menu-wrapper
         .side-menu
@@ -138,8 +193,3 @@
             li
                 a
                     font-size 2em
-        .burger
-            height 4%
-            .fa
-                font-size: 2.5em;
-                padding: 0.2em;

@@ -11,10 +11,15 @@ class TasksComponentController {
 		this.keyword;
 		this.filterKey;
 		this.rootRouter = $rootRouter;
+		this.admins = [];
+		this.isAdmin = false;
 	}
 
 	$onInit(){
 		let self = this;
+		if (window._injectedData.currentProject === undefined) {
+            self.rootRouter.navigateByUrl('/noProject');
+        };
 		let taskReq = {
 			type: "GET",
 			url: `api/task/allFromProject/${window._injectedData.currentProject}`,
@@ -31,6 +36,11 @@ class TasksComponentController {
 		};
 		self.http.sendRequest(projReq).then(function(res){
 			self.projUsers = res.participants;
+			for (let i = 0; i < res.admins.length; i ++){
+				if (res.admins[i]._id === window._injectedData.userId){
+					self.isAdmin = true;
+				}
+			}
 		});
 		self.http.sendRequest(taskReq)
 		.then(function(res) {
@@ -40,9 +50,12 @@ class TasksComponentController {
 				self.calcProgress(task);
 				});
 			});
-		if (window._injectedData.currentProject === undefined) {
-            self.rootRouter.navigateByUrl('/noProject');
-        }
+    }
+
+    isAuthor(task){
+    	let self = this;
+    	if (task.author._id === window._injectedData.userId) return true; else
+    	return false;
     }
 
 	calcProgress(task){

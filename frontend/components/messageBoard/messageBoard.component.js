@@ -8,6 +8,7 @@ class messageBoardController {
         this.messages = [];
         this.isBigText = false;
         this.rootRouter = $rootRouter;
+        this.isAdmin = false;
     }
     $onInit() {
         let self = this;
@@ -35,6 +36,21 @@ class messageBoardController {
         if (window._injectedData.currentProject === undefined) {
             self.rootRouter.navigateByUrl('/noProject');
         }
+        let projReq = {
+            type: "GET",
+            url: `api/projects/${window._injectedData.currentProject}/withUsers`,
+            errorCallback(){
+                self.popup.notifyError('Project download Error!');
+            }   
+        };
+        self.httpGeneral.sendRequest(projReq).then(function(res){
+            for (let i = 0; i < res.admins.length; i ++){
+                if (res.admins[i]._id === window._injectedData.userId){
+                    self.isAdmin = true;
+                }
+            }
+        });
+
     }
     showText(index) {
         let self = this;
@@ -43,6 +59,12 @@ class messageBoardController {
     hideText(index) {
         let self = this;
         self.messages[index].showFull = false;
+    }
+    isAuthor(message){
+        let self = this;
+        let ans = false;
+        if (message.author._id === window._injectedData.userId) ans = true; 
+        return ans;
     }
 }
 

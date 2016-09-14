@@ -2,7 +2,7 @@ import './project.component.styl';
 
 class ProjectComponentController {
 
-    constructor(popupNotifications, httpGeneral, $location, $window,$rootRouter) {
+    constructor(popupNotifications, httpGeneral, $location, $window,$rootRouter,$rootScope) {
 
         this.popupNotifications = popupNotifications;
         this.httpGeneral = httpGeneral;
@@ -40,6 +40,7 @@ class ProjectComponentController {
         };
         this.userListFlag = false;
         this.adminListFlag = false;
+        this.rootScope = $rootScope;
     }
 
     isAdmin() {
@@ -274,6 +275,7 @@ class ProjectComponentController {
         }).then(() => {
             window._injectedData.currentProject = '';
             self.rootRouter.navigate(['NoProject']);
+            self.rootScope.$broadcast('menuReload');
         });
     }
     today() {
@@ -288,7 +290,7 @@ class ProjectComponentController {
     }
 }
 
-ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral', '$location', '$window','$rootRouter'];
+ProjectComponentController.$inject = ['popupNotifications', 'httpGeneral', '$location', '$window','$rootRouter','$rootScope'];
 
 const projectComponent = {
     controller: ProjectComponentController,
