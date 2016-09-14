@@ -72,7 +72,7 @@ class httpGeneral {
         }
 
         function handleForbidden() {
-            self.$window.location.href = "http://localhost:2020/login";
+            self.$window.location.href = "http://team.binary-studio.com/auth/#/";
         }
     }
 }
