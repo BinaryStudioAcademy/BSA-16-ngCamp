@@ -12,6 +12,11 @@ class ReportAddComponentController {
         this.userSamples = [];
         this.dateRange = [];
         this.users = [];
+        this.checkin = {
+            isLoaded: false,
+            isCheckinPick: false,
+            questions: []
+        };
         this.isGenerated = false;
         this.userId = window._injectedData.userId;
         this.projectId = window._injectedData.currentProject;
@@ -23,7 +28,7 @@ class ReportAddComponentController {
         vm.httpGeneral.sendRequest({
             type: "GET",
             url: "api/projects/" + vm.projectId + "/users"
-        }).then(function (res) {
+        }).then(function(res) {
             //console.log(res);
             vm._usersData = res.participants;
             for (let i = 0; i < res.participants.length; i++) {
@@ -69,7 +74,7 @@ function generateReport() {
             vm.users = [];
         }
         if (vm.dateRange && vm.dateRange.length > 0) {
-            data.dateRange = vm.dateRange.slice(0,2);
+            data.dateRange = vm.dateRange.slice(0, 2);
 
         } else {
 
@@ -85,7 +90,7 @@ function generateReport() {
         body: {
             data: data
         }
-    }).then(function (res) {
+    }).then(function(res) {
         if (res.gen.data) {
             vm.history = res.gen.data;
             vm.popupNotifications.notifySuccess("Report added");
