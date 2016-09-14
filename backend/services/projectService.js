@@ -61,13 +61,22 @@ function removeAdmins(id, body, callback) {
 }
 
 function genPass(pass, callback) {
+    var key;
     if (pass == 0) {
-        var key = {
+        key = {
             isSettingsEdit: false,
-            isReports: false
+            isReports: false,
+            isCheckinEdit: false
 
         }
+    } else {
+        key = {
+            isSettingsEdit: true,
+            isReports: true,
+            isCheckinEdit: true
+        }
     }
+    callback(key);
 }
 
 module.exports = new ProjectService();
