@@ -86,6 +86,6 @@ class httpGeneral {
     }
 }
 
-httpGeneral.$inject = ['$http', '$window', '$location','spinner','rootRouter'];
+httpGeneral.$inject = ['$http', '$window', '$location','spinner','$rootRouter'];
 
 export {httpGeneral};
