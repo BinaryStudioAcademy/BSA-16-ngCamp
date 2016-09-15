@@ -1,26 +1,5 @@
 
-//- a(href="", ng-click="rpanel.previousDay()")
-//-     p previous
-div#chlist(ng-repeat="obj in rpanel.dailyCheckinsList ") 
+div#chlist(ng-repeat="obj in rpanel.dailyCheckinsList track by $index") 
     ul.checkinsList(ng-repeat="checkin in obj.checkins") <h2 class="checkin_title">{{checkin.question}}</h2>
         li(ng-repeat="answer in checkin.answers ") 
              .answer <span class="user_name">{{answer.user.firstName + ' '+ answer.user.lastName }} (<span class="creation_date">{{answer.creationDate | date: "HH:mm"}}</span>)</span>  <span class="answer_text" ng-bind-html='answer.answer'></span>             
-
-    //- p {{obj.day.day}} {{obj.checkins[0].frequency}}
-
-
-
-//- a(href="", ng-click="rpanel.nextDay()")
-//-     p next
-
-
-
-
-    //- ul(ng-repeat="checkin in checkins") <h2>qestion: {{checkin.question}}</h2>
-    //-     li(ng-repeat="answer in checkin.answers | filter: rpanel.checkinFilter()") 
-    //-         h3 {{answer.user.firstName + ' '+ answer.user.lastName }}
-    //-         p {{answer.answer}} 
-//- ul.checkinsList(ng-repeat="checkin in rpanel.checkins") <h2 class="checkin_title">{{checkin.question}}</h2>
-//- 	li(ng-repeat="answer in checkin.answers | filter: rpanel.checkinFilter()") 
-//- 		.answer <span class="user_name">{{answer.user.firstName + ' '+ answer.user.lastName }} (<span class="creation_date">{{answer.creationDate | date: "HH:mm"}}</span>)</span>  <span class="answer_text" ng-bind-html='answer.answer'></span> 
-

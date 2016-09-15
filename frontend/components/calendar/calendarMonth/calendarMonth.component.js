@@ -61,21 +61,25 @@ class CalendarMonthCtrl {
         };
         vm.broadcastDate = (event, day) => {
            if(event.ctrlKey){
-               let dateObj = {
-                    year: day.date.year(),
-                    month: day.date.month(),
-                    date: day.date.date(),
-                    dow: day.date.isoWeekday()
-                };
-                vm.rootScp.$broadcast('ctrldate', dateObj);
+               if(day.isCurrentMonth){
+                    let dateObj = {
+                        year: day.date.year(),
+                        month: day.date.month(),
+                        date: day.date.date(),
+                        // dow: day.date.isoWeekday()
+                    };
+                    vm.rootScp.$broadcast('ctrldate', dateObj);
+               }
            } else if(event.shiftKey){
-                let dateObj = {
-                    year: day.date.year(),
-                    month: day.date.month(),
-                    date: day.date.date(),
-                    dow: day.date.isoWeekday()
-                };
-                vm.rootScp.$broadcast('shiftdate', dateObj);
+               if(day.isCurrentMonth){
+                    let dateObj = {
+                        year: day.date.year(),
+                        month: day.date.month(),
+                        date: day.date.date(),
+                        // dow: day.date.isoWeekday()
+                    };
+                    vm.rootScp.$broadcast('shiftdate', dateObj);
+               }
             } else {
            
                 for (let i=0; i<vm.weeks.length; i++){
@@ -91,7 +95,7 @@ class CalendarMonthCtrl {
                     year: day.date.year(),
                     month: day.date.month(),
                     date: day.date.date(),
-                    dow: day.date.isoWeekday()
+                    // dow: day.date.isoWeekday()
                 };
                 // console.log(dateObj);
                 vm.rootScp.$broadcast('date', dateObj);
