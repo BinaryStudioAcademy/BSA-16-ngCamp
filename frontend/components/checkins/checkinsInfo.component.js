@@ -1,8 +1,9 @@
 import './checkinsInfoStyles.styl';
 
 class CheckinsInfoComponentController {
-    constructor(httpGeneral, $location) {
+    constructor(httpGeneral, popupNotifications, $location) {
         this.httpGeneral = httpGeneral;
+        this.popupNotifications = popupNotifications;
         this.location = $location;
         this.checkin = null;
         this.answers = [];
@@ -38,18 +39,20 @@ class CheckinsInfoComponentController {
     }
     deleteCheckin(){
         let vm = this;
-        vm.httpGeneral.sendRequest({
+        let onOkFunc = function(){
+            vm.httpGeneral.sendRequest({
             type:"DELETE",
             url:'/api/checkins/' + vm.checkin._id
         }).then(function(res){
-            console.log(res);
             vm.location.path('/checkins');
         });
+        };
 
+        vm.popupNotifications.notifyConfirm('atention!', 'Are you sure want to delete this checkin?', 'ok', 'cancel', onOkFunc);
     }
 }
 
-CheckinsInfoComponentController.$inject = ['httpGeneral','$location'];
+CheckinsInfoComponentController.$inject = ['httpGeneral', 'popupNotifications', '$location'];
 
 const checkinsInfoComponent = {
     controller: CheckinsInfoComponentController,
