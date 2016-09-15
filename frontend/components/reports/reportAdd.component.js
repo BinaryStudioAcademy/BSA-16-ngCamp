@@ -15,7 +15,8 @@ class ReportAddComponentController {
         this.checkin = {
             isLoaded: false,
             isCheckinPick: false,
-            questions: []
+            questions: [],
+            report: []
         };
         this.isGenerated = false;
         this.userId = window._injectedData.userId;
@@ -79,6 +80,14 @@ function generateReport() {
         } else {
 
             vm.dateRange = [];
+        }
+
+        if (vm.checkin.report && vm.checkin.report.length > 0) {
+            data.questions = vm.checkin.report.slice(0, 2);
+
+        } else {
+
+            vm.checkin.report = [];
         }
     }
     data.isSaved = vm.isSaved;

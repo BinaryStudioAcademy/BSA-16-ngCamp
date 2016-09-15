@@ -32,8 +32,8 @@
                                 .col-xs-1.fa.button.f-btn(ng-class = '{"fa-angle-left": !reportAdd.gui.isCheckinPanel, "fa-angle-down": reportAdd.gui.isCheckinPanel}' ng-click='reportAdd.gui.manageCheckinPanel()')
                             .row(ng-show="reportAdd.checkin.isCheckinPick")
                                 .col-xs-12.generate-item-holder(ng-show='reportAdd.gui.isCheckinPanel')
-                                    span.generate-item.middle-xs( ng-repeat = 'c in reportAdd.checkin.questions track by $index') {{u.question}}
-                                        span &#xf067
+                                    span.generate-item.middle-xs( ng-repeat = 'c in reportAdd.checkin.questions track by $index' ng-click="reportAdd.gui.manageArrayItems(c._id, reportAdd.checkin.report)" ng-class="{'item-out-group': reportAdd.checkin.report.indexOf(c._id)!=-1, 'item-in-group': 'reportAdd.checkin.report.indexOf(c._id)==-1'}") {{c.question}}
+                                        span {{reportAdd.checkin.report.indexOf(c._id)==-1?"&#xf067":"&#xf068"}}
                             .row.generate-item-header.middle-xs
                                 .col-xs-2 User:
                                 .col-xs-9.generate-item-holder

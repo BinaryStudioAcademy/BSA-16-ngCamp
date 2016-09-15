@@ -9,6 +9,7 @@ class reportsGUI {
         this.manageCheckinPanel = manageCheckinPanel;
         this.manageUserPanel = manageUserPanel;
         this.arrayToString = arrayToString;
+        this.manageArrayItems = manageArrayItems;
         this._types = ['Message', 'Task', 'Event', 'CheckIn'];
     }
 }
@@ -17,7 +18,6 @@ class reportsGUI {
 function manageItem(index, fromArr, toArr, def, checkin, isAdding) {
     let item = fromArr[index];
     let indexTo = fromArr.indexOf(item);
-    console.log(this.http);
     if (item == 'All') {
         if (def == 'user') {
             Array.prototype.splice.apply(toArr, [toArr.length, 0].concat(fromArr));
@@ -40,53 +40,69 @@ function manageItem(index, fromArr, toArr, def, checkin, isAdding) {
                         if (!checkin.isLoaded) {
                             this.http.sendRequest({
                                 type: "GET",
-                                url: "api/checkins/" + vm.projectId + "/users"
-                            }).then(function(res) {}
-                            }
-                        } else {
-                            checkin.isCheckinPick = false;
+                                url: "api/checkins/project/" + window._injectedData.currentProject + "/questions"
+                            }).then(function(res) {
+                                checkin.questions = res;
+                                checkin.isLoaded = true;
+                            });
+                            this.isCheckinPanel = true;
                         }
+
+                    } else {
+                        checkin.isCheckinPick = false;
+                        this.isCheckinPanel = false;
                     }
                 }
             }
         }
     }
+}
 
-    function manageCheckinPanel() {
-        if (this.isCheckinPanel)
-            this.isCheckinPanel = false;
-        else {
-            this.isCheckinPanel = true;
-        }
+function manageCheckinPanel() {
+    if (this.isCheckinPanel)
+        this.isCheckinPanel = false;
+    else {
+        this.isCheckinPanel = true;
     }
+}
 
-    function manageUserPanel() {
-        if (this.isUserPanel)
-            this.isUserPanel = false;
-        else {
-            this.isUserPanel = true;
-        }
+function manageUserPanel() {
+    if (this.isUserPanel)
+        this.isUserPanel = false;
+    else {
+        this.isUserPanel = true;
     }
+}
 
-    function manageTypePanel() {
-        if (this.isTypePanel)
-            this.isTypePanel = false;
-        else {
-            this.isTypePanel = true;
-        }
+function manageArrayItems(item, toArr) {
+    let index = toArr.indexOf(item);
+    if (index == -1) {
+        toArr.push(item);
+    } else {
+        toArr.splice(index, 1);
     }
+    console.log(toArr);
+}
 
-    function arrayToString(arr) {
-        let result = "";
-        for (let i = 0; i < arr.length; i++) {
-            result += ((arr[i].firstName ? arr[i].firstName : " ") + (arr[i].lastName ? arr[i].lastName : " "));
-            if (i != arr.length - 1) result += ", ";
-        }
-        return result;
+function manageTypePanel() {
+    if (this.isTypePanel)
+        this.isTypePanel = false;
+    else {
+        this.isTypePanel = true;
     }
+}
 
-    reportsGUI.$inject = ["httpGeneral"];
+function arrayToString(arr) {
+    let result = "";
+    for (let i = 0; i < arr.length; i++) {
+        result += ((arr[i].firstName ? arr[i].firstName : " ") + (arr[i].lastName ? arr[i].lastName : " "));
+        if (i != arr.length - 1) result += ", ";
+    }
+    return result;
+}
 
-    export {
-        reportsGUI
-    };
+reportsGUI.$inject = ["httpGeneral"];
+
+export {
+    reportsGUI
+};
