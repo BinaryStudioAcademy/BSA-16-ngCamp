@@ -222,7 +222,12 @@ function generateReport(data, callback, idForUpdate) {
                         }];
                         if (data.participants && data.participants.length > 0) {
                             queryCk.participants = data.participants;
+                        }
 
+                        if (data.questions && data.questions.length > 0) {
+                            queryCk._id = {
+                                $in: data.questions
+                            };
                         }
 
                         parallel.checkin = function(cb) {

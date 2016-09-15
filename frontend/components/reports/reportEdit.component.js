@@ -11,6 +11,12 @@ class ReportEditComponentController {
         this.isSaved = false;
         this.userSamples = [];
         this.users = [];
+        this.checkin = {
+            isLoaded: false,
+            isCheckinPick: false,
+            questions: [],
+            report: []
+        };
         this.isGenerated = false;
         this.userId = window._injectedData.userId;
         this.projectId = window._injectedData.currentProject;
@@ -109,6 +115,13 @@ function reportGenerate() {
 
         } else {
             vm.dateRange = [];
+        }
+        if (vm.checkin.report && vm.checkin.report.length > 0) {
+            data.questions = vm.checkin.report.slice(0, 2);
+
+        } else {
+
+            vm.checkin.report = [];
         }
     }
     data.isSaved = vm.isSaved;

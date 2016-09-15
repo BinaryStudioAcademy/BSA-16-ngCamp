@@ -1,17 +1,21 @@
 class reportsGUI {
-    constructor() {
+    constructor(httpGeneral) {
+        this.http = httpGeneral;
         this.manageItem = manageItem;
         this.isUserPanel = false;
+        this.isCheckinPanel = false;
         this.isTypePanel = true;
         this.manageTypePanel = manageTypePanel;
+        this.manageCheckinPanel = manageCheckinPanel;
         this.manageUserPanel = manageUserPanel;
         this.arrayToString = arrayToString;
+        this.manageArrayItems = manageArrayItems;
         this._types = ['Message', 'Task', 'Event', 'CheckIn'];
     }
 }
 
 
-function manageItem(index, fromArr, toArr, def) {
+function manageItem(index, fromArr, toArr, def, checkin, isAdding) {
     let item = fromArr[index];
     let indexTo = fromArr.indexOf(item);
     if (item == 'All') {
@@ -28,6 +32,37 @@ function manageItem(index, fromArr, toArr, def) {
     } else {
         fromArr.splice(indexTo, 1);
         toArr.push(item);
+        if (def == "type") {
+            if (item == "CheckIn") {
+                if (checkin) {
+                    if (isAdding) {
+                        checkin.isCheckinPick = true;
+                        if (!checkin.isLoaded) {
+                            this.http.sendRequest({
+                                type: "GET",
+                                url: "api/checkins/project/" + window._injectedData.currentProject + "/questions"
+                            }).then(function(res) {
+                                checkin.questions = res;
+                                checkin.isLoaded = true;
+                            });
+                            this.isCheckinPanel = true;
+                        }
+
+                    } else {
+                        checkin.isCheckinPick = false;
+                        this.isCheckinPanel = false;
+                    }
+                }
+            }
+        }
+    }
+}
+
+function manageCheckinPanel() {
+    if (this.isCheckinPanel)
+        this.isCheckinPanel = false;
+    else {
+        this.isCheckinPanel = true;
     }
 }
 
@@ -37,6 +72,16 @@ function manageUserPanel() {
     else {
         this.isUserPanel = true;
     }
+}
+
+function manageArrayItems(item, toArr) {
+    let index = toArr.indexOf(item);
+    if (index == -1) {
+        toArr.push(item);
+    } else {
+        toArr.splice(index, 1);
+    }
+    console.log(toArr);
 }
 
 function manageTypePanel() {
@@ -55,6 +100,8 @@ function arrayToString(arr) {
     }
     return result;
 }
+
+reportsGUI.$inject = ["httpGeneral"];
 
 export {
     reportsGUI
