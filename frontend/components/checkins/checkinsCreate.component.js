@@ -61,10 +61,7 @@ class CheckinsCreateComponentController {
                     time: vm.selectedTime
                 }
             }
-        }).then(function(res) {
-            console.log("Checkin created succesfuly");
-            vm.location.path('/checkins');
-        });
+            });
         }
         else {
             vm.popupNotifications.notifyError("You must define your question and participants");
