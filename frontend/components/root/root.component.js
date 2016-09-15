@@ -1,9 +1,10 @@
 import './rootStyles.styl';
 
 class rootComponentController {
-    constructor($location, $rootRouter) {
+    constructor($location, $rootRouter,httpGeneral) {
         this.location = $location;
         this.rootRouter = $rootRouter;
+        this.http = httpGeneral;
     }
 
     $onInit() {
@@ -12,10 +13,19 @@ class rootComponentController {
         if (window._injectedData.currentProject === undefined) {
             self.rootRouter.navigateByUrl('/noProject');
         }
+        self.http.sendRequest({
+            type:"GET",
+            url:`api/projects/${window._injectedData.currentProject}/isAdmin/${window._injectedData.userId}`
+        }).then(function(res) {
+            console.log(res);
+            window._injectedData.isSettingsEdit = res.isSettingsEdit;
+            window._injectedData.isReports = res.isReports;
+            window._injectedData.isCheckinEdit = res.isCheckinEdit;
+        });
     }
 }
 
-rootComponentController.$inject = ["$location", '$rootRouter'];
+rootComponentController.$inject = ["$location", '$rootRouter','httpGeneral'];
 
 const rootComponent = {
     controller: rootComponentController,

@@ -62,13 +62,18 @@ class CalendarMonthCtrl {
         vm.broadcastDate = (event, day) => {
            if(event.ctrlKey){
                if(day.isCurrentMonth){
-                    let dateObj = {
-                        year: day.date.year(),
-                        month: day.date.month(),
-                        date: day.date.date(),
-                        // dow: day.date.isoWeekday()
-                    };
-                    vm.rootScp.$broadcast('ctrldate', dateObj);
+                   let dateObj = {
+                            year: day.date.year(),
+                            month: day.date.month(),
+                            date: day.date.date(),
+                            // dow: day.date.isoWeekday()
+                   };
+                   if(!day.isChecked){
+                        vm.rootScp.$broadcast('ctrlDate', dateObj);
+                   } else {
+                       day.isChecked = false;
+                       vm.rootScp.$broadcast('removeDate', dateObj);
+                   }
                }
            } else if(event.shiftKey){
                if(day.isCurrentMonth){
