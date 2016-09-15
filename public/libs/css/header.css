@@ -1,0 +1,746 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+
+body {
+    margin: 0;
+}
+
+body * {
+    font-family: Open Sans
+}
+
+.hdr-header {
+    z-index: 3;
+    position: relative;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 60px;
+    background: #545861;
+    top: 0;
+    padding: 5px 15px 5px 15px;
+}
+
+.hdr-header .hdr-logo {
+    height: 100%;
+    cursor: pointer;
+    padding: 5px
+}
+
+.hdr-header .hdr-searchBtn {
+    border-radius: 0 5px 5px 0;
+    border: none
+}
+
+.hdr-header .hdr-buttons {
+    margin-right: 4px;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.hdr-header .hdr-avatar {
+    height: 100%;
+    border: 1px solid transparent;
+    border-radius: 3px
+}
+
+.hdr-header #avatar {
+    height: 35px;
+    width: 35px
+}
+
+.hdr-header .hdr-appsLogo {
+    width: 100%
+}
+
+.hdr-header .hdr-noTextDecoration {
+    color: #000;
+    text-decoration: none;
+    margin-left: 0;
+}
+
+.hdr-header .hdr-noTextDecoration:hover {
+    color: #000;
+    text-decoration: none
+}
+
+.hdr-header .hdr-noTextDecoration:active {
+    color: #000;
+    text-decoration: none
+}
+
+.hdr-header .hdr-noTextDecoration:visited {
+    color: #000;
+    text-decoration: none
+}
+
+#searchBar {
+    height: 35px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-right: 10px
+}
+
+#userName {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+#userProfile {
+    padding-right: 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: end;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 35px;
+    border: none;
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+    color: #fff;
+    margin-left: 10px;
+    background: #6a6f79;
+    max-width: 180px
+}
+
+#appsBtn {
+    padding: 3px;
+    border: none;
+    outline: none;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    background: transparent;
+    cursor: pointer;
+    margin-left: 10px
+}
+
+#main {
+    overflow: hidden
+}
+
+#notificationBtn {
+    padding: 3px;
+    border: none;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    background: transparent;
+    cursor: pointer;
+    margin-left: 10px;
+    outline: none
+}
+
+#notificationBlock {
+    padding-top: 12px;
+    z-index: 3;
+    background: #fff;
+    max-height: 800px;
+    width: 300px;
+    border: 1px solid #e0ddda;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    right: 5px;
+    position: absolute;
+    -webkit-transition: .2s;
+    transition: .2s;
+    padding-bottom: 7px;
+}
+
+#notificationBlock:before {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #fff;
+    content: '';
+    margin-top: -28px;
+    margin-left: 250px;
+    position: absolute
+}
+
+#notificationBlock ::-webkit-scrollbar {
+    width: 10px
+}
+
+#notificationBlock ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+}
+
+#notificationBlock ::-webkit-scrollbar-thumb {
+    background-color: #c3bebe;
+    outline: 1px solid #828b93
+}
+
+#appsList {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: baseline;
+    -webkit-align-items: baseline;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+    -webkit-align-content: space-around;
+    -ms-flex-line-pack: distribute;
+    align-content: space-around
+}
+
+#appsBlock {
+    z-index: 3;
+    padding: 10px;
+    min-height: 300px;
+    background: #fff;
+    width: 265px;
+    border-radius: 3px;
+    border: 1px solid #e0ddda;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    right: 5px;
+    top: 65px;
+    position: absolute;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+#appsBlock:before {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #fff;
+    content: '';
+    margin-top: -25px;
+    margin-left: 165px;
+    position: absolute
+}
+
+.hdr-invisible {
+    max-height: 0;
+    overflow: hidden;
+    display: none !important
+}
+
+.hdr-button {
+    cursor: pointer;
+    -webkit-transition: all .1s linear;
+    transition: all .1s linear;
+}
+
+.hdr-button:active {
+    -webkit-transform: translateY(3px);
+    transform: translateY(3px)
+}
+
+#notificationList {
+    padding-left: 0;
+    height: 380px;
+    width: 299px;
+    overflow: auto;
+    overflow-x: hidden
+}
+
+.hdr-liNotification {
+    margin-top: 5px;
+    list-style-type: none;
+    background: #fff;
+    list-style-type: none;
+    border-radius: 3px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    margin-bottom: 0
+}
+
+.hdr-notification {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 10px
+}
+
+.hdr-imgApp {
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    min-width: 50px
+}
+
+.hdr-appButton {
+    border-radius: 7px;
+    background: transparent;
+    border: none;
+    padding: 5px;
+    outline: none
+}
+
+.hdr-serviceItem {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    -webkit-box-ordinal-group: 1;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.hdr-serviceItem:hover {
+    background: #f1f1f1
+}
+
+.hdr-serviceItem img {
+    width: 40px;
+    height: 40px
+}
+
+.hdr-appName {
+    text-align: center;
+    color: #404040
+}
+
+#search {
+    position: absolute;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1)
+}
+
+.hdr-searchItem {
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: #fff;
+    border-radius: 3px;
+    margin-top: 3px;
+    width: 195px;
+    background-color: #fff;
+    text-align: center;
+    height: 30px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: flex-start;
+    z-index: 1;
+    position: relative;
+}
+
+.hdr-searchItem:hover {
+    background-color: #f1f1f1
+}
+
+.hdr-searchItem span {
+    padding-left: 5px
+}
+
+.hdr-searchItem img {
+    max-width: 25px;
+    height: 25px !important;
+    width: 25px;
+    border-radius: 20px
+}
+
+.hdr-textBlockNotification {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    padding: 0 10px
+}
+
+.hdr-titleNotification {
+    font-weight: 600;
+    width: 100%;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    color: #2196f3
+}
+
+.hdr-textNotification {
+    display: block;
+    display: -webkit-box;
+    max-height: 55.2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+    -webkit-line-clamp: 3;
+    margin: 10px 0;
+    -webkit-box-orient: vertical
+}
+
+.hdr-dateNotificationInBox {
+    font-family: verdana;
+    font-weight: 600;
+    font-size: 8pt;
+    padding: 0 5px;
+    color: #444
+}
+
+.services-settings {
+    border: none;
+    border-radius: 0;
+    background: #f1f1f1;
+    margin-bottom: 5px;
+}
+
+.services-settings img {
+    width: 75px
+}
+
+.services-settings span {
+    margin-left: 5px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold
+}
+
+.services-settings-wrapper {
+    padding-top: 5px;
+    padding-bottom: 5px
+}
+
+.notifications-list-wrapper {
+    margin-top: 25px
+}
+
+.service-name-filter {
+    padding-left: 5px
+}
+
+.filters-by-app {
+    overflow: hidden
+}
+
+@media only screen and (max-width: 640px) {
+    #userProfile {
+        padding-right: 0
+    }
+
+    #userName {
+        display: none
+    }
+
+    #profileBarArrDwn {
+        display: none
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .hdr-header {
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+        justify-content: flex-end
+    }
+
+    #searchBar {
+        padding-left: 10px
+    }
+
+    #userProfile {
+        padding-right: 0
+    }
+
+    #userName {
+        display: none
+    }
+
+    .hdr-logo {
+        display: none
+    }
+}
+
+#thumbnailApp {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    text-align: center;
+    margin-left: -10px;
+    margin-right: -15px;
+    color: #383838;
+    color: rgba(56, 56, 56, 0.74);
+    font-weight: bold
+}
+
+#searchblockAdminApp {
+    margin-top: 25px;
+    margin-bottom: 25px
+}
+
+.hdr-notifButton {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 3px;
+    height: 30px;
+    border: 1px solid #808080;
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 3px;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+.hdr-notifButton:hover {
+    background: #fff;
+    font-size: 20px
+}
+
+.hdr-specialNotifBtn {
+    margin: 10px;
+    opacity: .5;
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear;
+}
+
+.hdr-specialNotifBtn:hover {
+    opacity: 1
+}
+
+.hdr-headerElements .hdr-userprofileAndLogoutImg {
+    height: 100%;
+    height: 30px;
+    padding: 8px 5px 8px 0
+}
+
+.hdr-headerElements .hdr-logOutButtons {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.hdr-headerElements .hdr-userprofileAndLogoutBtn {
+    padding: 3px;
+    border: none;
+    height: 40px;
+    width: 150px;
+    background: transparent;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    padding: 5px;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    outline: none;
+}
+
+.hdr-headerElements .hdr-userprofileAndLogoutBtn:hover {
+    background: #f1f1f1
+}
+
+#logOutBox {
+    margin-top: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    z-index: 4;
+    background: #fff;
+    max-height: 800px;
+    width: 150px;
+    border-radius: 0 0 3px 3px;
+    right: 100px;
+    position: absolute;
+    -webkit-transition: .2s;
+    transition: .2s;
+    padding-bottom: 7px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2)
+}
+
+#userProfileInBoxBtn {
+    padding: 3px;
+    border: none;
+    height: 40px;
+    width: 150px;
+    background: transparent;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    padding: 5px;
+    outline: none;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+#userProfileInBoxBtn:hover {
+    background: #f1f1f1
+}
+
+#notificationCounter {
+    background-color: #f00;
+    position: absolute;
+    padding: 1px;
+    border-radius: 10px;
+    color: #fff;
+    right: 10px;
+    top: 10px;
+    min-width: 22px;
+    height: 22px;
+    text-align: center
+}
+
+.hdr-notRead {
+    background-color: #dcf4ff
+}
+
+@media only screen and (max-width: 400px) {
+    #searchBar {
+        display: none
+    }
+}
+
+@media all and (max-width: 510px) {
+    #BSheaderLogo {
+        display: none
+    }
+}
