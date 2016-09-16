@@ -3,7 +3,7 @@
 
     var getHeader = function () {
         var request = new XMLHttpRequest();
-        request.open('GET', 'http://team.binary-studio.com/header', true);
+        request.open('GET', 'http://team.binary-studio.com/app/header', true);
         // request.open('GET', 'http://team.binary-studio.com/app/header', true);
         request.send();
         request.onreadystatechange = function () {
