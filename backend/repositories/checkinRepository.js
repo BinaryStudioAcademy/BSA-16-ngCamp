@@ -115,6 +115,7 @@ function updateAnswerItem(id, data, callback) {
         'answers.token': id
     }, {
         $set: {
+            'answers.$.editedDate': data.editedDate,
             'answers.$.answer': data.answer
         }
     });
