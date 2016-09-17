@@ -40,7 +40,7 @@ aside.side-menu-wrapper
                 a(ng-link="[\"CreateProject\"]",)
                     i.fa.fa-plus-circle.fa-2x
                     span.nav-text New Project
-            li.changeProject
+            li.changeProject(ng-mouseover="MenuCtrl.hoverIn()",ng-mouseleave="MenuCtrl.hoverOut()")
                 a
                     i.fa.fa-angle-double-right.fa-2x
                     span.nav-text Change Project

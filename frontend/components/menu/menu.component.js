@@ -1,12 +1,13 @@
 import './menuStyles.styl';
 
 class MenuComponentController {
-    constructor(httpGeneral,$location,$rootRouter,$scope) {
+    constructor(httpGeneral,$location,$rootRouter,$scope,$rootScope) {
         this.http = httpGeneral;
         this.disabled = true;
         this.location = $location;
         this.rootRouter = $rootRouter;
         this.scope = $scope;
+        this.rootScp = $rootScope;
         this.userProjects;
         this.checkinsAccess = window._injectedData.isCheckinEdit;
         this.reportAccess = window._injectedData.isReports;
@@ -56,6 +57,15 @@ class MenuComponentController {
         x.className += "hide";
     }
 
+    hoverOut(){
+        let self = this;
+        self.rootScp.$broadcast('mouseOut');
+    }
+    hoverIn(){
+        let self = this;
+        self.rootScp.$broadcast('mouseIn');
+    }
+
     setProject(projId) {
         let self = this;
         if(projId === window._injectedData.currentProject){
@@ -100,7 +110,7 @@ class MenuComponentController {
     }
 }
 
-MenuComponentController.$inject = ["httpGeneral","$location","$rootRouter","$scope"];
+MenuComponentController.$inject = ["httpGeneral","$location","$rootRouter","$scope", '$rootScope'];
 
 const menuComponent = {
     controller: MenuComponentController,

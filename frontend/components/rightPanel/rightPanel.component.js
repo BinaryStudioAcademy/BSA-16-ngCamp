@@ -10,7 +10,7 @@ class RightPanelComponentController {
         vm.checkins = [];
         vm.dailyCheckinsList = [];
         vm.endOfMonth = 35;
-
+        vm.changeProjectHover = false;
         this.days = ['Sunday',
             'Monday',
             'Tuesday',
@@ -19,131 +19,213 @@ class RightPanelComponentController {
             'Friday',
             'Saturday',
             'Sunday'];
-        angular.element(document.querySelectorAll('.ng-isolate-scope')).bind("scroll", function(){
-             if ((document.getElementsByTagName('right-panel-component')[0].scrollHeight - 
-             document.getElementsByTagName('right-panel-component')[0].scrollTop - 
-             document.getElementsByTagName('right-panel-component')[0].offsetHeight
-             ) < 50 ) {
-                 vm.nextDay();
-                
-             }
-           
-          
-        });
     }
 
     $onInit() {
         let vm = this;
-        vm.getCheckins(vm.days[vm.date.getUTCDay()]);
         let dateObj = {
             year: vm.date.getFullYear(),
             month: vm.date.getMonth(),
-            day: vm.date.getUTCDate(),
-            dow: vm.date.getUTCDay()
-       };
-    //    console.log(dateObj.dow + "dow");
-        vm.dailyCheckinsList.push({checkins: vm.checkins, day: dateObj});
-        vm.scp.$on('date', function(event, day){
+            date: vm.date.getUTCDate()
+        };
+        vm.getCheckins(dateObj);
+        vm.dailyCheckinsList[dateObj.date] = { checkins: vm.checkins, day: dateObj };
+        vm.scp.$on('date', function (event, day) {
             vm.date = day;
             vm.checkins = [];
-            let dayOW = vm.days[vm.date.dow];
-            vm.getCheckins(dayOW);
+            vm.getCheckins(day);
             vm.dailyCheckinsList = [];
-            vm.dailyCheckinsList.push({checkins: vm.checkins, day: vm.date});
-            // console.log(vm.dailyCheckinsList);
-
-           // vm.getCheckins(vm.days[vm.date.dow]);
-
+            vm.dailyCheckinsList[vm.date.date] = { checkins: vm.checkins, day: vm.date };
+            vm.dailyCheckinsList[0] = 1;
         });
-        vm.scp.$on('endmonthdate', function(event, day){
+
+        vm.scp.$on('endmonthdate', function (event, day) {
             vm.endOfMonth = day;
         });
-        // console.log(angular.element(document.querySelectorAll('#two')));
-        
+
+        vm.scp.$on('mouseOut', function (event) {
+            vm.changeProjectHover = false;
+        });
+
+        vm.scp.$on('mouseIn', function (event) {
+            vm.changeProjectHover = true;
+        });
+
+        vm.scp.$on('shiftdate', function (event, day) {
+            let leftMost = vm.findLeftMostDate();
+            if (day.date < leftMost.date) {
+                for (let i = 1; i < (leftMost.date - day.date) + 1; i++) {
+                    let date = {
+                        year: leftMost.year,
+                        month: leftMost.month,
+                        date: leftMost.date - i
+                    };
+                    vm.checkins = [];
+                    let checkinsArray = [];
+                    vm.httpGeneral.sendRequest({
+                        type: "GET",
+                        url: 'api/checkins/bydate/' + date.year + '/' + date.month + '/' + date.date
+                    }).then(function (res) {
+                        vm.dailyCheckinsList[date.date] = { checkins: [], day: date };
+                        res.forEach(function (check) {
+                            vm.dailyCheckinsList[date.date].checkins.push(check);
+                        });
+                        if (vm.dailyCheckinsList[0]) {
+                            vm.dailyCheckinsList[0] += 1;
+                        } else {
+                            vm.dailyCheckinsList[0] = 1;
+                        }
+                        vm.rootScp.$broadcast('addDate', date);
+                    });
+                }
+
+            } else if (day.date <= vm.endOfMonth) {
+                for (let i = 1; i < (day.date - leftMost.date) + 1; i++) {
+                    let date = {
+                        year: leftMost.year,
+                        month: leftMost.month,
+                        date: leftMost.date + i
+                    };
+                    vm.checkins = [];
+                    let checkinsArray = [];
+                    vm.httpGeneral.sendRequest({
+                        type: "GET",
+                        url: 'api/checkins/bydate/' + date.year + '/' + date.month + '/' + date.date
+                    }).then(function (res) {
+                        vm.dailyCheckinsList[date.date] = { checkins: [], day: date };
+                        res.forEach(function (check) {
+                            vm.dailyCheckinsList[date.date].checkins.push(check);
+                        });
+                        if (vm.dailyCheckinsList[0]) {
+                            vm.dailyCheckinsList[0] += 1;
+                        } else {
+                            vm.dailyCheckinsList[0] = 1;
+                        }
+                        vm.rootScp.$broadcast('addDate', date);
+                    });
+                }
+            }
+        });
+
+        vm.scp.$on('ctrlDate', function (event, day) {
+            if (day.date >= 1 && day.date <= vm.endOfMonth) {
+                vm.checkins = [];
+                vm.getCheckins(day);
+                vm.dailyCheckinsList[day.date] = { checkins: vm.checkins, day: day };
+                if (vm.dailyCheckinsList[0]) {
+                    vm.dailyCheckinsList[0] += 1;
+                } else {
+                    vm.dailyCheckinsList[0] = 1;
+                }
+                vm.rootScp.$broadcast('addDate', day);
+            }
+        });
+
+        vm.scp.$on('removeDate', function (event, day) {
+            vm.dailyCheckinsList[day.date] = undefined;
+            vm.dailyCheckinsList[0] -= 1;
+            if (vm.dailyCheckinsList[0] == 0) {
+                vm.date = new Date();
+                let dateObj = {
+                    year: vm.date.getFullYear(),
+                    month: vm.date.getMonth(),
+                    date: vm.date.getDate()
+                };
+                vm.checkins = [];
+                vm.getCheckins(dateObj);
+                vm.dailyCheckinsList[dateObj.date] = { checkins: vm.checkins, day: dateObj };
+                vm.dailyCheckinsList[0] = 1;
+            }
+        });
+
+        angular.element(document.querySelectorAll('right-panel-component.ng-isolate-scope')).bind("scroll", function () {
+            let scrollHeight = document.getElementsByTagName('right-panel-component')[0].scrollHeight;
+            let scrollTop = document.getElementsByTagName('right-panel-component')[0].scrollTop;
+            let offsetHeight = document.getElementsByTagName('right-panel-component')[0].offsetHeight;
+            if ((scrollHeight - scrollTop - offsetHeight) < 50 && scrollHeight > 0) {
+                let left = vm.findLeftMostDate();
+                let right = vm.findRightMostDate();
+                if ((right.date - left.date + 1 == vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) {
+                    vm.previousDay();
+                }
+            }
+        });
+
+        angular.element(document).bind("mousewheel", function (e) {
+            let scrollHeight = document.getElementsByTagName('right-panel-component')[0].scrollHeight;
+            let clientHeight = document.getElementsByTagName('right-panel-component')[0].clientHeight;
+            if (e.wheelDelta < 0) {
+                if (scrollHeight == clientHeight) {
+                    let left = vm.findLeftMostDate();
+                    let right = vm.findRightMostDate();
+                    if (((right.date - left.date + 1 == vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) && vm.changeProjectHover == false) {
+                        vm.previousDay();
+                    }
+                }
+            }
+        });
     }
-    getCheckins(day){
+
+    getCheckins(day) {
         let vm = this;
         vm.httpGeneral.sendRequest({
             type: "GET",
-            url: 'api/checkins/freq/' + day
-        }).then(function(res) {
-            //console.log(res);
-            res.forEach(function(check){
+            url: 'api/checkins/bydate/' + day.year + '/' + day.month + '/' + day.date
+        }).then(function (res) {
+            res.forEach(function (check) {
                 vm.checkins.push(check);
-                //console.log(check);
             });
-           
         });
-
     }
-    previousDay(){
-        let vm = this;
-        let daynumber;
-        // console.log(vm.dailyCheckinsList[0]['day'].dow);
-        if((vm.dailyCheckinsList[0]['day'].dow - 1)>=0){
-            daynumber = vm.dailyCheckinsList[0]['day'].dow - 1;
-        } else {
-            daynumber = 6;
-        }
-        let nextdate = vm.dailyCheckinsList[0]['day'];
-        if(nextdate.day>1){
-            let dayOfWeekString = vm.days[daynumber];
-            vm.checkins = [];
-            // console.log(dayOfWeekString);
-            vm.getCheckins(dayOfWeekString);
 
-            let date = {
-                year: nextdate.year,
-                month: nextdate.month,
-                day: nextdate.day - 1,
-                dow: daynumber
-            };
-            // date = vm.dailyCheckinsList[0]['day'];
-            vm.dailyCheckinsList.unshift({checkins: vm.checkins, day: date});
-            vm.rootScp.$broadcast('addDate', date);
-            // console.log(vm.dailyCheckinsList);
-        }
-    }
-    nextDay(){
-        let vm = this;
-        let daynumber;
-        if((vm.dailyCheckinsList[vm.dailyCheckinsList.length -1]['day'].dow + 1)<=6){
 
-            daynumber = vm.dailyCheckinsList[vm.dailyCheckinsList.length -1]['day'].dow + 1;
-            // console.log(daynumber);
-        } else {
-            daynumber = 0;
-        }
-        let previousdate = vm.dailyCheckinsList[vm.dailyCheckinsList.length -1]['day'];
-        console.log(previousdate );
-        if(previousdate.day < vm.endOfMonth){
-            let dayOfWeekString = vm.days[daynumber];
+    previousDay() {
+        let vm = this;
+        let leftMost = vm.findLeftMostDate();
+        if (leftMost.date > 1) {
             vm.checkins = [];
-            vm.getCheckins(dayOfWeekString);
-            
             let date = {
-                year: previousdate.year,
-                month: previousdate.month,
-                day: previousdate.day + 1,
-                dow: daynumber
+                year: leftMost.year,
+                month: leftMost.month,
+                date: leftMost.date - 1
             };
-            // date = vm.dailyCheckinsList[0]['day'];
-            vm.dailyCheckinsList.push({checkins: vm.checkins, day: date});
+            vm.getCheckins(date);
+            vm.dailyCheckinsList[date.date] = { checkins: vm.checkins, day: date };
+            if (vm.dailyCheckinsList[0]) {
+                vm.dailyCheckinsList[0] += 1;
+            } else {
+                vm.dailyCheckinsList[0] = 1;
+            }
             vm.rootScp.$broadcast('addDate', date);
         }
-        
-    }   
-    checkinFilter(day){
+    }
+
+    findLeftMostDate() {
         let vm = this;
-        return function(element){
-            let elementDate = new Date(element.creationDate);
+        let leftMost = null;
+        for (let i = 1; i < vm.dailyCheckinsList.length; i++) {
+            if (vm.dailyCheckinsList[i]) {
+                leftMost = vm.dailyCheckinsList[i].day;
+                break;
+            }
+        }
+        return leftMost;
+    }
 
-            return (elementDate.getFullYear() == day.year &&
-                    elementDate.getMonth() == day.month &&
-                    elementDate.getDate() == day.day) ? true : false;
-
-
-
+    findRightMostDate() {
+        let vm = this;
+        let leftMost = null;
+        for (let i = vm.dailyCheckinsList.length; i >= 0; i--) {
+            if (vm.dailyCheckinsList[i]) {
+                leftMost = vm.dailyCheckinsList[i].day;
+                break;
+            }
+        }
+        return leftMost;
+    }
+    dayFilter() {
+        return function (element) {
+            return (element ? true : false);
         };
     }
 }
@@ -156,13 +238,13 @@ const rightPanelComponent = {
     controllerAs: 'rpanel',
     template: require('./panel-pug.component.pug')(),
     $routeConfig: [{
-        path:'/',
-        name:'Checkins List',
-        component:'checkinsListComponent',
+        path: '/',
+        name: 'Checkins List',
+        component: 'checkinsListComponent',
         useAsDefault: true
     }]
 };
 
 export {
-    rightPanelComponent
+rightPanelComponent
 };

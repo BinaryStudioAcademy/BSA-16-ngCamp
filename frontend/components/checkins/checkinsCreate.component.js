@@ -36,7 +36,6 @@ class CheckinsCreateComponentController {
         this.selectedTime = this.time[0];
         this.parties = [];
     }
-
     $onInit() {
         let vm = this;
         vm.httpGeneral.sendRequest({
@@ -70,8 +69,8 @@ class CheckinsCreateComponentController {
         else {
             vm.popupNotifications.notifyError("You must define your question and participants");
         }
-
     }
+
 
     toggleAll() {
         let vm = this;
@@ -104,7 +103,6 @@ const checkinsCreateComponent = {
     controllerAs: 'CheckCr',
     selector: 'checkinsCreateComponent',
     template: require('./checkinsCreate-pug.component.pug')(),
-
 };
 
 export {
