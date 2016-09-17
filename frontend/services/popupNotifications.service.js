@@ -11,12 +11,13 @@ class popupNotifications {
         this.alertify.alert(alertTitle, alertMsg);
     }
 
-    notifyConfirm(confirmTitle, confirmMsg, btnOk, btnCancel) {
+    notifyConfirm(confirmTitle, confirmMsg, btnOk, btnCancel, onOkFunc) {
         confirmTitle = confirmTitle || "Confirm Title";
         confirmMsg = confirmMsg || "Confirm Message";
 
         this.alertify.confirm(confirmMsg)
             .setHeader(confirmTitle)
+            .set('onok', onOkFunc)
             .set({
                 labels: {
                     ok: btnOk ? btnOk : "Ok",
@@ -24,6 +25,8 @@ class popupNotifications {
                 }
             });
     }
+
+
 
     notifyPrompt(promptTitle, promptMsg, promptValue) {
         promptTitle = promptTitle || "Prompt Title";

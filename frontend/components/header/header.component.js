@@ -3,7 +3,7 @@ import './headerStyles.styl';
 class HeaderComponentController {
     constructor() {
     }
-    
+
 }
 
 HeaderComponentController.$inject = [];

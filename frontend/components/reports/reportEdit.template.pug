@@ -20,13 +20,21 @@
                             .row.generate-item-header.middle-xs
                                 .col-xs-2 Type:
                                 .col-xs-9.generate-item-holder
-                                    .generate-item(ng-click='reportEdit.gui.manageItem($index, reportEdit.types, reportEdit.typeSamples, "type")' ng-repeat = 't in reportEdit.types track by $index') {{t}}
+                                    .generate-item(ng-click='reportEdit.gui.manageItem($index, reportEdit.types, reportEdit.typeSamples, "type", reportEdit.checkin)' ng-repeat = 't in reportEdit.types track by $index') {{t}}
                                         span &#xf068
                                 .col-xs-1.fa.button.f-btn(ng-class = '{"fa-angle-left": !reportEdit.gui.isTypePanel, "fa-angle-down": reportEdit.gui.isTypePanel}' ng-click='reportEdit.gui.manageTypePanel()')
                             .row
                                 .col-xs-12.generate-item-holder(ng-show='reportEdit.gui.isTypePanel')
-                                    span.generate-item(ng-click='reportEdit.gui.manageItem($index, reportEdit.typeSamples, reportEdit.types, "type")' ng-repeat = 't in reportEdit.typeSamples track by $index') {{t}}
+                                    span.generate-item(ng-click='reportEdit.gui.manageItem($index, reportEdit.typeSamples, reportEdit.types, "type", reportEdit.checkin, true)' ng-repeat = 't in reportEdit.typeSamples track by $index') {{t}}
                                         span &#xf067
+                            .row.generate-item-header.middle-xs(ng-show="reportEdit.checkin.isCheckinPick")
+                                .col-xs-2 Checkins:
+                                .col-xs-9.generate-item-holder
+                                .col-xs-1.fa.button.f-btn(ng-class = '{"fa-angle-left": !reportEdit.gui.isCheckinPanel, "fa-angle-down": reportEdit.gui.isCheckinPanel}' ng-click='reportEdit.gui.manageCheckinPanel()')
+                            .row(ng-show="reportEdit.checkin.isCheckinPick")
+                                .col-xs-12.generate-item-holder(ng-show='reportEdit.gui.isCheckinPanel')
+                                    span.generate-item.middle-xs( ng-repeat = 'c in reportEdit.checkin.questions track by $index' ng-click="reportEdit.gui.manageArrayItems(c._id, reportEdit.checkin.report)" ng-class="{'item-out-group': reportEdit.checkin.report.indexOf(c._id)!=-1, 'item-in-group': 'reportEdit.checkin.report.indexOf(c._id)==-1'}") {{c.question}}
+                                        span {{reportEdit.checkin.report.indexOf(c._id)==-1?"&#xf067":"&#xf068"}}
                             .row.generate-item-header.middle-xs
                                 .col-xs-2 User:
                                 .col-xs-9.generate-item-holder
