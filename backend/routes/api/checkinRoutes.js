@@ -37,8 +37,8 @@ module.exports = function(app) {
         });
     }, apiResponse);
 
-    app.get(baseUrl + 'answer/:id', function(req, res, next) {
-        checkinRepository.getByAnswerToken(req.params.id, function(err, data) {
+    app.get(baseUrl + 'answer/:checkinId/:id', function(req, res, next) {
+        checkinRepository.getByAnswerToken(req.params.checkinId, req.params.id, function(err, data) {
             res.data = data;
             res.err = err;
             next();
@@ -77,8 +77,8 @@ module.exports = function(app) {
         });
     }, apiResponse);
 
-    app.put(baseUrl + 'answer/:id', function(req, res, next) {
-        checkinService.addAnswer(req.params.id, req.body, function(err, data) {
+    app.put(baseUrl + 'answer/:checkinId/:id', function(req, res, next) {
+        checkinService.addAnswer(req.params.checkinId, req.params.id, req.body, function(err, data) {
             res.data = data;
             res.err = err;
             next();

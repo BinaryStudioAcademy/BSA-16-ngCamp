@@ -16,7 +16,7 @@ function scheduleCheckinsByFrequency(frequency, time){
             if (checkin.participants.length > 0) {
                 checkin.participants.forEach(function (p) {
                     var token = getToken();
-                    sendEmailToCheckinPartisipants(p, question, projectName, token);
+                    sendEmailToCheckinPartisipants(p, question, projectName, checkin._id, token);
                     checkin.answers.push({ user: p, answer: 'noAnswer', creationDate: date, editedDate: date, token: token });
                 });
                 checkin.save(function (err, result) {
