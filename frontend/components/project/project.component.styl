@@ -26,6 +26,8 @@
 				font-weight 400
 				float left
 				width 80%
+				@media only screen  and (max-width : 480px), screen and (max-device-width: 480px)
+					width 95%
 				margin-right 0.5em
 				display flex
 				align-items center
@@ -37,12 +39,6 @@
 					transition all 0.2s ease-out
 					&:hover
 						color #1d8dbf
-				+ p
-					width 80%
-					font-size 1.2em
-					color gray
-				.description
-					margin-top 1em
 						
 			.wrap
 				align-items center
@@ -55,159 +51,228 @@
 				flex-wrap wrap
 				box-sizing padding box
 				min-height 110px
+				
+				// ---------------------------------------------------------------------------TITLE INPUT-------------------------------
 				.inputNameWrapper
 					width 80%
+					@media only screen  and (max-width : 480px), screen and (max-device-width: 480px)
+						width 100%
 					position relative
 					.inputWrapper
 						width 100%
 						cursor text
+						background-color active-input
 					i
 						position absolute
 						right 5px
-						top 7px
+						top 42px
 						font-size 1.3em
 						cursor pointer
 						&:hover
 							color #1d8dbf
 				.inputWrapper
-					background-color #DADFE1
+					background-color disable-input
 					border none
 					outline none
 					text-align center
-					border-bottom 4px solid #95A5A6
+					border-bottom 4px solid border-color
+					border-radius 4px
 					font-size 1.3em
 					color #34495E
-					margin-bottom 0
+					margin 35px 0 70px
 					position relative
 					cursor pointer
 					padding 0
 					width 80%
-					padding-right 31px
+					@media only screen  and (max-width : 480px), screen and (max-device-width: 480px)
+						width 100%
+					padding-right 36px
 					&.invalid
 						border-bottom 4px solid #D24D57
+					&:hover
+						i
+							color #1d8dbf
 					i
 						position absolute
 						right 5px
-						top 7px
+						top 6px
 						&:hover
 							color #1d8dbf
 					
-					
-					
-				.dateEditor
-					display flex
-					align-items center
-					justify-content center
-					background-color white
-					border 1px solid black
-					border-radius 7px
-					padding 3px
-					margin-bottom 10px
-					input
-						border none
+				// -----------------------------------------------------------------------DESCRIPTION------------------------
+				.projDescriptionWrapper
+					width 80%
+					margin-top 1em
+					font-size 0.8em
+					position relative
+					&:hover
+						i
+							color #1d8dbf
+					@media only screen  and (max-width : 480px), screen and (max-device-width: 480px)
+						width 100%
+					.description
+						width 100%
+						text-align left
+						margin 35px 0 70px
+						color text-input
+						background-color disable-input
+						border-bottom 4px solid border-color
+						padding 2em 1em
+						border-radius 12px
+						padding-right 40px
 						outline none
-						padding 0.1em
-						font-size 28px
-					a
+						word-wrap break-word
 						cursor pointer
-						color black
-				.addButton
-					button()
-					margin 25px auto
-					font-size 1.2em
-					padding 0 0.5em
-					display flex
-					flex-wrap nowrap
-					justify-content space-between
+						p
+							margin 0
 					i
-						display inline
-						font-size 1.2em
-						span
-							display: -moz-inline-stack;
-							display inline
-							font-family "Montserrat"
-							font-family 1em
+						font-size 1.7em
+						position absolute
+						right 14px
+						top 47px
+						cursor pointer
+						color text-input
+						&:hover
+							color #1d8dbf
+					.descEditor
+						cursor text
+						background-color active-input
+						box-sizing border-box
 						
-					
-			.last:after
-				height 0
-				margin 0
-			i
-				align-self center
-				margin-right 3px
-			textarea
-				min-width 75%
-				max-width 75%
-				border-radius 7px
-				outline none
-				border none
-				border 1px solid grey
-				padding 0.3em
-				font-size 28px
-				&:hover
-					box-shadow: 0 0 7px #3498db
+								
+				//  --------------------------------------------------------------------DATA-INPUT-----------
+				.deadlineInput
+					width 30%
+					@media only screen  and (max-width : 1000px), screen and (max-device-width: 1000px)
+						width 50%
+					@media only screen  and (max-width : 480px), screen and (max-device-width: 480px)
+						width 80%
+					border-bottom 4px solid border-color
+					border-radius 4px
+					background-color disable-input
+					margin 50px 0
+					padding 9px 0
+					position relative
+					cursor pointer
+					&:hover
+						i
+							color #1d8dbf
+					& + div
+						.uib-datepicker-popup
+							.btn-group
+								.btn-danger.btn
+									display none
+					&.active
+						background-color active-input
+					i
+						position absolute
+						top 12px
+						right 9px
+						font-size 1.3em
+						cursor pointer
+						&:hover
+							color #1d8dbf
+							
+		//  -------------------------------------------------------------------------PARTICIPANTS------------------------------------
 		.participants
-			min-width 75%
-			max-width 75%
+			width 80%
 			display flex
-			flex-direction row
-			flex-wrap wrap
 			margin 1em 0
-			font-family "Open Sans"
-			font-weight 300
-			font-size 17px
-			> a
-				align-self center
-				margin-left 15px
-				cursor pointer
-				transition all 0.3s ease-out
-				i
-					font-size 24px
-					lable
-						font-family "Open Sans"
-						font-size 18px
-						margin-left 5px
-			.addUser
-				display flex
-				align-items center
-				justify-content center
-				text-decoration none
-				lable
-					font-family "Open Sans"
-					font-size 18px
-					margin-left 5px
-					line-height 24px
-				i
-					font-size 24px
+			align-items flex-start
+			align-content flex-start
+			flex-wrap wrap
+			min-height 100px
+			margin-top 25px
+			.btn-group.ng-enter,.btn-group.ng-leave
+				-webkit-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+				-moz-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+				-ms-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+				-o-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+				transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+				position: relative;
+				display: inline-flex;
+			.btn-group.ng-enter,.btn-group.ng-leave.ng-leave-active
+				opacity 1
+				span
+					text-overflow clip
+					max-width 0px
+				.participant
+					border-bottom 0px solid border-color
+					transform translateY(8px)
+			.btn-group.ng-leave,.btn-group.ng-enter.ng-enter-active
+				opacity 1
+				span
+					text-overflow clip
+					max-width 360px
+				.participant
+					border-bottom 4px solid border-color
+					transform translateY(0)
 			.participant 
-				background-color: #008CBA
+				background-color disable-input
 				border none
-				color white
-				padding 7px 24px
+				border-bottom 4px solid border-color
+				border-radius 4px
+				color text-input
+				max-width 360px
+				padding 7px 18px
+				padding-right 12px
 				text-align center
 				text-decoration none
 				display inline-flex
 				justify-content center
 				align-items center
-				font-size 16px
-				margin 10px 2px
+				font-size 0.8em
+				margin 10px 7px
 				cursor pointer
+				-webkit-transition: 0.1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+				-moz-transition: 0.1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+				-ms-transition: 0.1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+				-o-transition: 0.1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+				transition: 0.1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+				span
+					display block
+					white-space nowrap
+					overflow hidden
+					text-overflow ellipsis
+					-webkit-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+					-moz-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+					-ms-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+					-o-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+					transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+				i
+					margin-left 10px
+					font-size 1.2em
+				&:hover
+					border-bottom 8px solid border-color
+					transform translateY(-2px)
+					margin 8px 7px
+					i
+						color #e57373
+			.add
+				padding-right 18px
+				padding-left 12px
+				height auto
+				i
+					margin-right 10px
+					color #4DB6AC
+				&:hover
+					i
+						color #4DB6AC
+					
+		// ---------------------------------------------------------------DELETE BUTTON-------------------------------------------
 		.delete_button
 			button
-				font-family "Montserrat"
 				button()
-			min-width 60%
-			max-width 75%
 			display flex
 			justify-content center
 			align-items center
+			padding 50px 0
 			.delete
 				font-family "Montserrat"
-				background-color #FF5252
-				line-height 50%
-				width 40%
 				font-size 24px
-				min-width 13em
+				padding 15px 50px
+				--box-shadow-color #ab3c3c
+				background-color #cb4e4e
 		.confirming_modal
 			button
 				font-family "Montserrat"

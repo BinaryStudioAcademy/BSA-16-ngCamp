@@ -37,10 +37,10 @@ aside.side-menu-wrapper
                     i.fa.fa-cogs.fa-2x
                     span.nav-text Settings
             li
-                a(ng-link="[\"CreateProject\"]",)
+                a(ng-link="[\"CreateProject\"]", ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-plus-circle.fa-2x
                     span.nav-text New Project
-            li.changeProject
+            li.changeProject#projectList(ng-click = "MenuCtrl.toggleProjList()")
                 a
                     i.fa.fa-angle-double-right.fa-2x
                     span.nav-text Change Project

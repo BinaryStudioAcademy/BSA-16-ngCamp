@@ -10,16 +10,29 @@ class MenuComponentController {
         this.userProjects;
     }
 
+
     $onInit(){
+
         let self = this;
+
+        self.getProjectsInfo();
+
         self.scope.$on('menuReload', function(){
-            self.$onInit();
+            self.getProjectsInfo();
         });
+
+    }
+
+
+    getProjectsInfo(){
+        let self = this;
+
         if (!window._injectedData.currentProject){
             self.disabled = false;
         }else{
             self.disabled = true;
         };
+
         let userReq = {
             type: "GET",
             url: "api/projects/forCurrentUser",
@@ -27,10 +40,10 @@ class MenuComponentController {
         self.http.sendRequest(userReq).then(function(res) {
             self.userProjects = res;
         });
-
     }
-    showMenu(){
 
+
+    showMenu(){
     	let x = document.getElementById("side-menu");
     	if (x.className === "side-menu") {
         	x.className += " show";
@@ -38,6 +51,12 @@ class MenuComponentController {
           	x.className = "side-menu";
     	}
     }
+
+    toggleProjList(){
+        let elem = document.getElementById("projectList");
+        let angularElem = angular.element(elem);
+    }   
+
     hideMenu(){
         let x = document.getElementById("side-menu");
         x.className += "hide";

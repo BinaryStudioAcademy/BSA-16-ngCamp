@@ -5,64 +5,66 @@ user-list(user-data = 'proj.users', select-callback = 'proj.onAdminSelect', pare
     .main.col-xs-12
       h1 Project Settings
       form(name='projectEdit',ng-if="proj.currentProjectId!=''",novalidate).row.center-xs
+        //-  --------------------------------------------vv-------------------------------TITLE CELL----------------
         .wrap
           label
             p Title:
           p.inputWrapper(ng-if="!proj.editName", ng-click = "proj.editNameActivate()") {{proj.currentProject.title}}
-            i.fa.fa-pencil
-
+            i.fa.fa-pencil(ng-if="!proj.editDesc && proj.isUserAdmin")
           .inputNameWrapper(ng-if="proj.editName")
-            input.inputWrapper#projTitleInput(name="title",type="text",ng-model="proj.currentProject.title",required,ng-minlength="3" ng-maxlength="30", ng-class = "{'invalid': projectEdit.title.$invalid}", ng-focus='true')
-            i.fa.fa-check(ng-click="proj.edit('title',projectEdit.title.$valid)")
-
-
-          p(ng-show="projectEdit.title.$invalid" class="help-block",ng-if="proj.editName") Title is required.
-          p(ng-show="projectEdit.title.$error.minlength" class="help-block",ng-if="proj.editName") Title is too short.
-          p(ng-show="projectEdit.title.$error.maxlength" class="help-block",ng-if="proj.editName") Title is too long.
+            input.inputWrapper#projTitleInput(name="title",type="text",ng-model="proj.currentProject.title",required,ng-minlength="3" ng-maxlength="30", ng-class = "{'invalid': projectEdit.title.$invalid}")
+            i.fa.fa-check(ng-click="proj.edit('title',projectEdit.title.$valid)",ng-if="!proj.editDesc && proj.isUserAdmin")
+          //- p(ng-show="projectEdit.title.$invalid" class="help-block",ng-if="proj.editName") Title is required.
+          //- p(ng-show="projectEdit.title.$error.minlength" class="help-block",ng-if="proj.editName") Title is too short.
+          //- p(ng-show="projectEdit.title.$error.maxlength" class="help-block",ng-if="proj.editName") Title is too long.
+        //- -----------------------------------------------------------------------------------DESCRIPTION CELL -----
         .wrap
           label
             p Description:
-            i.fa.fa-pencil(ng-click="proj.editDesc=true",ng-if="!proj.editDesc && proj.isUserAdmin")
-            i.fa.fa-check(ng-click="proj.edit('description',projectEdit.text.$valid)",ng-if="proj.editDesc")
-          p.description(ng-if="!proj.editDesc",ng-bind-html="proj.currentProject.description") 
-          input(ckeditor,type="text",name="text" , cols='25', rows='10',ng-model="proj.currentProject.description",ng-if="proj.editDesc",required,ng-minlength="10" ng-maxlength="300")
-          p(ng-show="projectEdit.text.$invalid" class="help-block",ng-if="proj.editDesc") Description is required.
-          p(ng-show="projectEdit.text.$error.minlength" class="help-block",ng-if="proj.editDesc") Description is too short.
-          p(ng-show="projectEdit.text.$error.maxlength" class="help-block",ng-if="proj.editDesc") Description is too long.
+          .projDescriptionWrapper
+            .description(ng-bind-html="proj.currentProject.description", ng-show='!proj.editDesc', ng-click = "proj.descToggle()")
+            .description.descEditor(ui-tinymce="proj.tinyOptions",ng-model="proj.currentProject.description",ng-show='proj.editDesc')
+            i.fa(ng-class = "{'fa-check': proj.editDesc,'fa-pencil': !proj.editDesc}",ng-click = "proj.descToggle()",ng-show="!proj.editName && proj.isUserAdmin && proj.isSelected()")
+        //------------------------------------------------------------------------------ PARTICIPANTS CELL -----------------------------
         .wrap
           label
             p Participants:
           .participants(ng-model="proj.projectParticipants")
-            .btn-group.open(ng-repeat="participator in proj.projectParticipants track by $index") 
-              a.participant
-                i.fa.fa-user.fa-2x
+            .btn-group.open(ng-repeat="participator in proj.projectParticipants track by participator._id") 
+              a.participant(ng-click="(proj.isUserAdmin && !proj.isUser(participator._id))?proj.removeParticipant(participator._id):null")
                 span {{participator.firstName}} {{participator.lastName}}
-                i.fa.fa-times.fa-fw(ng-click="proj.removeParticipant(participator._id)",ng-if="proj.projectParticipants.length>1")
+                i.fa.fa-times(ng-if="proj.projectParticipants.length>1 && proj.isUserAdmin && !proj.isUser(participator._id)")
+            .btn-group.open
+              a.participant.add(ng-click = 'proj.userListFlag = true',ng-if="proj.isUserAdmin")
+                i.fa.fa-plus(aria-hidden='true')
+                span add user ...
             
-          button.addButton(ng-click = 'proj.userListFlag = true')
-            i.fa.fa-plus(aria-hidden='true')
-            span add participant
+        //----------------------------------------------------------- ADMINS CELL ------------------------------------------------
         .wrap
           label
             p Admins:
           .participants(ng-model="proj.projectAdmins")
-            .btn-group.open(ng-repeat="admin in proj.projectAdmins track by $index") 
-              a.participant
-                i.fa.fa-user.fa-2x
+            .btn-group.open(ng-repeat="admin in proj.projectAdmins track by admin._id") 
+              a.participant(ng-click="(proj.projectAdmins.length>1 && proj.isUserAdmin && !proj.isUser(admin._id)) ? proj.removeAdmin(admin._id):null")
                 span {{admin.firstName}} {{admin.lastName}}
-                i.fa.fa-times.fa-fw(ng-click="proj.removeAdmin(admin._id)",ng-if="proj.projectAdmins.length>1") 
-          button.addButton(ng-click = 'proj.adminListFlag = true',ng-if="proj.isUserAdmin")
-            i.fa.fa-plus(aria-hidden='true')
-            span add admin
+                i.fa.fa-times(ng-if="proj.projectAdmins.length>1 && proj.isUserAdmin && !proj.isUser(admin._id)")
+            .btn-group.open
+              a.participant.add(ng-click = 'proj.adminListFlag = true',ng-if="proj.isUserAdmin")
+                i.fa.fa-plus(aria-hidden='true')
+                span add admin ...
+        //-  -----------------------------------------------------------------------------DEADLINE CELL-----------------------------
+        
         .wrap
           label
             p  Deadline:
-            i.fa.fa-pencil(ng-click="proj.editDeadline=true",ng-if="!proj.editDeadline && proj.isUserAdmin")
-            i.fa.fa-check(ng-click="proj.edit('deadline')",ng-if="proj.editDeadline")
-          p(uib-datepicker-popup='{{format}}', datepicker-options = 'proj.datePickerOpt', ng-model='proj.dtDeadline', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',is-open = 'proj.editDeadline', ng-change="proj.edit('deadline',true)", ng-model-options = "{timezone: '0000'}") {{proj.dtDeadline | date: "dd.MM.yyyy"}} 
+          p.deadlineInput(uib-datepicker-popup='{{format}}', datepicker-options = 'proj.datePickerOpt', ng-model='proj.dtDeadline', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',is-open = 'proj.editDeadline', ng-change="proj.edit('deadline',true)",ng-click = "proj.editDateToggle()", ng-class = "{'active': proj.editDeadline}") {{proj.dtDeadline | date: "dd.MM.yyyy"}} 
+            i.fa(ng-class = "{'fa-pencil': !proj.editDeadline,'fa-check': proj.editDeadline}", ng-show = "proj.isUserAdmin")
+        //- ----------------------------------------------------------------------------DELETE CELL----------------------------------
         .wrap.last(ng-if="proj.isUserAdmin")
+          label
+            p Removing:
           .delete_button
-            button.delete(ng-click="proj.modalToggle()") Delete project
+            button.delete Delete project
           .confirming_modal(ng-if="proj.modalFlag")
             .background(ng-click="proj.modalToggle()")
             .window
