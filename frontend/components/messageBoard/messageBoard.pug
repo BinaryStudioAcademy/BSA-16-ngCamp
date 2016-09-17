@@ -10,8 +10,9 @@
               img.img(src="./img/person.gif")
               h3 {{message.author.firstName}} {{message.author.lastName}}
       article.message-info
-          a
+          a(ng-if="msgBoard.isAuthor(message) || msgBoard.isAdmin")
             h3(ng-link='["EditMessage",{id:message._id}]') {{message.title}}
+          h3(ng-if="!msgBoard.isAuthor(message) && !msgBoard.isAdmin") {{message.title}}
           .main
             p(ng-if = "!message.isBigText",ng-bind-html="message.description")
             p(ng-if = "message.isBigText",ng-bind-html="message.firstPart",id = "firstPart")

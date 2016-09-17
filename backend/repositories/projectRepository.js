@@ -11,11 +11,13 @@ ProjectRepository.prototype.getByIdWithUsers = getByIdWithUsers;
 ProjectRepository.prototype.changeState = changeState;
 ProjectRepository.prototype.getUsers = getUsers;
 ProjectRepository.prototype.getParticipantsByProjectId = getParticipantsByProjectId;
+ProjectRepository.prototype.isAdmin = isAdmin;
 
 function ProjectRepository() {
     Repository.prototype.constructor.call(this);
     this.model = Project;
 };
+
 function getUsers(id, callback) {
     var query = this.model.findOne({
         _id: id
@@ -27,6 +29,7 @@ function getUsers(id, callback) {
     });
     query.exec(callback);
 }
+
 function getProjectsByParticipantId(userId, callback) {
     var model = this.model;
     var query = model.find({
@@ -119,15 +122,34 @@ function changeState(id, state, callback) {
     query.update(conditions, update).exec(callback);
 }
 
-function getParticipantsByProjectId(id, callback){
+function getParticipantsByProjectId(id, callback) {
     var model = this.model;
     var query = model.findOne({
         _id: id
     }).select({
         participants: 1,
-        _id: 0       
+        _id: 0
     }).populate('participants');
     query.exec(callback);
 }
+
+function isAdmin(idProject, idUser, callback) {
+    var model = this.model;
+    /*model.count({
+        _id: idProject,
+        admins: idUser
+    }, function(err, count) {
+        callback(count, count);
+    });*/
+    var query = model.find({
+        _id: idProject,
+        admins: idUser
+    }).select({
+        _id: 1
+    });
+    query.exec(callback);
+
+}
+
 
 module.exports = new ProjectRepository();

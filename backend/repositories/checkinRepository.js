@@ -16,15 +16,16 @@ CheckinRepository.prototype.getByAnswerToken = getByAnswerToken;
 CheckinRepository.prototype.updateAnswerItem = updateAnswerItem;
 CheckinRepository.prototype.getAnswersById = getAnswersById;
 CheckinRepository.prototype.findCheckinsByFrequency = findCheckinsByFrequency;
+CheckinRepository.prototype.getQuestionsByProject = getQuestionsByProject;
 
 
 
-function getByIdWithParticipants(id, callback){
+function getByIdWithParticipants(id, callback) {
     var query = Checkin.findOne({
-        _id: id
-    })
-    .populate('participants')
-    .populate('answers.user')
+            _id: id
+        })
+        .populate('participants')
+        .populate('answers.user')
         .sort({
             'answers.creationDate': -1
         });
@@ -38,7 +39,7 @@ function getByAnswerToken(token, callback) {
         .elemMatch("answers", {
             token: token
         })
-    .populate('answers');
+        .populate('answers');
     query.exec(callback);
 }
 
@@ -49,9 +50,9 @@ function getAll(callback) {
 }
 
 
-function findCheckinsByFrequencyAndTime(freq, time, callback){
+function findCheckinsByFrequencyAndTime(freq, time, callback) {
     var query = Checkin.find({
-        frequency: freq, 
+        frequency: freq,
         time: time
     }).populate('project');
     query.exec(callback);
@@ -59,8 +60,8 @@ function findCheckinsByFrequencyAndTime(freq, time, callback){
 
 function findCheckinsByFrequency(freq, callback) {
     var query = Checkin.find({
-        frequency: freq
-    })
+            frequency: freq
+        })
         .populate('answers.user');
     query.exec(callback);
 }
@@ -82,6 +83,15 @@ function getAnswersById(id, callback) {
         _id: id
     }, {
         answers: 1
+    })
+    query.exec(callback);
+}
+
+function getQuestionsByProject(id, callback) {
+    var query = Checkin.find({
+        project: id
+    }, {
+        question: 1
     })
     query.exec(callback);
 }

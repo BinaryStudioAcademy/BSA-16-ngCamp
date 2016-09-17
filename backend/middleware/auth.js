@@ -39,7 +39,7 @@ module.exports = function (req, res, next) {
             });
         } else {
             // res.status(403).send({success: false, message: "No Token Provided"});
-            res.redirect('http://localhost:2020')
+            res.redirect('http://team.binary-studio.com/auth/#/')
         }
     }
 

@@ -10,8 +10,8 @@
 				li(ng-click = "tasksctrl.changeFilter('free')") free task
 				li(ng-click = "tasksctrl.changeFilter('my')") my tasks
 				li(ng-click = "tasksctrl.changeFilter('done')") finished
-				li keyword =  
-					input(type="text" ng-model = "tasksctrl.keyword")
+				li(ng-click = "tasksctrl.isHiddenKw = !tasksctrl.isHiddenKw") keyword =
+				input(ng-hide = "tasksctrl.isHiddenKw" type="text" ng-model = "tasksctrl.keyword")
 				li.resetfilter(ng-click = "tasksctrl.changeFilter('none')") reset filters
 		.wrapper_task.row.center-xs(ng-repeat = "task in filtredTasks = (tasksctrl.tasks | filter: tasksctrl.keyword | filter: tasksctrl.filterKey) track by $index", ng-if = "tasksctrl.contentFlag" ,   id="{{task._id}}")
 			.col-xs-12.task_header.row.middle-xs.center-xs
@@ -43,8 +43,9 @@
 					.col-xs-8.end-xs.icon_bar 
 						i.fa.fa-comments-o(aria-hidden = "true")
 						file-wrapper(files = 'task.files', source-id = 'task._id')
-						i.fa.fa-pencil(aria-hidden = "true", ng-link = "['TaskUpdate', {id: task._id}]")
-						i.fa.fa-times(aria-hidden = "true", ng-click = "tasksctrl.deleteTask(task._id,$index)")
+						p {{window._injectedData.userId}}
+						i.fa.fa-pencil(aria-hidden = "true", ng-link = "['TaskUpdate', {id: task._id}]",ng-if="tasksctrl.isAuthor(task) || tasksctrl.isAdmin")
+						i.fa.fa-times(aria-hidden = "true", ng-click = "tasksctrl.deleteTask(task._id,$index)",ng-if="tasksctrl.isAuthor(task) || tasksctrl.isAdmin")
 		.wrapper_noTask.row.center-xs(ng-if = "!tasksctrl.tasks.length")
 			.col-xs-12 No tasks in this project
 		.no_result.row.middle-xs.center-xs(ng-hide = "filtredTasks.length" ng-if = "tasksctrl.tasks.length")

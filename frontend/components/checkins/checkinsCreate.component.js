@@ -17,7 +17,7 @@ class CheckinsCreateComponentController {
             'Friday',
             'Saturday',
             'Sunday'
-            ];
+        ];
         this.selectedFrequency = this.frequency[0];
         this.time = [
             '08:00',
@@ -36,61 +36,64 @@ class CheckinsCreateComponentController {
         this.selectedTime = this.time[0];
         this.parties = [];
     }
-    $onInit(){
-    	let vm = this;
+
+    $onInit() {
+        let vm = this;
         vm.httpGeneral.sendRequest({
             type: "GET",
             url: `api/projects/${window._injectedData.currentProject}/participants`
-        }).then(function(res) {
+        }).then(function (res) {
             vm.participants = res.participants;
         });
     }
-    save(){
+
+    save() {
         let vm = this;
-        if(vm.question && vm.participants){
+        if (vm.question && vm.participants) {
             vm.httpGeneral.sendRequest({
-            type: "POST",
-            url: "/api/checkins/",
-            body: {
-                data: {
-                    question: vm.question,
-                    project: window._injectedData.currentProject,
-                    frequency: vm.selectedFrequency,
-                    participants: vm.parties,
-                    isTurnedOn: false,
-                    time: vm.selectedTime
+                type: "POST",
+                url: "/api/checkins/",
+                body: {
+                    data: {
+                        question: vm.question,
+                        project: window._injectedData.currentProject,
+                        frequency: vm.selectedFrequency,
+                        participants: vm.parties,
+                        isTurnedOn: false,
+                        time: vm.selectedTime
+                    }
                 }
-            }
-        }).then(function(res) {
-            console.log("Checkin created succesfuly");
-            vm.location.path('/checkins');
-        });
+            }).then(function() {
+                vm.location.path('/checkins');
+            });
         }
         else {
             vm.popupNotifications.notifyError("You must define your question and participants");
         }
 
     }
-    toggleAll(){
+
+    toggleAll() {
         let vm = this;
-        if (vm.parties.length == vm.participants.length){
+        if (vm.parties.length == vm.participants.length) {
             vm.parties = [];
         } else {
-            vm.participants.forEach(function(p){
-                if(vm.parties.indexOf(p._id) == -1){
+            vm.participants.forEach(function (p) {
+                if (vm.parties.indexOf(p._id) == -1) {
                     vm.parties.push(p._id);
                 }
             });
         }
     }
-    toggleChekin(id){
+
+    toggleChekin(id) {
         let vm = this;
         let idx = vm.parties.indexOf(id);
-        if (idx > -1) {
-            vm.parties.splice(idx, 1);
-        } else {
-            vm.parties.push(id);
-        }
+        if (idx > -1) {
+            vm.parties.splice(idx, 1);
+        } else {
+            vm.parties.push(id);
+        }
     }
 }
 

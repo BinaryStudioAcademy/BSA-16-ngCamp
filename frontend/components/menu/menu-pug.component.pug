@@ -5,14 +5,14 @@ aside.side-menu-wrapper
     nav#side-menu.side-menu(ng-disabled="MenuCtrl.disabled")
         ul
             li
-                a(ng-link='["MainPage"]',ng-if="MenuCtrl.disabled", ng-click="MenuCtrl.showMenu()")
+                a(ng-link='["MainPage"]',ng-if="MenuCtrl.disabled ", ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-home.fa-2x
                     span.nav-text Home
             li
                 a(ng-link='["MsgBoard"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-television.fa-2x
                     span.nav-text Message Board
-            li
+            li(ng-if="MenuCtrl.checkinsAccess")
                 a(ng-link='["Checkins"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-calendar-check-o.fa-2x
                     span.nav-text Check-ins
@@ -24,7 +24,7 @@ aside.side-menu-wrapper
                 a(ng-link='["Events"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-calendar.fa-2x
                     span.nav-text Events
-            li
+            li(ng-if="MenuCtrl.reportsAccess")
                 a(ng-link='["Reports"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
                     i.fa.fa-area-chart.fa-2x
                     span.nav-text Reports
