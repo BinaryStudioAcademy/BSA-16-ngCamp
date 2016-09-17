@@ -1,5 +1,7 @@
 var Repository = require('./generalRepository'),
-    Checkin = require('../schemas/checkinSchema');
+    Checkin = require('../schemas/checkinSchema'),
+    Mongoose = require('mongoose'),
+    ObjectId = Mongoose.Types.ObjectId,
     User = require('../schemas/checkinSchema');
 
 function CheckinRepository() {
@@ -36,12 +38,29 @@ function getByIdWithParticipants(id, callback) {
 
 
 
-function getByAnswerToken(token, callback) {
-    var query = Checkin.findOne()
-        .elemMatch("answers", {
-            token: token
-        })
-        .populate('answers');
+function getByAnswerToken(id, token, callback) {
+    var query = Checkin.aggregate(
+        {$match: {
+            _id: new ObjectId(id)
+            }
+        },
+        {$project: {
+            _id: 0,
+            question: 1,
+            answers:  {
+                $filter: {
+                    input: "$answers",
+                    as: "ans",
+                    cond: { $eq: [ '$$ans.token', token ]}
+                    }
+                }
+            }
+        },
+        {$project: {
+            question: 1,
+            'answer': '$answers.answer'
+            }
+        });
     query.exec(callback);
 }
 
@@ -110,8 +129,9 @@ function findCheckinsByAnswerDate(year, month, date, callback) {
     });
 }
 
-function updateAnswerItem(id, data, callback) {
+function updateAnswerItem(checkinId, id, data, callback) {
     var query = Checkin.update({
+        _id: checkinId,
         'answers.token': id
     }, {
         $set: {

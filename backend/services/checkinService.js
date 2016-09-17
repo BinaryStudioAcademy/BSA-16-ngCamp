@@ -20,9 +20,9 @@ function updateItem(id, body, callback) {
     checkinRepository.setObjPropsById(id, body, callback);
 }
 
-function addAnswer(id, body, callback){
+function addAnswer(checkinId, id, body, callback){
     body.editedDate = Date();
-    checkinRepository.updateAnswerItem(id, body, callback);
+    checkinRepository.updateAnswerItem(checkinId, id, body, callback);
 }
 
 function addCheckinValidation(body, callback) {
