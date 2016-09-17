@@ -36,6 +36,7 @@ class CheckinsCreateComponentController {
         this.selectedTime = this.time[0];
         this.parties = [];
     }
+    
     $onInit(){
     	let vm = this;
         vm.httpGeneral.sendRequest({
@@ -45,6 +46,7 @@ class CheckinsCreateComponentController {
             vm.participants = res.participants;
         });
     }
+
     save(){
         let vm = this;
         if(vm.question && vm.participants){
@@ -66,8 +68,8 @@ class CheckinsCreateComponentController {
         else {
             vm.popupNotifications.notifyError("You must define your question and participants");
         }
-
     }
+
     toggleAll(){
         let vm = this;
         if (vm.parties.length == vm.participants.length){
@@ -80,6 +82,7 @@ class CheckinsCreateComponentController {
             });
         }
     }
+
     toggleChekin(id){
         let vm = this;
         let idx = vm.parties.indexOf(id);
@@ -98,7 +101,6 @@ const checkinsCreateComponent = {
     controllerAs: 'CheckCr',
     selector: 'checkinsCreateComponent',
     template: require('./checkinsCreate-pug.component.pug')(),
-
 };
 
 export {
