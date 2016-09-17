@@ -15,6 +15,7 @@ function addItem(body, callback) {
 }
 
 function updateItem(id, body, callback) {
+    body.editedDate = Date();
     checkinRepository.setObjPropsById(id, body, callback);
 }
 

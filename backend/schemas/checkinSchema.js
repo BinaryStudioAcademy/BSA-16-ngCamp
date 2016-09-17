@@ -15,7 +15,6 @@ var CheckinSchema = new Schema({
     }],
     time: String,
     frequency: String,
-    
     answers: [{
         user: {
             type: Schema.Types.ObjectId,

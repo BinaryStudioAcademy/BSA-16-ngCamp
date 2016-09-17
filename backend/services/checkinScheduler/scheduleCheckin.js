@@ -16,9 +16,8 @@ function scheduleCheckinsByFrequency(frequency, time){
             if (checkin.participants.length > 0) {
                 checkin.participants.forEach(function (p) {
                     var token = getToken();
-                    //console.log(p);
                     sendEmailToCheckinPartisipants(p, question, projectName, token);
-                    checkin.answers.push({ user: p, answer: 'noAnswer', creationDate: date, token: token });
+                    checkin.answers.push({ user: p, answer: 'noAnswer', creationDate: date, editedDate: date, token: token });
                 });
                 checkin.save(function (err, result) {
                     if (err) {
@@ -29,8 +28,6 @@ function scheduleCheckinsByFrequency(frequency, time){
                     }
                 });
             }
-            
-                //console.log(checkin.project[0]);
         })
     });
 }
