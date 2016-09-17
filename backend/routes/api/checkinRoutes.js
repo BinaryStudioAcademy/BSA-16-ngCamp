@@ -78,7 +78,7 @@ module.exports = function(app) {
     }, apiResponse);
 
     app.put(baseUrl + 'answer/:id', function(req, res, next) {
-        checkinRepository.updateAnswerItem(req.params.id, req.body, function(err, data) {
+        checkinService.addAnswer(req.params.id, req.body, function(err, data) {
             res.data = data;
             res.err = err;
             next();

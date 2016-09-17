@@ -7,6 +7,8 @@ function CheckinService() {
 
 CheckinService.prototype.addItem = addItem;
 CheckinService.prototype.updateItem = updateItem;
+CheckinService.prototype.addAnswer = addAnswer;
+
 
 function addItem(body, callback) {
     if (addCheckinValidation(body, callback)) {
@@ -15,8 +17,12 @@ function addItem(body, callback) {
 }
 
 function updateItem(id, body, callback) {
-    body.editedDate = Date();
     checkinRepository.setObjPropsById(id, body, callback);
+}
+
+function addAnswer(id, body, callback){
+    body.editedDate = Date();
+    checkinRepository.updateAnswerItem(id, body, callback);
 }
 
 function addCheckinValidation(body, callback) {
