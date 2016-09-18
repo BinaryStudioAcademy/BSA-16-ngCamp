@@ -1,8 +1,8 @@
 .reports-wrapper
     .row.center-xs
-        .col-xs-12.col-md-10.reports-holder
+        .col-xs-12.col-md-12.reports-holder
             .row.reports-header
-                h3.col-xs-10 Reports
+                h2.col-xs-12 Reports
             .row.generate-holder.center-xs
                 h3.col-xs-6 Quckly report generating
                 .col-xs-12
@@ -25,12 +25,11 @@
                                 td.col-xs-2 {{r.creationDate | date : "dd/MM/y"}}
                                 td.col-xs-2
                                     .row.around-xs
-                                        span.col-xs-4.fa.fa-eye.button.f-btn(ng-link = "['Reports Edit', {id: reports.recentReports[$index]._id}]")
-                                        span.col-xs-4.fa.fa-trash.button.f-btn(ng-click='reports.deleteReport(reports.recentReports[$index]._id)')
+                                        span.col-xs-4.fa.fa-eye.button.f-btn.view-btn(ng-link = "['Reports Edit', {id: reports.recentReports[$index]._id}]")
+                                        span.col-xs-4.fa.fa-trash.button.f-btn.delete-btn(ng-click='reports.deleteReport(reports.recentReports[$index]._id)')
                         h4.col-xs-12.start-xs(ng-show="!reports.recentReports") You don't have reports yet
                     .row(ng-show="reports.recentReports")
                         .col-xs-1.col-xs-offset-11.button.btn(ng-click='reports.manageMore("recent")' ng-hide="(reports._reports.length==reports.recentReports.length) && !reports.isRecentMore ") {{reports.isRecentMore ? 'Less' : 'More'}}
-            hr
             .row.reports-samples
                 .col-xs-12
                     .row.start-xs
@@ -39,23 +38,25 @@
                     .row
                         .col-xs-12.masonry
                             .item(ng-repeat = "r in reports.savedReports track by $index")
-                                .row.start-xs.middle-xs
+                                .row.start-xs.middle-xs.brd-bt
                                     .col-xs-8.item-title {{r.title}}
                                     .col-xs-4
                                         .row.around-xs
-                                            span.col-xs-5.fa.fa-eye.button.f-btn(ng-link = "['Reports Edit', {id: reports.savedReports[$index]._id}]")
-                                            span.col-xs-5.fa.fa-trash.button.f-btn(ng-click='reports.deleteReport(reports.savedReports[$index]._id)')
-                                hr
+                                            span.col-xs-4.fa.fa-eye.button.f-btn.view-btn(ng-link = "['Reports Edit', {id: reports.savedReports[$index]._id}]")
+                                            span.col-xs-4.fa.fa-trash.button.f-btn.delete-btn(ng-click='reports.deleteReport(reports.savedReports[$index]._id)')
+                                br
                                 .row.start-xs.item-row(ng-show = "r.participants")
                                     .col-xs-4 
                                         span.row.item-def Users:
                                     .col-xs-8
                                         span.row.item-value {{r.participants.join(',')}}
+                                hr
                                 .row.start-xs.item-row(ng-show = "r.types")
                                     .col-xs-4
                                         span.row.item-def Type:
                                     .col-xs-8
                                         span.row.item-value {{r.types.join(', ')}}
+                                hr
                                 .row.start-xs.item-row(ng-show = "r.dateRange")
                                     .col-xs-4
                                         span.row.item-def Dates:

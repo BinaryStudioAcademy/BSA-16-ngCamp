@@ -1,57 +1,59 @@
 .reports-wrapper
     .row.center-xs
-        .col-xs-12.col-md-10.reports-holder
+        .col-xs-12.col-md-12.reports-holder
             .row.reports-header
-                h3.col-xs-10 Report Generating
-                .col-xs-1.col-xs-offset-1.fa.fa-close.button.font-button(ng-link="['Reports']")
+                h2.col-xs-12 Report Generating
+                //.col-xs-1.col-xs-offset-1.fa.fa-close.button.font-button(ng-link="['Reports']")
             .row.generate-holder.center-xs
                 .col-xs-12
                     .row.center-xs
-                        .col-xs-11
+                        .col-xs-12
                             .row.generate-item-header.middle-xs
-                                .col-xs-2 Title:
-                                input(type='text' ng-model="reportAdd.title").col-xs-8
-                                span.col-xs-1.col-xs-offset-1.button.f-btn.fa.fa-star-o.center-xs(ng-class ="{'fa-star-o': !reportAdd.isSaved, 'fa-star': reportAdd.isSaved}" ng-click="reportAdd.manageReportSaving()")
+                                .col-xs-2.gen-title Title:
+                                .col-xs-8
+                                span.col-xs-1.col-xs-offset-1.button.f-btn.fa.fa-star-o.center-xs(ng-class ="{'fa-star-o': !reportAdd.isSaved, 'fa-star': reportAdd.isSaved}" ng-click="reportAdd.manageReportSaving()" title="Save report template")
+                                input(type='text' ng-model="reportAdd.title" placeholder="You report title").col-xs-12
                             .row.generate-item-header.middle-xs
-                                .col-xs-2 Description:
-                                input(type='text' ng-model="reportAdd.description").col-xs-10
-                            .row.generate-item-header.middle-xs
-                                .col-xs-2 Type:
-                                .col-xs-9.generate-item-holder
+                                .col-xs-12.gen-title Description:
+                                input(type='text' ng-model="reportAdd.description" placeholder="You report description").col-xs-12
+                            .row.generate-item-header.middle-xs.between-xs
+                                .col-xs-2.gen-title Type:
+                                .col-xs-8.generate-item-holder(ng-class="{'hidden-gen': reportAdd.types.length==0}")
                                     span.generate-item(ng-click='reportAdd.gui.manageItem($index, reportAdd.types, reportAdd.typeSamples, "type", reportAdd.checkin)' ng-repeat = 't in reportAdd.types track by $index') {{t}}
                                         span &#xf068
-                                .col-xs-1.fa.button.f-btn(ng-class = '{"fa-angle-left": !reportAdd.gui.isTypePanel, "fa-angle-down": reportAdd.gui.isTypePanel}' ng-click='reportAdd.gui.manageTypePanel()')
+                                .col-xs-1.fa.button.f-btn.view-btn(ng-class = '{"fa-angle-left": !reportAdd.gui.isTypePanel, "fa-angle-down": reportAdd.gui.isTypePanel}' ng-click='reportAdd.gui.manageTypePanel()')
                             .row
                                 .col-xs-12.generate-item-holder(ng-show='reportAdd.gui.isTypePanel')
                                     span.generate-item(ng-click='reportAdd.gui.manageItem($index, reportAdd.typeSamples, reportAdd.types, "type", reportAdd.checkin, true)' ng-repeat = 't in reportAdd.typeSamples track by $index') {{t}}
                                         span &#xf067
 
-                            .row.generate-item-header.middle-xs(ng-show="reportAdd.checkin.isCheckinPick")
-                                .col-xs-2 Checkins:
-                                .col-xs-9.generate-item-holder
-                                .col-xs-1.fa.button.f-btn(ng-class = '{"fa-angle-left": !reportAdd.gui.isCheckinPanel, "fa-angle-down": reportAdd.gui.isCheckinPanel}' ng-click='reportAdd.gui.manageCheckinPanel()')
+                            .row.generate-item-header.middle-xs.between-xs(ng-show="reportAdd.checkin.isCheckinPick")
+                                .col-xs-2.gen-title Checkins:
+                                .col-xs-8.generate-item-holder
+                                .col-xs-1.fa.button.f-btn.view-btn(ng-class = '{"fa-angle-left": !reportAdd.gui.isCheckinPanel, "fa-angle-down": reportAdd.gui.isCheckinPanel}' ng-click='reportAdd.gui.manageCheckinPanel()')
                             .row(ng-show="reportAdd.checkin.isCheckinPick")
                                 .col-xs-12.generate-item-holder(ng-show='reportAdd.gui.isCheckinPanel')
                                     span.generate-item.middle-xs( ng-repeat = 'c in reportAdd.checkin.questions track by $index' ng-click="reportAdd.gui.manageArrayItems(c._id, reportAdd.checkin.report)" ng-class="{'item-out-group': reportAdd.checkin.report.indexOf(c._id)!=-1, 'item-in-group': 'reportAdd.checkin.report.indexOf(c._id)==-1'}") {{c.question}}
                                         span {{reportAdd.checkin.report.indexOf(c._id)==-1?"&#xf067":"&#xf068"}}
-                            .row.generate-item-header.middle-xs
-                                .col-xs-2 User:
-                                .col-xs-9.generate-item-holder
+                            .row.generate-item-header.middle-xs.between-xs
+                                .col-xs-2.gen-title User:
+                                .col-xs-8.generate-item-holder(ng-class="{'hidden-gen': reportAdd.users.length==0}")
                                     span.generate-item(ng-click='reportAdd.gui.manageItem($index, reportAdd.users, reportAdd.userSamples, "user")' ng-repeat = 'u in reportAdd.users track by $index') {{u}}
                                         span &#xf068
-                                .col-xs-1.fa.button.f-btn(ng-class = '{"fa-angle-left": !reportAdd.gui.isUserPanel, "fa-angle-down": reportAdd.gui.isUserPanel}' ng-click='reportAdd.gui.manageUserPanel()')
+                                .col-xs-1.fa.button.f-btn.view-btn(ng-class = '{"fa-angle-left": !reportAdd.gui.isUserPanel, "fa-angle-down": reportAdd.gui.isUserPanel}' ng-click='reportAdd.gui.manageUserPanel()')
                             .row
                                 .col-xs-12.generate-item-holder(ng-show='reportAdd.gui.isUserPanel')
                                     span.generate-item.middle-xs(ng-click='reportAdd.gui.manageItem($index, reportAdd.userSamples, reportAdd.users, "user")' ng-repeat = 'u in reportAdd.userSamples track by $index') {{u}}
                                         span &#xf067
                             .row.generate-item-header.middle-xs
-                                .col-xs-2 Date:
+                                .col-xs-2.gen-title Date:
                                 .col-xs-2.center-xs From:
                                 input(type="date" ng-model='reportAdd.dateRange[0]').col-xs-3
                                 .col-xs-1.col-xs-1.center-xs To:
                                 input(type="date" ng-model='reportAdd.dateRange[1]').col-xs-3
-                    .row
-                        span.button.btn.col-xs-4.col-xs-offset-4(ng-click='reportAdd.generateReport()') Generate
+                    .row.center-xs
+                        span.button.btn.col-xs-5(ng-click='reportAdd.generateReport()') Generate
+                        span.button.btn.col-xs-2.col-xs-offset-1.delete-btn(ng-link="['Reports']") Back
                     .row.start-xs(ng-show='reportAdd.isGenerated')
                         span.chapter-title.col-xs-10 History
                             .fa.fa-history
