@@ -22,6 +22,17 @@ var TaskSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'ToDo'
     }],
+    comments: [
+        {
+            author: {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            },
+            date: Date,
+            description: String,
+            files: [String]
+        }
+    ],
     archived: Boolean,
     isFinished: Boolean,
     participants: [{

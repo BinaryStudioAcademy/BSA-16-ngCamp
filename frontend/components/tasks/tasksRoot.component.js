@@ -22,6 +22,10 @@ const tasksRootComponent = {
 		path: "/update/:id",
 		name: "TaskUpdate",
 		component: "taskCreateEditComponent"
+	},{
+		path:"comments/:id/task",
+		name: "TaskComments",
+		component: "tasksCommentsComponent"
 	}]
 };
 

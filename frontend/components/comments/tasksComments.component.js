@@ -1,24 +1,22 @@
 import "./commentsStyle.styl";
 
-
-
-class eventsCommentsComponentController {
-    constructor(httpGeneral, $window, popupNotifications) {
-        this.httpGeneral = httpGeneral;
-        this.window = $window;
-        this.popupNotifications = popupNotifications;
-        this.messageId;
-        this.comments = [];
-        this.myComment;
-    }
-    $routerOnActivate(next) {
+class tasksCommentsComponentController{
+	constructor(httpGeneral,$window,popupNotifications){
+		this.httpGeneral = httpGeneral;
+		this.popupNotification = popupNotifications;
+		this.comments = [];
+        this.taskId;
+	}
+	$routerOnActivate(next) {
         let self = this;
-        self.messageId = next.params.id;
+        self.taskId = next.params.id;
         self.httpGeneral.sendRequest({
             type: "GET",
-            url: `api/event/${next.params.id}/comments`,
+            url: `api/task/${next.params.id}/comments`,
         }).then(function(res) {
-            self.comments = res.comments;
+            if (res === undefined){
+                console.log("No comments for this task");
+            } else self.comments = res.comments;
         });
     }
     sendComment(valid) {
@@ -31,7 +29,7 @@ class eventsCommentsComponentController {
         if (valid) {
             self.httpGeneral.sendRequest({
                 type: "PUT",
-                url: `api/event/${self.messageId}/comment`,
+                url: `api/task/${self.taskId}/comment`,
                 body: [{
                     author: window._injectedData.userId,
                     date: new Date(),
@@ -44,16 +42,16 @@ class eventsCommentsComponentController {
             self.popupNotifications.notifyError("Please enter comment correctly");
         }
     }
-};
+}
 
-eventsCommentsComponentController.$inject = ['httpGeneral', '$window', 'popupNotifications'];
+tasksCommentsComponentController.$inject = ['httpGeneral','$window','popupNotifications'];
 
-const eventsCommentsComponent = {
-    controller: eventsCommentsComponentController,
-    selector: "eventsCommentsComponent",
-    template: require("./eventsComments.template.pug")(),
+const tasksCommentsComponent = {
+    controller: tasksCommentsComponentController,
+    selector: "tasksCommentsComponent",
+    template: require("./tasksComments.template.pug")(),
 };
 
 export {
-    eventsCommentsComponent
+    tasksCommentsComponent
 };
