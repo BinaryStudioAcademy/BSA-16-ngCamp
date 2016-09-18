@@ -1,40 +1,18 @@
 @import "../../../public/libs/css/generalComponentsStyle.styl"
 .task-wrapper
+	width 100%
+	min-width 400px
 	.main-container
-		min-width 400px
-		@media only screen and (max-width : 1000px)
-			min-width 100vw
 		main-component()
-		.wrapper_lable
-			display flex
-			align-items center
-			justify-content center
-			flex-wrap wrap
-			color #212121
-			font-size 1.8em
-			font-family "Montserrat"
-			h1
-				width 100%
-				margin-bottom 0
-			&:after
-				content ''
-				height 1px
-				margin-top 0.3em
-				width 80%
-				display block
-				background-image -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-				background-image    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-				background-image     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
-				background-image      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+		h1
+			header-style()
 		.wrapper_createButton
-			margin 30px 0
+			margin 5px 0
 			button
 				button()
-				font-family "Montserrat"
-				line-height 32.406px
-				font-size 1.8em
-				border none
-				outline none
+				padding 15px 50px
+				--box-shadow-color #004D40
+				background-color #2e8f35
 		.wrapper_filters
 			margin 20px 0
 			ul
@@ -70,8 +48,13 @@
 			font-size 1.3em
 			font-family "Montserrat"
 		.wrapper_task
+			width 80%
+			@media only screen  and (max-width : 1000px), screen and (max-device-width: 1000px)
+				width 100%
+			@media only screen  and (max-width : 480px), screen and (max-device-width: 480px)
+				width 100%
 			cursor default
-			margin 20px 0
+			margin 20px auto
 			border 1px solid #212121
 			padding 7px 0
 			border-radius 7px
@@ -87,6 +70,13 @@
 					display flex
 					align-items center
 					justify-content center
+					@media only screen  and (max-width : 768px), screen and (max-device-width: 768px)
+						justify-content flex-start
+						line-height 35px
+						font-size 1.2em
+					white-space nowrap
+					overflow hidden
+					text-overflow ellipsis
 
 					
 				.expander
@@ -95,13 +85,25 @@
 					justify-content flex-start
 					i
 						font-size 1.6em
+						@media only screen  and (max-width : 768px), screen and (max-device-width: 768px)
+							font-size 1.8em
 						cursor pointer
 						margin-left 50%
 				.task_progress
+					.progresslable
+						@media only screen  and (max-width : 768px), screen and (max-device-width: 768px)
+							display none
 					.countProgress
 						display inline-block
 					.complete
 						color #26A65B
+						@media only screen  and (max-width : 640px), screen and (max-device-width: 640px)
+							display none
+						&.cuted
+							display none
+							@media only screen  and (max-width : 640px), screen and (max-device-width: 640px)
+								display block
+								font-size 1.8em
 			.task_todos
 				background-color white
 				color black
