@@ -23,6 +23,11 @@ class messageCommentsComponentController {
     }
     sendComment(valid) {
         let self = this;
+        self.comments.push({
+            author: {firstName:window._injectedData.userFirstName,lastName:window._injectedData.userLastName},
+            date: new Date(),
+            description: self.myComment,
+        });
         if (valid) {
             self.httpGeneral.sendRequest({
                 type: "PUT",
@@ -34,7 +39,6 @@ class messageCommentsComponentController {
                 }]
             }).then(function(res) {
                 console.log("Succesfull send comment");
-                self.window.location.reload();
             });
         } else {
             self.popupNotifications.notifyError("Please enter comment correctly");

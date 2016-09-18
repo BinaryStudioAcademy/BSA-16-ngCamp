@@ -41,7 +41,7 @@
 				.sub_functions.row.center-xs
 					.col-xs-4.start-xs.date {{task.dateCreated | date: "MMM d, y h:mm"}} ({{task.author.firstName}} {{task.author.lastName}})
 					.col-xs-8.end-xs.icon_bar 
-						i.fa.fa-comments-o(aria-hidden = "true")
+						i.fa.fa-comments-o(aria-hidden = "true",ng-link='["TaskComments",{id:task._id}]')
 						file-wrapper(files = 'task.files', source-id = 'task._id')
 						p {{window._injectedData.userId}}
 						i.fa.fa-pencil(aria-hidden = "true", ng-link = "['TaskUpdate', {id: task._id}]",ng-if="tasksctrl.isAuthor(task) || tasksctrl.isAdmin")

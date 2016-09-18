@@ -100,6 +100,11 @@ const rootComponent = {
         name: 'Event comments',
         component: 'eventsCommentsComponent'
     }, {
+        path: 'comments/:id/task',
+        name: 'Task comments',
+        component: 'tasksCommentsComponent'
+    },
+    {
         path: '/files',
         name: 'File', //TODO test, remove later
         component: 'files'
