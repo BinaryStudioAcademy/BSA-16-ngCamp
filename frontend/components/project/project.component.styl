@@ -31,19 +31,17 @@
 					cursor pointer
 					transition all 0.2s ease-out
 					&:hover
-						color #1d8dbf
-						
+						color #1d8dbf	
 			.wrap
 				align-items center
 				float left
 				clear left
 				width 100%
 				margin-bottom 2em
+				justify-content center
 				display flex
-				flex-direction column
 				flex-wrap wrap
 				box-sizing padding box
-				min-height 110px
 				
 				// ---------------------------------------------------------------------------TITLE INPUT-------------------------------
 				.inputNameWrapper
@@ -58,7 +56,7 @@
 					i
 						position absolute
 						right 5px
-						top 42px
+						top 23px
 						font-size 1.3em
 						cursor pointer
 						&:hover
@@ -72,7 +70,7 @@
 					border-radius 4px
 					font-size 1.3em
 					color #34495E
-					margin 35px 0 70px
+					margin 15px 0 25px
 					position relative
 					cursor pointer
 					padding 0
@@ -95,7 +93,6 @@
 				// -----------------------------------------------------------------------DESCRIPTION------------------------
 				.projDescriptionWrapper
 					width 80%
-					margin-top 1em
 					font-size 0.8em
 					position relative
 					&:hover
@@ -106,7 +103,7 @@
 					.description
 						width 100%
 						text-align left
-						margin 35px 0 70px
+						margin 15px 0 25px
 						color text-input
 						background-color disable-input
 						border-bottom 4px solid border-color
@@ -122,7 +119,7 @@
 						font-size 1.7em
 						position absolute
 						right 14px
-						top 47px
+						top 24px
 						cursor pointer
 						color text-input
 						&:hover
@@ -143,7 +140,7 @@
 					border-bottom 4px solid border-color
 					border-radius 4px
 					background-color disable-input
-					margin 50px 0
+					margin 15px 0
 					padding 9px 0
 					position relative
 					cursor pointer
@@ -170,12 +167,10 @@
 		.participants
 			width 80%
 			display flex
-			margin 1em 0
 			align-items flex-start
 			align-content flex-start
 			flex-wrap wrap
-			min-height 150px
-			margin-top 25px
+			margin 15px 0 25px
 			.btn-group.ng-enter,.btn-group.ng-leave
 				-webkit-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
 				-moz-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
@@ -266,6 +261,10 @@
 				padding 15px 50px
 				--box-shadow-color #ab3c3c
 				background-color #cb4e4e
+
+					
+				
+			
 
 			
 

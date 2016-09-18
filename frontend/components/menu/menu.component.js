@@ -56,7 +56,6 @@ class MenuComponentController {
             self.checkinsAccess = res.isReports;
             window._injectedData.isCheckinEdit = res.isCheckinEdit;
         });
-        self.showMenu();
     }
 
 
