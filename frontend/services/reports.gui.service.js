@@ -81,7 +81,6 @@ function manageArrayItems(item, toArr) {
     } else {
         toArr.splice(index, 1);
     }
-    console.log(toArr);
 }
 
 function manageTypePanel() {
