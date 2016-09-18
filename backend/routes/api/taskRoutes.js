@@ -78,4 +78,18 @@ module.exports = function (app) {
         });
     }, apiResponse);
     //===================================================
+    app.get(baseUrl + ':id' + '/comments', function (req, res, next) {
+        taskRepository.getByIdWithComments(req.params.id, function (err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+    app.put(baseUrl + ':id' + '/comment', function(req, res, next){
+        taskRepository.addComment(req.params.id, req.body, function(err, data){
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
 }

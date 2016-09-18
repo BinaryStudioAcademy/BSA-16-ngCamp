@@ -14,6 +14,8 @@ TaskRepository.prototype.removeParticipant = removeParticipant;
 TaskRepository.prototype.getPopulatedTask = getPopulatedTask;
 TaskRepository.prototype.addToDo = addToDo;
 TaskRepository.prototype.removeToDo = removeToDo;
+TaskRepository.prototype.getByIdWithComments = getByIdWithComments;
+TaskRepository.prototype.addComment = addComment;
 
 module.exports = new TaskRepository();
 
@@ -83,4 +85,28 @@ function removeToDo(id,toDoId, callback){
 		{$pull: {toDos: toDoId}}
 	);
 	query.exec(callback);
+}
+
+function getByIdWithComments(id, callback) {
+    var model = this.model;
+    var query = model.findOne({
+        _id: id,
+    }).populate({
+        path:'comments.author',
+    });
+    query.exec(callback);
+}
+
+function addComment(id, data, callback){
+    var model = this.model;
+    var query = model.update({
+        _id: id
+    },{
+        $push: {
+            comments: {
+                $each: data
+            }
+        }
+    });
+    query.exec(callback);
 }
