@@ -9,7 +9,6 @@ class rootComponentController {
 
     $onInit() {
         let self = this;
-        console.log(window._injectedData.currentProject);
         if (window._injectedData.currentProject === undefined) {
             self.rootRouter.navigateByUrl('/noProject');
         }

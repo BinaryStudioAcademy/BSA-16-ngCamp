@@ -22,9 +22,9 @@
     .side-menu
         padding-top 60px
         height 100%
-        
         background-color #67809F;
         position: absolute;
+        padding-bottom 50px;
         left: 0;
         width: 185px;
         // overflow: hidden;
@@ -51,7 +51,7 @@
                 border-bottom 2px dashed white
     .changeProject
         .projects_change
-            max-height 50vh
+            max-height 80vh
             overflow-y auto
             font-family "Montserrat"
             font-size 15px
@@ -62,7 +62,6 @@
             left 185px
             transform translateY(-100%)
             padding 5px
-            display none
             transition all 0.5s ease-out
             .porjects_lable
                 font-family "Montserrat"
@@ -86,6 +85,9 @@
                 cursor default
                 &:hover
                     background-color #2E8F35
+        &:not(:hover)
+            .projects_change
+                display none
         &:hover
             .projects_change
                 display block
@@ -140,6 +142,8 @@
         z-index 101
         .changeProject
             .projects_change
+                transform translateY(0%)
+                position relative
                 border-top 2px dashed white
                 left -5px
                 width 100vw
@@ -161,6 +165,7 @@
             //- padding-top 0px
             width 100%
             height auto
+            overflow auto
             margin-top 60px
             display none 
             z-index: 101;
@@ -179,6 +184,8 @@
             .projects_change
                 font-size 1.7em
         .side-menu
+            max-height 100vh
+            overflow auto
             .fa
                 display none
             li
@@ -187,6 +194,8 @@
 @media only screen  and (max-width : 480px), screen and (max-device-width: 480px)
     .side-menu-wrapper
         .side-menu
+            max-height 100vh
+            overflow auto
             .fa
                 display none
             margin-top 60px

@@ -6,7 +6,9 @@ import ngAnimate from 'angular-animate';
 import datepicker from 'angular-ui-bootstrap/src/datepicker';
 import ngSanitize from 'angular-sanitize';
 
-const app = angular.module('base', ['ngComponentRouter', accordion, datepickerPopup, datepicker, ngAnimate, ngSanitize]);
+
+const app = angular.module('base', ['ngComponentRouter', accordion, datepickerPopup, datepicker, ngAnimate, ngSanitize,'ui.tinymce']);
+
 
 
 app.value('$routerRootComponent', 'rootElement');

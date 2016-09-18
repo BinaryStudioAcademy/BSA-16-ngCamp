@@ -1,14 +1,35 @@
 import './createProject.component.styl';
 
 class createProjectController {
-    constructor(httpGeneral, $location, $window, popupNotifications) {
+    constructor(httpGeneral, $location, $window, popupNotifications,$scope) {
+        let self = this;
         this.http = httpGeneral;
+        this.scope = $scope;
         this.location = $location;
         this.window = $window;
         this.popupNotifications = popupNotifications;
         this.projectTitle;
         this.projectDescription;
-        this.participants = [],
+        this.participants = [];
+        this.descriptionPlaceholder = true;
+        this.tinyOptions = {
+            inline: true,
+            theme: 'inlite',
+            plugins: 'image link paste contextmenu textpattern autolink lists',
+            insert_toolbar: 'quickimage',
+            selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | bullist numlist outdent indent',
+            selector: '.descEditor',
+            setup: function(ed){
+                ed.on('focus', function(e){
+                    self.descriptionPlaceholder = !self.descriptionPlaceholder;
+                    self.scope.$digest();
+                });
+                ed.on('blur', function(e){
+                    self.descriptionPlaceholder = !self.descriptionPlaceholder;
+                    self.scope.$digest();
+                });
+            }
+        };
         this.participantsSet = new Set();
         this.adminsSet = new Set();
         this.users;
@@ -173,7 +194,7 @@ class createProjectController {
 
     participantDelete(id) {
         let self = this;
-        console.log(id);
+        self.adminDelete(id);
         self.participantsSet.delete(id);
         self.participants = Array.from(self.participantsSet);
         self.userToAdd = 0;
@@ -198,6 +219,13 @@ class createProjectController {
         self.adminToAdd = 0;
     }
 
+    isUser(id){
+        if(id === window._injectedData.userId){
+            return true;
+        };
+        return false;
+    }
+
     modalToggle() {
         this.modalFlag = !this.modalFlag;
     }
@@ -214,6 +242,7 @@ createProjectController.$inject = [
     '$location',
     '$window',
     'popupNotifications',
+    '$scope'
 ];
 
 const createProjectComponent = {

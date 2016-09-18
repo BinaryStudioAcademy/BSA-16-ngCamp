@@ -13,23 +13,38 @@ class MenuComponentController {
         this.reportAccess = window._injectedData.isReports;
     }
 
+
     $onInit(){
+
         let self = this;
+
+        self.getProjectsInfo();
+
         self.scope.$on('menuReload', function(){
-            self.$onInit();
+            self.getProjectsInfo();
         });
+
+    }
+
+
+    getProjectsInfo(){
+        let self = this;
+
         if (!window._injectedData.currentProject){
             self.disabled = false;
         }else{
             self.disabled = true;
         };
+
         let userReq = {
             type: "GET",
             url: "api/projects/forCurrentUser",
         };
+
         self.http.sendRequest(userReq).then(function(res) {
             self.userProjects = res;
         });
+        
         self.http.sendRequest({
             type:"GET",
             url:`api/projects/${window._injectedData.currentProject}/isAdmin/${window._injectedData.userId}`
@@ -43,15 +58,17 @@ class MenuComponentController {
         });
         self.showMenu();
     }
-    showMenu(){
 
+
+    showMenu(){
     	let x = document.getElementById("side-menu");
     	if (x.className === "side-menu") {
         	x.className += " show";
     	} else {
           	x.className = "side-menu";
     	}
-    }
+    } 
+
     hideMenu(){
         let x = document.getElementById("side-menu");
         x.className += "hide";
