@@ -1,8 +1,9 @@
 import './userList.styl';
 
 class userListController {
-    constructor($scope){
+    constructor($scope,$rootScope){
         this.scope = $scope;
+        this.rootScope = $rootScope;
     }
 
     info(){
@@ -10,9 +11,20 @@ class userListController {
         console.log(self.scope);
     }
 
+    $onInit(){
+        let self = this;
+    }
+    close(){
+        let self = this;
+        self.scope.isShowed = false;
+        setTimeout(function() {
+          self.rootScope.$apply(function() {
+          });
+        }, 2000);
+    }
 };
 
-userListController.$inject = ['$scope'];
+userListController.$inject = ['$scope','$rootScope'];
 
 const userListDirective = {
     template: require(`./userList-pug.directive.pug`)(),
@@ -23,12 +35,14 @@ const userListDirective = {
     scope: {
         userData: '=',
         selectCallback: '=',
-        parentScope: '='
+        parentScope: '=',
+        isShowed: '=isShowed'
     },
     link: userListlink
 };
 
-function userListlink(scope,element,attr,ctrl){
+function userListlink(scope,element,attrs,ctrl){
+    
 }
 
 
