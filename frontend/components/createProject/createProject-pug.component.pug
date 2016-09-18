@@ -2,55 +2,71 @@ user-list(user-data = 'createProj.users', select-callback = 'createProj.onUserSe
 user-list(user-data = 'createProj.users', select-callback = 'createProj.onAdminSelect', parent-scope='createProj', ng-if='createProj.adminListFlag')
 .createProject_wrapper
 	.row.center-xs
-		.main.col-xs-8
-			form(name="newProject",novalidate)
+		.main.col-xs-12
+			h1 New Project
+			form.row.center-xs(name="newProject",novalidate)
+				
 				.cell
-					.cellTitle
-						h1.componentTitle New Project
-				.cell
+					//- ----------------------------------------------------------------------------------TITLE
 					.cellTitle
 						h2 Title:
 					.projTitle
-						input(name="title",type="text",ng-model="createProj.projectTitle",required,ng-minlength="3" ng-maxlength="30")
-						p(ng-show="newProject.title.$invalid" class="help-block") Title is required.
-						p(ng-show="newProject.title.$error.minlength" class="help-block") Title is too short.
-						p(ng-show="newProject.title.$error.maxlength" class="help-block") Title is too long.
+						input(name="title",type="text",ng-model="createProj.projectTitle",required,ng-minlength="3" ng-maxlength="30",autocomplete="off", placeholder='Your project title')
+						//- p(ng-show="newProject.title.$invalid" class="help-block") Title is required.
+						//- p(ng-show="newProject.title.$error.minlength" class="help-block") Title is too short.
+						//- p(ng-show="newProject.title.$error.maxlength" class="help-block") Title is too long.
+				
 				.cell
+					//- -----------------------------------------------------------------------------------DESCRIPTION
 					.cellTitle
 						h2 Description:
 					.projDescription
-						input(ckeditor,type="text",name="text" , cols='25', rows='10',ng-model = "createProj.projectDescription",required,ng-minlength="10" ng-maxlength="300")
-						hr
-						p(ng-show="newProject.text.$invalid" class="help-block") Description is required.
-						p(ng-show="newProject.text.$error.minlength" class="help-block") Description is too short.
-						p(ng-show="newProject.text.$error.maxlength" class="help-block") Description is too long.
+						.editDescription(ui-tinymce="createProj.tinyOptions",type="text",name="text",ng-model = "createProj.projectDescription")
+						.placeholder(ng-show = "!createProj.projectDescription.length && createProj.descriptionPlaceholder") Your project description here
+						//- p(ng-show="newProject.text.$invalid" class="help-block") Description is required.
+						//- p(ng-show="newProject.text.$error.minlength" class="help-block") Description is too short.
+						//- p(ng-show="newProject.text.$error.maxlength" class="help-block") Description is too long.
 				.cell
+					//- -----------------------------------------------------------------------------------PARTICIPANTS
 					.cellTitle
 						h2 Participants:
-					.projParticipants
-						a.addUser(ng-click="createProj.userListFlag=true;")
-							i.fa.fa-plus(aria-hidden='true')
-							lable Add Participant
-						.participantCell(ng-repeat='userid in createProj.participants track by $index')
-							.participant_wrapper
-								.participantTitle {{createProj.getUserNameById(userid)}}
-								.deleteButton(ng-click = "createProj.participantDelete(userid)")
-									i.fa.fa-times.fa-fw(ng-if="createProj.participants.length>1")
+					.participants
+						.btn-group.open(ng-repeat="userid in createProj.participants track by userid") 
+							a.participant(ng-click="(createProj.participants.length>1 && !createProj.isUser(userid))?createProj.participantDelete(userid):null")
+								span {{createProj.getUserNameById(userid)}}
+								i.fa.fa-times(ng-if="createProj.participants.length>1 && !createProj.isUser(userid)")
+						.btn-group.open
+							a.participant.add(ng-click = 'createProj.userListFlag=true')
+								i.fa.fa-plus(aria-hidden='true')
+								span add user ...
+
+				.cell
+					//- ------------------------------------------------------------------------------------------ADMINS
 					.cellTitle
 						h2 Admins:					
-					.projParticipants
-						a.addUser(ng-click="createProj.adminListFlag=true;")
-							i.fa.fa-plus(aria-hidden='true')
-						.participantCell(ng-repeat='userid in createProj.admins track by $index')
-							.participant_wrapper
-								.participantTitle {{createProj.getUserNameById(userid)}}
-								.deleteButton(ng-click = "createProj.adminDelete(userid)")
-									i.fa.fa-times.fa-fw(ng-if="createProj.admins.length>1")
+					//- .projParticipants
+					//- 	a.addUser(ng-click="createProj.adminListFlag=true;")
+					//- 		i.fa.fa-plus(aria-hidden='true')
+					//- 	.participantCell(ng-repeat='userid in createProj.admins track by $index')
+					//- 		.participant_wrapper
+					//- 			.participantTitle {{createProj.getUserNameById(userid)}}
+					//- 			.deleteButton(ng-click = "createProj.adminDelete(userid)")
+					//- 				i.fa.fa-times.fa-fw(ng-if="createProj.admins.length>1")
+					.participants
+						.btn-group.open(ng-repeat="userid in createProj.admins track by userid") 
+							a.participant(ng-click="(createProj.admins.length>1 && !createProj.isUser(userid))?createProj.adminDelete(userid):null")
+								span {{createProj.getUserNameById(userid)}}
+								i.fa.fa-times(ng-if="createProj.admins.length>1 && !createProj.isUser(userid)")
+						.btn-group.open
+							a.participant.add(ng-click = 'createProj.adminListFlag=true')
+								i.fa.fa-plus(aria-hidden='true')
+								span add user ...
+					//- ----------------------------------------------------------------------------------------DEADLINE
 				.cell
 					.cellTitle
 						h2 Deadline: 
 					.projDeadline
-						.deadline_wrapper(ng-click = "createProj.open()")
+						.deadline_wrapper(ng-click = "createProj.open()",ng-class = "{'active': createProj.popup.opened}")
 							.date(type="date", uib-datepicker-popup="{{format}}",datepicker-options = 'createProj.datePickerOpt', ng-model="createProj.deadline", is-open='createProj.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats') {{createProj.deadline | date: "dd.MM.yyyy"}}
 							i.fa.fa-calendar(aria-hidden='true')
 				.cell

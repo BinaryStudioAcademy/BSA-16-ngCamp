@@ -290,6 +290,7 @@ class ProjectComponentController {
 
 	deleteProject() {
 		let self = this;
+		console.log(self);
 		self.httpGeneral.sendRequest({
 			type: "DELETE",
 			url: `api/projects/${window._injectedData.currentProject}`
@@ -299,12 +300,15 @@ class ProjectComponentController {
 			self.rootScope.$broadcast('menuReload');
 		});
 	}
+
 	today() {
 		this.dt = new Date();
 	};
+
 	open() {
 		this.popup.opened = true;
 	}
+
 	localDate(date) {
 		let newDate = new Date(date);
 		return newDate.toLocaleDateString();
@@ -347,6 +351,20 @@ class ProjectComponentController {
 		if(self.isUserAdmin){
 			self.editDeadline = !self.editDeadline;
 		};
+	}
+
+	callModal() {
+		let self = this;
+		self.popupNotifications.notifyConfirm('Warning', 'This action will delete Project','Ok','Cancel',() => {
+			self.httpGeneral.sendRequest({
+			type: "DELETE",
+			url: `api/projects/${window._injectedData.currentProject}`
+		}).then(() => {
+			window._injectedData.currentProject = '';
+			self.rootRouter.navigate(['NoProject']);
+			self.rootScope.$broadcast('menuReload');
+		});
+		});
 	}
 }
 

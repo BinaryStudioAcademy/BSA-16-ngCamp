@@ -29,7 +29,7 @@ user-list(user-data = 'proj.users', select-callback = 'proj.onAdminSelect', pare
         .wrap
           label
             p Participants:
-          .participants(ng-model="proj.projectParticipants")
+          .participants
             .btn-group.open(ng-repeat="participator in proj.projectParticipants track by participator._id") 
               a.participant(ng-click="(proj.isUserAdmin && !proj.isUser(participator._id))?proj.removeParticipant(participator._id):null")
                 span {{participator.firstName}} {{participator.lastName}}
@@ -43,7 +43,7 @@ user-list(user-data = 'proj.users', select-callback = 'proj.onAdminSelect', pare
         .wrap
           label
             p Admins:
-          .participants(ng-model="proj.projectAdmins")
+          .participants
             .btn-group.open(ng-repeat="admin in proj.projectAdmins track by admin._id") 
               a.participant(ng-click="(proj.projectAdmins.length>1 && proj.isUserAdmin && !proj.isUser(admin._id)) ? proj.removeAdmin(admin._id):null")
                 span {{admin.firstName}} {{admin.lastName}}
@@ -64,11 +64,5 @@ user-list(user-data = 'proj.users', select-callback = 'proj.onAdminSelect', pare
           label
             p Removing:
           .delete_button
-            button.delete Delete project
-          .confirming_modal(ng-if="proj.modalFlag")
-            .background(ng-click="proj.modalToggle()")
-            .window
-              label Are you Sure?
-              button.confirm(ng-click="proj.deleteProject()") Confirm
-              button.cancel(ng-click="proj.modalToggle()") Cancel
+            button.delete(ng-click = "proj.callModal()") Delete project
       h1(ng-if="!proj.currentProjectId!=''").row.center-xs Pick your current project
