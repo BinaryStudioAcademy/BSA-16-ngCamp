@@ -138,32 +138,41 @@ class RightPanelComponentController {
             }
         });
 
-        angular.element(document.querySelectorAll('right-panel-component.ng-isolate-scope')).bind("scroll", function () {
-            let scrollHeight = document.getElementsByTagName('right-panel-component')[0].scrollHeight;
-            let scrollTop = document.getElementsByTagName('right-panel-component')[0].scrollTop;
-            let offsetHeight = document.getElementsByTagName('right-panel-component')[0].offsetHeight;
-            if ((scrollHeight - scrollTop - offsetHeight) < 50 && scrollHeight > 0) {
+        angular.element(document.querySelectorAll('right-panel-component.ng-isolate-scope')).bind("scroll", function(){
+            vm.scrollHandler(); 
+        });
+ 
+        angular.element(document).bind("mousewheel", function(e){
+             vm.mouseWheelHandler(e);
+        });
+    }
+
+    scrollHandler() {
+        let vm = this;
+        let scrollHeight = document.getElementsByTagName('right-panel-component')[0].scrollHeight;
+        let scrollTop = document.getElementsByTagName('right-panel-component')[0].scrollTop;
+        let offsetHeight = document.getElementsByTagName('right-panel-component')[0].offsetHeight;
+        if ((scrollHeight - scrollTop - offsetHeight) < 50 && scrollHeight > 80) {
+            let left = vm.findLeftMostDate();
+            let right = vm.findRightMostDate();
+            if ((right.date - left.date + 1 == vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) {
+                vm.previousDay();
+            }
+        }
+    }
+    mouseWheelHandler(e){
+        let vm = this;
+        let scrollHeight = document.getElementsByTagName('right-panel-component')[0].scrollHeight;
+        let clientHeight = document.getElementsByTagName('right-panel-component')[0].clientHeight;
+        if (e.wheelDelta < 0) {
+            if (scrollHeight == clientHeight) {
                 let left = vm.findLeftMostDate();
                 let right = vm.findRightMostDate();
-                if ((right.date - left.date + 1 == vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) {
+                if (((right.date - left.date + 1 == vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) && vm.changeProjectHover == false) {
                     vm.previousDay();
                 }
             }
-        });
-
-        angular.element(document).bind("mousewheel", function (e) {
-            let scrollHeight = document.getElementsByTagName('right-panel-component')[0].scrollHeight;
-            let clientHeight = document.getElementsByTagName('right-panel-component')[0].clientHeight;
-            if (e.wheelDelta < 0) {
-                if (scrollHeight == clientHeight) {
-                    let left = vm.findLeftMostDate();
-                    let right = vm.findRightMostDate();
-                    if (((right.date - left.date + 1 == vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) && vm.changeProjectHover == false) {
-                        vm.previousDay();
-                    }
-                }
-            }
-        });
+        }
     }
 
     getCheckins(day) {
@@ -177,7 +186,6 @@ class RightPanelComponentController {
             });
         });
     }
-
 
     previousDay() {
         let vm = this;
@@ -223,10 +231,16 @@ class RightPanelComponentController {
         }
         return leftMost;
     }
+
     dayFilter() {
         return function (element) {
             return (element ? true : false);
         };
+    }
+    $onDestroy(){
+        let vm = this;
+        angular.element(document.querySelectorAll('right-panel-component.ng-isolate-scope')).unbind("scroll");
+        angular.element(document).unbind("mousewheel");
     }
 }
 
