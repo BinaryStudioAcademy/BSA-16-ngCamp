@@ -60,21 +60,26 @@ class RightPanelComponentController {
                         month: leftMost.month,
                         date: leftMost.date - i
                     };
+                    console.log(date);
                     vm.checkins = [];
                     let checkinsArray = [];
                     vm.httpGeneral.sendRequest({
                         type: "GET",
-                        url: 'api/checkins/bydate/' + date.year + '/' + date.month + '/' + date.date
+                        url: 'api/checkins/'+window._injectedData.currentProject+'/bydate/' + date.year + '/' + date.month + '/' + date.date
                     }).then(function (res) {
                         vm.dailyCheckinsList[date.date] = { checkins: [], day: date };
-                        res.forEach(function (check) {
-                            vm.dailyCheckinsList[date.date].checkins.push(check);
-                        });
-                        if (vm.dailyCheckinsList[0]) {
-                            vm.dailyCheckinsList[0] += 1;
-                        } else {
-                            vm.dailyCheckinsList[0] = 1;
+                        if (res){
+                            res.forEach(function (check) {
+                                vm.dailyCheckinsList[date.date].checkins.push(check);
+                            });
+
                         }
+                        if (vm.dailyCheckinsList[0]) {
+                             vm.dailyCheckinsList[0] += 1;
+                        } else {
+                             vm.dailyCheckinsList[0] = 1;
+                        }
+
                         vm.rootScp.$broadcast('addDate', date);
                     });
                 }
@@ -90,12 +95,15 @@ class RightPanelComponentController {
                     let checkinsArray = [];
                     vm.httpGeneral.sendRequest({
                         type: "GET",
-                        url: 'api/checkins/bydate/' + date.year + '/' + date.month + '/' + date.date
+                        url: 'api/checkins/'+window._injectedData.currentProject+'/bydate/' + date.year + '/' + date.month + '/' + date.date
                     }).then(function (res) {
                         vm.dailyCheckinsList[date.date] = { checkins: [], day: date };
-                        res.forEach(function (check) {
-                            vm.dailyCheckinsList[date.date].checkins.push(check);
-                        });
+                        if(res){
+                            res.forEach(function (check) {
+                                vm.dailyCheckinsList[date.date].checkins.push(check);
+                            });
+                        }
+
                         if (vm.dailyCheckinsList[0]) {
                             vm.dailyCheckinsList[0] += 1;
                         } else {
