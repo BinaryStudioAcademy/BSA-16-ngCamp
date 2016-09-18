@@ -179,7 +179,7 @@ class RightPanelComponentController {
         let vm = this;
         vm.httpGeneral.sendRequest({
             type: "GET",
-            url: 'api/checkins/bydate/' + day.year + '/' + day.month + '/' + day.date
+            url: 'api/checkins/'+window._injectedData.currentProject+'/bydate/' + day.year + '/' + day.month + '/' + day.date
         }).then(function (res) {
             res.forEach(function (check) {
                 vm.checkins.push(check);

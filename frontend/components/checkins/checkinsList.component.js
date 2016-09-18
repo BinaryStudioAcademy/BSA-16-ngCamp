@@ -5,6 +5,7 @@ class CheckinsListComponentController {
         this.httpGeneral = httpGeneral;
         this.checkIns = [];
     }
+
     $onInit() {
         let self = this;
         self.httpGeneral.sendRequest({
@@ -18,9 +19,10 @@ class CheckinsListComponentController {
             }
         });
     }
+
     turnOn(checkin) {
         let self = this;
-        console.log(checkin);
+        // console.log(checkin);
         self.httpGeneral.sendRequest({
             type: "PUT",
             url: `api/checkins/${checkin._id}`,
@@ -31,6 +33,7 @@ class CheckinsListComponentController {
             console.log("Succesfull change status of checkin");
         });
     }
+
     checkinFilter(mday){
         let day = new RegExp(mday, 'g');
         return function(element){
