@@ -41,6 +41,7 @@ import {rightPanelComponent} from "./rightPanel/rightPanel.component.js";
 import {noProjectComponent} from "./noProject/noProject.component.js";
 import {eventsCommentsComponent} from "./comments/eventsComments.component.js";
 import {tasksCommentsComponent} from "./comments/tasksComments.component.js";
+import {answerCheckinComponent} from "./answerCheckin/answerCheckin.component.js";
 
 
 
@@ -87,3 +88,4 @@ app.component(rightPanelComponent.selector, rightPanelComponent);
 app.component(noProjectComponent.selector, noProjectComponent);
 app.component(eventsCommentsComponent.selector,eventsCommentsComponent);
 app.component(tasksCommentsComponent.selector,tasksCommentsComponent);
+app.component(answerCheckinComponent.selector,answerCheckinComponent);

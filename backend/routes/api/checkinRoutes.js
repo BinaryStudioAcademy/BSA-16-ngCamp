@@ -45,6 +45,14 @@ module.exports = function(app) {
         });
     }, apiResponse);
 
+     app.get(baseUrl + 'answercheckin/:userId/:projectId', function(req, res, next) {
+        checkinRepository.getCheckinsByProjectAndUser(req.params.userId, req.params.projectId, function(err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
     app.get(baseUrl + 'freq/:frequency', function(req, res, next) {
         checkinRepository.findCheckinsByFrequency(req.params.frequency, function(err, data) {
             res.data = data;

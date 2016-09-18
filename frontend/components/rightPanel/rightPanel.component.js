@@ -160,6 +160,7 @@ class RightPanelComponentController {
             }
         }
     }
+
     mouseWheelHandler(e){
         let vm = this;
         let scrollHeight = document.getElementsByTagName('right-panel-component')[0].scrollHeight;
@@ -237,6 +238,7 @@ class RightPanelComponentController {
             return (element ? true : false);
         };
     }
+    
     $onDestroy(){
         let vm = this;
         angular.element(document.querySelectorAll('right-panel-component.ng-isolate-scope')).unbind("scroll");
