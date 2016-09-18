@@ -22,7 +22,12 @@ const commentsComponent = {
 		path:'/:id/event',
 		name:'Event comments',
 		component:'eventsCommentsComponent'
-	}]
+	},{
+        path:'/:id/task',
+        name:"Task comments",
+        component:'tasksCommentsComponent'
+    }
+    ]
 };
 
 export {

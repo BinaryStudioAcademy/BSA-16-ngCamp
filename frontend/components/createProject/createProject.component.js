@@ -1,7 +1,7 @@
 import './createProject.component.styl';
 
 class createProjectController {
-    constructor(httpGeneral, $location, $window, popupNotifications,$scope) {
+    constructor(httpGeneral, $location, $window, popupNotifications,$scope,$rootScope) {
         let self = this;
         this.http = httpGeneral;
         this.scope = $scope;
@@ -11,6 +11,7 @@ class createProjectController {
         this.projectTitle;
         this.projectDescription;
         this.participants = [];
+        this.rootScope = $rootScope;
         this.descriptionPlaceholder = true;
         this.tinyOptions = {
             inline: true,
@@ -168,8 +169,9 @@ class createProjectController {
                 }
             }).then(function(res) {
                 console.log("Succesfull create project");
-                self.window.location.reload();
-                self.location.path('/');
+                window._injectedData.currentProject = res._id;
+                self.rootScope.$broadcast('menuReload');
+                self.location.path('/checkins');
             });
         }
     }
@@ -242,7 +244,8 @@ createProjectController.$inject = [
     '$location',
     '$window',
     'popupNotifications',
-    '$scope'
+    '$scope',
+    '$rootScope',
 ];
 
 const createProjectComponent = {
