@@ -40,7 +40,7 @@ const checkinsComponent = {
         name: 'CheckinsEdit',
         component: 'checkinsEditComponent'
     }, {
-        path: '/answer/:id',
+        path: '/answer/:checkinId/:id',
         name: 'CheckinsAnswer',
         component: 'checkinsAnswerComponent'
     }]

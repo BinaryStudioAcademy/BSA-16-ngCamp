@@ -19,15 +19,13 @@ class CalendarMonthCtrl {
             vm.createMonthView();
             vm.buildMonth();
         };
-                    
+               
 
         vm.buildMonth = () => {
             let date = vm.mViewStartMoment.clone();
             vm.weeks = [];
-
             for (let weekIndex = 0; weekIndex < 6; weekIndex++) {
                 let days = [];
-
                 for (let j = 0; j < 7; j++) {
                     days.push({
                         number: date.date(),
@@ -61,21 +59,52 @@ class CalendarMonthCtrl {
 
             vm.buildMonth();
         };
-        vm.broadcastDate = (day) => {
-            day.isChecked = true;
-            for (let i=0; i<vm.checkedDays.length; i++){
-                 vm.checkedDays[i].isChecked = false;
+        vm.broadcastDate = (event, day) => {
+           if(event.ctrlKey){
+               if(day.isCurrentMonth){
+                   let dateObj = {
+                            year: day.date.year(),
+                            month: day.date.month(),
+                            date: day.date.date(),
+                            // dow: day.date.isoWeekday()
+                   };
+                   if(!day.isChecked){
+                        vm.rootScp.$broadcast('ctrlDate', dateObj);
+                   } else {
+                       day.isChecked = false;
+                       vm.rootScp.$broadcast('removeDate', dateObj);
+                   }
+               }
+           } else if(event.shiftKey){
+               if(day.isCurrentMonth){
+                    let dateObj = {
+                        year: day.date.year(),
+                        month: day.date.month(),
+                        date: day.date.date(),
+                        // dow: day.date.isoWeekday()
+                    };
+                    vm.rootScp.$broadcast('shiftdate', dateObj);
+               }
+            } else {
+           
+                for (let i=0; i<vm.weeks.length; i++){
+                    vm.weeks[i].days.forEach(function(dayi){
+                        dayi.isChecked = false;
+                    });
+                    //  vm.checkedDays[i].isChecked = 
+                }
+                day.isChecked = true;
+                vm.checkedDays = [];
+                vm.checkedDays.push(day);
+                let dateObj = {
+                    year: day.date.year(),
+                    month: day.date.month(),
+                    date: day.date.date(),
+                    // dow: day.date.isoWeekday()
+                };
+                // console.log(dateObj);
+                vm.rootScp.$broadcast('date', dateObj);
             }
-            vm.checkedDays = [];
-            vm.checkedDays.push(day);
-            let dateObj = {
-                year: day.date.year(),
-                month: day.date.month(),
-                day: day.date.date(),
-                dow: day.date.isoWeekday()
-            };
-            // console.log(dateObj);
-            vm.rootScp.$broadcast('date', dateObj);
          };
         vm.goto = (date) => {
             let dateObj = {
@@ -132,9 +161,10 @@ class CalendarMonthCtrl {
             vm.weeks.forEach(function(week){
                 week.days.forEach(function(day){
                     // console.log(day.date.date());
-                    if(day.date.year() == addedDay.year && day.date.month() == addedDay.month  && day.date.date() == (addedDay.day)){
+                    if(day.date.year() == addedDay.year && day.date.month() == addedDay.month  && day.date.date() == (addedDay.date)){
                         day.isChecked = true;
-                        
+                        // console.log('before');
+                        // console.log(day);
                     }
                 });
             });

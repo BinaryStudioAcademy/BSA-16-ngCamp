@@ -12,7 +12,7 @@
 
 class httpGeneral {
 
-    constructor($http, $window, $location,spinner,rootRouter) {
+    constructor($http, $window, $location, spinner, rootRouter) {
         this.$http = $http;
         this.$window = $window;
         this.$location = $location;
@@ -20,13 +20,16 @@ class httpGeneral {
         this.rootRouter = rootRouter;
     }
 
-    sendRequest(object){
+    sendRequest(object) {
         let self = this;
         self.spinner.startSpinn();
         if (typeof object.url !== 'string' || object.url === undefined || object.url.length === 0) {
             self.spinner.stopSpinn();
             throw "HTTP REQUEST EROR: REQUEST ULR IS ABSENT";
 
+        } else {
+            if (object.url[0] === '/') object.url = '.' + object.url;
+            else object.url = './' + object.url;
         }
         if (typeof object.type !== 'string' || object.type === undefined || object.type.length === 0) {
             self.spinner.stopSpinn();
@@ -73,11 +76,11 @@ class httpGeneral {
         }
 
         function handleForbidden() {
-            if (self.location.path().indexOf('checkins')>0 && window._injectedData.isCheckinsEdit === false){
+            if (self.location.path().indexOf('checkins') > 0 && window._injectedData.isCheckinsEdit === false) {
                 self.rootRouter.navigate(['Main Page']);
                 return;
             }
-            if (self.location.path().indexOf('reports')>0 && window._injectedData.isReports === false){
+            if (self.location.path().indexOf('reports') > 0 && window._injectedData.isReports === false) {
                 self.rootRouter.navigate(['Main Page']);
                 return;
             }
@@ -86,6 +89,8 @@ class httpGeneral {
     }
 }
 
-httpGeneral.$inject = ['$http', '$window', '$location','spinner','$rootRouter'];
+httpGeneral.$inject = ['$http', '$window', '$location', 'spinner', '$rootRouter'];
 
-export {httpGeneral};
+export {
+    httpGeneral
+};

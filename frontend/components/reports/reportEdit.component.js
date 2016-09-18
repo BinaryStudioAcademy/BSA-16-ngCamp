@@ -63,6 +63,20 @@ class ReportEditComponentController {
                     return vm.users.indexOf(el) < 0;
                 });
             });
+
+            if (res[0].questions && res[0].questions.length > 0) {
+                vm.checkin.report = res[0].questions;
+                vm.httpGeneral.sendRequest({
+                    type: "GET",
+                    url: "api/checkins/project/" + window._injectedData.currentProject + "/questions"
+                }).then(function(result) {
+                    if (result.length > 0) {
+                        vm.checkin.questions = result;
+                        vm.checkin.isLoaded = true;
+                        vm.checkin.isCheckinPick = true;
+                    }
+                });
+            }
         });
     }
     $onInit() {}

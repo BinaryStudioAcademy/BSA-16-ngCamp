@@ -37,8 +37,8 @@ module.exports = function(app) {
         });
     }, apiResponse);
 
-    app.get(baseUrl + 'answer/:id', function(req, res, next) {
-        checkinRepository.getByAnswerToken(req.params.id, function(err, data) {
+    app.get(baseUrl + 'answer/:checkinId/:id', function(req, res, next) {
+        checkinRepository.getByAnswerToken(req.params.checkinId, req.params.id, function(err, data) {
             res.data = data;
             res.err = err;
             next();
@@ -47,6 +47,14 @@ module.exports = function(app) {
 
     app.get(baseUrl + 'freq/:frequency', function(req, res, next) {
         checkinRepository.findCheckinsByFrequency(req.params.frequency, function(err, data) {
+            res.data = data;
+            res.err = err;
+            next();
+        });
+    }, apiResponse);
+
+    app.get(baseUrl + 'bydate/:year/:month/:date', function (req, res, next) {
+        checkinRepository.findCheckinsByAnswerDate(req.params.year, req.params.month, req.params.date, function (err, data) {
             res.data = data;
             res.err = err;
             next();
@@ -69,8 +77,8 @@ module.exports = function(app) {
         });
     }, apiResponse);
 
-    app.put(baseUrl + 'answer/:id', function(req, res, next) {
-        checkinRepository.updateAnswerItem(req.params.id, req.body, function(err, data) {
+    app.put(baseUrl + 'answer/:checkinId/:id', function(req, res, next) {
+        checkinService.addAnswer(req.params.checkinId, req.params.id, req.body, function(err, data) {
             res.data = data;
             res.err = err;
             next();
