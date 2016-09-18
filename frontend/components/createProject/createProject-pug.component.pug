@@ -1,5 +1,5 @@
-user-list(user-data = 'createProj.users', select-callback = 'createProj.onUserSelect', parent-scope='createProj', ng-if='createProj.userListFlag')
-user-list(user-data = 'createProj.users', select-callback = 'createProj.onAdminSelect', parent-scope='createProj', ng-if='createProj.adminListFlag')
+user-list(user-data = 'createProj.users', select-callback = 'createProj.onUserSelect', parent-scope='createProj', ng-if='createProj.userListFlag',is-showed = "createProj.userListFlag")
+user-list(user-data = 'createProj.users', select-callback = 'createProj.onAdminSelect', parent-scope='createProj', ng-if='createProj.adminListFlag',is-showed = "createProj.adminListFlag")
 .createProject_wrapper
 		.main
 			h1 New Project
