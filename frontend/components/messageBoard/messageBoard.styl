@@ -1,11 +1,7 @@
 @import "../../../public/libs/css/generalComponentsStyle.styl"
 .messageBoard-wrapper
-    main-component()
-    min-width 400px
-    width 100%
-    text-align justify
-    padding 1em
-// -----------------------------------------------------------------------------HEADER
+    .main_block
+        main-component()
     h1
         header-style()
     .header
@@ -18,11 +14,8 @@
                 font-size 24px
                 padding 15px 50px
                 --box-shadow-color #004D40
-                background-color #2e8f35
-                
-// ----------------------------------------------------------------------MESSAGE BLOCK
-
-    .message-block
+                background-color #2e8f35                     
+    .message-block // ----------------------------------------------------------------------MESSAGE BLOCK
         margin 25px auto
         padding-left 1%
         padding-right 1%
@@ -39,9 +32,8 @@
         @media only screen  and (max-width : 1000px), screen and (max-device-width: 1000px)
             width 90%
         @media only screen  and (max-width : 480px), screen and (max-device-width: 480px)
-            width 100%
-// --------------------------------------------------------------------------------------------------USERINFO
-        .user-info
+            width 100%                
+        .user-info // -------------------------------------------------------USERINFO
             margin-bottom 10px
             display flex
             justify-content flex-start
@@ -78,10 +70,7 @@
                         margin 0
                         color #616161
                         font-size 1.0em
-                            
-                        
-// ---------------------------------------------------------------------------MESSAGE info
-        .message-info
+        .message-info // ---------------------------------------------------------------------------MESSAGE info
             margin-top 7px
             padding 1em
             .clicktohide

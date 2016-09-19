@@ -1,58 +1,185 @@
 @import "../../../public/libs/css/generalComponentsStyle.styl"
 .events-wrapper
     width 100%
-    padding 1%
+    min-width 400px
+    h1
+        header-style()
+    .main
+        main-component()
     .row
         padding 0
         margin 0
 
     .events-holder
-        padding 1%
-        border 1px solid border-grey
-        border-radius 10px
-        background-color background-white 
-        box-shadow 0px 5px 20px 2px  #808080
-        .events-header 
-            border-bottom 1px solid grey
-            padding 1%
-            span
+        width 100%
+        .createbutton
+            width 100%
+            margin 5px auto
+            button
+                button()
                 font-family "Montserrat"
-                text-align center
+                font-size 24px
+                margin 5px auto
+                padding 15px 50px
+                --box-shadow-color #004D40
+                background-color #2e8f35     
+        .choose-event-container
+            width 100%
+            margin-bottom 25px
+            .form-inline
+                display flex
+                align-items center
+                flex-wrap wrap
+                margin-top 15px
+                margin-bottom 25px
                 width 100%
-                display inline-block
-                font-weight bold
-                font-size 30px    
-        .button
-            button()
-            font-family "Montserrat"
-            font-size 24px
-            height 34px
-        .chose-event
-            input[type=date]
-                border-radius 5px
+                margin 25px auto
+                @media only screen  and (max-width : 600px), screen and (max-device-width: 600px)
+                    margin 0
+                    padding-right 50px
+                .form-group
+                    display inline-flex
+                    align-items center
+                    margin-top 10px
+                    margin-bottom 10px
+                    margin-right 2em
+                    @media only screen  and (max-width : 1100px), screen and (max-device-width: 1100px)
+                        margin-right 0.5em
+                    .input-group
+                        margin 0
+                        background-color disable-input
+                        color text-input
+                        border-radius 4px
+                        border-bottom 4px solid border-color
+                        @media only screen  and (max-width : 900px), screen and (max-device-width: 900px)
+                            max-width 200px
+                        @media only screen  and (max-width : 624px), screen and (max-device-width: 624px)
+                            max-width none
+                        .input-group-btn
+                            button
+                                outline none
+                                background none
+                                border none
+                                i
+                                    color text-input
+                                    font-size 1.6em
+                        input
+                            background none
+                            border none
+                            outline none
+                            color text-input
+                            font-size 1.3em
+                            box-shadow none
+                            text-align center
+                            &:focus
+                                outline none
+                                box-shadow none
+                                border none
+                    .pull-left
+                        label
+                            text-align right
+                            @media only screen  and (max-width : 610px), screen and (max-device-width: 610px)
+                                text-align left
+                            margin 0
+                            margin-right 5px
+                            width 40px
+                .search_button
+                    display inline-block
+                    font-size 1.7em
+                    cursor pointer
+                    border-radius 4px
+                    border 1px solid border-color
+                    border-bottom 4px solid border-color
+                    padding 5px
+                    margin-left 10px
+                    @media only screen  and (max-width : 606px), screen and (max-device-width: 606px)
+                        margin-left 19%
+                    @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+                        padding 5px 30px
+                    .searchLable
+                        display none
+                        @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+                            display inline-block
+                    i
+                        margin 0 5px
+                        color #1d8dbf
+            
         .events-items
+            position relative
             overflow hidden
             margin 0px auto
-            
+            background-color disable-input
+            border-bottom 4px solid border-color
+            border-radius 8px
+            margin-bottom 25px
+            width 80%
+            @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+                width 90%
+            @media only screen  and (max-width : 624px), screen and (max-device-width: 624px)
+                width 100%
+            &:hover
+                .toolbar
+                    opacity 1
             .event
                 margin 0px
                 .event-name
+                    width 100%
+                    a
+                        text-decoration none
                     h2
                         margin-left 15px
+                        width 100%
                 .fa
                     padding-top 18px
                     padding-left 10px
                 .event-body
                     padding-left 15px
                     padding-right 15px
+                    margin-bottom 35px
+                    margin-top 15px
+                    font-size 1.1em
                     p 
                         margin-top 0px
-        .avatar
-            background-color #f2992e
-            border-radius 5px
-            font-size 20px
-            padding 3px
-            margin 3px
-            text-transform: uppercase
+            .date
+                padding 1em
+                .datelable
+                    font-size 1.2em
+                    color #616161
+                .eventDate
+                    font-size 1em
+                    margin-left 15px
+                    color #616161
+            .participants
+                padding 1em
+                .participLable
+                    font-size 1.2em
+                    color #616161
+                .avatar
+                    background-color border-color
+                    border-radius 4px
+                    font-size 16px
+                    padding 3px
+                    margin 3px
+                    text-transform: uppercase
+            .toolbar
+                position absolute
+                bottom 10px
+                right 10px
+                display flex
+                opacity 0
+                transition all 0.2s ease-out 0.2s
+                justify-content flex-end
+                margin 0
+                i
+                    font-size 1.8em
+                    margin-right 3px
+                    cursor pointer
+                    border-radius 4px
+                    color #424242
+                    // background-color #ECF0F1
+                    padding 6px
+                    transition color 0.2s ease-out
+                    &:hover
+                        color #1d8dbf
                
           

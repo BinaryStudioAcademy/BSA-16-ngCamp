@@ -30,10 +30,9 @@
 				h2
 					float left
 					margin 0
-			// ---------------------------------------------------------TITLE
-			.projTitle
+			.projTitle // ---------------------------------------------------------TITLE
 				width 100%
-				margin 50px 0
+				margin 15px 0 25px
 				input
 					width 80%
 					border-radius 4px
@@ -47,11 +46,10 @@
 					font-size 1.4em
 					&:focus
 						background-color active-input
-			// ---------------------------------------------------------------DESCRIPTION
-			.projDescription
+			.projDescription // ---------------------------------------------------------------DESCRIPTION
 				width 100%
 				position relative
-				margin 50px auto
+				margin 15px auto 25px
 				.placeholder
 					position absolute
 					top 50%
@@ -77,8 +75,7 @@
 					outline none
 					&:focus
 						background-color active-input
-			// ----------------------------------------------------------------------------DEADLINE
-			.projDeadline
+			.projDeadline // ----------------------------------------------------------------------------DEADLINE
 				width 100%
 				display flex
 				justify-content center
@@ -93,7 +90,7 @@
 					background-color disable-input
 					justify-content center
 					align-items center
-					margin 50px 0
+					margin 15px 0 25px
 					padding 9px 0
 					position relative
 					display flex
@@ -119,16 +116,14 @@
 						position absolute
 						top 18px
 						right 14px
-			// --------------------------------------------------------------------------PARTICIPANTS
-			.participants
+			.participants //------------------------------------------------------------PARTICIPANTS
 				width 80%
 				display flex
-				margin 1em 0
+				font-size 24px
+				margin 15px 0 25px
 				align-items flex-start
 				align-content flex-start
 				flex-wrap wrap
-				min-height 150px
-				margin-top 25px
 				.btn-group.ng-enter,.btn-group.ng-leave
 					-webkit-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
 					-moz-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
@@ -204,18 +199,13 @@
 					&:hover
 						i
 							color #4DB6AC
-							
-			// -----------------------------------------------------------------------------SAVEBUTTON
-
-			.button
+			.button // -----------------------------------------------------------------------------SAVEBUTTON
 				display flex
 				justify-content center
 				align-items center
 				padding 50px 0
 				.save
 					button()
-					font-family "Montserrat"
-					font-size 24px
 					padding 15px 100px
 					--box-shadow-color #004D40
 					background-color #2e8f35

@@ -32,6 +32,10 @@ aside.side-menu-wrapper
 				a(ng-link='["Reports"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
 					i.fa.fa-area-chart.fa-2x
 					span.nav-text Reports
+			//- li
+			//- 	a(ng-link='["Drafts"]', ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
+			//- 		i.fa.fa-pencil-square-o.fa-2x
+			//- 		span.nav-text Drafts
 			li.lastItem
 				a(ng-link='["Project"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
 					i.fa.fa-cogs.fa-2x
