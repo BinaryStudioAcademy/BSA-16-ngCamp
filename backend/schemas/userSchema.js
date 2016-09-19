@@ -4,10 +4,6 @@ var Project = require('./projectSchema');
 var bcrypt = require('bcrypt-nodejs');
 
 var User = new Schema({
-    avatar: {
-        real: String,
-        small: String
-    },
     firstName: String,
     lastName: String,
     email: String,
