@@ -2,12 +2,16 @@
 .task-wrapper
 	.main-container
 		.wrapper_lable
-			a
-				button()
-				font-size 1.3em
-				text-decoration none
-				padding 0 0.3em
-				max-width 50px
+			.backbutton
+				display flex 
+				align-items center
+				padding-bottom 20px
+				a
+					color text-input
+					font-size 2.5em
+					text-decoration none
+					padding 40px 0.3em
+					max-width 50px
 		.wrapper_prop
 			font-family "Montserrat"
 			font-size 1em
@@ -76,9 +80,10 @@
 				justify-content center
 				flex-wrap wrap
 				.participant
-					background-color #008cba
-					color white
-					border-radius 12px
+					background-color disable-input
+					color text-input
+					border-radius 4px
+					border-bottom 4px solid border-color
 					margin 10px 2px
 					cursor pointer
 					display inline-flex
@@ -90,10 +95,15 @@
 					span
 						margin 0 5px
 			.addButton
-				button()
+				background-color disable-input
+				border none
+				outline none
+				color text-input
+				border-radius 4px
+				border-bottom 4px solid border-color
 				margin 25px auto
 				font-size 1.2em
-				padding 0 0.5em
+				padding 0.5em 1em
 				display flex
 				flex-wrap nowrap
 				justify-content space-between
@@ -111,11 +121,12 @@
 			margin-top 50px
 			button
 				button()
+				--box-shadow-color #004D40
 				background-color #1E824C
 				font-size 1.5em
 				margin 25px auto
 				font-size 1.5em
-				padding 0 0.5em
+				padding 15 50px
 				display flex
 				flex-wrap nowrap
 				justify-content space-between	

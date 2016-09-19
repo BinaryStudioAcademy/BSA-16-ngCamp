@@ -52,27 +52,23 @@
       margin-left 10%
       margin-right 14%
   .sendButtons
-    display flex
-    flex-direction column
-    justify-content center
-    align-self center
-    .postBtn
       display flex
-      justify-content center
-      align-self center
+      flex-direction row
+      justify-content space-around
+      flex-wrap wrap
+      margin 5px
+    .postBtn
       button()
-      width 40%
-      font-size 18px
-      text-align center
-      padding-top 1%
-      padding-bottom 1%
-      margin-bottom 20
-      margin-top 20px
+      font-family "Montserrat"
+      font-size 24px
+      padding 5px 30px
+      --box-shadow-color #004D40
+      background-color #2e8f35
     .delete
       button()
-      align-self center
       font-family "Montserrat"
+      font-size 24px
+      padding 5px 30px
+      --box-shadow-color #ff1f1f
       background-color #FF5252
-      line-height 50%
-      width 40%
-      font-size 18px
+

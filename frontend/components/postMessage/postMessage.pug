@@ -17,7 +17,5 @@ section.post-message-wrapper
     p(ng-show="message.text.$error.minlength" class="help-block") Description is too short.
     p(ng-show="message.text.$error.maxlength" class="help-block") Description is too long.
     .buttons
-      //- div.sendBtn
-      //-   button(ng-click="postCtrl.draft(message.$valid)") Save as Draft
       div.sendBtn
-        button(ng-click="postCtrl.post(message.$valid)") Post
+        button(ng-click="postCtrl.post(message.$valid)") Post message
