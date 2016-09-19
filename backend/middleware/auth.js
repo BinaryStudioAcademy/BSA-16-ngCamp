@@ -6,16 +6,14 @@ var async = require('async'),
     userRepository = require('../repositories/userRepository'),
     userService = require('../services/userService');
 
-module.exports = function(req, res, next) {
+module.exports = function (req, res, next) {
     var cookies = new Cookies(req, res),
-        token = cookies.get('x-access-token'),
-        getReadyForCreateUser = getReadyForCreateUser;
-
-    if (req.session.user) req.session.user = null;
+        token = cookies.get('x-access-token');
+    // getReadyForCreateUser = getReadyForCreateUser;
 
     if (req.session.user) {
-        var id = req.session.user._id
-        userRepository.getById(id, function(err, data) {
+        var id = req.session.user._id;
+        userRepository.getById(id, function (err, data) {
             req.session.user = data;
             next();
         });
@@ -31,15 +29,15 @@ module.exports = function(req, res, next) {
                         host: 'team.binary-studio.com',
                         path: '/profile/user/getByCentralId/' + decoded.id,
                     }
-                    var request = http.request(reqData, function(response) {
+                    var request = http.request(reqData, function (response) {
                         var user = '';
 
                         response.setEncoding('utf8');
-                        response.on('data', function(chunk) {
+                        response.on('data', function (chunk) {
                             user += chunk;
                             console.log('\n\n\nCHUNK: ', chunk);
                         });
-                        response.on('end', function() {
+                        response.on('end', function () {
                             console.log('\n\n\n USER: ', user);
                             user = JSON.parse(user);
                             console.log('\n\n\n USER JSON: ', user[0]);
@@ -54,17 +52,17 @@ module.exports = function(req, res, next) {
                             real: user.avatar.urlAva,
                             small: user.avatar.thumbnailUrlAva
                         };
-                    userRepository.getUserByEmail(email, function(err, data) {
+                    userRepository.getUserByEmail(email, function (err, data) {
                         if (data) {
                             req.session.user = data;
                             if (!data.avatar || !data.avatar.real || data.avatar.real !== avatar.real || !data.avatar.small || data.avatar.small !== avatar.small) {
-                                userRepository.setnewAvatar(email, avatar, function(err, data) {
+                                userRepository.setnewAvatar(email, avatar, function (err, data) {
                                     next();
                                 });
                             }
                         } else {
                             var userData = getReadyForCreateUser(email);
-                            userService.addItem(userData, function(err, data) {
+                            userService.addItem(userData, function (err, data) {
                                 req.session.user = data;
                                 next();
                             });
@@ -72,7 +70,7 @@ module.exports = function(req, res, next) {
                         // next();
                     });
                 }
-            ], function(err, result) {
+            ], function (err, result) {
                 if (err) {
                     res.status(403).send({
                         success: false,
@@ -83,40 +81,7 @@ module.exports = function(req, res, next) {
                 }
             });
 
-            //     var requestData = {
-            //     method: 'GET',
-            //     host: 'maps.googleapis.com',
-            //     path: '/maps/api/directions/json?origin=' + origin + '&destination=' + destination + '&region=US&mode=driving' + '&key=' + self.apiKey
-            // };
-            // var req = https.request(requestData, function(res) {
-            //     res.setEncoding('utf8');
-
-
-            // jsonwebtoken.verify(token, tokenSecret, function(err, decoded) {
-            //     if (err) {
-            //         res.status(403).send({
-            //             success: false,
-            //             message: "Failed to authenticate user"
-            //         });
-            //     } else {
-            //         var email = decoded.email;
-            //         userRepository.getUserByEmail(email, function(err, data) {
-            //             if (data) {
-            //                 req.session.user = data;
-            //             } else {
-            //                 var userData = getReadyForCreateUser(email);
-            //                 userService.addItem(userData, function(err, data) {
-            //                     req.session.user = data;
-            //                     next();
-            //                 });
-            //             }
-            //             next();
-            //         });
-
-            //     }
-            // });
         } else {
-            // res.status(403).send({success: false, message: "No Token Provided"});
             res.redirect('http://team.binary-studio.com/auth/#/')
         }
     }
@@ -124,7 +89,7 @@ module.exports = function(req, res, next) {
     function getReadyForCreateUser(email, avatar) {
         var fullName = email.substring(0, email.indexOf('@')),
             preparedData = {
-                email: email
+                email: email,
                 avatar: avatar
             };
 
