@@ -64,17 +64,20 @@ class RightPanelComponentController {
                     let checkinsArray = [];
                     vm.httpGeneral.sendRequest({
                         type: "GET",
-                        url: 'api/checkins/bydate/' + date.year + '/' + date.month + '/' + date.date
+                        url: 'api/checkins/'+window._injectedData.currentProject+'/bydate/' + date.year + '/' + date.month + '/' + date.date
                     }).then(function (res) {
                         vm.dailyCheckinsList[date.date] = { checkins: [], day: date };
-                        res.forEach(function (check) {
-                            vm.dailyCheckinsList[date.date].checkins.push(check);
-                        });
-                        if (vm.dailyCheckinsList[0]) {
-                            vm.dailyCheckinsList[0] += 1;
-                        } else {
-                            vm.dailyCheckinsList[0] = 1;
+                        if (res){
+                            res.forEach(function (check) {
+                                vm.dailyCheckinsList[date.date].checkins.push(check);
+                            });
                         }
+                        if (vm.dailyCheckinsList[0]) {
+                             vm.dailyCheckinsList[0] += 1;
+                        } else {
+                             vm.dailyCheckinsList[0] = 1;
+                        }
+
                         vm.rootScp.$broadcast('addDate', date);
                     });
                 }
@@ -90,12 +93,15 @@ class RightPanelComponentController {
                     let checkinsArray = [];
                     vm.httpGeneral.sendRequest({
                         type: "GET",
-                        url: 'api/checkins/bydate/' + date.year + '/' + date.month + '/' + date.date
+                        url: 'api/checkins/'+window._injectedData.currentProject+'/bydate/' + date.year + '/' + date.month + '/' + date.date
                     }).then(function (res) {
                         vm.dailyCheckinsList[date.date] = { checkins: [], day: date };
-                        res.forEach(function (check) {
-                            vm.dailyCheckinsList[date.date].checkins.push(check);
-                        });
+                        if(res){
+                            res.forEach(function (check) {
+                                vm.dailyCheckinsList[date.date].checkins.push(check);
+                            });
+                        }
+
                         if (vm.dailyCheckinsList[0]) {
                             vm.dailyCheckinsList[0] += 1;
                         } else {
@@ -160,6 +166,7 @@ class RightPanelComponentController {
             }
         }
     }
+
     mouseWheelHandler(e){
         let vm = this;
         let scrollHeight = document.getElementsByTagName('right-panel-component')[0].scrollHeight;
@@ -181,9 +188,11 @@ class RightPanelComponentController {
             type: "GET",
             url: 'api/checkins/'+window._injectedData.currentProject+'/bydate/' + day.year + '/' + day.month + '/' + day.date
         }).then(function (res) {
-            res.forEach(function (check) {
-                vm.checkins.push(check);
-            });
+            if (res){
+                res.forEach(function (check) {
+                    vm.checkins.push(check);
+                });
+            }
         });
     }
 
@@ -237,6 +246,7 @@ class RightPanelComponentController {
             return (element ? true : false);
         };
     }
+    
     $onDestroy(){
         let vm = this;
         angular.element(document.querySelectorAll('right-panel-component.ng-isolate-scope')).unbind("scroll");
