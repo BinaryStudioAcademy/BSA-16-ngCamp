@@ -1,13 +1,19 @@
 import './checkinsStyles.styl';
 
 class CheckinsListComponentController {
-    constructor(httpGeneral) {
+    constructor(httpGeneral, userService) {
         this.httpGeneral = httpGeneral;
         this.checkIns = [];
+        this.userService = userService;
+        this.externalUSersData = [];
     }
 
     $onInit() {
         let self = this;
+        this.userService.getExternalUsersData().then(function(data) {
+            self.externalUSersData = data;
+            console.log('EXTERNAL USER DATA', data);
+        });
         self.httpGeneral.sendRequest({
             type: "GET",
             url: "api/checkins"
@@ -34,15 +40,15 @@ class CheckinsListComponentController {
         });
     }
 
-    checkinFilter(mday){
+    checkinFilter(mday) {
         let day = new RegExp(mday, 'g');
-        return function(element){
+        return function(element) {
             return (element.frequency.match(day) ? true : false);
         };
     }
 }
 
-CheckinsListComponentController.$inject = ['httpGeneral'];
+CheckinsListComponentController.$inject = ['httpGeneral', 'UserService'];
 
 const checkinsListComponent = {
     controller: CheckinsListComponentController,
