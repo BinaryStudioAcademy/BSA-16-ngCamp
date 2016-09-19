@@ -1,4 +1,5 @@
-section.post-message-wrapper
+.post-messageWrapper
+  h1.header Post message
   .header-setup
     .return-btn
       i.fa.fa-arrow-left
@@ -6,7 +7,6 @@ section.post-message-wrapper
         span Back to Message Board
       //div.fa.fa-close(ng-link='["MsgBoard"]')
       //img(ng-link='["MsgBoard"]', align='top', src='https://cdn3.iconfinder.com/data/icons/simple-files-1/128/No-128.png', alt='exit')
-  hr
   form(name="message",novalidate)
     //h1 Title
     input(name="title",placeholder="Write the headline for this message...",type="text",ng-model="postCtrl.title",required,ng-minlength="3" ng-maxlength="30")
@@ -20,5 +20,8 @@ section.post-message-wrapper
     p(ng-show="message.text.$error.minlength" class="help-block") Description is too short.
     p(ng-show="message.text.$error.maxlength" class="help-block") Description is too long.
     .buttons
+      //- div.sendBtn
+      //-   button(ng-click="postCtrl.draft(message.$valid)") Save as Draft
       div.sendBtn
-        button(ng-click="postCtrl.post(message.$valid)") Post message
+        button(ng-click="postCtrl.post(message.$valid)") Post
+
