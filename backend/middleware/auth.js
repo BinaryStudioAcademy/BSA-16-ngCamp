@@ -1,53 +1,132 @@
-var jsonwebtoken = require('jsonwebtoken'),
-        tokenSecret = require('../config/token').secret,
-        Cookies = require('cookies'),
-        userRepository = require('../repositories/userRepository'),
-        userService = require('../services/userService');
+var async = require('async'),
+    jsonwebtoken = require('jsonwebtoken'),
+    http = require('http'),
+    tokenSecret = require('../config/token').secret,
+    Cookies = require('cookies'),
+    userRepository = require('../repositories/userRepository'),
+    userService = require('../services/userService');
 
-module.exports = function (req, res, next) {
+module.exports = function(req, res, next) {
     var cookies = new Cookies(req, res),
-            token = cookies.get('x-access-token'),
-            getReadyForCreateUser = getReadyForCreateUser;
+        token = cookies.get('x-access-token'),
+        getReadyForCreateUser = getReadyForCreateUser;
+
+    if (req.session.user) req.session.user = null;
 
     if (req.session.user) {
         var id = req.session.user._id
-        userRepository.getById(id, function (err, data) {                     
+        userRepository.getById(id, function(err, data) {
             req.session.user = data;
             next();
         });
     } else {
         if (token) {
-            jsonwebtoken.verify(token, tokenSecret, function (err, decoded) {
-                if (err) {
-                    res.status(403).send({success: false, message: "Failed to authenticate user"});
-                } else {
-                    var email = decoded.email;
-                    userRepository.getUserByEmail(email, function (err, data) {
-                        if (data) {                          
+            async.waterfall([
+                function verifyToken(callback) {
+                    jsonwebtoken.verify(token, tokenSecret, callback);
+                },
+                function getUserFromAuth(decoded, callback) {
+                    var reqData = {
+                        method: 'GET',
+                        host: 'team.binary-studio.com',
+                        path: '/profile/user/getByCentralId/' + decoded.id,
+                    }
+                    var request = http.request(reqData, function(response) {
+                        var user = '';
+
+                        response.setEncoding('utf8');
+                        response.on('data', function(chunk) {
+                            user += chunk;
+                            console.log('\n\n\nCHUNK: ', chunk);
+                        });
+                        response.on('end', function() {
+                            console.log('\n\n\n USER: ', user);
+                            user = JSON.parse(user);
+                            console.log('\n\n\n USER JSON: ', user[0]);
+                            callback(null, user);
+                        });
+                    });
+                    request.end();
+                },
+                function logIn(user, callback) {
+                    var email = user.email,
+                        avatar = {
+                            real: user.avatar.urlAva,
+                            small: user.avatar.thumbnailUrlAva
+                        };
+                    userRepository.getUserByEmail(email, function(err, data) {
+                        if (data) {
                             req.session.user = data;
-                        } else {                            
+                            if (!data.avatar || !data.avatar.real || data.avatar.real !== avatar.real || !data.avatar.small || data.avatar.small !== avatar.small) {
+                                userRepository.setnewAvatar(email, avatar, function(err, data) {
+                                    next();
+                                });
+                            }
+                        } else {
                             var userData = getReadyForCreateUser(email);
                             userService.addItem(userData, function(err, data) {
                                 req.session.user = data;
                                 next();
                             });
                         }
-                        next();
+                        // next();
                     });
-
+                }
+            ], function(err, result) {
+                if (err) {
+                    res.status(403).send({
+                        success: false,
+                        message: "Failed to authenticate user"
+                    });
+                } else {
+                    callback(null, result);
                 }
             });
+
+            //     var requestData = {
+            //     method: 'GET',
+            //     host: 'maps.googleapis.com',
+            //     path: '/maps/api/directions/json?origin=' + origin + '&destination=' + destination + '&region=US&mode=driving' + '&key=' + self.apiKey
+            // };
+            // var req = https.request(requestData, function(res) {
+            //     res.setEncoding('utf8');
+
+
+            // jsonwebtoken.verify(token, tokenSecret, function(err, decoded) {
+            //     if (err) {
+            //         res.status(403).send({
+            //             success: false,
+            //             message: "Failed to authenticate user"
+            //         });
+            //     } else {
+            //         var email = decoded.email;
+            //         userRepository.getUserByEmail(email, function(err, data) {
+            //             if (data) {
+            //                 req.session.user = data;
+            //             } else {
+            //                 var userData = getReadyForCreateUser(email);
+            //                 userService.addItem(userData, function(err, data) {
+            //                     req.session.user = data;
+            //                     next();
+            //                 });
+            //             }
+            //             next();
+            //         });
+
+            //     }
+            // });
         } else {
             // res.status(403).send({success: false, message: "No Token Provided"});
             res.redirect('http://team.binary-studio.com/auth/#/')
         }
     }
 
-    function getReadyForCreateUser(email) {
+    function getReadyForCreateUser(email, avatar) {
         var fullName = email.substring(0, email.indexOf('@')),
-                preparedData = {
-                    email: email
-                };
+            preparedData = {
+                email: email
+                avatar: avatar
+            };
 
         if (fullName.indexOf('.') !== -1) {
             var tmpName = fullName.split('.');
@@ -57,7 +136,7 @@ module.exports = function (req, res, next) {
             preparedData.firstName = fullName;
             preparedData.lastName = 'UnknownSurname';
         }
-        
+
         return preparedData;
 
     }
