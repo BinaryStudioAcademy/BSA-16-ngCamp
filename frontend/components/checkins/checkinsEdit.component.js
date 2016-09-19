@@ -8,7 +8,6 @@ class CheckinsEditComponentController {
         this.participants = [];
         this.question = '';
         this.frequency = [
-            'Every weekday',
             'Monday',
             'Tuesday',
             'Wednesday',

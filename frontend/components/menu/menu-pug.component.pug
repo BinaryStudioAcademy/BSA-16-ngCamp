@@ -17,6 +17,10 @@ aside.side-menu-wrapper
 					i.fa.fa-calendar-check-o.fa-2x
 					span.nav-text Check-ins
 			li
+				a(ng-if="MenuCtrl.disabled", ng-link='["AnswerCheckin"]', ng-click="MenuCtrl.showMenu()")
+					i.fa.fa-pencil-square-o.fa-2x
+					span.nav-text Answer Checkin
+			li
 				a(ng-if="MenuCtrl.disabled", ng-link='["Tasks"]', ng-click="MenuCtrl.showMenu()")
 					i.fa.fa-tasks.fa-2x
 					span.nav-text Tasks
