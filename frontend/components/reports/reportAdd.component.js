@@ -61,7 +61,7 @@ function generateReport() {
         return;
     } else {
         if (vm.types && vm.types.length > 1) {
-            data.types = vm.types;
+            data.types = vm.types.slice(0, vm.types.length);
             data.types.shift();
         }
         if (vm.users && vm.users.length > 1) {
