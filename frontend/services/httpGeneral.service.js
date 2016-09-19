@@ -28,8 +28,10 @@ class httpGeneral {
             throw "HTTP REQUEST EROR: REQUEST ULR IS ABSENT";
 
         } else {
-            if (object.url[0] === '/') object.url = '.' + object.url;
-            else object.url = './' + object.url;
+            if (object.url.indexOf('/profile/user/getByCentralId/') === -1) {
+                if (object.url[0] === '/') object.url = '.' + object.url;
+                else object.url = './' + object.url;
+            }
         }
         if (typeof object.type !== 'string' || object.type === undefined || object.type.length === 0) {
             self.spinner.stopSpinn();
