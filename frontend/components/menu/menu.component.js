@@ -36,23 +36,6 @@ class MenuComponentController {
             self.disabled = true;
         };
 
-        self.http.sendRequest({
-            type: "GET",
-            url: `api/projects/${window._injectedData.currentProject}/isAdmin/${window._injectedData.userId}`
-        }).then(function(res) {
-            if (!res) {
-                window._injectedData.isSettingsEdit = false;
-                window._injectedData.isReports = false;
-                window._injectedData.isCheckinEdit = false;
-            } else {
-                window._injectedData.isSettingsEdit = res.isSettingsEdit;
-                self.checkinsAccess = res.isCheckinEdit;
-                window._injectedData.isReports = res.isReports;
-                self.reportsAccess = res.isReports;
-                window._injectedData.isCheckinEdit = res.isCheckinEdit;
-            }
-        });
-
         let userReq = {
             type: "GET",
             url: "api/projects/forCurrentUser",
@@ -62,6 +45,23 @@ class MenuComponentController {
             self.userProjects = res;
         });
 
+        self.http.sendRequest({
+            type: "GET",
+            url: `api/projects/${window._injectedData.currentProject}/isAdmin/${window._injectedData.userId}`
+        }).then(function(res) {
+            console.log(res);
+            if (!res) {
+                window._injectedData.isSettingsEdit = false;
+                window._injectedData.isReports = false;
+                window._injectedData.isCheckinEdit = false;
+            } else {
+                window._injectedData.isSettingsEdit = res.isSettingsEdit;
+                self.checkinsAccess = res.isCheckinEdit;
+                window._injectedData.isReports = res.isReports;
+                self.checkinsAccess = res.isReports;
+                window._injectedData.isCheckinEdit = res.isCheckinEdit;
+            }
+        });
     }
 
 

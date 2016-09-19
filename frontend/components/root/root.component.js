@@ -1,11 +1,10 @@
 import './rootStyles.styl';
 
 class rootComponentController {
-    constructor($location, $rootRouter,httpGeneral,$scope) {
+    constructor($location, $rootRouter,httpGeneral) {
         this.location = $location;
         this.rootRouter = $rootRouter;
         this.http = httpGeneral;
-        this.scope = $scope;
     }
 
     $onInit() {
@@ -17,6 +16,7 @@ class rootComponentController {
             type:"GET",
             url:`api/projects/${window._injectedData.currentProject}/isAdmin/${window._injectedData.userId}`
         }).then(function(res) {
+            console.log(res);
             window._injectedData.isSettingsEdit = res.isSettingsEdit;
             window._injectedData.isReports = res.isReports;
             window._injectedData.isCheckinEdit = res.isCheckinEdit;
@@ -24,7 +24,7 @@ class rootComponentController {
     }
 }
 
-rootComponentController.$inject = ["$location", '$rootRouter','httpGeneral','$scope'];
+rootComponentController.$inject = ["$location", '$rootRouter','httpGeneral'];
 
 const rootComponent = {
     controller: rootComponentController,
