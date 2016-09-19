@@ -1,17 +1,20 @@
 section.post-message-wrapper
-  header
-    h2 Post message
-    div.fa.fa-close(ng-link='["MsgBoard"]')
+  .header-setup
+    .return-btn
+      i.fa.fa-arrow-left
+      a(ng-link='["MsgBoard"]')
+        span Back to Message Board
+      //div.fa.fa-close(ng-link='["MsgBoard"]')
       //img(ng-link='["MsgBoard"]', align='top', src='https://cdn3.iconfinder.com/data/icons/simple-files-1/128/No-128.png', alt='exit')
   hr
   form(name="message",novalidate)
-    h1 Title
-    input(name="title",type="text",ng-model="postCtrl.title",required,ng-minlength="3" ng-maxlength="30")
+    //h1 Title
+    input(name="title",placeholder="Write the headline for this message...",type="text",ng-model="postCtrl.title",required,ng-minlength="3" ng-maxlength="30")
     p(ng-show="message.title.$invalid" class="help-block") Title is required.
     p(ng-show="message.title.$error.minlength" class="help-block") Title is too short.
     p(ng-show="message.title.$error.maxlength" class="help-block") Title is too long.
-    h1 Description
-    input(ckeditor,type="text",name="text" , cols='30', rows='10',ng-model="postCtrl.desc",required,ng-minlength="10" ng-maxlength="2000")
+    //h1 Description
+    input(ckeditor,type="text",placeholder="Type your message here...",name="text", cols='30', rows='10',ng-model="postCtrl.desc",required,ng-minlength="10" ng-maxlength="2000")
     hr
     p(ng-show="message.text.$invalid" class="help-block") Description is required.
     p(ng-show="message.text.$error.minlength" class="help-block") Description is too short.
