@@ -38,11 +38,18 @@ class ReportEditComponentController {
             vm.isSaved = (res[0].isSaved || false);
 
             vm.types = (res[0].types || []);
+
             vm.typeSamples = vm.typeSamples.filter(function(el) {
                 return vm.types.indexOf(el) < 0;
             });
+            if (vm.types.length > 0) {
+                vm.types.unshift("All");
+            }
             for (let i = 0; i < res[0].participants.length; i++) {
                 vm.users[i] = (res[0].participants[i].firstName || "") + " " + (res[0].participants[i].secondtName || "");
+            }
+            if (vm.users.length > 0) {
+                vm.users.unshift("All");
             }
             vm.dateRange = (res[0].dateRange || []);
             if (res[0].dateRange[0].getTime() == 0);
@@ -111,10 +118,11 @@ function reportGenerate() {
         vm.popupNotifications.notifyError("Report filter is undefined");
         return;
     } else {
-        if (vm.types && vm.types.length > 0) {
+        if (vm.types && vm.types.length > 1) {
             data.types = vm.types;
+            data.types.shift();
         }
-        if (vm.users && vm.users.length > 0) {
+        if (vm.users && vm.users.length > 1) {
             for (let i = 0; i < vm._usersData.length; i++) {
                 let item = ((vm._usersData[i].firstName || "") + " " + (vm._usersData.secondtName || ""));
                 if (vm.users.indexOf(item) != -1) {

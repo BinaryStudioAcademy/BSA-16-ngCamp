@@ -60,10 +60,11 @@ function generateReport() {
         vm.popupNotifications.notifyError("Report filter is undefined");
         return;
     } else {
-        if (vm.types && vm.types.length > 0) {
+        if (vm.types && vm.types.length > 1) {
             data.types = vm.types;
+            data.types.shift();
         }
-        if (vm.users && vm.users.length > 0) {
+        if (vm.users && vm.users.length > 1) {
             for (let i = 0; i < vm._usersData.length; i++) {
                 let item = ((vm._usersData[i].firstName || "") + " " + (vm._usersData.secondtName || ""));
                 if (vm.users.indexOf(item) != -1) {
