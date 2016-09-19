@@ -4,6 +4,8 @@
     width 100%
     .row
         margin 0
+    hr
+        border-top: 1px solid text-input
     *
         box-sizing border-box
         padding 0px
@@ -124,8 +126,8 @@
             display flex
             align-items center
             justify-content space-around
-            border-bottom 4px solid border-color
-            background-color disable-input
+            //border-bottom 4px solid border-color
+            //background-color disable-input
             border-radius: 10px
         .hidden-gen
             border-bottom none
@@ -151,6 +153,25 @@
                 color white
                 display inline-block*/
                 font-family "FontAwesome"
+        .generate-item.ng-enter,.generate-item.ng-leave
+            transition: opacity 0.03s cubic-bezier(0.250, 0.250, 0.750, 0.750)
+            
+        .generate-item.ng-enter,.generate-item.ng-leave.ng-leave-active
+            opacity  0/*
+            span
+                text-overflow clip
+                max-width 0px
+            .participant
+                border-bottom 0px solid border-color
+                transform translateY(8px)
+        .generate-item.ng-leave,.generate-item.ng-enter.ng-enter-active
+            opacity 1
+            span
+                text-overflow clip
+                max-width 360px
+            .participant
+                border-bottom 4px solid border-color
+                transform translateY(0)*/
         .item-out-group
             background-color main-blue
             span
@@ -162,10 +183,11 @@
     .history-item
         margin-top 2%
         margin-bottom  2%
-        border-radius 5px
-        box-shadow 0px 2px 3px 2px  border-grey
+        border-radius 10px
+        border-bottom 4px solid border-color
+        //box-shadow 0px 2px 3px 2px  border-grey
         padding 1%
-        border 2px solid main-blue
+        //border 2px solid main-blue
         text-indent 1%
         word-break break-all
         .his-head
@@ -197,6 +219,7 @@
         align-items center
         --box-shadow-color #004D40
         background-color #2e8f35
+        //transition none
     .btn
         font-family "Montserrat"
         height 50px
@@ -213,6 +236,10 @@
         border: 1px solid text-input
         &::before
             color text-input
+    .type-btn
+        background-color disable-input
+        padding: 1%
+        color text-input !important
     .chapter-title
         font-family "Montserrat"
         font-size 25px
