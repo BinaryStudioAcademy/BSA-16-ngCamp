@@ -8,7 +8,7 @@
         max-width 650px
         text-align center
         margin 0 auto
-        background-color #f5f5f5
+        background-color #dadfe1
         border 1px solid #adadad
         border-radius 10px
         & > *
@@ -32,23 +32,21 @@
         display flex
         justify-content space-between
         margin 10px
+        i
+            font-size 1.8em
+            //margin-right 10px
+            cursor pointer
+            border-radius 4px
+            color #424242
+            // background-color #ECF0F1
+            padding 6px
+            transition color 0.2s ease-out
+            &:hover
+                color #1d8dbf
 
-    .button
-        box-shadow 0px 0px 10px 0px grey
-        background-color main-blue
-        color white
-        border-radius 5px
-        height 40px
-        width 50px
-        padding 5px
-        margin 5px
-        transition 0.2s
-        cursor pointer
-        border none
-        &:hover
-            box-shadow 0px 0px 0px 1px white, 0px 0px 0px 4px main-blue
-        &:active
-            box-shadow 0px 0px 0px 0.5px white, 0px 0px 0px 2px main-blue, 0px 0px 5px 0px white inset
+    .control-btn
+        a
+            margin 5px
 
     .user-list
         margin 10px
