@@ -1,37 +1,31 @@
 .events-wrapper
-    .row.center-xs
-        .col-xs-8.events-holder
-            .row.events-header.center-xs
-                span.col-xs-11 Events
-            .row
-                .button.comment-button.col-xs-4.col-xs-offset-4(ng-link='["CreateEvent"]') Set up event
+    .main
+        h1 Events
+        .col-xs-12.events-holder
+            //- -------------------------------------------------------------------CREATE BUTTON----------
+            .row.createbutton            
+                button(ng-link='["CreateEvent"]') Set up event
             .choose-event-container
-                .row.choose-event.center-xs
-                    row.middle-xs
-                        .show-events
-                            h2 Show all events:
-
-                        form.form-inline(role='form').col-md-offset-2
-                            .form-group.col-md-5
-                                .pull-left
-                                    label(for='text') Date from:
-                                p.input-group
-                                    input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='vm.dtfrom', is-open='vm.popup1.opened', datepicker-options='vm.dateOptions',            ng-required='true', close-text='Close', alt-input-formats='altInputFormats')
-                                    span.input-group-btn
-                                        button.btn.btn-default(type='button', ng-click='vm.open1()')
-                                            i.fa.fa-calendar(aria-hidden='true')
-                            .form-group.col-md-5
-                                .pull-left
-                                    label
-                                        | Date to: 
-                                p.input-group
-                                    input.form-control(type='text', uib-datepicker-popup='', ng-model='vm.dtto', is-open='vm.popup2.opened', datepicker-options='vm.dateOptions',                    ng-required='true', close-text='Close')
-                                    span.input-group-btn
-                                        button.btn.btn-default(type='button', ng-click='vm.open2()')
-                                            i.fa.fa-calendar(aria-hidden='true')  
-                .row
-                    .button.comment-button.col-xs-4.col-xs-offset-4(ng-click="vm.filter()") Filter   
-                            hr                       
+                .show-events.center-xs
+                    form.form-inline(role='form').center-xs
+                        .form-group
+                            .pull-left
+                                label(for='text') from:
+                            p.input-group
+                                input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='vm.dtfrom', is-open='vm.popup1.opened', datepicker-options='vm.dateOptions',            ng-required='true', close-text='Close', alt-input-formats='altInputFormats')
+                                span.input-group-btn
+                                    button.btn.btn-default(type='button', ng-click='vm.open1()')
+                                        i.fa.fa-calendar(aria-hidden='true')
+                        .form-group
+                            .pull-left
+                                label to: 
+                            p.input-group
+                                input.form-control(type='text', uib-datepicker-popup='', ng-model='vm.dtto', is-open='vm.popup2.opened', datepicker-options='vm.dateOptions',                    ng-required='true', close-text='Close')
+                                span.input-group-btn
+                                    button.btn.btn-default(type='button', ng-click='vm.open2()')
+                                        i.fa.fa-calendar(aria-hidden='true')  
+                        .search_button(ng-click="vm.filter()")
+                            i.fa.fa-search                 
             .events-items(ng-repeat="event in vm.userEvents track by $index")
                 .event
                     .row.event-header
