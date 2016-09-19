@@ -17,7 +17,7 @@ app.run(function($cookies, jwtHelper, httpGeneral) {
 		let decodedToken = jwtHelper.decodeToken(token);
 		httpGeneral.sendRequest({
 			type: "GET",
-			url: './profile/user/getByCentralId/' + decodedToken.id
+			url: window.protocol + '//' + window.location.host + '/profile/user/getByCentralId/' + decodedToken.id
 		}).then(function(res) {
 			console.log('GET USER DATA', res);
 		});
