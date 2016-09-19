@@ -56,7 +56,7 @@ const rootComponent = {
         name: 'Checkins',
         component: 'checkinsComponent'
     }, {
-        path: '/asnwerCheckin/',
+        path: '/answerCheckin/',
         name: 'AnswerCheckin',
         component: 'answerCheckinComponent'
     }, {
