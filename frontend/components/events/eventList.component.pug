@@ -12,7 +12,7 @@
                             .pull-left
                                 label(for='text') from:
                             p.input-group
-                                input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='vm.dtfrom', is-open='vm.popup1.opened', datepicker-options='vm.dateOptions',            ng-required='true', close-text='Close', alt-input-formats='altInputFormats')
+                                input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='vm.dtfrom', is-open='vm.popup1.opened', datepicker-options='vm.dateOptions', ng-required='true', close-text='Close', alt-input-formats='altInputFormats')
                                 span.input-group-btn
                                     button.btn.btn-default(type='button', ng-click='vm.open1()')
                                         i.fa.fa-calendar(aria-hidden='true')
@@ -20,24 +20,31 @@
                             .pull-left
                                 label to: 
                             p.input-group
-                                input.form-control(type='text', uib-datepicker-popup='', ng-model='vm.dtto', is-open='vm.popup2.opened', datepicker-options='vm.dateOptions',                    ng-required='true', close-text='Close')
+                                input.form-control(type='text', uib-datepicker-popup='', ng-model='vm.dtto', is-open='vm.popup2.opened', datepicker-options='vm.dateOptions',ng-required='true', close-text='Close')
                                 span.input-group-btn
                                     button.btn.btn-default(type='button', ng-click='vm.open2()')
                                         i.fa.fa-calendar(aria-hidden='true')  
                         .search_button(ng-click="vm.filter()")
-                            i.fa.fa-search                 
+                            i.fa.fa-search
+                            span.searchLable Search          
             .events-items(ng-repeat="event in vm.userEvents track by $index")
                 .event
                     .row.event-header
-                        .row.col-xs-6.event-name
+                        .event-name
                             a(ng-link="[\'Edit event\', {id: event._id}]",ng-if="vm.isAuthor(event)||vm.isAdmin")
                                 h2  {{event.title}}  
                             h2(ng-if="!vm.isAuthor(event) && !vm.isAdmin") {{event.title}}
-                            i.fa.fa-folder-open-o.fa-2x
-                            i.fa.fa-comments-o.fa-2x(ng-link='["Event comments", {id:event._id}]')
-                        .col-xs-2.col-xs-offset-4
-                            span.avatar(ng-repeat="participant in vm.userEvents[$index].participants track by $index") {{ participant.firstName[0] + participant.lastName[0]}}
+
                     .event-body
                         p(ng-bind-html="event.description")
+                    .date
+                        span.datelable Date:
+                        span.eventDate {{vm.getDate(event)}}
+                    .participants
+                        span.participLable Participants: 
+                        span.avatar(ng-repeat="participant in vm.userEvents[$index].participants track by $index") {{ participant.firstName[0] + participant.lastName[0]}}
+                    .toolbar
+                        i.fa.fa-files-o
+                        i.fa.fa-comments-o(ng-link='["Event comments", {id:event._id}]')
                 
                 
