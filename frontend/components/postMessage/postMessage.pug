@@ -16,16 +16,8 @@ section.post-message-wrapper
     p(ng-show="message.text.$invalid" class="help-block") Description is required.
     p(ng-show="message.text.$error.minlength" class="help-block") Description is too short.
     p(ng-show="message.text.$error.maxlength" class="help-block") Description is too long.
-    //  form#uploadForm(action='/postMessage', method='post', enctype='multipart/form-data')
-    //          input(type='file', name='message')
-    //          input(type='submit', value='Upload')
-    //section.draft-post
-    //  select(name='drafts')
-    //    option(value='draft1') draft1
-    //    option(value='draft2') draft2
-    //    option(value='draft3') draft3
     .buttons
-      div.sendBtn
-        button(ng-click="postCtrl.draft(message.$valid)") Save as Draft
+      //- div.sendBtn
+      //-   button(ng-click="postCtrl.draft(message.$valid)") Save as Draft
       div.sendBtn
         button(ng-click="postCtrl.post(message.$valid)") Post
