@@ -12,8 +12,8 @@
             ul.user-list
                 li.list(ng-repeat="part in CheckEd.participants track by $index")
                     label.checkbox(ng-click="CheckEd.toggleChekin()")
-                        span  {{part.lastName +' '+  part.firstName}}
                         input(type='checkbox', ng-checked="CheckEd.parties.indexOf(part._id) > -1",ng-click="CheckEd.toggleChekin(part._id)" )
+                        span  {{part.lastName +' '+  part.firstName}}
         .footer-setup
             h3 How frequently should we ask it?
             .schedule
