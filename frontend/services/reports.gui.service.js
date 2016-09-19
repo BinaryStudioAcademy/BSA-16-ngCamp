@@ -18,13 +18,14 @@ class reportsGUI {
 function manageItem(index, fromArr, toArr, def, checkin, isAdding) {
     let item = fromArr[index];
     let indexTo = fromArr.indexOf(item);
-    console.log(isAdding);
     if (item == 'All') {
         if (def == 'user') {
             fromArr.splice(fromArr.indexOf("All"), 1);
+
             Array.prototype.splice.apply(toArr, [toArr.length, 0].concat(fromArr));
             fromArr.splice(0, fromArr.length);
-            toArr.splice(toArr.indexOf("All"), 1, 'All');
+            toArr.unshift("All");
+            // toArr.splice(toArr.indexOf("All"), 1, 'All');
         }
         if (def == 'type') {
             fromArr.splice(0, fromArr.length);
