@@ -18,11 +18,15 @@ user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', par
               input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.date', is-open='$ctrl.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.date}}")
               a.btn.btn-default(type='button', ng-click='$ctrl.open()')
                 i.fa.fa-calendar(aria-hidden='true')
+            .picker
+              .time(uib-timepicker,ng-model='$ctrl.date',ng-change="changed()",hour-step="1" minute-step="1",show-meridian = 'false',show-spinners="false")
             h1 End Date
             .picker
               input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.endDate', is-open='$ctrl.popup1.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.endDate}}")
               a.btn.btn-default(type='button', ng-click='$ctrl.open1()')
                 i.fa.fa-calendar(aria-hidden='true')
+            .picker
+              .time(uib-timepicker,ng-model='$ctrl.endDate',ng-change="changed()",hour-step="1" minute-step="1",show-meridian = 'false',show-spinners="false")
         h1 Description
         input(ckeditor,type="text",name="text" , cols='25', rows='10',ng-model = "$ctrl.desc",required,ng-minlength="10" ng-maxlength="300")
         hr

@@ -24,6 +24,7 @@ user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', par
               input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.date', is-open='$ctrl.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.curEvent.startDate}}")
               a.btn.btn-default(type='button', ng-click='$ctrl.open()')
                 i.fa.fa-calendar(aria-hidden='true')
+              .time(uib-timepicker,ng-model='$ctrl.date',ng-change="changed()",hour-step="1" minute-step="1",show-meridian = 'false',show-spinners="false")
             h1 End Date 
             p {{$ctrl.curEvent.endDate | date:"dd/MM/yyyy"}}
              i.fa.fa-pencil.edit-icon(ng-click="$ctrl.editEndDate=true",ng-if="!$ctrl.editEndDate")
@@ -32,6 +33,7 @@ user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', par
               input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.endDate', is-open='$ctrl.popup1.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.curEvent.endDate}}")
               a.btn.btn-default(type='button', ng-click='$ctrl.open1()')
                 i.fa.fa-calendar(aria-hidden='true')
+              .time(uib-timepicker,ng-model='$ctrl.endDate',ng-change="changed()",hour-step="1" minute-step="1",show-meridian = 'false',show-spinners="false")
         h1  Description 
         p(ng-bind-html="$ctrl.curEvent.description") 
         i.fa.fa-pencil(ng-click="$ctrl.editDescription=true",ng-if="!$ctrl.editDescription")

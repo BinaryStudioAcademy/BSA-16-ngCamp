@@ -85,11 +85,15 @@ class eventEditController {
     }
     $onInit() {
         let self = this;
-        self.httpGeneral.sendRequest({
+        let userReq = {
             type: "GET",
-            url: "api/user"
-        }).then(function(res) {
-            self.users = res;
+            url: `/api/projects/${window._injectedData.currentProject}/withUsers`,
+            errorCallback(){
+                self.popupNotifications.notifyError('Proj. Participants load error!');
+            }
+        };
+        self.httpGeneral.sendRequest(userReq).then(function(res){
+            self.users = res.participants;
         });
     }
     $routerOnActivate(next) {
