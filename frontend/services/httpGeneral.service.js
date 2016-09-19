@@ -28,6 +28,9 @@ class httpGeneral {
             throw "HTTP REQUEST EROR: REQUEST ULR IS ABSENT";
 
         } else {
+            console.log('\n\nURL');
+            console.log(object.url);
+            console.log(object.url.indexOf('/profile/user/getByCentralId/'));
             if (object.url.indexOf('/profile/user/getByCentralId/') === -1) {
                 if (object.url[0] === '/') object.url = '.' + object.url;
                 else object.url = './' + object.url;

@@ -17,7 +17,7 @@ app.run(function($cookies, $rootScope, jwtHelper, httpGeneral) {
 		let decodedToken = jwtHelper.decodeToken(token);
 		httpGeneral.sendRequest({
 			type: "GET",
-			url: window.protocol + '//' + window.location.host + '/profile/user/getByCentralId/' + decodedToken.id
+			url: window.location.protocol + '//' + window.location.host + '/profile/user/getByCentralId/' + decodedToken.id
 		}).then(function(res) {
 			console.log('GET USER DATA', res);
 			if (res && res.avatar) {
