@@ -18,7 +18,7 @@
 
         .main-answer
             ul.qq-list(ng-repeat="i in chInfo.iter | orderBy: reverse")  <h3>{{i}}</h3>
-                li.list(ng-repeat="var in chInfo.groupedAsnwers[i]") 
+                li.list(ng-repeat="var in chInfo.groupedAsnwers[i] | filter:{ answer: '!noAnswer'}") 
                     span.name {{var.user.firstName + ' ' + var.user.lastName }}
                     br
-                    span {{var.answer}}
+                    span(ng-bind-html='var.answer')
