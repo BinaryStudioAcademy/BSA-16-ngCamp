@@ -17,13 +17,14 @@
         .footer-setup
             h3 How frequently should we ask it?
             .schedule
-                select#schedule-first(ng-model='CheckEd.selectedFrequency', ng-options='item for item in CheckEd.frequency',
-                 ng-selected="CheckEd.frequency[0]")
-
-                select#schedule-second(ng-model='CheckEd.selectedTime', ng-options='item for item in CheckEd.time',
-                ng-selected='CheckEd.time[0]')
-
-                button(ng-click="CheckEd.save()" ng-link='["Checkins List"]') Save
+                div
+                    select#schedule-first(multiple size="5", ng-model='CheckEd.selectedFrequency', ng-options='item for item in CheckEd.frequency',
+                    ng-selected="CheckEd.frequency[0]")
+                div
+                    select#schedule-second(ng-model='CheckEd.selectedTime', ng-options='item for item in CheckEd.time',
+                    ng-selected='CheckEd.time[0]')
+                div
+                    button(ng-click="CheckEd.save()" ng-link='["Checkins List"]') Save
 
                 //a(ng-click="CheckEd.save()" )
                 //    i.fa.fa-floppy-o.fa-3x

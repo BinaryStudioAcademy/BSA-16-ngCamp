@@ -14,17 +14,20 @@
                     label.checkbox(ng-click="CheckCr.toggleChekin()")
                         span  {{part.lastName +' '+  part.firstName}}
                         input(type='checkbox', ng-checked="CheckCr.parties.indexOf(part._id) > -1",ng-click="CheckCr.toggleChekin(part._id)" )
-              
+
         .footer-setup
             h3 How frequently should we ask it?
             .schedule
-                select#schedule-first(ng-model='CheckCr.selectedFrequency', ng-options='item for item in CheckCr.frequency',
+                div
+                    select#schedule-first(multiple size="5", ng-model='CheckCr.selectedFrequency', ng-options='item for item in CheckCr.frequency',
                  ng-selected="CheckCr.frequency[0]")
-                
-                select#schedule-second(ng-model='CheckCr.selectedTime', ng-options='item for item in CheckCr.time',
+
+                div
+                    select#schedule-second(ng-model='CheckCr.selectedTime', ng-options='item for item in CheckCr.time',
                 ng-selected='CheckCr.time[0]')
 
-                button(ng-click="CheckCr.save()") Save
+                div
+                    button(ng-click="CheckCr.save()") Save
 
                 //a(ng-click="CheckCr.save()" )
                 //    i.fa.fa-floppy-o.fa-3x
