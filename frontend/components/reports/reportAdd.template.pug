@@ -49,14 +49,15 @@
                             hr
                             .row.generate-item-header.middle-xs
                                 .col-xs-2.gen-title Date:
-                                /*.col-xs-2.center-xs.gen-title From:
-                                input.col-xs-3(type="date" ng-model='reportAdd.dateRange[0]')
-                                .col-xs-1.col-xs-1.center-xs.gen-title To:
-                                input(type="date" ng-model='reportAdd.dateRange[1]').col-xs-3*/
-                                .col-xs-2.center-xs From:
+                                //.col-xs-2.center-xs.gen-title From:
+                                //input.col-xs-3(type="date" ng-model='reportAdd.dateRange[0]')
+                                //.col-xs-1.col-xs-1.center-xs.gen-title To:
+                                //input(type="date" ng-model='reportAdd.dateRange[1]').col-xs-3*/
+                                .col-xs-2.center-xs.gen-title From:
                                 .col-xs-3
-                                    input(type="text",uib-datepicker-popup='shortDate',is-open = 'reportAdd.popupDate1',ng-model='reportAdd.dateRange[0]')
-                                    i.fa.fa-calendar(ng-click = 'reportAdd.popupDate1=!reportAdd.popupDate1')
+                                    .row.middle-xs.date-holder
+                                        input.col-xs-9(type="text",uib-datepicker-popup='shortDate',is-open = 'reportAdd.popupDate1',ng-model='reportAdd.dateRange[0]' readonly="readonly")
+                                        i.col-xs-2.col-xs-offset-1.fa.fa-calendar(ng-click = 'reportAdd.popupDate1=!reportAdd.popupDate1')
                                 .col-xs-1.col-xs-1.center-xs To:
                                 .col-xs-3
                                     input(type="text",uib-datepicker-popup='shortDate', is-open = 'reportAdd.popupDate2', ng-model='reportAdd.dateRange[1]')
