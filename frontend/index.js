@@ -19,12 +19,12 @@ app.run(function($cookies, $rootScope, jwtHelper, httpGeneral) {
 			type: "GET",
 			url: window.location.protocol + '//' + window.location.host + '/profile/user/getByCentralId/' + decodedToken.id
 		}).then(function(res) {
-			console.log('GET USER DATA', res);
 			if (res && res.avatar) {
 				$rootScope.avatar = {
 					real: res.avatar.urlAva ? res.avatar.urlAva : '',
 					small: res.avatar.thumbnailUrlAva ? res.avatar.thumbnailUrlAva : ''
 				};
+				console.log($rootScope.avatar);
 			}
 		});
 	}
