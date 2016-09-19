@@ -1,7 +1,6 @@
-.task-wrapper.row.center-xs
-	.main-container.col-xs-8
-		.wrapper_lable
-			h1 Tasks
+.task-wrapper
+	.main-container
+		h1 Tasks
 		.wrapper_createButton.row.center-xs
 			button(ng-link = "['TaskUpdate', {id: 'new'}]") Create new task
 		.wrapper_filters(ng-if = "tasksctrl.tasks.length")
@@ -15,11 +14,14 @@
 				li.resetfilter(ng-click = "tasksctrl.changeFilter('none')") reset filters
 		.wrapper_task.row.center-xs(ng-repeat = "task in filtredTasks = (tasksctrl.tasks | filter: tasksctrl.keyword | filter: tasksctrl.filterKey) track by $index", ng-if = "tasksctrl.contentFlag" ,   id="{{task._id}}")
 			.col-xs-12.task_header.row.middle-xs.center-xs
-				.task_progress.col-xs-4
-					.Progress_content(ng-if = "task.toDos.length") Progress: 
+				.task_progress.col-xs-2.col-sm-4
+					.Progress_content(ng-if = "task.toDos.length") 
+						span.progresslable Progress: 
 						span.countProgress(ng-if = "!task.isFinished") {{task.progress}}/{{task.toDos.length}}
 						span.countProgress.complete(ng-if = "task.isFinished") Complete!
-				.title.col-xs-5 {{task.title}}
+						span.countProgress.complete.cuted(ng-if = "task.isFinished")
+							i.fa.fa-check
+				.title.col-xs-7.col-sm-5 {{task.title}}
 				.expander.col-xs-3.start-xs(ng-class = "{'no_participants': !task.participants.length,'my_task': !!(task.participants | filter: tasksctrl.currUserId).length}")
 					i.fa(aria-hidden = "true", ng-click = "tasksctrl.expand(task)",ng-class="{'fa-arrow-down': !task.expanded, 'fa-arrow-up': task.expanded}")
 			.task_todos.col-xs-12.animate-expand(ng-if="task.expanded")
