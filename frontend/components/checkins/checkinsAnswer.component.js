@@ -19,7 +19,12 @@ class CheckinsAnswerController {
             url:`/api/checkins/answer/${next.params.checkinId}/${next.params.id}`
         }).then(function(res){
             vm.question = res[0].question;
-            vm.body = res[0].answer;
+            if (res[0].answer == 'noAnswer'){
+                vm.body = '';
+            } else {
+                vm.body = res[0].answer;
+            }
+            
         });
     }
     

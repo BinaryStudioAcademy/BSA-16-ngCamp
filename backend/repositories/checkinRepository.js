@@ -45,7 +45,7 @@ function getCheckinsByProjectAndUser(userId,projectId, callback) {
             }
         },
         {$project: {
-            _id: 0,
+            // _id: 0,
             question: 1,
             answers:  {
                 $filter: {

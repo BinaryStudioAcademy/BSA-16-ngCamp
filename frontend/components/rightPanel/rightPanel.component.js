@@ -60,7 +60,6 @@ class RightPanelComponentController {
                         month: leftMost.month,
                         date: leftMost.date - i
                     };
-                    console.log(date);
                     vm.checkins = [];
                     let checkinsArray = [];
                     vm.httpGeneral.sendRequest({
@@ -72,7 +71,6 @@ class RightPanelComponentController {
                             res.forEach(function (check) {
                                 vm.dailyCheckinsList[date.date].checkins.push(check);
                             });
-
                         }
                         if (vm.dailyCheckinsList[0]) {
                              vm.dailyCheckinsList[0] += 1;
@@ -190,9 +188,11 @@ class RightPanelComponentController {
             type: "GET",
             url: 'api/checkins/'+window._injectedData.currentProject+'/bydate/' + day.year + '/' + day.month + '/' + day.date
         }).then(function (res) {
-            res.forEach(function (check) {
-                vm.checkins.push(check);
-            });
+            if (res){
+                res.forEach(function (check) {
+                    vm.checkins.push(check);
+                });
+            }
         });
     }
 
