@@ -38,7 +38,8 @@
                 div(ng-repeat="checkin in check.checkIns track by $index")
                     nav.content
                         ul.header
-                            li {{checkin.frequency}} at {{checkin.time}}
+                            li
+                                .teste {{checkin.frequency}} at {{checkin.time}}
                             li
                                 label.switch
                                     input(type='checkbox', ng-click="check.turnOn(checkin)",ng-checked="checkin.isTurnedOn",ng-model="checkin.isTurnedOn")
