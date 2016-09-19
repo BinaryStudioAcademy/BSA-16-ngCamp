@@ -1,31 +1,30 @@
 @import "../../../public/libs/css/generalComponentsStyle.styl"
 .post-message-wrapper
   width 50%
-  border 1px solid #7986CB
+  //border 1px solid #7986CB
   border-radius 10px
   position absolute
   top 100px
   left 30%
   margin-bottom 50px
-  background-color background-white
-  header
-    margin-bottom 30px
+  background-color #DADFE1
+  .header-setup
     display flex
-    h2
-      margin-left 1%
-      padding 1%
-      font-size 1.4em
-      font-family "Montserrat"
-    div
-      button()
-      margin-left 60%
-      margin-top 3%
-      width 10%
+    justify-content center
+    margin-top 20px
+    .return-btn
+      i
+        margin 5px
     hr
       width 80%
       height 1px
       background-color #EF6C00
       margin-left 0
+
+  input
+    width 100%
+    font-size 25px
+
   .input-block
     margin-left 10%
     margin-bottom 50px
@@ -56,12 +55,12 @@
       flex-direction row
       justify-content space-around
       flex-wrap wrap
-      margin 5px
+      margin 15px
     .postBtn
       button()
       font-family "Montserrat"
       font-size 24px
-      padding 5px 30px
+      padding 5px 40px
       --box-shadow-color #004D40
       background-color #2e8f35
     .delete
@@ -69,6 +68,6 @@
       font-family "Montserrat"
       font-size 24px
       padding 5px 30px
-      --box-shadow-color #ff1f1f
+      --box-shadow-color #ab3c3c
       background-color #FF5252
 
