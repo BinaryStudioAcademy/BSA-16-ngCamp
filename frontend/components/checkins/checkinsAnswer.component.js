@@ -1,8 +1,9 @@
 ﻿import './checkinsStyles.styl';
 
 class CheckinsAnswerController {
-    constructor(httpGeneral) {
+    constructor(httpGeneral, $location) {
         this.httpGeneral = httpGeneral;
+        this.location = $location;
         this.body = '';
         this.question = '';
         this.answerIndex;
@@ -38,13 +39,15 @@ class CheckinsAnswerController {
             }
         }).then(function(res) {
             //console.log(res);
-            // vm.location.path('/checkins');
+            vm.location.path('/checkins');
         });
     }
 }
 
 CheckinsAnswerController.$inject = [
-        'httpGeneral'
+        'httpGeneral',
+        '$location'
+
 ];
 
 const checkinsAnswerComponent = {
