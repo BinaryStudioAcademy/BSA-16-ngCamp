@@ -28,7 +28,7 @@ class httpGeneral {
             throw "HTTP REQUEST EROR: REQUEST ULR IS ABSENT";
 
         } else {
-            if (object.url.indexOf('/profile/user/getByCentralId/') === -1) {
+            if (object.url.indexOf('/profile/user/getByCentralId/') === -1 && object.url.indexOf('team.binary-studio.com') === -1) {
                 if (object.url[0] === '/') object.url = '.' + object.url;
                 else object.url = './' + object.url;
             }
