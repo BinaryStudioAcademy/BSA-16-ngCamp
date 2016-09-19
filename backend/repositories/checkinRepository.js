@@ -21,6 +21,7 @@ CheckinRepository.prototype.getAnswersById = getAnswersById;
 CheckinRepository.prototype.findCheckinsByFrequency = findCheckinsByFrequency;
 CheckinRepository.prototype.findCheckinsByAnswerDate = findCheckinsByAnswerDate;
 CheckinRepository.prototype.getQuestionsByProject = getQuestionsByProject;
+CheckinRepository.prototype.getCheckinsByProjectAndUser = getCheckinsByProjectAndUser;
 
 
 
@@ -36,6 +37,27 @@ function getByIdWithParticipants(id, callback) {
     query.exec(callback);
 }
 
+function getCheckinsByProjectAndUser(userId,projectId, callback) {
+    var query = Checkin.aggregate(
+        {$match: {
+            project: new ObjectId(projectId),
+            participants: new ObjectId(userId)
+            }
+        },
+        {$project: {
+            // _id: 0,
+            question: 1,
+            answers:  {
+                $filter: {
+                    input: "$answers",
+                    as: "ans",
+                    cond: { $eq: [ '$$ans.user', new ObjectId(userId) ]}
+                    }
+                }
+            }
+        });
+    query.exec(callback);
+}
 
 
 function getByAnswerToken(id, token, callback) {
