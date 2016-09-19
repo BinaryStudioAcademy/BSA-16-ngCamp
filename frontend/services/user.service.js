@@ -37,6 +37,16 @@ class UserService {
 			return data;
 		});
 	}
+	setAvatars(ctrlArray, exteranlArray) {
+		let result = [];
+		for (let i = 0; i < ctrlArray.length; i++) {
+			for (let j = 0; j < exteranlArray.length; j++) {
+				if (ctrlArray[i].email === exteranlArray.email) {
+					ctrlArray[i].avatar = exteranlArray.avatar;
+				}
+			}
+		}
+	}
 }
 
 UserService.$inject = ['httpGeneral'];

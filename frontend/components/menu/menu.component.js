@@ -1,7 +1,7 @@
 import './menuStyles.styl';
 
 class MenuComponentController {
-    constructor(httpGeneral,$location,$rootRouter,$scope,$rootScope) {
+    constructor(httpGeneral, $location, $rootRouter, $scope, $rootScope) {
         this.http = httpGeneral;
         this.disabled = true;
         this.location = $location;
@@ -14,25 +14,25 @@ class MenuComponentController {
     }
 
 
-    $onInit(){
+    $onInit() {
 
         let self = this;
 
         self.getProjectsInfo();
 
-        self.scope.$on('menuReload', function(){
+        self.scope.$on('menuReload', function() {
             self.getProjectsInfo();
         });
 
     }
 
 
-    getProjectsInfo(){
+    getProjectsInfo() {
         let self = this;
 
-        if (!window._injectedData.currentProject){
+        if (!window._injectedData.currentProject) {
             self.disabled = false;
-        }else{
+        } else {
             self.disabled = true;
         };
 
@@ -44,47 +44,53 @@ class MenuComponentController {
         self.http.sendRequest(userReq).then(function(res) {
             self.userProjects = res;
         });
-        
+
         self.http.sendRequest({
-            type:"GET",
-            url:`api/projects/${window._injectedData.currentProject}/isAdmin/${window._injectedData.userId}`
+            type: "GET",
+            url: `api/projects/${window._injectedData.currentProject}/isAdmin/${window._injectedData.userId}`
         }).then(function(res) {
             console.log(res);
-            window._injectedData.isSettingsEdit = res.isSettingsEdit;
-            self.checkinsAccess = res.isCheckinEdit;
-            window._injectedData.isReports = res.isReports;
-            self.checkinsAccess = res.isReports;
-            window._injectedData.isCheckinEdit = res.isCheckinEdit;
+            if (!res) {
+                window._injectedData.isSettingsEdit = false;
+                window._injectedData.isReports = false;
+                window._injectedData.isCheckinEdit = false;
+            } else {
+                window._injectedData.isSettingsEdit = res.isSettingsEdit;
+                self.checkinsAccess = res.isCheckinEdit;
+                window._injectedData.isReports = res.isReports;
+                self.checkinsAccess = res.isReports;
+                window._injectedData.isCheckinEdit = res.isCheckinEdit;
+            }
         });
     }
 
 
-    showMenu(){
-    	let x = document.getElementById("side-menu");
-    	if (x.className === "side-menu") {
-        	x.className += " show";
-    	} else {
-          	x.className = "side-menu";
-    	}
-    } 
+    showMenu() {
+        let x = document.getElementById("side-menu");
+        if (x.className === "side-menu") {
+            x.className += " show";
+        } else {
+            x.className = "side-menu";
+        }
+    }
 
-    hideMenu(){
+    hideMenu() {
         let x = document.getElementById("side-menu");
         x.className += "hide";
     }
 
-    hoverOut(){
+    hoverOut() {
         let self = this;
         self.rootScp.$broadcast('mouseOut');
     }
-    hoverIn(){
+    hoverIn() {
         let self = this;
         self.rootScp.$broadcast('mouseIn');
     }
 
     setProject(projId) {
         let self = this;
-        if(projId === window._injectedData.currentProject){
+        if (projId === window._injectedData.currentProject) {
             return false;
         };
         window._injectedData.currentProject = projId;
@@ -110,8 +116,8 @@ class MenuComponentController {
             }
         });
         self.http.sendRequest({
-            type:"GET",
-            url:`api/projects/${window._injectedData.currentProject}/isAdmin/${window._injectedData.userId}`
+            type: "GET",
+            url: `api/projects/${window._injectedData.currentProject}/isAdmin/${window._injectedData.userId}`
         }).then(function(res) {
             self.checkinsAccess = res.isCheckinEdit;
             window._injectedData.isReports = res.isReports;
@@ -121,12 +127,12 @@ class MenuComponentController {
         self.showMenu();
     }
 
-    projEq(id){
+    projEq(id) {
         return (id === window._injectedData.currentProject);
     }
 }
 
-MenuComponentController.$inject = ["httpGeneral","$location","$rootRouter","$scope", '$rootScope'];
+MenuComponentController.$inject = ["httpGeneral", "$location", "$rootRouter", "$scope", '$rootScope'];
 
 const menuComponent = {
     controller: MenuComponentController,
