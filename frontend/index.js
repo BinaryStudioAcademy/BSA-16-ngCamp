@@ -23,7 +23,7 @@ app.run(function($cookies, $rootScope, jwtHelper, httpGeneral) {
 			if (res && res.avatar) {
 				$rootScope.avatar = {
 					real: res.avatar.urlAva ? res.avatar.urlAva : '',
-					small: res.avatar.thumbnailUrlAva ? res.avatar.thumbnailUrlAva : '';
+					small: res.avatar.thumbnailUrlAva ? res.avatar.thumbnailUrlAva : ''
 				};
 			}
 		});
