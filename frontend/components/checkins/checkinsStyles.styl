@@ -1,43 +1,34 @@
 @import "../../../public/libs/css/generalComponentsStyle.styl"
 .checkins-wrapper
-    display flex
-    justify-content center
+    main-component()
+    min-width 400px
+    width 100%
+    text-align justify
+    padding 1em
+    //display flex
+    //justify-content center
     div.checkins-container
-        width 1024px
-        main-component()
+        //width 100%
+        //main-component()
         .header-title
-            display flex
-            align-items center
-            justify-content center
-            flex-wrap wrap
-            color #212121
-            font-size 1.8em
-            font-family "Montserrat"
+            //display flex
+            //align-items center
+            //justify-content center
+            //flex-wrap wrap
+            //color #212121
+            //font-size 1.8em
+            //font-family "Montserrat"
             h1
-                width 100%
-                margin-bottom 0
-            &:after
-                content ''
-                height 1px
-                margin-top 0.3em
-                width 80%
-                display block
-                background-image -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-                background-image    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-                background-image     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-                background-image      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+                header-style()
         .header-button
-            margin 30px 0
+            margin 5px 0
             button
                 button()
                 font-family "Montserrat"
-                line-height 32.406px
-                font-size 1.8em
-                border none
-                width 230px
-                outline none
-                white-space nowrap
-
+                font-size 24px
+                padding 15px 40px
+                --box-shadow-color #004D40
+                background-color #2e8f35
         li
             list-style none
 
@@ -51,9 +42,9 @@
 
         section
             font-size 18px
-            border 1px solid #35a720
+            //border 1px solid #35a720
             border-radius 10px
-            background #f5f5f5
+            background #dadfe1
             overflow hidden
             & > label
                 line-height 2em
@@ -147,7 +138,7 @@
             font-size 21px
 
         ul.main
-            margin-top -20px
+            margin-top -50px
             text-align center //or justify
 
         .question

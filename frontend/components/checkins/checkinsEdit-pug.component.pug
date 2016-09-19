@@ -3,13 +3,12 @@
         .header-setup
             .close-btn
                 a(ng-link='["Checkins List"]')
-                    .fa.fa-close.fa-2x.button
+                    i.fa.fa-close
             h3 What question do you want to ask?
             input.question(type='text', ng-model="CheckEd.question" placeholder='Type your question...')
         .main-setup
             h3 Who do you want to ask?
-            section.use-button
-                div(ng-click='CheckEd.toggleAll()') Ask all
+            button(ng-click='CheckEd.toggleAll()') Ask all
             ul.user-list
                 li.list(ng-repeat="part in CheckEd.participants track by $index")
                     label.checkbox(ng-click="CheckEd.toggleChekin()")
@@ -24,8 +23,7 @@
                 select#schedule-second(ng-model='CheckEd.selectedTime', ng-options='item for item in CheckEd.time',
                 ng-selected='CheckEd.time[0]')
 
-                div.use-button
-                    div.save-button(ng-click="CheckEd.save()" ng-link='["Checkins List"]') Save
+                button(ng-click="CheckEd.save()" ng-link='["Checkins List"]') Save
 
                 //a(ng-click="CheckEd.save()" )
                 //    i.fa.fa-floppy-o.fa-3x
