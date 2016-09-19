@@ -3,8 +3,6 @@ var repo = require('../../repositories/checkinRepository');
 var getToken = require('./generateToken');
 var tokenRepo = require('./tokens');
 
-
-
 function scheduleCheckinsByFrequency(frequency, time){
     repo.findCheckinsByFrequencyAndTime(frequency, time, function (err, checkins) {
         checkins.forEach(function (checkin) {
