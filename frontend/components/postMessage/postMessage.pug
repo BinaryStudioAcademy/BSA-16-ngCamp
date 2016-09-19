@@ -1,9 +1,5 @@
-section.post-message-wrapper
-  header
-    h2 Post message
-    div.fa.fa-close(ng-link='["MsgBoard"]')
-      //img(ng-link='["MsgBoard"]', align='top', src='https://cdn3.iconfinder.com/data/icons/simple-files-1/128/No-128.png', alt='exit')
-  hr
+.post-messageWrapper
+  h1.header Post message
   form(name="message",novalidate)
     h1 Title
     input(name="title",type="text",ng-model="postCtrl.title",required,ng-minlength="3" ng-maxlength="30")
@@ -25,7 +21,7 @@ section.post-message-wrapper
     //    option(value='draft2') draft2
     //    option(value='draft3') draft3
     .buttons
-      div.sendBtn
-        button(ng-click="postCtrl.draft(message.$valid)") Save as Draft
+      //- div.sendBtn
+      //-   button(ng-click="postCtrl.draft(message.$valid)") Save as Draft
       div.sendBtn
         button(ng-click="postCtrl.post(message.$valid)") Post
