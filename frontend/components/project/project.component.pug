@@ -1,8 +1,7 @@
 user-list(user-data = 'proj.users', select-callback = 'proj.onUserSelect', parent-scope='proj', ng-if='proj.userListFlag',is-showed = "proj.userListFlag")
 user-list(user-data = 'proj.users', select-callback = 'proj.onAdminSelect', parent-scope='proj', ng-if='proj.adminListFlag',is-showed = "proj.adminListFlag")
 .projectwrapper
-  .row.center-xs
-    .main.col-xs-12
+    .main
       h1 Project Settings
       form(name='projectEdit',ng-if="proj.currentProjectId!=''",novalidate).row.center-xs
         //-  --------------------------------------------vv-------------------------------TITLE CELL----------------
