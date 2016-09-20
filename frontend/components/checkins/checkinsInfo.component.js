@@ -8,6 +8,7 @@ class CheckinsInfoComponentController {
         this.checkin = null;
         this.answers = [];
         this.groupedAsnwers = {};
+        this.userService = userService;
         this.iter = [];
         this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
