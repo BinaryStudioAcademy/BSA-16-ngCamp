@@ -1,7 +1,7 @@
 import './messageBoard.styl';
 
 class messageBoardController {
-    constructor(httpGeneral, $location, $window,$rootRouter) {
+    constructor(httpGeneral, $location, $window,$rootRouter,$sce) {
         this.httpGeneral = httpGeneral;
         this.location = $location;
         this.window = $window;
@@ -9,6 +9,7 @@ class messageBoardController {
         this.isBigText = false;
         this.rootRouter = $rootRouter;
         this.isAdmin = false;
+        this.sce=$sce;
     }
     $onInit() {
         let self = this;
@@ -66,9 +67,13 @@ class messageBoardController {
         if (message.author._id === window._injectedData.userId) ans = true; 
         return ans;
     }
+    trustAsHtml(string){
+        let self = this;
+        return self.sce.trustAsHtml(string);
+    }
 }
 
-messageBoardController.$inject = ['httpGeneral', '$location', '$window','$rootRouter'];
+messageBoardController.$inject = ['httpGeneral', '$location', '$window','$rootRouter','$sce'];
 
 const messageBoardComponent = {
     controller: messageBoardController,

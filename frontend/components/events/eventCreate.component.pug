@@ -1,38 +1,47 @@
 user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', parent-scope='$ctrl', ng-if='$ctrl.userListFlag',is-showed = "$ctrl.userListFlag")
-.eventsEdit-wrapper
-  .row.center-xs
-    .main.col-xs-7
-      .head
-        h1 Event name
-        i.fa.fa-times.fa-2x(aria-hidden='true',ng-click="$ctrl.location.path('/events')")
+.eventsEditWrapper
+    h1.header Event name
+      .return-btn(ng-link='["Events List"]')
+        i.fa.fa-arrow-left
+        a
+          span return
+
+
+    .main
       form(name='editEvent',novalidate)
         .title
-          input(name="title",type="text",ng-model="$ctrl.title",required,ng-minlength="3" ng-maxlength="30")
-          p(ng-show="editEvent.title.$invalid" class="help-block") Title is required.
-          p(ng-show="editEvent.title.$error.minlength" class="help-block") Title is too short.
-          p(ng-show="editEvent.title.$error.maxlength" class="help-block") Title is too long.
+          input(name="title",type="text",ng-model="$ctrl.title",required,ng-minlength="3" ng-maxlength="30",autocomplete="off",placeholder="Event title")
+          .invalid_info
+            p(ng-show="editEvent.title.$invalid && $ctrl.invalidForm") Title is required.
+            p(ng-show="editEvent.title.$error.minlength && $ctrl.invalidForm") Title is too short.
+            p(ng-show="editEvent.title.$error.maxlength && $ctrl.invalidForm") Title is too long.
+
+
+
         .date
-          .dataPicker
-            h1 Start Date
+          .datecell
+            h2 Start Date:
             .picker
-              input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.date', is-open='$ctrl.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.date}}")
-              a.btn.btn-default(type='button', ng-click='$ctrl.open()')
+              .day(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.date', is-open='$ctrl.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.date}}") {{$ctrl.date| date: 'fullDate'}}
+              a(ng-click='$ctrl.open()') 
                 i.fa.fa-calendar(aria-hidden='true')
-            .picker
               .time(uib-timepicker,ng-model='$ctrl.date',ng-change="changed()",hour-step="1" minute-step="1",show-meridian = 'false',show-spinners="false")
-            h1 End Date
+          .datecell
+            h2 End Date:
             .picker
-              input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.endDate', is-open='$ctrl.popup1.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.endDate}}")
-              a.btn.btn-default(type='button', ng-click='$ctrl.open1()')
+              .day(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.endDate', is-open='$ctrl.popup1.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.endDate}}") {{$ctrl.endDate| date: 'fullDate'}}
+              a(ng-click='$ctrl.open1()')
                 i.fa.fa-calendar(aria-hidden='true')
-            .picker
               .time(uib-timepicker,ng-model='$ctrl.endDate',ng-change="changed()",hour-step="1" minute-step="1",show-meridian = 'false',show-spinners="false")
-        h1 Description
-        input(ckeditor,type="text",name="text" , cols='25', rows='10',ng-model = "$ctrl.desc",required,ng-minlength="10" ng-maxlength="300")
-        hr
-        p(ng-show="editEvent.text.$invalid" class="help-block") Description is required.
-        p(ng-show="editEvent.text.$error.minlength" class="help-block") Description is too short.
-        p(ng-show="editEvent.text.$error.maxlength" class="help-block") Description is too long.
+
+
+
+        .eventDescription
+          .eventEditor(ui-tinymce="$ctrl.tinyOptions",ng-model="ctrl.desc", ng-class = "{'placeholder': !ctrl.desc.length}")
+          .invalid_info
+            p(ng-show="editEvent.text.$invalid && $ctrl.invalidForm") Title is required.
+            p(ng-show="editEvent.text.$error.minlength && $ctrl.invalidForm") Title is too short.
+            p(ng-show="editEvent.text.$error.maxlength && $ctrl.invalidForm") Title is too long.
         .participants
           button.addButton(ng-click = '$ctrl.userListFlag = true')
             i.fa.fa-plus(aria-hidden='true')
