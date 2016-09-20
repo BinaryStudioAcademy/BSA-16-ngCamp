@@ -1,9 +1,10 @@
 import "./commentsStyle.styl";
 
 class tasksCommentsComponentController {
-    constructor(httpGeneral, $window, popupNotifications) {
+    constructor(httpGeneral, $window, popupNotifications, userService) {
         this.httpGeneral = httpGeneral;
         this.popupNotification = popupNotifications;
+        this.userService = userServices;
         this.comments = [];
         this.taskId;
     }
@@ -12,7 +13,7 @@ class tasksCommentsComponentController {
         self.backLink = 'TasksList';
         self.taskId = next.params.id;
         let async = require('async');
-        
+
         async.waterfall([
             function(callback) {
                 self.userService.getExternalUsersData().then(function(data) {
@@ -53,14 +54,6 @@ class tasksCommentsComponentController {
                 });
             }
         ]);
-        // self.httpGeneral.sendRequest({
-        //     type: "GET",
-        //     url: `api/task/${next.params.id}/comments`,
-        // }).then(function(res) {
-        //     if (res === undefined) {
-        //         console.log("No comments for this task");
-        //     } else self.comments = res.comments;
-        // });
     }
     sendComment(valid) {
         let self = this;
@@ -90,7 +83,7 @@ class tasksCommentsComponentController {
     }
 }
 
-tasksCommentsComponentController.$inject = ['httpGeneral', '$window', 'popupNotifications'];
+tasksCommentsComponentController.$inject = ['httpGeneral', '$window', 'popupNotifications', 'UserService'];
 
 const tasksCommentsComponent = {
     controller: tasksCommentsComponentController,

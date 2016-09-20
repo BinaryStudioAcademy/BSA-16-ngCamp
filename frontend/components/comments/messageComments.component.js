@@ -3,10 +3,11 @@ import "./commentsStyle.styl";
 
 
 class messageCommentsComponentController {
-    constructor(httpGeneral, $window, popupNotifications) {
+    constructor(httpGeneral, $window, popupNotifications, userService) {
         this.httpGeneral = httpGeneral;
         this.window = $window;
         this.popupNotifications = popupNotifications;
+        this.userService = userService;
         this.messageId;
         this.comments = [];
         this.myComment;
@@ -57,12 +58,6 @@ class messageCommentsComponentController {
                 });
             }
         ]);
-        // self.httpGeneral.sendRequest({
-        //     type: "GET",
-        //     url: `api/messages/${next.params.id}/comments`,
-        // }).then(function(res) {
-        //     self.comments = res.comments;
-        // });
     }
     sendComment(valid) {
         let self = this;
@@ -92,7 +87,7 @@ class messageCommentsComponentController {
     }
 };
 
-messageCommentsComponentController.$inject = ['httpGeneral', '$window', 'popupNotifications'];
+messageCommentsComponentController.$inject = ['httpGeneral', '$window', 'popupNotifications', 'UserService'];
 
 const messageCommentsComponent = {
     controller: messageCommentsComponentController,
