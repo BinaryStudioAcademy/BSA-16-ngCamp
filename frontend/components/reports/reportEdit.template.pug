@@ -50,10 +50,16 @@
                             hr
                             .row.generate-item-header.middle-xs
                                 .col-xs-2.gen-title Date:
-                                .col-xs-2.center-xs From:
-                                input(type="date" ng-model='reportEdit.dateRange[0]').col-xs-3
-                                .col-xs-1.col-xs-1.center-xs To:
-                                input(type="date" ng-model='reportEdit.dateRange[1]').col-xs-3
+                                .col-xs-2.center-xs.gen-title From:
+                                .col-xs-3
+                                    .row.middle-xs.date-holder
+                                        input.col-xs-10(type="text",uib-datepicker-popup='dd/MM/yyyy',is-open = 'reportEdit.popupDate1' ng-change='reportEdit.refreshDate()' ng-model='reportEdit.dateRange[0]' readonly="readonly")
+                                        i.col-xs-1.col-xs-offset-1.fa.fa-calendar(ng-click = 'reportEdit.popupDate1=!reportEdit.popupDate1')
+                                .col-xs-1.col-xs-1.center-xs.gen-title To:
+                                .col-xs-3
+                                    .row.middle-xs.date-holder
+                                        input.col-xs-10(type="text",uib-datepicker-popup='dd/MM/yyyy',is-open = 'reportEdit.popupDate2',ng-model='reportEdit.dateRange[1]' datepicker-options='reportEdit.dateOpt' readonly="readonly") 
+                                        i.col-xs-1.col-xs-offset-1.fa.fa-calendar(ng-click = 'reportEdit.popupDate2=!reportEditS.popupDate2')
                             hr
                     .row.center-xs
                         span.button.btn.col-xs-5(ng-click='reportEdit.reportGenerate()') Generate
