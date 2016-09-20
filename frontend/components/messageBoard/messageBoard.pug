@@ -17,9 +17,9 @@
 							h3(ng-link='["EditMessage",{id:message._id}]') {{message.title}}
 						h3(ng-if="!msgBoard.isAuthor(message) && !msgBoard.isAdmin") {{message.title}}
 						.main
-							p(ng-if = "!message.isBigText",ng-bind-html="message.description")
-							p(ng-if = "message.isBigText",ng-bind-html="message.firstPart",id = "firstPart")
-							p(ng-if = "message.showFull",ng-bind-html="message.secondPart",id = "secondPart")
+							p(ng-if = "!message.isBigText",ng-bind-html="msgBoard.trustAsHtml(message.description)")
+							p(ng-if = "message.isBigText",ng-bind-html="msgBoard.trustAsHtml(message.firstPart)",id = "firstPart")
+							p(ng-if = "message.showFull",ng-bind-html="msgBoard.trustAsHtml(message.secondPart)",id = "secondPart")
 							a(ng-if="!message.showFull && message.description.length > 300",ng-click="msgBoard.showText($index)") ...
 						a.clicktohide(ng-click="msgBoard.hideText($index)",ng-if="message.showFull") Hide
 				.use-button

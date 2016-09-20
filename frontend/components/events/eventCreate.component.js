@@ -14,7 +14,8 @@ class eventEditController {
         this.participants = [];
         this.participantsSet = new Set();
         this.users;
-         this.popup = {
+        this.invalidForm = false;
+        this.popup = {
             opened: false
         };
          this.popup1 = {
@@ -23,6 +24,14 @@ class eventEditController {
         this.today;
         this.userToAdd;
         this.userListFlag = false;
+        this.tinyOptions = {
+            inline: true,
+            theme: 'inlite',
+            plugins: 'image link paste contextmenu textpattern autolink lists',
+            insert_toolbar: false,
+            selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | bullist numlist outdent indent',
+            selector: '.descEditor'
+        };
     }
     $onInit(){
     	let self = this;
@@ -71,6 +80,7 @@ class eventEditController {
         	self.location.path('/events');
         });
         } else{
+            self.invalidForm = true;
             self.popupNotifications.notifyError("Please enter info correctly");
         }
     }
