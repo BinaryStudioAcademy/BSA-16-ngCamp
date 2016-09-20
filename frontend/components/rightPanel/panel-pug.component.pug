@@ -1,5 +1,5 @@
 
-div#chlist(ng-repeat="day in rpanel.dailyCheckinsList  | limitTo:35:1 | filter: rpanel.dayFilter() | orderBy:'-' track by $index ") <h2 class="checkin_day", ng-if="day.checkins.length!=0">{{day.day.year}}/{{day.day.month}}/{{day.day.date}}</h2><h2 class="checkin_day", ng-if="day.checkins.length==0">There are no check-in`s for this day</h2>
+div#chlist(ng-repeat="day in rpanel.dailyCheckinsList  | limitTo:35:1 | filter: rpanel.dayFilter() | orderBy:'-' track by $index ") <h2 class="checkin_day", ng-if="day.checkins.length!=0">{{day.day.year}}/{{day.day.month}}/{{day.day.date}}</h2><h2 class="checkin_day", ng-if="day.checkins.length==0">There are no check-ins for this day</h2>
     ul.checkinsList(ng-repeat="checkin in day.checkins") <h2 class="checkin_title">{{checkin.question}}</h2>
         li(ng-repeat="answer in checkin.answers | filter:{ answer: '!noAnswer'}") 
              .answer <span class="user_name">{{answer.user.firstName + ' '+ answer.user.lastName }} (<span class="creation_date">{{answer.editedDate | date: "HH:mm"}}</span>)</span>  <span class="answer_text" ng-bind-html='answer.answer'></span>             
