@@ -41,12 +41,12 @@ class eventsCommentsComponentController {
                             self.comments = res.comments;
 
                             if (self.externalUsersData && self.externalUsersData.length && self.comments && self.comments.length) {
-                                for (var i = 0; i < self.comments.lengthl i++) {
+                                for (let i = 0; i < self.comments.length; i++) {
                                     if (self.comments[i].author && self.comments[i].author.email) {
-                                        var user = self.userService.getUserByEmail(self.comments[i].author.email, self.externalUsersData);
+                                        let user = self.userService.getUserByEmail(self.comments[i].author.email, self.externalUsersData);
                                         if (user.avatar) {
                                             if (user.avatar.thumbnailUrlAva) self.comments[i].author.avatar = user.avatar.thumbnailUrlAva;
-                                            else(user.avatar.urlAva) self.comments[i].author.avatar = user.avatar.urlAva;
+                                            else if (user.avatar.urlAva) self.comments[i].author.avatar = user.avatar.urlAva;
                                         }
                                     }
                                 }
