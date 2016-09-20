@@ -15,6 +15,7 @@ class CheckinsListComponentController {
             function(callback) {
                 self.userService.getExternalUsersData().then(function(data) {
                     self.externalUsersData = data;
+                    console.log('externalUsersData', self.externalUsersData);
                     callback(null, data);
                 });
             },
@@ -30,9 +31,9 @@ class CheckinsListComponentController {
                         for (let i = 0; i < res.length; i++) {
                             self.userService.setAvatars(res[i].participants, self.externalUsersData);
                         }
-                        console.log('result:', res);
-                        callback(null, null);
                     }
+                    console.log('result:', res);
+                    callback(null, null);
                 });
             }
         ]);
