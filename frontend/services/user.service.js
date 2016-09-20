@@ -55,12 +55,18 @@ class UserService {
 			let found = false;
 			for (let j = 0; j < externalArray.length; j++) {
 				if (ctrlArray[i].email === externalArray[j].email) {
-					if (!externalArray[j].avatar || !externalArray[j].avatar.urlAva || externalArray[j].avatar.urlAva.toLowerCase().indexOf('unknown') !== -1) break;
-					ctrlArray[i].avatar = externalArray[j].avatar.urlAva;
-					found = true;
+					if (!externalArray[j].avatar || externalArray[j].avatar.urlAva.toLowerCase().indexOf('unknown') !== -1) break;
+					if (externalArray[j].avatar.thumbnailUrlAva) {
+						ctrlArray[i].avatar = externalArray[j].avatar.thumbnailUrlAva;
+						found = true;
+					} else if (externalArray[j].avatar.urlAva) {
+						ctrlArray[i].avatar = externalArray[j].avatar.urlAva;
+						found = true;
+					}
 					break;
 				}
 			}
+			thumbnailUrlAva
 			if (!found) {
 				ctrlArray[i].shortName = '';
 				if (ctrlArray[i].firstName) ctrlArray[i].shortName += ctrlArray[i].firstName[0].toUpperCase();
