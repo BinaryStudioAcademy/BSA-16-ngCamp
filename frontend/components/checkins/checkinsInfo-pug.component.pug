@@ -14,7 +14,7 @@
                         i.fa.fa-close
             h2 {{chInfo.checkin.question}}
             .user-list
-                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
+                 .user-item(ng-repeat="partagenosse in chInfo.checkin.participants track by $index")
                     img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
                     span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
 
