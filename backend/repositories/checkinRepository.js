@@ -96,6 +96,7 @@ function getAll(callback) {
 function findCheckinsByFrequencyAndTime(freq, time, callback) {
     var query = Checkin.find({
         frequency: {$regex: freq },
+        isTurnedOn: true,
         time: time
     }).populate('project');
     query.exec(callback);
