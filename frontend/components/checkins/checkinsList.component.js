@@ -28,12 +28,11 @@ class CheckinsListComponentController {
                         if (res[check].project === window._injectedData.currentProject) {
                             self.checkIns.push(res[check]);
                         }
-                        for (let i = 0; i < res.length; i++) {
-                            if (!self.externalUsersData) self.userService.setUsersShortNames(res[i].participants);
-                            else self.userService.setAvatars(res[i].participants, self.externalUsersData);
-                        }
                     }
-                    console.log('result:', res);
+                    for (let i = 0; i < res.length; i++) {
+                        if (!self.externalUsersData) self.userService.setUsersShortNames(res[i].participants);
+                        else self.userService.setAvatars(res[i].participants, self.externalUsersData);
+                    }
                     callback(null, null);
                 });
             }
