@@ -53,9 +53,7 @@ class messageBoardController {
                                         if (extUsrData.avatar.thumbnailUrlAva) res[msg].author.avatar = extUsrData.avatar.thumbnailUrlAva;
                                         else if (extUsrData.avatar.urlAva) res[msg].author.avatar = extUsrData.avatar.thumbnailUrlAva;
                                         else {
-                                            res[msg].author.shortName = '';
-                                            if (res[msg].author.firstName) res[msg].author.shortName += res[msg].author.firstName[0].toUpperCase();
-                                            if (res[msg].author.firstName) res[msg].author.shortName += res[msg].author.firstName[0].toUpperCase();
+                                            res[msg].author.avatar = './img/person.gif';
                                         }
                                     }
                                 }
