@@ -1,37 +1,122 @@
 @import "../../../public/libs/css/generalComponentsStyle.styl"
 .post-messageWrapper
     main-component()
+    min-width 400px
     .header
         header-style()
-    input
-        width 100%
-        font-size 25px
-
-    .input-block
-        margin-left 15%
-        margin-bottom 50px
-        textarea
-            width 70%
-            font-size 1.6em
-            resize none
-            font-family "Open Sans"
-        .img-block
-            width 8%
+        @media only screen  and (max-width : 430px), screen and (max-device-width: 430px)
+            text-align right
+        position relative
+        .return-btn
+            cursor pointer
+            display flex
+            align-items center
             position absolute
-            left 74.5%
-            img
-                width 64%
-                margin-left 18%
-        div
-            background-color #ffcc80
-            width 71%
-            text-align center
-    .draft-post
-        select
-            font-size 1.6em
-            width 25%
-            margin-left 10%
-            margin-right 14%
+            font-size 20px
+            top 0
+            left 15%
+            i
+                font-size 48px
+                color #337ab7
+            a
+                text-decoration none
+                margin-left 10px
+            @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+                left 10%
+                a
+                    display none
+            @media only screen  and (max-width : 550px), screen and (max-device-width: 550px)
+                left 0
+            
+    input
+        outline none
+        border none
+        border-radius 4px
+        background-color disable-input
+        border-bottom 4px solid border-color
+        width 80%
+        font-size 25px
+        padding 5px
+        display block
+        color text-input
+        text-align center
+        margin 50px auto 5px
+        &:focus
+            background-color active-input
+        &:focus::-webkit-input-placeholder
+            color transparent
+        &:focus::-moz-placeholder
+            color transparent
+        &:focus:-ms-input-placeholder
+            color transparent
+        &:focus:-moz-placeholder
+            color transparent
+        @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+            width 90%
+        @media only screen  and (max-width : 550px), screen and (max-device-width: 550px)
+            width 100%
+    .invalid_info
+        width 80%
+        margin 0 auto 30px
+        min-height 20px
+        cursor pointer
+        &:hover
+            p
+                opacity 1
+        @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+            width 90%
+        @media only screen  and (max-width : 550px), screen and (max-device-width: 550px)
+            width 100%
+        p
+            transition opacity 0.3s ease-out
+            display inline-block
+            margin 0 7px
+            opacity 0.5
+            color #e57373
+        
+
+    .mesgDescription
+        width 80%
+        @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+            width 90%
+        @media only screen  and (max-width : 550px), screen and (max-device-width: 550px)
+            width 100%
+        margin 15px auto 5px
+        position relative
+        .mesgEditor
+            width 100%
+            text-align left
+            padding 2em
+            font-size 1.3em
+            min-height 150px
+            font-family "Montserrat"
+            background-color disable-input
+            border-radius 12px
+            color text-input
+            border-bottom 4px solid border-color
+            outline none
+            &.placeholder
+                &:after
+                    display block
+            &:focus
+                background-color active-input
+                &:after
+                    display none
+
+            &:after
+                content 'Your message'
+                position absolute
+                top 50%
+                left 50%
+                font-size 1.3em
+                pointer-events none
+                display none
+                color gray
+                font-family "Montserrat"
+                opacity 0.7
+                transform translateX(-50%) translateY(-50%)
+            
+        
     .buttons
         display flex
         flex-direction row

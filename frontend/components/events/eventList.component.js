@@ -1,12 +1,13 @@
 import './eventsStyles.styl';
 
 class EventListComponentController {
-	constructor(httpGeneral, $location) {
+	constructor(httpGeneral, $location,$sce) {
 		this.httpGeneral = httpGeneral;
 		this.location = $location;
 		this.dtfrom = new Date();
 		this.dtto = new Date();
 		this.events = [];
+		this.sce = $sce;
 		this.userEvents = [];
 		this.popup1 = {
 			opened: false
@@ -17,6 +18,11 @@ class EventListComponentController {
 		};
 		this.participants = [];
 		this.isAdmin = false;
+	}
+
+	trustAsHtml(string){
+		let self = this;
+		return self.sce.trustAsHtml(string);
 	}
 
 	getDate(event){
@@ -94,7 +100,7 @@ class EventListComponentController {
 	}
 }
 
-EventListComponentController.$inject = ['httpGeneral', '$location'];
+EventListComponentController.$inject = ['httpGeneral', '$location','$sce'];
 
 const eventListComponent = {
 	controller: EventListComponentController,

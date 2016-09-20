@@ -36,7 +36,7 @@
                             h2(ng-if="!vm.isAuthor(event) && !vm.isAdmin") {{event.title}}
 
                     .event-body
-                        p(ng-bind-html="event.description")
+                        p(ng-bind-html="vm.trustAsHtml(event.description)")
                     .date
                         span.datelable Date:
                         span.eventDate {{vm.getDate(event)}}

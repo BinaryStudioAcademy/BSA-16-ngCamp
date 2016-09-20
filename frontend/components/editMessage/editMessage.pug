@@ -1,34 +1,22 @@
-section.post-message-wrapper
-  .header-setup
-    .return-btn
+.edit-message-wrapper
+  h1 Edit message
+    .return-btn(ng-link='["MsgBoard"]')
       i.fa.fa-arrow-left
-      a(ng-link='["MsgBoard"]')
-        span Discard my changes
-
-      //div.fa.fa-close(ng-link='["MsgBoard"]')
-      //img(ng-link='["MsgBoard"]', align='top', src='https://cdn3.iconfinder.com/data/icons/simple-files-1/128/No-128.png', alt='exit')
-  hr
+      a
+        span return
   form(name="message",novalidate)
-    //h3 Title
-    input(name="title",type="text",ng-model="editCtrl.draft.title",required,ng-minlength="3" ng-maxlength="30")
-    p(ng-show="message.title.$invalid" class="help-block") Title is required.
-    p(ng-show="message.title.$error.minlength" class="help-block") Title is too short.
-    p(ng-show="message.title.$error.maxlength" class="help-block") Title is too long
-    //h3 Description
-    input(ckeditor,type="text",name="text" , cols='30', rows='10',ng-model="editCtrl.draft.description",required,ng-minlength="10" ng-maxlength="600")
-    hr
-    p(ng-show="message.text.$invalid" class="help-block") Description is required.
-    p(ng-show="message.text.$error.minlength" class="help-block") Description is too short.
-    p(ng-show="message.text.$error.maxlength" class="help-block") Description is too long.
-      //form#uploadForm(action='/postMessage', method='post', enctype='multipart/form-data')
-      //        input(type='file', name='message')
-      //        input(type='submit', value='Upload')
-    //section.draft-post
-    //  select(name='drafts')
-    //    option(value='draft1') draft1
-    //    option(value='draft2') draft2
-    //    option(value='draft3') draft3
-    .sendButtons
-      div.postBtn(ng-click="editCtrl.edit(message.$valid)") Save
+    input(name="title",type="text",ng-model="editCtrl.draft.title",placeholder="Message title",required,ng-minlength="3", ng-maxlength="30",autocomplete="off")
+    .invalid_info
+      p(ng-show="message.title.$invalid && editCtrl.invalidForm && !message.title.$error.minlength && !message.title.$error.maxlength") Title is required.
+      p(ng-show="message.title.$error.minlength && editCtrl.invalidForm") Title is too short.
+      p(ng-show="message.title.$error.maxlength && editCtrl.invalidForm") Title is too long
+    .mesgDescription
+      .mesgEditor(ui-tinymce="editCtrl.tinyOptions",ng-model="editCtrl.draft.description", ng-class = "{'placeholder': !editCtrl.draft.description}")
+    .invalid_info
+      p(ng-show="message.content.$invalid && editCtrl.invalidForm") Message is required;
+      p(ng-show="message.content.$error.minlength && edit.invalidForm") Message is too short;
+      p(ng-show="message.content.$error.maxlength && edit.invalidForm") Message is too long; 
+    .saveBtn
+      button(ng-click="editCtrl.edit(message.$valid)") Save
       //div.postBtn(ng-if="editCtrl.draft.isDraft",ng-click="editCtrl.postDraft(message.$valid)") Post on message board
-      button.delete(ng-click="editCtrl.delete()",ng-if="editCtrl.draft.author === editCtrl.window._injectedData.userId") Delete
+      //- button.delete(ng-click="editCtrl.delete()",ng-if="editCtrl.draft.author === editCtrl.window._injectedData.userId") Delete
