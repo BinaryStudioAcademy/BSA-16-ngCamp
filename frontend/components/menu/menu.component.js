@@ -15,17 +15,18 @@ class MenuComponentController {
 
 
 	$onInit() {
-
 		let self = this;
-		let curentPath = self.location.path();
-		
+
 		self.getProjectsInfo();
 
 		self.scope.$on('menuReload', function() {
 			self.getProjectsInfo();
 		});
 
-		self.selectMenuItem(curentPath);
+		setTimeout(function() {
+			let currentPath = self.location.path();
+			self.selectMenuItem(currentPath);
+		}, 300);
 
 	}
 
@@ -73,19 +74,18 @@ class MenuComponentController {
 
 		if (item === '/') newSelected = document.querySelector('#' + 'main-page');
 		else {
-			let i = item.slice(1);
+			let i = item.split('/')[1];
 			newSelected = document.querySelector('#' + i);
 		}
 
-		if (oldSelected) {
-			oldSelected.className = "";
-		}
-		newSelected.className = "selected-menu-item";
+		if (oldSelected) oldSelected.className = "";
+		if (newSelected) newSelected.className = "selected-menu-item";
 
 	}
 
 	showMenu() {
 		let x = document.getElementById("side-menu");
+		if (!x) return;
 		if (x.className === "side-menu") {
 			x.className += " show";
 		} else {
@@ -95,7 +95,7 @@ class MenuComponentController {
 
 	hideMenu() {
 		let x = document.getElementById("side-menu");
-		x.className += "hide";
+		if (x) x.className += "hide";
 	}
 
 	hoverOut() {
