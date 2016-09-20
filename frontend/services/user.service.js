@@ -37,6 +37,11 @@ class UserService {
 			return data;
 		});
 	}
+	getUserByEmail(email, array) {
+		for (var i = 0; i < array.length; i++) {
+			if (array[i].email === email) return array[i];
+		}
+	}
 	setAvatars(ctrlArray, exteranlArray) {
 		let result = [];
 		for (let i = 0; i < ctrlArray.length; i++) {
