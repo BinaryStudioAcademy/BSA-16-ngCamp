@@ -1,63 +1,59 @@
 user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', parent-scope='$ctrl', ng-if='$ctrl.userListFlag',is-showed = "$ctrl.userListFlag")
-.eventsEdit-wrapper
+.eventsEditionWrapper
+  h1.header Event Edit
+    .return-btn(ng-link='["Events List"]')
+        i.fa.fa-arrow-left
+        a
+          span return
   .row.center-xs
-    .main.col-xs-7
-      .head
-        div
-          h1 {{$ctrl.curEvent.title}}
-           i.fa.fa-pencil.edit-icon(ng-click="$ctrl.editTitle=true",ng-if="!$ctrl.editTitle")
-           i.fa.fa-check.edit-icon(ng-click="$ctrl.edit('title')",ng-if="$ctrl.editTitle")
-        i.fa.fa-times.fa-2x(aria-hidden='true',ng-click="$ctrl.location.path('/events')")
+    .main
       form(name='editEvent')
-        .title
-          input(name="title",type="text",ng-model="$ctrl.title",ng-if="$ctrl.editTitle",required,ng-minlength="3" ng-maxlength="30")
-          p(ng-show="editEvent.title.$invalid",class="help-block",ng-if="$ctrl.editTitle") Title is required.
-          p(ng-show="editEvent.title.$error.minlength",class="help-block",ng-if="$ctrl.editTitle") Title is too short.
-          p(ng-show="editEvent.title.$error.maxlength",class="help-block",ng-if="$ctrl.editTitle") Title is too long.
+
+
         .date
-          .dataPicker
-            h1 Start Date
-            p {{$ctrl.curEvent.startDate | date:"dd/MM/yyyy"}}
-             i.fa.fa-pencil.edit-icon(ng-click="$ctrl.editStartDate=true",ng-if="!$ctrl.editStartDate")
-             i.fa.fa-check.edit-icon(ng-click="$ctrl.edit('startDate')",ng-if="$ctrl.editStartDate")
-            .picker(ng-if="$ctrl.editStartDate")
-              input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.date', is-open='$ctrl.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.curEvent.startDate}}")
-              a.btn.btn-default(type='button', ng-click='$ctrl.open()')
+          .datecell
+            h2 Start Date:
+            .picker
+              .day(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.date', is-open='$ctrl.popup.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.date}}") {{$ctrl.date| date: 'fullDate'}}
+              a(ng-click='$ctrl.open()') 
                 i.fa.fa-calendar(aria-hidden='true')
               .time(uib-timepicker,ng-model='$ctrl.date',ng-change="changed()",hour-step="1" minute-step="1",show-meridian = 'false',show-spinners="false")
-            h1 End Date 
-            p {{$ctrl.curEvent.endDate | date:"dd/MM/yyyy"}}
-             i.fa.fa-pencil.edit-icon(ng-click="$ctrl.editEndDate=true",ng-if="!$ctrl.editEndDate")
-             i.fa.fa-check.edit-icon(ng-click="$ctrl.edit('endDate')",ng-if="$ctrl.editEndDate")
-            .picker(ng-if="$ctrl.editEndDate")
-              input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.endDate', is-open='$ctrl.popup1.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.curEvent.endDate}}")
-              a.btn.btn-default(type='button', ng-click='$ctrl.open1()')
+          .datecell
+            h2 End Date:
+            .picker
+              .day(type='text', uib-datepicker-popup='{{format}}', ng-model='$ctrl.endDate', is-open='$ctrl.popup1.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats',placeholder="{{$ctrl.endDate}}") {{$ctrl.endDate| date: 'fullDate'}}
+              a(ng-click='$ctrl.open1()')
                 i.fa.fa-calendar(aria-hidden='true')
               .time(uib-timepicker,ng-model='$ctrl.endDate',ng-change="changed()",hour-step="1" minute-step="1",show-meridian = 'false',show-spinners="false")
-        h1  Description 
-        p(ng-bind-html="$ctrl.curEvent.description") 
-        i.fa.fa-pencil(ng-click="$ctrl.editDescription=true",ng-if="!$ctrl.editDescription")
-        i.fa.fa-check(ng-click="$ctrl.edit('description')",ng-if="$ctrl.editDescription")
-        input(ckeditor,type="text",name="text" , cols='25', rows='10',ng-model = "$ctrl.desc",ng-if="$ctrl.editDescription",required,ng-minlength="10" ng-maxlength="300")
-        hr
-        p(ng-show="editEvent.text.$invalid",class="help-block",ng-if="$ctrl.editDescription") Description is required.
-        p(ng-show="editEvent.text.$error.minlength",class="help-block",ng-if="$ctrl.editDescription") Description is too short.
-        p(ng-show="editEvent.text.$error.maxlength",class="help-block",ng-if="$ctrl.editDescription") Description is too long.
+
+
+        .title
+          input(name="title",type="text",ng-model="$ctrl.title",required,ng-minlength="3" ng-maxlength="30",autocomplete="off",placeholder="Event title")
+          .invalid_info
+            p(ng-show="editEvent.title.$invalid && $ctrl.invalidForm") Title is required.
+            p(ng-show="editEvent.title.$error.minlength && $ctrl.invalidForm") Title is too short.
+            p(ng-show="editEvent.title.$error.maxlength && $ctrl.invalidForm") Title is too long.
+
+
+        .eventDescription
+          .eventEditor(ui-tinymce="$ctrl.tinyOptions",ng-model="$ctrl.desc", ng-class = "{'placeholder': !$ctrl.desc.length}")
+          .invalid_info
+            p(ng-show="editEvent.text.$invalid && $ctrl.invalidForm") Title is required.
+            p(ng-show="editEvent.text.$error.minlength && $ctrl.invalidForm") Title is too short.
+            p(ng-show="editEvent.text.$error.maxlength && $ctrl.invalidForm") Title is too long.
+
+
         .participants
-          h1 Participants
-          i.fa.fa-user(aria-hidden='true')
-          .participants
-          button.addButton(ng-click = '$ctrl.userListFlag = true')
-            i.fa.fa-plus(aria-hidden='true')
-            span add participant
-          .participantCell(ng-repeat='userid in $ctrl.participants track by $index')
-            .participant_wrapper
-              .participantTitle {{$ctrl.getUserNameById(userid)}}
-              .deleteButton(ng-click = "$ctrl.participantDelete(userid)")
-                i.fa.fa-times.fa-fw
-        .period
-          div
-            | Is all day
-            input(type='checkbox',ng-model="$ctrl.allDay",ng-checked='$ctrl.curEvent.isAllDay')
+            .btn-group.open(ng-repeat="userid in $ctrl.participants track by userid._id") 
+              a.participant(ng-click="$ctrl.participantDelete(userid)")
+                span {{userid.firstName}} {{userid.lastName}}
+                i.fa.fa-times
+            .btn-group.open
+              a.participant.add(ng-click = '$ctrl.userListFlag = true')
+                i.fa.fa-plus(aria-hidden='true')
+                span add user ...
+
+
+
+        .sendBtn
           button(type='submit', form='eventEdit', value='Submit',ng-click="$ctrl.save(editEvent.$valid)") Save
-          button.deleteButton(ng-if="$ctrl.author === $ctrl.window._injectedData.userId",ng-click="$ctrl.delete()") Delete
