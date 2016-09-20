@@ -39,7 +39,7 @@ class UserService {
 	}
 	getUserByEmail(email, array) {
 		for (let i = 0; i < array.length; i++) {
-			if (array[i].email === email) return array[i];
+			if (array[i] && array[i].email === email) return array[i];
 		}
 	}
 	setUsersShortNames(array) {
