@@ -48,6 +48,7 @@ class UserService {
 			let found = false
 			for (let j = 0; j < exteranlArray.length; j++) {
 				if (ctrlArray[i].email === exteranlArray.email) {
+					if (!exteranlArray.avatar || exteranlArray.avatar.toLowerCase().indexOf('unknown') === -1) break;
 					ctrlArray[i].avatar = exteranlArray.avatar;
 					found = true;
 					break;
@@ -55,8 +56,8 @@ class UserService {
 			}
 			if (!found) {
 				ctrlArray[i].shortName = '';
-				if(ctrlArray[i].firstName) ctrlArray[i].shortName += ctrlArray[i].firstName[0].toUpperCase();
-				if(ctrlArray[i].lastName) ctrlArray[i].shortName += ctrlArray[i].lastName[0].toUpperCase();
+				if (ctrlArray[i].firstName) ctrlArray[i].shortName += ctrlArray[i].firstName[0].toUpperCase();
+				if (ctrlArray[i].lastName) ctrlArray[i].shortName += ctrlArray[i].lastName[0].toUpperCase();
 			}
 		}
 	}
