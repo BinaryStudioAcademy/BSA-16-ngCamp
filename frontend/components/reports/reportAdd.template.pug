@@ -56,12 +56,13 @@
                                 .col-xs-2.center-xs.gen-title From:
                                 .col-xs-3
                                     .row.middle-xs.date-holder
-                                        input.col-xs-9(type="text",uib-datepicker-popup='shortDate',is-open = 'reportAdd.popupDate1',ng-model='reportAdd.dateRange[0]' readonly="readonly")
-                                        i.col-xs-2.col-xs-offset-1.fa.fa-calendar(ng-click = 'reportAdd.popupDate1=!reportAdd.popupDate1')
-                                .col-xs-1.col-xs-1.center-xs To:
+                                        input.col-xs-10(type="text",uib-datepicker-popup='dd/MM/yyyy',is-open = 'reportAdd.popupDate1',ng-model='reportAdd.dateRange[0]' ng-change='reportAdd.refreshDate()'  readonly="readonly")
+                                        i.col-xs-2.fa.fa-calendar.center-xs(ng-click = 'reportAdd.popupDate1=!reportAdd.popupDate1')
+                                .col-xs-1.col-xs-1.center-xs.gen-title To:
                                 .col-xs-3
-                                    input(type="text",uib-datepicker-popup='shortDate', is-open = 'reportAdd.popupDate2', ng-model='reportAdd.dateRange[1]')
-                                    i.fa.fa-calendar(ng-click = 'reportAdd.popupDate2=!reportAdd.popupDate2')
+                                    .row.middle-xs.date-holder
+                                        input.col-xs-10(type="text",uib-datepicker-popup='dd/MM/yyyy',is-open = 'reportAdd.popupDate2',  ng-model='reportAdd.dateRange[1]' readonly="readonly" datepicker-options='reportAdd.dateOpt')
+                                        i.col-xs-2.fa.fa-calendar.center-xs(ng-click = 'reportAdd.popupDate2=!reportAdd.popupDate2')
                             hr
                     .row.center-xs
                         span.button.btn.col-xs-5(ng-click='reportAdd.generateReport()') Generate

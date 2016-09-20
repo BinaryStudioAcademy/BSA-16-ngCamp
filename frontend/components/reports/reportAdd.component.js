@@ -18,11 +18,13 @@ class ReportAddComponentController {
             questions: [],
             report: []
         };
+        this.dateOpt = {};
         this.isGenerated = false;
         this.userId = window._injectedData.userId;
         this.projectId = window._injectedData.currentProject;
         this.generateReport = generateReport;
         this.manageReportSaving = manageReportSaving;
+        this.refreshDate = refreshDate;
     }
     $onInit() {
         let vm = this;
@@ -116,6 +118,10 @@ function manageReportSaving() {
     } else {
         vm.isSaved = true;
     }
+}
+
+function refreshDate() {
+    this.dateOpt.minDate = this.dateRange[0];
 }
 
 ReportAddComponentController.$inject = ['httpGeneral', 'popupNotifications', 'reportsGUI'];
