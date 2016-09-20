@@ -14,7 +14,7 @@ const app = angular.module('base', ['ngComponentRouter', accordion, datepickerPo
 
 app.run(function($cookies, $rootScope, jwtHelper, httpGeneral) {
 	let token = $cookies.get('x-access-token');
-	if (token && window._injectedData.avatar) {
+	if (token && !window._injectedData.avatar) {
 		let decodedToken = jwtHelper.decodeToken(token);
 		httpGeneral.sendRequest({
 			type: "GET",
