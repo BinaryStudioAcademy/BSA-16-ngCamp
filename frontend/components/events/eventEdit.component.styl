@@ -1,95 +1,286 @@
 @import "../../../public/libs/css/generalComponentsStyle.styl"
-.eventsEdit-wrapper
+.eventsEditionWrapper
   width 100%
-  .edit-icon
+  min-width 400px
+  main-component()
+  h1.header
+    header-style()
     position relative
-    right -350px
-    font-size 20px
-  .main
-    padding 1%
-    border 1px solid border-grey
-    border-radius 10px
-    background-color background-white
-    box-shadow 0px 5px 20px 2px  #808080
-    font-family "Open Sans"
-    font-weight 400
-    font-size 23px
-    text-align justify
-    .head
-      font-family "Montserrat"
-      display flex
-      flex-direction row
-      justify-content space-between
-    .date
-      display flex
-      flex-direction row
-      justify-content space-between
-      margin-top 10px
-      margin-bottom 10px
-      
-      .dataPicker
-        .form-control
-          width 60%
-        .picker
-          display flex
-          flex-direction row
-        a
-          height 34px
-    textarea
-      min-width 100%
-      height 150px
-    .participants
-        width 100%
-        display block-flex
-        flex-wrap wrap
-        justify-content center
+    .return-btn
+        cursor pointer
+        display flex
         align-items center
-        select
-          max-width 80%
-          min-width 80%
-          border-radius 7px
-          border none
-          outline none
-          padding 8px
-          border 1px solid gray
-          color #333
-          &:hover
-            box-shadow: 0 0 7px #3498db
-        .participantCell
-          display flex
-          justify-content center
-          align-items center
-          margin-top 10px
-          .participant_wrapper
-            background-color #1d8dbf
-            display inline-flex
-            padding 10px
-            border-radius 8px
-            .participantTitle
-              color white
-              margin-right 10px
-            .deleteButton
-              i
-                font-size 25px
-                transition all 0.3s ease-out;
-                cursor pointer
-                &:hover
-                  color white
+        position absolute
+        font-size 20px
+        top 0
+        left 15%
+        i
+            font-size 48px
+            color #337ab7
+        a
+            text-decoration none
+            margin-left 10px
+        @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+            left 10%
+            a
+                display none
+        @media only screen  and (max-width : 550px), screen and (max-device-width: 550px)
+            left 0
 
-    .period
-      display flex
-      flex-direction row
-      justify-content space-between
-      button
-        font-family "Montserrat"
-        button()
-      .deleteButton
-        background-color #FF5252
-    i
-      color black
-
-    a
-      i
+  .main
+    width 100%
+    .date
+        width 80%
+        font-size 25px
+        color text-input
+        margin 50px auto 50px
+        @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+            width 90%
+        @media only screen  and (max-width : 550px), screen and (max-device-width: 550px)
+            width 100%
+        .datecell
+            display flex
+            flex-wrap wrap
+            align-items center
+            margin-top 20px
+            h2
+                text-align left
+                display inline-block
+                min-width 170px
+                @media only screen  and (max-width : 850px), screen and (max-device-width: 850px)
+                    width 100%
+                    margin-bottom 20px
+                margin 0
+            .picker
+                display inline-flex
+                align-items center
+                justify-content center
+                background-color disable-input
+                border-bottom 4px solid border-color
+                border-radius 4px
+                margin-left 10px
+                padding 7px
+                min-width 450px
+                @media only screen  and (max-width : 850px), screen and (max-device-width: 850px)
+                    width 100%
+                    min-width 350px
+                    justify-content flex-start
+                .day
+                    font-size 0.6em
+                    display inline-block
+                a
+                    display inline-block
+                    margin 0 20px 0 10px 
+                    cursor pointer
+                    color text-input
+                    &:hover
+                        color #337ab7
+                .time
+                    margin-left 20px
+                    @media only screen  and (max-width : 480px), screen and (max-device-width: 480px)
+                        margin-left 0
+                    input
+                        background none
+                        outline none
+                        box-shadow none
+                        border none
+                        font-size 0.7em
+                        padding 6px 0
+                        padding-top 12px
+                        border-radius 1px
+                        width 30px
+                        border-bottom 2px solid border-color
+    .invalid_info
+        width 80%
+        margin 0 auto 30px
+        min-height 20px
+        cursor pointer
         &:hover
-          color blue
+            p
+                opacity 1
+        @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+            width 90%
+        @media only screen  and (max-width : 550px), screen and (max-device-width: 550px)
+            width 100%
+        p
+            transition opacity 0.3s ease-out
+            display inline-block
+            margin 0 7px
+            opacity 0.5
+            color #e57373
+    .title
+        input
+            outline none
+            border none
+            border-radius 4px
+            background-color disable-input
+            border-bottom 4px solid border-color
+            width 80%
+            font-size 25px
+            padding 5px
+            display block
+            color text-input
+            text-align center
+            margin 50px auto 5px
+            &:focus
+                background-color active-input
+            &:focus::-webkit-input-placeholder
+                color transparent
+            &:focus::-moz-placeholder
+                color transparent
+            &:focus:-ms-input-placeholder
+                color transparent
+            &:focus:-moz-placeholder
+                color transparent
+            @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+                width 90%
+            @media only screen  and (max-width : 550px), screen and (max-device-width: 550px)
+                width 100%
+
+
+    .eventDescription
+        width 80%
+        @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+            width 90%
+        @media only screen  and (max-width : 550px), screen and (max-device-width: 550px)
+            width 100%
+        margin 15px auto 5px
+        position relative
+        .eventEditor
+            width 100%
+            text-align left
+            padding 2em
+            font-size 1.3em
+            min-height 150px
+            font-family "Montserrat"
+            background-color disable-input
+            border-radius 12px
+            color text-input
+            border-bottom 4px solid border-color
+            outline none
+            &.placeholder
+                &:after
+                    display block
+            &:focus
+                background-color active-input
+                &:after
+                    display none
+
+            &:after
+                content 'Event Description'
+                position absolute
+                top 50%
+                left 50%
+                font-size 1.3em
+                pointer-events none
+                display none
+                color gray
+                font-family "Montserrat"
+                opacity 0.7
+                transform translateX(-50%) translateY(-50%)
+
+
+
+    .participants
+        width 80%
+        @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+            width 90%
+        @media only screen  and (max-width : 550px), screen and (max-device-width: 550px)
+            width 100%
+        display flex
+        align-items flex-start
+        align-content flex-start
+        flex-wrap wrap
+        font-size 22px
+        min-height 75px
+        margin 15px auto 25px
+        .btn-group.ng-enter,.btn-group.ng-leave
+            -webkit-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+            -moz-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+            -ms-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+            -o-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+            transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+            position: relative;
+            display: inline-flex;
+        .btn-group.ng-enter,.btn-group.ng-leave.ng-leave-active
+            opacity 1
+            span
+                text-overflow clip
+                max-width 0px
+            .participant
+                border-bottom 0px solid border-color
+                transform translateY(8px)
+        .btn-group.ng-leave,.btn-group.ng-enter.ng-enter-active
+            opacity 1
+            span
+                text-overflow clip
+                max-width 360px
+            .participant
+                border-bottom 4px solid border-color
+                transform translateY(0)
+        .participant 
+            background-color disable-input
+            border none
+            border-bottom 4px solid border-color
+            border-radius 4px
+            color text-input
+            max-width 360px
+            padding 7px 18px
+            padding-right 12px
+            text-align center
+            text-decoration none
+            display inline-flex
+            justify-content center
+            align-items center
+            font-size 0.8em
+            margin 10px 7px
+            cursor pointer
+            -webkit-transition: 0.1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+            -moz-transition: 0.1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+            -ms-transition: 0.1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+            -o-transition: 0.1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+            transition: 0.1s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+            span
+                display block
+                white-space nowrap
+                overflow hidden
+                text-overflow ellipsis
+                -webkit-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+                -moz-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+                -ms-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+                -o-transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+                transition: 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+            i
+                margin-left 10px
+                font-size 1.2em
+            &:hover
+                border-bottom 8px solid border-color
+                transform translateY(-2px)
+                margin 8px 7px
+                i
+                    color #e57373
+        .add
+            padding-right 18px
+            padding-left 12px
+            height auto
+            i
+                margin-right 10px
+                color #4DB6AC
+            &:hover
+                i
+                    color #4DB6AC
+    .sendBtn
+        display flex
+        justify-content center
+        align-content center
+        button
+            align-self center
+            display flex
+            justify-content center
+            button()
+            font-family "Montserrat"
+            font-size 24px
+            padding 15px 50px
+            --box-shadow-color #004D40
+            background-color #2e8f35  
 

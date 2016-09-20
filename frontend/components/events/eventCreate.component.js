@@ -68,7 +68,7 @@ class eventEditController {
                     title: self.title,
                     description: self.desc,
                     project:window._injectedData.currentProject,
-                    participants: self.participants,
+                    participants: self.participants.map((elem)=>{return elem._id;}),
                     startDate: self.date,
                     endDate:self.endDate,
                     isAllDay:self.allDay,
@@ -90,7 +90,6 @@ class eventEditController {
             let eq;
             if( element._id === user._id ){
                 eq = true;
-                console.log(element);
             }else{
                 eq = false;
             };
