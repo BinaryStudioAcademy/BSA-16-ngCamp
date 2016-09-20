@@ -20,17 +20,17 @@ class eventsCommentsComponentController {
 
         async.waterfall([
             function(callback) {
-                vm.userService.getExternalUsersData().then(function(data) {
-                    vm.externalUsersData = data;
+                self.userService.getExternalUsersData().then(function(data) {
+                    self.externalUsersData = data;
                     callback(null, data);
                 });
             },
             function(extUsers, callback) {
-                vm.httpGeneral.sendRequest({
+                self.httpGeneral.sendRequest({
                     type: "GET",
                     url: "api/checkins"
                 }).then(function(res) {
-                    vm.httpGeneral.sendRequest({
+                    self.httpGeneral.sendRequest({
                         type: "GET",
                         url: `/api/checkins/${next.params.id}/withparticipants`
                     }).then(function(res) {
