@@ -88,8 +88,9 @@ class eventEditController {
     onUserSelect(user){
         function filterArrayUsers(element){
             let eq;
-            if( element._id == user._id ){
+            if( element._id === user._id ){
                 eq = true;
+                console.log(element);
             }else{
                 eq = false;
             };
@@ -97,7 +98,6 @@ class eventEditController {
         };
         let self = this.parentScope;
         let repeat = self.participants.find(filterArrayUsers);
-
         if(repeat){
             self.popupNotifications.notifyError('already added!');
         }else{
@@ -107,11 +107,10 @@ class eventEditController {
         self.userListFlag = false;
     }
 
-    participantUpdate() {
-        let self = this;
-        self.participantsSet.add(self.userToAdd);
-        self.participants = Array.from(self.participantsSet);
-    }
+    // participantUpdate() {
+    //     let self = this;
+    //     self.participants.push(self.userToAdd) ;
+    // }
 
     getUserNameById(id) {
         let self = this;
@@ -122,10 +121,13 @@ class eventEditController {
         return `${user.firstName} ${user.lastName}`;
     }
 
-    participantDelete(id) {
+    participantDelete(partic) {
         let self = this;
-        self.participantsSet.delete(id);
-        self.participants = Array.from(self.participantsSet);
+        self.participants.forEach((elem,index,array)=>{
+            if(partic._id == elem._id){
+                array.splice(index,1);
+            };
+        });
     }
 
     open() {

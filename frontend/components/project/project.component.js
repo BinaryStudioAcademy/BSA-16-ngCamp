@@ -50,7 +50,7 @@ class ProjectComponentController {
 			theme: 'inlite',
 			auto_focus: true,
 			plugins: 'image link paste contextmenu textpattern autolink lists',
-			insert_toolbar: 'quickimage',
+			insert_toolbar: false,
 			selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | bullist numlist outdent indent',
 			selector: '.descEditor'
 		};
