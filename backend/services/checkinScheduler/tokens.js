@@ -18,7 +18,6 @@ function getTokens() {
 
 function clearTokens(){
     mySet.clear();
-    console.log('cleared');
 }
 
 module.exports = {

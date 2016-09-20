@@ -17,7 +17,9 @@ class MenuComponentController {
     $onInit() {
 
         let self = this;
+        let curentPath = self.location.path();
 
+        self.selectMenuItem(curentPath);
         self.getProjectsInfo();
 
         self.scope.$on('menuReload', function() {
@@ -64,6 +66,22 @@ class MenuComponentController {
         });
     }
 
+    selectMenuItem(item){
+        let newSelected = '';
+        let oldSelected = document.querySelector('.selected-menu-item');
+
+        if(item === '/') newSelected = document.querySelector('#' + 'main-page');
+        else {
+            let i = item.slice(1);
+            newSelected = document.querySelector('#' + i);
+        }
+
+        if(oldSelected){
+            oldSelected.className = "";
+        }
+        newSelected.className = "selected-menu-item";
+
+    }
 
     showMenu() {
         let x = document.getElementById("side-menu");
@@ -107,11 +125,7 @@ class MenuComponentController {
                 self.rootRouter.navigate(['MainPage']);
             } else {
                 let newReg = /^(\/)[^(\/)]*/;
-                // self.location.path("/"+currPath.match(newReg)[0]);
                 let currPath = self.rootRouter.lastNavigationAttempt.match(newReg)[0];
-                //console.log(currPath);
-                self.rootRouter.navigate(['NotFound']);
-                self.rootRouter.navigateByUrl(currPath);
                 //console.log("Succesfull update currentProject");
             }
         });

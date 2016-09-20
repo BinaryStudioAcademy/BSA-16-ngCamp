@@ -92,10 +92,11 @@ function getAll(callback) {
     query.exec(callback);
 }
 
-
+// is  used in sheduleCheckins only
 function findCheckinsByFrequencyAndTime(freq, time, callback) {
     var query = Checkin.find({
-        frequency: freq,
+        frequency: {$regex: freq },
+        isTurnedOn: true,
         time: time
     }).populate('project');
     query.exec(callback);
@@ -103,7 +104,7 @@ function findCheckinsByFrequencyAndTime(freq, time, callback) {
 // not for mainpage
 function findCheckinsByFrequency(freq, callback) {
     var query = Checkin.find({
-            frequency: freq
+            frequency: {$regex: freq }
         })
         .populate('answers.user');
     query.exec(callback);
@@ -128,7 +129,7 @@ function findCheckinsByAnswerDate(projectId, year, month, date, callback) {
     // console.log(to);
     var query = Checkin.aggregate(
         {$match: {
-            frequency: dow,
+            frequency: {$regex: dow },
             project: new ObjectId(projectId)
         }},
         {$project: {

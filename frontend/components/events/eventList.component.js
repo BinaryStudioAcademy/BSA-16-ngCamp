@@ -28,8 +28,8 @@ class EventListComponentController {
 	getDate(event){
 		let strtDate = new Date(event.startDate);
 		let endDate = new Date(event.endDate);
-		let strtDateString = `${strtDate.getDate()}/${strtDate.getMonth()}/${strtDate.getFullYear()}`;
-		let endDateString = `${endDate.getDate()}/${endDate.getMonth()}/${endDate.getFullYear()}`;
+		let strtDateString = `${strtDate.getDate()}/${strtDate.getMonth()}/${strtDate.getFullYear()} at ${strtDate.getHours()}:${strtDate.getMinutes()}`;
+		let endDateString = `${endDate.getDate()}/${endDate.getMonth()}/${endDate.getFullYear()} at ${endDate.getHours()}:${endDate.getMinutes()}`;
 		if(strtDateString === endDateString){
 			return strtDateString;
 		};

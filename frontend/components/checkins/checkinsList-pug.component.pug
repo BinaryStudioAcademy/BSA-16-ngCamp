@@ -35,7 +35,8 @@
                     label(for='sunday') Su
             section.tab.all
                 label(for='week-list') Questions List
-                div(ng-repeat="checkin in check.checkIns track by $index")
+                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-in`s for this day
+                div(ng-repeat="checkin in check.checkIns track by $index") 
                     nav.content
                         ul.header
                             li
@@ -52,6 +53,7 @@
 
             section.tab.mo
                 label(for='monday') Monday
+                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-in`s for this day
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Monday') ")
                     nav.content
                         ul.header
@@ -67,6 +69,7 @@
                                 span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
             section.tab.tu
                 label(for='tuesday') Tuesday
+                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-in`s for this day
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Tuesday') ")
                     nav.content
                         ul.header
@@ -82,6 +85,7 @@
                                 span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
             section.tab.we
                 label(for='wednesday') Wednesday
+                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-in`s for this day
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Wednesday') ")
                     nav.content
                         ul.header
@@ -97,6 +101,7 @@
                                 span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
             section.tab.th
                 label(for='thursday') Thursday
+                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-in`s for this day
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Thursday') ")
                     nav.content
                         ul.header
@@ -112,6 +117,7 @@
                                 span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
             section.tab.fr
                 label(for='friday') Friday
+                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-in`s for this day
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Friday') ")
                     nav.content
                         ul.header
@@ -127,6 +133,7 @@
                                 span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
             section.tab.sa
                 label(for='saturday') Saturday
+                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-in`s for this day
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Saturday') ")
                     nav.content
                         ul.header
@@ -142,6 +149,7 @@
                                 span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
             section.tab.su
                 label(for='sunday') Sunday
+                span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-in`s for this day
                 div(ng-repeat="checkin in check.checkIns | filter: check.checkinFilter('Sunday') ")
                     nav.content
                         ul.header

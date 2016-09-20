@@ -20,21 +20,48 @@ function manageItem(index, fromArr, toArr, def, checkin, isAdding) {
     let indexTo = fromArr.indexOf(item);
     if (item == 'All') {
         if (def == 'user') {
-            Array.prototype.splice.apply(toArr, [toArr.length, 0].concat(fromArr));
-            fromArr.splice(0, fromArr.length, "All");
-            toArr.splice(toArr.indexOf("All"), 1);
+            fromArr.splice(fromArr.indexOf("All"), 1);
 
+            Array.prototype.splice.apply(toArr, [toArr.length, 0].concat(fromArr));
+            fromArr.splice(0, fromArr.length);
+            toArr.unshift("All");
+            // toArr.splice(toArr.indexOf("All"), 1, 'All');
         }
         if (def == 'type') {
-            fromArr.splice(0, fromArr.length, "All");
-            toArr.splice(0, toArr.length, 'Message', 'Task', 'Event', 'CheckIn');
+            fromArr.splice(0, fromArr.length);
+            toArr.splice(0, toArr.length, 'All', 'Message', 'Task', 'Event', 'CheckIn');
+            //goto spaghetti code
+            if (isAdding) {
+                checkin.isCheckinPick = true;
+                if (!checkin.isLoaded) {
+                    this.http.sendRequest({
+                        type: "GET",
+                        url: "api/checkins/project/" + window._injectedData.currentProject + "/questions"
+                    }).then(function(res) {
+                        checkin.questions = res;
+                        checkin.isLoaded = true;
+                    });
+                    this.isCheckinPanel = true;
+                }
+
+            } else {
+                checkin.isCheckinPick = false;
+                this.isCheckinPanel = false;
+            }
         }
     } else {
         fromArr.splice(indexTo, 1);
         toArr.push(item);
+        if (fromArr.length == 1 && fromArr.indexOf("All") != -1) {
+            fromArr.splice(0, 1);
+        }
+        if (toArr.length == 1) {
+            toArr.unshift("All");
+        }
         if (def == "type") {
             if (item == "CheckIn") {
                 if (checkin) {
+                    //goto spaghetti code
                     if (isAdding) {
                         checkin.isCheckinPick = true;
                         if (!checkin.isLoaded) {

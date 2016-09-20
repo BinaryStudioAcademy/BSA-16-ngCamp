@@ -4,12 +4,13 @@ import accordion from 'angular-ui-bootstrap/src/accordion';
 import datepickerPopup from 'angular-ui-bootstrap/src/datepickerPopup';
 import ngAnimate from 'angular-animate';
 import datepicker from 'angular-ui-bootstrap/src/datepicker';
+import timepicker from 'angular-ui-bootstrap/src/timepicker';
 import ngSanitize from 'angular-sanitize';
 import ngCookies from 'angular-cookies';
 import angularJwt from 'angular-jwt';
 
 
-const app = angular.module('base', ['ngComponentRouter', accordion, datepickerPopup, datepicker, ngAnimate, ngSanitize, 'ui.tinymce', ngCookies, angularJwt]);
+const app = angular.module('base', ['ngComponentRouter', accordion, datepickerPopup, datepicker, timepicker, ngAnimate, ngSanitize, 'ui.tinymce', ngCookies, angularJwt]);
 
 app.run(function($cookies, $rootScope, jwtHelper, httpGeneral) {
 	let token = $cookies.get('x-access-token');
