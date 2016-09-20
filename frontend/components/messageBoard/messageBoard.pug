@@ -8,7 +8,7 @@
 				.user-info
 						.header
 								.img
-									img(src="message.author.avatar")
+									img(src="{{message.author.avatar}}")
 								.createinfo
 									h3 {{message.author.firstName}} {{message.author.lastName}}
 									p.post-date {{message.date | date:"dd/MM/yy hh:mm"}}
