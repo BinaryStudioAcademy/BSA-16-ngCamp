@@ -28,6 +28,15 @@ class eventEditController {
         this.editEndDate = false;
         this.editStartDate = false;
         this.userListFlag = false;
+        this.invalidForm = false;
+        this.tinyOptions = {
+            inline: true,
+            theme: 'inlite',
+            plugins: 'image link paste contextmenu textpattern autolink lists',
+            insert_toolbar: false,
+            selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | bullist numlist outdent indent',
+            selector: '.descEditor'
+        };
     }
     edit(prop) {
         let self = this;
@@ -76,9 +85,7 @@ class eventEditController {
         if(repeat){
             self.popupNotifications.notifyError('already added!');
         }else{
-            self.participants.push(user._id);
-            self.userToAdd = user._id;
-            self.participantUpdate();
+            self.participants.push(user);
         };
 
         self.userListFlag = false;
@@ -100,17 +107,14 @@ class eventEditController {
         let self = this;
         self.httpGeneral.sendRequest({
             type: "GET",
-            url: `api/event/${next.params.id}`
+            url: `api/event/${next.params.id}/participants`
         }).then(function(res) {
             self.curEvent = res;
             self.title = res.title;
             self.desc = res.description;
             self.author = res.author;
-            console.log(res.author);
-            for (let part in res.participants) {
-                self.participantsSet.add(res.participants[part]);
-                self.participants = Array.from(self.participantsSet);
-            };
+            self.participants = res.participants;
+            console.log(self.participants);
         });
     }
     save(valid) {
@@ -124,7 +128,7 @@ class eventEditController {
                     title: self.title,
                     description: self.desc,
                     project: window._injectedData.currentProject,
-                    participants: self.participants,
+                    participants: self.participants.map((elem)=>{return elem._id;}),
                     startDate: self.date,
                     endDate: self.endDate,
                     isAllDay: self.allDay,
@@ -135,6 +139,7 @@ class eventEditController {
                 self.location.path('/events');
             });
         }else{
+            this.invalidForm = true;
             self.popupNotifications.notifyError("Please enter info correctly");
         }
     }
@@ -150,12 +155,6 @@ class eventEditController {
         });
     }
 
-    participantUpdate() {
-        let self = this;
-        self.participantsSet.add(self.userToAdd);
-        self.participants = Array.from(self.participantsSet);
-        self.edit('participants');
-    }
 
     getUserNameById(id) {
         let self = this;
@@ -167,12 +166,14 @@ class eventEditController {
         };
     }
 
-    participantDelete(id) {
+    participantDelete(user) {
         let self = this;
-        self.participantsSet.delete(id);
-        self.participants = Array.from(self.participantsSet);
-        self.edit('participants');
-    }
+        self.participants.forEach((elem,index,arr)=>{
+            if(user._id == elem._id){
+                arr.splice(index,1);
+            }
+        });
+    };
 
     open() {
         this.popup.opened = true;

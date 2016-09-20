@@ -36,11 +36,14 @@ user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', par
 
 
         .eventDescription
-          .eventEditor(ui-tinymce="$ctrl.tinyOptions",ng-model="ctrl.desc", ng-class = "{'placeholder': !ctrl.desc.length}")
+          .eventEditor(ui-tinymce="$ctrl.tinyOptions",ng-model="ctrl.desc", ng-class = "{'placeholder': !$ctrl.desc.length}")
           .invalid_info
             p(ng-show="editEvent.text.$invalid && $ctrl.invalidForm") Title is required.
             p(ng-show="editEvent.text.$error.minlength && $ctrl.invalidForm") Title is too short.
             p(ng-show="editEvent.text.$error.maxlength && $ctrl.invalidForm") Title is too long.
+
+
+
         .participants
             .btn-group.open(ng-repeat="userid in $ctrl.participants track by userid._id") 
               a.participant(ng-click="$ctrl.participantDelete(userid)")
