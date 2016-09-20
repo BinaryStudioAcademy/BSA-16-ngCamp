@@ -45,7 +45,7 @@ class UserService {
 	setAvatars(ctrlArray, exteranlArray) {
 		let result = [];
 		for (let i = 0; i < ctrlArray.length; i++) {
-			let found = false
+			let found = false;
 			for (let j = 0; j < exteranlArray.length; j++) {
 				if (ctrlArray[i].email === exteranlArray.email) {
 					if (!exteranlArray.avatar || exteranlArray.avatar.toLowerCase().indexOf('unknown') === -1) break;
