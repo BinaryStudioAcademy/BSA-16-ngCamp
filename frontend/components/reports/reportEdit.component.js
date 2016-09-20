@@ -40,10 +40,12 @@ class ReportEditComponentController {
             vm.isSaved = (res[0].isSaved || false);
 
             vm.types = (res[0].types || []);
-
             vm.typeSamples = vm.typeSamples.filter(function(el) {
                 return vm.types.indexOf(el) < 0;
             });
+            if (vm.typeSamples.length == 1 && vm.typeSamples.indexOf("All") != -1) {
+                vm.typeSamples.shift();
+            }
             if (vm.types.length > 0) {
                 vm.types.unshift("All");
             }
