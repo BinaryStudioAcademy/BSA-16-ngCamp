@@ -9,7 +9,9 @@
           .row.comments-body
             ul.col-xs-12
               li.row(ng-repeat="comment in $ctrl.comments track by $index")
-                .col-xs-1.user-icon.fa.fa-user
+                .col-xs-1
+                  img(ng-if="comment.author && comment.author.avatar" src="comment.author.avatar")
+                  .user-icon.fa.fa-user(ng-if="!comment.author || !comment.author.avatar")
                 |                         
                 .col-xs-9
                   .row
