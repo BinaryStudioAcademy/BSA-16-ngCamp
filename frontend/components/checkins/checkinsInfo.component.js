@@ -21,7 +21,6 @@ class CheckinsInfoComponentController {
             function(callback) {
                 vm.userService.getExternalUsersData().then(function(data) {
                     vm.externalUsersData = data;
-                    console.log('externalUsersData', vm.externalUsersData);
                     callback(null, data);
                 });
             },

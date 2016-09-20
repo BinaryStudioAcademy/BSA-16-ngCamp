@@ -59,7 +59,7 @@ class MenuComponentController {
 					window._injectedData.isSettingsEdit = res.isSettingsEdit;
 					self.checkinsAccess = res.isCheckinEdit;
 					window._injectedData.isReports = res.isReports;
-					self.checkinsAccess = res.isReports;
+					self.reportsAccess = res.isReports;
 					window._injectedData.isCheckinEdit = res.isCheckinEdit;
 				}
 			});

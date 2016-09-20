@@ -19,7 +19,7 @@ class CalendarMonthCtrl {
             vm.createMonthView();
             vm.buildMonth();
         };
-               
+
 
         vm.buildMonth = () => {
             let date = vm.mViewStartMoment.clone();
@@ -36,7 +36,9 @@ class CalendarMonthCtrl {
                     });
                     date.add(1, "d");
                 }
-                vm.weeks.push({days: days});
+                vm.weeks.push({
+                    days: days
+                });
             }
         };
 
@@ -60,23 +62,23 @@ class CalendarMonthCtrl {
             vm.buildMonth();
         };
         vm.broadcastDate = (event, day) => {
-           if(event.ctrlKey){
-               if(day.isCurrentMonth){
-                   let dateObj = {
-                            year: day.date.year(),
-                            month: day.date.month(),
-                            date: day.date.date(),
-                            // dow: day.date.isoWeekday()
-                   };
-                   if(!day.isChecked){
+            if (event.ctrlKey) {
+                if (day.isCurrentMonth) {
+                    let dateObj = {
+                        year: day.date.year(),
+                        month: day.date.month(),
+                        date: day.date.date(),
+                        // dow: day.date.isoWeekday()
+                    };
+                    if (!day.isChecked) {
                         vm.rootScp.$broadcast('ctrlDate', dateObj);
-                   } else {
-                       day.isChecked = false;
-                       vm.rootScp.$broadcast('removeDate', dateObj);
-                   }
-               }
-           } else if(event.shiftKey){
-               if(day.isCurrentMonth){
+                    } else {
+                        day.isChecked = false;
+                        vm.rootScp.$broadcast('removeDate', dateObj);
+                    }
+                }
+            } else if (event.shiftKey) {
+                if (day.isCurrentMonth) {
                     let dateObj = {
                         year: day.date.year(),
                         month: day.date.month(),
@@ -84,11 +86,11 @@ class CalendarMonthCtrl {
                         // dow: day.date.isoWeekday()
                     };
                     vm.rootScp.$broadcast('shiftdate', dateObj);
-               }
+                }
             } else {
-           
-                for (let i=0; i<vm.weeks.length; i++){
-                    vm.weeks[i].days.forEach(function(dayi){
+
+                for (let i = 0; i < vm.weeks.length; i++) {
+                    vm.weeks[i].days.forEach(function(dayi) {
                         dayi.isChecked = false;
                     });
                     //  vm.checkedDays[i].isChecked = 
@@ -102,10 +104,9 @@ class CalendarMonthCtrl {
                     date: day.date.date(),
                     // dow: day.date.isoWeekday()
                 };
-                // console.log(dateObj);
                 vm.rootScp.$broadcast('date', dateObj);
             }
-         };
+        };
         vm.goto = (date) => {
             let dateObj = {
                 year: date.year(),
@@ -121,12 +122,18 @@ class CalendarMonthCtrl {
             vm.mViewStartMoment.add(-vm.monthStartMoment.isoWeekday() + 1, 'd');
             vm.mViewEndMoment = vm.mViewStartMoment.clone();
             vm.mViewEndMoment.add(6, 'w');
-            vm.mViewEndMoment.set({'hour': 23, 'minute': 59});
+            vm.mViewEndMoment.set({
+                'hour': 23,
+                'minute': 59
+            });
         };
 
         vm.init = () => {
             vm.monthStartMoment = moment();
-            vm.monthStartMoment.set({hour: 0, minute: 0});
+            vm.monthStartMoment.set({
+                hour: 0,
+                minute: 0
+            });
             vm.monthStartMoment.startOf('month');
 
             vm.monthEndMoment = vm.monthStartMoment.clone().endOf('month');
@@ -136,7 +143,10 @@ class CalendarMonthCtrl {
 
             vm.mViewEndMoment = vm.mViewStartMoment.clone();
             vm.mViewEndMoment.add(6, 'w');
-            vm.mViewEndMoment.set({'hour': 23, 'minute': 59});
+            vm.mViewEndMoment.set({
+                'hour': 23,
+                'minute': 59
+            });
 
             vm.buildMonth();
         };
@@ -146,10 +156,14 @@ class CalendarMonthCtrl {
 
     $routerOnActivate(next) {
         let vm = this;
-        
-        let {day,month, year} = next.params;
+
+        let {
+            day,
+            month,
+            year
+        } = next.params;
         let date = day !== undefined ? new Date(year, month, day) : new Date();
-     
+
         vm.monthStartMoment = moment(date || new Date());
         vm.monthStartMoment.startOf('month');
         vm.monthEndMoment = vm.monthStartMoment.clone().endOf('month');
@@ -157,27 +171,22 @@ class CalendarMonthCtrl {
         vm.createMonthView();
 
         vm.buildMonth();
-        vm.scp.$on('addDate', function(event, addedDay){
-            vm.weeks.forEach(function(week){
-                week.days.forEach(function(day){
-                    // console.log(day.date.date());
-                    if(day.date.year() == addedDay.year && day.date.month() == addedDay.month  && day.date.date() == (addedDay.date)){
+        vm.scp.$on('addDate', function(event, addedDay) {
+            vm.weeks.forEach(function(week) {
+                week.days.forEach(function(day) {
+                    if (day.date.year() == addedDay.year && day.date.month() == addedDay.month && day.date.date() == (addedDay.date)) {
                         day.isChecked = true;
-                        // console.log('before');
-                        // console.log(day);
                     }
                 });
             });
-        //     console.log('added date'+ addedDay.dow + ' '+addedDay.day);
-        //     // vm.date = day;
-        //     // vm.checkins = [];
-        //     // let dayOW = vm.days[vm.date.dow-1];
-        //     // vm.getCheckins(dayOW);
-        //     // vm.dailyCheckinsList = [];
-        //     // vm.dailyCheckinsList.push({checkins: vm.checkins, day: vm.date});
-        //     // console.log(vm.dailyCheckinsList);
-
-        //    // vm.getCheckins(vm.days[vm.date.dow]);
+            //     console.log('added date'+ addedDay.dow + ' '+addedDay.day);
+            //     // vm.date = day;
+            //     // vm.checkins = [];
+            //     // let dayOW = vm.days[vm.date.dow-1];
+            //     // vm.getCheckins(dayOW);
+            //     // vm.dailyCheckinsList = [];
+            //     // vm.dailyCheckinsList.push({checkins: vm.checkins, day: vm.date});
+            //    // vm.getCheckins(vm.days[vm.date.dow]);
 
         });
 
@@ -192,7 +201,11 @@ const calendarMonthComponent = {
     controllerAs: 'cm',
     template: require('./calendarMonth.pug')(),
     selector: 'calendarMonth',
-    bindings: {$router: '<'}
+    bindings: {
+        $router: '<'
+    }
 };
 
-export  {calendarMonthComponent};
+export {
+    calendarMonthComponent
+};

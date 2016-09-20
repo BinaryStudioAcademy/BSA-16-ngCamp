@@ -4,12 +4,15 @@
           .row.comments-header
             span.col-xs-11 Comments
             |                     
-            .middle-xs.col-xs-1.fa.fa-close.button(ng-link='["Events List"]')
+            .middle-xs.col-xs-1
+              i.fa.fa-times.fa-3x(ng-if="$ctrl.backLink" ng-link='["{{$ctrl.backLink}}"]')
           |                 
           .row.comments-body
             ul.col-xs-12
               li.row(ng-repeat="comment in $ctrl.comments track by $index")
-                .col-xs-1.user-icon.fa.fa-user
+                .col-xs-1.avatar
+                  img(ng-if="comment.author && comment.author.avatar" src="{{comment.author.avatar}}")
+                  .user-icon.fa.fa-user(ng-if="!comment.author || !comment.author.avatar")
                 |                         
                 .col-xs-9
                   .row
@@ -23,8 +26,6 @@
           .row.comments-tools
             .col-xs-12
               form(name="comment",novalidate)
-                .row.message-holder
-                  span.attachment.button.col-xs-1.fa-paperclip.fa.col-xs-offset-11
                 .row.center-xs.center-xs
                   textarea.col-xs-11.user-message(type="text",name="text",ng-model="$ctrl.myComment",required,ng-minlength="3",ng-maxlength="250")
                   hr

@@ -76,7 +76,6 @@ class eventEditController {
                 }
             }
         }).then(function(res) {
-            console.log("Succesfull create event");
         	self.location.path('/events');
         });
         } else{

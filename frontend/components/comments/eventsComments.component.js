@@ -3,10 +3,11 @@ import "./commentsStyle.styl";
 
 
 class eventsCommentsComponentController {
-    constructor(httpGeneral, $window, popupNotifications) {
+    constructor(httpGeneral, $window, popupNotifications, userService) {
         this.httpGeneral = httpGeneral;
         this.window = $window;
         this.popupNotifications = popupNotifications;
+        this.userService = userService;
         this.messageId;
         this.comments = [];
         this.myComment;
@@ -14,6 +15,50 @@ class eventsCommentsComponentController {
     $routerOnActivate(next) {
         let self = this;
         self.messageId = next.params.id;
+        self.backLink = 'Events List';
+        let async = require('async');
+
+        async.waterfall([
+            function(callback) {
+                self.userService.getExternalUsersData().then(function(data) {
+                    self.externalUsersData = data;
+                    callback(null, data);
+                });
+            },
+            function(extUsers, callback) {
+                self.httpGeneral.sendRequest({
+                    type: "GET",
+                    url: "api/checkins"
+                }).then(function(res) {
+                    self.httpGeneral.sendRequest({
+                        type: "GET",
+                        url: `/api/checkins/${next.params.id}/withparticipants`
+                    }).then(function(res) {
+                        self.httpGeneral.sendRequest({
+                            type: "GET",
+                            url: `api/event/${next.params.id}/comments`,
+                        }).then(function(res) {
+                            self.comments = res.comments;
+
+                            if (self.externalUsersData && self.externalUsersData.length && self.comments && self.comments.length) {
+                                for (let i = 0; i < self.comments.length; i++) {
+                                    if (self.comments[i].author && self.comments[i].author.email) {
+                                        let user = self.userService.getUserByEmail(self.comments[i].author.email, self.externalUsersData);
+                                        if (user.avatar) {
+                                            if (user.avatar.thumbnailUrlAva) self.comments[i].author.avatar = user.avatar.thumbnailUrlAva;
+                                            else if (user.avatar.urlAva) self.comments[i].author.avatar = user.avatar.urlAva;
+                                        }
+                                    }
+                                }
+                            }
+                            console.log('comments', self.comments);
+                        });
+                    });
+                    callback(null, null);
+                });
+            }
+        ]);
+
         self.httpGeneral.sendRequest({
             type: "GET",
             url: `api/event/${next.params.id}/comments`,
@@ -24,7 +69,11 @@ class eventsCommentsComponentController {
     sendComment(valid) {
         let self = this;
         self.comments.push({
-            author: {firstName:window._injectedData.userFirstName,lastName:window._injectedData.userLastName},
+            author: {
+                firstName: window._injectedData.userFirstName,
+                lastName: window._injectedData.userLastName,
+                avatar: window._injectedData.avatar && window._injectedData.avatar.small ? window._injectedData.avatar : ''
+            },
             date: new Date(),
             description: self.myComment,
         });
@@ -46,7 +95,7 @@ class eventsCommentsComponentController {
     }
 };
 
-eventsCommentsComponentController.$inject = ['httpGeneral', '$window', 'popupNotifications'];
+eventsCommentsComponentController.$inject = ['httpGeneral', '$window', 'popupNotifications', 'UserService'];
 
 const eventsCommentsComponent = {
     controller: eventsCommentsComponentController,

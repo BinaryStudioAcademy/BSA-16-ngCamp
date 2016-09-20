@@ -93,7 +93,6 @@ class EventListComponentController {
 	}
 	isAuthor(event) {
 		let self = this;
-		console.log(event.author, window._injectedData.userId);
 		let ans = false;
 		if (event.author === window._injectedData.userId) ans = true;
 		return ans;
