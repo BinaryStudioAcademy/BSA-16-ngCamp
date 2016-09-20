@@ -73,7 +73,7 @@ class MenuComponentController {
 
 		if (item === '/') newSelected = document.querySelector('#' + 'main-page');
 		else {
-			let i = item.slice(1);
+			let i = item.split('/')[1];
 			newSelected = document.querySelector('#' + i);
 		}
 
