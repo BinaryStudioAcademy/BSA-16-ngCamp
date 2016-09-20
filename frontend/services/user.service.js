@@ -55,7 +55,7 @@ class UserService {
 			let found = false;
 			for (let j = 0; j < exteranlArray.length; j++) {
 				if (ctrlArray[i].email === exteranlArray[j].email) {
-					if (!exteranlArray[j].avatar || exteranlArray[j].avatar.urlAva || exteranlArray[j].avatar.urlAva.toLowerCase().indexOf('unknown') === -1) break;
+					if (!exteranlArray[j].avatar || exteranlArray[j].avatar.urlAva || exteranlArray[j].avatar.urlAva.toLowerCase().indexOf('unknown') !== -1) break;
 					ctrlArray[i].avatar = exteranlArray[j].avatar.urlAva;
 					found = true;
 					break;
