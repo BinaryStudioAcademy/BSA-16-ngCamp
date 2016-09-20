@@ -15,9 +15,12 @@ class MenuComponentController {
 
 
 	$onInit() {
-
 		let self = this;
-		let curentPath = self.location.path();
+		let currentPath = self.location.path();
+
+		console.log('currentPath', currentPath);
+
+		debugger;
 
 		self.getProjectsInfo();
 
@@ -25,7 +28,9 @@ class MenuComponentController {
 			self.getProjectsInfo();
 		});
 
-		self.selectMenuItem(curentPath);
+		setTimeout(function() {
+			self.selectMenuItem(currentPath);
+		}, 200);
 
 	}
 
