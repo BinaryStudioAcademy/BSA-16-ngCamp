@@ -1,11 +1,11 @@
-@import "../../../public/libs/css/generalComponentsStyle.styl"
+//@import "../../../public/libs/css/generalComponentsStyle.styl"
 .checkins-setup-wrapper
 
     .checkins-setup
         display flex
         flex-flow row wrap
         justify-content center
-        max-width 650px
+        max-width 700px
         height 750px
         text-align center
         margin 0 auto
@@ -24,7 +24,7 @@
         list-style none
 
     .header-setup
-        height 19%
+        height 30%
         h3
             margin 0
 
@@ -54,17 +54,23 @@
             outline none
             margin 15px
 
+    .newMultiSelect
+        display flex
+        justify-content center
+        text-align left
+        margin 0
+
+    .timeSelect
+        text-align center
+
+    .multiSelect > button {
+        width: 290;
+        margin: 5px;
+    }
+
     .main-setup
-        height 58%
+        height 60%
         overflow auto
-        button
-            button()
-            margin auto
-            font-family "Montserrat"
-            font-size 24px
-            padding 5px 30px
-            --box-shadow-color #004D40
-            background-color #2e8f35
 
     label
         &.checkbox
@@ -85,32 +91,30 @@
         margin-right 30px
 
     .footer-setup
-        height 23%
-        .save-button
-            margin 0px
-            height 40px
+        height 10%
 
-    .schedule
-        display inline-flex
-        select
-            padding-top 2px
-            border-radius 3px
-            border 1px solid #adadad
-            outline none
-            margin-left 25px
-    div
-        #schedule-second
-            margin-top 35px
-            font-size 20px
+    .container-btn
+        display flex
+        justify-content space-around
+
+    .select-btn
         button
             button()
             font-family "Montserrat"
             font-size 24px
             padding 5px 30px
+            --box-shadow-color #603D12
+            background-color #F2992E
+
+    .save-btn
+        button
+            button()
+            font-family "Montserrat"
+            font-size 24px
+            padding 5px 40px
             --box-shadow-color #004D40
             background-color #2e8f35
-            margin-left 25px
-            margin-top 30px
+
 
     //.fa-floppy-o
     //    &:hover

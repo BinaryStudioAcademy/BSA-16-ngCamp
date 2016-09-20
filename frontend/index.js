@@ -10,7 +10,7 @@ import ngCookies from 'angular-cookies';
 import angularJwt from 'angular-jwt';
 
 
-const app = angular.module('base', ['ngComponentRouter', accordion, datepickerPopup, datepicker, timepicker, ngAnimate, ngSanitize, 'ui.tinymce', ngCookies, angularJwt]);
+const app = angular.module('base', ['ngComponentRouter', accordion, datepickerPopup, datepicker, timepicker, ngAnimate, ngSanitize, 'isteven-multi-select', 'ui.tinymce', ngCookies, angularJwt]);
 
 app.run(function($cookies, $rootScope, jwtHelper, httpGeneral) {
 	let token = $cookies.get('x-access-token');
