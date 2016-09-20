@@ -4,7 +4,7 @@ class tasksCommentsComponentController {
     constructor(httpGeneral, $window, popupNotifications, userService) {
         this.httpGeneral = httpGeneral;
         this.popupNotification = popupNotifications;
-        this.userService = userServices;
+        this.userService = userService;
         this.comments = [];
         this.taskId;
     }
