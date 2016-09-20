@@ -60,8 +60,6 @@ user-list(user-data = 'proj.users', select-callback = 'proj.onAdminSelect', pare
             i.fa(ng-class = "{'fa-pencil': !proj.editDeadline,'fa-check': proj.editDeadline}", ng-show = "proj.isUserAdmin")
         //- ----------------------------------------------------------------------------DELETE CELL----------------------------------
         .wrap.last(ng-if="proj.isUserAdmin")
-          label
-            p Removing:
           .delete_button
             button.delete(ng-click = "proj.callModal()") Delete project
       h1(ng-if="!proj.currentProjectId!=''").row.center-xs Pick your current project
