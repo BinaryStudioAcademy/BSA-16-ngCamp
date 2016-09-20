@@ -5,25 +5,39 @@ class CheckinsListComponentController {
         this.httpGeneral = httpGeneral;
         this.checkIns = [];
         this.userService = userService;
-        this.externalUSersData = [];
+        this.externalUsersData = [];
     }
 
     $onInit() {
         let self = this;
-        this.userService.getExternalUsersData().then(function(data) {
-            self.externalUSersData = data;
-            console.log('EXTERNAL USER DATA', data);
-        });
-        self.httpGeneral.sendRequest({
-            type: "GET",
-            url: "api/checkins"
-        }).then(function(res) {
-            for (let check in res) {
-                if (res[check].project === window._injectedData.currentProject) {
-                    self.checkIns.push(res[check]);
-                }
+        const async = require('async');
+        async.waterfall([
+            function(callback) {
+                self.userService.getExternalUsersData().then(function(data) {
+                    self.externalUsersData = data;
+                    console.log('externalUsersData', self.externalUsersData);
+                    callback(null, data);
+                });
+            },
+            function(extUsers, callback) {
+                self.httpGeneral.sendRequest({
+                    type: "GET",
+                    url: "api/checkins"
+                }).then(function(res) {
+                    for (let check in res) {
+                        if (res[check].project === window._injectedData.currentProject) {
+                            self.checkIns.push(res[check]);
+                        }
+                        for (let i = 0; i < res.length; i++) {
+                            if (!self.externalUsersData) self.userService.setUsersShortNames(res[i].participants);
+                            else self.userService.setAvatars(res[i].participants, self.externalUsersData);
+                        }
+                    }
+                    console.log('result:', res);
+                    callback(null, null);
+                });
             }
-        });
+        ]);
     }
 
     turnOn(checkin) {
