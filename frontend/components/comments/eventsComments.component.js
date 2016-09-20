@@ -15,9 +15,7 @@ class eventsCommentsComponentController {
     $routerOnActivate(next) {
         let self = this;
         self.messageId = next.params.id;
-
         self.backLink = 'Events List';
-
         let async = require('async');
 
         async.waterfall([
@@ -60,8 +58,6 @@ class eventsCommentsComponentController {
                 });
             }
         ]);
-
-
 
         self.httpGeneral.sendRequest({
             type: "GET",
