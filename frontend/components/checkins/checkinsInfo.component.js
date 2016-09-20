@@ -50,10 +50,8 @@ class CheckinsInfoComponentController {
                             vm.groupedAsnwers[d].push(answer);
                         });
 
-                        for (let i = 0; i < res.length; i++) {
-                            if (!vm.externalUsersData) vm.userService.setUsersShortNames(res[i].participants);
-                            else vm.userService.setAvatars(res[i].participants, vm.externalUsersData);
-                        }
+                        if (!vm.externalUsersData) vm.userService.setUsersShortNames(res.participants);
+                        else vm.userService.setAvatars(res.participants, vm.externalUsersData);
 
                     });
                     callback(null, null);
