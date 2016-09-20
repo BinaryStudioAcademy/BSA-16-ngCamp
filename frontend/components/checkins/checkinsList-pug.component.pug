@@ -50,7 +50,7 @@
                                 a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                             li.user-list
                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
-                                    img(ng-if="partagenosse.avatar" src="partagenosse.avatar")
+                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
                                     span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
                                 //- span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
 

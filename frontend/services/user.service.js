@@ -54,9 +54,6 @@ class UserService {
 		for (let i = 0; i < ctrlArray.length; i++) {
 			let found = false;
 			for (let j = 0; j < externalArray.length; j++) {
-				console.log('ctrlArray[i].email: ' + ctrlArray[i].email);
-				console.log('externalArray[j].email: ' + externalArray[j].email);
-				console.log('ctrlArray[i].email === externalArray[j].email:', ctrlArray[i].email === externalArray[j].email);
 				if (ctrlArray[i].email === externalArray[j].email) {
 					if (!externalArray[j].avatar || !externalArray[j].avatar.urlAva || externalArray[j].avatar.urlAva.toLowerCase().indexOf('unknown') !== -1) break;
 					ctrlArray[i].avatar = externalArray[j].avatar.urlAva;
