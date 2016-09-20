@@ -12,13 +12,7 @@
     .row, [class^="col-"]
         padding 0px
     .reports-holder
-        //padding-left  2%
-        //padding-right   2%
         padding-bottom 1%
-        //border 1px solid border-grey
-        //border-radius 10px
-        //background-color background-white
-        //box-shadow 0px 5px 20px 2px  shadow-grey
     .reports-header
         h2
              border-bottom 4px dashed grey
@@ -97,6 +91,8 @@
         width: 80%
         margin-left: 10%
         color disable-input
+        .quick-title
+            color: text-input
         .generate-item-header
             font-size 20px
             font-family "Montserrat"
@@ -110,19 +106,27 @@
             .date-holder
                 border-bottom 4px solid border-color
                 background-color disable-input
+                border-radius: 5px
                 input
                     background-color: none
                     border-bottom: none
                     border-radius: 5px
                     color: text-input
-                    font-size: 10px
+                    font-size: 22px
                 i
                     color: text-input
                 .uib-datepicker-popup
                     padding: 5px
+                    color: text-input
+                    .btn
+                        height: 30px
+                        line-height: 20px
+                        font-size: 20px
+                        padding: 5px
+                        margin: 1px
                     button
                         span
-                            font-size: 15px
+                            font-size: 20px
             input
                 border-radius 4px
                 border none

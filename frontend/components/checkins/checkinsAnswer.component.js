@@ -39,7 +39,7 @@ class CheckinsAnswerController {
             }
         }).then(function(res) {
             //console.log(res);
-            vm.location.path('/asnwerCheckin');
+            vm.location.path('/answerCheckin');
         });
     }
 }
