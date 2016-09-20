@@ -22,6 +22,8 @@ class ReportEditComponentController {
         this.projectId = window._injectedData.currentProject;
         this.manageReportSaving = manageReportSaving;
         this.reportGenerate = reportGenerate;
+        this.dateOpt = {};
+        this.refreshDate = refreshDate;
     }
     $routerOnActivate(next) {
         let vm = this;
@@ -51,11 +53,19 @@ class ReportEditComponentController {
             if (vm.users.length > 0) {
                 vm.users.unshift("All");
             }
-            vm.dateRange = (res[0].dateRange || []);
-            if (res[0].dateRange[0].getTime() == 0);
-            vm.dateRange[0] = undefined;
-            if (res[0].dateRange[1].getTime() == 0);
-            vm.dateRange[1] = undefined;
+            vm.dateRange = [];
+            vm.dateRange[0] = res[0].dateRange[0];
+            vm.dateRange[1] = res[0].dateRange[1];
+            if (res[0].dateRange[1].getTime() == 0) {
+                vm.dateRange[1] = undefined;
+            }
+
+            if (res[0].dateRange[0].getTime() == 0) {
+                vm.dateRange[0] = undefined;
+            } else {
+                vm.dateOpt.minDate = vm.dateRange[0];
+            }
+
             vm.httpGeneral.sendRequest({
                 type: "GET",
                 url: "api/projects/" + vm.projectId + "/users"
@@ -158,6 +168,10 @@ function reportGenerate() {
             vm.isGenerated = true;
         }
     });
+}
+
+function refreshDate() {
+    this.dateOpt.minDate = this.dateRange[0];
 }
 
 ReportEditComponentController.$inject = ['httpGeneral', 'popupNotifications', 'reportsGUI'];
