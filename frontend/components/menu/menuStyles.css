@@ -42,7 +42,7 @@
   overflow: hidden;
   position: relative;
   display: block;
-  width: 250px;
+  width: 185px;
 }
 .side-menu-wrapper .side-menu li:hover .fa {
   color: #000;
