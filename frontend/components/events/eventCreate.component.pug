@@ -9,13 +9,6 @@ user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', par
 
     .main
       form(name='editEvent',novalidate)
-        .title
-          input(name="title",type="text",ng-model="$ctrl.title",required,ng-minlength="3" ng-maxlength="30",autocomplete="off",placeholder="Event title")
-          .invalid_info
-            p(ng-show="editEvent.title.$invalid && $ctrl.invalidForm") Title is required.
-            p(ng-show="editEvent.title.$error.minlength && $ctrl.invalidForm") Title is too short.
-            p(ng-show="editEvent.title.$error.maxlength && $ctrl.invalidForm") Title is too long.
-
 
 
         .date
@@ -34,6 +27,12 @@ user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', par
                 i.fa.fa-calendar(aria-hidden='true')
               .time(uib-timepicker,ng-model='$ctrl.endDate',ng-change="changed()",hour-step="1" minute-step="1",show-meridian = 'false',show-spinners="false")
 
+        .title
+          input(name="title",type="text",ng-model="$ctrl.title",required,ng-minlength="3" ng-maxlength="30",autocomplete="off",placeholder="Event title")
+          .invalid_info
+            p(ng-show="editEvent.title.$invalid && $ctrl.invalidForm") Title is required.
+            p(ng-show="editEvent.title.$error.minlength && $ctrl.invalidForm") Title is too short.
+            p(ng-show="editEvent.title.$error.maxlength && $ctrl.invalidForm") Title is too long.
 
 
         .eventDescription
@@ -43,16 +42,13 @@ user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', par
             p(ng-show="editEvent.text.$error.minlength && $ctrl.invalidForm") Title is too short.
             p(ng-show="editEvent.text.$error.maxlength && $ctrl.invalidForm") Title is too long.
         .participants
-          button.addButton(ng-click = '$ctrl.userListFlag = true')
-            i.fa.fa-plus(aria-hidden='true')
-            span add participant
-          .participantCell(ng-repeat='userid in $ctrl.participants track by $index')
-            .participant_wrapper
-              .participantTitle {{userid.firstName + ' ' + userid.lastName}}
-              .deleteButton(ng-click = "$ctrl.participantDelete(userid)")
-                i.fa.fa-times.fa-fw
-        .period
-          div
-            | Is all day
-            input(type='checkbox',ng-model="$ctrl.allDay")
+            .btn-group.open(ng-repeat="userid in $ctrl.participants track by userid._id") 
+              a.participant(ng-click="$ctrl.participantDelete(userid)")
+                span {{userid.firstName}} {{userid.lastName}}
+                i.fa.fa-times
+            .btn-group.open
+              a.participant.add(ng-click = '$ctrl.userListFlag = true')
+                i.fa.fa-plus(aria-hidden='true')
+                span add user ...
+        .sendBtn
           button(type='submit', form='eventEdit', value='Submit',ng-click="$ctrl.save(editEvent.$valid)") Save
