@@ -4,12 +4,13 @@
           .row.comments-header
             span.col-xs-11 Comments
             |                     
-            .middle-xs.col-xs-1.fa.fa-close.button(ng-link='[{{$ctrl.backLink}}]')
+            .middle-xs.col-xs-1
+              i.fa.fa-close.button(ng-link='[{{$ctrl.backLink}}]')
           |                 
           .row.comments-body
             ul.col-xs-12
               li.row(ng-repeat="comment in $ctrl.comments track by $index")
-                .col-xs-1
+                .col-xs-1.avatar
                   img(ng-if="comment.author && comment.author.avatar" src="{{comment.author.avatar}}")
                   .user-icon.fa.fa-user(ng-if="!comment.author || !comment.author.avatar")
                 |                         
