@@ -13,6 +13,7 @@ class messageCommentsComponentController {
     }
     $routerOnActivate(next) {
         let self = this;
+        self.backLink = 'MsgBoard';
         self.messageId = next.params.id;
         self.httpGeneral.sendRequest({
             type: "GET",
@@ -51,7 +52,7 @@ messageCommentsComponentController.$inject = ['httpGeneral', '$window', 'popupNo
 const messageCommentsComponent = {
     controller: messageCommentsComponentController,
     selector: "messageCommentsComponent",
-    template: require("./messageComments.template.pug")(),
+    template: require("./eventsComments.template.pug")(),
 };
 
 export {
