@@ -4,7 +4,7 @@
           .row.comments-header
             span.col-xs-11 Comments
             |                     
-            .middle-xs.col-xs-1.fa.fa-close.button(ng-link='["Events List"]')
+            .middle-xs.col-xs-1.fa.fa-close.button(ng-link='[{{$ctrl.backLink}}]')
           |                 
           .row.comments-body
             ul.col-xs-12
@@ -25,8 +25,6 @@
           .row.comments-tools
             .col-xs-12
               form(name="comment",novalidate)
-                .row.message-holder
-                  span.attachment.button.col-xs-1.fa-paperclip.fa.col-xs-offset-11
                 .row.center-xs.center-xs
                   textarea.col-xs-11.user-message(type="text",name="text",ng-model="$ctrl.myComment",required,ng-minlength="3",ng-maxlength="250")
                   hr
