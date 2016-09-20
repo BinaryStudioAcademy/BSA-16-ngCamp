@@ -1,27 +1,28 @@
 .post-messageWrapper
-  h1.header Post message
-  .header-setup
-    .return-btn
-      i.fa.fa-arrow-left
-      a(ng-link='["MsgBoard"]')
-        span Back to Message Board
-      //div.fa.fa-close(ng-link='["MsgBoard"]')
-      //img(ng-link='["MsgBoard"]', align='top', src='https://cdn3.iconfinder.com/data/icons/simple-files-1/128/No-128.png', alt='exit')
-  form(name="message",novalidate)
-    //h1 Title
-    input(name="title",placeholder="Write the headline for this message...",type="text",ng-model="postCtrl.title",required,ng-minlength="3" ng-maxlength="30")
-    p(ng-show="message.title.$invalid" class="help-block") Title is required.
-    p(ng-show="message.title.$error.minlength" class="help-block") Title is too short.
-    p(ng-show="message.title.$error.maxlength" class="help-block") Title is too long.
-    //h1 Description
-    input(ckeditor,type="text",placeholder="Type your message here...",name="text", cols='30', rows='10',ng-model="postCtrl.desc",required,ng-minlength="10" ng-maxlength="2000")
-    hr
-    p(ng-show="message.text.$invalid" class="help-block") Description is required.
-    p(ng-show="message.text.$error.minlength" class="help-block") Description is too short.
-    p(ng-show="message.text.$error.maxlength" class="help-block") Description is too long.
-    .buttons
-      //- div.sendBtn
-      //-   button(ng-click="postCtrl.draft(message.$valid)") Save as Draft
-      div.sendBtn
-        button(ng-click="postCtrl.post(message.$valid)") Post
+	h1.header Post message
+		.return-btn(ng-link='["MsgBoard"]')
+			i.fa.fa-arrow-left
+			a
+				span return
+	form(name="message",novalidate)
+		//h1 Title
+		input(name="title",placeholder="Message title",type="text",ng-model="postCtrl.title",required,ng-minlength="3" ng-maxlength="30",autocomplete="off")
+		.invalid_info
+			p(ng-show="message.title.$invalid && postCtrl.invalidForm" ) Title is required;
+			p(ng-show="message.title.$error.minlength && postCtrl.invalidForm") Title is too short;
+			p(ng-show="message.title.$error.maxlength && postCtrl.invalidForm") Title is too long;
+		//h1 Description
+		//- input(ckeditor,type="text",placeholder="Type your message here...",name="text", cols='30', rows='10',ng-model="postCtrl.desc",required,ng-minlength="10" ng-maxlength="2000")
+		.mesgDescription
+			.mesgEditor(ui-tinymce="postCtrl.tinyOptions",ng-model="postCtrl.desc", ng-class = "{'placeholder': !postCtrl.desc.length}")
+		.invalid_info
+			p(ng-show="message.content.$invalid && postCtrl.invalidForm") Message is required;
+			p(ng-show="message.content.$error.minlength && postCtrl.invalidForm") Message is too short;
+			p(ng-show="message.content.$error.maxlength && postCtrl.invalidForm") Message is too long; 
+			//- .placeholder(ng-show = "!postCtrl.desc.length && createProj.descriptionPlaceholder") Your project description here
+		.buttons
+			//- div.sendBtn
+			//-   button(ng-click="postCtrl.draft(message.$valid)") Save as Draft
+			div.sendBtn
+				button(ng-click="postCtrl.post(message.$valid)") Post
 

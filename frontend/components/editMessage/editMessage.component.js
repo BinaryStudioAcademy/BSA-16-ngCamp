@@ -7,6 +7,15 @@ class editMessageController {
         this.window = $window;
         this.popupNotifications = popupNotifications;
         this.draft;
+        this.invalidForm = false;
+        this.tinyOptions = {
+            inline: true,
+            theme: 'inlite',
+            plugins: 'image link paste contextmenu textpattern autolink lists',
+            insert_toolbar: false,
+            selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | bullist numlist outdent indent',
+            selector: '.descEditor'
+        };
     }
     $routerOnActivate(next) {
         let self = this;
@@ -33,6 +42,7 @@ class editMessageController {
                 self.popupNotifications.notifySuccess("Succesfull edit message");
             });
         } else {
+            self.invalidForm = true;
             self.popupNotifications.notifyError("Plese complete all fields correctly");
         }
     }
@@ -53,6 +63,7 @@ class editMessageController {
                 self.popupNotifications.notifySuccess("Succesfull post draft");
             });
         } else {
+            self.invalidForm = true;
             self.popupNotifications.notifyError("Plese complete all fields correctly");
         }
     }

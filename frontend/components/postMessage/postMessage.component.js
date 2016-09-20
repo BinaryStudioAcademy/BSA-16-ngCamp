@@ -8,7 +8,16 @@ class postMessageController {
         this.popupNotifications = popupNotifications;
         this.title;
         this.desc;
+        this.invalidForm = false;
         this.date = new Date();
+        this.tinyOptions = {
+            inline: true,
+            theme: 'inlite',
+            plugins: 'image link paste contextmenu textpattern autolink lists',
+            insert_toolbar: 'quickimage',
+            selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | bullist numlist outdent indent',
+            selector: '.descEditor'
+        };
     }
     post(valid) {
         let self = this;
@@ -31,6 +40,7 @@ class postMessageController {
                 self.location.path('/messageboard');
             });
         } else {
+            this.invalidForm = true;
             self.popupNotifications.notifyError("Plese complete all fields correctly");
         }
     }
