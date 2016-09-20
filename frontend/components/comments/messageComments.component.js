@@ -64,7 +64,8 @@ class messageCommentsComponentController {
         self.comments.push({
             author: {
                 firstName: window._injectedData.userFirstName,
-                lastName: window._injectedData.userLastName
+                lastName: window._injectedData.userLastName,
+                avatar: window._injectedData.avatar && window._injectedData.avatar.small ? window._injectedData.avatar : ''
             },
             date: new Date(),
             description: self.myComment,
