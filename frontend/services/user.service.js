@@ -45,10 +45,18 @@ class UserService {
 	setAvatars(ctrlArray, exteranlArray) {
 		let result = [];
 		for (let i = 0; i < ctrlArray.length; i++) {
+			let found = false
 			for (let j = 0; j < exteranlArray.length; j++) {
 				if (ctrlArray[i].email === exteranlArray.email) {
 					ctrlArray[i].avatar = exteranlArray.avatar;
+					found = true;
+					break;
 				}
+			}
+			if (!found) {
+				ctrlArray[i].shortName = '';
+				if(ctrlArray[i].firstName) ctrlArray[i].shortName += ctrlArray[i].firstName[0].toUpperCase();
+				if(ctrlArray[i].lastName) ctrlArray[i].shortName += ctrlArray[i].lastName[0].toUpperCase();
 			}
 		}
 	}
