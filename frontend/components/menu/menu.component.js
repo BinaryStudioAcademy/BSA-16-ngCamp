@@ -18,10 +18,6 @@ class MenuComponentController {
 		let self = this;
 		let currentPath = self.location.path();
 
-		console.log('currentPath', currentPath);
-
-		debugger;
-
 		self.getProjectsInfo();
 
 		self.scope.$on('menuReload', function() {
