@@ -20,10 +20,10 @@ app.run(function($cookies, $rootScope, jwtHelper, httpGeneral) {
 			type: "GET",
 			url: window.location.protocol + '//' + window.location.host + '/profile/user/getByCentralId/' + decodedToken.id
 		}).then(function(res) {
-			if (res && res.avatar) {
+			if (res[0] && res[0].avatar) {
 				window._injectedData.avatar = {
-					real: res.avatar.urlAva ? res.avatar.urlAva : '',
-					small: res.avatar.thumbnailUrlAva ? res.avatar.thumbnailUrlAva : ''
+					real: res[0].avatar.urlAva ? res[0].avatar.urlAva : '',
+					small: res[0].avatar.thumbnailUrlAva ? res[0].avatar.thumbnailUrlAva : ''
 				};
 				console.log($rootScope.avatar);
 			}
