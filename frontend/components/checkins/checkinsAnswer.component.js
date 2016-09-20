@@ -14,7 +14,6 @@ class CheckinsAnswerController {
         let vm = this;
         vm.token = next.params.id;
         vm.checkinId = next.params.checkinId;
-        console.log(next.params);
         vm.httpGeneral.sendRequest({
             type:"GET",
             url:`/api/checkins/answer/${next.params.checkinId}/${next.params.id}`
@@ -38,7 +37,6 @@ class CheckinsAnswerController {
                  answer: vm.body 
             }
         }).then(function(res) {
-            //console.log(res);
             vm.location.path('/answerCheckin');
         });
     }

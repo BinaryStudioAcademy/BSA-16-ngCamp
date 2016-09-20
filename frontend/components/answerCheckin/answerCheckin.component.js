@@ -17,10 +17,8 @@ class AnswerComponentController{
     	}).then(function(res){
             if (res){
                 res.forEach(function(checkin){
-                    // console.log(checkin);
                     vm.checkins.push(checkin);
                 });
-                // console.log(vm.checkins);
             }
 
     	});

@@ -69,7 +69,6 @@ class CheckinsEditComponentController {
                     time: vm.selectedTime
             }
         }).then(function(res) {
-            console.log(res);
             vm.location.path('/checkins');
         });
     }
