@@ -29,7 +29,8 @@ class CheckinsListComponentController {
                             self.checkIns.push(res[check]);
                         }
                         for (let i = 0; i < res.length; i++) {
-                            self.userService.setAvatars(res[i].participants, self.externalUsersData);
+                            if (!self.externalUsersData) self.userService.setUsersShortNames(res[i].participants);
+                            else self.userService.setAvatars(res[i].participants, self.externalUsersData);
                         }
                     }
                     console.log('result:', res);

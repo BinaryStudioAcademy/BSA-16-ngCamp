@@ -27,7 +27,7 @@ class UserService {
 		}
 	}
 	getExternalUsersData() {
-		let url = window.location.protocol + '//' + window.location.host + '/profile/user/filter';
+		let url = window.location.protocol + '//' + window.location.host + '/profile/api/users';
 		if (window.location.host.indexOf('localhost') !== -1) url = 'http://team.binary-studio.com/profile/user/filter';
 		return this.httpGeneral.sendRequest({
 			type: 'GET',
@@ -40,6 +40,13 @@ class UserService {
 	getUserByEmail(email, array) {
 		for (let i = 0; i < array.length; i++) {
 			if (array[i].email === email) return array[i];
+		}
+	}
+	setUsersShortNames(array) {
+		for (let i = 0; i < array.length; i++) {
+			array[i].shortName = '';
+			if (array[i].firstName) array[i].shortName += array[i].firstName[0].toUpperCase();
+			if (array[i].lastName) array[i].shortName += array[i].lastName[0].toUpperCase();
 		}
 	}
 	setAvatars(ctrlArray, exteranlArray) {
