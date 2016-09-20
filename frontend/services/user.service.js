@@ -66,7 +66,6 @@ class UserService {
 					break;
 				}
 			}
-			thumbnailUrlAva
 			if (!found) {
 				ctrlArray[i].shortName = '';
 				if (ctrlArray[i].firstName) ctrlArray[i].shortName += ctrlArray[i].firstName[0].toUpperCase();
