@@ -6,25 +6,38 @@
                     i.fa.fa-close
             h3 What question do you want to ask?
             input.question(type='text', ng-model="CheckEd.question" placeholder='Type your question...')
+
+            h3 How frequently should we ask it?
+            .newMultiSelect
+                .daysSelect
+                    isteven-multi-select(input-model='CheckEd.frequency', output-model='outputDays', output-properties='name ticked', button-label='icon', item-label='icon name', tick-property='ticked', group-property="msGroup", helper-elements="none")
+                .timeSelect
+                    isteven-multi-select(input-model='CheckEd.time', output-model='outputTime', output-properties='name ticked', button-label='name', item-label='name', tick-property='ticked', selection-mode="single", helper-elements="none")
+
         .main-setup
             h3 Who do you want to ask?
-            button(ng-click='CheckEd.toggleAll()') Ask all
             ul.user-list
                 li.list(ng-repeat="part in CheckEd.participants track by $index")
                     label.checkbox(ng-click="CheckEd.toggleChekin()")
                         input(type='checkbox', ng-checked="CheckEd.parties.indexOf(part._id) > -1",ng-click="CheckEd.toggleChekin(part._id)" )
                         span  {{part.lastName +' '+  part.firstName}}
         .footer-setup
-            h3 How frequently should we ask it?
-            .schedule
-                div
-                    select#schedule-first(multiple size="5", ng-model='CheckEd.selectedFrequency', ng-options='item for item in CheckEd.frequency',
-                    ng-selected="CheckEd.frequency[0]")
-                div
-                    select#schedule-second(ng-model='CheckEd.selectedTime', ng-options='item for item in CheckEd.time',
-                    ng-selected='CheckEd.time[0]')
-                div
+            .container-btn
+                .select-btn
+                    button(ng-click='CheckEd.toggleAll()') Ask all
+                .save-btn
                     button(ng-click="CheckEd.save()" ng-link='["Checkins List"]') Save
+
+
+            //.schedule
+            //    div
+            //        select#schedule-first(multiple size="5", ng-model='CheckEd.selectedFrequency', ng-options='item for item in CheckEd.frequency',
+            //        ng-selected="CheckEd.frequency[0]")
+            //    div
+            //        select#schedule-second(ng-model='CheckEd.selectedTime', ng-options='item for item in CheckEd.time',
+            //        ng-selected='CheckEd.time[0]')
+            //    div
+            //        button(ng-click="CheckEd.save()" ng-link='["Checkins List"]') Save
 
                 //a(ng-click="CheckEd.save()" )
                 //    i.fa.fa-floppy-o.fa-3x

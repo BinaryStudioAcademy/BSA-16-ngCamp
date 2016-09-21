@@ -38,20 +38,22 @@ class messageCommentsComponentController {
                             type: "GET",
                             url: `api/event/${next.params.id}/comments`,
                         }).then(function(res) {
-                            self.comments = res.comments;
+                            if (res && res.comments) {
+                                self.comments = res.comments;
 
-                            if (self.externalUsersData && self.externalUsersData.length && self.comments && self.comments.length) {
-                                for (let i = 0; i < self.comments.length; i++) {
-                                    if (self.comments[i].author && self.comments[i].author.email) {
-                                        let user = self.userService.getUserByEmail(self.comments[i].author.email, self.externalUsersData);
-                                        if (user.avatar) {
-                                            if (user.avatar.thumbnailUrlAva) self.comments[i].author.avatar = user.avatar.thumbnailUrlAva;
-                                            else if (user.avatar.urlAva) self.comments[i].author.avatar = user.avatar.urlAva;
+                                if (self.externalUsersData && self.externalUsersData.length && self.comments && self.comments.length) {
+                                    for (let i = 0; i < self.comments.length; i++) {
+                                        if (self.comments[i].author && self.comments[i].author.email) {
+                                            let user = self.userService.getUserByEmail(self.comments[i].author.email, self.externalUsersData);
+                                            if (user.avatar) {
+                                                if (user.avatar.thumbnailUrlAva) self.comments[i].author.avatar = user.avatar.thumbnailUrlAva;
+                                                else if (user.avatar.urlAva) self.comments[i].author.avatar = user.avatar.urlAva;
+                                            }
                                         }
                                     }
                                 }
+                                console.log('comments', self.comments);
                             }
-                            console.log('comments', self.comments);
                         });
                     });
                     callback(null, null);
@@ -65,7 +67,7 @@ class messageCommentsComponentController {
             author: {
                 firstName: window._injectedData.userFirstName,
                 lastName: window._injectedData.userLastName,
-                avatar: window._injectedData.avatar && window._injectedData.avatar.small ? window._injectedData.avatar : ''
+                avatar: window._injectedData.avatar && window._injectedData.avatar.small ? window._injectedData.avatar.small : ''
             },
             date: new Date(),
             description: self.myComment,

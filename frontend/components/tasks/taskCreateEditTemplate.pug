@@ -1,54 +1,61 @@
 user-list(user-data = 'taskCE.users', select-callback = 'taskCE.onUserSelect', parent-scope='taskCE', ng-if='taskCE.userListFlag',is-showed = "taskCE.userListFlag")
-.task-wrapper.row.center-xs
-	.main-container.col-xs-8
-		.wrapper_lable.row
-			.col-xs-3.backbutton
-				a(href = "#/tasks" ng-link = "['TasksList']")
-					i.fa.fa-arrow-left.button 
-			.col-xs-6
-				h1(ng-if = '!taskCE.editMode') Create Task
-				h1(ng-if = 'taskCE.editMode') Edit Task
-			.col-xs-3
+.createTask-wrapper
+	h1.header {{taskCE.editMode? 'Edit Task': 'Create Task'}}
+		.return-btn(ng-link='["TasksList"]')
+			i.fa.fa-arrow-left
+			a
+				span return
+	.main-container
 		.wrapper_prop.row
-			.prop_lable.col-xs-12 Task title:
-			.prop_editor.col-xs-12 
-				input.tasktitle(type="text" ng-model = "taskCE.task.title" placeholder = "insert task title")
+			.prop_editor.tasktitle.col-xs-12 
+				input(name="title",placeholder="Task title",type="text",ng-model="taskCE.task.title",required,ng-minlength="3" ng-maxlength="30",autocomplete="off")
+				.invalid_info
+					p(ng-show="false" ) Title is required;
+					p(ng-show="false") Title is too short;
+					p(ng-show="false") Title is too long;
+
+
 		.wrapper_prop.row
-			.prop_lable.col-xs-12 Task description:
 			.prop_editor.col-xs-12
-				textarea(ng-model = "taskCE.task.description" ckeditor)
+				.taskdescription(ui-tinymce="taskCE.tinyOptions",ng-model="taskCE.task.description", ng-class = "{'placeholder': !postCtrl.desc.length}")
+
+
+		.wrapper_prop.row.center-xs
+			.prop_editor.col-xs-12
+				.toDo.row(ng-repeat = "todo in taskCE.task.toDos | filter: {status: '!removed'} track by $index")
+					.toDo_number {{$index+1}}.
+					.toDo_title
+						input(type="text" ng-model="todo.title" placeholder="insert your toDo")
+					.deletetodo(ng-click = "taskCE.removeToDo(todo,$index)")
+						i.fa.fa-times.fa-2x
+			.col-xs-12.center-xs(id="addtodo")
+				.addButton(ng-click = "taskCE.addToDo()")
+					i.fa.fa-plus-square
+					span add ToDo
+
+
+
 		.wrapper_prop.row
-			.prop_lable.col-xs-12 Files:
 			.prop_editor.col-xs-12
 				file-upload(file-list = 'taskCE.task.files')
+
+
 		.wrapper_prop.row
-			.prop_lable.col-xs-12 Task participants: 
-			.prop_editor.col-xs-12.participants
-				.participant(ng-repeat = "user in taskCE.task.participants track by $index")
-					i.fa.fa-user
-					span {{user.firstName}} {{user.lastName}}
-					i.fa.fa-close.fa-fw(ng-click = "taskCE.removeParticipant(user)")
-			.col-xs-12
-				button.addButton(ng-click = 'taskCE.userListFlag = true')
-					i.fa.fa-plus-square
-						span add participant
-		.wrapper_prop.row.center-xs.lastblock
-			.prop_lable.col-xs-12 ToDo:
-			.prop_editor.col-xs-10
-				.toDo.row(ng-repeat = "todo in taskCE.task.toDos | filter: {status: '!removed'} track by $index")
-					.toDo_lable.col-xs-6 ToDo title:
-					.deletetodo.col-xs-6(ng-click = "taskCE.removeToDo(todo,$index)")
-						i.fa.fa-times.fa-2x
-						span delete
-					.toDo_title.col-xs-12
-						input(type="text" ng-model="todo.title" placeholder="insert To Do title")
-					.toDo_lable.col-xs-12 ToDo description:
-					.todo_description.col-xs-12
-						textarea(ng-model = "todo.description" ckeditor ng-if="true")
-			.col-xs-12(id="addtodo")
-				button.addButton(ng-click = "taskCE.addToDo()")
-					i.fa.fa-plus-square
-						span add ToDo
+			.prop_editor.col-xs-12
+				.participants
+					.btn-group.open(ng-repeat="user in taskCE.task.participants track by user._id") 
+						a.participant(ng-click="taskCE.removeParticipant(user)")
+							span {{user.firstName}} {{user.lastName}}
+							i.fa.fa-times
+					.btn-group.open
+						a.participant.add(ng-click = 'taskCE.userListFlag = true')
+							i.fa.fa-plus(aria-hidden='true')
+							span add user ...
+
+
+
+
+
 		.wrapper_save.row-center-xs
 			button.saveButton(ng-click = "taskCE.saveTask()")
 				i.fa.fa-arrow-down

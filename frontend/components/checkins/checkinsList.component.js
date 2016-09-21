@@ -15,7 +15,6 @@ class CheckinsListComponentController {
             function(callback) {
                 self.userService.getExternalUsersData().then(function(data) {
                     self.externalUsersData = data;
-                    console.log('externalUsersData', self.externalUsersData);
                     callback(null, data);
                 });
             },

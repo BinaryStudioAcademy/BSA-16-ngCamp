@@ -55,14 +55,17 @@
 				width 100%
 			cursor default
 			margin 20px auto
-			border 1px solid #212121
+			border-bottom 4px solid border-color
 			padding 7px 0
-			border-radius 7px
-			background-color #212121
-			color white
+			border-radius 4px
+			background-color disable-input
+			color text-input
 			// overflow hidden
 			position relative
 			font-family "Montserrat"
+			&.expanded
+				padding-bottom 0
+				border-radius 7px
 			.task_header
 				position relative
 				z-index 30
@@ -105,16 +108,17 @@
 								display block
 								font-size 1.8em
 			.task_todos
-				background-color white
+				background-color active-input
 				color black
 				margin-top 10px
 				padding-top 15px
 				.information_block
 					margin-bottom 35px
 				.task_itemLable
-					font-size 1.3em
+					font-size 1.1em
+					color text-input
 					.task_Participant
-						font-size 0.8em
+						font-size 1em
 						color #1d8dbf
 						display inline-block
 						margin 0 7px
@@ -124,7 +128,7 @@
 							content ";"
 					button
 						display inline-flex
-						font-size 0.8em
+						font-size 0.9em
 						outline none
 						background-color #336E7B
 						color #E4F1FE
@@ -135,6 +139,7 @@
 							background-color #446CB3
 				.toDo
 					margin-top 10px
+					color text-input
 				.toDo_description
 					font-size 1em
 					color gray
@@ -145,10 +150,11 @@
 					padding-bottom 10px
 					border-bottom 2px dashed #6C7A89
 				.toDo_status
+					color text-input
 					display flex
 					align-items center
 					justify-content center
-					font-size 22px
+					font-size 20px
 					i
 						cursor pointer
 						display block
@@ -158,7 +164,7 @@
 				.toDo_title
 					display flex
 					align-items center
-					font-size 1.3em
+					font-size 1.1em
 			.animate-expand.ng-enter,.animate-expand.ng-leave
 				transition all 0.3s ease-out;
 			.animate-expand.ng-enter,.animate-expand.ng-leave.ng-leave-active
@@ -196,10 +202,14 @@
 				@media only screen and (max-width : 1000px)
 					width 100%
 			.icon_bar
-				font-size 1.7em
+				font-size 1.5em
 				i
 					margin-right 25px
 					cursor pointer
+					color text-input
 					transition all 0.2s ease-out
 					&:hover
 						color #1d8dbf
+				.fa-times
+					&:hover
+						color #e57373

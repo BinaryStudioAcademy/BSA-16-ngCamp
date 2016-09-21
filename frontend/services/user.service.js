@@ -28,7 +28,7 @@ class UserService {
 	}
 	getExternalUsersData() {
 		let url = window.location.protocol + '//' + window.location.host + '/profile/api/users';
-		if (window.location.host.indexOf('localhost') !== -1) url = 'http://team.binary-studio.com/profile/user/filter';
+		if (window.location.host.indexOf('localhost') !== -1) url = 'http://team.binary-studio.com/profile/api/users';
 		return this.httpGeneral.sendRequest({
 			type: 'GET',
 			url: url,

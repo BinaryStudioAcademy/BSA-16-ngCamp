@@ -23,5 +23,5 @@
 							a(ng-if="!message.showFull && message.description.length > 300",ng-click="msgBoard.showText($index)") ...
 						a.clicktohide(ng-click="msgBoard.hideText($index)",ng-if="message.showFull") Hide
 				.use-button
-						i.fa.fa-files-o(ng-link='["File"]')
+						//- i.fa.fa-files-o(ng-link='["File"]')
 						i.fa.fa-comments-o(ng-link='["Message comments",{id:message._id}]')

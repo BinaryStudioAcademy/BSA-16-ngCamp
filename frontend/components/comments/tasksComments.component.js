@@ -34,6 +34,7 @@ class tasksCommentsComponentController {
                             type: "GET",
                             url: `api/task/${next.params.id}/comments`,
                         }).then(function(res) {
+                            if (!res || !res.comments) return;
                             self.comments = res.comments;
 
                             if (self.externalUsersData && self.externalUsersData.length && self.comments && self.comments.length) {
@@ -47,7 +48,6 @@ class tasksCommentsComponentController {
                                     }
                                 }
                             }
-                            console.log('comments', self.comments);
                         });
                     });
                     callback(null, null);
@@ -61,7 +61,7 @@ class tasksCommentsComponentController {
             author: {
                 firstName: window._injectedData.userFirstName,
                 lastName: window._injectedData.userLastName,
-                avatar: window._injectedData.avatar && window._injectedData.avatar.small ? window._injectedData.avatar : ''
+                avatar: window._injectedData.avatar && window._injectedData.avatar.small ? window._injectedData.avatar.small : ''
             },
             date: new Date(),
             description: self.myComment,
