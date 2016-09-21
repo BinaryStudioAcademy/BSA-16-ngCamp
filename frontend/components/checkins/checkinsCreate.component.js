@@ -23,7 +23,7 @@ class CheckinsCreateComponentController {
             {msGroup: false},
             {msGroup: false}
         ];
-        this.selectedFrequency = this.frequency[0];
+        this.selectedFrequency ='';
         this.time = [
             {name: "08:00"},
             {name: "09:00"},
@@ -38,8 +38,9 @@ class CheckinsCreateComponentController {
             {name: "18:00"},
             {name: "19:00"}
         ];
-        this.selectedTime = this.time[0];
         this.parties = [];
+        this.outputTime;
+        this.outputDays;
     }
     $onInit() {
         let vm = this;
@@ -53,6 +54,12 @@ class CheckinsCreateComponentController {
 
     save() {
         let vm = this;
+        if(vm.outputDays.length){
+            vm.outputDays.forEach(function(day){
+                console.log(day.name);
+                vm.selectedFrequency += ' ' + day.name;
+            });
+        }
         if (vm.question && vm.participants) {
             vm.httpGeneral.sendRequest({
                 type: "POST",
@@ -64,7 +71,7 @@ class CheckinsCreateComponentController {
                         frequency: vm.selectedFrequency,
                         participants: vm.parties,
                         isTurnedOn: false,
-                        time: vm.selectedTime
+                        time: vm.outputTime[0].name
                     }
                 }
             }).then(function() {
