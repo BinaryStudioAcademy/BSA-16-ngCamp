@@ -12,7 +12,7 @@
 			p(ng-show="message.title.$error.minlength && postCtrl.invalidForm") Title is too short;
 			p(ng-show="message.title.$error.maxlength && postCtrl.invalidForm") Title is too long;
 		//h1 Description
-		//- input(ckeditor,type="text",placeholder="Type your message here...",name="text", cols='30', rows='10',ng-model="postCtrl.desc",required,ng-minlength="10" ng-maxlength="2000")
+		//- input(ckeditor,type="text",placeholder="Type your message here...", name="text", ng-model="postCtrl.desc",required,ng-minlength="10" ng-maxlength="2000")
 		.mesgDescription
 			.mesgEditor(ui-tinymce="postCtrl.tinyOptions",ng-model="postCtrl.desc", ng-class = "{'placeholder': !postCtrl.desc.length}")
 		.invalid_info
