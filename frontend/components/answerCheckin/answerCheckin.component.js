@@ -30,6 +30,7 @@ class AnswerComponentController {
     goToAnswer(chcknId, answerToken) {
         let vm = this;
         let url = '/checkins/answer/' + chcknId + '/' + answerToken;
+        console.log(arguments);
         vm.location.url(url);
     }
 

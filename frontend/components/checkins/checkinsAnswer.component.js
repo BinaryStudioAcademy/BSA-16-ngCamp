@@ -10,41 +10,45 @@ class CheckinsAnswerController {
         this.token = '';
     }
 
-    $routerOnActivate(next){
+    $routerOnActivate(next) {
         let vm = this;
         vm.token = next.params.id;
         vm.checkinId = next.params.checkinId;
         vm.httpGeneral.sendRequest({
-            type:"GET",
-            url:`/api/checkins/answer/${next.params.checkinId}/${next.params.id}`
-        }).then(function(res){
+            type: "GET",
+            url: `/api/checkins/answer/${next.params.checkinId}/${next.params.id}`
+        }).then(function(res) {
             vm.question = res[0].question;
-            if (res[0].answer == 'noAnswer'){
+            if (res[0].answer == 'noAnswer') {
                 vm.body = '';
             } else {
                 vm.body = res[0].answer;
             }
-            
+
         });
     }
-    
-    post(next){
+
+    post(next) {
         let vm = this;
         vm.httpGeneral.sendRequest({
             type: "PUT",
             url: "/api/checkins/answer/" + vm.checkinId + '/' + vm.token,
             body: {
-                 answer: vm.body 
+                answer: vm.body
             }
         }).then(function(res) {
             vm.location.path('/answerCheckin');
         });
     }
+    redirect() {
+        let vm = this;
+        vm.location.path('/answerCheckin');
+    }
 }
 
 CheckinsAnswerController.$inject = [
-        'httpGeneral',
-        '$location'
+    'httpGeneral',
+    '$location'
 
 ];
 

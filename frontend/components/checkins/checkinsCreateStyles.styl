@@ -1,33 +1,50 @@
 @import "../../../public/libs/css/generalComponentsStyle.styl"
 .checkins-setup-wrapper
-
+    font-family: "Montserrat"
     .checkins-setup
         display flex
         flex-flow row wrap
         justify-content center
-        max-width 700px
-        height 750px
         text-align center
         margin 0 auto
-        background-color #dadfe1
-        border 1px solid #adadad
-        border-radius 10px
         & > *
             flex 1 100%
         i
             color #212121
-
+        #cke-text
+            border-bottom 4px solid border-color
+            color text-input
     .header-setup, .main-setup
         //border-bottom 1px solid #adadad
-
+    .checkins-holder
+        margin-top: 20px
+        width 80%
+        margin-left: 10%
+        border-bottom 4px solid border-color
+        background-color: disable-input
+        border-radius: 10px
+        padding: 10px
+        .question-title
+            font-size: 20px
+        .question
+            font-size: 22px
+            font-weight: bold
+    .buttons
+        width 80%
+        margin-left: 10%
+        --box-shadow-color #004D40
+        .button
+            button()
+            font-size: 20px
+            padding: 5px
+        .ok-btn
+            background-color #2e8f35
+        .back-btn
+            background-color: #cb4e4e
     li
         list-style none
-
     .header-setup
-        height 30%
-        h3
-            margin 0
-
+        border-bottom 4px dashed grey
     .newMultiSelect
         display flex
         justify-content center
@@ -41,7 +58,6 @@
         width: 290px;
         margin: 5px;
     }
-
     .close-btn
         display flex
         justify-content flex-end
