@@ -1,17 +1,37 @@
-div.answer-checkin-wrapper
-    label(for='answer-filter') Select checkins: 
-    select#answer-filter( ng-init="answr.selectedAnswer = answr.options[0]", ng-model='answr.selectedAnswer', ng-options='item for item in answr.options')
-    div(ng-if="answr.selectedAnswer=='all'", ng-repeat="checkin in answr.checkins track by $index") 
-        p <b>{{checkin.question}}</b>
-        span(ng-if="checkin.answers.length==0") There are no place to answer yet, dude.
-        div(ng-repeat="answer in checkin.answers track by $index")
-            p {{answer.creationDate | date: "y/MM/dd HH:mm" }} <button ng-if="answer.answer == 'noAnswer'", ng-click="answr.goToAnswer(checkin._id, answer.token)">answer question</button><button ng-if="answer.answer != 'noAnswer'", ng-click="answr.goToAnswer(checkin._id, answer.token)">edit question</button> 
-    div(ng-if="answr.selectedAnswer=='unanswered'", ng-repeat="checkin in answr.checkins track by $index") 
+.answer-checkin-wrapper
+    .row.answer-holder
+        .col-xs-12
+            .row.answer-header
+                h2.col-xs-12.center-xs Answer Check-Ins
+            .row.checkin-holder.center-xs
+                label.col-xs-3.start-xs(for='answer-filter') Select checkins: 
+                select#answer-filter.col-xs-2( ng-init="answr.selectedAnswer = answr.options[0]", ng-model='answr.selectedAnswer', ng-options='item for item in answr.options')
+            .row.question-holder
+                .col-xs-8.col-xs-offset-2.question-item(ng-if="answr.selectedAnswer=='all'", ng-repeat="checkin in answr.checkins track by $index") 
+                    p.row.question.start-xs {{ checkin.question}}
+                        span.col-xs-12(ng-if="checkin.answers.length==0") Sorry, You don't have active checkins for now.
+                        .col-xs-12.answer-item(ng-repeat="answer in checkin.answers track by $index")
+                            p.col-xs-6.answer-title {{"Answer #"+($index+1)}} &emsp; for &emsp;<b>{{answer.creationDate | date: "dd/MM/y HH:mm" }}</b>
+                            button.button.col-xs-2.col-xs-offset-4(ng-class="{'mod-btn': (answer.answer != 'noAnswer'), 'ans-btn': (answer.answer == 'noAnswer')}" ng-click="answr.goToAnswer(checkin._id, answer.token )") {{answer.answer == 'noAnswer'?'Answer Now!':'Modify'}}
+                .col-xs-8.col-xs-offset-2.question-item(ng-if="answr.selectedAnswer=='unanswered'", ng-repeat="checkin in answr.checkins track by $index" ng-show="filtered.length>0") 
+                    p.row.question.start-xs {{ checkin.question}} 
+                        span.col-xs-12(ng-if="checkin.answers.length==0") Sorry, You don't have active checkins for now.
+                        .col-xs-12.answer-item(ng-repeat="answer in checkin.answers | filter:{answer: 'noAnswer'} as filtered track by $index")
+                            p.col-xs-6.answer-title {{"Answer #"+($index+1)}} &emsp; for &emsp;<b>{{answer.creationDate | date: "dd/MM/y HH:mm" }}</b>
+                            button.button.col-xs-2.col-xs-offset-4(ng-class="{'mod-btn': (answer.answer != 'noAnswer'), 'ans-btn': (answer.answer == 'noAnswer')}" ng-click="answr.goToAnswer(checkin._id, answer.token )") {{answer.answer == 'noAnswer'?'Answer Now!':'Modify'}}
+                .col-xs-8.col-xs-offset-2.question-item(ng-if="answr.selectedAnswer=='answered'", ng-repeat="checkin in answr.checkins track by $index" ng-show="filtered.length>0") 
+                    p.row.question.start-xs {{ checkin.question}}
+                        span.col-xs-12(ng-if="checkin.answers.length==0") Sorry, You don't have active checkins for now.
+                        .col-xs-12.answer-item(ng-repeat="answer in checkin.answers | filter:{answer: '!noAnswer'} as filtered track by $index")
+                            p.col-xs-6.answer-title {{"Answer #"+($index+1)}} &emsp; for &emsp;<b>{{answer.creationDate | date: "dd/MM/y HH:mm" }}</b>
+                            button.button.col-xs-2.col-xs-offset-4(ng-class="{'mod-btn': (answer.answer != 'noAnswer'), 'ans-btn': (answer.answer == 'noAnswer')}" ng-click="answr.goToAnswer(checkin._id, answer.token )") {{answer.answer == 'noAnswer'?'Answer Now!':'Modify'}}
+    
+    //div(ng-if="answr.selectedAnswer=='unanswered'", ng-repeat="checkin in answr.checkins track by $index") 
         p <b>{{checkin.question}}</b>
         span(ng-if="checkin.answers.length==0") There are no place to answer yet, dude.
         div(ng-repeat="answer in checkin.answers | filter:{answer: 'noAnswer'} track by $index")
             p {{answer.creationDate | date: "y/MM/dd HH:mm" }} <button ng-if="answer.answer == 'noAnswer'", ng-click="answr.goToAnswer(checkin._id, answer.token)">answer question</button><button ng-if="answer.answer != 'noAnswer'", ng-click="answr.goToAnswer(checkin._id, answer.token)">edit question</button> 
-    div(ng-if="answr.selectedAnswer=='answered'", ng-repeat="checkin in answr.checkins track by $index") 
+    //div(ng-if="answr.selectedAnswer=='answered'", ng-repeat="checkin in answr.checkins track by $index") 
         p <b>{{checkin.question}}</b>
         span(ng-if="checkin.answers.length==0") There are no place to answer yet, dude.
         div(ng-repeat="answer in checkin.answers | filter:{answer: '!noAnswer'} track by $index")

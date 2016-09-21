@@ -1,7 +1,7 @@
 import './rootStyles.styl';
 
 class rootComponentController {
-    constructor($location, $rootRouter,httpGeneral) {
+    constructor($location, $rootRouter, httpGeneral) {
         this.location = $location;
         this.rootRouter = $rootRouter;
         this.http = httpGeneral;
@@ -13,10 +13,10 @@ class rootComponentController {
             self.rootRouter.navigateByUrl('/noProject');
         }
         self.http.sendRequest({
-            type:"GET",
-            url:`api/projects/${window._injectedData.currentProject}/isAdmin/${window._injectedData.userId}`
+            type: "GET",
+            url: `api/projects/${window._injectedData.currentProject}/isAdmin/${window._injectedData.userId}`
         }).then(function(res) {
-            console.log(res);
+            //console.log(res);
             window._injectedData.isSettingsEdit = res.isSettingsEdit;
             window._injectedData.isReports = res.isReports;
             window._injectedData.isCheckinEdit = res.isCheckinEdit;
@@ -24,7 +24,7 @@ class rootComponentController {
     }
 }
 
-rootComponentController.$inject = ["$location", '$rootRouter','httpGeneral'];
+rootComponentController.$inject = ["$location", '$rootRouter', 'httpGeneral'];
 
 const rootComponent = {
     controller: rootComponentController,
@@ -107,8 +107,7 @@ const rootComponent = {
         path: 'comments/:id/task',
         name: 'Task comments',
         component: 'tasksCommentsComponent'
-    },
-    {
+    }, {
         path: '/files',
         name: 'File', //TODO test, remove later
         component: 'files'

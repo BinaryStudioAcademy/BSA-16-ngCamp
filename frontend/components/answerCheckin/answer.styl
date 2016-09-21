@@ -1,5 +1,65 @@
-.answer-checkin-wrapper
+/*.answer-checkin-wrapper
     width 500px
     margin auto
     #answer-filter
-        margin-left 15px
+        margin-left 15px*/
+@import "../../../public/libs/css/generalComponentsStyle.styl"
+.answer-holder
+    .answer-header
+        h2
+            border-bottom 4px dashed grey
+            font-family "Montserrat"
+            line-height: 60px
+            margin-bottom: 5%
+    .question-holder
+        padding: 1%
+        .question-item
+            border-bottom 4px solid border-color
+            background-color disable-input
+            margin-top: 1%
+            margin-bottom: 1%
+            border-radius: 10px
+            .question
+                font-family: "Montserrat"
+                font-size: 22px
+                padding: 2%
+                font-weight: bold
+                text-align: left
+                display: inline-block
+                width: 100%
+            .answer-item
+                border-bottom: 1px solid border-grey
+                display flex
+                padding 5px
+                align-items center
+                .answer-title
+                    font-family: "Montserrat"
+                    font-size: 18px
+                    b
+                        color: #2e8f35
+                        font-size: 20px
+            .button
+                button()
+                font-size: 17px
+                display flex
+                padding 5px
+                justify-content center
+                align-items center
+                --box-shadow-color #004D40
+            .mod-btn
+                background-color: #337ab7
+            .ans-btn
+                background-color #2e8f35
+    .checkin-holder
+        label
+            font-family: "Montserrat"
+            font-size: 20px
+        select
+            border-bottom 4px solid border-color
+            background-color disable-input
+            border-radius: 5px
+            font-size: 18px
+            text-align: center
+    .checkin-holder, .question-holder
+        width: 80%
+        margin-left: 10%
