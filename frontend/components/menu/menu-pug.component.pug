@@ -1,55 +1,57 @@
 aside.side-menu-wrapper
-	.burger
-		a(ng-click="MenuCtrl.showMenu()")
-			i.fa.fa-bars
-	nav#side-menu.side-menu(ng-disabled="MenuCtrl.disabled")
-		ul
-			li#main-page
-				a(ng-link='["MainPage"]',ng-if="MenuCtrl.disabled ", ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/main-page')")
-					i.fa.fa-home.fa-2x
-					span.nav-text Home
-			li#messageboard
-				a(ng-link='["MsgBoard"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/messageboard')")
-					i.fa.fa-television.fa-2x
-					span.nav-text Message Board
-			li#checkins(ng-if="MenuCtrl.checkinsAccess")
-				a(ng-link='["Checkins"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/checkins')")
-					i.fa.fa-calendar-check-o.fa-2x
-					span.nav-text Checkin settings
-			li#answerCheckin
-				a(ng-if="MenuCtrl.disabled", ng-link='["AnswerCheckin"]', ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/answerCheckin')")
-					i.fa.fa-pencil-square-o.fa-2x
-					span.nav-text Checkins
-			li#tasks
-				a(ng-if="MenuCtrl.disabled", ng-link='["Tasks"]', ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/tasks')")
-					i.fa.fa-tasks.fa-2x
-					span.nav-text Tasks
-			li#events
-				a(ng-link='["Events"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/events')")
-					i.fa.fa-calendar.fa-2x
-					span.nav-text Events
-			li#reports(ng-if="MenuCtrl.reportsAccess")
-				a(ng-link='["Reports"]', ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/reports')")
-					i.fa.fa-area-chart.fa-2x
-					span.nav-text Reports
-			//- li
-			//- 	a(ng-link='["Drafts"]', ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
-			//- 		i.fa.fa-pencil-square-o.fa-2x
-			//- 		span.nav-text Drafts
-			li#settings.lastItem
-				a(ng-link='["Project"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/settings')")
-					i.fa.fa-cogs.fa-2x
-					span.nav-text Settings
-			li
-				a(ng-link="[\"CreateProject\"]", ng-click="MenuCtrl.showMenu()")
-					i.fa.fa-plus-circle.fa-2x
-					span.nav-text New Project
-			li.changeProject(ng-mouseover="MenuCtrl.hoverIn()",ng-mouseleave="MenuCtrl.hoverOut()")
-				a
-					i.fa.fa-angle-double-right.fa-2x
-					span.nav-text Change Project
-				.projects_change(ng-class = "{'changePos': !MenuCtrl.disabled}")
-					.porjects_lable Your projects:
-					.project_item(ng-repeat = "project in MenuCtrl.userProjects",ng-click = "MenuCtrl.setProject(project._id)",ng-class = "{'chosen' : MenuCtrl.projEq(project._id)}") {{project.title}}
+    .burger
+        a(ng-click="MenuCtrl.showMenu()")
+            i.fa.fa-bars
+    nav#side-menu.side-menu(ng-disabled="MenuCtrl.disabled")
+        ul
+            li#main-page
+                a(ng-link='["MainPage"]',ng-if="MenuCtrl.disabled ", ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/main-page')")
+                    i.fa.fa-home.fa-2x
+                    span.nav-text Home
+            li#messageboard
+                a(ng-link='["MsgBoard"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/messageboard')")
+                    i.fa.fa-television.fa-2x
+                    span.nav-text Message Board
+            li#checkins(ng-if="MenuCtrl.checkinsAccess")
+                a(ng-link='["Checkins"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/checkins')")
+                    i.fa.fa-calendar-check-o.fa-2x
+                    span.nav-text Checkin Settings
+            li#answerCheckin
+                a(ng-if="MenuCtrl.disabled", ng-link='["AnswerCheckin"]', ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/answerCheckin')")
+                    i.fa.fa-pencil-square-o.fa-2x
+                    span.nav-text Checkins
+            li#tasks
+                a(ng-if="MenuCtrl.disabled", ng-link='["Tasks"]', ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/tasks')")
+                    i.fa.fa-tasks.fa-2x
+                    span.nav-text Tasks
+            li#events
+                a(ng-link='["Events"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/events')")
+                    i.fa.fa-calendar.fa-2x
+                    span.nav-text Events
+            li#reports(ng-if="MenuCtrl.reportsAccess")
+                a(ng-link='["Reports"]', ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/reports')")
+                    i.fa.fa-area-chart.fa-2x
+                    span.nav-text Reports
+            //- li
+            //-     a(ng-link='["Drafts"]', ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu()")
+            //-         i.fa.fa-pencil-square-o.fa-2x
+            //-         span.nav-text Drafts
+            
+            li#settings.lastItem
+                a(ng-link='["Project"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/settings')")
+                    i.fa.fa-cogs.fa-2x
+                    span.nav-text Settings
+            hr
+            li
+                a(ng-link="[\"CreateProject\"]", ng-click="MenuCtrl.showMenu()")
+                    i.fa.fa-plus-circle.fa-2x
+                    span.nav-text New Project
+            li.changeProject(ng-mouseover="MenuCtrl.hoverIn()",ng-mouseleave="MenuCtrl.hoverOut()")
+                a
+                    i.fa.fa-angle-double-right.fa-2x
+                    span.nav-text Change Project
+                .projects_change(ng-class = "{'changePos': !MenuCtrl.disabled}")
+                    .porjects_lable Your projects:
+                    .project_item(ng-repeat = "project in MenuCtrl.userProjects",ng-click = "MenuCtrl.setProject(project._id)",ng-class = "{'chosen' : MenuCtrl.projEq(project._id)}") {{project.title}}
 
 
