@@ -10,9 +10,9 @@
             h3 How frequently should we ask it?
             .newMultiSelect
                 .daysSelect
-                    isteven-multi-select(input-model='CheckCr.frequency', output-model='outputDays', button-label='icon', item-label='icon name', tick-property='ticked', group-property="msGroup", helper-elements="none")
+                    isteven-multi-select(input-model='CheckCr.frequency', output-model='outputDays', output-properties='name ticked', button-label='icon', item-label='icon name', tick-property='ticked', group-property="msGroup", helper-elements="none")
                 .timeSelect
-                    isteven-multi-select(input-model='CheckCr.time', output-model='outputTime', button-label='name', item-label='name', tick-property='ticked', selection-mode="single", helper-elements="none")
+                    isteven-multi-select(input-model='CheckCr.time', output-model='outputTime', output-properties='name ticked', button-label='name', item-label='name', tick-property='ticked', selection-mode="single", helper-elements="none")
 
         .main-setup
             h3 Who do you want to ask?

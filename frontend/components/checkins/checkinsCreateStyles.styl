@@ -1,4 +1,4 @@
-//@import "../../../public/libs/css/generalComponentsStyle.styl"
+@import "../../../public/libs/css/generalComponentsStyle.styl"
 .checkins-setup-wrapper
 
     .checkins-setup
@@ -28,6 +28,20 @@
         h3
             margin 0
 
+    .newMultiSelect
+        display flex
+        justify-content center
+        text-align left
+        margin 0
+
+    .timeSelect
+        text-align center
+
+    .multiSelect > button {
+        width: 290px;
+        margin: 5px;
+    }
+
     .close-btn
         display flex
         justify-content flex-end
@@ -53,20 +67,6 @@
             width 70%
             outline none
             margin 15px
-
-    .newMultiSelect
-        display flex
-        justify-content center
-        text-align left
-        margin 0
-
-    .timeSelect
-        text-align center
-
-    .multiSelect > button {
-        width: 290;
-        margin: 5px;
-    }
 
     .main-setup
         height 60%
