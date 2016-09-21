@@ -1,9 +1,9 @@
 var userRepository = require('../../repositories/userRepository');
 var mailer = require('../mailer/index');
 var path = require('path');
+var host = require("../../config").host;
 
 function sendEmailToCheckinPartisipants(p, question, projectName,id,  token) {
-    console.log(id);
     var mailTemplatePath = path.resolve(__dirname+'/../../../'+'email/checkIn-notification-template.pug');
     userRepository.getById(p, function(err, data){
         if(err){
@@ -19,7 +19,7 @@ function sendEmailToCheckinPartisipants(p, question, projectName,id,  token) {
                         userName: username,
                         projectName: projectName,
                         description: question,
-                        link: "http://localhost:3060/#/checkins/answer/" + id + '/' + token
+                        link: host.hostAddress + "/#/checkins/answer/" + id + '/' + token
                     }
                 }
                 mailer.sendEmail(mailPost, function(err, data){
