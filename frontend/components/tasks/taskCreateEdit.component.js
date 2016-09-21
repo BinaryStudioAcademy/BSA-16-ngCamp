@@ -10,6 +10,14 @@ class taskCreateEditController {
 		this.editMode;
 		this.users;
 		this.task = {};
+		this.tinyOptions = {
+            inline: true,
+            theme: 'inlite',
+            plugins: 'image link paste contextmenu textpattern autolink lists',
+            insert_toolbar: false,
+            selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | bullist numlist outdent indent',
+            selector: '.descEditor'
+        };
 	}
 	$onInit(){
 		let self = this;
@@ -99,7 +107,7 @@ class taskCreateEditController {
 			});
 		self.timeout(function(){
 			let element = document.getElementById("addtodo");
-			window.scrollTo(0,element.offsetTop);
+			window.scrollTo(0,element.offsetTop-250);
 		},100,false);
 	}
 
