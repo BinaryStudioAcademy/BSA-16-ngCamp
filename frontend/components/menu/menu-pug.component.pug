@@ -15,11 +15,11 @@ aside.side-menu-wrapper
 			li#checkins(ng-if="MenuCtrl.checkinsAccess")
 				a(ng-link='["Checkins"]',ng-if="MenuCtrl.disabled",  ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/checkins')")
 					i.fa.fa-calendar-check-o.fa-2x
-					span.nav-text Check-ins
+					span.nav-text Checkin settings
 			li#answerCheckin
 				a(ng-if="MenuCtrl.disabled", ng-link='["AnswerCheckin"]', ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/answerCheckin')")
 					i.fa.fa-pencil-square-o.fa-2x
-					span.nav-text Answer Checkin
+					span.nav-text Checkins
 			li#tasks
 				a(ng-if="MenuCtrl.disabled", ng-link='["Tasks"]', ng-click="MenuCtrl.showMenu(); MenuCtrl.selectMenuItem('/tasks')")
 					i.fa.fa-tasks.fa-2x
