@@ -6,9 +6,16 @@
                     i.fa.fa-close
             h3 What question do you want to ask?
             input.question(type='text', ng-model="CheckCr.question" placeholder='Type your question...')
+
+            h3 How frequently should we ask it?
+            .newMultiSelect
+                .daysSelect
+                    isteven-multi-select(input-model='CheckCr.frequency', output-model='outputDays', output-properties='name ticked', button-label='icon', item-label='icon name', tick-property='ticked', group-property="msGroup", helper-elements="none")
+                .timeSelect
+                    isteven-multi-select(input-model='CheckCr.time', output-model='outputTime', output-properties='name ticked', button-label='name', item-label='name', tick-property='ticked', selection-mode="single", helper-elements="none")
+
         .main-setup
             h3 Who do you want to ask?
-            button(ng-click='CheckCr.toggleAll()') Ask all
             ul.user-list
                 li.list(ng-repeat="part in CheckCr.participants track by $index")
                     label.checkbox(ng-click="CheckCr.toggleChekin()")
@@ -16,18 +23,21 @@
                         span  {{part.lastName +' '+  part.firstName}}
 
         .footer-setup
-            h3 How frequently should we ask it?
-            .schedule
-                div
-                    select#schedule-first(multiple size="5", ng-model='CheckCr.selectedFrequency', ng-options='item for item in CheckCr.frequency',
-                 ng-selected="CheckCr.frequency[0]")
-
-                div
-                    select#schedule-second(ng-model='CheckCr.selectedTime', ng-options='item for item in CheckCr.time',
-                ng-selected='CheckCr.time[0]')
-
-                div
+            .container-btn
+                .select-btn
+                    button(ng-click='CheckCr.toggleAll()') Ask all
+                .save-btn
                     button(ng-click="CheckCr.save()") Save
+
+            //.schedule
+            //    div
+            //        select#schedule-first(multiple size="5", ng-model='CheckCr.selectedFrequency', ng-options='item for item in CheckCr.frequency',
+            //     ng-selected="CheckCr.frequency[0]")
+            //    div
+            //        select#schedule-second(ng-model='CheckCr.selectedTime', ng-options='item for item in CheckCr.time',
+            //    ng-selected='CheckCr.time[0]')
+            //    div
+            //        button(ng-click="CheckCr.save()") Save
 
                 //a(ng-click="CheckCr.save()" )
                 //    i.fa.fa-floppy-o.fa-3x
