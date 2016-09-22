@@ -3,9 +3,9 @@ i.fa.fa-files-o(aria-hidden = "true", ng-click = "fw.toggle()", ng-if = 'fw.scop
     .filesWrapper_background(ng-click = "fw.toggle()")
     .filesWrapper_window
         .filesWrapper-lable.row.center-xs
-            .col-xs-2
-            .col-xs-8
-                h1 Files 
+            .col-xs-1
+            .col-xs-9
+                h2 Files 
             .col-xs-2.close-ic
                 i.fa.fa-times(ng-click = "fw.toggle()")
         .filesWrapper-content.row.start-xs
@@ -13,4 +13,4 @@ i.fa.fa-files-o(aria-hidden = "true", ng-click = "fw.toggle()", ng-if = 'fw.scop
                 a(href = "/api/files/download/{{file._id}}") {{file.name}}
                     span.file_size ({{fw.transformSize(file.size)}})
         .filesWrapper-downloadAll.row.center-xs
-            a.dAll(href = "/api/files/downloadAll/{{fw.idArray()}}", ng-if = 'fw.scope.files.length > 1') Download All
+            a.downloadAll(href = "/api/files/downloadAll/{{fw.idArray()}}", ng-if = 'fw.scope.files.length > 1') Download All

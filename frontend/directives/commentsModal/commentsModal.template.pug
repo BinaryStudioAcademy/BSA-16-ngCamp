@@ -1,0 +1,20 @@
+i.fa.fa-comments-o(aria-hidden = "true", ng-click = "cm.toggle()")
+.commentsModal_wrapper(ng-if = "cm.modalToggle")
+    .commentsModal_background(ng-click = "cm.toggle()")
+    .commentsModal_window
+        .commentsModal-lable.row.center-xs
+            .col-xs-2
+            .col-xs-8
+                h2 Comments 
+            .col-xs-2.close-ic
+                i.fa.fa-times(ng-click = "cm.toggle()")
+        .commentsModal-content.row.start-xs
+            .col-xs-12.comments_item(ng-repeat = "comment in cm.scope.comments")
+                .user_info
+                    img.userAvatar(src="{{comment.author.imageUrl}}")  
+                    //- CHANGE imageUrl to avatar
+                    .userName {{comment.author.firstName}} {{comment.author.lastName}}
+                .commentText
+                    .commentmessage {{comment.description}}
+        .filesWrapper-downloadAll.row.center-xs
+            a.dAll(href = "/api/files/downloadAll/{{fw.idArray()}}", ng-if = 'fw.scope.files.length > 1') Download All
