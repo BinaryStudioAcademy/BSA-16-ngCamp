@@ -20,6 +20,7 @@ class postMessageController {
             selector: '.descEditor'
         };
     }
+
     post(valid) {
         let self = this;
         if (valid) {
@@ -34,10 +35,12 @@ class postMessageController {
                         date: self.date,
                         author: window._injectedData.userId,
                         isDraft: false,
-                        files: self.files,
+                        files: self.files.map(function (elem) {
+                            return elem._id;
+                        }),
                     }
                 }
-            }).then(function(res) {
+            }).then(function (res) {
                 console.log("Succesfull create new message");
                 self.location.path('/messageboard');
             });
@@ -63,7 +66,7 @@ class postMessageController {
                         isDraft: true,
                     }
                 }
-            }).then(function(res) {
+            }).then(function (res) {
                 console.log("Succesfull create new draft");
                 self.popupNotifications.notifySuccess("Succesfull create draft");
             });
