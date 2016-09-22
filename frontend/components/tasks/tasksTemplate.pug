@@ -1,54 +1,54 @@
 .task-wrapper
-	.main-container
-		h1 Tasks
-		.wrapper_createButton.row.center-xs
-			button(ng-link = "['TaskUpdate', {id: 'new'}]") Create new task
-		.wrapper_filters(ng-if = "tasksctrl.tasks.length")
-			ul.row.center-xs
-				li filter by :
-				li(ng-click = "tasksctrl.changeFilter('free')") free task
-				li(ng-click = "tasksctrl.changeFilter('my')") my tasks
-				li(ng-click = "tasksctrl.changeFilter('done')") finished
-				li(ng-click = "tasksctrl.isHiddenKw = !tasksctrl.isHiddenKw") keyword =
-				input(ng-hide = "tasksctrl.isHiddenKw" type="text" ng-model = "tasksctrl.keyword")
-				li.resetfilter(ng-click = "tasksctrl.changeFilter('none')") reset filters
-		.wrapper_task.row.center-xs(ng-repeat = "task in filtredTasks = (tasksctrl.tasks | filter: tasksctrl.keyword | filter: tasksctrl.filterKey) track by $index", ng-if = "tasksctrl.contentFlag" ,   id="{{task._id}}", ng-class="{'expanded': task.expanded}")
-			.col-xs-12.task_header.row.middle-xs.center-xs
-				.task_progress.col-xs-2.col-sm-4
-					.Progress_content(ng-if = "task.toDos.length") 
-						span.progresslable Progress: 
-						span.countProgress(ng-if = "!task.isFinished") {{task.progress}}/{{task.toDos.length}}
-						span.countProgress.complete(ng-if = "task.isFinished") Complete!
-						span.countProgress.complete.cuted(ng-if = "task.isFinished")
-							i.fa.fa-check
-				.title.col-xs-7.col-sm-5 {{task.title}}
-				.expander.col-xs-3.start-xs(ng-class = "{'no_participants': !task.participants.length,'my_task': !!(task.participants | filter: tasksctrl.currUserId).length}")
-					i.fa(aria-hidden = "true", ng-click = "tasksctrl.expand(task)",ng-class="{'fa-arrow-down': !task.expanded, 'fa-arrow-up': task.expanded}")
-			.task_todos.col-xs-12.animate-expand(ng-if="task.expanded")
-				.row.start-xs.information_block
-					//- .task_itemLable.col-xs-offset-1.col-xs-11(ng-if = "task.description") Task description:
-					.task_description.col-xs-offset-1.col-xs-10(ng-if = "task.description" ng-bind-html="task.description")
-					.task_itemLable.col-xs-offset-1.col-xs-10 Participants:
-						span
-							.task_Participant(ng-if = "!task.participants.length") No members
-						span
-							.task_Participant(ng-repeat = "user in task.participants track by $index") {{user.firstName}} {{user.lastName || ""}}
-						button.take_part(ng-if = "!(task.participants | filter: tasksctrl.currUserId).length", ng-click = "tasksctrl.takePart(task)") take part
-						button.leave_task(ng-if = "!!(task.participants | filter: tasksctrl.currUserId).length", ng-click = "tasksctrl.leaveTask(task)") leave task
-				.toDo.row.start-xs(ng-repeat = "todo in task.toDos track by $index")
-					.col-xs-1.toDo_status
-						i.fa(aria-hidden = "true",ng-class = "{'fa-square-o': todo.status === 'uncomplete','fa-check-square-o': todo.status === 'complete'}",ng-click="tasksctrl.changeToDoState(todo,task)")
-					.toDo_title.col-xs-8 {{todo.title}}
-					.toDo_description.col-xs-offset-1.col-xs-10(ng-bind-html="todo.description")
-				.sub_functions.row.center-xs
-					.col-xs-12.col-sm-6.start-sm.end-xs.date {{task.dateCreated | date: "MMM d, y h:mm"}} ({{task.author.firstName}} {{task.author.lastName}})
-					.col-xs-12.col-sm-6.end-xs.icon_bar 
-						i.fa.fa-comments-o(aria-hidden = "true",ng-link='["TaskComments",{id:task._id}]')
-						file-wrapper(files = 'task.files', source-id = 'task._id')
-						i.fa.fa-pencil(aria-hidden = "true", ng-link = "['TaskUpdate', {id: task._id}]",ng-if="tasksctrl.isAuthor(task) || tasksctrl.isAdmin")
-						i.fa.fa-times(aria-hidden = "true", ng-click = "tasksctrl.deleteTask(task._id,$index)",ng-if="tasksctrl.isAuthor(task) || tasksctrl.isAdmin")
-		.wrapper_noTask.row.center-xs(ng-if = "!tasksctrl.tasks.length")
-			.col-xs-12 No tasks in this project
-		.no_result.row.middle-xs.center-xs(ng-hide = "filtredTasks.length" ng-if = "tasksctrl.tasks.length")
-			.col-xs-12 No results
-		//- user-list(user-data = `tasksctrl.projUsers`,select-callback = 'tasksctrl.selectUser')
+    .main-container
+        h1 Tasks
+        .wrapper_createButton.row.center-xs
+            button(ng-link = "['TaskUpdate', {id: 'new'}]") Create new task
+        .wrapper_filters(ng-if = "tasksctrl.tasks.length")
+            ul.row.center-xs
+                li filter by :
+                li(ng-click = "tasksctrl.changeFilter('free')") free task
+                li(ng-click = "tasksctrl.changeFilter('my')") my tasks
+                li(ng-click = "tasksctrl.changeFilter('done')") finished
+                li(ng-click = "tasksctrl.isHiddenKw = !tasksctrl.isHiddenKw") keyword =
+                input(ng-hide = "tasksctrl.isHiddenKw" type="text" ng-model = "tasksctrl.keyword")
+                li.resetfilter(ng-click = "tasksctrl.changeFilter('none')") reset filters
+        .wrapper_task.row.center-xs(ng-repeat = "task in filtredTasks = (tasksctrl.tasks | filter: tasksctrl.keyword | filter: tasksctrl.filterKey) track by $index", ng-if = "tasksctrl.contentFlag" ,   id="{{task._id}}", ng-class="{'expanded': task.expanded}")
+            .col-xs-12.task_header.row.middle-xs.center-xs
+                .task_progress.col-xs-2.col-sm-4
+                    .Progress_content(ng-if = "task.toDos.length") 
+                        span.progresslable Progress: 
+                        span.countProgress(ng-if = "!task.isFinished") {{task.progress}}/{{task.toDos.length}}
+                        span.countProgress.complete(ng-if = "task.isFinished") Complete!
+                        span.countProgress.complete.cuted(ng-if = "task.isFinished")
+                            i.fa.fa-check
+                .title.col-xs-7.col-sm-5 {{task.title}}
+                .expander.col-xs-3.start-xs(ng-class = "{'no_participants': !task.participants.length,'my_task': !!(task.participants | filter: tasksctrl.currUserId).length}")
+                    i.fa(aria-hidden = "true", ng-click = "tasksctrl.expand(task)",ng-class="{'fa-arrow-down': !task.expanded, 'fa-arrow-up': task.expanded}")
+            .task_todos.col-xs-12.animate-expand(ng-if="task.expanded")
+                .row.start-xs.information_block
+                    //- .task_itemLable.col-xs-offset-1.col-xs-11(ng-if = "task.description") Task description:
+                    .task_description.col-xs-offset-1.col-xs-10(ng-if = "task.description" ng-bind-html="task.description")
+                    .task_itemLable.col-xs-offset-1.col-xs-10 Participants:
+                        span
+                            .task_Participant(ng-if = "!task.participants.length") No members
+                        span
+                            .task_Participant(ng-repeat = "user in task.participants track by $index") {{user.firstName}} {{user.lastName || ""}}
+                        button.take_part(ng-if = "!(task.participants | filter: tasksctrl.currUserId).length", ng-click = "tasksctrl.takePart(task)") take part
+                        button.leave_task(ng-if = "!!(task.participants | filter: tasksctrl.currUserId).length", ng-click = "tasksctrl.leaveTask(task)") leave task
+                .toDo.row.start-xs(ng-repeat = "todo in task.toDos track by $index")
+                    .col-xs-1.toDo_status
+                        i.fa(aria-hidden = "true",ng-class = "{'fa-square-o': todo.status === 'uncomplete','fa-check-square-o': todo.status === 'complete'}",ng-click="tasksctrl.changeToDoState(todo,task)")
+                    .toDo_title.col-xs-8 {{todo.title}}
+                    .toDo_description.col-xs-offset-1.col-xs-10(ng-bind-html="todo.description")
+                .sub_functions.row.center-xs
+                    .col-xs-12.col-sm-6.start-sm.end-xs.date {{task.dateCreated | date: "MMM d, y h:mm"}} ({{task.author.firstName}} {{task.author.lastName}})
+                    .col-xs-12.col-sm-6.end-xs.icon_bar 
+                        i.fa.fa-comments-o(aria-hidden = "true",ng-link='["TaskComments",{id:task._id}]')
+                        file-wrapper(files = 'task.files', source-id = 'task._id')
+                        i.fa.fa-pencil(aria-hidden = "true", ng-link = "['TaskUpdate', {id: task._id}]",ng-if="tasksctrl.isAuthor(task) || tasksctrl.isAdmin")
+                        i.fa.fa-trash-o(aria-hidden = "true", ng-click = "tasksctrl.deleteTask(task._id,$index)",ng-if="tasksctrl.isAuthor(task) || tasksctrl.isAdmin")
+        .wrapper_noTask.row.center-xs(ng-if = "!tasksctrl.tasks.length")
+            .col-xs-12 No tasks in this project
+        .no_result.row.middle-xs.center-xs(ng-hide = "filtredTasks.length" ng-if = "tasksctrl.tasks.length")
+            .col-xs-12 No results
+        //- user-list(user-data = `tasksctrl.projUsers`,select-callback = 'tasksctrl.selectUser')
