@@ -52,8 +52,6 @@ user-list(user-data = '$ctrl.users', select-callback = '$ctrl.onUserSelect', par
               a.participant.add(ng-click = '$ctrl.userListFlag = true')
                 i.fa.fa-plus(aria-hidden='true')
                 span add user ...
-
-
-
+        file-upload(file-list = '$ctrl.files')
         .sendBtn
           button(type='submit', form='eventEdit', value='Submit',ng-click="$ctrl.save(editEvent.$valid)") Save

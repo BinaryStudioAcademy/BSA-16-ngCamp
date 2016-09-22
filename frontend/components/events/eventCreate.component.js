@@ -6,6 +6,7 @@ class eventEditController {
         this.httpGeneral = httpGeneral;
         this.window = $window;
         this.location = $location;
+        this.files = [];
         this.title;
         this.date = new Date();
         this.endDate = new Date();
@@ -70,8 +71,6 @@ class eventEditController {
         //     self.popupNotifications.notifyError('You set date incorrectly');
         //     badDate = true;
         // }
-        console.log(self.date);
-        console.log(self.endDate);
         if (self.date >= self.endDate) {
             self.popupNotifications.notifyError('Please insert correct time');
             return;
@@ -84,6 +83,9 @@ class eventEditController {
                     data: {
                         title: self.title,
                         description: self.desc,
+                        files: self.files.map(function(elem){
+                            return elem._id;
+                        }),
                         project: window._injectedData.currentProject,
                         participants: self.participants.map((elem) => {
                             return elem._id;

@@ -53,5 +53,6 @@ user-list(user-data = 'eventCrt.users', select-callback = 'eventCrt.onUserSelect
               a.participant.add(ng-click = 'eventCrt.userListFlag = true')
                 i.fa.fa-plus(aria-hidden='true')
                 span add user ...
+        file-upload(file-list = 'eventCrt.files')
         .sendBtn
           button(type='submit', form='eventEdit', value='Submit',ng-click="eventCrt.save(editEvent.$valid)") Save
