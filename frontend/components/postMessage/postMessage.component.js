@@ -8,6 +8,7 @@ class postMessageController {
         this.popupNotifications = popupNotifications;
         this.title;
         this.desc;
+        this.files = [];
         this.invalidForm = false;
         this.date = new Date();
         this.tinyOptions = {
@@ -33,6 +34,7 @@ class postMessageController {
                         date: self.date,
                         author: window._injectedData.userId,
                         isDraft: false,
+                        files: self.files,
                     }
                 }
             }).then(function(res) {
