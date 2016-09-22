@@ -45,7 +45,7 @@ class messageCommentsComponentController {
                                     for (let i = 0; i < self.comments.length; i++) {
                                         if (self.comments[i].author && self.comments[i].author.email) {
                                             let user = self.userService.getUserByEmail(self.comments[i].author.email, self.externalUsersData);
-                                            if (user.avatar) {
+                                            if (user) {
                                                 if (user.avatar) self.comments[i].author.avatar = user.avatar;
                                                 else user.shortName = self.userService.setUserShortName(user);
                                             }
