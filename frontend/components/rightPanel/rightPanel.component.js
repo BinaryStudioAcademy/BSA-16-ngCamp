@@ -194,7 +194,8 @@ class RightPanelComponentController {
         if (((scrollHeight - scrollTop - offsetHeight) / scrollHeight * 100) < 15 && scrollHeight > 80) {
             let left = vm.findLeftMostDate();
             let right = vm.findRightMostDate();
-            if ((right.date - left.date === vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) {
+            // if ((right.date - left.date + 1 === vm.dailyCheckinsList[0]) || (right.date - left.date === vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) {
+            if ((right.date - left.date >= vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) {
                 vm.previousDay();
             }
         }
@@ -208,7 +209,8 @@ class RightPanelComponentController {
             if (scrollHeight == clientHeight) {
                 let left = vm.findLeftMostDate();
                 let right = vm.findRightMostDate();
-                if (((right.date - left.date === vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) && vm.changeProjectHover == false) {
+                // if (((right.date - left.date + 1 === vm.dailyCheckinsList[0]) || (right.date - left.date === vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) && vm.changeProjectHover == false) {
+                if (((right.date - left.date >= vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) && vm.changeProjectHover == false) {
                     vm.previousDay();
                 }
             }
@@ -239,6 +241,26 @@ class RightPanelComponentController {
                 year: leftMost.year,
                 month: leftMost.month,
                 date: leftMost.date - 1
+            };
+            vm.dailyCheckinsList[date.date] = {
+                checkins: vm.checkins,
+                day: date
+            };
+            if (vm.dailyCheckinsList[0]) {
+                vm.dailyCheckinsList[0] += 1;
+            } else {
+                vm.dailyCheckinsList[0] = 1;
+            }
+            vm.rootScp.$broadcast('addDate', date);
+            return vm.getCheckins(date).then(function(data) {
+                return data;
+            });
+        } else {
+            vm.checkins = [];
+            let date = {
+                year: leftMost.year,
+                month: --leftMost.month,
+                date: new Date(leftMost.year, leftMost.month + 1, 0).getDate()
             };
             vm.dailyCheckinsList[date.date] = {
                 checkins: vm.checkins,
