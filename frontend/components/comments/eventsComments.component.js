@@ -46,8 +46,8 @@ class eventsCommentsComponentController {
                                     if (self.comments[i].author && self.comments[i].author.email) {
                                         let user = self.userService.getUserByEmail(self.comments[i].author.email, self.externalUsersData);
                                         if (user.avatar) {
-                                            if (user.avatar.thumbnailUrlAva) self.comments[i].author.avatar = user.avatar.thumbnailUrlAva;
-                                            else if (user.avatar.urlAva) self.comments[i].author.avatar = user.avatar.urlAva;
+                                            if (user.avatar) self.comments[i].author.avatar = user.avatar;
+                                            else user.shortName = self.userService.setUserShortNames(user);
                                         }
                                     }
                                 }
