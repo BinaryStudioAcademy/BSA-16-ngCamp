@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var User = require('./userSchema');
 var Project = require('./projectSchema');
+var File = require('./fileSchema');
 
 var messageSchema = new Schema({
     isDraft: Boolean,
@@ -28,7 +29,10 @@ var messageSchema = new Schema({
             files: [String]
         }
     ],
-    files: [String]
+    files: [{
+        type: Schema.Types.ObjectId,
+        ref: 'File'
+    }]
 });
 
 module.exports = mongoose.model('Message', messageSchema);
