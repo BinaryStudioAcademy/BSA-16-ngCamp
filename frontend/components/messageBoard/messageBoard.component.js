@@ -48,7 +48,7 @@ class messageBoardController {
 
                                 if (self.externalUsersData) {
                                     let extUsrData = self.userService.getUserByEmail(res[msg].author.email, self.externalUsersData);
-                                    if (extUsrData.avatar) {
+                                    if (extUsrData) {
                                         if (extUsrData.avatar) res[msg].author.avatar = extUsrData.avatar;
                                         else {
                                             res[msg].author.avatar = './img/person.gif';
