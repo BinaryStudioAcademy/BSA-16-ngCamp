@@ -1,11 +1,11 @@
-(function () {
+(function() {
     "use strict";
 
-    var getHeader = function () {
+    var getHeader = function() {
         var request = new XMLHttpRequest();
         request.open('GET', 'http://team.binary-studio.com/app/header', true);
         request.send();
-        request.onreadystatechange = function () {
+        request.onreadystatechange = function() {
             if (request.readyState != 4) return;
             if (request.status != 200) {
                 alert(request.status + ': ' + request.statusText);
@@ -17,5 +17,5 @@
             }
         };
     };
-    getHeader();
+    if (window.location.host.indexOf('localhost') === -1) getHeader();
 })();

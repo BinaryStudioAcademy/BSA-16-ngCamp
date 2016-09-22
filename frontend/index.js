@@ -16,11 +16,13 @@ app.run(function($cookies, $rootScope, jwtHelper, httpGeneral) {
 	let token = $cookies.get('x-access-token');
 	if (token && !window._injectedData.avatar) {
 		let decodedToken = jwtHelper.decodeToken(token);
+		let url = window.location.protocol + '//' + window.location.host + '/profile/user/getByCentralId/' + decodedToken.id;
+		if (window.location.host.indexOf('localhost') !== -1) url = window.location.protocol + '//' + window.location.host + '/user.json';
 		httpGeneral.sendRequest({
 			type: "GET",
-			url: window.location.protocol + '//' + window.location.host + '/profile/user/getByCentralId/' + decodedToken.id
+			url: url
 		}).then(function(res) {
-			if (res[0] && res[0].avatar) {
+			if (res && res[0] && res[0].avatar) {
 				window._injectedData.avatar = {
 					real: res[0].avatar.urlAva ? res[0].avatar.urlAva : '',
 					small: res[0].avatar.thumbnailUrlAva ? res[0].avatar.thumbnailUrlAva : ''

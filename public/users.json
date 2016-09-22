@@ -1,0 +1,169 @@
+[{
+	"id": "56780659ea7a3b626282103d",
+	"name": "Eduard Dolynskyi",
+	"email": "eduard.dolinskyi@binary-studio.com",
+	"department": "Frontend Developer",
+	"avatar": "/avatars/a6a7ea6a-4781-4591-8fc4-27429f8727ed",
+	"serverUserId": "56780606215c82267c1a3cc0"
+}, {
+	"id": "567921371560298f766909a7",
+	"name": "Bogdan Rusinka",
+	"email": "rusinka.bogdan@gmail.com",
+	"department": "Frontend Developer",
+	"avatar": "/avatars/ac0fe7ff-fa30-420d-8c53-4b871c687bf6.jpg",
+	"serverUserId": "567920fc215c82267c1a3cc3"
+}, {
+	"id": "567a4f3b588763672a599970",
+	"name": "Andrey Tarusin",
+	"email": "andriy.tarusin@binary-studio.com",
+	"department": "Backend Developer",
+	"avatar": "/avatars/500eb588-814c-410f-8240-2a4caf0d4a9e.jpg",
+	"serverUserId": "567a4f0f215c82267c1a3cc7"
+}, {
+	"id": "567a5652e2bf15ff2456c71c",
+	"name": "Tatiana Shabskaya",
+	"email": "shabskaya@gmail.com",
+	"department": "Administrator",
+	"avatar": "/avatars/8ab41d15-67d1-4eea-8513-93268ccc7173.png",
+	"serverUserId": "567a5638b296f43825501236"
+}, {
+	"id": "56782b52a44e35a44cf21f90",
+	"name": "Ulyana Falach",
+	"email": "ulyana@binary-studio.com",
+	"department": "HR",
+	"avatar": "/avatars/3ef47c77-1b5a-43ba-9e9a-cde4e8d19c46.jpg",
+	"serverUserId": "56782adb215c82267c1a3cc2"
+}, {
+	"id": "567a6daa12c368662cfb1d1d",
+	"name": "Michael Morozov",
+	"email": "michael.morozov@binary-studio.com",
+	"department": "Backend Developer",
+	"avatar": "/avatars/0d22855f-61dc-4335-9d21-e17d08be9740.png",
+	"serverUserId": "567a6d5de07428ab2cc0b666"
+}, {
+	"id": "567a6f3f12c368662cfb1d21",
+	"name": "Anatoliy Sieryi",
+	"email": "anatoliy.sieryi@binary-studio.com",
+	"department": "Frontend Developer",
+	"avatar": "/avatars/70e69cec-907e-4786-8328-5b0fa4d8bd60.jpg",
+	"serverUserId": "567a6ebde07428ab2cc0b667"
+}, {
+	"id": "567aa56144a13de7113d8233",
+	"name": "Nikita Semenistyi",
+	"email": "nikita.semenistyi@binary-studio.com",
+	"department": "Frontend Developer",
+	"avatar": "/avatars/1e587bd2-cfc8-4d21-9e3e-1fe49dee5896.jpg",
+	"serverUserId": "567aa528af36a06513d96db2"
+}, {
+	"id": "567aaffa6e544d214e9becd4",
+	"name": "Dmitriy Beseda",
+	"email": "dmitriy.beseda@binary-studio.com",
+	"department": "Frontend Developer",
+	"avatar": "/avatars/a4031299-4c54-4cac-b0d8-17a91ab22e1b",
+	"serverUserId": "567aafcb4a25306f4ebeb0c9"
+}, {
+	"id": "567ab1be6e544d214e9bece3",
+	"name": "Artem Goncharov",
+	"email": "artem@binary.dot",
+	"department": "Executive Officer",
+	"avatar": "/avatars/248d7890-f1d5-4425-964e-4a14b0b53495.png",
+	"serverUserId": "567ab1b24a25306f4ebeb0cd"
+}, {
+	"id": "567abd826f41190f1ac0af29",
+	"name": "Admin Adminovich",
+	"email": "admin@example.com",
+	"department": "Frontend Developer",
+	"avatar": "/avatars/3e32ace0-8fc4-4229-9813-be1acb66da2c",
+	"serverUserId": "567abd6670a3a2541ae74c9a"
+}, {
+	"id": "567bb164671696e625231c07",
+	"name": "Myroslav Dmytrus",
+	"email": "myroslav.dmytrus@binary-studio.com",
+	"department": "Backend Developer",
+	"avatar": "/avatars/7180d14b-638b-4a8d-b867-c6d747a85d17.jpg",
+	"serverUserId": "567bb126cd2307e21e6cd333"
+}, {
+	"id": "567bb47e05f167d4347f9d95",
+	"name": "Viktor Tolkushyn",
+	"email": "viktor@binary-studio.com",
+	"department": "QA",
+	"avatar": "/avatars/dd8409d4-3dbf-4669-a65b-9fe3c9a3d627.jpg",
+	"serverUserId": "567bb46309b6341935ba07cc"
+}, {
+	"id": "567bd2145999982d745d7dc6",
+	"name": "Maxim Goncharuk",
+	"email": "maksim.goncharuk@binary-studio.com",
+	"department": "Backend Developer",
+	"avatar": "/avatars/8bf6b32e-dd15-44f2-8a91-de70ab0d4805.jpg",
+	"serverUserId": "567bd1b13e5c5a7374d9a597"
+}, {
+	"id": "567bdf03556af0ca528cbd28",
+	"name": "Oleksandr Kovalov",
+	"email": "kovalov.oleksandr@binary-studio.com",
+	"department": "Frontend Developer",
+	"avatar": "/avatars/c3a9d9fb-512a-4514-b9ae-bf8a47ed754d.jpg",
+	"serverUserId": "567bded7460ceb1550867504"
+}, {
+	"id": "567d0c43bc510939692efc20",
+	"name": "Anton Vasylenko",
+	"email": "anton.vasilenko@binary-studio.com",
+	"department": "Backend Developer",
+	"avatar": "/avatars/347481a3-8c69-4eda-a797-e6e16f5ccbe3.jpg",
+	"serverUserId": "567d0c31ee98fdac7f7881b2"
+}, {
+	"id": "5696290c56c68ea97b22591f",
+	"name": "Kate Semenistaya",
+	"email": "kate@binary-studio.com",
+	"department": "HR",
+	"avatar": "/avatars/Unknown.png",
+	"serverUserId": "5696288edfa428f57bfa5c4c"
+}, {
+	"id": "56962f1e56c68ea97b225922",
+	"name": "Irina Sokolova",
+	"email": "ira@binary-studio.com",
+	"department": "HR marketing manager",
+	"avatar": "/avatars/69a2a43a-121b-4207-98d9-caf0b16b902a.jpg",
+	"serverUserId": "56962e43dfa428f57bfa5c4d"
+}, {
+	"id": "577a169013eb94e209af1ede",
+	"name": "TestName A",
+	"email": "tester_a@example.com",
+	"department": "QA",
+	"avatar": "/avatars/2b3b1100-e747-47cc-969d-1060ea426853",
+	"serverUserId": "577a16659829fe050adb3f5c"
+}, {
+	"id": "577a173313eb94e209af1ee1",
+	"name": "Tester B",
+	"email": "tester_b@example.com",
+	"department": "QA",
+	"avatar": "/avatars/Unknown.png",
+	"serverUserId": "577a171c9829fe050adb3f5d"
+}, {
+	"id": "577a177413eb94e209af1ee4",
+	"name": "Tester C",
+	"email": "tester_c@example.com",
+	"department": "QA",
+	"avatar": "/avatars/Unknown.png",
+	"serverUserId": "577a17669829fe050adb3f5e"
+}, {
+	"id": "577a17ba13eb94e209af1ee7",
+	"name": "Tester D",
+	"email": "tester_d@example.com",
+	"department": "QA",
+	"avatar": "/avatars/Unknown.png",
+	"serverUserId": "577a17a99829fe050adb3f5f"
+}, {
+	"id": "577a17ec13eb94e209af1eea",
+	"name": "Tester E",
+	"email": "tester_e@example.com",
+	"department": "QA",
+	"avatar": "/avatars/a331ec84-fd09-4062-a9b2-76cff37702d8",
+	"serverUserId": "577a17df9829fe050adb3f60"
+}, {
+	"id": "577a188313eb94e209af1eed",
+	"name": "Tester F",
+	"email": "tester_f@example.com",
+	"department": "QA",
+	"avatar": "/avatars/Unknown.png",
+	"serverUserId": "577a18349829fe050adb3f61"
+}]
