@@ -15,7 +15,8 @@
     .invalid_info
       p(ng-show="message.content.$invalid && editCtrl.invalidForm") Message is required;
       p(ng-show="message.content.$error.minlength && edit.invalidForm") Message is too short;
-      p(ng-show="message.content.$error.maxlength && edit.invalidForm") Message is too long; 
+      p(ng-show="message.content.$error.maxlength && edit.invalidForm") Message is too long;
+    file-upload(file-list = 'editCtrl.files')
     .saveBtn
       button(ng-click="editCtrl.edit(message.$valid)") Save
       //div.postBtn(ng-if="editCtrl.draft.isDraft",ng-click="editCtrl.postDraft(message.$valid)") Post on message board

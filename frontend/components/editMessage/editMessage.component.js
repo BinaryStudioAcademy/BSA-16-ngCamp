@@ -7,6 +7,7 @@ class editMessageController {
         this.window = $window;
         this.popupNotifications = popupNotifications;
         this.draft;
+        this.files = [];
         this.invalidForm = false;
         this.tinyOptions = {
             inline: true,
