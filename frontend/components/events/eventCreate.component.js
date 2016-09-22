@@ -83,7 +83,9 @@ class eventEditController {
                     data: {
                         title: self.title,
                         description: self.desc,
-                        files: self.files,
+                        files: self.files.map(function(elem){
+                            return elem._id;
+                        }),
                         project: window._injectedData.currentProject,
                         participants: self.participants.map((elem) => {
                             return elem._id;
