@@ -172,6 +172,7 @@ class CalendarMonthCtrl {
 
         vm.buildMonth();
         vm.scp.$on('addDate', function(event, addedDay) {
+            // debugger;
             vm.weeks.forEach(function(week) {
                 week.days.forEach(function(day) {
                     if (day.date.year() == addedDay.year && day.date.month() == addedDay.month && day.date.date() == (addedDay.date)) {
