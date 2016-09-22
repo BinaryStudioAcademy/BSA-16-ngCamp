@@ -1,0 +1,10 @@
+div#chlist(ng-repeat="day in rpanel.dailyCheckinsList  | limitTo:35:1 | filter:rpanel.dayFilter:day.checkins | orderBy:'-' track by $index ")
+	h2.checkin_day(ng-if="day.checkins.length!=0") {{day.day.year}}/{{day.day.month+1}}/{{day.day.date}}
+	//- h3.checkin_day(ng-if="day.checkins.length==0") There are no check-ins for this day - {{day.day.year}}/{{day.day.month+1}}/{{day.day.date}}
+	ul.checkinsList(ng-repeat="checkin in day.checkins | filter:rpanel.checkinEmptyFilter:checkin track by $index") 
+		h2.checkin_title {{checkin.question}}
+		li(ng-repeat="answer in checkin.answers | filter:{ answer: '!noAnswer'} track by $index") 
+			.answer
+				span.user_name {{answer.user.firstName + ' '+ answer.user.lastName }} (
+					span.creation_date {{answer.editedDate | date: "dd/MM/yyyy hh:mm:ss"}})
+				span.answer_text(ng-bind-html='answer.answer')
