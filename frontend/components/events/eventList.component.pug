@@ -12,7 +12,7 @@
                             .pull-left
                                 label(for='text') from:
                             p.input-group
-                                input.form-control(type='text', uib-datepicker-popup='{{format}}', ng-model='vm.dtfrom', is-open='vm.popup1.opened', datepicker-options='vm.dateOptions', ng-required='true', close-text='Close', alt-input-formats='altInputFormats')
+                                input.form-control(type='text', uib-datepicker-popup='dd/MM/yyyy', ng-model='vm.dtfrom', is-open='vm.popup1.opened', ng-required='true', close-text='Close', alt-input-formats='altInputFormats' readonly='readonly' ng-change ="vm.refreshDate()")
                                 span.input-group-btn
                                     button.btn.btn-default(type='button', ng-click='vm.open1()')
                                         i.fa.fa-calendar(aria-hidden='true')
@@ -20,7 +20,7 @@
                             .pull-left
                                 label to: 
                             p.input-group
-                                input.form-control(type='text', uib-datepicker-popup='', ng-model='vm.dtto', is-open='vm.popup2.opened', datepicker-options='vm.dateOptions',ng-required='true', close-text='Close')
+                                input.form-control(type='text', uib-datepicker-popup='dd/MM/yyyy', ng-model='vm.dtto', is-open='vm.popup2.opened', datepicker-options='vm.dateOptions',ng-required='true', close-text='Close' readonly='readonly')
                                 span.input-group-btn
                                     button.btn.btn-default(type='button', ng-click='vm.open2()')
                                         i.fa.fa-calendar(aria-hidden='true')  

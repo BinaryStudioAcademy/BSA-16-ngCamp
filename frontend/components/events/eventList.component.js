@@ -1,7 +1,7 @@
 import './eventsStyles.styl';
 
 class EventListComponentController {
-	constructor(httpGeneral, $location,$sce) {
+	constructor(httpGeneral, $location, $sce) {
 		this.httpGeneral = httpGeneral;
 		this.location = $location;
 		this.dtfrom = new Date();
@@ -18,22 +18,24 @@ class EventListComponentController {
 		};
 		this.participants = [];
 		this.isAdmin = false;
+		this.dateOptions = {};
+		this.refreshDate = refreshDate;
 	}
 
-	trustAsHtml(string){
+	trustAsHtml(string) {
 		let self = this;
 		return self.sce.trustAsHtml(string);
 	}
 
-	getDate(event){
+	getDate(event) {
 		let strtDate = new Date(event.startDate);
 		let endDate = new Date(event.endDate);
 		let strtDateString = `${strtDate.getDate()}/${strtDate.getMonth()}/${strtDate.getFullYear()} at ${strtDate.getHours()}:${strtDate.getMinutes()}`;
 		let endDateString = `${endDate.getDate()}/${endDate.getMonth()}/${endDate.getFullYear()} at ${endDate.getHours()}:${endDate.getMinutes()}`;
-		if(strtDateString === endDateString){
+		if (strtDateString === endDateString) {
 			return strtDateString;
 		};
-		let duration =  Math.floor((endDate.getTime() - strtDate.getTime())/(1000*60*60*24));
+		let duration = Math.floor((endDate.getTime() - strtDate.getTime()) / (1000 * 60 * 60 * 24));
 		let result = `from "${strtDateString}" to "${endDateString}", duration ${duration} days`;
 		return result;
 	}
@@ -43,7 +45,7 @@ class EventListComponentController {
 	}
 	open2() {
 		this.popup2.opened = true;
-		console.log('opned');
+		//console.log('opned');
 	}
 	$onInit() {
 		let self = this;
@@ -99,7 +101,12 @@ class EventListComponentController {
 	}
 }
 
-EventListComponentController.$inject = ['httpGeneral', '$location','$sce'];
+function refreshDate() {
+	let vm = this;
+	vm.dateOptions.minDate = vm.dtfrom;
+}
+
+EventListComponentController.$inject = ['httpGeneral', '$location', '$sce'];
 
 const eventListComponent = {
 	controller: EventListComponentController,
