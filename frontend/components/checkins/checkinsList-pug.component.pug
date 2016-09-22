@@ -70,7 +70,9 @@
                             li.question
                                 a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                             li.user-list
-                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
+                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
+                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
             section.tab.tu
                 label(for='tuesday') Tuesday
                 span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
@@ -86,7 +88,9 @@
                             li.question
                                 a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                             li.user-list
-                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
+                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
+                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
             section.tab.we
                 label(for='wednesday') Wednesday
                 span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
@@ -102,7 +106,9 @@
                             li.question
                                 a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                             li.user-list
-                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
+                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
+                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
             section.tab.th
                 label(for='thursday') Thursday
                 span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
@@ -118,7 +124,9 @@
                             li.question
                                 a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                             li.user-list
-                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
+                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
+                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
             section.tab.fr
                 label(for='friday') Friday
                 span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
@@ -134,7 +142,9 @@
                             li.question
                                 a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                             li.user-list
-                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
+                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
+                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
             section.tab.sa
                 label(for='saturday') Saturday
                 span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
@@ -150,7 +160,9 @@
                             li.question
                                 a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                             li.user-list
-                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
+                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
+                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
             section.tab.su
                 label(for='sunday') Sunday
                 span(class="no-chekcins" ng-if="check.checkIns.length==0") There are no check-ins for this day
@@ -166,4 +178,6 @@
                             li.question
                                 a(ng-link="['CheckinsInfo', {id: checkin._id}]") {{checkin.question}}
                             li.user-list
-                                span.avatar(ng-repeat="partagenosse in checkin.participants track by $index") {{partagenosse.lastName.charAt(0) + partagenosse.firstName.charAt(0)}}
+                                 .user-item(ng-repeat="partagenosse in checkin.participants track by $index")
+                                    img(ng-if="partagenosse.avatar" src="{{partagenosse.avatar}}")
+                                    span.avatar(ng-if="partagenosse.shortName") {{partagenosse.shortName}}
