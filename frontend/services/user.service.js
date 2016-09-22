@@ -27,7 +27,6 @@ class UserService {
 		}
 	}
 	getExternalUsersData() {
-		debugger;
 		let url = window.location.protocol + '//' + window.location.host + '/profile/user/filter';
 		if (window.location.host.indexOf('localhost') !== -1) url = window.location.protocol + '//' + window.location.host + '/users.json';
 		return this.httpGeneral.sendRequest({
