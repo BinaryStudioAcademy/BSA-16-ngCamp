@@ -46,6 +46,15 @@
 					font-size 1.4em
 					&:focus
 						background-color active-input
+					&:focus::-webkit-input-placeholder
+						color transparent
+					&:focus::-moz-placeholder
+						color transparent
+					&:focus:-ms-input-placeholder
+						color transparent
+					&:focus:-moz-placeholder
+						color transparent
+						
 			.projDescription // ---------------------------------------------------------------DESCRIPTION
 				width 100%
 				position relative
