@@ -6,4 +6,4 @@
 	button.addFile(ng-click = 'fu.triggerFileList()', ng-class = "{'buttonDownload': fu.uploading}", ng-disabled = "fu.uploading")
 		.button_background(style = "width: {{100*fu.uploadProgress}}%" ng-show = "fu.uploading")
 		i.fa(ng-class = "{'fa-spinner fa-spin': fu.uploading, 'fa-plus-square': !fu.uploading}")
-		span {{(fu.uploading) ? "uploading..." : "add file"}}
+		span {{(fu.uploading) ? "uploading..." + fu.timeLeft : "add file"}}
