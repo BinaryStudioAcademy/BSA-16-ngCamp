@@ -1,8 +1,9 @@
 import './eventsStyles.styl';
 
 class EventListComponentController {
-	constructor(httpGeneral, $location, $sce,UserService) {
+	constructor(httpGeneral, $location, $sce,UserService,popupNotifications) {
 		this.httpGeneral = httpGeneral;
+		this.popupNotifications = popupNotifications;
 		this.userService = UserService;
 		this.location = $location;
 		this.dtfrom = new Date();
@@ -79,26 +80,30 @@ class EventListComponentController {
 
 		self.userService.getExternalUsersData().then((result)=>{
             self.userInfo = result;
-            console.log(self.userInfo);
         });
 	}
 
 	filter() {
 		let self = this;
-		self.userEvents = [];
-		self.httpGeneral.sendRequest({
-			type: "GET",
-			url: `api/event/from/${self.dtfrom}/to/${self.dtto}`
-		}).then(function(res) {
-			self.events = res;
-			if (self.events != undefined) {
-				for (let event in self.events) {
-					if (self.events[event].project === window._injectedData.currentProject) {
-						self.userEvents.push(self.events[event]);
+		if (self.dtfrom > self.dtto){
+			self.popupNotifications.notifyError("Setp date from correctrly");
+			return;
+		} else {
+			self.userEvents = [];
+			self.httpGeneral.sendRequest({
+				type: "GET",
+				url: `api/event/from/${self.dtfrom}/to/${self.dtto}`
+			}).then(function(res) {
+				self.events = res;
+				if (self.events != undefined) {
+					for (let event in self.events) {
+						if (self.events[event].project === window._injectedData.currentProject) {
+							self.userEvents.push(self.events[event]);
+						};
 					};
-				};
-			}
-		});
+				}
+			});
+		}
 	}
 	isAuthor(event) {
 		let self = this;
@@ -113,7 +118,7 @@ function refreshDate() {
 	vm.dateOptions.minDate = vm.dtfrom;
 }
 
-EventListComponentController.$inject = ['httpGeneral', '$location', '$sce','UserService'];
+EventListComponentController.$inject = ['httpGeneral', '$location', '$sce','UserService','popupNotifications'];
 
 const eventListComponent = {
 	controller: EventListComponentController,

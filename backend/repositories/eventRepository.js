@@ -45,6 +45,8 @@ function getByDate(startDate, endDate, callback) {
         path:'comments.author',
     }).populate({
         path: "files"
+    }).populate({
+        path: "participants"
     });
     query.exec(callback);
 }
