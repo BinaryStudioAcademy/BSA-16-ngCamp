@@ -66,7 +66,7 @@ class fileUploadController{
                 };
                 self.scope.$apply();
             };
-            xhr.open('POST', '/api/files/task-form', true);
+            xhr.open('POST', './api/files/task-form', true);
             xhr.send(formData); 
         };
     }
