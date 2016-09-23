@@ -92,12 +92,16 @@ class messageBoardController {
 
     showText(index) {
         let self = this;
-        self.messages[index].showFull = true;
+        for (let i = 0; i < self.messages.length; i++){
+            if (self.messages[i]._id === index) self.messages[i].showFull = true;
+        }
     }
 
     hideText(index) {
         let self = this;
-        self.messages[index].showFull = false;
+        for (let i = 0; i < self.messages.length; i++){
+            if (self.messages[i]._id === index) self.messages[i].showFull = false;
+        }
     }
 
     isAuthor(message) {
