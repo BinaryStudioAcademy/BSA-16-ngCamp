@@ -34,6 +34,14 @@ class AnswerComponentController {
         vm.location.url(url);
     }
 
+    filterAns(type, seach) {
+        console.log(type);
+        console.log(seach);
+        return function(elem) {
+            console.log(elem);
+            return true;
+        };
+    }
 };
 
 AnswerComponentController.$inject = ['httpGeneral', '$location'];
