@@ -14,7 +14,7 @@ function MessageRepository() {
 
 function getMessagesWithAuthors(callback) {
     var model = this.model;
-    var query = model.find().populate('author');
+    var query = model.find().populate('author').populate({path: 'files'});
     query.exec(callback);
 }
 

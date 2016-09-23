@@ -6,6 +6,7 @@ class eventEditController {
         this.httpGeneral = httpGeneral;
         this.window = $window;
         this.location = $location;
+        this.files = [];
         this.title;
         this.date = new Date();
         this.endDate = new Date();
@@ -38,58 +39,64 @@ class eventEditController {
             selector: '.descEditor'
         };
     }
+
     edit(prop) {
         let self = this;
         switch (prop) {
             case "title":
-                {
-                    self.editTitle = false;
-                    self.curEvent.title = self.title;
-                    break;
-                }
+            {
+                self.editTitle = false;
+                self.curEvent.title = self.title;
+                break;
+            }
             case "description":
-                {
-                    self.editDescription = false;
-                    self.curEvent.description = self.desc;
-                    break;
-                }
+            {
+                self.editDescription = false;
+                self.curEvent.description = self.desc;
+                break;
+            }
             case "startDate":
-                {
-                    self.editStartDate = false;
-                    self.curEvent.startDate = self.date;
-                    break;
-                }
+            {
+                self.editStartDate = false;
+                self.curEvent.startDate = self.date;
+                break;
+            }
             case "endDate":
-                {
-                    self.editEndDate = false;
-                    self.curEvent.endDate = self.endDate;
-                    break;
-                }
+            {
+                self.editEndDate = false;
+                self.curEvent.endDate = self.endDate;
+                break;
+            }
             case "participants":
-                {}
+            {
+            }
         }
     }
-    onUserSelect(user){
-        function filterArrayUsers(element){
+
+    onUserSelect(user) {
+        function filterArrayUsers(element) {
             let eq;
-            if( element._id == user._id ){
+            if (element._id == user._id) {
                 eq = true;
-            }else{
+            } else {
                 eq = false;
-            };
+            }
+            ;
             return eq;
         };
         let self = this.parentScope;
         let repeat = self.participants.find(filterArrayUsers);
 
-        if(repeat){
+        if (repeat) {
             self.popupNotifications.notifyError('already added!');
-        }else{
+        } else {
             self.participants.push(user);
-        };
+        }
+        ;
 
         self.userListFlag = false;
     }
+
     $onInit() {
         let self = this;
         let userReq = {
@@ -99,16 +106,17 @@ class eventEditController {
                 self.popupNotifications.notifyError('Proj. Participants load error!');
             }
         };
-        self.httpGeneral.sendRequest(userReq).then(function(res){
+        self.httpGeneral.sendRequest(userReq).then(function (res) {
             self.users = res.participants;
         });
     }
+
     $routerOnActivate(next) {
         let self = this;
         self.httpGeneral.sendRequest({
             type: "GET",
             url: `api/event/${next.params.id}/participants`
-        }).then(function(res) {
+        }).then(function (res) {
             self.curEvent = res;
             self.title = res.title;
             self.desc = res.description;
@@ -117,6 +125,7 @@ class eventEditController {
             console.log(self.participants);
         });
     }
+
     save(valid) {
         let self = this;
         if (valid) {
@@ -127,18 +136,23 @@ class eventEditController {
 
                     title: self.title,
                     description: self.desc,
+                        files: self.files.map(function(elem){
+                            return elem._id;
+                        }),
                     project: window._injectedData.currentProject,
-                    participants: self.participants.map((elem)=>{return elem._id;}),
+                    participants: self.participants.map((elem)=> {
+                        return elem._id;
+                    }),
                     startDate: self.date,
                     endDate: self.endDate,
                     isAllDay: self.allDay,
 
                 }
-            }).then(function(res) {
+            }).then(function (res) {
                 console.log("Succesfull create event");
                 self.location.path('/events');
             });
-        }else{
+        } else {
             this.invalidForm = true;
             self.popupNotifications.notifyError("Please enter info correctly");
         }
@@ -149,7 +163,7 @@ class eventEditController {
         self.httpGeneral.sendRequest({
             type: "DELETE",
             url: `api/event/${self.curEvent._id}`,
-        }).then(function(res) {
+        }).then(function (res) {
             self.window.location.reload();
             self.location.path('/events');
         });
@@ -163,14 +177,15 @@ class eventEditController {
                 return element._id === id;
             });
             return `${user.firstName} ${user.lastName}`;
-        };
+        }
+        ;
     }
 
     participantDelete(user) {
         let self = this;
-        self.participants.forEach((elem,index,arr)=>{
-            if(user._id == elem._id){
-                arr.splice(index,1);
+        self.participants.forEach((elem, index, arr)=> {
+            if (user._id == elem._id) {
+                arr.splice(index, 1);
             }
         });
     };
@@ -178,6 +193,7 @@ class eventEditController {
     open() {
         this.popup.opened = true;
     }
+
     open1() {
         this.popup1.opened = true;
     }

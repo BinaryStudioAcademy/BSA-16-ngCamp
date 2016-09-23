@@ -20,6 +20,7 @@
 			p(ng-show="message.content.$error.minlength && postCtrl.invalidForm") Message is too short;
 			p(ng-show="message.content.$error.maxlength && postCtrl.invalidForm") Message is too long; 
 			//- .placeholder(ng-show = "!postCtrl.desc.length && createProj.descriptionPlaceholder") Your project description here
+		file-upload(file-list = 'postCtrl.files')
 		.buttons
 			//- div.sendBtn
 			//-   button(ng-click="postCtrl.draft(message.$valid)") Save as Draft

@@ -68,7 +68,7 @@ class CheckinsInfoComponentController {
             });
         };
 
-        vm.popupNotifications.notifyConfirm('atention!', 'Are you sure want to delete this checkin?', 'ok', 'cancel', onOkFunc);
+        vm.popupNotifications.notifyConfirm('Delete confirmation', 'Are you sure want to delete this checkin?', 'ok', 'cancel', onOkFunc);
     }
 }
 

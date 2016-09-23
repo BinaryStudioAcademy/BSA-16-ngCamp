@@ -12,27 +12,28 @@ class messageBoardController {
         this.isAdmin = false;
         this.sce = $sce;
     }
+
     $onInit() {
         let self = this;
         let i = 0;
         let async = require('async');
 
         async.waterfall([
-            function(callback) {
-                self.userService.getExternalUsersData().then(function(data) {
+            function (callback) {
+                self.userService.getExternalUsersData().then(function (data) {
                     self.externalUsersData = data;
                     callback(null, data);
                 });
             },
-            function(extUsers, callback) {
+            function (extUsers, callback) {
                 self.httpGeneral.sendRequest({
                     type: "GET",
                     url: "api/checkins"
-                }).then(function(res) {
+                }).then(function (res) {
                     self.httpGeneral.sendRequest({
                         type: "GET",
                         url: "api/messages"
-                    }).then(function(res) {
+                    }).then(function (res) {
                         for (let msg in res) {
                             if (res[msg].project === window._injectedData.currentProject) {
                                 self.messages.push(res[msg]);
@@ -58,7 +59,8 @@ class messageBoardController {
 
                                 i++;
                             }
-                        };
+                        }
+                        ;
                     });
                     callback(null, null);
                 });
@@ -75,7 +77,7 @@ class messageBoardController {
                 self.popup.notifyError('Project download Error!');
             }
         };
-        self.httpGeneral.sendRequest(projReq).then(function(res) {
+        self.httpGeneral.sendRequest(projReq).then(function (res) {
             for (let i = 0; i < res.admins.length; i++) {
                 if (res.admins[i]._id === window._injectedData.userId) {
                     self.isAdmin = true;
@@ -84,20 +86,24 @@ class messageBoardController {
         });
 
     }
+
     showText(index) {
         let self = this;
         self.messages[index].showFull = true;
     }
+
     hideText(index) {
         let self = this;
         self.messages[index].showFull = false;
     }
+
     isAuthor(message) {
         let self = this;
         let ans = false;
         if (message.author._id === window._injectedData.userId) ans = true;
         return ans;
     }
+
     trustAsHtml(string) {
         let self = this;
         return self.sce.trustAsHtml(string);
