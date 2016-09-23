@@ -24,7 +24,10 @@ class RightPanelComponentController {
         if (!vm.years[day.year]) {
             let months = [];
             let days = [];
-            days[day.date] = vm.checkins;
+            days[day.date] = {
+                day: day,
+                checkins: vm.checkins
+            };
             months[day.month] = {
                 days: days
             };
@@ -35,9 +38,13 @@ class RightPanelComponentController {
         } else {
             if (!vm.years[day.year].months[day.month]) {
                 let days = [];
-                days[day.date] = vm.checkins;
+                days[day.date] = {
+                    day: day,
+                    checkins: vm.checkins
+                };
                 vm.years[day.year].months[day.month] = {
-                    days: days
+                    day: day,
+                    checkins: vm.checkins
                 };
             } else if (vm.years[day.year].months[day.month]) {
                 vm.years[day.year].months[day.month].days[day.date] = vm.checkins;
@@ -60,7 +67,10 @@ class RightPanelComponentController {
         vm.getCheckins(dateObj);
         let months = [];
         let days = [];
-        days[dateObj.date] = vm.checkins;
+        days[dateObj.date] = {
+            day: dateObj,
+            checkins: vm.checkins
+        };
         months[dateObj.month] = {
             days: days
         };
@@ -75,7 +85,10 @@ class RightPanelComponentController {
             vm.getCheckins(day);
             let months = [];
             let days = [];
-            days[day.date] = vm.checkins;
+            days[day.date] = {
+                day: day,
+                checkins: vm.checkins
+            };
             months[day.month] = {
                 days: days
             };
@@ -118,7 +131,10 @@ class RightPanelComponentController {
                         url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + date.year + '/' + date.month + '/' + date.date
                     }).then(function(res) {
                         if (res) {
-                            vm.years[date.year].months[date.month].days[date.date] = res;
+                            vm.years[date.year].months[date.month].days[date.date] = {
+                                day: date,
+                                checkin: res
+                            };
                         }
                         vm.rootScp.$broadcast('addDate', date);
                     });
@@ -143,7 +159,10 @@ class RightPanelComponentController {
                         };
                         console.log(res);
                         if (res) {
-                            vm.years[date.year].months[date.month].days[date.date] = res;
+                            vm.years[date.year].months[date.month].days[date.date] = {
+                                day: date,
+                                checkin: res
+                            };
                         }
                         vm.rootScp.$broadcast('addDate', date);
                     });
@@ -157,11 +176,13 @@ class RightPanelComponentController {
             if (!vm.years[day.year]) {
 
             } else {
-                vm.years[day.year].months[day.month].days[day.date] = vm.checkins;
+                vm.years[day.year].months[day.month].days[day.date] = {
+                    day: day,
+                    checkin: vm.checkins
+                };
+                let right = vm.findRightMostDate();
+                vm.rootScp.$broadcast('addDate', day, right);
             }
-            let right = vm.findRightMostDate();
-            vm.rootScp.$broadcast('addDate', day, right);
-            // }
         });
 
         vm.scp.$on('removeDate', function(event, day) {

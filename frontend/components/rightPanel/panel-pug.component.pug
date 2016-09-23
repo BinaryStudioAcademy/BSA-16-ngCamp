@@ -1,7 +1,7 @@
 .checkins-main-wrap
     .row
         .col-xs-12
-            .check-list.row(ng-repeat= "year in rpanel.years | filter : {year: '!undefined'} track by $index " ng-show="year.")
+            .check-list.row(ng-repeat= "year in rpanel.years | filter : {year: '!undefined'} track by $index ")
                 .col-xs-12
                     ul.checkinsList.row(ng-repeat="month in year.months | filter: {month: '!undefined'} track by $index")
                         .col-xs-12
@@ -10,6 +10,7 @@
                                     ul.checkinsList(ng-repeat="checkin in day track by $index") {{checkin.question}}
                                         .col-xs-12
                                             li.row(ng-repeat="answer in checkin.answers | filter: {answer: '!noAnswer'} track by $index")
+                                                span.col-xs-6 {{day.day}}
                                                 span.col-xs-3 {{answer.user.firstName + ' '+ (answer.user.lastName?answer.user.lastName:"") }}
                                                 span.col-xs-4(ng-bind-html='answer.answer')
 //- div#chlist(ng-repeat="day in rpanel.dailyCheckinsList  | limitTo:35:1 | filter:rpanel.dayFilter:day.checkins | orderBy:'-' track by $index ")
