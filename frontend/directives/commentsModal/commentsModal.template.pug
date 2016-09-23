@@ -11,7 +11,7 @@ i.fa.fa-comments-o(aria-hidden = "true", ng-click = "cm.toggle()")
         .commentsModal-content.row.start-xs
             .col-xs-12.comments_item(ng-repeat = "comment in cm.scope.comments")
                 .user_info
-                    img.userAvatar(src="{{comment.author.imageUrl}}")  
+                    img.userAvatar(ng-src="{{cm.getUserAvatar(comment.author)}}")  
                     //- CHANGE imageUrl to avatar
                     .userName {{comment.author.firstName}} {{comment.author.lastName}}
                 .commentText

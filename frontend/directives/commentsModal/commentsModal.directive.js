@@ -13,6 +13,22 @@ class commentsModalController{
         this.modalToggle = !this.modalToggle;
     }
 
+    getUserAvatar(author){
+        let self = this;
+        let result;
+        if(author.email){
+            self.scope.usersInfo.forEach((elem)=>{
+                if(elem.email === author.email){
+                    result = elem.avatar;
+                };
+            });
+        }else{
+            result = author.avatar;
+        }
+        return result;
+
+    }
+
     postMessage(){
         let self = this;
         console.log(`api/${self.scope.instanceType}/${self.scope.instanceId}/comment`);
@@ -57,7 +73,8 @@ const commentsModalDirective = {
     scope: {
         comments: '=',
         instanceType: '=',
-        instanceId: '='
+        instanceId: '=',
+        usersInfo: '='
     },
     link: commentsModalLink
 };

@@ -10,8 +10,7 @@ class UserService {
 			if (window.location.host.indexOf('localhost') !== -1) url = window.location.protocol + '//' + window.location.host + '/users.json';
 			this.httpGeneral.sendRequest({
 				type: 'GET',
-				url: url,
-
+				url: url
 			}).then(function(data) {
 				for (let i = 0; i < usersArray.length; i++) {
 					for (let j = 0; j < data.length; j++) {
