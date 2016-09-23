@@ -17,7 +17,7 @@ user-list(user-data = 'taskCE.users', select-callback = 'taskCE.onUserSelect', p
 
 		.wrapper_prop.row
 			.prop_editor.col-xs-12
-				.taskdescription(ui-tinymce="taskCE.tinyOptions",ng-model="taskCE.task.description", ng-class = "{'placeholder': !postCtrl.desc.length}")
+				.taskdescription(ui-tinymce="taskCE.tinyOptions",ng-model="taskCE.task.description", ng-class = "{'placeholder': !taskCE.task.description}")
 
 
 		.wrapper_prop.row.center-xs
