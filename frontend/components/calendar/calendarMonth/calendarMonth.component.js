@@ -173,6 +173,16 @@ class CalendarMonthCtrl {
         vm.buildMonth();
         vm.scp.$on('addDate', function(event, addedDay) {
             // debugger;
+            // console.log(vm.weeks[0].days[0].date.year());
+            let prevMonthLastDisplaydDateObj = vm.weeks[0].days[0].date;
+            let prevMonthLastDisplaydDate = new Date(prevMonthLastDisplaydDateObj.year(), 
+                prevMonthLastDisplaydDateObj.month(), 
+                prevMonthLastDisplaydDateObj.date());
+            let addedDayDate = new Date(addedDay.year, addedDay.month, addedDay.date);
+            if (prevMonthLastDisplaydDate > addedDayDate){
+                vm.prev();
+                
+            } 
             vm.weeks.forEach(function(week) {
                 week.days.forEach(function(day) {
                     if (day.date.year() == addedDay.year && day.date.month() == addedDay.month && day.date.date() == (addedDay.date)) {
@@ -180,6 +190,8 @@ class CalendarMonthCtrl {
                     }
                 });
             });
+
+
             //     console.log('added date'+ addedDay.dow + ' '+addedDay.day);
             //     // vm.date = day;
             //     // vm.checkins = [];
