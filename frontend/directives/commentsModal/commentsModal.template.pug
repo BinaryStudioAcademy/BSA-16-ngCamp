@@ -1,0 +1,23 @@
+i.fa.fa-comments-o(aria-hidden = "true", ng-click = "cm.toggle()")
+.commentsModal_wrapper(ng-if = "cm.modalToggle")
+    .commentsModal_background(ng-click = "cm.toggle()")
+    .commentsModal_window
+        .commentsModal-lable.row.center-xs
+            .col-xs-2
+            .col-xs-8
+                h2 Comments 
+            .col-xs-2.close-ic
+                i.fa.fa-times(ng-click = "cm.toggle()")
+        .commentsModal-content.row.start-xs
+            .col-xs-12.comments_item(ng-repeat = "comment in cm.scope.comments")
+                .user_info
+                    img.userAvatar(ng-src="{{cm.getUserAvatar(comment.author)}}")  
+                    //- CHANGE imageUrl to avatar
+                    .userName {{comment.author.firstName}} {{comment.author.lastName}}
+                .commentText
+                    .commentmessage {{comment.description}}
+            .postComment
+                .postMessage
+                    textarea(ng-model = 'cm.myComment', placeholder = 'Your comment...')
+                .postButton
+                    button(ng-click = 'cm.postMessage()') Post comment

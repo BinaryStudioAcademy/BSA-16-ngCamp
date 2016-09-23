@@ -1,0 +1,106 @@
+@import "../../../public/libs/css/generalComponentsStyle.styl"
+.commentsModal_wrapper
+    position absolute
+    &:hover
+        color #212121
+    .commentsModal_background
+        position fixed
+        z-index 500
+        background-color #212121
+        opacity 0.5
+        height 100vh
+        width 100vw
+        top 0
+        left 0
+    .commentsModal_window
+        font-family 'Montserrat'
+        position fixed
+        z-index 600
+        background-color white
+        width 60vw
+        top 10vh
+        min-width 360px
+        left 24vw
+        border-radius 7px
+        padding 10px
+        @media only screen and (max-width : 1000px)
+            left 50%
+            top 50%
+            width 90vw
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        .commentsModal-lable
+            .close-ic
+                display flex
+                align-items center
+                i
+                    font-size 1.4em
+        .commentsModal-content
+            overflow-y auto
+            max-height 70vh
+            @media only screen and (max-width : 1000px)
+                max-height 80vh
+            margin 10px
+            padding 10px
+            .comments_item
+                padding 0.4em
+                width 100%
+                background-color disable-input
+                margin-bottom 3px
+                border-radius 5px
+                border-bottom 4px solid border-color
+                .user_info
+                    margin-bottom 10px
+                    .userAvatar
+                        display inline-block
+                        width 25px
+                        height 25px
+                        border-radius 7px
+                        margin-right 7px
+                    .userName
+                        display inline-block
+                        font-size 0.7em
+                        color text-input
+                        font-style italic
+                        opacity 0.8
+                .commentText
+                    .commentmessage
+                        padding-left 25px
+                        width 100%
+                        color text-input
+                        font-size 0.8em
+            .postComment
+                padding 10px
+                width 100%
+                .postMessage
+                    textarea
+                        resize none
+                        background-color disable-input
+                        color text-input
+                        width 100%
+                        outline none
+                        border none
+                        padding 10px
+                        font-size 0.7em
+                        border-radius 5px
+                        border-bottom 4px solid border-color
+                .postButton
+                    display flex
+                    justify-content center
+                    button
+                        
+                        button()
+                        color white
+                        --box-shadow-color #004D40
+                        background-color #1E824C
+                        text-decoration none
+                        border-radius 4px
+                        padding 5px 15px
+        .commentsModal-downloadAll
+            .dAll
+                button()
+                color white
+                text-decoration none

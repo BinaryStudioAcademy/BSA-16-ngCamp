@@ -1,6 +1,7 @@
 class TasksComponentController {
-    constructor(httpGeneral, $timeout, $filter, popupNotifications, $rootRouter) {
+    constructor(httpGeneral, $timeout, $filter, popupNotifications, $rootRouter,UserService) {
         this.http = httpGeneral;
+        this.userService = UserService;
         this.tasks = [];
         this.contentFlag = true;
         this.projUsers = [];
@@ -50,7 +51,12 @@ class TasksComponentController {
                     task.expanded = false;
                     self.calcProgress(task);
                 });
-            });
+        });
+
+        self.userService.getExternalUsersData().then((result)=>{
+            self.userInfo = result;
+        });
+
     }
 
     isAuthor(task) {
@@ -244,6 +250,7 @@ TasksComponentController.$inject = [
     '$filter',
     'popupNotifications',
     '$rootRouter',
+    'UserService'
 ];
 
 const tasksComponent = {

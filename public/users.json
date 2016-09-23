@@ -127,9 +127,9 @@
 }, {
 	"id": "577a169013eb94e209af1ede",
 	"name": "TestName A",
-	"email": "tester_a@example.com",
+	"email": "lightlife25@gmail.com",
 	"department": "QA",
-	"avatar": "/avatars/2b3b1100-e747-47cc-969d-1060ea426853",
+	"avatar": "/avatars/70e69cec-907e-4786-8328-5b0fa4d8bd60.jpg",
 	"serverUserId": "577a16659829fe050adb3f5c"
 }, {
 	"id": "577a173313eb94e209af1ee1",
@@ -165,5 +165,12 @@
 	"email": "tester_f@example.com",
 	"department": "QA",
 	"avatar": "/avatars/Unknown.png",
+	"serverUserId": "577a18349829fe050adb3f61"
+},{
+	"id": "577a188313eb94e209dedded",
+	"name": "Anthony Step",
+	"email": "sadasd",
+	"department": "FrontEnd",
+	"avatar": "/avatars/a331ec84-fd09-4062-a9b2-76cff37702d8",
 	"serverUserId": "577a18349829fe050adb3f61"
 }]

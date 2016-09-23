@@ -31,7 +31,9 @@ function getAllTasksInProject(id,callback){
 		path: "author"
 	}).populate({
 		path: "files"
-	});
+	}).populate({
+        path:'comments.author',
+    });
 	query.exec(callback);
 }
 
