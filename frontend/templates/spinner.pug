@@ -1,32 +1,43 @@
 html
   body
-    .sk-cube-grid
-      .sk-cube.sk-cube1
-      .sk-cube.sk-cube2
-      .sk-cube.sk-cube3
-      .sk-cube.sk-cube4
-      .sk-cube.sk-cube5
-      .sk-cube.sk-cube6
-      .sk-cube.sk-cube7
-      .sk-cube.sk-cube8
-      .sk-cube.sk-cube9
-      style.
+    .sk-cube-wrapper
+        .sk-cube-grid
+          .sk-cube.sk-cube1
+          .sk-cube.sk-cube2
+          .sk-cube.sk-cube3
+          .sk-cube.sk-cube4
+          .sk-cube.sk-cube5
+          .sk-cube.sk-cube6
+          .sk-cube.sk-cube7
+          .sk-cube.sk-cube8
+          .sk-cube.sk-cube9
+    style.
         root-element{
         display: block;
+        opacity: 0.3;
+        position: relative;
+        }
+        .sk-cube-wrapper{
+        position: fixed;
+        z-index: 999999999;
+        left: 50%;
+        top: 50vh;
+        margin-left: 75px;
         }
         .sk-cube-grid {
         width: 40px;
         height: 40px;
-        margin: 100px auto;
-        position: fixed;
-        z-index: 999999999;
-        top: 50%;
-        left: 50%;
+        margin: 0 auto;
+        }
+        @media only screen  and (max-width : 1000px), screen and (max-device-width: 1000px){
+        .sk-cube-wrapper{
+            margin-left: 0;
+        }
         }
         .sk-cube-grid .sk-cube {
         width: 33%;
         height: 33%;
-        background-color: #333;
+        background-color: #67809f;
         float: left;
         -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
         animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
