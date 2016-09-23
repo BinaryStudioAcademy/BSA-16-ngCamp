@@ -18,12 +18,14 @@ section
     box-sizing border-box
     border-radius 10px
     margin 7px
+    background: transparent
     background white
     flex 1
     min-width 30px
     &.resizable
         flex 0 0 400px
 #two
+    background: transparent
     min-width 360px
     min-height 80vh
     max-hight 80vh
@@ -35,47 +37,6 @@ section
             display block
             max-height 80vh
             overflow-y auto
-            .chlist
-                //- background-color: black
-               .checkin_day
-                    background-color #34495e
-                    color white
-                    text-align center
-                    border-radius 7px
-            .checkinsList
-                padding-left 0
-                font-family 'Montserrat'
-                list-style-type: none
-
-                .checkin_title
-                    background-color #67809f
-                    color white
-                    text-align center
-                    border-radius 7px
-                li
-                    margin 1.3em 2em
-                    position relative
-                        
-                .answer
-                    .user_name
-                        display inline-block
-                        -ms-transform: skewX(-15deg); /* IE 9 */
-                        -webkit-transform: skewX(-15deg); /* Safari */
-                        transform: skewX(-15deg); /* Standard syntax */
-                        width 75%
-                        font-size 1.2em
-                        background-color #59ABE3
-                        color white
-                        padding 0 15px
-                    .creation_date
-                        display inline
-                        font-size 0.8em
-                    .answer_text
-                        display block
-                        color #34495e
-                        margin-left 25px
-                        margin-top 10px
-                        font-size 1.2em
             &::-webkit-scrollbar
                 width 10px
             &::-webkit-scrollbar-track
@@ -83,12 +44,16 @@ section
             &::-webkit-scrollbar-thumb
                 background: #d3d3d3;
                 border-radius: 7px;
-
+.checkins-main-wrap
+    width: 80%
+    margin-left: 10%
+    box-sizing: border-box
+    word-break: break-all
 #one
+    background: transparent
     min-width 364px
     min-height 80vh
     max-hight 80vh
-    background-color #f5f5f5
     ng-outlet
         width 100%
         height 100%

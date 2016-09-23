@@ -10,7 +10,7 @@ class RightPanelComponentController {
         vm.scp = $scope;
         vm.rootScp = $rootScope;
         vm.years = [];
-        
+
         vm.checkins = [];
         vm.dailyCheckinsList = [];
         vm.endOfMonth = 35;
@@ -21,26 +21,33 @@ class RightPanelComponentController {
         let vm = this;
         vm.checkins = [];
         vm.getCheckins(day);
-        if (!vm.years[day.year]){
+        if (!vm.years[day.year]) {
             let months = [];
             let days = [];
             days[day.date] = vm.checkins;
-            months[day.month] = {days: days};
-            vm.years[day.year] = {year: day.year, months: months};
+            months[day.month] = {
+                days: days
+            };
+            vm.years[day.year] = {
+                year: day.year,
+                months: months
+            };
         } else {
-            if (!vm.years[day.year].months[day.month]){
+            if (!vm.years[day.year].months[day.month]) {
                 let days = [];
                 days[day.date] = vm.checkins;
-                vm.years[day.year].months[day.month] = { days: days};                   
-            } else  if(vm.years[day.year].months[day.month]){
+                vm.years[day.year].months[day.month] = {
+                    days: days
+                };
+            } else if (vm.years[day.year].months[day.month]) {
                 vm.years[day.year].months[day.month].days[day.date] = vm.checkins;
             } else {
                 // vm.years[day.year].months[day.month].days = [];
                 // vm.years[day.year].months[day.month].days[day.date] = vm.checkins;
             }
-            
+
         }
-        
+
     }
 
     $onInit() {
@@ -54,8 +61,13 @@ class RightPanelComponentController {
         let months = [];
         let days = [];
         days[dateObj.date] = vm.checkins;
-        months[dateObj.month] = {days: days};
-        vm.years[dateObj.year] = {year: dateObj.year, months: months};
+        months[dateObj.month] = {
+            days: days
+        };
+        vm.years[dateObj.year] = {
+            year: dateObj.year,
+            months: months
+        };
 
         vm.scp.$on('date', function(event, day) {
             vm.years = [];
@@ -64,9 +76,15 @@ class RightPanelComponentController {
             let months = [];
             let days = [];
             days[day.date] = vm.checkins;
-            months[day.month] = {days: days};
-            vm.years[day.year] = {year: day.year, months: months};
+            months[day.month] = {
+                days: days
+            };
+            vm.years[day.year] = {
+                year: day.year,
+                months: months
+            };
             // vm.dailyCheckinsList[0] = 1;
+            console.log(vm.years);
         });
 
         vm.scp.$on('endmonthdate', function(event, day) {
@@ -100,7 +118,7 @@ class RightPanelComponentController {
                         url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + date.year + '/' + date.month + '/' + date.date
                     }).then(function(res) {
                         if (res) {
-                             vm.years[date.year].months[date.month].days[date.date] = res;
+                            vm.years[date.year].months[date.month].days[date.date] = res;
                         }
                         vm.rootScp.$broadcast('addDate', date);
                     });
@@ -124,8 +142,8 @@ class RightPanelComponentController {
                             day: date
                         };
                         console.log(res);
-                       if (res) {
-                           vm.years[date.year].months[date.month].days[date.date] = res;
+                        if (res) {
+                            vm.years[date.year].months[date.month].days[date.date] = res;
                         }
                         vm.rootScp.$broadcast('addDate', date);
                     });
@@ -134,15 +152,15 @@ class RightPanelComponentController {
         });
 
         vm.scp.$on('ctrlDate', function(event, day) {
-               vm.checkins = [];
-               vm.getCheckins(day);
-               if (!vm.years[day.year]){
+            vm.checkins = [];
+            vm.getCheckins(day);
+            if (!vm.years[day.year]) {
 
-               } else {
-                   vm.years[day.year].months[day.month].days[day.date] = vm.checkins;
-               }
-                let right = vm.findRightMostDate();
-                vm.rootScp.$broadcast('addDate', day, right);
+            } else {
+                vm.years[day.year].months[day.month].days[day.date] = vm.checkins;
+            }
+            let right = vm.findRightMostDate();
+            vm.rootScp.$broadcast('addDate', day, right);
             // }
         });
 
@@ -169,7 +187,7 @@ class RightPanelComponentController {
             // let right = vm.findRightMostDate();
             // if ((right.date - left.date + 1 === vm.dailyCheckinsList[0]) || (right.date - left.date === vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) {
             // if ((right.date - left.date >= vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) {
-                vm.previousDay();
+            vm.previousDay();
             // }
         }
     }
@@ -184,7 +202,7 @@ class RightPanelComponentController {
                 // // console.log(left);
                 // let right = vm.findRightMostDate();
                 // if (((right.date - left.date + 1 === vm.dailyCheckinsList[0]) || (right.date - left.date === vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) && vm.changeProjectHover == false) {
-                if ( vm.changeProjectHover == false) {
+                if (vm.changeProjectHover == false) {
                     // console.log('previous day');
                     vm.previousDay();
                 }
@@ -241,54 +259,58 @@ class RightPanelComponentController {
     }
 
     findLeftMostDate() {
-        let vm = this;
-        let leftMost = null;
-        loop1:
-        for (let i = 0; i < vm.years.length; i++) {
-            if(vm.years[i]){
-                // console.log('before');
-                loop2:
-                for(let j=0; j < vm.years[i].months.length; j++) {
-                    // console.log(j);
-                    if (vm.years[i].months[j]) {
-                        if (vm.years[i].months[j].days) {
-                            loop3:
-                            for (let k=0; k < vm.years[i].months[j].days.length; k++) {
-                                 if (vm.years[i].months[j].days[k]) {
-                                    leftMost = { year: i, month: j, date: k};
-                                     break loop2;
+            let vm = this;
+            let leftMost = null;
+            loop1:
+                for (let i = 0; i < vm.years.length; i++) {
+                    if (vm.years[i]) {
+                        // console.log('before');
+                        loop2: for (let j = 0; j < vm.years[i].months.length; j++) {
+                            // console.log(j);
+                            if (vm.years[i].months[j]) {
+                                if (vm.years[i].months[j].days) {
+                                    loop3: for (let k = 0; k < vm.years[i].months[j].days.length; k++) {
+                                        if (vm.years[i].months[j].days[k]) {
+                                            leftMost = {
+                                                year: i,
+                                                month: j,
+                                                date: k
+                                            };
+                                            break loop2;
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
+            return leftMost;
         }
-        return leftMost;
-    }
-    // there be a problem when there will be two years
+        // there be a problem when there will be two years
     findRightMostDate() {
         let vm = this;
         let rightMost = null;
         loop1:
-        for (let i = vm.years.length; i >=0; i--) {
-            if(vm.years[i]){
-                loop2:
-                for(let j = vm.years[i].months.length; j >= 0; j--){
-                    if (vm.years[i].months[j]) {
-                        if (vm.years[i].months[j].days){
-                            loop3:
-                            for (let k = vm.years[i].months[j].days.length; k >= 0; k--){
-                                if (vm.years[i].months[j].days[k]) {
-                                    rightMost = { year: i, month: j, date: k};
-                                    break loop2;
+            for (let i = vm.years.length; i >= 0; i--) {
+                if (vm.years[i]) {
+                    loop2: for (let j = vm.years[i].months.length; j >= 0; j--) {
+                        if (vm.years[i].months[j]) {
+                            if (vm.years[i].months[j].days) {
+                                loop3: for (let k = vm.years[i].months[j].days.length; k >= 0; k--) {
+                                    if (vm.years[i].months[j].days[k]) {
+                                        rightMost = {
+                                            year: i,
+                                            month: j,
+                                            date: k
+                                        };
+                                        break loop2;
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-        }
         return rightMost;
     }
 
