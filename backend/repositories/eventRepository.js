@@ -18,7 +18,9 @@ EventRepository.prototype.addComment = addComment;
 
 function getAllWithParticipants(callback){
     var model = this.model;
-    var query = model.find({}).populate('participants');
+    var query = model.find({}).populate('participants').populate({
+        path:'comments.author',
+    });
     query.exec(callback);
 }
 
@@ -38,6 +40,8 @@ function getByDate(startDate, endDate, callback) {
         startDate: 1,
         endDate: 1,
         participants: 1
+    }).populate({
+        path:'comments.author',
     });
     query.exec(callback);
 }

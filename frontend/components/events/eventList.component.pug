@@ -45,6 +45,6 @@
                         span.avatar(ng-repeat="participant in vm.userEvents[$index].participants track by $index") {{ participant.firstName[0] + participant.lastName[0]}}
                     .toolbar
                         file-wrapper(files = 'event.files')
-                        i.fa.fa-comments-o(ng-link='["Event comments", {id:event._id}]')
+                        comments-modal(comments = 'event.comments',instance-type = '"event"',instance-id = 'event._id',users-info = 'vm.userInfo',instance-title = "event.title")
                 
                 

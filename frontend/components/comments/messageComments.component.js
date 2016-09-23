@@ -60,6 +60,9 @@ class messageCommentsComponentController {
                 });
             }
         ]);
+        self.userService.getExternalUsersData().then((result)=>{
+            self.userInfo = result;
+        });
     }
     sendComment(valid) {
         let self = this;
