@@ -16,5 +16,8 @@ i.fa.fa-comments-o(aria-hidden = "true", ng-click = "cm.toggle()")
                     .userName {{comment.author.firstName}} {{comment.author.lastName}}
                 .commentText
                     .commentmessage {{comment.description}}
-        .filesWrapper-downloadAll.row.center-xs
-            a.dAll(href = "/api/files/downloadAll/{{fw.idArray()}}", ng-if = 'fw.scope.files.length > 1') Download All
+            .postComment
+                .postMessage
+                    textarea(ng-model = 'cm.myComment', placeholder = 'Your comment...')
+                .postButton
+                    button(ng-click = 'cm.postMessage()') Post comment

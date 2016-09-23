@@ -43,7 +43,7 @@
 				.sub_functions.row.center-xs
 					.col-xs-12.col-sm-6.start-sm.end-xs.date {{task.dateCreated | date: "MMM d, y h:mm"}} ({{task.author.firstName}} {{task.author.lastName}})
 					.col-xs-12.col-sm-6.end-xs.icon_bar 
-						comments-modal(comments = 'task.comments',instance-type = 'task')
+						comments-modal(comments = 'task.comments',instance-type = '"task"',instance-id = 'task._id')
 						file-wrapper(files = 'task.files', source-id = 'task._id')
 						i.fa.fa-pencil(aria-hidden = "true", ng-link = "['TaskUpdate', {id: task._id}]",ng-if="tasksctrl.isAuthor(task) || tasksctrl.isAdmin")
 						i.fa.fa-times(aria-hidden = "true", ng-click = "tasksctrl.deleteTask(task._id,$index)",ng-if="tasksctrl.isAuthor(task) || tasksctrl.isAdmin")
