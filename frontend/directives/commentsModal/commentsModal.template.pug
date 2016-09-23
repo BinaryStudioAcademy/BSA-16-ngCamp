@@ -8,6 +8,7 @@ i.fa.fa-comments-o(aria-hidden = "true", ng-click = "cm.toggle()")
                 h2 Comments 
             .col-xs-2.close-ic
                 i.fa.fa-times(ng-click = "cm.toggle()")
+            .col-xs-12.commentsInfo to: {{cm.scope.instanceTitle}}
         .commentsModal-content.row.start-xs
             .col-xs-12.comments_item(ng-repeat = "comment in cm.scope.comments")
                 .user_info

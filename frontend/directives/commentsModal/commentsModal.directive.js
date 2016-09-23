@@ -74,7 +74,8 @@ const commentsModalDirective = {
         comments: '=',
         instanceType: '=',
         instanceId: '=',
-        usersInfo: '='
+        usersInfo: '=',
+        instanceTitle: '='
     },
     link: commentsModalLink
 };
