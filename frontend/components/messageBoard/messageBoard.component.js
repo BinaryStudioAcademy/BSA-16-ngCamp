@@ -66,6 +66,9 @@ class messageBoardController {
                 });
             }
         ]);
+        self.userService.getExternalUsersData().then((result)=>{
+            self.userInfo = result;
+        });
 
         if (window._injectedData.currentProject === undefined) {
             self.rootRouter.navigateByUrl('/noProject');

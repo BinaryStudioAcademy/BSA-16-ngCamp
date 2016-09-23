@@ -24,5 +24,5 @@
 						a.clicktohide(ng-click="msgBoard.hideText($index)",ng-if="message.showFull") Hide
 				.use-button
 						//- i.fa.fa-files-o(ng-link='["File"]')
-						i.fa.fa-comments-o(ng-link='["Message comments",{id:message._id}]')
+						comments-modal(comments = 'message.comments',instance-type = '"messages"',instance-id = 'message._id',users-info = 'msgBoard.userInfo',instance-title = "message.title")
 						file-wrapper(files = 'message.files')

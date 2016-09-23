@@ -1,8 +1,9 @@
 import './eventsStyles.styl';
 
 class EventListComponentController {
-	constructor(httpGeneral, $location, $sce) {
+	constructor(httpGeneral, $location, $sce,UserService) {
 		this.httpGeneral = httpGeneral;
+		this.userService = UserService;
 		this.location = $location;
 		this.dtfrom = new Date();
 		this.dtto = new Date();
@@ -75,7 +76,13 @@ class EventListComponentController {
 				}
 			}
 		});
+
+		self.userService.getExternalUsersData().then((result)=>{
+            self.userInfo = result;
+            console.log(self.userInfo);
+        });
 	}
+
 	filter() {
 		let self = this;
 		self.userEvents = [];
@@ -106,7 +113,7 @@ function refreshDate() {
 	vm.dateOptions.minDate = vm.dtfrom;
 }
 
-EventListComponentController.$inject = ['httpGeneral', '$location', '$sce'];
+EventListComponentController.$inject = ['httpGeneral', '$location', '$sce','UserService'];
 
 const eventListComponent = {
 	controller: EventListComponentController,
