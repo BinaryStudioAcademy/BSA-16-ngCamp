@@ -5,17 +5,20 @@
 		transition padding,height 0.5s ease-out
 		outline none
 		border none
-		border-radius 4px
-		border-bottom 4px solid border-color
+		color #78909C
+		border-bottom 2px dashed #78909C
 		overflow hidden
-		color text-input
+		background none
 		display block
 		wdith auto
 		margin 25px auto
-		font-size 1.2em
-		padding 0.5em 1em
+		font-size 1.4em
+		padding 0 24px
 		outline none
 		position relative
+		&:hover
+			color #0097A7
+			border-color #0097A7
 		i
 			display inline-flex
 			font-size 1.2em
@@ -43,8 +46,12 @@
 				box-shadow none
 				cursor wait
 	.buttonDownload
-		padding 0 30%
-		height 25px
+		height 30px
+		width 80%
+		display flex
+		justify-content center
+		color text-input
+		background-color disable-input
 		margin 37.5px auto
 		// color active-input
 		border none
