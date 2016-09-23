@@ -106,71 +106,70 @@ class RightPanelComponentController {
             vm.changeProjectHover = true;
         });
 
-        // vm.scp.$on('shiftdate', function(event, day) {
-        //     // let leftMost = vm.findLeftMostDate();
-        //     if (day.date < vm.findLeftMostDate.date) {
-        //         for (let i = 1; i < (leftMost.date - day.date) + 1; i++) {
-        //             let date = {
-        //                 year: leftMost.year,
-        //                 month: leftMost.month,
-        //                 date: leftMost.date - i
-        //             };
-        //             vm.checkins = [];
-        //             let checkinsArray = [];
-        //             vm.httpGeneral.sendRequest({
-        //                 type: "GET",
-        //                 url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + date.year + '/' + date.month + '/' + date.date
-        //             }).then(function(res) {
-        //                 vm.dailyCheckinsList[date.date] = {
-        //                     checkins: [],
-        //                     day: date
-        //                 };
-        //                 if (res) {
-        //                     res.forEach(function(check) {
-        //                         vm.dailyCheckinsList[date.date].checkins.push(check);
-        //                     });
-        //                 }
-        //                 if (vm.dailyCheckinsList[0]) {
-        //                     vm.dailyCheckinsList[0] += 1;
-        //                 } else {
-        //                     vm.dailyCheckinsList[0] = 1;
-        //                 }
-        //                 vm.rootScp.$broadcast('addDate', date);
-        //             });
-        //         }
+        vm.scp.$on('shiftdate', function(event, day) {
+            let leftMost = vm.findLeftMostDate();
+            let leftMostDate = new Date(leftMost.year, leftMost.month, leftMost.day);
+            let dayDate = new Date(day.year, day.month, day.date);
+            if (dayDate < leftMostDate) {
+                for (let i = 1; i < (leftMost.date - day.date) + 1; i++) {
+                    let date = {
+                        year: leftMost.year,
+                        month: leftMost.month,
+                        date: leftMost.date - i
+                    };
+                    vm.checkins = [];
+                    let checkinsArray = [];
+                    vm.httpGeneral.sendRequest({
+                        type: "GET",
+                        url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + date.year + '/' + date.month + '/' + date.date
+                    }).then(function(res) {
+                        vm.addDateToDisplay(day);
+                        if (res) {
+                            res.forEach(function(check) {
+                                vm.dailyCheckinsList[date.date].checkins.push(check);
+                            });
+                        }
+                        if (vm.dailyCheckinsList[0]) {
+                            vm.dailyCheckinsList[0] += 1;
+                        } else {
+                            vm.dailyCheckinsList[0] = 1;
+                        }
+                        vm.rootScp.$broadcast('addDate', date);
+                    });
+                }
 
-        //     } else if (day.date <= vm.endOfMonth) {
-        //         for (let i = 1; i < (day.date - leftMost.date) + 1; i++) {
-        //             let date = {
-        //                 year: leftMost.year,
-        //                 month: leftMost.month,
-        //                 date: leftMost.date + i
-        //             };
-        //             vm.checkins = [];
-        //             let checkinsArray = [];
-        //             vm.httpGeneral.sendRequest({
-        //                 type: "GET",
-        //                 url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + date.year + '/' + date.month + '/' + date.date
-        //             }).then(function(res) {
-        //                 vm.dailyCheckinsList[date.date] = {
-        //                     checkins: [],
-        //                     day: date
-        //                 };
-        //                 if (res) {
-        //                     res.forEach(function(check) {
-        //                         vm.dailyCheckinsList[date.date].checkins.push(check);
-        //                     });
-        //                 }
-        //                 if (vm.dailyCheckinsList[0]) {
-        //                     vm.dailyCheckinsList[0] += 1;
-        //                 } else {
-        //                     vm.dailyCheckinsList[0] = 1;
-        //                 }
-        //                 vm.rootScp.$broadcast('addDate', date);
-        //             });
-        //         }
-        //     }
-        // });
+            } else if (day.date <= vm.endOfMonth) {
+                for (let i = 1; i < (day.date - leftMost.date) + 1; i++) {
+                    let date = {
+                        year: leftMost.year,
+                        month: leftMost.month,
+                        date: leftMost.date + i
+                    };
+                    vm.checkins = [];
+                    let checkinsArray = [];
+                    vm.httpGeneral.sendRequest({
+                        type: "GET",
+                        url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + date.year + '/' + date.month + '/' + date.date
+                    }).then(function(res) {
+                        vm.dailyCheckinsList[date.date] = {
+                            checkins: [],
+                            day: date
+                        };
+                        if (res) {
+                            res.forEach(function(check) {
+                                vm.dailyCheckinsList[date.date].checkins.push(check);
+                            });
+                        }
+                        if (vm.dailyCheckinsList[0]) {
+                            vm.dailyCheckinsList[0] += 1;
+                        } else {
+                            vm.dailyCheckinsList[0] = 1;
+                        }
+                        vm.rootScp.$broadcast('addDate', date);
+                    });
+                }
+            }
+        });
 
         vm.scp.$on('ctrlDate', function(event, day) {
                vm.checkins = [];
@@ -198,7 +197,8 @@ class RightPanelComponentController {
                 // } else {
                 //     vm.dailyCheckinsList[0] = 1;
                 // }
-                vm.rootScp.$broadcast('addDate', day);
+                let right = vm.findRightMostDate();
+                vm.rootScp.$broadcast('addDate', day, right);
             // }
         });
 
@@ -314,7 +314,8 @@ class RightPanelComponentController {
             // } else {
             //     vm.dailyCheckinsList[0] = 1;
             // }
-            vm.rootScp.$broadcast('addDate', date);
+            let right = vm.findRightMostDate();
+            vm.rootScp.$broadcast('addDate', date, right);
             return vm.getCheckins(date).then(function(data) {
                 return data;
             });
@@ -338,7 +339,8 @@ class RightPanelComponentController {
             // } else {
             //     vm.dailyCheckinsList[0] = 1;
             // }
-            vm.rootScp.$broadcast('addDate', date);
+            let right = vm.findRightMostDate();
+            vm.rootScp.$broadcast('addDate', date, right);
             return vm.getCheckins(date).then(function(data) {
                 return data;
             });
@@ -351,10 +353,10 @@ class RightPanelComponentController {
         loop1:
         for (let i = 0; i < vm.years.length; i++) {
             if(vm.years[i]){
-                console.log('before');
+                // console.log('before');
                 loop2:
                 for(let j=0; j < vm.years[i].months.length; j++) {
-                    console.log(j);
+                    // console.log(j);
                     if (vm.years[i].months[j]) {
                         if (vm.years[i].months[j].days) {
                             loop3:
@@ -362,8 +364,8 @@ class RightPanelComponentController {
                                  if (vm.years[i].months[j].days[k]) {
                                     // leftMost = vm.years[i].months[j].days[k];
                                     leftMost = { year: i, month: j, date: k};
-                                    console.log('leftmostdate');
-                                    console.log(leftMost);
+                                    // console.log('leftmostdate');
+                                    // console.log(leftMost);
                                     // console.log(vm.years[i]);
                                     // console.log(i);
                                     // console.log(j);
@@ -371,11 +373,8 @@ class RightPanelComponentController {
                                     break loop2;
                                 }
                             }
-                            
                         }
-
                     }
-                    
                 }
             }
         }
