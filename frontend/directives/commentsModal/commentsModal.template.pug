@@ -1,4 +1,5 @@
 i.fa.fa-comments-o(aria-hidden = "true", ng-click = "cm.toggle()")
+    span.commentsCounter(ng-show = "cm.scope.comments.length") ({{cm.scope.comments.length}})
 .commentsModal_wrapper(ng-if = "cm.modalToggle")
     .commentsModal_background(ng-click = "cm.toggle()")
     .commentsModal_window
