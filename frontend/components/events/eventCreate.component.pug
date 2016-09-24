@@ -36,7 +36,7 @@ user-list(user-data = 'eventCrt.users', select-callback = 'eventCrt.onUserSelect
 
 
         .eventDescription
-          .eventEditor(ui-tinymce="eventCrt.tinyOptions",ng-model="ctrl.desc", ng-class = "{'placeholder': !eventCrt.desc.length}")
+          .eventEditor(ui-tinymce="eventCrt.tinyOptions",ng-model="eventCrt.desc", ng-class = "{'placeholder': !eventCrt.desc.length}")
           .invalid_info
             p(ng-show="editEvent.text.$invalid && eventCrt.invalidForm") Title is required.
             p(ng-show="editEvent.text.$error.minlength && eventCrt.invalidForm") Title is too short.
