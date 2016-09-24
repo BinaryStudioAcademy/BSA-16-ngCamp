@@ -13,7 +13,7 @@ module.exports = function (app) {
     }, apiResponse);
 
     app.get(baseUrl + ':id', function (req, res, next) {
-        messageRepository.getById(req.params.id, function (err, data) {
+        messageRepository.getByIdWithFiles(req.params.id, function (err, data) {
             res.data = data;
             res.err = err;
             next();

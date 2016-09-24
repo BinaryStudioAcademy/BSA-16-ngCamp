@@ -6,26 +6,40 @@ MessageRepository.prototype.getMessagesWithAuthors = getMessagesWithAuthors;
 MessageRepository.prototype.getByIdWithComments = getByIdWithComments;
 MessageRepository.prototype.addComment = addComment;
 MessageRepository.prototype.getDrafts = getDrafts;
+MessageRepository.prototype.getByIdWithFiles = getByIdWithFiles;
 
 function MessageRepository() {
     Repository.prototype.constructor.call(this);
     this.model = Message;
 };
 
+function getByIdWithFiles(id, callback) {
+    var query = this.model.findOne({
+        _id: id
+    }).populate({
+        path: 'files'
+    });
+    query.exec(callback);
+};
+
 function getMessagesWithAuthors(callback) {
     var model = this.model;
     var query = model.find()
-    .populate('author')
-    .populate({path: 'files'})
-    .populate({path:'comments.author'});
+        .populate('author')
+        .populate({
+            path: 'files'
+        })
+        .populate({
+            path: 'comments.author'
+        });
     query.exec(callback);
 }
 
-function getDrafts(id,callback){
+function getDrafts(id, callback) {
     var model = this.model;
     var query = model.find({
-        author:id,
-        isDraft:true
+        author: id,
+        isDraft: true
     });
     query.exec(callback);
 }
@@ -35,16 +49,16 @@ function getByIdWithComments(id, callback) {
     var query = model.findOne({
         _id: id,
     }).populate({
-    	path:'comments.author',
+        path: 'comments.author',
     });
     query.exec(callback);
 }
 
-function addComment(id, data, callback){
+function addComment(id, data, callback) {
     var model = this.model;
     var query = model.update({
         _id: id
-    },{
+    }, {
         $push: {
             comments: {
                 $each: data

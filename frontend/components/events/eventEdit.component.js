@@ -122,6 +122,7 @@ class eventEditController {
             self.desc = res.description;
             self.author = res.author;
             self.participants = res.participants;
+            self.files = res.files;
             console.log(self.participants);
         });
     }
@@ -136,7 +137,7 @@ class eventEditController {
 
                     title: self.title,
                     description: self.desc,
-                        files: self.files.map(function(elem){
+                    files: self.files.map(function(elem){
                             return elem._id;
                         }),
                     project: window._injectedData.currentProject,
