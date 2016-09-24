@@ -55,7 +55,7 @@ function getParticipants(id, callback) {
     var model = this.model;
     var query = model.findOne({
         _id: id
-    }).populate("participants");
+    }).populate("participants").populate({path: 'files'});
     query.exec(callback);
 }
 

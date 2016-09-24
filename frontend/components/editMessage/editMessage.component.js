@@ -37,7 +37,8 @@ class editMessageController {
                     title: self.draft.title,
                     description: self.draft.description,
                     date: new Date(),
-                    author: window._injectedData.userId
+                    author: window._injectedData.userId,
+                    files: self.draft.files.map((elem)=>{return elem._id;})
                 }
             }).then(function(res) {
                 self.popupNotifications.notifySuccess("Succesfull edit message");
