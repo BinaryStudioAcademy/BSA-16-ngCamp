@@ -1,5 +1,31 @@
 @import "../../../public/libs/css/generalComponentsStyle.styl"
 .checkins-setup-wrapper
+    main-component()
+    .header
+        header-style()
+        @media only screen  and (max-width : 430px), screen and (max-device-width: 430px)
+            text-align right
+        position relative
+        .return-btn
+            cursor pointer
+            display flex
+            align-items center
+            position absolute
+            font-size 20px
+            top 0
+            left 15%
+            i
+                font-size 48px
+                color #337ab7
+            a
+                text-decoration none
+                margin-left 10px
+            @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+                left 10%
+                a
+                    display none
+            @media only screen  and (max-width : 550px), screen and (max-device-width: 550px)
+                left 0
     font-family: "Montserrat"
     .checkins-setup
         display flex
@@ -44,12 +70,13 @@
     li
         list-style none
     .header-setup
-        border-bottom 4px dashed grey
+        margin-bottom 15px
     .newMultiSelect
         display flex
         justify-content center
         text-align left
         margin 0
+        margin-bottom 25px
 
     .timeSelect
         text-align center
@@ -75,28 +102,72 @@
                 color #1d8dbf
 
     input
-        &.question
-            text-align center
-            border 1px solid #adadad
-            border-radius 10px
-            font-size 25px
-            width 70%
-            outline none
-            margin 15px
+        outline none
+        border none
+        border-radius 4px
+        background-color disable-input
+        border-bottom 4px solid border-color
+        width 80%
+        font-size 25px
+        padding 5px
+        display block
+        color text-input
+        text-align center
+        margin 20px auto 50px
+        &:focus
+            background-color active-input
+        &:focus::-webkit-input-placeholder
+            color transparent
+        &:focus::-moz-placeholder
+            color transparent
+        &:focus:-ms-input-placeholder
+            color transparent
+        &:focus:-moz-placeholder
+            color transparent
+        @media only screen  and (max-width : 769px), screen and (max-device-width: 769px)
+            width 90%
+        @media only screen  and (max-width : 550px), screen and (max-device-width: 550px)
+            width 100%
 
     .main-setup
         height 60%
         overflow auto
+        .user-list
+            padding 0
+        h3
+            margin-bottom 15px
+            display inline-block
+        .select-btn
+            display inline-block
+            margin-left 15px
+            button
+                button()
+                font-family "Montserrat"
+                font-size 24px
+                padding 5px 30px
+                --box-shadow-color #e67e22
+                background-color #F2992E
 
     label
         &.checkbox
             display flex
-            justify-content space-between
+            justify-content flex-start
+            align-items center
             font-size 20px
             margin-left 30px
+            margin-bottom 0
             cursor pointer
             padding 1%
-
+            input 
+                display none
+            i
+                width 16px
+                margin-left 20%
+                margin-right 15px
+                @media only screen  and (max-width : 1000px), screen and (max-device-width: 1000px)
+                    margin-left 10%
+                @media only screen  and (max-width : 480px), screen and (max-device-width: 480px)
+                    margin-left 0
     .checkbox
         input
             width 20px
@@ -105,6 +176,7 @@
 
     .list
         margin-right 30px
+        margin-bottom 0
 
     .footer-setup
         height 10%
@@ -113,21 +185,14 @@
         display flex
         justify-content space-around
 
-    .select-btn
-        button
-            button()
-            font-family "Montserrat"
-            font-size 24px
-            padding 5px 30px
-            --box-shadow-color #603D12
-            background-color #F2992E
+
 
     .save-btn
         button
             button()
             font-family "Montserrat"
             font-size 24px
-            padding 5px 40px
+            padding 15px 35px
             --box-shadow-color #004D40
             background-color #2e8f35
 
