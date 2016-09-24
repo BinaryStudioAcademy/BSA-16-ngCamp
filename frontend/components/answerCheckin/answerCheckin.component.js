@@ -34,12 +34,25 @@ class AnswerComponentController {
         vm.location.url(url);
     }
 
-    filterAns(type, seach) {
-        console.log(type);
-        console.log(seach);
+    filterAns(type, seach, question) {
+        let seachStr = new String(seach).toLowerCase();
+        let questionStr = question.toLowerCase();
+        let index = seach ? questionStr.indexOf(seachStr) : 0;
+        console.log(index);
+        console.log(questionStr);
+        console.log(seachStr);
         return function(elem) {
-            console.log(elem);
-            return true;
+            if (index != -1) {
+                if (type == "unanswered" && elem.answer == 'noAnswer') {
+                    return true;
+                }
+                if (type == "answered" && elem.answer != 'noAnswer') {
+                    return true;
+                }
+                return false;
+            } else {
+                return false;
+            }
         };
     }
 };

@@ -17,13 +17,13 @@
                 .col-xs-8.col-xs-offset-2.question-item(ng-if="answr.selectedAnswer=='unanswered'", ng-repeat="checkin in answr.checkins track by $index" ng-show="filtered.length>0") 
                     p.row.question.start-xs {{ checkin.question}} 
                         span.col-xs-12(ng-if="checkin.answers.length==0") Sorry, You don't have active checkins for now.
-                        .col-xs-12.answer-item(ng-repeat="answer in checkin.answers | filter: answr.filterAns('unanswered',answr.seach.question) as filtered track by $index")
+                        .col-xs-12.answer-item(ng-repeat="answer in checkin.answers | filter: answr.filterAns('unanswered',answr.seach.question, checkin.question) as filtered track by $index")
                             p.col-xs-8.answer-title {{"Answer #"+($index+1)}} &emsp; for &emsp;<b>{{answer.creationDate | date: "dd/MM/y HH:mm" }}</b>
                             button.button.col-xs-2.col-xs-offset-2(ng-class="{'mod-btn': (answer.answer != 'noAnswer'), 'ans-btn': (answer.answer == 'noAnswer')}" ng-click="answr.goToAnswer(checkin._id, answer.token )") {{answer.answer == 'noAnswer'?'Answer Now!':'Modify'}}
                 .col-xs-8.col-xs-offset-2.question-item(ng-if="answr.selectedAnswer=='answered'", ng-repeat="checkin in answr.checkins track by $index" ng-show="filtered.length>0") 
                     p.row.question.start-xs {{ checkin.question}}
                         span.col-xs-12(ng-if="checkin.answers.length==0") Sorry, You don't have active checkins for now.
-                        .col-xs-12.answer-item(ng-repeat="answer in checkin.answers | filter:{answer: '!noAnswer'} as filtered track by $index")
+                        .col-xs-12.answer-item(ng-repeat="answer in checkin.answers | filter: answr.filterAns('answered',answr.seach.question, checkin.question) as filtered track by $index")
                             p.col-xs-8.answer-title {{"Answer #"+($index+1)}} &emsp; for &emsp;<b>{{answer.creationDate | date: "dd/MM/y HH:mm" }}</b>
                             button.button.col-xs-2.col-xs-offset-2(ng-class="{'mod-btn': (answer.answer != 'noAnswer'), 'ans-btn': (answer.answer == 'noAnswer')}" ng-click="answr.goToAnswer(checkin._id, answer.token )") {{answer.answer == 'noAnswer'?'Answer Now!':'Modify'}}
     
