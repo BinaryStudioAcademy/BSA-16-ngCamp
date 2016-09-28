@@ -1,24 +1,25 @@
 ﻿//import './checkinsStyles.styl';
 
 class RightPanelComponentController {
-    constructor(httpGeneral, $scope, $rootScope) {
+    constructor(httpGeneral, $scope, $rootScope, checkinData) {
         let vm = this;
         vm.httpGeneral = httpGeneral;
         vm.date = new Date();
         vm.scp = $scope;
         vm.rootScp = $rootScope;
+        vm.checkinData = checkinData;
         vm.checkins = [];
         vm.dailyCheckinsList = [];
         vm.endOfMonth = 35;
         vm.changeProjectHover = false;
-        this.days = ['Sunday',
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday',
-            'Sunday'];
+        // this.days = ['Sunday',
+        //     'Monday',
+        //     'Tuesday',
+        //     'Wednesday',
+        //     'Thursday',
+        //     'Friday',
+        //     'Saturday',
+        //     'Sunday'];
     }
 
     $onInit() {
@@ -254,7 +255,7 @@ class RightPanelComponentController {
     }
 }
 
-RightPanelComponentController.$inject = ['httpGeneral', '$scope', '$rootScope'];
+RightPanelComponentController.$inject = ['httpGeneral', '$scope', '$rootScope', 'checkinData'];
 
 const rightPanelComponent = {
     controller: RightPanelComponentController,

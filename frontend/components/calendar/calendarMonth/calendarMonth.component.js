@@ -2,11 +2,12 @@ import './calendarMonth.styl';
 let moment = require('moment');
 
 class CalendarMonthCtrl {
-    constructor($rootScope, $scope) {
+    constructor($rootScope, $scope, checkinData) {
         let vm = this;
         vm.rootScp = $rootScope;
         // vm.date = new Date();
         vm.scp = $scope;
+        vm.checkinData = checkinData;
         vm.currentMonth = new Date();
         vm.isChangeMonth = false;
         vm.checkedDays = [];
@@ -194,7 +195,7 @@ class CalendarMonthCtrl {
     }
 }
 
-CalendarMonthCtrl.$inject = ['$rootScope', '$scope'];
+CalendarMonthCtrl.$inject = ['$rootScope', '$scope', 'checkinData'];
 
 const calendarMonthComponent = {
     controller: CalendarMonthCtrl,
