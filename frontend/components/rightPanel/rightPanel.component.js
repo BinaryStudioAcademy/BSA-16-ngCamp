@@ -107,8 +107,8 @@ class RightPanelComponentController {
 
         vm.scp.$on('ctrlDate', function(event, day) {
             vm.checkinData.addDateToDisplay(day);
-            let right = vm.findRightMostDate();
-            vm.rootScp.$broadcast('addDate', day, right);
+            // let right = vm.findRightMostDate();
+            vm.rootScp.$broadcast('addDate', day);
         });
 
         vm.scp.$on('removeDate', function(event, day) {

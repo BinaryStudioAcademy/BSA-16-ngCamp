@@ -46,7 +46,6 @@ class checkinData {
             year: day.year,
             months: months
         };
-        console.log(vm.years);
     }
 
     addDateToDisplay(day) {
@@ -80,14 +79,17 @@ class checkinData {
                     day: day,
                     checkins: vm.checkins
                 };
-            } else if (vm.years[day.year].months[day.month]) {
-                vm.years[day.year].months[day.month].days[day.date] = {
-                    day: day,
-                    checkins: vm.checkins
-                };
-            } else {
-                // vm.years[day.year].months[day.month].days = [];
-                // vm.years[day.year].months[day.month].days[day.date] = vm.checkins;
+            } else  {
+                if(vm.years[day.year].months[day.month].days){
+                    vm.years[day.year].months[day.month].days[day.date] = {
+                        day: day,
+                        checkins: vm.checkins
+                    };
+                } else {
+                    vm.years[day.year].months[day.month].days = [];
+                    vm.years[day.year].months[day.month].days[day.date] = vm.checkins;
+                }
+
             }
 
         }

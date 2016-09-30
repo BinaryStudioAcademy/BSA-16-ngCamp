@@ -172,7 +172,27 @@ class CalendarMonthCtrl {
         vm.createMonthView();
 
         vm.buildMonth();
-        vm.scp.$on('addDate', function(event, addedDay) {
+        vm.scp.$on('addDate', function(event, addedDay, rightMostDate) {
+            // debugger;
+            // console.log(vm.weeks[0].days[0].date.year());
+            let prevMonthLastDisplaydDateObj = vm.weeks[0].days[0].date;
+            let prevMonthLastDisplaydDate = new Date(prevMonthLastDisplaydDateObj.year(), 
+                prevMonthLastDisplaydDateObj.month(), 
+                prevMonthLastDisplaydDateObj.date());
+            let addedDayDate = new Date(addedDay.year, addedDay.month, addedDay.date);
+            if (prevMonthLastDisplaydDate > addedDayDate) {
+                vm.prev();
+                let rightDate = new Date(rightMostDate.year, rightMostDate.month, rightMostDate.date);
+                for (let i = 0; i < vm.weeks.length; i++) {
+                    vm.weeks[i].days.forEach(function(day) {
+                        let dayDate = new Date(day.date.year(), day.date.month(), day.date.date());
+                        console.log(day);
+                        if (dayDate > addedDayDate && dayDate <= rightDate){
+                            day.isChecked = true;
+                        }
+                    });
+                }
+            } 
             vm.weeks.forEach(function(week) {
                 week.days.forEach(function(day) {
                     if (day.date.year() == addedDay.year && day.date.month() == addedDay.month && day.date.date() == (addedDay.date)) {
@@ -188,8 +208,25 @@ class CalendarMonthCtrl {
             //     // vm.dailyCheckinsList = [];
             //     // vm.dailyCheckinsList.push({checkins: vm.checkins, day: vm.date});
             //    // vm.getCheckins(vm.days[vm.date.dow]);
-
         });
+        // vm.scp.$on('addDate', function(event, addedDay) {
+        //     vm.weeks.forEach(function(week) {
+        //         week.days.forEach(function(day) {
+        //             if (day.date.year() == addedDay.year && day.date.month() == addedDay.month && day.date.date() == (addedDay.date)) {
+        //                 day.isChecked = true;
+        //             }
+        //         });
+        //     });
+        //     //     console.log('added date'+ addedDay.dow + ' '+addedDay.day);
+        //     //     // vm.date = day;
+        //     //     // vm.checkins = [];
+        //     //     // let dayOW = vm.days[vm.date.dow-1];
+        //     //     // vm.getCheckins(dayOW);
+        //     //     // vm.dailyCheckinsList = [];
+        //     //     // vm.dailyCheckinsList.push({checkins: vm.checkins, day: vm.date});
+        //     //    // vm.getCheckins(vm.days[vm.date.dow]);
+
+        // });
 
         vm.rootScp.$broadcast('endmonthdate', vm.monthEndMoment.date());
     }
