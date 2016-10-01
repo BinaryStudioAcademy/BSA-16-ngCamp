@@ -27,7 +27,7 @@ class RightPanelComponentController {
         let dateObj = {
             year: vm.date.getFullYear(),
             month: vm.date.getMonth(),
-            date: vm.date.getUTCDate()
+            date: vm.date.getDate()
         };
         vm.checkinData.addDateToDisplay(dateObj);
 
@@ -52,7 +52,7 @@ class RightPanelComponentController {
             let leftMostDate = new Date(leftMost.year, leftMost.month, leftMost.date);
             let dayDate = new Date(day.year, day.month, day.date);
             if (dayDate < leftMostDate) {
-                console.log('lesser');
+                // console.log('lesser');
                 for (let i = 1; i < (leftMost.date - day.date) + 1; i++) {
                     let date = {
                         year: leftMost.year,
@@ -92,7 +92,7 @@ class RightPanelComponentController {
                             checkins: [],
                             day: date
                         };
-                        console.log(res);
+                        // console.log(res);
                         if (res) {
                             vm.years[date.year].months[date.month].days[date.date] = {
                                 day: date,
@@ -158,110 +158,6 @@ class RightPanelComponentController {
             }
         }
     }
-
-    // getCheckins(day) {
-    //     let vm = this;
-    //     return vm.httpGeneral.sendRequest({
-    //         type: "GET",
-    //         url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + day.year + '/' + day.month + '/' + day.date
-    //     }).then(function(res) {
-    //         if (res) {
-    //             res.forEach(function(check) {
-    //                 vm.checkins.push(check);
-    //             });
-    //             return res;
-    //         }
-    //     });
-    // }
-
-    // previousDay() {
-    //     let vm = this;
-    //     let leftMost = vm.findLeftMostDate();
-    //     if (leftMost.date > 1) {
-    //         vm.checkins = [];
-    //         let date = {
-    //             year: leftMost.year,
-    //             month: leftMost.month,
-    //             date: leftMost.date - 1
-    //         };
-    //         vm.addDateToDisplay(date);
-    //         let right = vm.findRightMostDate();
-    //         vm.rootScp.$broadcast('addDate', date, right);
-    //         return vm.getCheckins(date).then(function(data) {
-    //             return data;
-    //         });
-    //     } else {
-    //         vm.checkins = [];
-    //         // not forget to add the year transition
-    //         let date = {
-    //             year: leftMost.year,
-    //             month: --leftMost.month,
-    //             date: new Date(leftMost.year, leftMost.month + 1, 0).getDate()
-    //         };
-    //         vm.addDateToDisplay(date);
-    //         let right = vm.findRightMostDate();
-    //         vm.rootScp.$broadcast('addDate', date, right);
-    //         return vm.getCheckins(date).then(function(data) {
-    //             return data;
-    //         });
-    //     }
-    // }
-
-    // findLeftMostDate() {
-    //         let vm = this;
-    //         let leftMost = null;
-    //         loop1:
-    //             for (let i = 0; i < vm.years.length; i++) {
-    //                 if (vm.years[i]) {
-    //                     // console.log('before');
-    //                     loop2: for (let j = 0; j < vm.years[i].months.length; j++) {
-    //                         // console.log(j);
-    //                         if (vm.years[i].months[j]) {
-    //                             if (vm.years[i].months[j].days) {
-    //                                 loop3: for (let k = 0; k < vm.years[i].months[j].days.length; k++) {
-    //                                     if (vm.years[i].months[j].days[k]) {
-    //                                         leftMost = {
-    //                                             year: i,
-    //                                             month: j,
-    //                                             date: k
-    //                                         };
-    //                                         break loop2;
-    //                                     }
-    //                                 }
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         return leftMost;
-    //     }
-        // there be a problem when there will be two years
-    // findRightMostDate() {
-    //     let vm = this;
-    //     let rightMost = null;
-    //     loop1:
-    //         for (let i = vm.years.length; i >= 0; i--) {
-    //             if (vm.years[i]) {
-    //                 loop2: for (let j = vm.years[i].months.length; j >= 0; j--) {
-    //                     if (vm.years[i].months[j]) {
-    //                         if (vm.years[i].months[j].days) {
-    //                             loop3: for (let k = vm.years[i].months[j].days.length; k >= 0; k--) {
-    //                                 if (vm.years[i].months[j].days[k]) {
-    //                                     rightMost = {
-    //                                         year: i,
-    //                                         month: j,
-    //                                         date: k
-    //                                     };
-    //                                     break loop2;
-    //                                 }
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     return rightMost;
-    // }
 
     dayFilter(day) {
         let activeCheckins = [];

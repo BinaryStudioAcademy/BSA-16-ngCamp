@@ -111,8 +111,11 @@ function findCheckinsByFrequency(freq, callback) {
 }
 
 function findCheckinsByAnswerDate(projectId, year, month, date, callback) {
-    var dateplus = parseInt(date)+2;
-    var dateminus = parseInt(date); 
+    console.log(year + 'year');
+    console.log(month + 'month');
+    console.log(date + 'date');
+    var to = new Date(year, month, parseInt(date)+2);
+    var from = new Date(year, month, date);
     var downumber  = new Date(year, month, date).getDay();
     var days = ['Sunday',
             'Monday',
@@ -123,10 +126,6 @@ function findCheckinsByAnswerDate(projectId, year, month, date, callback) {
             'Saturday',
             'Sunday'];
     var dow = days[downumber];
-    var from  = new Date(year, month, dateminus);
-    var to  = new Date(year, month, dateplus);
-    // console.log(from);
-    // console.log(to);
     var query = Checkin.aggregate(
         {$match: {
             frequency: {$regex: dow },
