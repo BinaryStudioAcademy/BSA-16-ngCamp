@@ -5,7 +5,6 @@ class CalendarMonthCtrl {
     constructor($rootScope, $scope, checkinData) {
         let vm = this;
         vm.rootScp = $rootScope;
-        // vm.date = new Date();
         vm.scp = $scope;
         vm.checkinData = checkinData;
         vm.currentMonth = new Date();
@@ -40,16 +39,6 @@ class CalendarMonthCtrl {
                         isChecked: false,
                         date: date.clone()
                     });
-                    // console.log(days[days.length-1]);
-                    // if (days[days.length-1].isToday) {
-                    //     let day = days[days.length-1];
-                    //     let dateObj = {
-                    //         year: day.date.year(),
-                    //         month: day.date.month(),
-                    //         date: day.date.date(),
-                    //     };
-                    //     vm.rootScp.$broadcast('date', dateObj);
-                    // }
                     date.add(1, "d");
                 }
                 if (weekIndex > 3 && !days[0].isCurrentMonth){
@@ -88,7 +77,6 @@ class CalendarMonthCtrl {
                         let year = day.date.year();
                         let month = day.date.month();
                         let date = day.date.date();
-                        // debugger;
                         if(vm.years.list[year]){
                             if(vm.years.list[year].months){
                                 if (vm.years.list[year].months[month]){
@@ -100,7 +88,6 @@ class CalendarMonthCtrl {
                                 } 
                             }
                         }
-                        // debugger;
                     }
                 }
             }
@@ -113,7 +100,6 @@ class CalendarMonthCtrl {
                         year: day.date.year(),
                         month: day.date.month(),
                         date: day.date.date(),
-                        // dow: day.date.isoWeekday()
                     };
                     if (!day.isChecked) {
                         vm.rootScp.$broadcast('ctrlDate', dateObj);
@@ -128,7 +114,6 @@ class CalendarMonthCtrl {
                         year: day.date.year(),
                         month: day.date.month(),
                         date: day.date.date(),
-                        // dow: day.date.isoWeekday()
                     };
                     vm.rootScp.$broadcast('shiftdate', dateObj);
                 }
@@ -138,7 +123,6 @@ class CalendarMonthCtrl {
                     vm.weeks[i].days.forEach(function(dayi) {
                         dayi.isChecked = false;
                     });
-                    //  vm.checkedDays[i].isChecked = 
                 }
                 day.isChecked = true;
                 vm.checkedDays = [];
@@ -147,7 +131,6 @@ class CalendarMonthCtrl {
                     year: day.date.year(),
                     month: day.date.month(),
                     date: day.date.date(),
-                    // dow: day.date.isoWeekday()
                 };
                 vm.rootScp.$broadcast('date', dateObj);
             }
@@ -180,22 +163,17 @@ class CalendarMonthCtrl {
                 minute: 0
             });
             vm.monthStartMoment.startOf('month');
-
             vm.monthEndMoment = vm.monthStartMoment.clone().endOf('month');
-
             vm.mViewStartMoment = vm.monthStartMoment.clone();
             vm.mViewStartMoment.add(-vm.monthStartMoment.isoWeekday() + 1, 'd');
-
             vm.mViewEndMoment = vm.mViewStartMoment.clone();
             vm.mViewEndMoment.add(6, 'w');
             vm.mViewEndMoment.set({
                 'hour': 23,
                 'minute': 59
             });
-
             vm.buildMonth();
         };
-
         vm.init();
     }
 
@@ -207,16 +185,12 @@ class CalendarMonthCtrl {
             year
         } = next.params;
         let date = day !== undefined ? new Date(year, month, day) : new Date();
-
         vm.monthStartMoment = moment(date || new Date());
         vm.monthStartMoment.startOf('month');
         vm.monthEndMoment = vm.monthStartMoment.clone().endOf('month');
-
         vm.createMonthView();
-
         vm.buildMonth();
         vm.scp.$on('addDate', function(event, addedDay) {
-            // debugger;
             let prevMonthLastDisplaydDateObj = vm.weeks[0].days[0].date;
             let prevMonthLastDisplaydDate = new Date(prevMonthLastDisplaydDateObj.year(), 
                 prevMonthLastDisplaydDateObj.month(), 
@@ -233,8 +207,6 @@ class CalendarMonthCtrl {
                 });
             });
         });
-
-
         vm.rootScp.$broadcast('endmonthdate', vm.monthEndMoment.date());
     }
 }

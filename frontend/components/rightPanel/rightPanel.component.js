@@ -10,14 +10,12 @@ class RightPanelComponentController {
         vm.scp = $scope;
         vm.rootScp = $rootScope;
         vm.checkinData = checkinData;
-        // vm.years = checkinData.getYears;
         vm.years = {
             get list() {
                 return vm.checkinData.years;
             } 
         };
         vm.checkins = [];
-        // vm.dailyCheckinsList = [];
         vm.endOfMonth = 35;
         vm.changeProjectHover = false;
     }
@@ -48,72 +46,16 @@ class RightPanelComponentController {
         });
 
         vm.scp.$on('shiftdate', function(event, day) {
-            let leftMost = vm.findLeftMostDate();
-            let leftMostDate = new Date(leftMost.year, leftMost.month, leftMost.date);
-            let dayDate = new Date(day.year, day.month, day.date);
-            if (dayDate < leftMostDate) {
-                // console.log('lesser');
-                for (let i = 1; i < (leftMost.date - day.date) + 1; i++) {
-                    let date = {
-                        year: leftMost.year,
-                        month: leftMost.month,
-                        date: leftMost.date - i
-                    };
-                    vm.checkins = [];
-                    let checkinsArray = [];
-                    vm.httpGeneral.sendRequest({
-                        type: "GET",
-                        url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + date.year + '/' + date.month + '/' + date.date
-                    }).then(function(res) {
-                        if (res) {
-                            vm.years[date.year].months[date.month].days[date.date] = {
-                                day: date,
-                                checkin: res
-                            };
-                        }
-                        vm.rootScp.$broadcast('addDate', date);
-                    });
-                }
-
-            } else if (day.date <= vm.endOfMonth) {
-                for (let i = 1; i < (day.date - leftMost.date) + 1; i++) {
-                    let date = {
-                        year: leftMost.year,
-                        month: leftMost.month,
-                        date: leftMost.date + i
-                    };
-                    vm.checkins = [];
-                    let checkinsArray = [];
-                    vm.httpGeneral.sendRequest({
-                        type: "GET",
-                        url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + date.year + '/' + date.month + '/' + date.date
-                    }).then(function(res) {
-                        vm.dailyCheckinsList[date.date] = {
-                            checkins: [],
-                            day: date
-                        };
-                        // console.log(res);
-                        if (res) {
-                            vm.years[date.year].months[date.month].days[date.date] = {
-                                day: date,
-                                checkin: res
-                            };
-                        }
-                        vm.rootScp.$broadcast('addDate', date);
-                    });
-                }
-            }
+            vm.checkinData.shiftKeyEventHandler(day);
         });
 
         vm.scp.$on('ctrlDate', function(event, day) {
             vm.checkinData.addDateToDisplay(day);
-            // let right = vm.findRightMostDate();
             vm.rootScp.$broadcast('addDate', day);
         });
 
         vm.scp.$on('removeDate', function(event, day) {
             vm.checkinData.removeDate(day);
-            // vm.years[day.year].months[day.month].days[day.date] = undefined;
         });
 
         angular.element(document.querySelectorAll('right-panel-component.ng-isolate-scope')).bind("scroll", function() {
@@ -153,7 +95,6 @@ class RightPanelComponentController {
                 if (vm.changeProjectHover == false) {
                     // console.log('previous day');
                     vm.checkinData.previousDay();
-                    
                 }
             }
         }
@@ -192,7 +133,6 @@ class RightPanelComponentController {
             if (checkin.answers[i] && checkin.answers[i] !== 'noAnswer') doShow = true;
             else if (checkin.answers[i]) checkin.answers.slice(i, 1);
         }
-
         if (doShow) return checkin;
     }
 }

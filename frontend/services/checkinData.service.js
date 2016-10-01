@@ -5,7 +5,6 @@ class checkinData {
         vm.rootScp = $rootscope;
         vm.checkins = [];
         vm.years = [];
-
     }
 
     getCheckins(day) {
@@ -24,7 +23,6 @@ class checkinData {
     }
 
     oneDateToDisplay(day){
-        // console.log(day);
         let vm = this;
         vm.years = [];
         vm.checkins = [];
@@ -51,7 +49,6 @@ class checkinData {
         if (!vm.years[day.year]) {
             let months = [];
             let days = [];
-
             days[day.date] = {
                 day: day,
                 checkins: vm.checkins
@@ -63,11 +60,8 @@ class checkinData {
                 year: day.year,
                 months: months
             };
-
         } else {
-            
             if (!vm.years[day.year].months[day.month]) {
-
                 let days = [];
                 days[day.date] = {
                     day: day,
@@ -76,7 +70,6 @@ class checkinData {
                 vm.years[day.year].months[day.month] = {
                     days: days
                 };
-        
             } else  {
                 if(vm.years[day.year].months[day.month].days){
                     vm.years[day.year].months[day.month].days[day.date] = {
@@ -100,61 +93,110 @@ class checkinData {
         let vm = this;
         vm.years[day.year].months[day.month].days[day.date] = undefined;
     }
+    shiftKeyEventHandler(day) {
+        let vm = this;
+        let leftMost = vm.findLeftMostDate();
+        let leftMostDate = new Date(leftMost.year, leftMost.month, leftMost.date);
+        let dayDate = new Date(day.year, day.month, day.date);
+        if (dayDate < leftMostDate) {
+            for (let i = 1; i < (leftMost.date - day.date) + 1; i++) {
+            let date = {
+                year: leftMost.year,
+                month: leftMost.month,
+                date: leftMost.date - i
+            };
+            vm.checkins = [];
+            let checkinsArray = [];
+            vm.httpGeneral.sendRequest({
+                type: "GET",
+                url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + date.year + '/' + date.month + '/' + date.date
+            }).then(function(res) {
+                if (res) {
+                    vm.years[date.year].months[date.month].days[date.date] = {
+                        day: date,
+                        checkin: res
+                    };
+                }
+                vm.rootScp.$broadcast('addDate', date);
+            });
+            }
+        } else if (day.date <= vm.endOfMonth) {
+            for (let i = 1; i < (day.date - leftMost.date) + 1; i++) {
+                let date = {
+                    year: leftMost.year,
+                    month: leftMost.month,
+                    date: leftMost.date + i
+                };
+                vm.checkins = [];
+                let checkinsArray = [];
+                vm.httpGeneral.sendRequest({
+                    type: "GET",
+                    url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + date.year + '/' + date.month + '/' + date.date
+                }).then(function(res) {
+                    vm.dailyCheckinsList[date.date] = {
+                        checkins: [],
+                        day: date
+                    };
+                    if (res) {
+                        vm.years[date.year].months[date.month].days[date.date] = {
+                            day: date,
+                            checkin: res
+                        };
+                    }
+                    vm.rootScp.$broadcast('addDate', date);
+                });
+            }
+        }
+    }
 
     findLeftMostDate() {
         let vm = this;
         let leftMost = null;
-        loop1: for (let i = 0; i < vm.years.length; i++) {
-                if (vm.years[i]) {
-                    // console.log('before');
-                    loop2: for (let j = 0; j < vm.years[i].months.length; j++) {
-                        // console.log(j);
-                        if (vm.years[i].months[j]) {
-                            if (vm.years[i].months[j].days) {
-                                loop3: for (let k = 0; k < vm.years[i].months[j].days.length; k++) {
-                                    if (vm.years[i].months[j].days[k]) {
-                                        leftMost = {
-                                            year: i,
-                                            month: j,
-                                            date: k
-                                        };
-                                        // break loop2;
-                                        return leftMost;
-                                    }
+        for (let i = 0; i < vm.years.length; i++) {
+            if (vm.years[i]) {
+                for (let j = 0; j < vm.years[i].months.length; j++) {
+                    if (vm.years[i].months[j]) {
+                        if (vm.years[i].months[j].days) {
+                            for (let k = 0; k < vm.years[i].months[j].days.length; k++) {
+                                if (vm.years[i].months[j].days[k]) {
+                                    leftMost = {
+                                        year: i,
+                                        month: j,
+                                        date: k
+                                    };
+                                    return leftMost;
                                 }
                             }
                         }
                     }
                 }
             }
-        // return leftMost;
+        }
     }
 
     findRightMostDate() {
         let vm = this;
         let rightMost = null;
-        loop1:
-            for (let i = vm.years.length; i >= 0; i--) {
-                if (vm.years[i]) {
-                    loop2: for (let j = vm.years[i].months.length; j >= 0; j--) {
-                        if (vm.years[i].months[j]) {
-                            if (vm.years[i].months[j].days) {
-                                loop3: for (let k = vm.years[i].months[j].days.length; k >= 0; k--) {
-                                    if (vm.years[i].months[j].days[k]) {
-                                        rightMost = {
-                                            year: i,
-                                            month: j,
-                                            date: k
-                                        };
-                                        break loop2;
-                                    }
+        for (let i = vm.years.length; i >= 0; i--) {
+            if (vm.years[i]) {
+                for (let j = vm.years[i].months.length; j >= 0; j--) {
+                    if (vm.years[i].months[j]) {
+                        if (vm.years[i].months[j].days) {
+                            for (let k = vm.years[i].months[j].days.length; k >= 0; k--) {
+                                if (vm.years[i].months[j].days[k]) {
+                                    rightMost = {
+                                        year: i,
+                                        month: j,
+                                        date: k
+                                    };
+                                    return rightMost;
                                 }
                             }
                         }
                     }
                 }
-            }
-        return rightMost;
+             }
+        }
     }
 
     previousDay() {
@@ -183,9 +225,7 @@ class checkinData {
                     month: --leftMost.month,
                     date: new Date(leftMost.year, leftMost.month + 1, 0).getDate()
                 };
-                // console.log(date);
                 vm.addDateToDisplay(date);
-                // console.log(vm.years);
                 vm.rootScp.$broadcast('addDate', date);
                 return vm.getCheckins(date).then(function(data) {
                     return data;
@@ -193,12 +233,7 @@ class checkinData {
             } else {
                 vm.checkins = [];
                 let tempdate = new Date(leftMost.year, leftMost.month, leftMost.date - 1);
-                // let date = {
-                //     year: --leftMost.year,
-                //     month: 11,
-                //     date: new Date(--leftMost.year, 11, 30)
-                // };
-                let date = {
+                 let date = {
                     year: tempdate.getFullYear(),
                     month: tempdate.getMonth(),
                     date: tempdate.getDate()
@@ -211,14 +246,11 @@ class checkinData {
                     return data;
                 });        
             }
-
         }
     }
 }
 
 checkinData.$inject = ['httpGeneral', '$rootScope'];
-
-
 
 export {
     checkinData
