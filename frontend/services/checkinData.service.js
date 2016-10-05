@@ -3,7 +3,6 @@ class checkinData {
         let vm = this;
         vm.httpGeneral = httpGeneral;
         vm.rootScp = $rootscope;
-        vm.checkins = [];
         vm.years = [];
     }
 
@@ -14,44 +13,20 @@ class checkinData {
             url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + day.year + '/' + day.month + '/' + day.date
         }).then(function(res) {
             if (res) {
-                res.forEach(function(check) {
-                    vm.checkins.push(check);
-                });
                 return res;
-            }
+             }
         });
     }
 
     oneDateToDisplay(day){
         let vm = this;
         vm.years = [];
-        vm.checkins = [];
-        vm.getCheckins(day);
-        let months = [];
-        let days = [];
-        days[day.date] = {
-            day: day,
-            checkins: vm.checkins
-        };
-        months[day.month] = {
-            days: days
-        };
-        vm.years[day.year] = {
-            year: day.year,
-            months: months
-        };
-    }
-
-    addDateToDisplay(day) {
-        let vm = this;
-        vm.checkins = [];
-        vm.getCheckins(day);
-        if (!vm.years[day.year]) {
+        vm.getCheckins(day).then(function(res){
             let months = [];
             let days = [];
             days[day.date] = {
                 day: day,
-                checkins: vm.checkins
+                checkins: res
             };
             months[day.month] = {
                 days: days
@@ -60,35 +35,58 @@ class checkinData {
                 year: day.year,
                 months: months
             };
-        } else {
-            if (!vm.years[day.year].months[day.month]) {
+        });
+    }
+
+    addDateToDisplay(day) {
+        let vm = this;
+        return vm.getCheckins(day).then(function(res){
+            if (!vm.years[day.year]) {
+                let months = [];
                 let days = [];
                 days[day.date] = {
                     day: day,
-                    checkins: vm.checkins
+                    checkins: res
                 };
-                vm.years[day.year].months[day.month] = {
+                months[day.month] = {
                     days: days
                 };
-            } else  {
-                if(vm.years[day.year].months[day.month].days){
-                    vm.years[day.year].months[day.month].days[day.date] = {
+                vm.years[day.year] = {
+                    year: day.year,
+                    months: months
+                };
+                vm.rootScp.$broadcast('addDate', day);
+            } else {
+                if (!vm.years[day.year].months[day.month]) {
+                    let days = [];
+                    days[day.date] = {
                         day: day,
-                        checkins: vm.checkins
+                        checkins: res
                     };
-                } else {
-                    // not shure if it is needed
-                    vm.years[day.year].months[day.month].days = [];
-                    vm.years[day.year].months[day.month].days[day.date] = {
-                        day: day,
-                        checkins: vm.checkins
+                    vm.years[day.year].months[day.month] = {
+                        days: days
                     };
+                    vm.rootScp.$broadcast('addDate', day);
+                } else  {
+                    if(vm.years[day.year].months[day.month].days){
+                        vm.years[day.year].months[day.month].days[day.date] = {
+                            day: day,
+                            checkins: res
+                        };
+                        vm.rootScp.$broadcast('addDate', day);
+                    } else {
+                        vm.years[day.year].months[day.month].days = [];
+                        vm.years[day.year].months[day.month].days[day.date] = {
+                            day: day,
+                            checkins: res
+                        };
+                        vm.rootScp.$broadcast('addDate', day);
+                    }
                 }
-
             }
-
-        }
+        });
     }
+
     removeDate(day) {
         let vm = this;
         vm.years[day.year].months[day.month].days[day.date] = undefined;
@@ -98,53 +96,26 @@ class checkinData {
         let leftMost = vm.findLeftMostDate();
         let leftMostDate = new Date(leftMost.year, leftMost.month, leftMost.date);
         let dayDate = new Date(day.year, day.month, day.date);
+        let pointerDate = leftMostDate;
         if (dayDate < leftMostDate) {
-            for (let i = 1; i < (leftMost.date - day.date) + 1; i++) {
-            let date = {
-                year: leftMost.year,
-                month: leftMost.month,
-                date: leftMost.date - i
-            };
-            vm.checkins = [];
-            let checkinsArray = [];
-            vm.httpGeneral.sendRequest({
-                type: "GET",
-                url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + date.year + '/' + date.month + '/' + date.date
-            }).then(function(res) {
-                if (res) {
-                    vm.years[date.year].months[date.month].days[date.date] = {
-                        day: date,
-                        checkin: res
-                    };
-                }
-                vm.rootScp.$broadcast('addDate', date);
-            });
-            }
-        } else if (day.date <= vm.endOfMonth) {
-            for (let i = 1; i < (day.date - leftMost.date) + 1; i++) {
+            while (pointerDate.getTime() !== dayDate.getTime()) {
+                pointerDate = new Date(pointerDate.getFullYear(), pointerDate.getMonth(), pointerDate.getDate() - 1);
                 let date = {
-                    year: leftMost.year,
-                    month: leftMost.month,
-                    date: leftMost.date + i
+                    year: pointerDate.getFullYear(),
+                    month: pointerDate.getMonth(),
+                    date: pointerDate.getDate()
                 };
-                vm.checkins = [];
-                let checkinsArray = [];
-                vm.httpGeneral.sendRequest({
-                    type: "GET",
-                    url: 'api/checkins/' + window._injectedData.currentProject + '/bydate/' + date.year + '/' + date.month + '/' + date.date
-                }).then(function(res) {
-                    vm.dailyCheckinsList[date.date] = {
-                        checkins: [],
-                        day: date
-                    };
-                    if (res) {
-                        vm.years[date.year].months[date.month].days[date.date] = {
-                            day: date,
-                            checkin: res
-                        };
-                    }
-                    vm.rootScp.$broadcast('addDate', date);
-                });
+                vm.addDateToDisplay(date);                
+            }
+        } else if (dayDate > leftMostDate){
+            while (pointerDate.getTime() !== dayDate.getTime()) {
+                pointerDate = new Date(pointerDate.getFullYear(), pointerDate.getMonth(), pointerDate.getDate() + 1);
+                let date = {
+                    year: pointerDate.getFullYear(),
+                    month: pointerDate.getMonth(),
+                    date: pointerDate.getDate()
+                };
+                vm.addDateToDisplay(date);
             }
         }
     }
@@ -202,51 +173,16 @@ class checkinData {
     previousDay() {
         let vm = this;
         let leftMost = vm.findLeftMostDate();
-        console.log('leftmost');
-        console.log(leftMost);
-        if (leftMost.date > 1) {
-            vm.checkins = [];
-            let date = {
-                year: leftMost.year,
-                month: leftMost.month,
-                date: leftMost.date - 1
-            };
+        let dateObj = new Date(leftMost.year, leftMost.month, leftMost.date - 1);
+        let date = {
+            year: dateObj.getFullYear(),
+            month: dateObj.getMonth(),
+            date: dateObj.getDate()
+        };
+        return vm.getCheckins(date).then(function(data) {
+            console.log(date);
             vm.addDateToDisplay(date);
-
-            vm.rootScp.$broadcast('addDate', date);
-            return vm.getCheckins(date).then(function(data) {
-                return data;
-            });
-        } else {
-            if (leftMost.month>0) {
-                vm.checkins = [];
-                let date = {
-                    year: leftMost.year,
-                    month: --leftMost.month,
-                    date: new Date(leftMost.year, leftMost.month + 1, 0).getDate()
-                };
-                vm.addDateToDisplay(date);
-                vm.rootScp.$broadcast('addDate', date);
-                return vm.getCheckins(date).then(function(data) {
-                    return data;
-                });                
-            } else {
-                vm.checkins = [];
-                let tempdate = new Date(leftMost.year, leftMost.month, leftMost.date - 1);
-                 let date = {
-                    year: tempdate.getFullYear(),
-                    month: tempdate.getMonth(),
-                    date: tempdate.getDate()
-                };
-                console.log(date);
-                vm.addDateToDisplay(date);
-                console.log(vm.years);
-                vm.rootScp.$broadcast('addDate', date);
-                return vm.getCheckins(date).then(function(data) {
-                    return data;
-                });        
-            }
-        }
+         });
     }
 }
 

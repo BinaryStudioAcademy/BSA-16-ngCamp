@@ -73,12 +73,7 @@ class RightPanelComponentController {
         let scrollTop = document.getElementsByTagName('right-panel-component')[0].scrollTop;
         let offsetHeight = document.getElementsByTagName('right-panel-component')[0].offsetHeight;
         if (((scrollHeight - scrollTop - offsetHeight) / scrollHeight * 100) < 15 && scrollHeight > 80) {
-            // let left = vm.findLeftMostDate();
-            // let right = vm.findRightMostDate();
-            // if ((right.date - left.date + 1 === vm.dailyCheckinsList[0]) || (right.date - left.date === vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) {
-            // if ((right.date - left.date >= vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) {
             vm.checkinData.previousDay();
-            // }
         }
     }
 
@@ -88,38 +83,11 @@ class RightPanelComponentController {
         let clientHeight = document.getElementsByTagName('right-panel-component')[0].clientHeight;
         if (e.wheelDelta < 0) {
             if (scrollHeight == clientHeight) {
-                // let left = vm.findLeftMostDate();
-                // // console.log(left);
-                // let right = vm.findRightMostDate();
-                // if (((right.date - left.date + 1 === vm.dailyCheckinsList[0]) || (right.date - left.date === vm.dailyCheckinsList[0]) || vm.dailyCheckinsList.length == 1) && vm.changeProjectHover == false) {
-                if (vm.changeProjectHover == false) {
-                    // console.log('previous day');
+                 if (vm.changeProjectHover == false) {
                     vm.checkinData.previousDay();
                 }
             }
         }
-    }
-
-    dayFilter(day) {
-        let activeCheckins = [];
-        if (!day || !day.checkins || !day.checkins.length) return false;
-        let doShow = false;
-        if (day.checkins.length) {
-            let iterationsCount = day.checkins.length;
-            for (let i = 0; i < iterationsCount; i++) {
-                if (day.checkins[i].answers && day.checkins[i].answers.length) {
-                    let answersCount = day.checkins[i].answers.length;
-                    for (let j = 0; j < answersCount; j++) {
-                        if (day.checkins[i].answers[j] && day.checkins[i].answers[j] !== 'noAnswer') {
-                            // activeCheckins.push(day.checkins[i]);
-                            // doShow = true;
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
     }
 
     $onDestroy() {

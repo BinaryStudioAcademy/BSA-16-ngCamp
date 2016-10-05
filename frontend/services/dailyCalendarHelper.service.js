@@ -7,9 +7,7 @@ class DailyCalendarHelper {
 
     getTimeStampsDaily() {
         let dc = this;
-
         let timeStampsObj = [];
-
         for (let i = 0; i < dc.timeStampsDaily.length; i++) {
             let timeObj = {};
             timeObj.value = dc.timeStampsDaily[i];

@@ -111,9 +111,6 @@ function findCheckinsByFrequency(freq, callback) {
 }
 
 function findCheckinsByAnswerDate(projectId, year, month, date, callback) {
-    console.log(year + 'year');
-    console.log(month + 'month');
-    console.log(date + 'date');
     var to = new Date(year, month, parseInt(date)+2);
     var from = new Date(year, month, date);
     var downumber  = new Date(year, month, date).getDay();
@@ -133,9 +130,9 @@ function findCheckinsByAnswerDate(projectId, year, month, date, callback) {
         }},
         {$project: {
             question: 1,
-            project: 1,
+            // project: 1,
             frequency: 1,
-            isTurnedOn: 1,
+            // isTurnedOn: 1,
             time: 1,
             answers:  {
                 $filter: {
@@ -143,14 +140,28 @@ function findCheckinsByAnswerDate(projectId, year, month, date, callback) {
                     as: "ans",
                     cond: { $and: [ 
                     	{$gt: ["$$ans.creationDate", from ]},
-                    	{$lt: ["$$ans.creationDate", to]}
+                    	{$lt: ["$$ans.creationDate", to]},
+                        {$ne: ["$$ans.answer", 'noAnswer']}
                     ]}
                 }
+            },
+        }},
+        {$project: {
+            question: 1,
+            // project: 1,
+            frequency: 1,
+            // isTurnedOn: 1,
+            time: 1,
+            answers: 1, 
+            answersLength: {
+                $size: '$answers'
             }
+        }},
+        {$match: {
+            answersLength: {$gt: 0},
         }
-        }
-    ).exec(function(err, checkins){
-        User.populate(checkins, {path: 'answers.user'}, callback);
+    }).exec(function(err, checkins){
+        User.populate(checkins, {path: 'answers.user', select: 'firstName lastName'}, callback);
     });
 }
 
