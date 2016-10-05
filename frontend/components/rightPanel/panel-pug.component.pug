@@ -1,7 +1,7 @@
 .checkins-main-wrap
-    span(ng-repeat= "year in rpanel.years.list | filter : {year: '!undefined'} | orderBy:'-' track by $index ")
+    span(ng-repeat= "year in rpanel.years.list | orderBy:'-' track by $index ")
             span(ng-repeat="month in year.months | filter: {month: '!undefined'} | orderBy:'-' track by $index")
-                    div#chlist(ng-repeat="day in month.days | filter: {day: '!undefined'} | orderBy:'-' track by $index") <h2 class="checkin_day", ng-if="day.checkins.length!=0">{{day.day.year}}/{{day.day.month+1}}/{{day.day.date}}</h2><h3 class="checkin_day", ng-if="day.checkins.length==0">There are no check-ins for this day - {{day.day.year}}/{{day.day.month+1}}/{{day.day.date}}</h3>
+                    div#chlist(ng-repeat="day in month.days | filter: {month: '!undefined'} | orderBy:'-' track by $index") <h2 class="checkin_day", ng-if="day.checkins.length!=0">{{day.day.year}}/{{day.day.month+1}}/{{day.day.date}}</h2><h3 class="checkin_day", ng-if="day.checkins.length==0">There are no check-ins for this day - {{day.day.year}}/{{day.day.month+1}}/{{day.day.date}}</h3>
                             ul.checkinsList(ng-repeat="checkin in day.checkins track by $index") <h2 class="checkin_title">{{checkin.question}}</h2>
                                    li(ng-repeat="answer in checkin.answers track by $index")
                                         .answer <span class="user_name">{{answer.user.firstName + ' '+ answer.user.lastName }} (<span class="creation_date">{{answer.editedDate | date: "HH:mm"}}</span>)</span>  <span class="answer_text" ng-bind-html='answer.answer'></span>

@@ -2,11 +2,11 @@ import './calendarMonth.styl';
 let moment = require('moment');
 
 class CalendarMonthCtrl {
-    constructor($rootScope, $scope, checkinData) {
+    constructor($rootScope, $scope, mainPageCheckinData) {
         let vm = this;
         vm.rootScp = $rootScope;
         vm.scp = $scope;
-        vm.checkinData = checkinData;
+        vm.checkinData = mainPageCheckinData;
         vm.currentMonth = new Date();
         vm.isChangeMonth = false;
         vm.checkedDays = [];
@@ -15,7 +15,9 @@ class CalendarMonthCtrl {
                 return vm.checkinData.years;
             } 
         };
+
         vm.startChangeMonth = () => vm.isChangeMonth = true;
+
         vm.endChangeMonth = () => {
             vm.isChangeMonth = false;
             vm.monthStartMoment = moment(vm.currentMonth);
@@ -24,7 +26,6 @@ class CalendarMonthCtrl {
             vm.createMonthView();
             vm.buildMonth();
         };
-
 
         vm.buildMonth = () => {
             let date = vm.mViewStartMoment.clone();
@@ -41,7 +42,7 @@ class CalendarMonthCtrl {
                     });
                     date.add(1, "d");
                 }
-                if (weekIndex > 3 && !days[0].isCurrentMonth){
+                if (weekIndex > 3 && !days[0].isCurrentMonth) {
                     break;
                 } else {
                    vm.weeks.push({
@@ -70,24 +71,26 @@ class CalendarMonthCtrl {
         };
 
         vm.findAndCheckDays = () => {
-            if (vm.years.list.length > 0){
+            if (vm.years.list.length > 0) {
                 for (let i=0; i < vm.weeks.length; i++) {
                     for (let j=0; j < vm.weeks[i].days.length; j++) {
                         let day = vm.weeks[i].days[j];
                         let year = day.date.year();
                         let month = day.date.month();
                         let date = day.date.date();
-                        if(vm.years.list[year]){
-                            if(vm.years.list[year].months){
-                                if (vm.years.list[year].months[month]){
-                                    if (vm.years.list[year].months[month].days){
-                                        if (vm.years.list[year].months[month].days[date]){
-                                            day.isChecked = true;
+                        vm.years.list.forEach(function(y) {
+                            if(y.year == year) {
+                                if(y.months) {
+                                    if (y.months[month]) {
+                                        if (y.months[month].days) {
+                                            if (y.months[month].days[date]) {
+                                                day.isChecked = true;
+                                            }
                                         }
-                                    }
-                                } 
+                                    } 
+                                }
                             }
-                        }
+                        });
                     }
                 }
             }
@@ -135,6 +138,7 @@ class CalendarMonthCtrl {
                 vm.rootScp.$broadcast('date', dateObj);
             }
         };
+        
         vm.goto = (date) => {
             let dateObj = {
                 year: date.year(),
@@ -208,10 +212,11 @@ class CalendarMonthCtrl {
             });
         });
         vm.rootScp.$broadcast('endmonthdate', vm.monthEndMoment.date());
+        vm.findAndCheckDays();
     }
 }
 
-CalendarMonthCtrl.$inject = ['$rootScope', '$scope', 'checkinData'];
+CalendarMonthCtrl.$inject = ['$rootScope', '$scope', 'mainPageCheckinData'];
 
 const calendarMonthComponent = {
     controller: CalendarMonthCtrl,

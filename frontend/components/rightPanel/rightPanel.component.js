@@ -1,7 +1,5 @@
-﻿//import './checkinsStyles.styl';
-
-class RightPanelComponentController {
-    constructor(httpGeneral, $scope, $rootScope, checkinData) {
+﻿class RightPanelComponentController {
+    constructor(httpGeneral, $scope, $rootScope, mainPageCheckinData) {
         let vm = this;
         vm.httpGeneral = httpGeneral;
         vm.date = new Date();
@@ -9,32 +7,28 @@ class RightPanelComponentController {
         vm.rigthMostDate = new Date();
         vm.scp = $scope;
         vm.rootScp = $rootScope;
-        vm.checkinData = checkinData;
+        vm.checkinData = mainPageCheckinData;
         vm.years = {
             get list() {
                 return vm.checkinData.years;
             } 
         };
-        vm.checkins = [];
-        vm.endOfMonth = 35;
         vm.changeProjectHover = false;
     }
 
     $onInit() {
         let vm = this;
-        let dateObj = {
-            year: vm.date.getFullYear(),
-            month: vm.date.getMonth(),
-            date: vm.date.getDate()
-        };
-        vm.checkinData.addDateToDisplay(dateObj);
+        if (!vm.years.list.length) {
+            let dateObj = {
+                year: vm.date.getFullYear(),
+                month: vm.date.getMonth(),
+                date: vm.date.getDate()
+            };
+            vm.checkinData.addDateToDisplay(dateObj);
+        }
 
         vm.scp.$on('date', function(event, day) {
             vm.checkinData.oneDateToDisplay(day);
-        });
-
-        vm.scp.$on('endmonthdate', function(event, day) {
-            vm.endOfMonth = day;
         });
 
         vm.scp.$on('mouseOut', function(event) {
@@ -95,17 +89,9 @@ class RightPanelComponentController {
         angular.element(document.querySelectorAll('right-panel-component.ng-isolate-scope')).unbind("scroll");
         angular.element(document).unbind("mousewheel");
     }
-    checkinEmptyFilter(checkin) {
-        let doShow = false;
-        for (let i = 0; i < checkin.answers.length; i++) {
-            if (checkin.answers[i] && checkin.answers[i] !== 'noAnswer') doShow = true;
-            else if (checkin.answers[i]) checkin.answers.slice(i, 1);
-        }
-        if (doShow) return checkin;
-    }
 }
 
-RightPanelComponentController.$inject = ['httpGeneral', '$scope', '$rootScope', 'checkinData'];
+RightPanelComponentController.$inject = ['httpGeneral', '$scope', '$rootScope', 'mainPageCheckinData'];
 
 const rightPanelComponent = {
     controller: RightPanelComponentController,
