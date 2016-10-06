@@ -19,11 +19,8 @@ CheckinRepository.prototype.getByAnswerToken = getByAnswerToken;
 CheckinRepository.prototype.updateAnswerItem = updateAnswerItem;
 CheckinRepository.prototype.getAnswersById = getAnswersById;
 CheckinRepository.prototype.findCheckinsByFrequency = findCheckinsByFrequency;
-CheckinRepository.prototype.findCheckinsByAnswerDate = findCheckinsByAnswerDate;
 CheckinRepository.prototype.getQuestionsByProject = getQuestionsByProject;
 CheckinRepository.prototype.getCheckinsByProjectAndUser = getCheckinsByProjectAndUser;
-
-
 
 function getByIdWithParticipants(id, callback) {
     var query = Checkin.findOne({
@@ -110,60 +107,6 @@ function findCheckinsByFrequency(freq, callback) {
     query.exec(callback);
 }
 
-function findCheckinsByAnswerDate(projectId, year, month, date, callback) {
-    var to = new Date(year, month, parseInt(date)+2);
-    var from = new Date(year, month, date);
-    var downumber  = new Date(year, month, date).getDay();
-    var days = ['Sunday',
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday',
-            'Sunday'];
-    var dow = days[downumber];
-    var query = Checkin.aggregate(
-        {$match: {
-            frequency: {$regex: dow },
-            project: new ObjectId(projectId)
-        }},
-        {$project: {
-            question: 1,
-            // project: 1,
-            frequency: 1,
-            // isTurnedOn: 1,
-            time: 1,
-            answers:  {
-                $filter: {
-                    input: "$answers",
-                    as: "ans",
-                    cond: { $and: [ 
-                    	{$gt: ["$$ans.creationDate", from ]},
-                    	{$lt: ["$$ans.creationDate", to]},
-                        {$ne: ["$$ans.answer", 'noAnswer']}
-                    ]}
-                }
-            },
-        }},
-        {$project: {
-            question: 1,
-            // project: 1,
-            frequency: 1,
-            // isTurnedOn: 1,
-            time: 1,
-            answers: 1, 
-            answersLength: {
-                $size: '$answers'
-            }
-        }},
-        {$match: {
-            answersLength: {$gt: 0},
-        }
-    }).exec(function(err, checkins){
-        User.populate(checkins, {path: 'answers.user', select: 'firstName lastName'}, callback);
-    });
-}
 
 function updateAnswerItem(checkinId, id, data, callback) {
     var query = Checkin.update({

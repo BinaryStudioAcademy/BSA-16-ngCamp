@@ -62,7 +62,7 @@ module.exports = function(app) {
     }, apiResponse);
 
     app.get(baseUrl + ':projectId/bydate/:year/:month/:date', function (req, res, next) {
-        checkinRepository.findCheckinsByAnswerDate(req.params.projectId, req.params.year, req.params.month, req.params.date, function (err, data) {
+        checkinService.findCheckinsByAnswerDate(req.params.projectId, req.params.year, req.params.month, req.params.date, function (err, data) {
             res.data = data;
             res.err = err;
             next();

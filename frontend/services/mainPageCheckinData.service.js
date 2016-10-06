@@ -197,9 +197,7 @@ class mainPageCheckinData {
             month: dateObj.getMonth(),
             date: dateObj.getDate()
         };
-        return vm.getCheckins(date).then(function(data) {
-            vm.addDateToDisplay(date);
-         });
+        return vm.addDateToDisplay(date);
     }
 }
 
